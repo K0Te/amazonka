@@ -36,7 +36,6 @@ module Network.AWS.CloudFront.TagResource
     ) where
 
 import Network.AWS.CloudFront.Types
-import Network.AWS.CloudFront.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -47,11 +46,9 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'tagResource' smart constructor.
-data TagResource = TagResource'
-  { _trResource :: !Text
-  , _trTags     :: !Tags
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data TagResource = TagResource'{_trResource :: !Text,
+                                _trTags :: !Tags}
+                     deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'TagResource' with the minimum fields required to make a request.
 --
@@ -64,9 +61,9 @@ tagResource
     :: Text -- ^ 'trResource'
     -> Tags -- ^ 'trTags'
     -> TagResource
-tagResource pResource_ pTags_ =
-  TagResource' {_trResource = pResource_, _trTags = pTags_}
-
+tagResource pResource_ pTags_
+  = TagResource'{_trResource = pResource_,
+                 _trTags = pTags_}
 
 -- | An ARN of a CloudFront resource.
 trResource :: Lens' TagResource Text
@@ -88,7 +85,7 @@ instance NFData TagResource where
 instance ToElement TagResource where
         toElement
           = mkElement
-              "{http://cloudfront.amazonaws.com/doc/2017-10-30/}Tags"
+              "{http://cloudfront.amazonaws.com/doc/2020-05-31/}Tags"
               .
               _trTags
 
@@ -96,7 +93,7 @@ instance ToHeaders TagResource where
         toHeaders = const mempty
 
 instance ToPath TagResource where
-        toPath = const "/2017-10-30/tagging"
+        toPath = const "/2020-05-31/tagging"
 
 instance ToQuery TagResource where
         toQuery TagResource'{..}
@@ -104,16 +101,13 @@ instance ToQuery TagResource where
               ["Resource" =: _trResource, "Operation=Tag"]
 
 -- | /See:/ 'tagResourceResponse' smart constructor.
-data TagResourceResponse =
-  TagResourceResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data TagResourceResponse = TagResourceResponse'
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'TagResourceResponse' with the minimum fields required to make a request.
 --
 tagResourceResponse
     :: TagResourceResponse
 tagResourceResponse = TagResourceResponse'
-
 
 instance NFData TagResourceResponse where

@@ -42,7 +42,6 @@ module Network.AWS.APIGateway.GetVPCLinks
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
@@ -54,11 +53,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'getVPCLinks' smart constructor.
-data GetVPCLinks = GetVPCLinks'
-  { _gvlLimit    :: !(Maybe Int)
-  , _gvlPosition :: !(Maybe Text)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetVPCLinks = GetVPCLinks'{_gvlLimit ::
+                                !(Maybe Int),
+                                _gvlPosition :: !(Maybe Text)}
+                     deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetVPCLinks' with the minimum fields required to make a request.
 --
@@ -69,8 +67,9 @@ data GetVPCLinks = GetVPCLinks'
 -- * 'gvlPosition' - The current pagination position in the paged result set.
 getVPCLinks
     :: GetVPCLinks
-getVPCLinks = GetVPCLinks' {_gvlLimit = Nothing, _gvlPosition = Nothing}
-
+getVPCLinks
+  = GetVPCLinks'{_gvlLimit = Nothing,
+                 _gvlPosition = Nothing}
 
 -- | The maximum number of returned results per page. The default value is 25 and the maximum value is 500.
 gvlLimit :: Lens' GetVPCLinks (Maybe Int)
@@ -118,15 +117,14 @@ instance ToQuery GetVPCLinks where
 -- | The collection of VPC links under the caller's account in a region.
 --
 --
--- <http://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-with-private-integration.html Getting Started with Private Integrations> , <http://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-private-integration.html Set up Private Integrations>
+-- <https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-with-private-integration.html Getting Started with Private Integrations> , <https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-private-integration.html Set up Private Integrations> 
 --
 -- /See:/ 'getVPCLinksResponse' smart constructor.
-data GetVPCLinksResponse = GetVPCLinksResponse'
-  { _gvlrsItems          :: !(Maybe [VPCLink])
-  , _gvlrsPosition       :: !(Maybe Text)
-  , _gvlrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetVPCLinksResponse = GetVPCLinksResponse'{_gvlrsItems
+                                                :: !(Maybe [VPCLink]),
+                                                _gvlrsPosition :: !(Maybe Text),
+                                                _gvlrsResponseStatus :: !Int}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetVPCLinksResponse' with the minimum fields required to make a request.
 --
@@ -140,13 +138,10 @@ data GetVPCLinksResponse = GetVPCLinksResponse'
 getVPCLinksResponse
     :: Int -- ^ 'gvlrsResponseStatus'
     -> GetVPCLinksResponse
-getVPCLinksResponse pResponseStatus_ =
-  GetVPCLinksResponse'
-    { _gvlrsItems = Nothing
-    , _gvlrsPosition = Nothing
-    , _gvlrsResponseStatus = pResponseStatus_
-    }
-
+getVPCLinksResponse pResponseStatus_
+  = GetVPCLinksResponse'{_gvlrsItems = Nothing,
+                         _gvlrsPosition = Nothing,
+                         _gvlrsResponseStatus = pResponseStatus_}
 
 -- | The current page of elements from this collection.
 gvlrsItems :: Lens' GetVPCLinksResponse [VPCLink]

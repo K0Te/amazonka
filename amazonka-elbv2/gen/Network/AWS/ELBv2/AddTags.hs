@@ -18,12 +18,10 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Adds the specified tags to the specified Elastic Load Balancing resource. You can tag your Application Load Balancers, Network Load Balancers, and your target groups.
+-- Adds the specified tags to the specified Elastic Load Balancing resource. You can tag your Application Load Balancers, Network Load Balancers, Gateway Load Balancers, target groups, listeners, and rules.
 --
 --
 -- Each tag consists of a key and an optional value. If a resource already has a tag with the same key, @AddTags@ updates its value.
---
--- To list the current tags for your resources, use 'DescribeTags' . To remove tags from your resources, use 'RemoveTags' .
 --
 module Network.AWS.ELBv2.AddTags
     (
@@ -42,18 +40,15 @@ module Network.AWS.ELBv2.AddTags
     ) where
 
 import Network.AWS.ELBv2.Types
-import Network.AWS.ELBv2.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'addTags' smart constructor.
-data AddTags = AddTags'
-  { _atResourceARNs :: ![Text]
-  , _atTags         :: !(List1 Tag)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data AddTags = AddTags'{_atResourceARNs :: ![Text],
+                        _atTags :: !(List1 Tag)}
+                 deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'AddTags' with the minimum fields required to make a request.
 --
@@ -61,18 +56,19 @@ data AddTags = AddTags'
 --
 -- * 'atResourceARNs' - The Amazon Resource Name (ARN) of the resource.
 --
--- * 'atTags' - The tags. Each resource can have a maximum of 10 tags.
+-- * 'atTags' - The tags.
 addTags
     :: NonEmpty Tag -- ^ 'atTags'
     -> AddTags
-addTags pTags_ = AddTags' {_atResourceARNs = mempty, _atTags = _List1 # pTags_}
-
+addTags pTags_
+  = AddTags'{_atResourceARNs = mempty,
+             _atTags = _List1 # pTags_}
 
 -- | The Amazon Resource Name (ARN) of the resource.
 atResourceARNs :: Lens' AddTags [Text]
 atResourceARNs = lens _atResourceARNs (\ s a -> s{_atResourceARNs = a}) . _Coerce
 
--- | The tags. Each resource can have a maximum of 10 tags.
+-- | The tags.
 atTags :: Lens' AddTags (NonEmpty Tag)
 atTags = lens _atTags (\ s a -> s{_atTags = a}) . _List1
 
@@ -103,10 +99,9 @@ instance ToQuery AddTags where
                "Tags" =: toQueryList "member" _atTags]
 
 -- | /See:/ 'addTagsResponse' smart constructor.
-newtype AddTagsResponse = AddTagsResponse'
-  { _atrsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype AddTagsResponse = AddTagsResponse'{_atrsResponseStatus
+                                           :: Int}
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'AddTagsResponse' with the minimum fields required to make a request.
 --
@@ -116,9 +111,9 @@ newtype AddTagsResponse = AddTagsResponse'
 addTagsResponse
     :: Int -- ^ 'atrsResponseStatus'
     -> AddTagsResponse
-addTagsResponse pResponseStatus_ =
-  AddTagsResponse' {_atrsResponseStatus = pResponseStatus_}
-
+addTagsResponse pResponseStatus_
+  = AddTagsResponse'{_atrsResponseStatus =
+                       pResponseStatus_}
 
 -- | -- | The response status code.
 atrsResponseStatus :: Lens' AddTagsResponse Int

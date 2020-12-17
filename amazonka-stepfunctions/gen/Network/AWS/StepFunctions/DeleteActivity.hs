@@ -41,13 +41,11 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.StepFunctions.Types
-import Network.AWS.StepFunctions.Types.Product
 
 -- | /See:/ 'deleteActivity' smart constructor.
-newtype DeleteActivity = DeleteActivity'
-  { _daActivityARN :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteActivity = DeleteActivity'{_daActivityARN
+                                         :: Text}
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteActivity' with the minimum fields required to make a request.
 --
@@ -57,8 +55,8 @@ newtype DeleteActivity = DeleteActivity'
 deleteActivity
     :: Text -- ^ 'daActivityARN'
     -> DeleteActivity
-deleteActivity pActivityARN_ = DeleteActivity' {_daActivityARN = pActivityARN_}
-
+deleteActivity pActivityARN_
+  = DeleteActivity'{_daActivityARN = pActivityARN_}
 
 -- | The Amazon Resource Name (ARN) of the activity to delete.
 daActivityARN :: Lens' DeleteActivity Text
@@ -97,10 +95,10 @@ instance ToQuery DeleteActivity where
         toQuery = const mempty
 
 -- | /See:/ 'deleteActivityResponse' smart constructor.
-newtype DeleteActivityResponse = DeleteActivityResponse'
-  { _darsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteActivityResponse = DeleteActivityResponse'{_darsResponseStatus
+                                                         :: Int}
+                                   deriving (Eq, Read, Show, Data, Typeable,
+                                             Generic)
 
 -- | Creates a value of 'DeleteActivityResponse' with the minimum fields required to make a request.
 --
@@ -110,9 +108,9 @@ newtype DeleteActivityResponse = DeleteActivityResponse'
 deleteActivityResponse
     :: Int -- ^ 'darsResponseStatus'
     -> DeleteActivityResponse
-deleteActivityResponse pResponseStatus_ =
-  DeleteActivityResponse' {_darsResponseStatus = pResponseStatus_}
-
+deleteActivityResponse pResponseStatus_
+  = DeleteActivityResponse'{_darsResponseStatus =
+                              pResponseStatus_}
 
 -- | -- | The response status code.
 darsResponseStatus :: Lens' DeleteActivityResponse Int

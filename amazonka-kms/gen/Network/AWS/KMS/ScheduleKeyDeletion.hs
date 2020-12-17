@@ -18,14 +18,18 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Schedules the deletion of a customer master key (CMK). You may provide a waiting period, specified in days, before deletion occurs. If you do not provide a waiting period, the default period of 30 days is used. When this operation is successful, the state of the CMK changes to @PendingDeletion@ . Before the waiting period ends, you can use 'CancelKeyDeletion' to cancel the deletion of the CMK. After the waiting period ends, AWS KMS deletes the CMK and all AWS KMS data associated with it, including all aliases that refer to it.
+-- Schedules the deletion of a customer master key (CMK). You may provide a waiting period, specified in days, before deletion occurs. If you do not provide a waiting period, the default period of 30 days is used. When this operation is successful, the key state of the CMK changes to @PendingDeletion@ . Before the waiting period ends, you can use 'CancelKeyDeletion' to cancel the deletion of the CMK. After the waiting period ends, AWS KMS deletes the CMK and all AWS KMS data associated with it, including all aliases that refer to it.
 --
+--
+-- /Important:/ Deleting a CMK is a destructive and potentially dangerous operation. When a CMK is deleted, all data that was encrypted under the CMK is unrecoverable. To prevent the use of a CMK without deleting it, use 'DisableKey' .
+--
+-- If you schedule deletion of a CMK from a <https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html custom key store> , when the waiting period expires, @ScheduleKeyDeletion@ deletes the CMK from AWS KMS. Then AWS KMS makes a best effort to delete the key material from the associated AWS CloudHSM cluster. However, you might need to manually <https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html#fix-keystore-orphaned-key delete the orphaned key material> from the cluster and its backups.
 --
 -- You cannot perform this operation on a CMK in a different AWS account.
 --
--- /Important:/ Deleting a CMK is a destructive and potentially dangerous operation. When a CMK is deleted, all data that was encrypted under the CMK is rendered unrecoverable. To restrict the use of a CMK without deleting it, use 'DisableKey' .
+-- For more information about scheduling a CMK for deletion, see <https://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html Deleting Customer Master Keys> in the /AWS Key Management Service Developer Guide/ .
 --
--- For more information about scheduling a CMK for deletion, see <http://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html Deleting Customer Master Keys> in the /AWS Key Management Service Developer Guide/ .
+-- The CMK that you use for this operation must be in a compatible key state. For details, see <https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html How Key State Affects Use of a Customer Master Key> in the /AWS Key Management Service Developer Guide/ .
 --
 module Network.AWS.KMS.ScheduleKeyDeletion
     (
@@ -46,18 +50,16 @@ module Network.AWS.KMS.ScheduleKeyDeletion
     ) where
 
 import Network.AWS.KMS.Types
-import Network.AWS.KMS.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'scheduleKeyDeletion' smart constructor.
-data ScheduleKeyDeletion = ScheduleKeyDeletion'
-  { _skdPendingWindowInDays :: !(Maybe Nat)
-  , _skdKeyId               :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ScheduleKeyDeletion = ScheduleKeyDeletion'{_skdPendingWindowInDays
+                                                :: !(Maybe Nat),
+                                                _skdKeyId :: !Text}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ScheduleKeyDeletion' with the minimum fields required to make a request.
 --
@@ -69,9 +71,10 @@ data ScheduleKeyDeletion = ScheduleKeyDeletion'
 scheduleKeyDeletion
     :: Text -- ^ 'skdKeyId'
     -> ScheduleKeyDeletion
-scheduleKeyDeletion pKeyId_ =
-  ScheduleKeyDeletion' {_skdPendingWindowInDays = Nothing, _skdKeyId = pKeyId_}
-
+scheduleKeyDeletion pKeyId_
+  = ScheduleKeyDeletion'{_skdPendingWindowInDays =
+                           Nothing,
+                         _skdKeyId = pKeyId_}
 
 -- | The waiting period, specified in number of days. After the waiting period ends, AWS KMS deletes the customer master key (CMK). This value is optional. If you include a value, it must be between 7 and 30, inclusive. If you do not include a value, it defaults to 30.
 skdPendingWindowInDays :: Lens' ScheduleKeyDeletion (Maybe Natural)
@@ -120,18 +123,22 @@ instance ToQuery ScheduleKeyDeletion where
         toQuery = const mempty
 
 -- | /See:/ 'scheduleKeyDeletionResponse' smart constructor.
-data ScheduleKeyDeletionResponse = ScheduleKeyDeletionResponse'
-  { _skdrsKeyId          :: !(Maybe Text)
-  , _skdrsDeletionDate   :: !(Maybe POSIX)
-  , _skdrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ScheduleKeyDeletionResponse = ScheduleKeyDeletionResponse'{_skdrsKeyId
+                                                                ::
+                                                                !(Maybe Text),
+                                                                _skdrsDeletionDate
+                                                                ::
+                                                                !(Maybe POSIX),
+                                                                _skdrsResponseStatus
+                                                                :: !Int}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'ScheduleKeyDeletionResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'skdrsKeyId' - The unique identifier of the customer master key (CMK) for which deletion is scheduled.
+-- * 'skdrsKeyId' - The Amazon Resource Name (<https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN key ARN> ) of the CMK whose deletion is scheduled.
 --
 -- * 'skdrsDeletionDate' - The date and time after which AWS KMS deletes the customer master key (CMK).
 --
@@ -139,15 +146,12 @@ data ScheduleKeyDeletionResponse = ScheduleKeyDeletionResponse'
 scheduleKeyDeletionResponse
     :: Int -- ^ 'skdrsResponseStatus'
     -> ScheduleKeyDeletionResponse
-scheduleKeyDeletionResponse pResponseStatus_ =
-  ScheduleKeyDeletionResponse'
-    { _skdrsKeyId = Nothing
-    , _skdrsDeletionDate = Nothing
-    , _skdrsResponseStatus = pResponseStatus_
-    }
+scheduleKeyDeletionResponse pResponseStatus_
+  = ScheduleKeyDeletionResponse'{_skdrsKeyId = Nothing,
+                                 _skdrsDeletionDate = Nothing,
+                                 _skdrsResponseStatus = pResponseStatus_}
 
-
--- | The unique identifier of the customer master key (CMK) for which deletion is scheduled.
+-- | The Amazon Resource Name (<https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN key ARN> ) of the CMK whose deletion is scheduled.
 skdrsKeyId :: Lens' ScheduleKeyDeletionResponse (Maybe Text)
 skdrsKeyId = lens _skdrsKeyId (\ s a -> s{_skdrsKeyId = a})
 

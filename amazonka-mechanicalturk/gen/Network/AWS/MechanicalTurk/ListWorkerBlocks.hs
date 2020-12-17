@@ -44,18 +44,16 @@ module Network.AWS.MechanicalTurk.ListWorkerBlocks
 
 import Network.AWS.Lens
 import Network.AWS.MechanicalTurk.Types
-import Network.AWS.MechanicalTurk.Types.Product
 import Network.AWS.Pager
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'listWorkerBlocks' smart constructor.
-data ListWorkerBlocks = ListWorkerBlocks'
-  { _lwbNextToken  :: !(Maybe Text)
-  , _lwbMaxResults :: !(Maybe Nat)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListWorkerBlocks = ListWorkerBlocks'{_lwbNextToken
+                                          :: !(Maybe Text),
+                                          _lwbMaxResults :: !(Maybe Nat)}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListWorkerBlocks' with the minimum fields required to make a request.
 --
@@ -66,9 +64,9 @@ data ListWorkerBlocks = ListWorkerBlocks'
 -- * 'lwbMaxResults' - Undocumented member.
 listWorkerBlocks
     :: ListWorkerBlocks
-listWorkerBlocks =
-  ListWorkerBlocks' {_lwbNextToken = Nothing, _lwbMaxResults = Nothing}
-
+listWorkerBlocks
+  = ListWorkerBlocks'{_lwbNextToken = Nothing,
+                      _lwbMaxResults = Nothing}
 
 -- | Pagination token
 lwbNextToken :: Lens' ListWorkerBlocks (Maybe Text)
@@ -125,13 +123,18 @@ instance ToQuery ListWorkerBlocks where
         toQuery = const mempty
 
 -- | /See:/ 'listWorkerBlocksResponse' smart constructor.
-data ListWorkerBlocksResponse = ListWorkerBlocksResponse'
-  { _lwbrsWorkerBlocks   :: !(Maybe [WorkerBlock])
-  , _lwbrsNextToken      :: !(Maybe Text)
-  , _lwbrsNumResults     :: !(Maybe Int)
-  , _lwbrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListWorkerBlocksResponse = ListWorkerBlocksResponse'{_lwbrsWorkerBlocks
+                                                          ::
+                                                          !(Maybe
+                                                              [WorkerBlock]),
+                                                          _lwbrsNextToken ::
+                                                          !(Maybe Text),
+                                                          _lwbrsNumResults ::
+                                                          !(Maybe Int),
+                                                          _lwbrsResponseStatus
+                                                          :: !Int}
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'ListWorkerBlocksResponse' with the minimum fields required to make a request.
 --
@@ -147,14 +150,12 @@ data ListWorkerBlocksResponse = ListWorkerBlocksResponse'
 listWorkerBlocksResponse
     :: Int -- ^ 'lwbrsResponseStatus'
     -> ListWorkerBlocksResponse
-listWorkerBlocksResponse pResponseStatus_ =
-  ListWorkerBlocksResponse'
-    { _lwbrsWorkerBlocks = Nothing
-    , _lwbrsNextToken = Nothing
-    , _lwbrsNumResults = Nothing
-    , _lwbrsResponseStatus = pResponseStatus_
-    }
-
+listWorkerBlocksResponse pResponseStatus_
+  = ListWorkerBlocksResponse'{_lwbrsWorkerBlocks =
+                                Nothing,
+                              _lwbrsNextToken = Nothing,
+                              _lwbrsNumResults = Nothing,
+                              _lwbrsResponseStatus = pResponseStatus_}
 
 -- | The list of WorkerBlocks, containing the collection of Worker IDs and reasons for blocking.
 lwbrsWorkerBlocks :: Lens' ListWorkerBlocksResponse [WorkerBlock]

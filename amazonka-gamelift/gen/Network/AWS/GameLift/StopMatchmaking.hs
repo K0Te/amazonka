@@ -18,20 +18,26 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Cancels a matchmaking ticket that is currently being processed. To stop the matchmaking operation, specify the ticket ID. If successful, work on the ticket is stopped, and the ticket status is changed to @CANCELLED@ .
+-- Cancels a matchmaking ticket or match backfill ticket that is currently being processed. To stop the matchmaking operation, specify the ticket ID. If successful, work on the ticket is stopped, and the ticket status is changed to @CANCELLED@ .
 --
 --
--- Matchmaking-related operations include:
+-- This call is also used to turn off automatic backfill for an individual game session. This is for game sessions that are created with a matchmaking configuration that has automatic backfill enabled. The ticket ID is included in the @MatchmakerData@ of an updated game session object, which is provided to the game server.
 --
---     * 'StartMatchmaking'
+-- __Learn more__ 
 --
---     * 'DescribeMatchmaking'
+-- <https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-client.html Add FlexMatch to a Game Client> 
 --
---     * 'StopMatchmaking'
+-- __Related operations__ 
 --
---     * 'AcceptMatch'
+--     * 'StartMatchmaking' 
 --
---     * 'StartMatchBackfill'
+--     * 'DescribeMatchmaking' 
+--
+--     * 'StopMatchmaking' 
+--
+--     * 'AcceptMatch' 
+--
+--     * 'StartMatchBackfill' 
 --
 --
 --
@@ -51,34 +57,32 @@ module Network.AWS.GameLift.StopMatchmaking
     ) where
 
 import Network.AWS.GameLift.Types
-import Network.AWS.GameLift.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- | Represents the input for a request action.
+-- | Represents the input for a request operation.
 --
 --
 --
 -- /See:/ 'stopMatchmaking' smart constructor.
-newtype StopMatchmaking = StopMatchmaking'
-  { _smTicketId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype StopMatchmaking = StopMatchmaking'{_smTicketId
+                                           :: Text}
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'StopMatchmaking' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'smTicketId' - Unique identifier for a matchmaking ticket.
+-- * 'smTicketId' - A unique identifier for a matchmaking ticket.
 stopMatchmaking
     :: Text -- ^ 'smTicketId'
     -> StopMatchmaking
-stopMatchmaking pTicketId_ = StopMatchmaking' {_smTicketId = pTicketId_}
+stopMatchmaking pTicketId_
+  = StopMatchmaking'{_smTicketId = pTicketId_}
 
-
--- | Unique identifier for a matchmaking ticket.
+-- | A unique identifier for a matchmaking ticket.
 smTicketId :: Lens' StopMatchmaking Text
 smTicketId = lens _smTicketId (\ s a -> s{_smTicketId = a})
 
@@ -115,10 +119,10 @@ instance ToQuery StopMatchmaking where
         toQuery = const mempty
 
 -- | /See:/ 'stopMatchmakingResponse' smart constructor.
-newtype StopMatchmakingResponse = StopMatchmakingResponse'
-  { _smrsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype StopMatchmakingResponse = StopMatchmakingResponse'{_smrsResponseStatus
+                                                           :: Int}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'StopMatchmakingResponse' with the minimum fields required to make a request.
 --
@@ -128,9 +132,9 @@ newtype StopMatchmakingResponse = StopMatchmakingResponse'
 stopMatchmakingResponse
     :: Int -- ^ 'smrsResponseStatus'
     -> StopMatchmakingResponse
-stopMatchmakingResponse pResponseStatus_ =
-  StopMatchmakingResponse' {_smrsResponseStatus = pResponseStatus_}
-
+stopMatchmakingResponse pResponseStatus_
+  = StopMatchmakingResponse'{_smrsResponseStatus =
+                               pResponseStatus_}
 
 -- | -- | The response status code.
 smrsResponseStatus :: Lens' StopMatchmakingResponse Int

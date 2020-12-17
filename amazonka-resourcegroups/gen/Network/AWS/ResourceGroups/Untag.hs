@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Deletes specified tags from a specified resource.
+-- Deletes tags from a specified resource group.
 --
 --
 module Network.AWS.ResourceGroups.Untag
@@ -43,30 +43,26 @@ import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.ResourceGroups.Types
-import Network.AWS.ResourceGroups.Types.Product
 import Network.AWS.Response
 
 -- | /See:/ 'untag' smart constructor.
-data Untag = Untag'
-  { _uARN  :: !Text
-  , _uKeys :: ![Text]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data Untag = Untag'{_uARN :: !Text,
+                    _uKeys :: ![Text]}
+               deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'Untag' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'uARN' - The ARN of the resource from which to remove tags.
+-- * 'uARN' - The ARN of the resource group from which to remove tags. The command removed both the specified keys and any values associated with those keys.
 --
 -- * 'uKeys' - The keys of the tags to be removed.
 untag
     :: Text -- ^ 'uARN'
     -> Untag
-untag pARN_ = Untag' {_uARN = pARN_, _uKeys = mempty}
+untag pARN_ = Untag'{_uARN = pARN_, _uKeys = mempty}
 
-
--- | The ARN of the resource from which to remove tags.
+-- | The ARN of the resource group from which to remove tags. The command removed both the specified keys and any values associated with those keys.
 uARN :: Lens' Untag Text
 uARN = lens _uARN (\ s a -> s{_uARN = a})
 
@@ -103,38 +99,34 @@ instance ToQuery Untag where
         toQuery = const mempty
 
 -- | /See:/ 'untagResponse' smart constructor.
-data UntagResponse = UntagResponse'
-  { _ursARN            :: !(Maybe Text)
-  , _ursKeys           :: !(Maybe [Text])
-  , _ursResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UntagResponse = UntagResponse'{_ursARN ::
+                                    !(Maybe Text),
+                                    _ursKeys :: !(Maybe [Text]),
+                                    _ursResponseStatus :: !Int}
+                       deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UntagResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'ursARN' - The ARN of the resource from which tags have been removed.
+-- * 'ursARN' - The ARN of the resource group from which tags have been removed.
 --
--- * 'ursKeys' - The keys of tags that have been removed.
+-- * 'ursKeys' - The keys of the tags that were removed.
 --
 -- * 'ursResponseStatus' - -- | The response status code.
 untagResponse
     :: Int -- ^ 'ursResponseStatus'
     -> UntagResponse
-untagResponse pResponseStatus_ =
-  UntagResponse'
-    { _ursARN = Nothing
-    , _ursKeys = Nothing
-    , _ursResponseStatus = pResponseStatus_
-    }
+untagResponse pResponseStatus_
+  = UntagResponse'{_ursARN = Nothing,
+                   _ursKeys = Nothing,
+                   _ursResponseStatus = pResponseStatus_}
 
-
--- | The ARN of the resource from which tags have been removed.
+-- | The ARN of the resource group from which tags have been removed.
 ursARN :: Lens' UntagResponse (Maybe Text)
 ursARN = lens _ursARN (\ s a -> s{_ursARN = a})
 
--- | The keys of tags that have been removed.
+-- | The keys of the tags that were removed.
 ursKeys :: Lens' UntagResponse [Text]
 ursKeys = lens _ursKeys (\ s a -> s{_ursKeys = a}) . _Default . _Coerce
 

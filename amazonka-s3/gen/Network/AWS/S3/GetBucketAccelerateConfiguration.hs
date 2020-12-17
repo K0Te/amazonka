@@ -18,13 +18,30 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Returns the accelerate configuration of a bucket.
+-- This implementation of the GET operation uses the @accelerate@ subresource to return the Transfer Acceleration state of a bucket, which is either @Enabled@ or @Suspended@ . Amazon S3 Transfer Acceleration is a bucket-level feature that enables you to perform faster data transfers to and from Amazon S3.
+--
+--
+-- To use this operation, you must have permission to perform the @s3:GetAccelerateConfiguration@ action. The bucket owner has this permission by default. The bucket owner can grant this permission to others. For more information about permissions, see <https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources Permissions Related to Bucket Subresource Operations> and <https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html Managing Access Permissions to your Amazon S3 Resources> in the /Amazon Simple Storage Service Developer Guide/ .
+--
+-- You set the Transfer Acceleration state of an existing bucket to @Enabled@ or @Suspended@ by using the <https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAccelerateConfiguration.html PutBucketAccelerateConfiguration> operation. 
+--
+-- A GET @accelerate@ request does not return a state value for a bucket that has no transfer acceleration state. A bucket has no Transfer Acceleration state if a state has never been set on the bucket. 
+--
+-- For more information about transfer acceleration, see <https://docs.aws.amazon.com/AmazonS3/latest/dev/transfer-acceleration.html Transfer Acceleration> in the Amazon Simple Storage Service Developer Guide.
+--
+-- __Related Resources__ 
+--
+--     * <https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAccelerateConfiguration.html PutBucketAccelerateConfiguration> 
+--
+--
+--
 module Network.AWS.S3.GetBucketAccelerateConfiguration
     (
     -- * Creating a Request
       getBucketAccelerateConfiguration
     , GetBucketAccelerateConfiguration
     -- * Request Lenses
+    , gbacExpectedBucketOwner
     , gbacBucket
 
     -- * Destructuring the Response
@@ -40,27 +57,38 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.S3.Types
-import Network.AWS.S3.Types.Product
 
 -- | /See:/ 'getBucketAccelerateConfiguration' smart constructor.
-newtype GetBucketAccelerateConfiguration = GetBucketAccelerateConfiguration'
-  { _gbacBucket :: BucketName
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetBucketAccelerateConfiguration = GetBucketAccelerateConfiguration'{_gbacExpectedBucketOwner
+                                                                          ::
+                                                                          !(Maybe
+                                                                              Text),
+                                                                          _gbacBucket
+                                                                          ::
+                                                                          !BucketName}
+                                          deriving (Eq, Read, Show, Data,
+                                                    Typeable, Generic)
 
 -- | Creates a value of 'GetBucketAccelerateConfiguration' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'gbacBucket' - Name of the bucket for which the accelerate configuration is retrieved.
+-- * 'gbacExpectedBucketOwner' - The account id of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP @403 (Access Denied)@ error.
+--
+-- * 'gbacBucket' - The name of the bucket for which the accelerate configuration is retrieved.
 getBucketAccelerateConfiguration
     :: BucketName -- ^ 'gbacBucket'
     -> GetBucketAccelerateConfiguration
-getBucketAccelerateConfiguration pBucket_ =
-  GetBucketAccelerateConfiguration' {_gbacBucket = pBucket_}
+getBucketAccelerateConfiguration pBucket_
+  = GetBucketAccelerateConfiguration'{_gbacExpectedBucketOwner
+                                        = Nothing,
+                                      _gbacBucket = pBucket_}
 
+-- | The account id of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP @403 (Access Denied)@ error.
+gbacExpectedBucketOwner :: Lens' GetBucketAccelerateConfiguration (Maybe Text)
+gbacExpectedBucketOwner = lens _gbacExpectedBucketOwner (\ s a -> s{_gbacExpectedBucketOwner = a})
 
--- | Name of the bucket for which the accelerate configuration is retrieved.
+-- | The name of the bucket for which the accelerate configuration is retrieved.
 gbacBucket :: Lens' GetBucketAccelerateConfiguration BucketName
 gbacBucket = lens _gbacBucket (\ s a -> s{_gbacBucket = a})
 
@@ -83,7 +111,10 @@ instance NFData GetBucketAccelerateConfiguration
 
 instance ToHeaders GetBucketAccelerateConfiguration
          where
-        toHeaders = const mempty
+        toHeaders GetBucketAccelerateConfiguration'{..}
+          = mconcat
+              ["x-amz-expected-bucket-owner" =#
+                 _gbacExpectedBucketOwner]
 
 instance ToPath GetBucketAccelerateConfiguration
          where
@@ -95,11 +126,16 @@ instance ToQuery GetBucketAccelerateConfiguration
         toQuery = const (mconcat ["accelerate"])
 
 -- | /See:/ 'getBucketAccelerateConfigurationResponse' smart constructor.
-data GetBucketAccelerateConfigurationResponse = GetBucketAccelerateConfigurationResponse'
-  { _grsStatus         :: !(Maybe BucketAccelerateStatus)
-  , _grsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetBucketAccelerateConfigurationResponse = GetBucketAccelerateConfigurationResponse'{_grsStatus
+                                                                                          ::
+                                                                                          !(Maybe
+                                                                                              BucketAccelerateStatus),
+                                                                                          _grsResponseStatus
+                                                                                          ::
+                                                                                          !Int}
+                                                  deriving (Eq, Read, Show,
+                                                            Data, Typeable,
+                                                            Generic)
 
 -- | Creates a value of 'GetBucketAccelerateConfigurationResponse' with the minimum fields required to make a request.
 --
@@ -111,10 +147,12 @@ data GetBucketAccelerateConfigurationResponse = GetBucketAccelerateConfiguration
 getBucketAccelerateConfigurationResponse
     :: Int -- ^ 'grsResponseStatus'
     -> GetBucketAccelerateConfigurationResponse
-getBucketAccelerateConfigurationResponse pResponseStatus_ =
-  GetBucketAccelerateConfigurationResponse'
-    {_grsStatus = Nothing, _grsResponseStatus = pResponseStatus_}
-
+getBucketAccelerateConfigurationResponse
+  pResponseStatus_
+  = GetBucketAccelerateConfigurationResponse'{_grsStatus
+                                                = Nothing,
+                                              _grsResponseStatus =
+                                                pResponseStatus_}
 
 -- | The accelerate configuration of the bucket.
 grsStatus :: Lens' GetBucketAccelerateConfigurationResponse (Maybe BucketAccelerateStatus)

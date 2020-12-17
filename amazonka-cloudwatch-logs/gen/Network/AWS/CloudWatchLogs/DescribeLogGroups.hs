@@ -43,7 +43,6 @@ module Network.AWS.CloudWatchLogs.DescribeLogGroups
     ) where
 
 import Network.AWS.CloudWatchLogs.Types
-import Network.AWS.CloudWatchLogs.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
@@ -51,12 +50,11 @@ import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'describeLogGroups' smart constructor.
-data DescribeLogGroups = DescribeLogGroups'
-  { _dlgLogGroupNamePrefix :: !(Maybe Text)
-  , _dlgNextToken          :: !(Maybe Text)
-  , _dlgLimit              :: !(Maybe Nat)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeLogGroups = DescribeLogGroups'{_dlgLogGroupNamePrefix
+                                            :: !(Maybe Text),
+                                            _dlgNextToken :: !(Maybe Text),
+                                            _dlgLimit :: !(Maybe Nat)}
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DescribeLogGroups' with the minimum fields required to make a request.
 --
@@ -69,13 +67,10 @@ data DescribeLogGroups = DescribeLogGroups'
 -- * 'dlgLimit' - The maximum number of items returned. If you don't specify a value, the default is up to 50 items.
 describeLogGroups
     :: DescribeLogGroups
-describeLogGroups =
-  DescribeLogGroups'
-    { _dlgLogGroupNamePrefix = Nothing
-    , _dlgNextToken = Nothing
-    , _dlgLimit = Nothing
-    }
-
+describeLogGroups
+  = DescribeLogGroups'{_dlgLogGroupNamePrefix =
+                         Nothing,
+                       _dlgNextToken = Nothing, _dlgLimit = Nothing}
 
 -- | The prefix to match.
 dlgLogGroupNamePrefix :: Lens' DescribeLogGroups (Maybe Text)
@@ -136,18 +131,21 @@ instance ToQuery DescribeLogGroups where
         toQuery = const mempty
 
 -- | /See:/ 'describeLogGroupsResponse' smart constructor.
-data DescribeLogGroupsResponse = DescribeLogGroupsResponse'
-  { _dlgrsLogGroups      :: !(Maybe [LogGroup])
-  , _dlgrsNextToken      :: !(Maybe Text)
-  , _dlgrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeLogGroupsResponse = DescribeLogGroupsResponse'{_dlgrsLogGroups
+                                                            ::
+                                                            !(Maybe [LogGroup]),
+                                                            _dlgrsNextToken ::
+                                                            !(Maybe Text),
+                                                            _dlgrsResponseStatus
+                                                            :: !Int}
+                                   deriving (Eq, Read, Show, Data, Typeable,
+                                             Generic)
 
 -- | Creates a value of 'DescribeLogGroupsResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'dlgrsLogGroups' - The log groups.
+-- * 'dlgrsLogGroups' - The log groups. If the @retentionInDays@ value if not included for a log group, then that log group is set to have its events never expire.
 --
 -- * 'dlgrsNextToken' - Undocumented member.
 --
@@ -155,15 +153,13 @@ data DescribeLogGroupsResponse = DescribeLogGroupsResponse'
 describeLogGroupsResponse
     :: Int -- ^ 'dlgrsResponseStatus'
     -> DescribeLogGroupsResponse
-describeLogGroupsResponse pResponseStatus_ =
-  DescribeLogGroupsResponse'
-    { _dlgrsLogGroups = Nothing
-    , _dlgrsNextToken = Nothing
-    , _dlgrsResponseStatus = pResponseStatus_
-    }
+describeLogGroupsResponse pResponseStatus_
+  = DescribeLogGroupsResponse'{_dlgrsLogGroups =
+                                 Nothing,
+                               _dlgrsNextToken = Nothing,
+                               _dlgrsResponseStatus = pResponseStatus_}
 
-
--- | The log groups.
+-- | The log groups. If the @retentionInDays@ value if not included for a log group, then that log group is set to have its events never expire.
 dlgrsLogGroups :: Lens' DescribeLogGroupsResponse [LogGroup]
 dlgrsLogGroups = lens _dlgrsLogGroups (\ s a -> s{_dlgrsLogGroups = a}) . _Default . _Coerce
 

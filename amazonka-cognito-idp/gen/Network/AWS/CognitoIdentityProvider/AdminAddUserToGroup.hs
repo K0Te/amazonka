@@ -21,7 +21,7 @@
 -- Adds the specified user to the specified group.
 --
 --
--- Requires developer credentials.
+-- Calling this action requires developer credentials.
 --
 module Network.AWS.CognitoIdentityProvider.AdminAddUserToGroup
     (
@@ -39,19 +39,18 @@ module Network.AWS.CognitoIdentityProvider.AdminAddUserToGroup
     ) where
 
 import Network.AWS.CognitoIdentityProvider.Types
-import Network.AWS.CognitoIdentityProvider.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'adminAddUserToGroup' smart constructor.
-data AdminAddUserToGroup = AdminAddUserToGroup'
-  { _aautgUserPoolId :: !Text
-  , _aautgUsername   :: !(Sensitive Text)
-  , _aautgGroupName  :: !Text
-  } deriving (Eq, Show, Data, Typeable, Generic)
-
+data AdminAddUserToGroup = AdminAddUserToGroup'{_aautgUserPoolId
+                                                :: !Text,
+                                                _aautgUsername ::
+                                                !(Sensitive Text),
+                                                _aautgGroupName :: !Text}
+                             deriving (Eq, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'AdminAddUserToGroup' with the minimum fields required to make a request.
 --
@@ -67,13 +66,12 @@ adminAddUserToGroup
     -> Text -- ^ 'aautgUsername'
     -> Text -- ^ 'aautgGroupName'
     -> AdminAddUserToGroup
-adminAddUserToGroup pUserPoolId_ pUsername_ pGroupName_ =
-  AdminAddUserToGroup'
-    { _aautgUserPoolId = pUserPoolId_
-    , _aautgUsername = _Sensitive # pUsername_
-    , _aautgGroupName = pGroupName_
-    }
-
+adminAddUserToGroup pUserPoolId_ pUsername_
+  pGroupName_
+  = AdminAddUserToGroup'{_aautgUserPoolId =
+                           pUserPoolId_,
+                         _aautgUsername = _Sensitive # pUsername_,
+                         _aautgGroupName = pGroupName_}
 
 -- | The user pool ID for the user pool.
 aautgUserPoolId :: Lens' AdminAddUserToGroup Text
@@ -122,16 +120,15 @@ instance ToQuery AdminAddUserToGroup where
         toQuery = const mempty
 
 -- | /See:/ 'adminAddUserToGroupResponse' smart constructor.
-data AdminAddUserToGroupResponse =
-  AdminAddUserToGroupResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data AdminAddUserToGroupResponse = AdminAddUserToGroupResponse'
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'AdminAddUserToGroupResponse' with the minimum fields required to make a request.
 --
 adminAddUserToGroupResponse
     :: AdminAddUserToGroupResponse
-adminAddUserToGroupResponse = AdminAddUserToGroupResponse'
-
+adminAddUserToGroupResponse
+  = AdminAddUserToGroupResponse'
 
 instance NFData AdminAddUserToGroupResponse where

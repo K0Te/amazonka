@@ -18,10 +18,10 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Deletes the specified data set.
+-- Deletes the specified dataset.
 --
 --
--- You do not have to delete the content of the data set before you perform this operation.
+-- You do not have to delete the content of the dataset before you perform this operation.
 --
 module Network.AWS.IoTAnalytics.DeleteDataset
     (
@@ -37,17 +37,15 @@ module Network.AWS.IoTAnalytics.DeleteDataset
     ) where
 
 import Network.AWS.IoTAnalytics.Types
-import Network.AWS.IoTAnalytics.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deleteDataset' smart constructor.
-newtype DeleteDataset = DeleteDataset'
-  { _dDatasetName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteDataset = DeleteDataset'{_dDatasetName
+                                       :: Text}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteDataset' with the minimum fields required to make a request.
 --
@@ -57,8 +55,8 @@ newtype DeleteDataset = DeleteDataset'
 deleteDataset
     :: Text -- ^ 'dDatasetName'
     -> DeleteDataset
-deleteDataset pDatasetName_ = DeleteDataset' {_dDatasetName = pDatasetName_}
-
+deleteDataset pDatasetName_
+  = DeleteDataset'{_dDatasetName = pDatasetName_}
 
 -- | The name of the data set to delete.
 dDatasetName :: Lens' DeleteDataset Text
@@ -84,16 +82,14 @@ instance ToQuery DeleteDataset where
         toQuery = const mempty
 
 -- | /See:/ 'deleteDatasetResponse' smart constructor.
-data DeleteDatasetResponse =
-  DeleteDatasetResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteDatasetResponse = DeleteDatasetResponse'
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'DeleteDatasetResponse' with the minimum fields required to make a request.
 --
 deleteDatasetResponse
     :: DeleteDatasetResponse
 deleteDatasetResponse = DeleteDatasetResponse'
-
 
 instance NFData DeleteDatasetResponse where

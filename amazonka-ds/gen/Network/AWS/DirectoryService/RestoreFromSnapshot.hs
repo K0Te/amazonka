@@ -41,7 +41,6 @@ module Network.AWS.DirectoryService.RestoreFromSnapshot
     ) where
 
 import Network.AWS.DirectoryService.Types
-import Network.AWS.DirectoryService.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -52,10 +51,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'restoreFromSnapshot' smart constructor.
-newtype RestoreFromSnapshot = RestoreFromSnapshot'
-  { _rfsSnapshotId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype RestoreFromSnapshot = RestoreFromSnapshot'{_rfsSnapshotId
+                                                   :: Text}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'RestoreFromSnapshot' with the minimum fields required to make a request.
 --
@@ -65,9 +64,8 @@ newtype RestoreFromSnapshot = RestoreFromSnapshot'
 restoreFromSnapshot
     :: Text -- ^ 'rfsSnapshotId'
     -> RestoreFromSnapshot
-restoreFromSnapshot pSnapshotId_ =
-  RestoreFromSnapshot' {_rfsSnapshotId = pSnapshotId_}
-
+restoreFromSnapshot pSnapshotId_
+  = RestoreFromSnapshot'{_rfsSnapshotId = pSnapshotId_}
 
 -- | The identifier of the snapshot to restore from.
 rfsSnapshotId :: Lens' RestoreFromSnapshot Text
@@ -112,10 +110,10 @@ instance ToQuery RestoreFromSnapshot where
 --
 --
 -- /See:/ 'restoreFromSnapshotResponse' smart constructor.
-newtype RestoreFromSnapshotResponse = RestoreFromSnapshotResponse'
-  { _rfsrsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype RestoreFromSnapshotResponse = RestoreFromSnapshotResponse'{_rfsrsResponseStatus
+                                                                   :: Int}
+                                        deriving (Eq, Read, Show, Data,
+                                                  Typeable, Generic)
 
 -- | Creates a value of 'RestoreFromSnapshotResponse' with the minimum fields required to make a request.
 --
@@ -125,9 +123,9 @@ newtype RestoreFromSnapshotResponse = RestoreFromSnapshotResponse'
 restoreFromSnapshotResponse
     :: Int -- ^ 'rfsrsResponseStatus'
     -> RestoreFromSnapshotResponse
-restoreFromSnapshotResponse pResponseStatus_ =
-  RestoreFromSnapshotResponse' {_rfsrsResponseStatus = pResponseStatus_}
-
+restoreFromSnapshotResponse pResponseStatus_
+  = RestoreFromSnapshotResponse'{_rfsrsResponseStatus =
+                                   pResponseStatus_}
 
 -- | -- | The response status code.
 rfsrsResponseStatus :: Lens' RestoreFromSnapshotResponse Int

@@ -43,7 +43,6 @@ module Network.AWS.APIGateway.GetModel
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -54,12 +53,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'getModel' smart constructor.
-data GetModel = GetModel'
-  { _ggFlatten   :: !(Maybe Bool)
-  , _ggRestAPIId :: !Text
-  , _ggModelName :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetModel = GetModel'{_ggFlatten ::
+                          !(Maybe Bool),
+                          _ggRestAPIId :: !Text, _ggModelName :: !Text}
+                  deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetModel' with the minimum fields required to make a request.
 --
@@ -74,13 +71,10 @@ getModel
     :: Text -- ^ 'ggRestAPIId'
     -> Text -- ^ 'ggModelName'
     -> GetModel
-getModel pRestAPIId_ pModelName_ =
-  GetModel'
-    { _ggFlatten = Nothing
-    , _ggRestAPIId = pRestAPIId_
-    , _ggModelName = pModelName_
-    }
-
+getModel pRestAPIId_ pModelName_
+  = GetModel'{_ggFlatten = Nothing,
+              _ggRestAPIId = pRestAPIId_,
+              _ggModelName = pModelName_}
 
 -- | A query parameter of a Boolean value to resolve (@true@ ) all external model references and returns a flattened model schema or not (@false@ ) The default is @false@ .
 ggFlatten :: Lens' GetModel (Maybe Bool)

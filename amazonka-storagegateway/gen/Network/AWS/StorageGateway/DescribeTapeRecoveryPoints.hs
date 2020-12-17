@@ -51,19 +51,20 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.StorageGateway.Types
-import Network.AWS.StorageGateway.Types.Product
 
 -- | DescribeTapeRecoveryPointsInput
 --
 --
 --
 -- /See:/ 'describeTapeRecoveryPoints' smart constructor.
-data DescribeTapeRecoveryPoints = DescribeTapeRecoveryPoints'
-  { _dtrpMarker     :: !(Maybe Text)
-  , _dtrpLimit      :: !(Maybe Nat)
-  , _dtrpGatewayARN :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeTapeRecoveryPoints = DescribeTapeRecoveryPoints'{_dtrpMarker
+                                                              :: !(Maybe Text),
+                                                              _dtrpLimit ::
+                                                              !(Maybe Nat),
+                                                              _dtrpGatewayARN ::
+                                                              !Text}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'DescribeTapeRecoveryPoints' with the minimum fields required to make a request.
 --
@@ -77,13 +78,10 @@ data DescribeTapeRecoveryPoints = DescribeTapeRecoveryPoints'
 describeTapeRecoveryPoints
     :: Text -- ^ 'dtrpGatewayARN'
     -> DescribeTapeRecoveryPoints
-describeTapeRecoveryPoints pGatewayARN_ =
-  DescribeTapeRecoveryPoints'
-    { _dtrpMarker = Nothing
-    , _dtrpLimit = Nothing
-    , _dtrpGatewayARN = pGatewayARN_
-    }
-
+describeTapeRecoveryPoints pGatewayARN_
+  = DescribeTapeRecoveryPoints'{_dtrpMarker = Nothing,
+                                _dtrpLimit = Nothing,
+                                _dtrpGatewayARN = pGatewayARN_}
 
 -- | An opaque string that indicates the position at which to begin describing the virtual tape recovery points.
 dtrpMarker :: Lens' DescribeTapeRecoveryPoints (Maybe Text)
@@ -150,13 +148,23 @@ instance ToQuery DescribeTapeRecoveryPoints where
 --
 --
 -- /See:/ 'describeTapeRecoveryPointsResponse' smart constructor.
-data DescribeTapeRecoveryPointsResponse = DescribeTapeRecoveryPointsResponse'
-  { _dtrprsTapeRecoveryPointInfos :: !(Maybe [TapeRecoveryPointInfo])
-  , _dtrprsGatewayARN             :: !(Maybe Text)
-  , _dtrprsMarker                 :: !(Maybe Text)
-  , _dtrprsResponseStatus         :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeTapeRecoveryPointsResponse = DescribeTapeRecoveryPointsResponse'{_dtrprsTapeRecoveryPointInfos
+                                                                              ::
+                                                                              !(Maybe
+                                                                                  [TapeRecoveryPointInfo]),
+                                                                              _dtrprsGatewayARN
+                                                                              ::
+                                                                              !(Maybe
+                                                                                  Text),
+                                                                              _dtrprsMarker
+                                                                              ::
+                                                                              !(Maybe
+                                                                                  Text),
+                                                                              _dtrprsResponseStatus
+                                                                              ::
+                                                                              !Int}
+                                            deriving (Eq, Read, Show, Data,
+                                                      Typeable, Generic)
 
 -- | Creates a value of 'DescribeTapeRecoveryPointsResponse' with the minimum fields required to make a request.
 --
@@ -172,14 +180,13 @@ data DescribeTapeRecoveryPointsResponse = DescribeTapeRecoveryPointsResponse'
 describeTapeRecoveryPointsResponse
     :: Int -- ^ 'dtrprsResponseStatus'
     -> DescribeTapeRecoveryPointsResponse
-describeTapeRecoveryPointsResponse pResponseStatus_ =
-  DescribeTapeRecoveryPointsResponse'
-    { _dtrprsTapeRecoveryPointInfos = Nothing
-    , _dtrprsGatewayARN = Nothing
-    , _dtrprsMarker = Nothing
-    , _dtrprsResponseStatus = pResponseStatus_
-    }
-
+describeTapeRecoveryPointsResponse pResponseStatus_
+  = DescribeTapeRecoveryPointsResponse'{_dtrprsTapeRecoveryPointInfos
+                                          = Nothing,
+                                        _dtrprsGatewayARN = Nothing,
+                                        _dtrprsMarker = Nothing,
+                                        _dtrprsResponseStatus =
+                                          pResponseStatus_}
 
 -- | An array of TapeRecoveryPointInfos that are available for the specified gateway.
 dtrprsTapeRecoveryPointInfos :: Lens' DescribeTapeRecoveryPointsResponse [TapeRecoveryPointInfo]

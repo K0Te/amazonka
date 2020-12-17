@@ -38,7 +38,6 @@ module Network.AWS.CodeCommit.GetRepository
     ) where
 
 import Network.AWS.CodeCommit.Types
-import Network.AWS.CodeCommit.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -49,10 +48,9 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'getRepository' smart constructor.
-newtype GetRepository = GetRepository'
-  { _grRepositoryName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetRepository = GetRepository'{_grRepositoryName
+                                       :: Text}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetRepository' with the minimum fields required to make a request.
 --
@@ -62,9 +60,9 @@ newtype GetRepository = GetRepository'
 getRepository
     :: Text -- ^ 'grRepositoryName'
     -> GetRepository
-getRepository pRepositoryName_ =
-  GetRepository' {_grRepositoryName = pRepositoryName_}
-
+getRepository pRepositoryName_
+  = GetRepository'{_grRepositoryName =
+                     pRepositoryName_}
 
 -- | The name of the repository to get information about.
 grRepositoryName :: Lens' GetRepository Text
@@ -109,11 +107,12 @@ instance ToQuery GetRepository where
 --
 --
 -- /See:/ 'getRepositoryResponse' smart constructor.
-data GetRepositoryResponse = GetRepositoryResponse'
-  { _grrsRepositoryMetadata :: !(Maybe RepositoryMetadata)
-  , _grrsResponseStatus     :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetRepositoryResponse = GetRepositoryResponse'{_grrsRepositoryMetadata
+                                                    ::
+                                                    !(Maybe RepositoryMetadata),
+                                                    _grrsResponseStatus :: !Int}
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'GetRepositoryResponse' with the minimum fields required to make a request.
 --
@@ -125,10 +124,10 @@ data GetRepositoryResponse = GetRepositoryResponse'
 getRepositoryResponse
     :: Int -- ^ 'grrsResponseStatus'
     -> GetRepositoryResponse
-getRepositoryResponse pResponseStatus_ =
-  GetRepositoryResponse'
-    {_grrsRepositoryMetadata = Nothing, _grrsResponseStatus = pResponseStatus_}
-
+getRepositoryResponse pResponseStatus_
+  = GetRepositoryResponse'{_grrsRepositoryMetadata =
+                             Nothing,
+                           _grrsResponseStatus = pResponseStatus_}
 
 -- | Information about the repository.
 grrsRepositoryMetadata :: Lens' GetRepositoryResponse (Maybe RepositoryMetadata)

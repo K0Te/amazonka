@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Sends custom events to EventBridge so that they can be matched to rules. These events can be from your custom applications and services.
+-- Sends custom events to Amazon EventBridge so that they can be matched to rules.
 --
 --
 module Network.AWS.CloudWatchEvents.PutEvents
@@ -39,17 +39,15 @@ module Network.AWS.CloudWatchEvents.PutEvents
     ) where
 
 import Network.AWS.CloudWatchEvents.Types
-import Network.AWS.CloudWatchEvents.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'putEvents' smart constructor.
-newtype PutEvents = PutEvents'
-  { _peEntries :: List1 PutEventsRequestEntry
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype PutEvents = PutEvents'{_peEntries ::
+                               List1 PutEventsRequestEntry}
+                      deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'PutEvents' with the minimum fields required to make a request.
 --
@@ -59,8 +57,8 @@ newtype PutEvents = PutEvents'
 putEvents
     :: NonEmpty PutEventsRequestEntry -- ^ 'peEntries'
     -> PutEvents
-putEvents pEntries_ = PutEvents' {_peEntries = _List1 # pEntries_}
-
+putEvents pEntries_
+  = PutEvents'{_peEntries = _List1 # pEntries_}
 
 -- | The entry that defines an event in your system. You can specify several parameters for the entry such as the source and type of the event, resources associated with the event, and so on.
 peEntries :: Lens' PutEvents (NonEmpty PutEventsRequestEntry)
@@ -101,12 +99,12 @@ instance ToQuery PutEvents where
         toQuery = const mempty
 
 -- | /See:/ 'putEventsResponse' smart constructor.
-data PutEventsResponse = PutEventsResponse'
-  { _persFailedEntryCount :: !(Maybe Int)
-  , _persEntries          :: !(Maybe [PutEventsResultEntry])
-  , _persResponseStatus   :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data PutEventsResponse = PutEventsResponse'{_persFailedEntryCount
+                                            :: !(Maybe Int),
+                                            _persEntries ::
+                                            !(Maybe [PutEventsResultEntry]),
+                                            _persResponseStatus :: !Int}
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'PutEventsResponse' with the minimum fields required to make a request.
 --
@@ -120,13 +118,10 @@ data PutEventsResponse = PutEventsResponse'
 putEventsResponse
     :: Int -- ^ 'persResponseStatus'
     -> PutEventsResponse
-putEventsResponse pResponseStatus_ =
-  PutEventsResponse'
-    { _persFailedEntryCount = Nothing
-    , _persEntries = Nothing
-    , _persResponseStatus = pResponseStatus_
-    }
-
+putEventsResponse pResponseStatus_
+  = PutEventsResponse'{_persFailedEntryCount = Nothing,
+                       _persEntries = Nothing,
+                       _persResponseStatus = pResponseStatus_}
 
 -- | The number of failed entries.
 persFailedEntryCount :: Lens' PutEventsResponse (Maybe Int)

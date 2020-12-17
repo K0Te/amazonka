@@ -39,7 +39,6 @@ module Network.AWS.Greengrass.ResetDeployments
     ) where
 
 import Network.AWS.Greengrass.Types
-import Network.AWS.Greengrass.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -48,12 +47,11 @@ import Network.AWS.Response
 -- | Information needed to reset deployments.
 --
 -- /See:/ 'resetDeployments' smart constructor.
-data ResetDeployments = ResetDeployments'
-  { _rdAmznClientToken :: !(Maybe Text)
-  , _rdForce           :: !(Maybe Bool)
-  , _rdGroupId         :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ResetDeployments = ResetDeployments'{_rdAmznClientToken
+                                          :: !(Maybe Text),
+                                          _rdForce :: !(Maybe Bool),
+                                          _rdGroupId :: !Text}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ResetDeployments' with the minimum fields required to make a request.
 --
@@ -63,14 +61,13 @@ data ResetDeployments = ResetDeployments'
 --
 -- * 'rdForce' - If true, performs a best-effort only core reset.
 --
--- * 'rdGroupId' - The ID of the AWS Greengrass group.
+-- * 'rdGroupId' - The ID of the Greengrass group.
 resetDeployments
     :: Text -- ^ 'rdGroupId'
     -> ResetDeployments
-resetDeployments pGroupId_ =
-  ResetDeployments'
-    {_rdAmznClientToken = Nothing, _rdForce = Nothing, _rdGroupId = pGroupId_}
-
+resetDeployments pGroupId_
+  = ResetDeployments'{_rdAmznClientToken = Nothing,
+                      _rdForce = Nothing, _rdGroupId = pGroupId_}
 
 -- | A client token used to correlate requests and responses.
 rdAmznClientToken :: Lens' ResetDeployments (Maybe Text)
@@ -80,7 +77,7 @@ rdAmznClientToken = lens _rdAmznClientToken (\ s a -> s{_rdAmznClientToken = a})
 rdForce :: Lens' ResetDeployments (Maybe Bool)
 rdForce = lens _rdForce (\ s a -> s{_rdForce = a})
 
--- | The ID of the AWS Greengrass group.
+-- | The ID of the Greengrass group.
 rdGroupId :: Lens' ResetDeployments Text
 rdGroupId = lens _rdGroupId (\ s a -> s{_rdGroupId = a})
 
@@ -119,12 +116,14 @@ instance ToQuery ResetDeployments where
         toQuery = const mempty
 
 -- | /See:/ 'resetDeploymentsResponse' smart constructor.
-data ResetDeploymentsResponse = ResetDeploymentsResponse'
-  { _rdrsDeploymentId   :: !(Maybe Text)
-  , _rdrsDeploymentARN  :: !(Maybe Text)
-  , _rdrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ResetDeploymentsResponse = ResetDeploymentsResponse'{_rdrsDeploymentId
+                                                          :: !(Maybe Text),
+                                                          _rdrsDeploymentARN ::
+                                                          !(Maybe Text),
+                                                          _rdrsResponseStatus ::
+                                                          !Int}
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'ResetDeploymentsResponse' with the minimum fields required to make a request.
 --
@@ -138,13 +137,11 @@ data ResetDeploymentsResponse = ResetDeploymentsResponse'
 resetDeploymentsResponse
     :: Int -- ^ 'rdrsResponseStatus'
     -> ResetDeploymentsResponse
-resetDeploymentsResponse pResponseStatus_ =
-  ResetDeploymentsResponse'
-    { _rdrsDeploymentId = Nothing
-    , _rdrsDeploymentARN = Nothing
-    , _rdrsResponseStatus = pResponseStatus_
-    }
-
+resetDeploymentsResponse pResponseStatus_
+  = ResetDeploymentsResponse'{_rdrsDeploymentId =
+                                Nothing,
+                              _rdrsDeploymentARN = Nothing,
+                              _rdrsResponseStatus = pResponseStatus_}
 
 -- | The ID of the deployment.
 rdrsDeploymentId :: Lens' ResetDeploymentsResponse (Maybe Text)

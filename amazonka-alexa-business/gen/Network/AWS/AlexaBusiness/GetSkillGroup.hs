@@ -38,17 +38,15 @@ module Network.AWS.AlexaBusiness.GetSkillGroup
     ) where
 
 import Network.AWS.AlexaBusiness.Types
-import Network.AWS.AlexaBusiness.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'getSkillGroup' smart constructor.
-newtype GetSkillGroup = GetSkillGroup'
-  { _gsgSkillGroupARN :: Maybe Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetSkillGroup = GetSkillGroup'{_gsgSkillGroupARN
+                                       :: Maybe Text}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetSkillGroup' with the minimum fields required to make a request.
 --
@@ -57,8 +55,8 @@ newtype GetSkillGroup = GetSkillGroup'
 -- * 'gsgSkillGroupARN' - The ARN of the skill group for which to get details. Required.
 getSkillGroup
     :: GetSkillGroup
-getSkillGroup = GetSkillGroup' {_gsgSkillGroupARN = Nothing}
-
+getSkillGroup
+  = GetSkillGroup'{_gsgSkillGroupARN = Nothing}
 
 -- | The ARN of the skill group for which to get details. Required.
 gsgSkillGroupARN :: Lens' GetSkillGroup (Maybe Text)
@@ -99,11 +97,12 @@ instance ToQuery GetSkillGroup where
         toQuery = const mempty
 
 -- | /See:/ 'getSkillGroupResponse' smart constructor.
-data GetSkillGroupResponse = GetSkillGroupResponse'
-  { _gsgrsSkillGroup     :: !(Maybe SkillGroup)
-  , _gsgrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetSkillGroupResponse = GetSkillGroupResponse'{_gsgrsSkillGroup
+                                                    :: !(Maybe SkillGroup),
+                                                    _gsgrsResponseStatus ::
+                                                    !Int}
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'GetSkillGroupResponse' with the minimum fields required to make a request.
 --
@@ -115,10 +114,9 @@ data GetSkillGroupResponse = GetSkillGroupResponse'
 getSkillGroupResponse
     :: Int -- ^ 'gsgrsResponseStatus'
     -> GetSkillGroupResponse
-getSkillGroupResponse pResponseStatus_ =
-  GetSkillGroupResponse'
-    {_gsgrsSkillGroup = Nothing, _gsgrsResponseStatus = pResponseStatus_}
-
+getSkillGroupResponse pResponseStatus_
+  = GetSkillGroupResponse'{_gsgrsSkillGroup = Nothing,
+                           _gsgrsResponseStatus = pResponseStatus_}
 
 -- | The details of the skill group requested. Required.
 gsgrsSkillGroup :: Lens' GetSkillGroupResponse (Maybe SkillGroup)

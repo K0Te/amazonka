@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Set the user's multi-factor authentication (MFA) method preference.
+-- Set the user's multi-factor authentication (MFA) method preference, including which MFA factors are enabled and if any are preferred. Only one factor can be set as preferred. The preferred MFA factor will be used to authenticate a user if multiple factors are enabled. If multiple options are enabled and no preference is set, a challenge to choose an MFA option will be returned during sign in. If an MFA type is enabled for a user, the user will be prompted for MFA during all sign in attempts, unless device tracking is turned on and the device has been trusted. If you would like MFA to be applied selectively based on the assessed risk level of sign in attempts, disable MFA for users and turn on Adaptive Authentication for the user pool.
 --
 --
 module Network.AWS.CognitoIdentityProvider.SetUserMFAPreference
@@ -39,19 +39,22 @@ module Network.AWS.CognitoIdentityProvider.SetUserMFAPreference
     ) where
 
 import Network.AWS.CognitoIdentityProvider.Types
-import Network.AWS.CognitoIdentityProvider.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'setUserMFAPreference' smart constructor.
-data SetUserMFAPreference = SetUserMFAPreference'
-  { _sumpSMSMFASettings           :: !(Maybe SMSMFASettingsType)
-  , _sumpSoftwareTokenMFASettings :: !(Maybe SoftwareTokenMFASettingsType)
-  , _sumpAccessToken              :: !(Sensitive Text)
-  } deriving (Eq, Show, Data, Typeable, Generic)
-
+data SetUserMFAPreference = SetUserMFAPreference'{_sumpSMSMFASettings
+                                                  ::
+                                                  !(Maybe SMSMFASettingsType),
+                                                  _sumpSoftwareTokenMFASettings
+                                                  ::
+                                                  !(Maybe
+                                                      SoftwareTokenMFASettingsType),
+                                                  _sumpAccessToken ::
+                                                  !(Sensitive Text)}
+                              deriving (Eq, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'SetUserMFAPreference' with the minimum fields required to make a request.
 --
@@ -61,17 +64,15 @@ data SetUserMFAPreference = SetUserMFAPreference'
 --
 -- * 'sumpSoftwareTokenMFASettings' - The time-based one-time password software token MFA settings.
 --
--- * 'sumpAccessToken' - The access token.
+-- * 'sumpAccessToken' - The access token for the user.
 setUserMFAPreference
     :: Text -- ^ 'sumpAccessToken'
     -> SetUserMFAPreference
-setUserMFAPreference pAccessToken_ =
-  SetUserMFAPreference'
-    { _sumpSMSMFASettings = Nothing
-    , _sumpSoftwareTokenMFASettings = Nothing
-    , _sumpAccessToken = _Sensitive # pAccessToken_
-    }
-
+setUserMFAPreference pAccessToken_
+  = SetUserMFAPreference'{_sumpSMSMFASettings =
+                            Nothing,
+                          _sumpSoftwareTokenMFASettings = Nothing,
+                          _sumpAccessToken = _Sensitive # pAccessToken_}
 
 -- | The SMS text message multi-factor authentication (MFA) settings.
 sumpSMSMFASettings :: Lens' SetUserMFAPreference (Maybe SMSMFASettingsType)
@@ -81,7 +82,7 @@ sumpSMSMFASettings = lens _sumpSMSMFASettings (\ s a -> s{_sumpSMSMFASettings = 
 sumpSoftwareTokenMFASettings :: Lens' SetUserMFAPreference (Maybe SoftwareTokenMFASettingsType)
 sumpSoftwareTokenMFASettings = lens _sumpSoftwareTokenMFASettings (\ s a -> s{_sumpSoftwareTokenMFASettings = a})
 
--- | The access token.
+-- | The access token for the user.
 sumpAccessToken :: Lens' SetUserMFAPreference Text
 sumpAccessToken = lens _sumpAccessToken (\ s a -> s{_sumpAccessToken = a}) . _Sensitive
 
@@ -125,10 +126,10 @@ instance ToQuery SetUserMFAPreference where
         toQuery = const mempty
 
 -- | /See:/ 'setUserMFAPreferenceResponse' smart constructor.
-newtype SetUserMFAPreferenceResponse = SetUserMFAPreferenceResponse'
-  { _sumprsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype SetUserMFAPreferenceResponse = SetUserMFAPreferenceResponse'{_sumprsResponseStatus
+                                                                     :: Int}
+                                         deriving (Eq, Read, Show, Data,
+                                                   Typeable, Generic)
 
 -- | Creates a value of 'SetUserMFAPreferenceResponse' with the minimum fields required to make a request.
 --
@@ -138,9 +139,9 @@ newtype SetUserMFAPreferenceResponse = SetUserMFAPreferenceResponse'
 setUserMFAPreferenceResponse
     :: Int -- ^ 'sumprsResponseStatus'
     -> SetUserMFAPreferenceResponse
-setUserMFAPreferenceResponse pResponseStatus_ =
-  SetUserMFAPreferenceResponse' {_sumprsResponseStatus = pResponseStatus_}
-
+setUserMFAPreferenceResponse pResponseStatus_
+  = SetUserMFAPreferenceResponse'{_sumprsResponseStatus
+                                    = pResponseStatus_}
 
 -- | -- | The response status code.
 sumprsResponseStatus :: Lens' SetUserMFAPreferenceResponse Int

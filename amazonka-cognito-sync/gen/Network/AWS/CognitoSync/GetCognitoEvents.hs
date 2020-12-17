@@ -40,7 +40,6 @@ module Network.AWS.CognitoSync.GetCognitoEvents
     ) where
 
 import Network.AWS.CognitoSync.Types
-import Network.AWS.CognitoSync.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -51,10 +50,9 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'getCognitoEvents' smart constructor.
-newtype GetCognitoEvents = GetCognitoEvents'
-  { _gceIdentityPoolId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetCognitoEvents = GetCognitoEvents'{_gceIdentityPoolId
+                                             :: Text}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetCognitoEvents' with the minimum fields required to make a request.
 --
@@ -64,9 +62,9 @@ newtype GetCognitoEvents = GetCognitoEvents'
 getCognitoEvents
     :: Text -- ^ 'gceIdentityPoolId'
     -> GetCognitoEvents
-getCognitoEvents pIdentityPoolId_ =
-  GetCognitoEvents' {_gceIdentityPoolId = pIdentityPoolId_}
-
+getCognitoEvents pIdentityPoolId_
+  = GetCognitoEvents'{_gceIdentityPoolId =
+                        pIdentityPoolId_}
 
 -- | The Cognito Identity Pool ID for the request
 gceIdentityPoolId :: Lens' GetCognitoEvents Text
@@ -106,11 +104,14 @@ instance ToQuery GetCognitoEvents where
 --
 --
 -- /See:/ 'getCognitoEventsResponse' smart constructor.
-data GetCognitoEventsResponse = GetCognitoEventsResponse'
-  { _gcersEvents         :: !(Maybe (Map Text Text))
-  , _gcersResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetCognitoEventsResponse = GetCognitoEventsResponse'{_gcersEvents
+                                                          ::
+                                                          !(Maybe
+                                                              (Map Text Text)),
+                                                          _gcersResponseStatus
+                                                          :: !Int}
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'GetCognitoEventsResponse' with the minimum fields required to make a request.
 --
@@ -122,10 +123,9 @@ data GetCognitoEventsResponse = GetCognitoEventsResponse'
 getCognitoEventsResponse
     :: Int -- ^ 'gcersResponseStatus'
     -> GetCognitoEventsResponse
-getCognitoEventsResponse pResponseStatus_ =
-  GetCognitoEventsResponse'
-    {_gcersEvents = Nothing, _gcersResponseStatus = pResponseStatus_}
-
+getCognitoEventsResponse pResponseStatus_
+  = GetCognitoEventsResponse'{_gcersEvents = Nothing,
+                              _gcersResponseStatus = pResponseStatus_}
 
 -- | The Cognito Events returned from the GetCognitoEvents request
 gcersEvents :: Lens' GetCognitoEventsResponse (HashMap Text Text)

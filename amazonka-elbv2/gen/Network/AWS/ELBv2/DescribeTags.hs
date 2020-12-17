@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Describes the tags for the specified resources. You can describe the tags for one or more Application Load Balancers, Network Load Balancers, and target groups.
+-- Describes the tags for the specified Elastic Load Balancing resources. You can describe the tags for one or more Application Load Balancers, Network Load Balancers, Gateway Load Balancers, target groups, listeners, or rules.
 --
 --
 module Network.AWS.ELBv2.DescribeTags
@@ -38,29 +38,27 @@ module Network.AWS.ELBv2.DescribeTags
     ) where
 
 import Network.AWS.ELBv2.Types
-import Network.AWS.ELBv2.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'describeTags' smart constructor.
-newtype DescribeTags = DescribeTags'
-  { _dtResourceARNs :: [Text]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DescribeTags = DescribeTags'{_dtResourceARNs
+                                     :: [Text]}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DescribeTags' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'dtResourceARNs' - The Amazon Resource Names (ARN) of the resources.
+-- * 'dtResourceARNs' - The Amazon Resource Names (ARN) of the resources. You can specify up to 20 resources in a single call.
 describeTags
     :: DescribeTags
-describeTags = DescribeTags' {_dtResourceARNs = mempty}
+describeTags
+  = DescribeTags'{_dtResourceARNs = mempty}
 
-
--- | The Amazon Resource Names (ARN) of the resources.
+-- | The Amazon Resource Names (ARN) of the resources. You can specify up to 20 resources in a single call.
 dtResourceARNs :: Lens' DescribeTags [Text]
 dtResourceARNs = lens _dtResourceARNs (\ s a -> s{_dtResourceARNs = a}) . _Coerce
 
@@ -94,11 +92,10 @@ instance ToQuery DescribeTags where
                  toQueryList "member" _dtResourceARNs]
 
 -- | /See:/ 'describeTagsResponse' smart constructor.
-data DescribeTagsResponse = DescribeTagsResponse'
-  { _dtrsTagDescriptions :: !(Maybe [TagDescription])
-  , _dtrsResponseStatus  :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeTagsResponse = DescribeTagsResponse'{_dtrsTagDescriptions
+                                                  :: !(Maybe [TagDescription]),
+                                                  _dtrsResponseStatus :: !Int}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DescribeTagsResponse' with the minimum fields required to make a request.
 --
@@ -110,10 +107,10 @@ data DescribeTagsResponse = DescribeTagsResponse'
 describeTagsResponse
     :: Int -- ^ 'dtrsResponseStatus'
     -> DescribeTagsResponse
-describeTagsResponse pResponseStatus_ =
-  DescribeTagsResponse'
-    {_dtrsTagDescriptions = Nothing, _dtrsResponseStatus = pResponseStatus_}
-
+describeTagsResponse pResponseStatus_
+  = DescribeTagsResponse'{_dtrsTagDescriptions =
+                            Nothing,
+                          _dtrsResponseStatus = pResponseStatus_}
 
 -- | Information about the tags.
 dtrsTagDescriptions :: Lens' DescribeTagsResponse [TagDescription]

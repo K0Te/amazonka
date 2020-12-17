@@ -43,7 +43,6 @@ module Network.AWS.APIGateway.CreateRequestValidator
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -54,13 +53,14 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'createRequestValidator' smart constructor.
-data CreateRequestValidator = CreateRequestValidator'
-  { _crvValidateRequestParameters :: !(Maybe Bool)
-  , _crvName                      :: !(Maybe Text)
-  , _crvValidateRequestBody       :: !(Maybe Bool)
-  , _crvRestAPIId                 :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateRequestValidator = CreateRequestValidator'{_crvValidateRequestParameters
+                                                      :: !(Maybe Bool),
+                                                      _crvName :: !(Maybe Text),
+                                                      _crvValidateRequestBody ::
+                                                      !(Maybe Bool),
+                                                      _crvRestAPIId :: !Text}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'CreateRequestValidator' with the minimum fields required to make a request.
 --
@@ -76,14 +76,12 @@ data CreateRequestValidator = CreateRequestValidator'
 createRequestValidator
     :: Text -- ^ 'crvRestAPIId'
     -> CreateRequestValidator
-createRequestValidator pRestAPIId_ =
-  CreateRequestValidator'
-    { _crvValidateRequestParameters = Nothing
-    , _crvName = Nothing
-    , _crvValidateRequestBody = Nothing
-    , _crvRestAPIId = pRestAPIId_
-    }
-
+createRequestValidator pRestAPIId_
+  = CreateRequestValidator'{_crvValidateRequestParameters
+                              = Nothing,
+                            _crvName = Nothing,
+                            _crvValidateRequestBody = Nothing,
+                            _crvRestAPIId = pRestAPIId_}
 
 -- | A Boolean flag to indicate whether to validate request parameters, @true@ , or not @false@ .
 crvValidateRequestParameters :: Lens' CreateRequestValidator (Maybe Bool)

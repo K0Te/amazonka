@@ -41,7 +41,6 @@ module Network.AWS.ImportExport.ListJobs
     ) where
 
 import Network.AWS.ImportExport.Types
-import Network.AWS.ImportExport.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
@@ -51,12 +50,11 @@ import Network.AWS.Response
 -- | Input structure for the ListJobs operation.
 --
 -- /See:/ 'listJobs' smart constructor.
-data ListJobs = ListJobs'
-  { _ljAPIVersion :: !(Maybe Text)
-  , _ljMarker     :: !(Maybe Text)
-  , _ljMaxJobs    :: !(Maybe Int)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListJobs = ListJobs'{_ljAPIVersion ::
+                          !(Maybe Text),
+                          _ljMarker :: !(Maybe Text),
+                          _ljMaxJobs :: !(Maybe Int)}
+                  deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListJobs' with the minimum fields required to make a request.
 --
@@ -69,9 +67,9 @@ data ListJobs = ListJobs'
 -- * 'ljMaxJobs' - Undocumented member.
 listJobs
     :: ListJobs
-listJobs =
-  ListJobs' {_ljAPIVersion = Nothing, _ljMarker = Nothing, _ljMaxJobs = Nothing}
-
+listJobs
+  = ListJobs'{_ljAPIVersion = Nothing,
+              _ljMarker = Nothing, _ljMaxJobs = Nothing}
 
 -- | Undocumented member.
 ljAPIVersion :: Lens' ListJobs (Maybe Text)
@@ -128,12 +126,11 @@ instance ToQuery ListJobs where
 -- | Output structure for the ListJobs operation.
 --
 -- /See:/ 'listJobsResponse' smart constructor.
-data ListJobsResponse = ListJobsResponse'
-  { _ljrsJobs           :: !(Maybe [Job])
-  , _ljrsIsTruncated    :: !(Maybe Bool)
-  , _ljrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListJobsResponse = ListJobsResponse'{_ljrsJobs
+                                          :: !(Maybe [Job]),
+                                          _ljrsIsTruncated :: !(Maybe Bool),
+                                          _ljrsResponseStatus :: !Int}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListJobsResponse' with the minimum fields required to make a request.
 --
@@ -147,13 +144,10 @@ data ListJobsResponse = ListJobsResponse'
 listJobsResponse
     :: Int -- ^ 'ljrsResponseStatus'
     -> ListJobsResponse
-listJobsResponse pResponseStatus_ =
-  ListJobsResponse'
-    { _ljrsJobs = Nothing
-    , _ljrsIsTruncated = Nothing
-    , _ljrsResponseStatus = pResponseStatus_
-    }
-
+listJobsResponse pResponseStatus_
+  = ListJobsResponse'{_ljrsJobs = Nothing,
+                      _ljrsIsTruncated = Nothing,
+                      _ljrsResponseStatus = pResponseStatus_}
 
 -- | Undocumented member.
 ljrsJobs :: Lens' ListJobsResponse [Job]

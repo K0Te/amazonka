@@ -39,17 +39,17 @@ module Network.AWS.Inspector.DescribeAssessmentTemplates
     ) where
 
 import Network.AWS.Inspector.Types
-import Network.AWS.Inspector.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'describeAssessmentTemplates' smart constructor.
-newtype DescribeAssessmentTemplates = DescribeAssessmentTemplates'
-  { _datAssessmentTemplateARNs :: List1 Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DescribeAssessmentTemplates = DescribeAssessmentTemplates'{_datAssessmentTemplateARNs
+                                                                   ::
+                                                                   List1 Text}
+                                        deriving (Eq, Read, Show, Data,
+                                                  Typeable, Generic)
 
 -- | Creates a value of 'DescribeAssessmentTemplates' with the minimum fields required to make a request.
 --
@@ -59,10 +59,9 @@ newtype DescribeAssessmentTemplates = DescribeAssessmentTemplates'
 describeAssessmentTemplates
     :: NonEmpty Text -- ^ 'datAssessmentTemplateARNs'
     -> DescribeAssessmentTemplates
-describeAssessmentTemplates pAssessmentTemplateARNs_ =
-  DescribeAssessmentTemplates'
-    {_datAssessmentTemplateARNs = _List1 # pAssessmentTemplateARNs_}
-
+describeAssessmentTemplates pAssessmentTemplateARNs_
+  = DescribeAssessmentTemplates'{_datAssessmentTemplateARNs
+                                   = _List1 # pAssessmentTemplateARNs_}
 
 -- | Undocumented member.
 datAssessmentTemplateARNs :: Lens' DescribeAssessmentTemplates (NonEmpty Text)
@@ -109,12 +108,19 @@ instance ToQuery DescribeAssessmentTemplates where
         toQuery = const mempty
 
 -- | /See:/ 'describeAssessmentTemplatesResponse' smart constructor.
-data DescribeAssessmentTemplatesResponse = DescribeAssessmentTemplatesResponse'
-  { _datrsResponseStatus      :: !Int
-  , _datrsAssessmentTemplates :: ![AssessmentTemplate]
-  , _datrsFailedItems         :: !(Map Text FailedItemDetails)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeAssessmentTemplatesResponse = DescribeAssessmentTemplatesResponse'{_datrsResponseStatus
+                                                                                ::
+                                                                                !Int,
+                                                                                _datrsAssessmentTemplates
+                                                                                ::
+                                                                                ![AssessmentTemplate],
+                                                                                _datrsFailedItems
+                                                                                ::
+                                                                                !(Map
+                                                                                    Text
+                                                                                    FailedItemDetails)}
+                                             deriving (Eq, Read, Show, Data,
+                                                       Typeable, Generic)
 
 -- | Creates a value of 'DescribeAssessmentTemplatesResponse' with the minimum fields required to make a request.
 --
@@ -128,13 +134,11 @@ data DescribeAssessmentTemplatesResponse = DescribeAssessmentTemplatesResponse'
 describeAssessmentTemplatesResponse
     :: Int -- ^ 'datrsResponseStatus'
     -> DescribeAssessmentTemplatesResponse
-describeAssessmentTemplatesResponse pResponseStatus_ =
-  DescribeAssessmentTemplatesResponse'
-    { _datrsResponseStatus = pResponseStatus_
-    , _datrsAssessmentTemplates = mempty
-    , _datrsFailedItems = mempty
-    }
-
+describeAssessmentTemplatesResponse pResponseStatus_
+  = DescribeAssessmentTemplatesResponse'{_datrsResponseStatus
+                                           = pResponseStatus_,
+                                         _datrsAssessmentTemplates = mempty,
+                                         _datrsFailedItems = mempty}
 
 -- | -- | The response status code.
 datrsResponseStatus :: Lens' DescribeAssessmentTemplatesResponse Int

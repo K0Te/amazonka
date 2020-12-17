@@ -39,22 +39,21 @@ module Network.AWS.CodePipeline.GetPipelineExecution
     ) where
 
 import Network.AWS.CodePipeline.Types
-import Network.AWS.CodePipeline.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- | Represents the input of a GetPipelineExecution action.
+-- | Represents the input of a @GetPipelineExecution@ action.
 --
 --
 --
 -- /See:/ 'getPipelineExecution' smart constructor.
-data GetPipelineExecution = GetPipelineExecution'
-  { _gpePipelineName        :: !Text
-  , _gpePipelineExecutionId :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetPipelineExecution = GetPipelineExecution'{_gpePipelineName
+                                                  :: !Text,
+                                                  _gpePipelineExecutionId ::
+                                                  !Text}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetPipelineExecution' with the minimum fields required to make a request.
 --
@@ -67,12 +66,11 @@ getPipelineExecution
     :: Text -- ^ 'gpePipelineName'
     -> Text -- ^ 'gpePipelineExecutionId'
     -> GetPipelineExecution
-getPipelineExecution pPipelineName_ pPipelineExecutionId_ =
-  GetPipelineExecution'
-    { _gpePipelineName = pPipelineName_
-    , _gpePipelineExecutionId = pPipelineExecutionId_
-    }
-
+getPipelineExecution pPipelineName_
+  pPipelineExecutionId_
+  = GetPipelineExecution'{_gpePipelineName =
+                            pPipelineName_,
+                          _gpePipelineExecutionId = pPipelineExecutionId_}
 
 -- | The name of the pipeline about which you want to get execution details.
 gpePipelineName :: Lens' GetPipelineExecution Text
@@ -120,16 +118,19 @@ instance ToPath GetPipelineExecution where
 instance ToQuery GetPipelineExecution where
         toQuery = const mempty
 
--- | Represents the output of a GetPipelineExecution action.
+-- | Represents the output of a @GetPipelineExecution@ action.
 --
 --
 --
 -- /See:/ 'getPipelineExecutionResponse' smart constructor.
-data GetPipelineExecutionResponse = GetPipelineExecutionResponse'
-  { _gpersPipelineExecution :: !(Maybe PipelineExecution)
-  , _gpersResponseStatus    :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetPipelineExecutionResponse = GetPipelineExecutionResponse'{_gpersPipelineExecution
+                                                                  ::
+                                                                  !(Maybe
+                                                                      PipelineExecution),
+                                                                  _gpersResponseStatus
+                                                                  :: !Int}
+                                      deriving (Eq, Read, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'GetPipelineExecutionResponse' with the minimum fields required to make a request.
 --
@@ -141,10 +142,10 @@ data GetPipelineExecutionResponse = GetPipelineExecutionResponse'
 getPipelineExecutionResponse
     :: Int -- ^ 'gpersResponseStatus'
     -> GetPipelineExecutionResponse
-getPipelineExecutionResponse pResponseStatus_ =
-  GetPipelineExecutionResponse'
-    {_gpersPipelineExecution = Nothing, _gpersResponseStatus = pResponseStatus_}
-
+getPipelineExecutionResponse pResponseStatus_
+  = GetPipelineExecutionResponse'{_gpersPipelineExecution
+                                    = Nothing,
+                                  _gpersResponseStatus = pResponseStatus_}
 
 -- | Represents information about the execution of a pipeline.
 gpersPipelineExecution :: Lens' GetPipelineExecutionResponse (Maybe PipelineExecution)

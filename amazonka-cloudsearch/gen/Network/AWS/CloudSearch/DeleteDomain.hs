@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Permanently deletes a search domain and all of its data. Once a domain has been deleted, it cannot be recovered. For more information, see <http://docs.aws.amazon.com/cloudsearch/latest/developerguide/deleting-domains.html Deleting a Search Domain> in the /Amazon CloudSearch Developer Guide/ .
+-- Permanently deletes a search domain and all of its data. Once a domain has been deleted, it cannot be recovered. For more information, see <http://docs.aws.amazon.com/cloudsearch/latest/developerguide/deleting-domains.html Deleting a Search Domain> in the /Amazon CloudSearch Developer Guide/ . 
 --
 --
 module Network.AWS.CloudSearch.DeleteDomain
@@ -38,7 +38,6 @@ module Network.AWS.CloudSearch.DeleteDomain
     ) where
 
 import Network.AWS.CloudSearch.Types
-import Network.AWS.CloudSearch.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -49,10 +48,9 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'deleteDomain' smart constructor.
-newtype DeleteDomain = DeleteDomain'
-  { _dddDomainName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteDomain = DeleteDomain'{_dddDomainName
+                                     :: Text}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteDomain' with the minimum fields required to make a request.
 --
@@ -62,8 +60,8 @@ newtype DeleteDomain = DeleteDomain'
 deleteDomain
     :: Text -- ^ 'dddDomainName'
     -> DeleteDomain
-deleteDomain pDomainName_ = DeleteDomain' {_dddDomainName = pDomainName_}
-
+deleteDomain pDomainName_
+  = DeleteDomain'{_dddDomainName = pDomainName_}
 
 -- | The name of the domain you want to permanently delete.
 dddDomainName :: Lens' DeleteDomain Text
@@ -100,11 +98,10 @@ instance ToQuery DeleteDomain where
 --
 --
 -- /See:/ 'deleteDomainResponse' smart constructor.
-data DeleteDomainResponse = DeleteDomainResponse'
-  { _ddrsDomainStatus   :: !(Maybe DomainStatus)
-  , _ddrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteDomainResponse = DeleteDomainResponse'{_ddrsDomainStatus
+                                                  :: !(Maybe DomainStatus),
+                                                  _ddrsResponseStatus :: !Int}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteDomainResponse' with the minimum fields required to make a request.
 --
@@ -116,10 +113,9 @@ data DeleteDomainResponse = DeleteDomainResponse'
 deleteDomainResponse
     :: Int -- ^ 'ddrsResponseStatus'
     -> DeleteDomainResponse
-deleteDomainResponse pResponseStatus_ =
-  DeleteDomainResponse'
-    {_ddrsDomainStatus = Nothing, _ddrsResponseStatus = pResponseStatus_}
-
+deleteDomainResponse pResponseStatus_
+  = DeleteDomainResponse'{_ddrsDomainStatus = Nothing,
+                          _ddrsResponseStatus = pResponseStatus_}
 
 -- | Undocumented member.
 ddrsDomainStatus :: Lens' DeleteDomainResponse (Maybe DomainStatus)

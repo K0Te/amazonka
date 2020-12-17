@@ -41,17 +41,16 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.Route53.Types
-import Network.AWS.Route53.Types.Product
 
 -- | A request to delete a specified traffic policy instance.
 --
 --
 --
 -- /See:/ 'deleteTrafficPolicyInstance' smart constructor.
-newtype DeleteTrafficPolicyInstance = DeleteTrafficPolicyInstance'
-  { _dtpiId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteTrafficPolicyInstance = DeleteTrafficPolicyInstance'{_dtpiId
+                                                                   :: Text}
+                                        deriving (Eq, Read, Show, Data,
+                                                  Typeable, Generic)
 
 -- | Creates a value of 'DeleteTrafficPolicyInstance' with the minimum fields required to make a request.
 --
@@ -61,8 +60,8 @@ newtype DeleteTrafficPolicyInstance = DeleteTrafficPolicyInstance'
 deleteTrafficPolicyInstance
     :: Text -- ^ 'dtpiId'
     -> DeleteTrafficPolicyInstance
-deleteTrafficPolicyInstance pId_ = DeleteTrafficPolicyInstance' {_dtpiId = pId_}
-
+deleteTrafficPolicyInstance pId_
+  = DeleteTrafficPolicyInstance'{_dtpiId = pId_}
 
 -- | The ID of the traffic policy instance that you want to delete.  /Important:/ When you delete a traffic policy instance, Amazon Route 53 also deletes all of the resource record sets that were created when you created the traffic policy instance.
 dtpiId :: Lens' DeleteTrafficPolicyInstance Text
@@ -98,10 +97,11 @@ instance ToQuery DeleteTrafficPolicyInstance where
 --
 --
 -- /See:/ 'deleteTrafficPolicyInstanceResponse' smart constructor.
-newtype DeleteTrafficPolicyInstanceResponse = DeleteTrafficPolicyInstanceResponse'
-  { _dtpirsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteTrafficPolicyInstanceResponse = DeleteTrafficPolicyInstanceResponse'{_dtpirsResponseStatus
+                                                                                   ::
+                                                                                   Int}
+                                                deriving (Eq, Read, Show, Data,
+                                                          Typeable, Generic)
 
 -- | Creates a value of 'DeleteTrafficPolicyInstanceResponse' with the minimum fields required to make a request.
 --
@@ -111,10 +111,9 @@ newtype DeleteTrafficPolicyInstanceResponse = DeleteTrafficPolicyInstanceRespons
 deleteTrafficPolicyInstanceResponse
     :: Int -- ^ 'dtpirsResponseStatus'
     -> DeleteTrafficPolicyInstanceResponse
-deleteTrafficPolicyInstanceResponse pResponseStatus_ =
-  DeleteTrafficPolicyInstanceResponse'
-    {_dtpirsResponseStatus = pResponseStatus_}
-
+deleteTrafficPolicyInstanceResponse pResponseStatus_
+  = DeleteTrafficPolicyInstanceResponse'{_dtpirsResponseStatus
+                                           = pResponseStatus_}
 
 -- | -- | The response status code.
 dtpirsResponseStatus :: Lens' DeleteTrafficPolicyInstanceResponse Int

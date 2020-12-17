@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Lists all attributes that are associated with an object.
+-- Lists all attributes that are associated with an object. 
 --
 --
 --
@@ -46,7 +46,6 @@ module Network.AWS.CloudDirectory.ListObjectAttributes
     ) where
 
 import Network.AWS.CloudDirectory.Types
-import Network.AWS.CloudDirectory.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
@@ -54,15 +53,18 @@ import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'listObjectAttributes' smart constructor.
-data ListObjectAttributes = ListObjectAttributes'
-  { _loaFacetFilter      :: !(Maybe SchemaFacet)
-  , _loaConsistencyLevel :: !(Maybe ConsistencyLevel)
-  , _loaNextToken        :: !(Maybe Text)
-  , _loaMaxResults       :: !(Maybe Nat)
-  , _loaDirectoryARN     :: !Text
-  , _loaObjectReference  :: !ObjectReference
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListObjectAttributes = ListObjectAttributes'{_loaFacetFilter
+                                                  :: !(Maybe SchemaFacet),
+                                                  _loaConsistencyLevel ::
+                                                  !(Maybe ConsistencyLevel),
+                                                  _loaNextToken ::
+                                                  !(Maybe Text),
+                                                  _loaMaxResults ::
+                                                  !(Maybe Nat),
+                                                  _loaDirectoryARN :: !Text,
+                                                  _loaObjectReference ::
+                                                  !ObjectReference}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListObjectAttributes' with the minimum fields required to make a request.
 --
@@ -83,16 +85,12 @@ listObjectAttributes
     :: Text -- ^ 'loaDirectoryARN'
     -> ObjectReference -- ^ 'loaObjectReference'
     -> ListObjectAttributes
-listObjectAttributes pDirectoryARN_ pObjectReference_ =
-  ListObjectAttributes'
-    { _loaFacetFilter = Nothing
-    , _loaConsistencyLevel = Nothing
-    , _loaNextToken = Nothing
-    , _loaMaxResults = Nothing
-    , _loaDirectoryARN = pDirectoryARN_
-    , _loaObjectReference = pObjectReference_
-    }
-
+listObjectAttributes pDirectoryARN_ pObjectReference_
+  = ListObjectAttributes'{_loaFacetFilter = Nothing,
+                          _loaConsistencyLevel = Nothing,
+                          _loaNextToken = Nothing, _loaMaxResults = Nothing,
+                          _loaDirectoryARN = pDirectoryARN_,
+                          _loaObjectReference = pObjectReference_}
 
 -- | Used to filter the list of object attributes that are associated with a certain facet.
 loaFacetFilter :: Lens' ListObjectAttributes (Maybe SchemaFacet)
@@ -165,12 +163,17 @@ instance ToQuery ListObjectAttributes where
         toQuery = const mempty
 
 -- | /See:/ 'listObjectAttributesResponse' smart constructor.
-data ListObjectAttributesResponse = ListObjectAttributesResponse'
-  { _loarsNextToken      :: !(Maybe Text)
-  , _loarsAttributes     :: !(Maybe [AttributeKeyAndValue])
-  , _loarsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListObjectAttributesResponse = ListObjectAttributesResponse'{_loarsNextToken
+                                                                  ::
+                                                                  !(Maybe Text),
+                                                                  _loarsAttributes
+                                                                  ::
+                                                                  !(Maybe
+                                                                      [AttributeKeyAndValue]),
+                                                                  _loarsResponseStatus
+                                                                  :: !Int}
+                                      deriving (Eq, Read, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'ListObjectAttributesResponse' with the minimum fields required to make a request.
 --
@@ -184,13 +187,11 @@ data ListObjectAttributesResponse = ListObjectAttributesResponse'
 listObjectAttributesResponse
     :: Int -- ^ 'loarsResponseStatus'
     -> ListObjectAttributesResponse
-listObjectAttributesResponse pResponseStatus_ =
-  ListObjectAttributesResponse'
-    { _loarsNextToken = Nothing
-    , _loarsAttributes = Nothing
-    , _loarsResponseStatus = pResponseStatus_
-    }
-
+listObjectAttributesResponse pResponseStatus_
+  = ListObjectAttributesResponse'{_loarsNextToken =
+                                    Nothing,
+                                  _loarsAttributes = Nothing,
+                                  _loarsResponseStatus = pResponseStatus_}
 
 -- | The pagination token.
 loarsNextToken :: Lens' ListObjectAttributesResponse (Maybe Text)

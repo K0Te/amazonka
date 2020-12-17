@@ -25,7 +25,7 @@
 --
 --     * @PENDING@ : AWS WAF is propagating the create, update, or delete request to all AWS WAF servers.
 --
---     * @IN_SYNC@ : Propagation is complete.
+--     * @INSYNC@ : Propagation is complete.
 --
 --
 --
@@ -50,13 +50,12 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.WAF.Types
-import Network.AWS.WAF.Types.Product
 
 -- | /See:/ 'getChangeTokenStatus' smart constructor.
-newtype GetChangeTokenStatus = GetChangeTokenStatus'
-  { _gctsChangeToken :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetChangeTokenStatus = GetChangeTokenStatus'{_gctsChangeToken
+                                                     :: Text}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'GetChangeTokenStatus' with the minimum fields required to make a request.
 --
@@ -66,9 +65,9 @@ newtype GetChangeTokenStatus = GetChangeTokenStatus'
 getChangeTokenStatus
     :: Text -- ^ 'gctsChangeToken'
     -> GetChangeTokenStatus
-getChangeTokenStatus pChangeToken_ =
-  GetChangeTokenStatus' {_gctsChangeToken = pChangeToken_}
-
+getChangeTokenStatus pChangeToken_
+  = GetChangeTokenStatus'{_gctsChangeToken =
+                            pChangeToken_}
 
 -- | The change token for which you want to get the status. This change token was previously returned in the @GetChangeToken@ response.
 gctsChangeToken :: Lens' GetChangeTokenStatus Text
@@ -111,11 +110,14 @@ instance ToQuery GetChangeTokenStatus where
         toQuery = const mempty
 
 -- | /See:/ 'getChangeTokenStatusResponse' smart constructor.
-data GetChangeTokenStatusResponse = GetChangeTokenStatusResponse'
-  { _gctsrsChangeTokenStatus :: !(Maybe ChangeTokenStatus)
-  , _gctsrsResponseStatus    :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetChangeTokenStatusResponse = GetChangeTokenStatusResponse'{_gctsrsChangeTokenStatus
+                                                                  ::
+                                                                  !(Maybe
+                                                                      ChangeTokenStatus),
+                                                                  _gctsrsResponseStatus
+                                                                  :: !Int}
+                                      deriving (Eq, Read, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'GetChangeTokenStatusResponse' with the minimum fields required to make a request.
 --
@@ -127,12 +129,10 @@ data GetChangeTokenStatusResponse = GetChangeTokenStatusResponse'
 getChangeTokenStatusResponse
     :: Int -- ^ 'gctsrsResponseStatus'
     -> GetChangeTokenStatusResponse
-getChangeTokenStatusResponse pResponseStatus_ =
-  GetChangeTokenStatusResponse'
-    { _gctsrsChangeTokenStatus = Nothing
-    , _gctsrsResponseStatus = pResponseStatus_
-    }
-
+getChangeTokenStatusResponse pResponseStatus_
+  = GetChangeTokenStatusResponse'{_gctsrsChangeTokenStatus
+                                    = Nothing,
+                                  _gctsrsResponseStatus = pResponseStatus_}
 
 -- | The status of the change token.
 gctsrsChangeTokenStatus :: Lens' GetChangeTokenStatusResponse (Maybe ChangeTokenStatus)

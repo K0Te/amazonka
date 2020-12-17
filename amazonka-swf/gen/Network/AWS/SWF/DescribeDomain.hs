@@ -21,7 +21,7 @@
 -- Returns information about the specified domain, including description and status.
 --
 --
--- __Access Control__
+-- __Access Control__ 
 --
 -- You can use IAM policies to control this action's access to Amazon SWF resources as follows:
 --
@@ -33,7 +33,7 @@
 --
 --
 --
--- If the caller doesn't have sufficient permissions to invoke the action, or the parameter values fall outside the specified constraints, the action fails. The associated event attribute's @cause@ parameter is set to @OPERATION_NOT_PERMITTED@ . For details and example IAM policies, see <http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html Using IAM to Manage Access to Amazon SWF Workflows> in the /Amazon SWF Developer Guide/ .
+-- If the caller doesn't have sufficient permissions to invoke the action, or the parameter values fall outside the specified constraints, the action fails. The associated event attribute's @cause@ parameter is set to @OPERATION_NOT_PERMITTED@ . For details and example IAM policies, see <https://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html Using IAM to Manage Access to Amazon SWF Workflows> in the /Amazon SWF Developer Guide/ .
 --
 module Network.AWS.SWF.DescribeDomain
     (
@@ -57,13 +57,11 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.SWF.Types
-import Network.AWS.SWF.Types.Product
 
 -- | /See:/ 'describeDomain' smart constructor.
-newtype DescribeDomain = DescribeDomain'
-  { _ddName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DescribeDomain = DescribeDomain'{_ddName ::
+                                         Text}
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DescribeDomain' with the minimum fields required to make a request.
 --
@@ -73,8 +71,8 @@ newtype DescribeDomain = DescribeDomain'
 describeDomain
     :: Text -- ^ 'ddName'
     -> DescribeDomain
-describeDomain pName_ = DescribeDomain' {_ddName = pName_}
-
+describeDomain pName_
+  = DescribeDomain'{_ddName = pName_}
 
 -- | The name of the domain to describe.
 ddName :: Lens' DescribeDomain Text
@@ -119,12 +117,14 @@ instance ToQuery DescribeDomain where
 --
 --
 -- /See:/ 'describeDomainResponse' smart constructor.
-data DescribeDomainResponse = DescribeDomainResponse'
-  { _ddrsResponseStatus :: !Int
-  , _ddrsDomainInfo     :: !DomainInfo
-  , _ddrsConfiguration  :: !DomainConfiguration
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeDomainResponse = DescribeDomainResponse'{_ddrsResponseStatus
+                                                      :: !Int,
+                                                      _ddrsDomainInfo ::
+                                                      !DomainInfo,
+                                                      _ddrsConfiguration ::
+                                                      !DomainConfiguration}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'DescribeDomainResponse' with the minimum fields required to make a request.
 --
@@ -140,13 +140,12 @@ describeDomainResponse
     -> DomainInfo -- ^ 'ddrsDomainInfo'
     -> DomainConfiguration -- ^ 'ddrsConfiguration'
     -> DescribeDomainResponse
-describeDomainResponse pResponseStatus_ pDomainInfo_ pConfiguration_ =
-  DescribeDomainResponse'
-    { _ddrsResponseStatus = pResponseStatus_
-    , _ddrsDomainInfo = pDomainInfo_
-    , _ddrsConfiguration = pConfiguration_
-    }
-
+describeDomainResponse pResponseStatus_ pDomainInfo_
+  pConfiguration_
+  = DescribeDomainResponse'{_ddrsResponseStatus =
+                              pResponseStatus_,
+                            _ddrsDomainInfo = pDomainInfo_,
+                            _ddrsConfiguration = pConfiguration_}
 
 -- | -- | The response status code.
 ddrsResponseStatus :: Lens' DescribeDomainResponse Int

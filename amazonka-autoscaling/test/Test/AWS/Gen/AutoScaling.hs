@@ -14,11 +14,11 @@
 module Test.AWS.Gen.AutoScaling where
 
 import Data.Proxy
-import Network.AWS.AutoScaling
-import Test.AWS.AutoScaling.Internal
 import Test.AWS.Fixture
 import Test.AWS.Prelude
 import Test.Tasty
+import Network.AWS.AutoScaling
+import Test.AWS.AutoScaling.Internal
 
 -- Auto-generated: the actual test selection needs to be manually placed into
 -- the top-level so that real test data can be incrementally added.
@@ -46,6 +46,9 @@ import Test.Tasty
 --         , requestPutScalingPolicy $
 --             putScalingPolicy
 --
+--         , requestStartInstanceRefresh $
+--             startInstanceRefresh
+--
 --         , requestAttachLoadBalancerTargetGroups $
 --             attachLoadBalancerTargetGroups
 --
@@ -66,6 +69,9 @@ import Test.Tasty
 --
 --         , requestDescribeTerminationPolicyTypes $
 --             describeTerminationPolicyTypes
+--
+--         , requestCancelInstanceRefresh $
+--             cancelInstanceRefresh
 --
 --         , requestDescribeAutoScalingInstances $
 --             describeAutoScalingInstances
@@ -133,6 +139,9 @@ import Test.Tasty
 --         , requestPutLifecycleHook $
 --             putLifecycleHook
 --
+--         , requestBatchPutScheduledUpdateGroupAction $
+--             batchPutScheduledUpdateGroupAction
+--
 --         , requestDeleteLifecycleHook $
 --             deleteLifecycleHook
 --
@@ -142,11 +151,17 @@ import Test.Tasty
 --         , requestExecutePolicy $
 --             executePolicy
 --
+--         , requestDescribeInstanceRefreshes $
+--             describeInstanceRefreshes
+--
 --         , requestDescribeAccountLimits $
 --             describeAccountLimits
 --
 --         , requestAttachLoadBalancers $
 --             attachLoadBalancers
+--
+--         , requestBatchDeleteScheduledAction $
+--             batchDeleteScheduledAction
 --
 --         , requestTerminateInstanceInAutoScalingGroup $
 --             terminateInstanceInAutoScalingGroup
@@ -205,6 +220,9 @@ import Test.Tasty
 --         , responsePutScalingPolicy $
 --             putScalingPolicyResponse
 --
+--         , responseStartInstanceRefresh $
+--             startInstanceRefreshResponse
+--
 --         , responseAttachLoadBalancerTargetGroups $
 --             attachLoadBalancerTargetGroupsResponse
 --
@@ -225,6 +243,9 @@ import Test.Tasty
 --
 --         , responseDescribeTerminationPolicyTypes $
 --             describeTerminationPolicyTypesResponse
+--
+--         , responseCancelInstanceRefresh $
+--             cancelInstanceRefreshResponse
 --
 --         , responseDescribeAutoScalingInstances $
 --             describeAutoScalingInstancesResponse
@@ -292,6 +313,9 @@ import Test.Tasty
 --         , responsePutLifecycleHook $
 --             putLifecycleHookResponse
 --
+--         , responseBatchPutScheduledUpdateGroupAction $
+--             batchPutScheduledUpdateGroupActionResponse
+--
 --         , responseDeleteLifecycleHook $
 --             deleteLifecycleHookResponse
 --
@@ -301,11 +325,17 @@ import Test.Tasty
 --         , responseExecutePolicy $
 --             executePolicyResponse
 --
+--         , responseDescribeInstanceRefreshes $
+--             describeInstanceRefreshesResponse
+--
 --         , responseDescribeAccountLimits $
 --             describeAccountLimitsResponse
 --
 --         , responseAttachLoadBalancers $
 --             attachLoadBalancersResponse
+--
+--         , responseBatchDeleteScheduledAction $
+--             batchDeleteScheduledActionResponse
 --
 --         , responseTerminateInstanceInAutoScalingGroup $
 --             terminateInstanceInAutoScalingGroupResponse
@@ -378,6 +408,11 @@ requestPutScalingPolicy = req
     "PutScalingPolicy"
     "fixture/PutScalingPolicy.yaml"
 
+requestStartInstanceRefresh :: StartInstanceRefresh -> TestTree
+requestStartInstanceRefresh = req
+    "StartInstanceRefresh"
+    "fixture/StartInstanceRefresh.yaml"
+
 requestAttachLoadBalancerTargetGroups :: AttachLoadBalancerTargetGroups -> TestTree
 requestAttachLoadBalancerTargetGroups = req
     "AttachLoadBalancerTargetGroups"
@@ -412,6 +447,11 @@ requestDescribeTerminationPolicyTypes :: DescribeTerminationPolicyTypes -> TestT
 requestDescribeTerminationPolicyTypes = req
     "DescribeTerminationPolicyTypes"
     "fixture/DescribeTerminationPolicyTypes.yaml"
+
+requestCancelInstanceRefresh :: CancelInstanceRefresh -> TestTree
+requestCancelInstanceRefresh = req
+    "CancelInstanceRefresh"
+    "fixture/CancelInstanceRefresh.yaml"
 
 requestDescribeAutoScalingInstances :: DescribeAutoScalingInstances -> TestTree
 requestDescribeAutoScalingInstances = req
@@ -523,6 +563,11 @@ requestPutLifecycleHook = req
     "PutLifecycleHook"
     "fixture/PutLifecycleHook.yaml"
 
+requestBatchPutScheduledUpdateGroupAction :: BatchPutScheduledUpdateGroupAction -> TestTree
+requestBatchPutScheduledUpdateGroupAction = req
+    "BatchPutScheduledUpdateGroupAction"
+    "fixture/BatchPutScheduledUpdateGroupAction.yaml"
+
 requestDeleteLifecycleHook :: DeleteLifecycleHook -> TestTree
 requestDeleteLifecycleHook = req
     "DeleteLifecycleHook"
@@ -538,6 +583,11 @@ requestExecutePolicy = req
     "ExecutePolicy"
     "fixture/ExecutePolicy.yaml"
 
+requestDescribeInstanceRefreshes :: DescribeInstanceRefreshes -> TestTree
+requestDescribeInstanceRefreshes = req
+    "DescribeInstanceRefreshes"
+    "fixture/DescribeInstanceRefreshes.yaml"
+
 requestDescribeAccountLimits :: DescribeAccountLimits -> TestTree
 requestDescribeAccountLimits = req
     "DescribeAccountLimits"
@@ -547,6 +597,11 @@ requestAttachLoadBalancers :: AttachLoadBalancers -> TestTree
 requestAttachLoadBalancers = req
     "AttachLoadBalancers"
     "fixture/AttachLoadBalancers.yaml"
+
+requestBatchDeleteScheduledAction :: BatchDeleteScheduledAction -> TestTree
+requestBatchDeleteScheduledAction = req
+    "BatchDeleteScheduledAction"
+    "fixture/BatchDeleteScheduledAction.yaml"
 
 requestTerminateInstanceInAutoScalingGroup :: TerminateInstanceInAutoScalingGroup -> TestTree
 requestTerminateInstanceInAutoScalingGroup = req
@@ -652,6 +707,13 @@ responsePutScalingPolicy = res
     autoScaling
     (Proxy :: Proxy PutScalingPolicy)
 
+responseStartInstanceRefresh :: StartInstanceRefreshResponse -> TestTree
+responseStartInstanceRefresh = res
+    "StartInstanceRefreshResponse"
+    "fixture/StartInstanceRefreshResponse.proto"
+    autoScaling
+    (Proxy :: Proxy StartInstanceRefresh)
+
 responseAttachLoadBalancerTargetGroups :: AttachLoadBalancerTargetGroupsResponse -> TestTree
 responseAttachLoadBalancerTargetGroups = res
     "AttachLoadBalancerTargetGroupsResponse"
@@ -700,6 +762,13 @@ responseDescribeTerminationPolicyTypes = res
     "fixture/DescribeTerminationPolicyTypesResponse.proto"
     autoScaling
     (Proxy :: Proxy DescribeTerminationPolicyTypes)
+
+responseCancelInstanceRefresh :: CancelInstanceRefreshResponse -> TestTree
+responseCancelInstanceRefresh = res
+    "CancelInstanceRefreshResponse"
+    "fixture/CancelInstanceRefreshResponse.proto"
+    autoScaling
+    (Proxy :: Proxy CancelInstanceRefresh)
 
 responseDescribeAutoScalingInstances :: DescribeAutoScalingInstancesResponse -> TestTree
 responseDescribeAutoScalingInstances = res
@@ -855,6 +924,13 @@ responsePutLifecycleHook = res
     autoScaling
     (Proxy :: Proxy PutLifecycleHook)
 
+responseBatchPutScheduledUpdateGroupAction :: BatchPutScheduledUpdateGroupActionResponse -> TestTree
+responseBatchPutScheduledUpdateGroupAction = res
+    "BatchPutScheduledUpdateGroupActionResponse"
+    "fixture/BatchPutScheduledUpdateGroupActionResponse.proto"
+    autoScaling
+    (Proxy :: Proxy BatchPutScheduledUpdateGroupAction)
+
 responseDeleteLifecycleHook :: DeleteLifecycleHookResponse -> TestTree
 responseDeleteLifecycleHook = res
     "DeleteLifecycleHookResponse"
@@ -876,6 +952,13 @@ responseExecutePolicy = res
     autoScaling
     (Proxy :: Proxy ExecutePolicy)
 
+responseDescribeInstanceRefreshes :: DescribeInstanceRefreshesResponse -> TestTree
+responseDescribeInstanceRefreshes = res
+    "DescribeInstanceRefreshesResponse"
+    "fixture/DescribeInstanceRefreshesResponse.proto"
+    autoScaling
+    (Proxy :: Proxy DescribeInstanceRefreshes)
+
 responseDescribeAccountLimits :: DescribeAccountLimitsResponse -> TestTree
 responseDescribeAccountLimits = res
     "DescribeAccountLimitsResponse"
@@ -889,6 +972,13 @@ responseAttachLoadBalancers = res
     "fixture/AttachLoadBalancersResponse.proto"
     autoScaling
     (Proxy :: Proxy AttachLoadBalancers)
+
+responseBatchDeleteScheduledAction :: BatchDeleteScheduledActionResponse -> TestTree
+responseBatchDeleteScheduledAction = res
+    "BatchDeleteScheduledActionResponse"
+    "fixture/BatchDeleteScheduledActionResponse.proto"
+    autoScaling
+    (Proxy :: Proxy BatchDeleteScheduledAction)
 
 responseTerminateInstanceInAutoScalingGroup :: TerminateInstanceInAutoScalingGroupResponse -> TestTree
 responseTerminateInstanceInAutoScalingGroup = res

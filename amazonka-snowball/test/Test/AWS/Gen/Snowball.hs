@@ -14,11 +14,11 @@
 module Test.AWS.Gen.Snowball where
 
 import Data.Proxy
-import Network.AWS.Snowball
 import Test.AWS.Fixture
 import Test.AWS.Prelude
-import Test.AWS.Snowball.Internal
 import Test.Tasty
+import Network.AWS.Snowball
+import Test.AWS.Snowball.Internal
 
 -- Auto-generated: the actual test selection needs to be manually placed into
 -- the top-level so that real test data can be incrementally added.
@@ -37,14 +37,23 @@ import Test.Tasty
 --         , requestCreateAddress $
 --             createAddress
 --
+--         , requestCreateReturnShippingLabel $
+--             createReturnShippingLabel
+--
 --         , requestGetSnowballUsage $
 --             getSnowballUsage
 --
 --         , requestDescribeAddresses $
 --             describeAddresses
 --
+--         , requestListCompatibleImages $
+--             listCompatibleImages
+--
 --         , requestUpdateCluster $
 --             updateCluster
+--
+--         , requestGetSoftwareUpdates $
+--             getSoftwareUpdates
 --
 --         , requestCreateJob $
 --             createJob
@@ -61,6 +70,9 @@ import Test.Tasty
 --         , requestUpdateJob $
 --             updateJob
 --
+--         , requestUpdateJobShipmentState $
+--             updateJobShipmentState
+--
 --         , requestGetJobUnlockCode $
 --             getJobUnlockCode
 --
@@ -75,6 +87,9 @@ import Test.Tasty
 --
 --         , requestDescribeAddress $
 --             describeAddress
+--
+--         , requestDescribeReturnShippingLabel $
+--             describeReturnShippingLabel
 --
 --         , requestCancelJob $
 --             cancelJob
@@ -91,14 +106,23 @@ import Test.Tasty
 --         , responseCreateAddress $
 --             createAddressResponse
 --
+--         , responseCreateReturnShippingLabel $
+--             createReturnShippingLabelResponse
+--
 --         , responseGetSnowballUsage $
 --             getSnowballUsageResponse
 --
 --         , responseDescribeAddresses $
 --             describeAddressesResponse
 --
+--         , responseListCompatibleImages $
+--             listCompatibleImagesResponse
+--
 --         , responseUpdateCluster $
 --             updateClusterResponse
+--
+--         , responseGetSoftwareUpdates $
+--             getSoftwareUpdatesResponse
 --
 --         , responseCreateJob $
 --             createJobResponse
@@ -115,6 +139,9 @@ import Test.Tasty
 --         , responseUpdateJob $
 --             updateJobResponse
 --
+--         , responseUpdateJobShipmentState $
+--             updateJobShipmentStateResponse
+--
 --         , responseGetJobUnlockCode $
 --             getJobUnlockCodeResponse
 --
@@ -129,6 +156,9 @@ import Test.Tasty
 --
 --         , responseDescribeAddress $
 --             describeAddressResponse
+--
+--         , responseDescribeReturnShippingLabel $
+--             describeReturnShippingLabelResponse
 --
 --         , responseCancelJob $
 --             cancelJobResponse
@@ -153,6 +183,11 @@ requestCreateAddress = req
     "CreateAddress"
     "fixture/CreateAddress.yaml"
 
+requestCreateReturnShippingLabel :: CreateReturnShippingLabel -> TestTree
+requestCreateReturnShippingLabel = req
+    "CreateReturnShippingLabel"
+    "fixture/CreateReturnShippingLabel.yaml"
+
 requestGetSnowballUsage :: GetSnowballUsage -> TestTree
 requestGetSnowballUsage = req
     "GetSnowballUsage"
@@ -163,10 +198,20 @@ requestDescribeAddresses = req
     "DescribeAddresses"
     "fixture/DescribeAddresses.yaml"
 
+requestListCompatibleImages :: ListCompatibleImages -> TestTree
+requestListCompatibleImages = req
+    "ListCompatibleImages"
+    "fixture/ListCompatibleImages.yaml"
+
 requestUpdateCluster :: UpdateCluster -> TestTree
 requestUpdateCluster = req
     "UpdateCluster"
     "fixture/UpdateCluster.yaml"
+
+requestGetSoftwareUpdates :: GetSoftwareUpdates -> TestTree
+requestGetSoftwareUpdates = req
+    "GetSoftwareUpdates"
+    "fixture/GetSoftwareUpdates.yaml"
 
 requestCreateJob :: CreateJob -> TestTree
 requestCreateJob = req
@@ -193,6 +238,11 @@ requestUpdateJob = req
     "UpdateJob"
     "fixture/UpdateJob.yaml"
 
+requestUpdateJobShipmentState :: UpdateJobShipmentState -> TestTree
+requestUpdateJobShipmentState = req
+    "UpdateJobShipmentState"
+    "fixture/UpdateJobShipmentState.yaml"
+
 requestGetJobUnlockCode :: GetJobUnlockCode -> TestTree
 requestGetJobUnlockCode = req
     "GetJobUnlockCode"
@@ -217,6 +267,11 @@ requestDescribeAddress :: DescribeAddress -> TestTree
 requestDescribeAddress = req
     "DescribeAddress"
     "fixture/DescribeAddress.yaml"
+
+requestDescribeReturnShippingLabel :: DescribeReturnShippingLabel -> TestTree
+requestDescribeReturnShippingLabel = req
+    "DescribeReturnShippingLabel"
+    "fixture/DescribeReturnShippingLabel.yaml"
 
 requestCancelJob :: CancelJob -> TestTree
 requestCancelJob = req
@@ -246,6 +301,13 @@ responseCreateAddress = res
     snowball
     (Proxy :: Proxy CreateAddress)
 
+responseCreateReturnShippingLabel :: CreateReturnShippingLabelResponse -> TestTree
+responseCreateReturnShippingLabel = res
+    "CreateReturnShippingLabelResponse"
+    "fixture/CreateReturnShippingLabelResponse.proto"
+    snowball
+    (Proxy :: Proxy CreateReturnShippingLabel)
+
 responseGetSnowballUsage :: GetSnowballUsageResponse -> TestTree
 responseGetSnowballUsage = res
     "GetSnowballUsageResponse"
@@ -260,12 +322,26 @@ responseDescribeAddresses = res
     snowball
     (Proxy :: Proxy DescribeAddresses)
 
+responseListCompatibleImages :: ListCompatibleImagesResponse -> TestTree
+responseListCompatibleImages = res
+    "ListCompatibleImagesResponse"
+    "fixture/ListCompatibleImagesResponse.proto"
+    snowball
+    (Proxy :: Proxy ListCompatibleImages)
+
 responseUpdateCluster :: UpdateClusterResponse -> TestTree
 responseUpdateCluster = res
     "UpdateClusterResponse"
     "fixture/UpdateClusterResponse.proto"
     snowball
     (Proxy :: Proxy UpdateCluster)
+
+responseGetSoftwareUpdates :: GetSoftwareUpdatesResponse -> TestTree
+responseGetSoftwareUpdates = res
+    "GetSoftwareUpdatesResponse"
+    "fixture/GetSoftwareUpdatesResponse.proto"
+    snowball
+    (Proxy :: Proxy GetSoftwareUpdates)
 
 responseCreateJob :: CreateJobResponse -> TestTree
 responseCreateJob = res
@@ -302,6 +378,13 @@ responseUpdateJob = res
     snowball
     (Proxy :: Proxy UpdateJob)
 
+responseUpdateJobShipmentState :: UpdateJobShipmentStateResponse -> TestTree
+responseUpdateJobShipmentState = res
+    "UpdateJobShipmentStateResponse"
+    "fixture/UpdateJobShipmentStateResponse.proto"
+    snowball
+    (Proxy :: Proxy UpdateJobShipmentState)
+
 responseGetJobUnlockCode :: GetJobUnlockCodeResponse -> TestTree
 responseGetJobUnlockCode = res
     "GetJobUnlockCodeResponse"
@@ -336,6 +419,13 @@ responseDescribeAddress = res
     "fixture/DescribeAddressResponse.proto"
     snowball
     (Proxy :: Proxy DescribeAddress)
+
+responseDescribeReturnShippingLabel :: DescribeReturnShippingLabelResponse -> TestTree
+responseDescribeReturnShippingLabel = res
+    "DescribeReturnShippingLabelResponse"
+    "fixture/DescribeReturnShippingLabelResponse.proto"
+    snowball
+    (Proxy :: Proxy DescribeReturnShippingLabel)
 
 responseCancelJob :: CancelJobResponse -> TestTree
 responseCancelJob = res

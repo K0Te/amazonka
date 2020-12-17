@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Deletes a direct connect gateway. You must first delete all virtual interfaces that are attached to the direct connect gateway and disassociate all virtual private gateways that are associated with the direct connect gateway.
+-- Deletes the specified Direct Connect gateway. You must first delete all virtual interfaces that are attached to the Direct Connect gateway and disassociate all virtual private gateways associated with the Direct Connect gateway.
 --
 --
 module Network.AWS.DirectConnect.DeleteDirectConnectGateway
@@ -38,36 +38,30 @@ module Network.AWS.DirectConnect.DeleteDirectConnectGateway
     ) where
 
 import Network.AWS.DirectConnect.Types
-import Network.AWS.DirectConnect.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- | Container for the parameters to the DeleteDirectConnectGateway operation.
---
---
---
--- /See:/ 'deleteDirectConnectGateway' smart constructor.
-newtype DeleteDirectConnectGateway = DeleteDirectConnectGateway'
-  { _ddcgdDirectConnectGatewayId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+-- | /See:/ 'deleteDirectConnectGateway' smart constructor.
+newtype DeleteDirectConnectGateway = DeleteDirectConnectGateway'{_ddcgdDirectConnectGatewayId
+                                                                 :: Text}
+                                       deriving (Eq, Read, Show, Data, Typeable,
+                                                 Generic)
 
 -- | Creates a value of 'DeleteDirectConnectGateway' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'ddcgdDirectConnectGatewayId' - The ID of the direct connect gateway. Example: "abcd1234-dcba-5678-be23-cdef9876ab45" Default: None
+-- * 'ddcgdDirectConnectGatewayId' - The ID of the Direct Connect gateway.
 deleteDirectConnectGateway
     :: Text -- ^ 'ddcgdDirectConnectGatewayId'
     -> DeleteDirectConnectGateway
-deleteDirectConnectGateway pDirectConnectGatewayId_ =
-  DeleteDirectConnectGateway'
-    {_ddcgdDirectConnectGatewayId = pDirectConnectGatewayId_}
+deleteDirectConnectGateway pDirectConnectGatewayId_
+  = DeleteDirectConnectGateway'{_ddcgdDirectConnectGatewayId
+                                  = pDirectConnectGatewayId_}
 
-
--- | The ID of the direct connect gateway. Example: "abcd1234-dcba-5678-be23-cdef9876ab45" Default: None
+-- | The ID of the Direct Connect gateway.
 ddcgdDirectConnectGatewayId :: Lens' DeleteDirectConnectGateway Text
 ddcgdDirectConnectGatewayId = lens _ddcgdDirectConnectGatewayId (\ s a -> s{_ddcgdDirectConnectGatewayId = a})
 
@@ -110,35 +104,34 @@ instance ToPath DeleteDirectConnectGateway where
 instance ToQuery DeleteDirectConnectGateway where
         toQuery = const mempty
 
--- | Container for the response from the DeleteDirectConnectGateway API call
---
---
---
--- /See:/ 'deleteDirectConnectGatewayResponse' smart constructor.
-data DeleteDirectConnectGatewayResponse = DeleteDirectConnectGatewayResponse'
-  { _ddcgdrsDirectConnectGateway :: !(Maybe DirectConnectGateway)
-  , _ddcgdrsResponseStatus       :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+-- | /See:/ 'deleteDirectConnectGatewayResponse' smart constructor.
+data DeleteDirectConnectGatewayResponse = DeleteDirectConnectGatewayResponse'{_ddcgdrsDirectConnectGateway
+                                                                              ::
+                                                                              !(Maybe
+                                                                                  DirectConnectGateway),
+                                                                              _ddcgdrsResponseStatus
+                                                                              ::
+                                                                              !Int}
+                                            deriving (Eq, Read, Show, Data,
+                                                      Typeable, Generic)
 
 -- | Creates a value of 'DeleteDirectConnectGatewayResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'ddcgdrsDirectConnectGateway' - The direct connect gateway to be deleted.
+-- * 'ddcgdrsDirectConnectGateway' - The Direct Connect gateway.
 --
 -- * 'ddcgdrsResponseStatus' - -- | The response status code.
 deleteDirectConnectGatewayResponse
     :: Int -- ^ 'ddcgdrsResponseStatus'
     -> DeleteDirectConnectGatewayResponse
-deleteDirectConnectGatewayResponse pResponseStatus_ =
-  DeleteDirectConnectGatewayResponse'
-    { _ddcgdrsDirectConnectGateway = Nothing
-    , _ddcgdrsResponseStatus = pResponseStatus_
-    }
+deleteDirectConnectGatewayResponse pResponseStatus_
+  = DeleteDirectConnectGatewayResponse'{_ddcgdrsDirectConnectGateway
+                                          = Nothing,
+                                        _ddcgdrsResponseStatus =
+                                          pResponseStatus_}
 
-
--- | The direct connect gateway to be deleted.
+-- | The Direct Connect gateway.
 ddcgdrsDirectConnectGateway :: Lens' DeleteDirectConnectGatewayResponse (Maybe DirectConnectGateway)
 ddcgdrsDirectConnectGateway = lens _ddcgdrsDirectConnectGateway (\ s a -> s{_ddcgdrsDirectConnectGateway = a})
 

@@ -42,7 +42,6 @@ module Network.AWS.EMR.ListInstanceFleets
     ) where
 
 import Network.AWS.EMR.Types
-import Network.AWS.EMR.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
@@ -50,11 +49,10 @@ import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'listInstanceFleets' smart constructor.
-data ListInstanceFleets = ListInstanceFleets'
-  { _lifMarker    :: !(Maybe Text)
-  , _lifClusterId :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListInstanceFleets = ListInstanceFleets'{_lifMarker
+                                              :: !(Maybe Text),
+                                              _lifClusterId :: !Text}
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListInstanceFleets' with the minimum fields required to make a request.
 --
@@ -66,9 +64,9 @@ data ListInstanceFleets = ListInstanceFleets'
 listInstanceFleets
     :: Text -- ^ 'lifClusterId'
     -> ListInstanceFleets
-listInstanceFleets pClusterId_ =
-  ListInstanceFleets' {_lifMarker = Nothing, _lifClusterId = pClusterId_}
-
+listInstanceFleets pClusterId_
+  = ListInstanceFleets'{_lifMarker = Nothing,
+                        _lifClusterId = pClusterId_}
 
 -- | The pagination token that indicates the next set of results to retrieve.
 lifMarker :: Lens' ListInstanceFleets (Maybe Text)
@@ -125,12 +123,16 @@ instance ToQuery ListInstanceFleets where
         toQuery = const mempty
 
 -- | /See:/ 'listInstanceFleetsResponse' smart constructor.
-data ListInstanceFleetsResponse = ListInstanceFleetsResponse'
-  { _lifrsInstanceFleets :: !(Maybe [InstanceFleet])
-  , _lifrsMarker         :: !(Maybe Text)
-  , _lifrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListInstanceFleetsResponse = ListInstanceFleetsResponse'{_lifrsInstanceFleets
+                                                              ::
+                                                              !(Maybe
+                                                                  [InstanceFleet]),
+                                                              _lifrsMarker ::
+                                                              !(Maybe Text),
+                                                              _lifrsResponseStatus
+                                                              :: !Int}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'ListInstanceFleetsResponse' with the minimum fields required to make a request.
 --
@@ -144,13 +146,11 @@ data ListInstanceFleetsResponse = ListInstanceFleetsResponse'
 listInstanceFleetsResponse
     :: Int -- ^ 'lifrsResponseStatus'
     -> ListInstanceFleetsResponse
-listInstanceFleetsResponse pResponseStatus_ =
-  ListInstanceFleetsResponse'
-    { _lifrsInstanceFleets = Nothing
-    , _lifrsMarker = Nothing
-    , _lifrsResponseStatus = pResponseStatus_
-    }
-
+listInstanceFleetsResponse pResponseStatus_
+  = ListInstanceFleetsResponse'{_lifrsInstanceFleets =
+                                  Nothing,
+                                _lifrsMarker = Nothing,
+                                _lifrsResponseStatus = pResponseStatus_}
 
 -- | The list of instance fleets for the cluster and given filters.
 lifrsInstanceFleets :: Lens' ListInstanceFleetsResponse [InstanceFleet]

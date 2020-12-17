@@ -18,7 +18,9 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Returns information about a specific version of a campaign.
+-- Retrieves information about the status, configuration, and other settings for a specific version of a campaign.
+--
+--
 module Network.AWS.Pinpoint.GetCampaignVersion
     (
     -- * Creating a Request
@@ -39,50 +41,46 @@ module Network.AWS.Pinpoint.GetCampaignVersion
 
 import Network.AWS.Lens
 import Network.AWS.Pinpoint.Types
-import Network.AWS.Pinpoint.Types.Product
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'getCampaignVersion' smart constructor.
-data GetCampaignVersion = GetCampaignVersion'
-  { _gcvcVersion       :: !Text
-  , _gcvcApplicationId :: !Text
-  , _gcvcCampaignId    :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetCampaignVersion = GetCampaignVersion'{_gcvcVersion
+                                              :: !Text,
+                                              _gcvcApplicationId :: !Text,
+                                              _gcvcCampaignId :: !Text}
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetCampaignVersion' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'gcvcVersion' - Undocumented member.
+-- * 'gcvcVersion' - The unique version number (Version property) for the campaign version.
 --
--- * 'gcvcApplicationId' - Undocumented member.
+-- * 'gcvcApplicationId' - The unique identifier for the application. This identifier is displayed as the __Project ID__ on the Amazon Pinpoint console.
 --
--- * 'gcvcCampaignId' - Undocumented member.
+-- * 'gcvcCampaignId' - The unique identifier for the campaign.
 getCampaignVersion
     :: Text -- ^ 'gcvcVersion'
     -> Text -- ^ 'gcvcApplicationId'
     -> Text -- ^ 'gcvcCampaignId'
     -> GetCampaignVersion
-getCampaignVersion pVersion_ pApplicationId_ pCampaignId_ =
-  GetCampaignVersion'
-    { _gcvcVersion = pVersion_
-    , _gcvcApplicationId = pApplicationId_
-    , _gcvcCampaignId = pCampaignId_
-    }
+getCampaignVersion pVersion_ pApplicationId_
+  pCampaignId_
+  = GetCampaignVersion'{_gcvcVersion = pVersion_,
+                        _gcvcApplicationId = pApplicationId_,
+                        _gcvcCampaignId = pCampaignId_}
 
-
--- | Undocumented member.
+-- | The unique version number (Version property) for the campaign version.
 gcvcVersion :: Lens' GetCampaignVersion Text
 gcvcVersion = lens _gcvcVersion (\ s a -> s{_gcvcVersion = a})
 
--- | Undocumented member.
+-- | The unique identifier for the application. This identifier is displayed as the __Project ID__ on the Amazon Pinpoint console.
 gcvcApplicationId :: Lens' GetCampaignVersion Text
 gcvcApplicationId = lens _gcvcApplicationId (\ s a -> s{_gcvcApplicationId = a})
 
--- | Undocumented member.
+-- | The unique identifier for the campaign.
 gcvcCampaignId :: Lens' GetCampaignVersion Text
 gcvcCampaignId = lens _gcvcCampaignId (\ s a -> s{_gcvcCampaignId = a})
 
@@ -118,11 +116,13 @@ instance ToQuery GetCampaignVersion where
         toQuery = const mempty
 
 -- | /See:/ 'getCampaignVersionResponse' smart constructor.
-data GetCampaignVersionResponse = GetCampaignVersionResponse'
-  { _gcvcrsResponseStatus   :: !Int
-  , _gcvcrsCampaignResponse :: !CampaignResponse
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetCampaignVersionResponse = GetCampaignVersionResponse'{_gcvcrsResponseStatus
+                                                              :: !Int,
+                                                              _gcvcrsCampaignResponse
+                                                              ::
+                                                              !CampaignResponse}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'GetCampaignVersionResponse' with the minimum fields required to make a request.
 --
@@ -135,12 +135,11 @@ getCampaignVersionResponse
     :: Int -- ^ 'gcvcrsResponseStatus'
     -> CampaignResponse -- ^ 'gcvcrsCampaignResponse'
     -> GetCampaignVersionResponse
-getCampaignVersionResponse pResponseStatus_ pCampaignResponse_ =
-  GetCampaignVersionResponse'
-    { _gcvcrsResponseStatus = pResponseStatus_
-    , _gcvcrsCampaignResponse = pCampaignResponse_
-    }
-
+getCampaignVersionResponse pResponseStatus_
+  pCampaignResponse_
+  = GetCampaignVersionResponse'{_gcvcrsResponseStatus =
+                                  pResponseStatus_,
+                                _gcvcrsCampaignResponse = pCampaignResponse_}
 
 -- | -- | The response status code.
 gcvcrsResponseStatus :: Lens' GetCampaignVersionResponse Int

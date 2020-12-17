@@ -18,9 +18,11 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Gets a list of the file shares for a specific file gateway, or the list of file shares that belong to the calling user account. This operation is only supported in the file gateway type.
+-- Gets a list of the file shares for a specific file gateway, or the list of file shares that belong to the calling user account. This operation is only supported for file gateways.
 --
 --
+--
+-- This operation returns paginated results.
 module Network.AWS.StorageGateway.ListFileShares
     (
     -- * Creating a Request
@@ -42,41 +44,39 @@ module Network.AWS.StorageGateway.ListFileShares
     ) where
 
 import Network.AWS.Lens
+import Network.AWS.Pager
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.StorageGateway.Types
-import Network.AWS.StorageGateway.Types.Product
 
 -- | ListFileShareInput
 --
 --
 --
 -- /See:/ 'listFileShares' smart constructor.
-data ListFileShares = ListFileShares'
-  { _lfsGatewayARN :: !(Maybe Text)
-  , _lfsMarker     :: !(Maybe Text)
-  , _lfsLimit      :: !(Maybe Nat)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListFileShares = ListFileShares'{_lfsGatewayARN
+                                      :: !(Maybe Text),
+                                      _lfsMarker :: !(Maybe Text),
+                                      _lfsLimit :: !(Maybe Nat)}
+                        deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListFileShares' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'lfsGatewayARN' - The Amazon resource Name (ARN) of the gateway whose file shares you want to list. If this field is not present, all file shares under your account are listed.
+-- * 'lfsGatewayARN' - The Amazon Resource Name (ARN) of the gateway whose file shares you want to list. If this field is not present, all file shares under your account are listed.
 --
 -- * 'lfsMarker' - Opaque pagination token returned from a previous ListFileShares operation. If present, @Marker@ specifies where to continue the list from after a previous call to ListFileShares. Optional.
 --
 -- * 'lfsLimit' - The maximum number of file shares to return in the response. The value must be an integer with a value greater than zero. Optional.
 listFileShares
     :: ListFileShares
-listFileShares =
-  ListFileShares'
-    {_lfsGatewayARN = Nothing, _lfsMarker = Nothing, _lfsLimit = Nothing}
+listFileShares
+  = ListFileShares'{_lfsGatewayARN = Nothing,
+                    _lfsMarker = Nothing, _lfsLimit = Nothing}
 
-
--- | The Amazon resource Name (ARN) of the gateway whose file shares you want to list. If this field is not present, all file shares under your account are listed.
+-- | The Amazon Resource Name (ARN) of the gateway whose file shares you want to list. If this field is not present, all file shares under your account are listed.
 lfsGatewayARN :: Lens' ListFileShares (Maybe Text)
 lfsGatewayARN = lens _lfsGatewayARN (\ s a -> s{_lfsGatewayARN = a})
 
@@ -87,6 +87,13 @@ lfsMarker = lens _lfsMarker (\ s a -> s{_lfsMarker = a})
 -- | The maximum number of file shares to return in the response. The value must be an integer with a value greater than zero. Optional.
 lfsLimit :: Lens' ListFileShares (Maybe Natural)
 lfsLimit = lens _lfsLimit (\ s a -> s{_lfsLimit = a}) . mapping _Nat
+
+instance AWSPager ListFileShares where
+        page rq rs
+          | stop (rs ^. lfsrsNextMarker) = Nothing
+          | stop (rs ^. lfsrsFileShareInfoList) = Nothing
+          | otherwise =
+            Just $ rq & lfsMarker .~ rs ^. lfsrsNextMarker
 
 instance AWSRequest ListFileShares where
         type Rs ListFileShares = ListFileSharesResponse
@@ -133,13 +140,17 @@ instance ToQuery ListFileShares where
 --
 --
 -- /See:/ 'listFileSharesResponse' smart constructor.
-data ListFileSharesResponse = ListFileSharesResponse'
-  { _lfsrsFileShareInfoList :: !(Maybe [FileShareInfo])
-  , _lfsrsMarker            :: !(Maybe Text)
-  , _lfsrsNextMarker        :: !(Maybe Text)
-  , _lfsrsResponseStatus    :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListFileSharesResponse = ListFileSharesResponse'{_lfsrsFileShareInfoList
+                                                      ::
+                                                      !(Maybe [FileShareInfo]),
+                                                      _lfsrsMarker ::
+                                                      !(Maybe Text),
+                                                      _lfsrsNextMarker ::
+                                                      !(Maybe Text),
+                                                      _lfsrsResponseStatus ::
+                                                      !Int}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'ListFileSharesResponse' with the minimum fields required to make a request.
 --
@@ -155,14 +166,11 @@ data ListFileSharesResponse = ListFileSharesResponse'
 listFileSharesResponse
     :: Int -- ^ 'lfsrsResponseStatus'
     -> ListFileSharesResponse
-listFileSharesResponse pResponseStatus_ =
-  ListFileSharesResponse'
-    { _lfsrsFileShareInfoList = Nothing
-    , _lfsrsMarker = Nothing
-    , _lfsrsNextMarker = Nothing
-    , _lfsrsResponseStatus = pResponseStatus_
-    }
-
+listFileSharesResponse pResponseStatus_
+  = ListFileSharesResponse'{_lfsrsFileShareInfoList =
+                              Nothing,
+                            _lfsrsMarker = Nothing, _lfsrsNextMarker = Nothing,
+                            _lfsrsResponseStatus = pResponseStatus_}
 
 -- | An array of information about the file gateway's file shares.
 lfsrsFileShareInfoList :: Lens' ListFileSharesResponse [FileShareInfo]

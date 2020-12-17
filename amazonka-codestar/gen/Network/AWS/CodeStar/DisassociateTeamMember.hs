@@ -38,18 +38,17 @@ module Network.AWS.CodeStar.DisassociateTeamMember
     ) where
 
 import Network.AWS.CodeStar.Types
-import Network.AWS.CodeStar.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'disassociateTeamMember' smart constructor.
-data DisassociateTeamMember = DisassociateTeamMember'
-  { _dtmProjectId :: !Text
-  , _dtmUserARN   :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DisassociateTeamMember = DisassociateTeamMember'{_dtmProjectId
+                                                      :: !Text,
+                                                      _dtmUserARN :: !Text}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'DisassociateTeamMember' with the minimum fields required to make a request.
 --
@@ -62,9 +61,10 @@ disassociateTeamMember
     :: Text -- ^ 'dtmProjectId'
     -> Text -- ^ 'dtmUserARN'
     -> DisassociateTeamMember
-disassociateTeamMember pProjectId_ pUserARN_ =
-  DisassociateTeamMember' {_dtmProjectId = pProjectId_, _dtmUserARN = pUserARN_}
-
+disassociateTeamMember pProjectId_ pUserARN_
+  = DisassociateTeamMember'{_dtmProjectId =
+                              pProjectId_,
+                            _dtmUserARN = pUserARN_}
 
 -- | The ID of the AWS CodeStar project from which you want to remove a team member.
 dtmProjectId :: Lens' DisassociateTeamMember Text
@@ -112,10 +112,10 @@ instance ToQuery DisassociateTeamMember where
         toQuery = const mempty
 
 -- | /See:/ 'disassociateTeamMemberResponse' smart constructor.
-newtype DisassociateTeamMemberResponse = DisassociateTeamMemberResponse'
-  { _dtmrsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DisassociateTeamMemberResponse = DisassociateTeamMemberResponse'{_dtmrsResponseStatus
+                                                                         :: Int}
+                                           deriving (Eq, Read, Show, Data,
+                                                     Typeable, Generic)
 
 -- | Creates a value of 'DisassociateTeamMemberResponse' with the minimum fields required to make a request.
 --
@@ -125,9 +125,9 @@ newtype DisassociateTeamMemberResponse = DisassociateTeamMemberResponse'
 disassociateTeamMemberResponse
     :: Int -- ^ 'dtmrsResponseStatus'
     -> DisassociateTeamMemberResponse
-disassociateTeamMemberResponse pResponseStatus_ =
-  DisassociateTeamMemberResponse' {_dtmrsResponseStatus = pResponseStatus_}
-
+disassociateTeamMemberResponse pResponseStatus_
+  = DisassociateTeamMemberResponse'{_dtmrsResponseStatus
+                                      = pResponseStatus_}
 
 -- | -- | The response status code.
 dtmrsResponseStatus :: Lens' DisassociateTeamMemberResponse Int

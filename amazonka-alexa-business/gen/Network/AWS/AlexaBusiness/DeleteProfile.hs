@@ -37,17 +37,15 @@ module Network.AWS.AlexaBusiness.DeleteProfile
     ) where
 
 import Network.AWS.AlexaBusiness.Types
-import Network.AWS.AlexaBusiness.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deleteProfile' smart constructor.
-newtype DeleteProfile = DeleteProfile'
-  { _dpProfileARN :: Maybe Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteProfile = DeleteProfile'{_dpProfileARN
+                                       :: Maybe Text}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteProfile' with the minimum fields required to make a request.
 --
@@ -56,8 +54,8 @@ newtype DeleteProfile = DeleteProfile'
 -- * 'dpProfileARN' - The ARN of the room profile to delete. Required.
 deleteProfile
     :: DeleteProfile
-deleteProfile = DeleteProfile' {_dpProfileARN = Nothing}
-
+deleteProfile
+  = DeleteProfile'{_dpProfileARN = Nothing}
 
 -- | The ARN of the room profile to delete. Required.
 dpProfileARN :: Lens' DeleteProfile (Maybe Text)
@@ -96,10 +94,10 @@ instance ToQuery DeleteProfile where
         toQuery = const mempty
 
 -- | /See:/ 'deleteProfileResponse' smart constructor.
-newtype DeleteProfileResponse = DeleteProfileResponse'
-  { _dprsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteProfileResponse = DeleteProfileResponse'{_dprsResponseStatus
+                                                       :: Int}
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'DeleteProfileResponse' with the minimum fields required to make a request.
 --
@@ -109,9 +107,9 @@ newtype DeleteProfileResponse = DeleteProfileResponse'
 deleteProfileResponse
     :: Int -- ^ 'dprsResponseStatus'
     -> DeleteProfileResponse
-deleteProfileResponse pResponseStatus_ =
-  DeleteProfileResponse' {_dprsResponseStatus = pResponseStatus_}
-
+deleteProfileResponse pResponseStatus_
+  = DeleteProfileResponse'{_dprsResponseStatus =
+                             pResponseStatus_}
 
 -- | -- | The response status code.
 dprsResponseStatus :: Lens' DeleteProfileResponse Int

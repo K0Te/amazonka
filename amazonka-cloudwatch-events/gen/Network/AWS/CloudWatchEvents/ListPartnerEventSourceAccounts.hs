@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- An SaaS partner can use this operation to display the AWS account ID that a particular partner event source name is associated with.
+-- An SaaS partner can use this operation to display the AWS account ID that a particular partner event source name is associated with. This operation is not used by AWS customers.
 --
 --
 module Network.AWS.CloudWatchEvents.ListPartnerEventSourceAccounts
@@ -41,19 +41,24 @@ module Network.AWS.CloudWatchEvents.ListPartnerEventSourceAccounts
     ) where
 
 import Network.AWS.CloudWatchEvents.Types
-import Network.AWS.CloudWatchEvents.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'listPartnerEventSourceAccounts' smart constructor.
-data ListPartnerEventSourceAccounts = ListPartnerEventSourceAccounts'
-  { _lpesaNextToken       :: !(Maybe Text)
-  , _lpesaLimit           :: !(Maybe Nat)
-  , _lpesaEventSourceName :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListPartnerEventSourceAccounts = ListPartnerEventSourceAccounts'{_lpesaNextToken
+                                                                      ::
+                                                                      !(Maybe
+                                                                          Text),
+                                                                      _lpesaLimit
+                                                                      ::
+                                                                      !(Maybe
+                                                                          Nat),
+                                                                      _lpesaEventSourceName
+                                                                      :: !Text}
+                                        deriving (Eq, Read, Show, Data,
+                                                  Typeable, Generic)
 
 -- | Creates a value of 'ListPartnerEventSourceAccounts' with the minimum fields required to make a request.
 --
@@ -61,25 +66,23 @@ data ListPartnerEventSourceAccounts = ListPartnerEventSourceAccounts'
 --
 -- * 'lpesaNextToken' - The token returned by a previous call to this operation. Specifying this retrieves the next set of results.
 --
--- * 'lpesaLimit' - Specifying this limits the number of results returned by this operation. The operation also returns a @NextToken@ that you can use in a subsequent operation to retrieve the next set of results.
+-- * 'lpesaLimit' - Specifying this limits the number of results returned by this operation. The operation also returns a NextToken which you can use in a subsequent operation to retrieve the next set of results.
 --
 -- * 'lpesaEventSourceName' - The name of the partner event source to display account information about.
 listPartnerEventSourceAccounts
     :: Text -- ^ 'lpesaEventSourceName'
     -> ListPartnerEventSourceAccounts
-listPartnerEventSourceAccounts pEventSourceName_ =
-  ListPartnerEventSourceAccounts'
-    { _lpesaNextToken = Nothing
-    , _lpesaLimit = Nothing
-    , _lpesaEventSourceName = pEventSourceName_
-    }
-
+listPartnerEventSourceAccounts pEventSourceName_
+  = ListPartnerEventSourceAccounts'{_lpesaNextToken =
+                                      Nothing,
+                                    _lpesaLimit = Nothing,
+                                    _lpesaEventSourceName = pEventSourceName_}
 
 -- | The token returned by a previous call to this operation. Specifying this retrieves the next set of results.
 lpesaNextToken :: Lens' ListPartnerEventSourceAccounts (Maybe Text)
 lpesaNextToken = lens _lpesaNextToken (\ s a -> s{_lpesaNextToken = a})
 
--- | Specifying this limits the number of results returned by this operation. The operation also returns a @NextToken@ that you can use in a subsequent operation to retrieve the next set of results.
+-- | Specifying this limits the number of results returned by this operation. The operation also returns a NextToken which you can use in a subsequent operation to retrieve the next set of results.
 lpesaLimit :: Lens' ListPartnerEventSourceAccounts (Maybe Natural)
 lpesaLimit = lens _lpesaLimit (\ s a -> s{_lpesaLimit = a}) . mapping _Nat
 
@@ -131,12 +134,19 @@ instance ToQuery ListPartnerEventSourceAccounts where
         toQuery = const mempty
 
 -- | /See:/ 'listPartnerEventSourceAccountsResponse' smart constructor.
-data ListPartnerEventSourceAccountsResponse = ListPartnerEventSourceAccountsResponse'
-  { _lpesarsPartnerEventSourceAccounts :: !(Maybe [PartnerEventSourceAccount])
-  , _lpesarsNextToken                  :: !(Maybe Text)
-  , _lpesarsResponseStatus             :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListPartnerEventSourceAccountsResponse = ListPartnerEventSourceAccountsResponse'{_lpesarsPartnerEventSourceAccounts
+                                                                                      ::
+                                                                                      !(Maybe
+                                                                                          [PartnerEventSourceAccount]),
+                                                                                      _lpesarsNextToken
+                                                                                      ::
+                                                                                      !(Maybe
+                                                                                          Text),
+                                                                                      _lpesarsResponseStatus
+                                                                                      ::
+                                                                                      !Int}
+                                                deriving (Eq, Read, Show, Data,
+                                                          Typeable, Generic)
 
 -- | Creates a value of 'ListPartnerEventSourceAccountsResponse' with the minimum fields required to make a request.
 --
@@ -150,13 +160,13 @@ data ListPartnerEventSourceAccountsResponse = ListPartnerEventSourceAccountsResp
 listPartnerEventSourceAccountsResponse
     :: Int -- ^ 'lpesarsResponseStatus'
     -> ListPartnerEventSourceAccountsResponse
-listPartnerEventSourceAccountsResponse pResponseStatus_ =
-  ListPartnerEventSourceAccountsResponse'
-    { _lpesarsPartnerEventSourceAccounts = Nothing
-    , _lpesarsNextToken = Nothing
-    , _lpesarsResponseStatus = pResponseStatus_
-    }
-
+listPartnerEventSourceAccountsResponse
+  pResponseStatus_
+  = ListPartnerEventSourceAccountsResponse'{_lpesarsPartnerEventSourceAccounts
+                                              = Nothing,
+                                            _lpesarsNextToken = Nothing,
+                                            _lpesarsResponseStatus =
+                                              pResponseStatus_}
 
 -- | The list of partner event sources returned by the operation.
 lpesarsPartnerEventSourceAccounts :: Lens' ListPartnerEventSourceAccountsResponse [PartnerEventSourceAccount]

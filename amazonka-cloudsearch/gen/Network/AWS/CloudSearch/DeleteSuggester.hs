@@ -39,7 +39,6 @@ module Network.AWS.CloudSearch.DeleteSuggester
     ) where
 
 import Network.AWS.CloudSearch.Types
-import Network.AWS.CloudSearch.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -50,11 +49,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'deleteSuggester' smart constructor.
-data DeleteSuggester = DeleteSuggester'
-  { _ddDomainName    :: !Text
-  , _ddSuggesterName :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteSuggester = DeleteSuggester'{_ddDomainName
+                                        :: !Text,
+                                        _ddSuggesterName :: !Text}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteSuggester' with the minimum fields required to make a request.
 --
@@ -67,10 +65,9 @@ deleteSuggester
     :: Text -- ^ 'ddDomainName'
     -> Text -- ^ 'ddSuggesterName'
     -> DeleteSuggester
-deleteSuggester pDomainName_ pSuggesterName_ =
-  DeleteSuggester'
-    {_ddDomainName = pDomainName_, _ddSuggesterName = pSuggesterName_}
-
+deleteSuggester pDomainName_ pSuggesterName_
+  = DeleteSuggester'{_ddDomainName = pDomainName_,
+                     _ddSuggesterName = pSuggesterName_}
 
 -- | Undocumented member.
 ddDomainName :: Lens' DeleteSuggester Text
@@ -112,11 +109,12 @@ instance ToQuery DeleteSuggester where
 --
 --
 -- /See:/ 'deleteSuggesterResponse' smart constructor.
-data DeleteSuggesterResponse = DeleteSuggesterResponse'
-  { _delersResponseStatus :: !Int
-  , _delersSuggester      :: !SuggesterStatus
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteSuggesterResponse = DeleteSuggesterResponse'{_delersResponseStatus
+                                                        :: !Int,
+                                                        _delersSuggester ::
+                                                        !SuggesterStatus}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'DeleteSuggesterResponse' with the minimum fields required to make a request.
 --
@@ -129,10 +127,10 @@ deleteSuggesterResponse
     :: Int -- ^ 'delersResponseStatus'
     -> SuggesterStatus -- ^ 'delersSuggester'
     -> DeleteSuggesterResponse
-deleteSuggesterResponse pResponseStatus_ pSuggester_ =
-  DeleteSuggesterResponse'
-    {_delersResponseStatus = pResponseStatus_, _delersSuggester = pSuggester_}
-
+deleteSuggesterResponse pResponseStatus_ pSuggester_
+  = DeleteSuggesterResponse'{_delersResponseStatus =
+                               pResponseStatus_,
+                             _delersSuggester = pSuggester_}
 
 -- | -- | The response status code.
 delersResponseStatus :: Lens' DeleteSuggesterResponse Int

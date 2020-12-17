@@ -18,7 +18,9 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Delete an APNS VoIP sandbox channel
+-- Disables the APNs VoIP sandbox channel for an application and deletes any existing settings for the channel.
+--
+--
 module Network.AWS.Pinpoint.DeleteAPNSVoipSandboxChannel
     (
     -- * Creating a Request
@@ -37,30 +39,29 @@ module Network.AWS.Pinpoint.DeleteAPNSVoipSandboxChannel
 
 import Network.AWS.Lens
 import Network.AWS.Pinpoint.Types
-import Network.AWS.Pinpoint.Types.Product
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deleteAPNSVoipSandboxChannel' smart constructor.
-newtype DeleteAPNSVoipSandboxChannel = DeleteAPNSVoipSandboxChannel'
-  { _davscApplicationId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteAPNSVoipSandboxChannel = DeleteAPNSVoipSandboxChannel'{_davscApplicationId
+                                                                     :: Text}
+                                         deriving (Eq, Read, Show, Data,
+                                                   Typeable, Generic)
 
 -- | Creates a value of 'DeleteAPNSVoipSandboxChannel' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'davscApplicationId' - Undocumented member.
+-- * 'davscApplicationId' - The unique identifier for the application. This identifier is displayed as the __Project ID__ on the Amazon Pinpoint console.
 deleteAPNSVoipSandboxChannel
     :: Text -- ^ 'davscApplicationId'
     -> DeleteAPNSVoipSandboxChannel
-deleteAPNSVoipSandboxChannel pApplicationId_ =
-  DeleteAPNSVoipSandboxChannel' {_davscApplicationId = pApplicationId_}
+deleteAPNSVoipSandboxChannel pApplicationId_
+  = DeleteAPNSVoipSandboxChannel'{_davscApplicationId =
+                                    pApplicationId_}
 
-
--- | Undocumented member.
+-- | The unique identifier for the application. This identifier is displayed as the __Project ID__ on the Amazon Pinpoint console.
 davscApplicationId :: Lens' DeleteAPNSVoipSandboxChannel Text
 davscApplicationId = lens _davscApplicationId (\ s a -> s{_davscApplicationId = a})
 
@@ -96,11 +97,14 @@ instance ToQuery DeleteAPNSVoipSandboxChannel where
         toQuery = const mempty
 
 -- | /See:/ 'deleteAPNSVoipSandboxChannelResponse' smart constructor.
-data DeleteAPNSVoipSandboxChannelResponse = DeleteAPNSVoipSandboxChannelResponse'
-  { _davscrsResponseStatus                 :: !Int
-  , _davscrsAPNSVoipSandboxChannelResponse :: !APNSVoipSandboxChannelResponse
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteAPNSVoipSandboxChannelResponse = DeleteAPNSVoipSandboxChannelResponse'{_davscrsResponseStatus
+                                                                                  ::
+                                                                                  !Int,
+                                                                                  _davscrsAPNSVoipSandboxChannelResponse
+                                                                                  ::
+                                                                                  !APNSVoipSandboxChannelResponse}
+                                              deriving (Eq, Read, Show, Data,
+                                                        Typeable, Generic)
 
 -- | Creates a value of 'DeleteAPNSVoipSandboxChannelResponse' with the minimum fields required to make a request.
 --
@@ -113,12 +117,12 @@ deleteAPNSVoipSandboxChannelResponse
     :: Int -- ^ 'davscrsResponseStatus'
     -> APNSVoipSandboxChannelResponse -- ^ 'davscrsAPNSVoipSandboxChannelResponse'
     -> DeleteAPNSVoipSandboxChannelResponse
-deleteAPNSVoipSandboxChannelResponse pResponseStatus_ pAPNSVoipSandboxChannelResponse_ =
-  DeleteAPNSVoipSandboxChannelResponse'
-    { _davscrsResponseStatus = pResponseStatus_
-    , _davscrsAPNSVoipSandboxChannelResponse = pAPNSVoipSandboxChannelResponse_
-    }
-
+deleteAPNSVoipSandboxChannelResponse pResponseStatus_
+  pAPNSVoipSandboxChannelResponse_
+  = DeleteAPNSVoipSandboxChannelResponse'{_davscrsResponseStatus
+                                            = pResponseStatus_,
+                                          _davscrsAPNSVoipSandboxChannelResponse
+                                            = pAPNSVoipSandboxChannelResponse_}
 
 -- | -- | The response status code.
 davscrsResponseStatus :: Lens' DeleteAPNSVoipSandboxChannelResponse Int

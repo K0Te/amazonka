@@ -36,24 +36,22 @@ module Network.AWS.CodeBuild.ListCuratedEnvironmentImages
     ) where
 
 import Network.AWS.CodeBuild.Types
-import Network.AWS.CodeBuild.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'listCuratedEnvironmentImages' smart constructor.
-data ListCuratedEnvironmentImages =
-  ListCuratedEnvironmentImages'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListCuratedEnvironmentImages = ListCuratedEnvironmentImages'
+                                      deriving (Eq, Read, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'ListCuratedEnvironmentImages' with the minimum fields required to make a request.
 --
 listCuratedEnvironmentImages
     :: ListCuratedEnvironmentImages
-listCuratedEnvironmentImages = ListCuratedEnvironmentImages'
-
+listCuratedEnvironmentImages
+  = ListCuratedEnvironmentImages'
 
 instance AWSRequest ListCuratedEnvironmentImages
          where
@@ -91,11 +89,15 @@ instance ToQuery ListCuratedEnvironmentImages where
         toQuery = const mempty
 
 -- | /See:/ 'listCuratedEnvironmentImagesResponse' smart constructor.
-data ListCuratedEnvironmentImagesResponse = ListCuratedEnvironmentImagesResponse'
-  { _lceirsPlatforms      :: !(Maybe [EnvironmentPlatform])
-  , _lceirsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListCuratedEnvironmentImagesResponse = ListCuratedEnvironmentImagesResponse'{_lceirsPlatforms
+                                                                                  ::
+                                                                                  !(Maybe
+                                                                                      [EnvironmentPlatform]),
+                                                                                  _lceirsResponseStatus
+                                                                                  ::
+                                                                                  !Int}
+                                              deriving (Eq, Read, Show, Data,
+                                                        Typeable, Generic)
 
 -- | Creates a value of 'ListCuratedEnvironmentImagesResponse' with the minimum fields required to make a request.
 --
@@ -107,10 +109,11 @@ data ListCuratedEnvironmentImagesResponse = ListCuratedEnvironmentImagesResponse
 listCuratedEnvironmentImagesResponse
     :: Int -- ^ 'lceirsResponseStatus'
     -> ListCuratedEnvironmentImagesResponse
-listCuratedEnvironmentImagesResponse pResponseStatus_ =
-  ListCuratedEnvironmentImagesResponse'
-    {_lceirsPlatforms = Nothing, _lceirsResponseStatus = pResponseStatus_}
-
+listCuratedEnvironmentImagesResponse pResponseStatus_
+  = ListCuratedEnvironmentImagesResponse'{_lceirsPlatforms
+                                            = Nothing,
+                                          _lceirsResponseStatus =
+                                            pResponseStatus_}
 
 -- | Information about supported platforms for Docker images that are managed by AWS CodeBuild.
 lceirsPlatforms :: Lens' ListCuratedEnvironmentImagesResponse [EnvironmentPlatform]

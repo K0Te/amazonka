@@ -37,7 +37,6 @@ module Network.AWS.DataPipeline.SetStatus
     ) where
 
 import Network.AWS.DataPipeline.Types
-import Network.AWS.DataPipeline.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -48,12 +47,9 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'setStatus' smart constructor.
-data SetStatus = SetStatus'
-  { _ssPipelineId :: !Text
-  , _ssObjectIds  :: ![Text]
-  , _ssStatus     :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data SetStatus = SetStatus'{_ssPipelineId :: !Text,
+                            _ssObjectIds :: ![Text], _ssStatus :: !Text}
+                   deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'SetStatus' with the minimum fields required to make a request.
 --
@@ -68,10 +64,9 @@ setStatus
     :: Text -- ^ 'ssPipelineId'
     -> Text -- ^ 'ssStatus'
     -> SetStatus
-setStatus pPipelineId_ pStatus_ =
-  SetStatus'
-    {_ssPipelineId = pPipelineId_, _ssObjectIds = mempty, _ssStatus = pStatus_}
-
+setStatus pPipelineId_ pStatus_
+  = SetStatus'{_ssPipelineId = pPipelineId_,
+               _ssObjectIds = mempty, _ssStatus = pStatus_}
 
 -- | The ID of the pipeline that contains the objects.
 ssPipelineId :: Lens' SetStatus Text
@@ -118,16 +113,13 @@ instance ToQuery SetStatus where
         toQuery = const mempty
 
 -- | /See:/ 'setStatusResponse' smart constructor.
-data SetStatusResponse =
-  SetStatusResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data SetStatusResponse = SetStatusResponse'
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'SetStatusResponse' with the minimum fields required to make a request.
 --
 setStatusResponse
     :: SetStatusResponse
 setStatusResponse = SetStatusResponse'
-
 
 instance NFData SetStatusResponse where

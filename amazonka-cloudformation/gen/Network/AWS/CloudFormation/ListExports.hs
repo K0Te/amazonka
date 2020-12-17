@@ -18,10 +18,10 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Lists all exported output values in the account and region in which you call this action. Use this action to see the exported output values that you can import into other stacks. To import values, use the <http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-importvalue.html @Fn::ImportValue@ > function.
+-- Lists all exported output values in the account and Region in which you call this action. Use this action to see the exported output values that you can import into other stacks. To import values, use the <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-importvalue.html @Fn::ImportValue@ > function. 
 --
 --
--- For more information, see <http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-exports.html AWS CloudFormation Export Stack Output Values> .
+-- For more information, see <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-exports.html AWS CloudFormation Export Stack Output Values> .
 --
 --
 -- This operation returns paginated results.
@@ -43,7 +43,6 @@ module Network.AWS.CloudFormation.ListExports
     ) where
 
 import Network.AWS.CloudFormation.Types
-import Network.AWS.CloudFormation.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
@@ -51,10 +50,9 @@ import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'listExports' smart constructor.
-newtype ListExports = ListExports'
-  { _leNextToken :: Maybe Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype ListExports = ListExports'{_leNextToken ::
+                                   Maybe Text}
+                        deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListExports' with the minimum fields required to make a request.
 --
@@ -63,8 +61,7 @@ newtype ListExports = ListExports'
 -- * 'leNextToken' - A string (provided by the 'ListExports' response output) that identifies the next page of exported output values that you asked to retrieve.
 listExports
     :: ListExports
-listExports = ListExports' {_leNextToken = Nothing}
-
+listExports = ListExports'{_leNextToken = Nothing}
 
 -- | A string (provided by the 'ListExports' response output) that identifies the next page of exported output values that you asked to retrieve.
 leNextToken :: Lens' ListExports (Maybe Text)
@@ -107,12 +104,12 @@ instance ToQuery ListExports where
                "NextToken" =: _leNextToken]
 
 -- | /See:/ 'listExportsResponse' smart constructor.
-data ListExportsResponse = ListExportsResponse'
-  { _lersNextToken      :: !(Maybe Text)
-  , _lersExports        :: !(Maybe [Export])
-  , _lersResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListExportsResponse = ListExportsResponse'{_lersNextToken
+                                                :: !(Maybe Text),
+                                                _lersExports ::
+                                                !(Maybe [Export]),
+                                                _lersResponseStatus :: !Int}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListExportsResponse' with the minimum fields required to make a request.
 --
@@ -126,13 +123,10 @@ data ListExportsResponse = ListExportsResponse'
 listExportsResponse
     :: Int -- ^ 'lersResponseStatus'
     -> ListExportsResponse
-listExportsResponse pResponseStatus_ =
-  ListExportsResponse'
-    { _lersNextToken = Nothing
-    , _lersExports = Nothing
-    , _lersResponseStatus = pResponseStatus_
-    }
-
+listExportsResponse pResponseStatus_
+  = ListExportsResponse'{_lersNextToken = Nothing,
+                         _lersExports = Nothing,
+                         _lersResponseStatus = pResponseStatus_}
 
 -- | If the output exceeds 100 exported output values, a string that identifies the next page of exports. If there is no additional page, this value is null.
 lersNextToken :: Lens' ListExportsResponse (Maybe Text)

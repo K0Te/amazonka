@@ -51,19 +51,17 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.ServiceCatalog.Types
-import Network.AWS.ServiceCatalog.Types.Product
 
 -- | /See:/ 'updatePortfolio' smart constructor.
-data UpdatePortfolio = UpdatePortfolio'
-  { _uRemoveTags     :: !(Maybe [Text])
-  , _uAcceptLanguage :: !(Maybe Text)
-  , _uDisplayName    :: !(Maybe Text)
-  , _uAddTags        :: !(Maybe [Tag])
-  , _uDescription    :: !(Maybe Text)
-  , _uProviderName   :: !(Maybe Text)
-  , _uId             :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdatePortfolio = UpdatePortfolio'{_uRemoveTags
+                                        :: !(Maybe [Text]),
+                                        _uAcceptLanguage :: !(Maybe Text),
+                                        _uDisplayName :: !(Maybe Text),
+                                        _uAddTags :: !(Maybe [Tag]),
+                                        _uDescription :: !(Maybe Text),
+                                        _uProviderName :: !(Maybe Text),
+                                        _uId :: !Text}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UpdatePortfolio' with the minimum fields required to make a request.
 --
@@ -85,17 +83,11 @@ data UpdatePortfolio = UpdatePortfolio'
 updatePortfolio
     :: Text -- ^ 'uId'
     -> UpdatePortfolio
-updatePortfolio pId_ =
-  UpdatePortfolio'
-    { _uRemoveTags = Nothing
-    , _uAcceptLanguage = Nothing
-    , _uDisplayName = Nothing
-    , _uAddTags = Nothing
-    , _uDescription = Nothing
-    , _uProviderName = Nothing
-    , _uId = pId_
-    }
-
+updatePortfolio pId_
+  = UpdatePortfolio'{_uRemoveTags = Nothing,
+                     _uAcceptLanguage = Nothing, _uDisplayName = Nothing,
+                     _uAddTags = Nothing, _uDescription = Nothing,
+                     _uProviderName = Nothing, _uId = pId_}
 
 -- | The tags to remove.
 uRemoveTags :: Lens' UpdatePortfolio [Text]
@@ -169,12 +161,16 @@ instance ToQuery UpdatePortfolio where
         toQuery = const mempty
 
 -- | /See:/ 'updatePortfolioResponse' smart constructor.
-data UpdatePortfolioResponse = UpdatePortfolioResponse'
-  { _uprsPortfolioDetail :: !(Maybe PortfolioDetail)
-  , _uprsTags            :: !(Maybe [Tag])
-  , _uprsResponseStatus  :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdatePortfolioResponse = UpdatePortfolioResponse'{_uprsPortfolioDetail
+                                                        ::
+                                                        !(Maybe
+                                                            PortfolioDetail),
+                                                        _uprsTags ::
+                                                        !(Maybe [Tag]),
+                                                        _uprsResponseStatus ::
+                                                        !Int}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'UpdatePortfolioResponse' with the minimum fields required to make a request.
 --
@@ -188,13 +184,11 @@ data UpdatePortfolioResponse = UpdatePortfolioResponse'
 updatePortfolioResponse
     :: Int -- ^ 'uprsResponseStatus'
     -> UpdatePortfolioResponse
-updatePortfolioResponse pResponseStatus_ =
-  UpdatePortfolioResponse'
-    { _uprsPortfolioDetail = Nothing
-    , _uprsTags = Nothing
-    , _uprsResponseStatus = pResponseStatus_
-    }
-
+updatePortfolioResponse pResponseStatus_
+  = UpdatePortfolioResponse'{_uprsPortfolioDetail =
+                               Nothing,
+                             _uprsTags = Nothing,
+                             _uprsResponseStatus = pResponseStatus_}
 
 -- | Information about the portfolio.
 uprsPortfolioDetail :: Lens' UpdatePortfolioResponse (Maybe PortfolioDetail)

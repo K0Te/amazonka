@@ -21,9 +21,9 @@
 -- Returns a link to an Amazon S3 presigned URL for the manifest file associated with the specified @JobId@ value. You can access the manifest file for up to 60 minutes after this request has been made. To access the manifest file after 60 minutes have passed, you'll have to make another call to the @GetJobManifest@ action.
 --
 --
--- The manifest is an encrypted file that you can download after your job enters the @WithCustomer@ status. The manifest is decrypted by using the @UnlockCode@ code value, when you pass both values to the Snowball through the Snowball client when the client is started for the first time.
+-- The manifest is an encrypted file that you can download after your job enters the @WithCustomer@ status. The manifest is decrypted by using the @UnlockCode@ code value, when you pass both values to the Snow device through the Snowball client when the client is started for the first time.
 --
--- As a best practice, we recommend that you don't save a copy of an @UnlockCode@ value in the same location as the manifest file for that job. Saving these separately helps prevent unauthorized parties from gaining access to the Snowball associated with that job.
+-- As a best practice, we recommend that you don't save a copy of an @UnlockCode@ value in the same location as the manifest file for that job. Saving these separately helps prevent unauthorized parties from gaining access to the Snow device associated with that job.
 --
 -- The credentials of a given job, including its manifest file and unlock code, expire 90 days after the job is created.
 --
@@ -48,13 +48,11 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.Snowball.Types
-import Network.AWS.Snowball.Types.Product
 
 -- | /See:/ 'getJobManifest' smart constructor.
-newtype GetJobManifest = GetJobManifest'
-  { _gjmJobId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetJobManifest = GetJobManifest'{_gjmJobId ::
+                                         Text}
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetJobManifest' with the minimum fields required to make a request.
 --
@@ -64,8 +62,8 @@ newtype GetJobManifest = GetJobManifest'
 getJobManifest
     :: Text -- ^ 'gjmJobId'
     -> GetJobManifest
-getJobManifest pJobId_ = GetJobManifest' {_gjmJobId = pJobId_}
-
+getJobManifest pJobId_
+  = GetJobManifest'{_gjmJobId = pJobId_}
 
 -- | The ID for a job that you want to get the manifest file for, for example @JID123e4567-e89b-12d3-a456-426655440000@ .
 gjmJobId :: Lens' GetJobManifest Text
@@ -105,11 +103,12 @@ instance ToQuery GetJobManifest where
         toQuery = const mempty
 
 -- | /See:/ 'getJobManifestResponse' smart constructor.
-data GetJobManifestResponse = GetJobManifestResponse'
-  { _gjmrsManifestURI    :: !(Maybe Text)
-  , _gjmrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetJobManifestResponse = GetJobManifestResponse'{_gjmrsManifestURI
+                                                      :: !(Maybe Text),
+                                                      _gjmrsResponseStatus ::
+                                                      !Int}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'GetJobManifestResponse' with the minimum fields required to make a request.
 --
@@ -121,10 +120,10 @@ data GetJobManifestResponse = GetJobManifestResponse'
 getJobManifestResponse
     :: Int -- ^ 'gjmrsResponseStatus'
     -> GetJobManifestResponse
-getJobManifestResponse pResponseStatus_ =
-  GetJobManifestResponse'
-    {_gjmrsManifestURI = Nothing, _gjmrsResponseStatus = pResponseStatus_}
-
+getJobManifestResponse pResponseStatus_
+  = GetJobManifestResponse'{_gjmrsManifestURI =
+                              Nothing,
+                            _gjmrsResponseStatus = pResponseStatus_}
 
 -- | The Amazon S3 presigned URL for the manifest file associated with the specified @JobId@ value.
 gjmrsManifestURI :: Lens' GetJobManifestResponse (Maybe Text)

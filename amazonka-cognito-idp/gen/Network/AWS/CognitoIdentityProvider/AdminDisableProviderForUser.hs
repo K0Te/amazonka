@@ -18,18 +18,18 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Disables the user from signing in with the specified external (SAML or social) identity provider. If the user to disable is a Cognito User Pools native username + password user, they are not permitted to use their password to sign-in. If the user to disable is a linked external IdP user, any link between that user and an existing user is removed. The next time the external user (no longer attached to the previously linked @DestinationUser@ ) signs in, they must create a new user account. See .
+-- Disables the user from signing in with the specified external (SAML or social) identity provider. If the user to disable is a Cognito User Pools native username + password user, they are not permitted to use their password to sign-in. If the user to disable is a linked external IdP user, any link between that user and an existing user is removed. The next time the external user (no longer attached to the previously linked @DestinationUser@ ) signs in, they must create a new user account. See <https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminLinkProviderForUser.html AdminLinkProviderForUser> .
 --
 --
 -- This action is enabled only for admin access and requires developer credentials.
 --
--- The @ProviderName@ must match the value specified when creating an IdP for the pool.
+-- The @ProviderName@ must match the value specified when creating an IdP for the pool. 
 --
 -- To disable a native username + password user, the @ProviderName@ value must be @Cognito@ and the @ProviderAttributeName@ must be @Cognito_Subject@ , with the @ProviderAttributeValue@ being the name that is used in the user pool for the user.
 --
 -- The @ProviderAttributeName@ must always be @Cognito_Subject@ for social identity providers. The @ProviderAttributeValue@ must always be the exact subject that was used when the user was originally linked as a source user.
 --
--- For de-linking a SAML identity, there are two scenarios. If the linked identity has not yet been used to sign-in, the @ProviderAttributeName@ and @ProviderAttributeValue@ must be the same values that were used for the @SourceUser@ when the identities were originally linked in the call. (If the linking was done with @ProviderAttributeName@ set to @Cognito_Subject@ , the same applies here). However, if the user has already signed in, the @ProviderAttributeName@ must be @Cognito_Subject@ and @ProviderAttributeValue@ must be the subject of the SAML assertion.
+-- For de-linking a SAML identity, there are two scenarios. If the linked identity has not yet been used to sign-in, the @ProviderAttributeName@ and @ProviderAttributeValue@ must be the same values that were used for the @SourceUser@ when the identities were originally linked using @AdminLinkProviderForUser@ call. (If the linking was done with @ProviderAttributeName@ set to @Cognito_Subject@ , the same applies here). However, if the user has already signed in, the @ProviderAttributeName@ must be @Cognito_Subject@ and @ProviderAttributeValue@ must be the subject of the SAML assertion.
 --
 module Network.AWS.CognitoIdentityProvider.AdminDisableProviderForUser
     (
@@ -48,18 +48,18 @@ module Network.AWS.CognitoIdentityProvider.AdminDisableProviderForUser
     ) where
 
 import Network.AWS.CognitoIdentityProvider.Types
-import Network.AWS.CognitoIdentityProvider.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'adminDisableProviderForUser' smart constructor.
-data AdminDisableProviderForUser = AdminDisableProviderForUser'
-  { _adpfuUserPoolId :: !Text
-  , _adpfuUser       :: !ProviderUserIdentifierType
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data AdminDisableProviderForUser = AdminDisableProviderForUser'{_adpfuUserPoolId
+                                                                :: !Text,
+                                                                _adpfuUser ::
+                                                                !ProviderUserIdentifierType}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'AdminDisableProviderForUser' with the minimum fields required to make a request.
 --
@@ -72,10 +72,10 @@ adminDisableProviderForUser
     :: Text -- ^ 'adpfuUserPoolId'
     -> ProviderUserIdentifierType -- ^ 'adpfuUser'
     -> AdminDisableProviderForUser
-adminDisableProviderForUser pUserPoolId_ pUser_ =
-  AdminDisableProviderForUser'
-    {_adpfuUserPoolId = pUserPoolId_, _adpfuUser = pUser_}
-
+adminDisableProviderForUser pUserPoolId_ pUser_
+  = AdminDisableProviderForUser'{_adpfuUserPoolId =
+                                   pUserPoolId_,
+                                 _adpfuUser = pUser_}
 
 -- | The user pool ID for the user pool.
 adpfuUserPoolId :: Lens' AdminDisableProviderForUser Text
@@ -123,10 +123,11 @@ instance ToQuery AdminDisableProviderForUser where
         toQuery = const mempty
 
 -- | /See:/ 'adminDisableProviderForUserResponse' smart constructor.
-newtype AdminDisableProviderForUserResponse = AdminDisableProviderForUserResponse'
-  { _adpfursResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype AdminDisableProviderForUserResponse = AdminDisableProviderForUserResponse'{_adpfursResponseStatus
+                                                                                   ::
+                                                                                   Int}
+                                                deriving (Eq, Read, Show, Data,
+                                                          Typeable, Generic)
 
 -- | Creates a value of 'AdminDisableProviderForUserResponse' with the minimum fields required to make a request.
 --
@@ -136,10 +137,9 @@ newtype AdminDisableProviderForUserResponse = AdminDisableProviderForUserRespons
 adminDisableProviderForUserResponse
     :: Int -- ^ 'adpfursResponseStatus'
     -> AdminDisableProviderForUserResponse
-adminDisableProviderForUserResponse pResponseStatus_ =
-  AdminDisableProviderForUserResponse'
-    {_adpfursResponseStatus = pResponseStatus_}
-
+adminDisableProviderForUserResponse pResponseStatus_
+  = AdminDisableProviderForUserResponse'{_adpfursResponseStatus
+                                           = pResponseStatus_}
 
 -- | -- | The response status code.
 adpfursResponseStatus :: Lens' AdminDisableProviderForUserResponse Int

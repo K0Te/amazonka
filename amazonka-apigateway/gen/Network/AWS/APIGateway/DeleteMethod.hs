@@ -37,7 +37,6 @@ module Network.AWS.APIGateway.DeleteMethod
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -48,12 +47,11 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'deleteMethod' smart constructor.
-data DeleteMethod = DeleteMethod'
-  { _dmmRestAPIId  :: !Text
-  , _dmmResourceId :: !Text
-  , _dmmHttpMethod :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteMethod = DeleteMethod'{_dmmRestAPIId ::
+                                  !Text,
+                                  _dmmResourceId :: !Text,
+                                  _dmmHttpMethod :: !Text}
+                      deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteMethod' with the minimum fields required to make a request.
 --
@@ -69,13 +67,10 @@ deleteMethod
     -> Text -- ^ 'dmmResourceId'
     -> Text -- ^ 'dmmHttpMethod'
     -> DeleteMethod
-deleteMethod pRestAPIId_ pResourceId_ pHttpMethod_ =
-  DeleteMethod'
-    { _dmmRestAPIId = pRestAPIId_
-    , _dmmResourceId = pResourceId_
-    , _dmmHttpMethod = pHttpMethod_
-    }
-
+deleteMethod pRestAPIId_ pResourceId_ pHttpMethod_
+  = DeleteMethod'{_dmmRestAPIId = pRestAPIId_,
+                  _dmmResourceId = pResourceId_,
+                  _dmmHttpMethod = pHttpMethod_}
 
 -- | [Required] The string identifier of the associated 'RestApi' .
 dmmRestAPIId :: Lens' DeleteMethod Text
@@ -115,16 +110,14 @@ instance ToQuery DeleteMethod where
         toQuery = const mempty
 
 -- | /See:/ 'deleteMethodResponse'' smart constructor.
-data DeleteMethodResponse' =
-  DeleteMethodResponse''
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteMethodResponse' = DeleteMethodResponse''
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'DeleteMethodResponse'' with the minimum fields required to make a request.
 --
 deleteMethodResponse'
     :: DeleteMethodResponse'
 deleteMethodResponse' = DeleteMethodResponse''
-
 
 instance NFData DeleteMethodResponse' where

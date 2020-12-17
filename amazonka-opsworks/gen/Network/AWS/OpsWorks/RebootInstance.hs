@@ -18,10 +18,10 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Reboots a specified instance. For more information, see <http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-starting.html Starting, Stopping, and Rebooting Instances> .
+-- Reboots a specified instance. For more information, see <https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-starting.html Starting, Stopping, and Rebooting Instances> .
 --
 --
--- __Required Permissions__ : To use this action, an IAM user must have a Manage permissions level for the stack, or an attached policy that explicitly grants permissions. For more information on user permissions, see <http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html Managing User Permissions> .
+-- __Required Permissions__ : To use this action, an IAM user must have a Manage permissions level for the stack, or an attached policy that explicitly grants permissions. For more information on user permissions, see <https://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html Managing User Permissions> .
 --
 module Network.AWS.OpsWorks.RebootInstance
     (
@@ -38,16 +38,14 @@ module Network.AWS.OpsWorks.RebootInstance
 
 import Network.AWS.Lens
 import Network.AWS.OpsWorks.Types
-import Network.AWS.OpsWorks.Types.Product
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'rebootInstance' smart constructor.
-newtype RebootInstance = RebootInstance'
-  { _riInstanceId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype RebootInstance = RebootInstance'{_riInstanceId
+                                         :: Text}
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'RebootInstance' with the minimum fields required to make a request.
 --
@@ -57,8 +55,8 @@ newtype RebootInstance = RebootInstance'
 rebootInstance
     :: Text -- ^ 'riInstanceId'
     -> RebootInstance
-rebootInstance pInstanceId_ = RebootInstance' {_riInstanceId = pInstanceId_}
-
+rebootInstance pInstanceId_
+  = RebootInstance'{_riInstanceId = pInstanceId_}
 
 -- | The instance ID.
 riInstanceId :: Lens' RebootInstance Text
@@ -94,16 +92,14 @@ instance ToQuery RebootInstance where
         toQuery = const mempty
 
 -- | /See:/ 'rebootInstanceResponse' smart constructor.
-data RebootInstanceResponse =
-  RebootInstanceResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data RebootInstanceResponse = RebootInstanceResponse'
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'RebootInstanceResponse' with the minimum fields required to make a request.
 --
 rebootInstanceResponse
     :: RebootInstanceResponse
 rebootInstanceResponse = RebootInstanceResponse'
-
 
 instance NFData RebootInstanceResponse where

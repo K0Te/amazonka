@@ -14,11 +14,11 @@
 module Test.AWS.Gen.ElasticBeanstalk where
 
 import Data.Proxy
-import Network.AWS.ElasticBeanstalk
-import Test.AWS.ElasticBeanstalk.Internal
 import Test.AWS.Fixture
 import Test.AWS.Prelude
 import Test.Tasty
+import Network.AWS.ElasticBeanstalk
+import Test.AWS.ElasticBeanstalk.Internal
 
 -- Auto-generated: the actual test selection needs to be manually placed into
 -- the top-level so that real test data can be incrementally added.
@@ -45,6 +45,9 @@ import Test.Tasty
 --
 --         , requestCreateApplicationVersion $
 --             createApplicationVersion
+--
+--         , requestListPlatformBranches $
+--             listPlatformBranches
 --
 --         , requestDescribeEvents $
 --             describeEvents
@@ -127,6 +130,9 @@ import Test.Tasty
 --         , requestDescribeConfigurationOptions $
 --             describeConfigurationOptions
 --
+--         , requestDisassociateEnvironmentOperationsRole $
+--             disassociateEnvironmentOperationsRole
+--
 --         , requestCreateStorageLocation $
 --             createStorageLocation
 --
@@ -141,6 +147,9 @@ import Test.Tasty
 --
 --         , requestDescribeAccountAttributes $
 --             describeAccountAttributes
+--
+--         , requestAssociateEnvironmentOperationsRole $
+--             associateEnvironmentOperationsRole
 --
 --         , requestRestartAppServer $
 --             restartAppServer
@@ -180,6 +189,9 @@ import Test.Tasty
 --
 --         , responseCreateApplicationVersion $
 --             applicationVersionDescriptionMessage
+--
+--         , responseListPlatformBranches $
+--             listPlatformBranchesResponse
 --
 --         , responseDescribeEvents $
 --             describeEventsResponse
@@ -262,6 +274,9 @@ import Test.Tasty
 --         , responseDescribeConfigurationOptions $
 --             describeConfigurationOptionsResponse
 --
+--         , responseDisassociateEnvironmentOperationsRole $
+--             disassociateEnvironmentOperationsRoleResponse
+--
 --         , responseCreateStorageLocation $
 --             createStorageLocationResponse
 --
@@ -276,6 +291,9 @@ import Test.Tasty
 --
 --         , responseDescribeAccountAttributes $
 --             describeAccountAttributesResponse
+--
+--         , responseAssociateEnvironmentOperationsRole $
+--             associateEnvironmentOperationsRoleResponse
 --
 --         , responseRestartAppServer $
 --             restartAppServerResponse
@@ -329,6 +347,11 @@ requestCreateApplicationVersion :: CreateApplicationVersion -> TestTree
 requestCreateApplicationVersion = req
     "CreateApplicationVersion"
     "fixture/CreateApplicationVersion.yaml"
+
+requestListPlatformBranches :: ListPlatformBranches -> TestTree
+requestListPlatformBranches = req
+    "ListPlatformBranches"
+    "fixture/ListPlatformBranches.yaml"
 
 requestDescribeEvents :: DescribeEvents -> TestTree
 requestDescribeEvents = req
@@ -465,6 +488,11 @@ requestDescribeConfigurationOptions = req
     "DescribeConfigurationOptions"
     "fixture/DescribeConfigurationOptions.yaml"
 
+requestDisassociateEnvironmentOperationsRole :: DisassociateEnvironmentOperationsRole -> TestTree
+requestDisassociateEnvironmentOperationsRole = req
+    "DisassociateEnvironmentOperationsRole"
+    "fixture/DisassociateEnvironmentOperationsRole.yaml"
+
 requestCreateStorageLocation :: CreateStorageLocation -> TestTree
 requestCreateStorageLocation = req
     "CreateStorageLocation"
@@ -489,6 +517,11 @@ requestDescribeAccountAttributes :: DescribeAccountAttributes -> TestTree
 requestDescribeAccountAttributes = req
     "DescribeAccountAttributes"
     "fixture/DescribeAccountAttributes.yaml"
+
+requestAssociateEnvironmentOperationsRole :: AssociateEnvironmentOperationsRole -> TestTree
+requestAssociateEnvironmentOperationsRole = req
+    "AssociateEnvironmentOperationsRole"
+    "fixture/AssociateEnvironmentOperationsRole.yaml"
 
 requestRestartAppServer :: RestartAppServer -> TestTree
 requestRestartAppServer = req
@@ -563,6 +596,13 @@ responseCreateApplicationVersion = res
     "fixture/CreateApplicationVersionResponse.proto"
     elasticBeanstalk
     (Proxy :: Proxy CreateApplicationVersion)
+
+responseListPlatformBranches :: ListPlatformBranchesResponse -> TestTree
+responseListPlatformBranches = res
+    "ListPlatformBranchesResponse"
+    "fixture/ListPlatformBranchesResponse.proto"
+    elasticBeanstalk
+    (Proxy :: Proxy ListPlatformBranches)
 
 responseDescribeEvents :: DescribeEventsResponse -> TestTree
 responseDescribeEvents = res
@@ -753,6 +793,13 @@ responseDescribeConfigurationOptions = res
     elasticBeanstalk
     (Proxy :: Proxy DescribeConfigurationOptions)
 
+responseDisassociateEnvironmentOperationsRole :: DisassociateEnvironmentOperationsRoleResponse -> TestTree
+responseDisassociateEnvironmentOperationsRole = res
+    "DisassociateEnvironmentOperationsRoleResponse"
+    "fixture/DisassociateEnvironmentOperationsRoleResponse.proto"
+    elasticBeanstalk
+    (Proxy :: Proxy DisassociateEnvironmentOperationsRole)
+
 responseCreateStorageLocation :: CreateStorageLocationResponse -> TestTree
 responseCreateStorageLocation = res
     "CreateStorageLocationResponse"
@@ -787,6 +834,13 @@ responseDescribeAccountAttributes = res
     "fixture/DescribeAccountAttributesResponse.proto"
     elasticBeanstalk
     (Proxy :: Proxy DescribeAccountAttributes)
+
+responseAssociateEnvironmentOperationsRole :: AssociateEnvironmentOperationsRoleResponse -> TestTree
+responseAssociateEnvironmentOperationsRole = res
+    "AssociateEnvironmentOperationsRoleResponse"
+    "fixture/AssociateEnvironmentOperationsRoleResponse.proto"
+    elasticBeanstalk
+    (Proxy :: Proxy AssociateEnvironmentOperationsRole)
 
 responseRestartAppServer :: RestartAppServerResponse -> TestTree
 responseRestartAppServer = res

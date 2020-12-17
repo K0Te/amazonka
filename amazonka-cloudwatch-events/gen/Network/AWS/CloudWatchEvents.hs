@@ -14,15 +14,15 @@
 -- Amazon EventBridge helps you to respond to state changes in your AWS resources. When your resources change state, they automatically send events into an event stream. You can create rules that match selected events in the stream and route them to targets to take action. You can also use rules to take action on a predetermined schedule. For example, you can configure rules to:
 --
 --
---     * Automatically invoke an AWS Lambda function to update DNS entries when an event notifies you that Amazon EC2 instance enters the running state
+--     * Automatically invoke an AWS Lambda function to update DNS entries when an event notifies you that Amazon EC2 instance enters the running state.
 --
---     * Direct specific API records from AWS CloudTrail to an Amazon Kinesis data stream for detailed analysis of potential security or availability risks
+--     * Direct specific API records from AWS CloudTrail to an Amazon Kinesis data stream for detailed analysis of potential security or availability risks.
 --
---     * Periodically invoke a built-in target to create a snapshot of an Amazon EBS volume
+--     * Periodically invoke a built-in target to create a snapshot of an Amazon EBS volume.
 --
 --
 --
--- For more information about the features of Amazon EventBridge, see the <https://docs.aws.amazon.com/eventbridge/latest/userguide/ Amazon EventBridge User Guide> .
+-- For more information about the features of Amazon EventBridge, see the <https://docs.aws.amazon.com/eventbridge/latest/userguide Amazon EventBridge User Guide> .
 --
 module Network.AWS.CloudWatchEvents
     (
@@ -35,11 +35,17 @@ module Network.AWS.CloudWatchEvents
     -- ** ManagedRuleException
     , _ManagedRuleException
 
+    -- ** IllegalStatusException
+    , _IllegalStatusException
+
     -- ** PolicyLengthExceededException
     , _PolicyLengthExceededException
 
     -- ** ResourceAlreadyExistsException
     , _ResourceAlreadyExistsException
+
+    -- ** OperationDisabledException
+    , _OperationDisabledException
 
     -- ** ConcurrentModificationException
     , _ConcurrentModificationException
@@ -65,100 +71,130 @@ module Network.AWS.CloudWatchEvents
     -- * Operations
     -- $operations
 
-    -- ** RemoveTargets
+    -- ** RemoveTargets 
     , module Network.AWS.CloudWatchEvents.RemoveTargets
 
-    -- ** DeleteRule
+    -- ** DeleteRule 
     , module Network.AWS.CloudWatchEvents.DeleteRule
 
-    -- ** ListPartnerEventSourceAccounts
+    -- ** ListPartnerEventSourceAccounts 
     , module Network.AWS.CloudWatchEvents.ListPartnerEventSourceAccounts
 
     -- ** ListRules (Paginated)
     , module Network.AWS.CloudWatchEvents.ListRules
 
-    -- ** PutRule
+    -- ** PutRule 
     , module Network.AWS.CloudWatchEvents.PutRule
 
-    -- ** DisableRule
+    -- ** DisableRule 
     , module Network.AWS.CloudWatchEvents.DisableRule
 
-    -- ** PutPermission
+    -- ** PutPermission 
     , module Network.AWS.CloudWatchEvents.PutPermission
 
-    -- ** ListTagsForResource
+    -- ** ListTagsForResource 
     , module Network.AWS.CloudWatchEvents.ListTagsForResource
+
+    -- ** ListReplays 
+    , module Network.AWS.CloudWatchEvents.ListReplays
+
+    -- ** CancelReplay 
+    , module Network.AWS.CloudWatchEvents.CancelReplay
 
     -- ** ListTargetsByRule (Paginated)
     , module Network.AWS.CloudWatchEvents.ListTargetsByRule
 
-    -- ** RemovePermission
+    -- ** RemovePermission 
     , module Network.AWS.CloudWatchEvents.RemovePermission
 
-    -- ** ActivateEventSource
+    -- ** ActivateEventSource 
     , module Network.AWS.CloudWatchEvents.ActivateEventSource
 
-    -- ** PutPartnerEvents
+    -- ** PutPartnerEvents 
     , module Network.AWS.CloudWatchEvents.PutPartnerEvents
 
-    -- ** DescribeRule
+    -- ** DescribeRule 
     , module Network.AWS.CloudWatchEvents.DescribeRule
 
-    -- ** DeletePartnerEventSource
+    -- ** ListArchives 
+    , module Network.AWS.CloudWatchEvents.ListArchives
+
+    -- ** StartReplay 
+    , module Network.AWS.CloudWatchEvents.StartReplay
+
+    -- ** DeletePartnerEventSource 
     , module Network.AWS.CloudWatchEvents.DeletePartnerEventSource
 
-    -- ** ListEventBuses
+    -- ** DescribeReplay 
+    , module Network.AWS.CloudWatchEvents.DescribeReplay
+
+    -- ** ListEventBuses 
     , module Network.AWS.CloudWatchEvents.ListEventBuses
 
-    -- ** CreateEventBus
+    -- ** CreateEventBus 
     , module Network.AWS.CloudWatchEvents.CreateEventBus
 
-    -- ** DescribeEventSource
+    -- ** DescribeEventSource 
     , module Network.AWS.CloudWatchEvents.DescribeEventSource
 
-    -- ** EnableRule
+    -- ** DescribeArchive 
+    , module Network.AWS.CloudWatchEvents.DescribeArchive
+
+    -- ** EnableRule 
     , module Network.AWS.CloudWatchEvents.EnableRule
 
     -- ** ListRuleNamesByTarget (Paginated)
     , module Network.AWS.CloudWatchEvents.ListRuleNamesByTarget
 
-    -- ** TestEventPattern
+    -- ** TestEventPattern 
     , module Network.AWS.CloudWatchEvents.TestEventPattern
 
-    -- ** DescribePartnerEventSource
+    -- ** DescribePartnerEventSource 
     , module Network.AWS.CloudWatchEvents.DescribePartnerEventSource
 
-    -- ** DescribeEventBus
+    -- ** DescribeEventBus 
     , module Network.AWS.CloudWatchEvents.DescribeEventBus
 
-    -- ** ListEventSources
+    -- ** ListEventSources 
     , module Network.AWS.CloudWatchEvents.ListEventSources
 
-    -- ** TagResource
+    -- ** TagResource 
     , module Network.AWS.CloudWatchEvents.TagResource
 
-    -- ** CreatePartnerEventSource
+    -- ** CreatePartnerEventSource 
     , module Network.AWS.CloudWatchEvents.CreatePartnerEventSource
 
-    -- ** PutTargets
+    -- ** PutTargets 
     , module Network.AWS.CloudWatchEvents.PutTargets
 
-    -- ** UntagResource
+    -- ** UpdateArchive 
+    , module Network.AWS.CloudWatchEvents.UpdateArchive
+
+    -- ** DeleteArchive 
+    , module Network.AWS.CloudWatchEvents.DeleteArchive
+
+    -- ** UntagResource 
     , module Network.AWS.CloudWatchEvents.UntagResource
 
-    -- ** PutEvents
+    -- ** PutEvents 
     , module Network.AWS.CloudWatchEvents.PutEvents
 
-    -- ** ListPartnerEventSources
+    -- ** ListPartnerEventSources 
     , module Network.AWS.CloudWatchEvents.ListPartnerEventSources
 
-    -- ** DeactivateEventSource
+    -- ** CreateArchive 
+    , module Network.AWS.CloudWatchEvents.CreateArchive
+
+    -- ** DeactivateEventSource 
     , module Network.AWS.CloudWatchEvents.DeactivateEventSource
 
-    -- ** DeleteEventBus
+    -- ** DeleteEventBus 
     , module Network.AWS.CloudWatchEvents.DeleteEventBus
 
     -- * Types
+
+    -- ** ArchiveState
+    , ArchiveState (..)
 
     -- ** AssignPublicIP
     , AssignPublicIP (..)
@@ -169,6 +205,9 @@ module Network.AWS.CloudWatchEvents
     -- ** LaunchType
     , LaunchType (..)
 
+    -- ** ReplayState
+    , ReplayState (..)
+
     -- ** RuleState
     , RuleState (..)
 
@@ -178,6 +217,18 @@ module Network.AWS.CloudWatchEvents
     , avcSecurityGroups
     , avcAssignPublicIP
     , avcSubnets
+
+    -- ** Archive
+    , Archive
+    , archive
+    , aCreationTime
+    , aSizeBytes
+    , aEventSourceARN
+    , aState
+    , aEventCount
+    , aArchiveName
+    , aRetentionDays
+    , aStateReason
 
     -- ** BatchArrayProperties
     , BatchArrayProperties
@@ -203,6 +254,11 @@ module Network.AWS.CloudWatchEvents
     , cType
     , cKey
     , cValue
+
+    -- ** DeadLetterConfig
+    , DeadLetterConfig
+    , deadLetterConfig
+    , dlcARN
 
     -- ** EcsParameters
     , EcsParameters
@@ -230,6 +286,13 @@ module Network.AWS.CloudWatchEvents
     , esCreatedBy
     , esName
     , esExpirationTime
+
+    -- ** HTTPParameters
+    , HTTPParameters
+    , hTTPParameters
+    , httppPathParameterValues
+    , httppQueryStringParameters
+    , httppHeaderParameters
 
     -- ** InputTransformer
     , InputTransformer
@@ -301,12 +364,47 @@ module Network.AWS.CloudWatchEvents
     , ptreErrorCode
     , ptreErrorMessage
 
+    -- ** RedshiftDataParameters
+    , RedshiftDataParameters
+    , redshiftDataParameters
+    , rdpDBUser
+    , rdpSecretManagerARN
+    , rdpStatementName
+    , rdpWithEvent
+    , rdpDatabase
+    , rdpSql
+
     -- ** RemoveTargetsResultEntry
     , RemoveTargetsResultEntry
     , removeTargetsResultEntry
     , rtreTargetId
     , rtreErrorCode
     , rtreErrorMessage
+
+    -- ** Replay
+    , Replay
+    , replay
+    , repEventSourceARN
+    , repState
+    , repEventEndTime
+    , repReplayStartTime
+    , repReplayEndTime
+    , repEventLastReplayedTime
+    , repEventStartTime
+    , repReplayName
+    , repStateReason
+
+    -- ** ReplayDestination
+    , ReplayDestination
+    , replayDestination
+    , rdFilterARNs
+    , rdARN
+
+    -- ** RetryPolicy
+    , RetryPolicy
+    , retryPolicy
+    , rpMaximumEventAgeInSeconds
+    , rpMaximumRetryAttempts
 
     -- ** Rule
     , Rule
@@ -347,12 +445,16 @@ module Network.AWS.CloudWatchEvents
     , Target
     , target
     , tRunCommandParameters
+    , tHTTPParameters
     , tKinesisParameters
     , tInputTransformer
+    , tDeadLetterConfig
     , tSqsParameters
     , tInput
     , tBatchParameters
+    , tRedshiftDataParameters
     , tEcsParameters
+    , tRetryPolicy
     , tInputPath
     , tRoleARN
     , tId
@@ -360,22 +462,29 @@ module Network.AWS.CloudWatchEvents
     ) where
 
 import Network.AWS.CloudWatchEvents.ActivateEventSource
+import Network.AWS.CloudWatchEvents.CancelReplay
+import Network.AWS.CloudWatchEvents.CreateArchive
 import Network.AWS.CloudWatchEvents.CreateEventBus
 import Network.AWS.CloudWatchEvents.CreatePartnerEventSource
 import Network.AWS.CloudWatchEvents.DeactivateEventSource
+import Network.AWS.CloudWatchEvents.DeleteArchive
 import Network.AWS.CloudWatchEvents.DeleteEventBus
 import Network.AWS.CloudWatchEvents.DeletePartnerEventSource
 import Network.AWS.CloudWatchEvents.DeleteRule
+import Network.AWS.CloudWatchEvents.DescribeArchive
 import Network.AWS.CloudWatchEvents.DescribeEventBus
 import Network.AWS.CloudWatchEvents.DescribeEventSource
 import Network.AWS.CloudWatchEvents.DescribePartnerEventSource
+import Network.AWS.CloudWatchEvents.DescribeReplay
 import Network.AWS.CloudWatchEvents.DescribeRule
 import Network.AWS.CloudWatchEvents.DisableRule
 import Network.AWS.CloudWatchEvents.EnableRule
+import Network.AWS.CloudWatchEvents.ListArchives
 import Network.AWS.CloudWatchEvents.ListEventBuses
 import Network.AWS.CloudWatchEvents.ListEventSources
 import Network.AWS.CloudWatchEvents.ListPartnerEventSourceAccounts
 import Network.AWS.CloudWatchEvents.ListPartnerEventSources
+import Network.AWS.CloudWatchEvents.ListReplays
 import Network.AWS.CloudWatchEvents.ListRuleNamesByTarget
 import Network.AWS.CloudWatchEvents.ListRules
 import Network.AWS.CloudWatchEvents.ListTagsForResource
@@ -387,10 +496,12 @@ import Network.AWS.CloudWatchEvents.PutRule
 import Network.AWS.CloudWatchEvents.PutTargets
 import Network.AWS.CloudWatchEvents.RemovePermission
 import Network.AWS.CloudWatchEvents.RemoveTargets
+import Network.AWS.CloudWatchEvents.StartReplay
 import Network.AWS.CloudWatchEvents.TagResource
 import Network.AWS.CloudWatchEvents.TestEventPattern
 import Network.AWS.CloudWatchEvents.Types
 import Network.AWS.CloudWatchEvents.UntagResource
+import Network.AWS.CloudWatchEvents.UpdateArchive
 import Network.AWS.CloudWatchEvents.Waiters
 
 {- $errors

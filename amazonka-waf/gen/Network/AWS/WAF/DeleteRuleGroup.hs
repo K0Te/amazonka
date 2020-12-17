@@ -55,14 +55,12 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.WAF.Types
-import Network.AWS.WAF.Types.Product
 
 -- | /See:/ 'deleteRuleGroup' smart constructor.
-data DeleteRuleGroup = DeleteRuleGroup'
-  { _drgRuleGroupId :: !Text
-  , _drgChangeToken :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteRuleGroup = DeleteRuleGroup'{_drgRuleGroupId
+                                        :: !Text,
+                                        _drgChangeToken :: !Text}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteRuleGroup' with the minimum fields required to make a request.
 --
@@ -75,10 +73,9 @@ deleteRuleGroup
     :: Text -- ^ 'drgRuleGroupId'
     -> Text -- ^ 'drgChangeToken'
     -> DeleteRuleGroup
-deleteRuleGroup pRuleGroupId_ pChangeToken_ =
-  DeleteRuleGroup'
-    {_drgRuleGroupId = pRuleGroupId_, _drgChangeToken = pChangeToken_}
-
+deleteRuleGroup pRuleGroupId_ pChangeToken_
+  = DeleteRuleGroup'{_drgRuleGroupId = pRuleGroupId_,
+                     _drgChangeToken = pChangeToken_}
 
 -- | The @RuleGroupId@ of the 'RuleGroup' that you want to delete. @RuleGroupId@ is returned by 'CreateRuleGroup' and by 'ListRuleGroups' .
 drgRuleGroupId :: Lens' DeleteRuleGroup Text
@@ -124,11 +121,12 @@ instance ToQuery DeleteRuleGroup where
         toQuery = const mempty
 
 -- | /See:/ 'deleteRuleGroupResponse' smart constructor.
-data DeleteRuleGroupResponse = DeleteRuleGroupResponse'
-  { _drgrsChangeToken    :: !(Maybe Text)
-  , _drgrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteRuleGroupResponse = DeleteRuleGroupResponse'{_drgrsChangeToken
+                                                        :: !(Maybe Text),
+                                                        _drgrsResponseStatus ::
+                                                        !Int}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'DeleteRuleGroupResponse' with the minimum fields required to make a request.
 --
@@ -140,10 +138,10 @@ data DeleteRuleGroupResponse = DeleteRuleGroupResponse'
 deleteRuleGroupResponse
     :: Int -- ^ 'drgrsResponseStatus'
     -> DeleteRuleGroupResponse
-deleteRuleGroupResponse pResponseStatus_ =
-  DeleteRuleGroupResponse'
-    {_drgrsChangeToken = Nothing, _drgrsResponseStatus = pResponseStatus_}
-
+deleteRuleGroupResponse pResponseStatus_
+  = DeleteRuleGroupResponse'{_drgrsChangeToken =
+                               Nothing,
+                             _drgrsResponseStatus = pResponseStatus_}
 
 -- | The @ChangeToken@ that you used to submit the @DeleteRuleGroup@ request. You can also use this value to query the status of the request. For more information, see 'GetChangeTokenStatus' .
 drgrsChangeToken :: Lens' DeleteRuleGroupResponse (Maybe Text)

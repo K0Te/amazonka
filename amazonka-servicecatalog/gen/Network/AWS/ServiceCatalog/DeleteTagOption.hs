@@ -43,13 +43,11 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.ServiceCatalog.Types
-import Network.AWS.ServiceCatalog.Types.Product
 
 -- | /See:/ 'deleteTagOption' smart constructor.
-newtype DeleteTagOption = DeleteTagOption'
-  { _delId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteTagOption = DeleteTagOption'{_delId ::
+                                           Text}
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteTagOption' with the minimum fields required to make a request.
 --
@@ -59,8 +57,8 @@ newtype DeleteTagOption = DeleteTagOption'
 deleteTagOption
     :: Text -- ^ 'delId'
     -> DeleteTagOption
-deleteTagOption pId_ = DeleteTagOption' {_delId = pId_}
-
+deleteTagOption pId_
+  = DeleteTagOption'{_delId = pId_}
 
 -- | The TagOption identifier.
 delId :: Lens' DeleteTagOption Text
@@ -99,10 +97,10 @@ instance ToQuery DeleteTagOption where
         toQuery = const mempty
 
 -- | /See:/ 'deleteTagOptionResponse' smart constructor.
-newtype DeleteTagOptionResponse = DeleteTagOptionResponse'
-  { _dtotrsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteTagOptionResponse = DeleteTagOptionResponse'{_dtotrsResponseStatus
+                                                           :: Int}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'DeleteTagOptionResponse' with the minimum fields required to make a request.
 --
@@ -112,9 +110,9 @@ newtype DeleteTagOptionResponse = DeleteTagOptionResponse'
 deleteTagOptionResponse
     :: Int -- ^ 'dtotrsResponseStatus'
     -> DeleteTagOptionResponse
-deleteTagOptionResponse pResponseStatus_ =
-  DeleteTagOptionResponse' {_dtotrsResponseStatus = pResponseStatus_}
-
+deleteTagOptionResponse pResponseStatus_
+  = DeleteTagOptionResponse'{_dtotrsResponseStatus =
+                               pResponseStatus_}
 
 -- | -- | The response status code.
 dtotrsResponseStatus :: Lens' DeleteTagOptionResponse Int

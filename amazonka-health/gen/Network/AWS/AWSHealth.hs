@@ -11,41 +11,15 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- __AWS Health__
+-- __AWS Health__ 
 --
--- The AWS Health API provides programmatic access to the AWS Health information that is presented in the <https://phd.aws.amazon.com/phd/home#/ AWS Personal Health Dashboard> . You can get information about events that affect your AWS resources:
+-- The AWS Health API provides programmatic access to the AWS Health information that appears in the <https://phd.aws.amazon.com/phd/home#/ AWS Personal Health Dashboard> . You can use the API operations to get information about AWS Health events that affect your AWS services and resources.
 --
---     * 'DescribeEvents' : Summary information about events.
+-- AWS Health has a single endpoint: health.us-east-1.amazonaws.com (HTTPS). Use this endpoint to call the AWS Health API operations.
 --
---     * 'DescribeEventDetails' : Detailed information about one or more events.
+-- For authentication of requests, AWS Health uses the <https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html Signature Version 4 Signing Process> .
 --
---     * 'DescribeAffectedEntities' : Information about AWS resources that are affected by one or more events.
---
---
---
--- In addition, these operations provide information about event types and summary counts of events or affected entities:
---
---     * 'DescribeEventTypes' : Information about the kinds of events that AWS Health tracks.
---
---     * 'DescribeEventAggregates' : A count of the number of events that meet specified criteria.
---
---     * 'DescribeEntityAggregates' : A count of the number of affected entities that meet specified criteria.
---
---
---
--- The Health API requires a Business or Enterprise support plan from <http://aws.amazon.com/premiumsupport/ AWS Support> . Calling the Health API from an account that does not have a Business or Enterprise support plan causes a @SubscriptionRequiredException@ .
---
--- For authentication of requests, AWS Health uses the <http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html Signature Version 4 Signing Process> .
---
--- See the <http://docs.aws.amazon.com/health/latest/ug/what-is-aws-health.html AWS Health User Guide> for information about how to use the API.
---
--- __Service Endpoint__
---
--- The HTTP endpoint for the AWS Health API is:
---
---     * https://health.us-east-1.amazonaws.com
---
---
+-- If your AWS account is part of AWS Organizations, you can use the AWS Health organizational view feature. This feature provides a centralized view of AWS Health events across all accounts in your organization. You can aggregate AWS Health events in real time to identify accounts in your organization that are affected by an operational event or get notified of security vulnerabilities. Use the organizational view API operations to enable this feature and return event information. For more information, see <https://docs.aws.amazon.com/health/latest/ug/aggregate-events.html Aggregating AWS Health events> in the /AWS Health User Guide/ .
 --
 module Network.AWS.AWSHealth
     (
@@ -58,6 +32,9 @@ module Network.AWS.AWSHealth
     -- ** InvalidPaginationToken
     , _InvalidPaginationToken
 
+    -- ** ConcurrentModificationException
+    , _ConcurrentModificationException
+
     -- ** UnsupportedLocale
     , _UnsupportedLocale
 
@@ -67,13 +44,22 @@ module Network.AWS.AWSHealth
     -- * Operations
     -- $operations
 
-    -- ** DescribeEntityAggregates
+    -- ** EnableHealthServiceAccessForOrganization 
+    , module Network.AWS.AWSHealth.EnableHealthServiceAccessForOrganization
+
+    -- ** DescribeEntityAggregates 
     , module Network.AWS.AWSHealth.DescribeEntityAggregates
 
     -- ** DescribeEvents (Paginated)
     , module Network.AWS.AWSHealth.DescribeEvents
 
-    -- ** DescribeEventDetails
+    -- ** DescribeEventsForOrganization (Paginated)
+    , module Network.AWS.AWSHealth.DescribeEventsForOrganization
+
+    -- ** DescribeAffectedAccountsForOrganization (Paginated)
+    , module Network.AWS.AWSHealth.DescribeAffectedAccountsForOrganization
+
+    -- ** DescribeEventDetails 
     , module Network.AWS.AWSHealth.DescribeEventDetails
 
     -- ** DescribeEventAggregates (Paginated)
@@ -85,6 +71,18 @@ module Network.AWS.AWSHealth
     -- ** DescribeEventTypes (Paginated)
     , module Network.AWS.AWSHealth.DescribeEventTypes
 
+    -- ** DescribeAffectedEntitiesForOrganization (Paginated)
+    , module Network.AWS.AWSHealth.DescribeAffectedEntitiesForOrganization
+
+    -- ** DescribeHealthServiceStatusForOrganization 
+    , module Network.AWS.AWSHealth.DescribeHealthServiceStatusForOrganization
+
+    -- ** DescribeEventDetailsForOrganization 
+    , module Network.AWS.AWSHealth.DescribeEventDetailsForOrganization
+
+    -- ** DisableHealthServiceAccessForOrganization 
+    , module Network.AWS.AWSHealth.DisableHealthServiceAccessForOrganization
+
     -- * Types
 
     -- ** EntityStatusCode
@@ -92,6 +90,9 @@ module Network.AWS.AWSHealth
 
     -- ** EventAggregateField
     , EventAggregateField (..)
+
+    -- ** EventScopeCode
+    , EventScopeCode (..)
 
     -- ** EventStatusCode
     , EventStatusCode (..)
@@ -104,6 +105,7 @@ module Network.AWS.AWSHealth
     , affectedEntity
     , aeLastUpdatedTime
     , aeEntityValue
+    , aeEntityURL
     , aeAwsAccountId
     , aeEventARN
     , aeEntityARN
@@ -139,12 +141,19 @@ module Network.AWS.AWSHealth
     , eArn
     , eService
     , eStartTime
+    , eEventScopeCode
     , eEventTypeCode
     , eEventTypeCategory
     , eAvailabilityZone
     , eEndTime
     , eRegion
     , eStatusCode
+
+    -- ** EventAccountFilter
+    , EventAccountFilter
+    , eventAccountFilter
+    , eafAwsAccountId
+    , eafEventARN
 
     -- ** EventAggregate
     , EventAggregate
@@ -201,14 +210,74 @@ module Network.AWS.AWSHealth
     , etfEventTypeCategories
     , etfEventTypeCodes
     , etfServices
+
+    -- ** OrganizationAffectedEntitiesErrorItem
+    , OrganizationAffectedEntitiesErrorItem
+    , organizationAffectedEntitiesErrorItem
+    , oaeeiAwsAccountId
+    , oaeeiEventARN
+    , oaeeiErrorName
+    , oaeeiErrorMessage
+
+    -- ** OrganizationEvent
+    , OrganizationEvent
+    , organizationEvent
+    , oeLastUpdatedTime
+    , oeArn
+    , oeService
+    , oeStartTime
+    , oeEventScopeCode
+    , oeEventTypeCode
+    , oeEventTypeCategory
+    , oeEndTime
+    , oeRegion
+    , oeStatusCode
+
+    -- ** OrganizationEventDetails
+    , OrganizationEventDetails
+    , organizationEventDetails
+    , oedEvent
+    , oedEventDescription
+    , oedAwsAccountId
+    , oedEventMetadata
+
+    -- ** OrganizationEventDetailsErrorItem
+    , OrganizationEventDetailsErrorItem
+    , organizationEventDetailsErrorItem
+    , oedeiAwsAccountId
+    , oedeiEventARN
+    , oedeiErrorName
+    , oedeiErrorMessage
+
+    -- ** OrganizationEventFilter
+    , OrganizationEventFilter
+    , organizationEventFilter
+    , oefLastUpdatedTime
+    , oefAwsAccountIds
+    , oefEventTypeCategories
+    , oefEventTypeCodes
+    , oefStartTime
+    , oefRegions
+    , oefEventStatusCodes
+    , oefEndTime
+    , oefEntityARNs
+    , oefEntityValues
+    , oefServices
     ) where
 
+import Network.AWS.AWSHealth.DescribeAffectedAccountsForOrganization
 import Network.AWS.AWSHealth.DescribeAffectedEntities
+import Network.AWS.AWSHealth.DescribeAffectedEntitiesForOrganization
 import Network.AWS.AWSHealth.DescribeEntityAggregates
 import Network.AWS.AWSHealth.DescribeEventAggregates
 import Network.AWS.AWSHealth.DescribeEventDetails
-import Network.AWS.AWSHealth.DescribeEvents
+import Network.AWS.AWSHealth.DescribeEventDetailsForOrganization
 import Network.AWS.AWSHealth.DescribeEventTypes
+import Network.AWS.AWSHealth.DescribeEvents
+import Network.AWS.AWSHealth.DescribeEventsForOrganization
+import Network.AWS.AWSHealth.DescribeHealthServiceStatusForOrganization
+import Network.AWS.AWSHealth.DisableHealthServiceAccessForOrganization
+import Network.AWS.AWSHealth.EnableHealthServiceAccessForOrganization
 import Network.AWS.AWSHealth.Types
 import Network.AWS.AWSHealth.Waiters
 

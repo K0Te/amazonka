@@ -47,16 +47,24 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.ServiceCatalog.Types
-import Network.AWS.ServiceCatalog.Types.Product
 
 -- | /See:/ 'describeProvisionedProductPlan' smart constructor.
-data DescribeProvisionedProductPlan = DescribeProvisionedProductPlan'
-  { _dpppAcceptLanguage :: !(Maybe Text)
-  , _dpppPageToken      :: !(Maybe Text)
-  , _dpppPageSize       :: !(Maybe Nat)
-  , _dpppPlanId         :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeProvisionedProductPlan = DescribeProvisionedProductPlan'{_dpppAcceptLanguage
+                                                                      ::
+                                                                      !(Maybe
+                                                                          Text),
+                                                                      _dpppPageToken
+                                                                      ::
+                                                                      !(Maybe
+                                                                          Text),
+                                                                      _dpppPageSize
+                                                                      ::
+                                                                      !(Maybe
+                                                                          Nat),
+                                                                      _dpppPlanId
+                                                                      :: !Text}
+                                        deriving (Eq, Read, Show, Data,
+                                                  Typeable, Generic)
 
 -- | Creates a value of 'DescribeProvisionedProductPlan' with the minimum fields required to make a request.
 --
@@ -72,14 +80,12 @@ data DescribeProvisionedProductPlan = DescribeProvisionedProductPlan'
 describeProvisionedProductPlan
     :: Text -- ^ 'dpppPlanId'
     -> DescribeProvisionedProductPlan
-describeProvisionedProductPlan pPlanId_ =
-  DescribeProvisionedProductPlan'
-    { _dpppAcceptLanguage = Nothing
-    , _dpppPageToken = Nothing
-    , _dpppPageSize = Nothing
-    , _dpppPlanId = pPlanId_
-    }
-
+describeProvisionedProductPlan pPlanId_
+  = DescribeProvisionedProductPlan'{_dpppAcceptLanguage
+                                      = Nothing,
+                                    _dpppPageToken = Nothing,
+                                    _dpppPageSize = Nothing,
+                                    _dpppPlanId = pPlanId_}
 
 -- | The language code.     * @en@ - English (default)     * @jp@ - Japanese     * @zh@ - Chinese
 dpppAcceptLanguage :: Lens' DescribeProvisionedProductPlan (Maybe Text)
@@ -143,13 +149,23 @@ instance ToQuery DescribeProvisionedProductPlan where
         toQuery = const mempty
 
 -- | /See:/ 'describeProvisionedProductPlanResponse' smart constructor.
-data DescribeProvisionedProductPlanResponse = DescribeProvisionedProductPlanResponse'
-  { _dpppprsNextPageToken :: !(Maybe Text)
-  , _dpppprsProvisionedProductPlanDetails :: !(Maybe ProvisionedProductPlanDetails)
-  , _dpppprsResourceChanges :: !(Maybe [ResourceChange])
-  , _dpppprsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeProvisionedProductPlanResponse = DescribeProvisionedProductPlanResponse'{_dpppprsNextPageToken
+                                                                                      ::
+                                                                                      !(Maybe
+                                                                                          Text),
+                                                                                      _dpppprsProvisionedProductPlanDetails
+                                                                                      ::
+                                                                                      !(Maybe
+                                                                                          ProvisionedProductPlanDetails),
+                                                                                      _dpppprsResourceChanges
+                                                                                      ::
+                                                                                      !(Maybe
+                                                                                          [ResourceChange]),
+                                                                                      _dpppprsResponseStatus
+                                                                                      ::
+                                                                                      !Int}
+                                                deriving (Eq, Read, Show, Data,
+                                                          Typeable, Generic)
 
 -- | Creates a value of 'DescribeProvisionedProductPlanResponse' with the minimum fields required to make a request.
 --
@@ -165,14 +181,15 @@ data DescribeProvisionedProductPlanResponse = DescribeProvisionedProductPlanResp
 describeProvisionedProductPlanResponse
     :: Int -- ^ 'dpppprsResponseStatus'
     -> DescribeProvisionedProductPlanResponse
-describeProvisionedProductPlanResponse pResponseStatus_ =
-  DescribeProvisionedProductPlanResponse'
-    { _dpppprsNextPageToken = Nothing
-    , _dpppprsProvisionedProductPlanDetails = Nothing
-    , _dpppprsResourceChanges = Nothing
-    , _dpppprsResponseStatus = pResponseStatus_
-    }
-
+describeProvisionedProductPlanResponse
+  pResponseStatus_
+  = DescribeProvisionedProductPlanResponse'{_dpppprsNextPageToken
+                                              = Nothing,
+                                            _dpppprsProvisionedProductPlanDetails
+                                              = Nothing,
+                                            _dpppprsResourceChanges = Nothing,
+                                            _dpppprsResponseStatus =
+                                              pResponseStatus_}
 
 -- | The page token to use to retrieve the next set of results. If there are no additional results, this value is null.
 dpppprsNextPageToken :: Lens' DescribeProvisionedProductPlanResponse (Maybe Text)

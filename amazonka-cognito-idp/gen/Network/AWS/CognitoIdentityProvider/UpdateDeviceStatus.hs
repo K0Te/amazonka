@@ -39,7 +39,6 @@ module Network.AWS.CognitoIdentityProvider.UpdateDeviceStatus
     ) where
 
 import Network.AWS.CognitoIdentityProvider.Types
-import Network.AWS.CognitoIdentityProvider.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -50,12 +49,14 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'updateDeviceStatus' smart constructor.
-data UpdateDeviceStatus = UpdateDeviceStatus'
-  { _udsDeviceRememberedStatus :: !(Maybe DeviceRememberedStatusType)
-  , _udsAccessToken            :: !(Sensitive Text)
-  , _udsDeviceKey              :: !Text
-  } deriving (Eq, Show, Data, Typeable, Generic)
-
+data UpdateDeviceStatus = UpdateDeviceStatus'{_udsDeviceRememberedStatus
+                                              ::
+                                              !(Maybe
+                                                  DeviceRememberedStatusType),
+                                              _udsAccessToken ::
+                                              !(Sensitive Text),
+                                              _udsDeviceKey :: !Text}
+                            deriving (Eq, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UpdateDeviceStatus' with the minimum fields required to make a request.
 --
@@ -70,13 +71,11 @@ updateDeviceStatus
     :: Text -- ^ 'udsAccessToken'
     -> Text -- ^ 'udsDeviceKey'
     -> UpdateDeviceStatus
-updateDeviceStatus pAccessToken_ pDeviceKey_ =
-  UpdateDeviceStatus'
-    { _udsDeviceRememberedStatus = Nothing
-    , _udsAccessToken = _Sensitive # pAccessToken_
-    , _udsDeviceKey = pDeviceKey_
-    }
-
+updateDeviceStatus pAccessToken_ pDeviceKey_
+  = UpdateDeviceStatus'{_udsDeviceRememberedStatus =
+                          Nothing,
+                        _udsAccessToken = _Sensitive # pAccessToken_,
+                        _udsDeviceKey = pDeviceKey_}
 
 -- | The status of whether a device is remembered.
 udsDeviceRememberedStatus :: Lens' UpdateDeviceStatus (Maybe DeviceRememberedStatusType)
@@ -133,10 +132,10 @@ instance ToQuery UpdateDeviceStatus where
 --
 --
 -- /See:/ 'updateDeviceStatusResponse' smart constructor.
-newtype UpdateDeviceStatusResponse = UpdateDeviceStatusResponse'
-  { _udsrsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype UpdateDeviceStatusResponse = UpdateDeviceStatusResponse'{_udsrsResponseStatus
+                                                                 :: Int}
+                                       deriving (Eq, Read, Show, Data, Typeable,
+                                                 Generic)
 
 -- | Creates a value of 'UpdateDeviceStatusResponse' with the minimum fields required to make a request.
 --
@@ -146,9 +145,9 @@ newtype UpdateDeviceStatusResponse = UpdateDeviceStatusResponse'
 updateDeviceStatusResponse
     :: Int -- ^ 'udsrsResponseStatus'
     -> UpdateDeviceStatusResponse
-updateDeviceStatusResponse pResponseStatus_ =
-  UpdateDeviceStatusResponse' {_udsrsResponseStatus = pResponseStatus_}
-
+updateDeviceStatusResponse pResponseStatus_
+  = UpdateDeviceStatusResponse'{_udsrsResponseStatus =
+                                  pResponseStatus_}
 
 -- | -- | The response status code.
 udsrsResponseStatus :: Lens' UpdateDeviceStatusResponse Int

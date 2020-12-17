@@ -28,6 +28,7 @@ module Network.AWS.Greengrass.CreateFunctionDefinition
     , cfdAmznClientToken
     , cfdInitialVersion
     , cfdName
+    , cfdTags
 
     -- * Destructuring the Response
     , createFunctionDefinitionResponse
@@ -44,19 +45,24 @@ module Network.AWS.Greengrass.CreateFunctionDefinition
     ) where
 
 import Network.AWS.Greengrass.Types
-import Network.AWS.Greengrass.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'createFunctionDefinition' smart constructor.
-data CreateFunctionDefinition = CreateFunctionDefinition'
-  { _cfdAmznClientToken :: !(Maybe Text)
-  , _cfdInitialVersion  :: !(Maybe FunctionDefinitionVersion)
-  , _cfdName            :: !(Maybe Text)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateFunctionDefinition = CreateFunctionDefinition'{_cfdAmznClientToken
+                                                          :: !(Maybe Text),
+                                                          _cfdInitialVersion ::
+                                                          !(Maybe
+                                                              FunctionDefinitionVersion),
+                                                          _cfdName ::
+                                                          !(Maybe Text),
+                                                          _cfdTags ::
+                                                          !(Maybe
+                                                              (Map Text Text))}
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'CreateFunctionDefinition' with the minimum fields required to make a request.
 --
@@ -67,15 +73,15 @@ data CreateFunctionDefinition = CreateFunctionDefinition'
 -- * 'cfdInitialVersion' - Information about the initial version of the function definition.
 --
 -- * 'cfdName' - The name of the function definition.
+--
+-- * 'cfdTags' - Tag(s) to add to the new resource.
 createFunctionDefinition
     :: CreateFunctionDefinition
-createFunctionDefinition =
-  CreateFunctionDefinition'
-    { _cfdAmznClientToken = Nothing
-    , _cfdInitialVersion = Nothing
-    , _cfdName = Nothing
-    }
-
+createFunctionDefinition
+  = CreateFunctionDefinition'{_cfdAmznClientToken =
+                                Nothing,
+                              _cfdInitialVersion = Nothing, _cfdName = Nothing,
+                              _cfdTags = Nothing}
 
 -- | A client token used to correlate requests and responses.
 cfdAmznClientToken :: Lens' CreateFunctionDefinition (Maybe Text)
@@ -88,6 +94,10 @@ cfdInitialVersion = lens _cfdInitialVersion (\ s a -> s{_cfdInitialVersion = a})
 -- | The name of the function definition.
 cfdName :: Lens' CreateFunctionDefinition (Maybe Text)
 cfdName = lens _cfdName (\ s a -> s{_cfdName = a})
+
+-- | Tag(s) to add to the new resource.
+cfdTags :: Lens' CreateFunctionDefinition (HashMap Text Text)
+cfdTags = lens _cfdTags (\ s a -> s{_cfdTags = a}) . _Default . _Map
 
 instance AWSRequest CreateFunctionDefinition where
         type Rs CreateFunctionDefinition =
@@ -121,7 +131,7 @@ instance ToJSON CreateFunctionDefinition where
           = object
               (catMaybes
                  [("InitialVersion" .=) <$> _cfdInitialVersion,
-                  ("Name" .=) <$> _cfdName])
+                  ("Name" .=) <$> _cfdName, ("tags" .=) <$> _cfdTags])
 
 instance ToPath CreateFunctionDefinition where
         toPath = const "/greengrass/definition/functions"
@@ -130,23 +140,45 @@ instance ToQuery CreateFunctionDefinition where
         toQuery = const mempty
 
 -- | /See:/ 'createFunctionDefinitionResponse' smart constructor.
-data CreateFunctionDefinitionResponse = CreateFunctionDefinitionResponse'
-  { _cfdrsLatestVersionARN     :: !(Maybe Text)
-  , _cfdrsARN                  :: !(Maybe Text)
-  , _cfdrsName                 :: !(Maybe Text)
-  , _cfdrsCreationTimestamp    :: !(Maybe Text)
-  , _cfdrsId                   :: !(Maybe Text)
-  , _cfdrsLatestVersion        :: !(Maybe Text)
-  , _cfdrsLastUpdatedTimestamp :: !(Maybe Text)
-  , _cfdrsResponseStatus       :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateFunctionDefinitionResponse = CreateFunctionDefinitionResponse'{_cfdrsLatestVersionARN
+                                                                          ::
+                                                                          !(Maybe
+                                                                              Text),
+                                                                          _cfdrsARN
+                                                                          ::
+                                                                          !(Maybe
+                                                                              Text),
+                                                                          _cfdrsName
+                                                                          ::
+                                                                          !(Maybe
+                                                                              Text),
+                                                                          _cfdrsCreationTimestamp
+                                                                          ::
+                                                                          !(Maybe
+                                                                              Text),
+                                                                          _cfdrsId
+                                                                          ::
+                                                                          !(Maybe
+                                                                              Text),
+                                                                          _cfdrsLatestVersion
+                                                                          ::
+                                                                          !(Maybe
+                                                                              Text),
+                                                                          _cfdrsLastUpdatedTimestamp
+                                                                          ::
+                                                                          !(Maybe
+                                                                              Text),
+                                                                          _cfdrsResponseStatus
+                                                                          ::
+                                                                          !Int}
+                                          deriving (Eq, Read, Show, Data,
+                                                    Typeable, Generic)
 
 -- | Creates a value of 'CreateFunctionDefinitionResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'cfdrsLatestVersionARN' - The ARN of the latest version of the definition.
+-- * 'cfdrsLatestVersionARN' - The ARN of the latest version associated with the definition.
 --
 -- * 'cfdrsARN' - The ARN of the definition.
 --
@@ -156,7 +188,7 @@ data CreateFunctionDefinitionResponse = CreateFunctionDefinitionResponse'
 --
 -- * 'cfdrsId' - The ID of the definition.
 --
--- * 'cfdrsLatestVersion' - The latest version of the definition.
+-- * 'cfdrsLatestVersion' - The ID of the latest version associated with the definition.
 --
 -- * 'cfdrsLastUpdatedTimestamp' - The time, in milliseconds since the epoch, when the definition was last updated.
 --
@@ -164,20 +196,17 @@ data CreateFunctionDefinitionResponse = CreateFunctionDefinitionResponse'
 createFunctionDefinitionResponse
     :: Int -- ^ 'cfdrsResponseStatus'
     -> CreateFunctionDefinitionResponse
-createFunctionDefinitionResponse pResponseStatus_ =
-  CreateFunctionDefinitionResponse'
-    { _cfdrsLatestVersionARN = Nothing
-    , _cfdrsARN = Nothing
-    , _cfdrsName = Nothing
-    , _cfdrsCreationTimestamp = Nothing
-    , _cfdrsId = Nothing
-    , _cfdrsLatestVersion = Nothing
-    , _cfdrsLastUpdatedTimestamp = Nothing
-    , _cfdrsResponseStatus = pResponseStatus_
-    }
+createFunctionDefinitionResponse pResponseStatus_
+  = CreateFunctionDefinitionResponse'{_cfdrsLatestVersionARN
+                                        = Nothing,
+                                      _cfdrsARN = Nothing, _cfdrsName = Nothing,
+                                      _cfdrsCreationTimestamp = Nothing,
+                                      _cfdrsId = Nothing,
+                                      _cfdrsLatestVersion = Nothing,
+                                      _cfdrsLastUpdatedTimestamp = Nothing,
+                                      _cfdrsResponseStatus = pResponseStatus_}
 
-
--- | The ARN of the latest version of the definition.
+-- | The ARN of the latest version associated with the definition.
 cfdrsLatestVersionARN :: Lens' CreateFunctionDefinitionResponse (Maybe Text)
 cfdrsLatestVersionARN = lens _cfdrsLatestVersionARN (\ s a -> s{_cfdrsLatestVersionARN = a})
 
@@ -197,7 +226,7 @@ cfdrsCreationTimestamp = lens _cfdrsCreationTimestamp (\ s a -> s{_cfdrsCreation
 cfdrsId :: Lens' CreateFunctionDefinitionResponse (Maybe Text)
 cfdrsId = lens _cfdrsId (\ s a -> s{_cfdrsId = a})
 
--- | The latest version of the definition.
+-- | The ID of the latest version associated with the definition.
 cfdrsLatestVersion :: Lens' CreateFunctionDefinitionResponse (Maybe Text)
 cfdrsLatestVersion = lens _cfdrsLatestVersion (\ s a -> s{_cfdrsLatestVersion = a})
 

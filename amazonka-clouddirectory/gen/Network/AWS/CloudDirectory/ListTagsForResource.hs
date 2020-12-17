@@ -43,7 +43,6 @@ module Network.AWS.CloudDirectory.ListTagsForResource
     ) where
 
 import Network.AWS.CloudDirectory.Types
-import Network.AWS.CloudDirectory.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
@@ -51,12 +50,11 @@ import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'listTagsForResource' smart constructor.
-data ListTagsForResource = ListTagsForResource'
-  { _ltfrNextToken   :: !(Maybe Text)
-  , _ltfrMaxResults  :: !(Maybe Nat)
-  , _ltfrResourceARN :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListTagsForResource = ListTagsForResource'{_ltfrNextToken
+                                                :: !(Maybe Text),
+                                                _ltfrMaxResults :: !(Maybe Nat),
+                                                _ltfrResourceARN :: !Text}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListTagsForResource' with the minimum fields required to make a request.
 --
@@ -70,13 +68,10 @@ data ListTagsForResource = ListTagsForResource'
 listTagsForResource
     :: Text -- ^ 'ltfrResourceARN'
     -> ListTagsForResource
-listTagsForResource pResourceARN_ =
-  ListTagsForResource'
-    { _ltfrNextToken = Nothing
-    , _ltfrMaxResults = Nothing
-    , _ltfrResourceARN = pResourceARN_
-    }
-
+listTagsForResource pResourceARN_
+  = ListTagsForResource'{_ltfrNextToken = Nothing,
+                         _ltfrMaxResults = Nothing,
+                         _ltfrResourceARN = pResourceARN_}
 
 -- | The pagination token. This is for future use. Currently pagination is not supported for tagging.
 ltfrNextToken :: Lens' ListTagsForResource (Maybe Text)
@@ -131,12 +126,15 @@ instance ToQuery ListTagsForResource where
         toQuery = const mempty
 
 -- | /See:/ 'listTagsForResourceResponse' smart constructor.
-data ListTagsForResourceResponse = ListTagsForResourceResponse'
-  { _ltfrrsNextToken      :: !(Maybe Text)
-  , _ltfrrsTags           :: !(Maybe [Tag])
-  , _ltfrrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListTagsForResourceResponse = ListTagsForResourceResponse'{_ltfrrsNextToken
+                                                                ::
+                                                                !(Maybe Text),
+                                                                _ltfrrsTags ::
+                                                                !(Maybe [Tag]),
+                                                                _ltfrrsResponseStatus
+                                                                :: !Int}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'ListTagsForResourceResponse' with the minimum fields required to make a request.
 --
@@ -150,13 +148,11 @@ data ListTagsForResourceResponse = ListTagsForResourceResponse'
 listTagsForResourceResponse
     :: Int -- ^ 'ltfrrsResponseStatus'
     -> ListTagsForResourceResponse
-listTagsForResourceResponse pResponseStatus_ =
-  ListTagsForResourceResponse'
-    { _ltfrrsNextToken = Nothing
-    , _ltfrrsTags = Nothing
-    , _ltfrrsResponseStatus = pResponseStatus_
-    }
-
+listTagsForResourceResponse pResponseStatus_
+  = ListTagsForResourceResponse'{_ltfrrsNextToken =
+                                   Nothing,
+                                 _ltfrrsTags = Nothing,
+                                 _ltfrrsResponseStatus = pResponseStatus_}
 
 -- | The token to use to retrieve the next page of results. This value is null when there are no more results to return.
 ltfrrsNextToken :: Lens' ListTagsForResourceResponse (Maybe Text)

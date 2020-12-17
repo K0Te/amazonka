@@ -18,10 +18,10 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Deletes the thing shadow for the specified thing.
+-- Deletes the shadow for the specified thing.
 --
 --
--- For more information, see <http://docs.aws.amazon.com/iot/latest/developerguide/API_DeleteThingShadow.html DeleteThingShadow> in the /AWS IoT Developer Guide/ .
+-- For more information, see <http://docs.aws.amazon.com/iot/latest/developerguide/API_DeleteThingShadow.html DeleteThingShadow> in the AWS IoT Developer Guide.
 --
 module Network.AWS.IoTData.DeleteThingShadow
     (
@@ -29,6 +29,7 @@ module Network.AWS.IoTData.DeleteThingShadow
       deleteThingShadow
     , DeleteThingShadow
     -- * Request Lenses
+    , dtsShadowName
     , dtsThingName
 
     -- * Destructuring the Response
@@ -40,7 +41,6 @@ module Network.AWS.IoTData.DeleteThingShadow
     ) where
 
 import Network.AWS.IoTData.Types
-import Network.AWS.IoTData.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -51,21 +51,28 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'deleteThingShadow' smart constructor.
-newtype DeleteThingShadow = DeleteThingShadow'
-  { _dtsThingName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteThingShadow = DeleteThingShadow'{_dtsShadowName
+                                            :: !(Maybe Text),
+                                            _dtsThingName :: !Text}
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteThingShadow' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
+-- * 'dtsShadowName' - The name of the shadow.
+--
 -- * 'dtsThingName' - The name of the thing.
 deleteThingShadow
     :: Text -- ^ 'dtsThingName'
     -> DeleteThingShadow
-deleteThingShadow pThingName_ = DeleteThingShadow' {_dtsThingName = pThingName_}
+deleteThingShadow pThingName_
+  = DeleteThingShadow'{_dtsShadowName = Nothing,
+                       _dtsThingName = pThingName_}
 
+-- | The name of the shadow.
+dtsShadowName :: Lens' DeleteThingShadow (Maybe Text)
+dtsShadowName = lens _dtsShadowName (\ s a -> s{_dtsShadowName = a})
 
 -- | The name of the thing.
 dtsThingName :: Lens' DeleteThingShadow Text
@@ -92,18 +99,19 @@ instance ToPath DeleteThingShadow where
           = mconcat ["/things/", toBS _dtsThingName, "/shadow"]
 
 instance ToQuery DeleteThingShadow where
-        toQuery = const mempty
+        toQuery DeleteThingShadow'{..}
+          = mconcat ["name" =: _dtsShadowName]
 
 -- | The output from the DeleteThingShadow operation.
 --
 --
 --
 -- /See:/ 'deleteThingShadowResponse' smart constructor.
-data DeleteThingShadowResponse = DeleteThingShadowResponse'
-  { _dtsrsResponseStatus :: !Int
-  , _dtsrsPayload        :: !ByteString
-  } deriving (Eq, Show, Data, Typeable, Generic)
-
+data DeleteThingShadowResponse = DeleteThingShadowResponse'{_dtsrsResponseStatus
+                                                            :: !Int,
+                                                            _dtsrsPayload ::
+                                                            !ByteString}
+                                   deriving (Eq, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteThingShadowResponse' with the minimum fields required to make a request.
 --
@@ -116,10 +124,10 @@ deleteThingShadowResponse
     :: Int -- ^ 'dtsrsResponseStatus'
     -> ByteString -- ^ 'dtsrsPayload'
     -> DeleteThingShadowResponse
-deleteThingShadowResponse pResponseStatus_ pPayload_ =
-  DeleteThingShadowResponse'
-    {_dtsrsResponseStatus = pResponseStatus_, _dtsrsPayload = pPayload_}
-
+deleteThingShadowResponse pResponseStatus_ pPayload_
+  = DeleteThingShadowResponse'{_dtsrsResponseStatus =
+                                 pResponseStatus_,
+                               _dtsrsPayload = pPayload_}
 
 -- | -- | The response status code.
 dtsrsResponseStatus :: Lens' DeleteThingShadowResponse Int

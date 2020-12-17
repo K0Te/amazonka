@@ -36,7 +36,6 @@ module Network.AWS.CloudFront.UntagResource
     ) where
 
 import Network.AWS.CloudFront.Types
-import Network.AWS.CloudFront.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -47,11 +46,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'untagResource' smart constructor.
-data UntagResource = UntagResource'
-  { _urResource :: !Text
-  , _urTagKeys  :: !TagKeys
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UntagResource = UntagResource'{_urResource ::
+                                    !Text,
+                                    _urTagKeys :: !TagKeys}
+                       deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UntagResource' with the minimum fields required to make a request.
 --
@@ -64,9 +62,9 @@ untagResource
     :: Text -- ^ 'urResource'
     -> TagKeys -- ^ 'urTagKeys'
     -> UntagResource
-untagResource pResource_ pTagKeys_ =
-  UntagResource' {_urResource = pResource_, _urTagKeys = pTagKeys_}
-
+untagResource pResource_ pTagKeys_
+  = UntagResource'{_urResource = pResource_,
+                   _urTagKeys = pTagKeys_}
 
 -- | An ARN of a CloudFront resource.
 urResource :: Lens' UntagResource Text
@@ -88,7 +86,7 @@ instance NFData UntagResource where
 instance ToElement UntagResource where
         toElement
           = mkElement
-              "{http://cloudfront.amazonaws.com/doc/2017-10-30/}TagKeys"
+              "{http://cloudfront.amazonaws.com/doc/2020-05-31/}TagKeys"
               .
               _urTagKeys
 
@@ -96,7 +94,7 @@ instance ToHeaders UntagResource where
         toHeaders = const mempty
 
 instance ToPath UntagResource where
-        toPath = const "/2017-10-30/tagging"
+        toPath = const "/2020-05-31/tagging"
 
 instance ToQuery UntagResource where
         toQuery UntagResource'{..}
@@ -104,16 +102,14 @@ instance ToQuery UntagResource where
               ["Resource" =: _urResource, "Operation=Untag"]
 
 -- | /See:/ 'untagResourceResponse' smart constructor.
-data UntagResourceResponse =
-  UntagResourceResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UntagResourceResponse = UntagResourceResponse'
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'UntagResourceResponse' with the minimum fields required to make a request.
 --
 untagResourceResponse
     :: UntagResourceResponse
 untagResourceResponse = UntagResourceResponse'
-
 
 instance NFData UntagResourceResponse where

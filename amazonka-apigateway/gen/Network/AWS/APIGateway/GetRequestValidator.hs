@@ -41,7 +41,6 @@ module Network.AWS.APIGateway.GetRequestValidator
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -52,11 +51,11 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'getRequestValidator' smart constructor.
-data GetRequestValidator = GetRequestValidator'
-  { _grvrRestAPIId          :: !Text
-  , _grvrRequestValidatorId :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetRequestValidator = GetRequestValidator'{_grvrRestAPIId
+                                                :: !Text,
+                                                _grvrRequestValidatorId ::
+                                                !Text}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetRequestValidator' with the minimum fields required to make a request.
 --
@@ -69,12 +68,9 @@ getRequestValidator
     :: Text -- ^ 'grvrRestAPIId'
     -> Text -- ^ 'grvrRequestValidatorId'
     -> GetRequestValidator
-getRequestValidator pRestAPIId_ pRequestValidatorId_ =
-  GetRequestValidator'
-    { _grvrRestAPIId = pRestAPIId_
-    , _grvrRequestValidatorId = pRequestValidatorId_
-    }
-
+getRequestValidator pRestAPIId_ pRequestValidatorId_
+  = GetRequestValidator'{_grvrRestAPIId = pRestAPIId_,
+                         _grvrRequestValidatorId = pRequestValidatorId_}
 
 -- | [Required] The string identifier of the associated 'RestApi' .
 grvrRestAPIId :: Lens' GetRequestValidator Text

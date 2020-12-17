@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Describes the specified tags for the specified WorkSpace.
+-- Describes the specified tags for the specified WorkSpaces resource.
 --
 --
 module Network.AWS.WorkSpaces.DescribeTags
@@ -42,26 +42,24 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.WorkSpaces.Types
-import Network.AWS.WorkSpaces.Types.Product
 
 -- | /See:/ 'describeTags' smart constructor.
-newtype DescribeTags = DescribeTags'
-  { _dtResourceId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DescribeTags = DescribeTags'{_dtResourceId ::
+                                     Text}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DescribeTags' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'dtResourceId' - The ID of the WorkSpace. To find this ID, use 'DescribeWorkspaces' .
+-- * 'dtResourceId' - The identifier of the WorkSpaces resource. The supported resource types are WorkSpaces, registered directories, images, custom bundles, IP access control groups, and connection aliases.
 describeTags
     :: Text -- ^ 'dtResourceId'
     -> DescribeTags
-describeTags pResourceId_ = DescribeTags' {_dtResourceId = pResourceId_}
+describeTags pResourceId_
+  = DescribeTags'{_dtResourceId = pResourceId_}
 
-
--- | The ID of the WorkSpace. To find this ID, use 'DescribeWorkspaces' .
+-- | The identifier of the WorkSpaces resource. The supported resource types are WorkSpaces, registered directories, images, custom bundles, IP access control groups, and connection aliases.
 dtResourceId :: Lens' DescribeTags Text
 dtResourceId = lens _dtResourceId (\ s a -> s{_dtResourceId = a})
 
@@ -99,11 +97,10 @@ instance ToQuery DescribeTags where
         toQuery = const mempty
 
 -- | /See:/ 'describeTagsResponse' smart constructor.
-data DescribeTagsResponse = DescribeTagsResponse'
-  { _dtrsTagList        :: !(Maybe [Tag])
-  , _dtrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeTagsResponse = DescribeTagsResponse'{_dtrsTagList
+                                                  :: !(Maybe [Tag]),
+                                                  _dtrsResponseStatus :: !Int}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DescribeTagsResponse' with the minimum fields required to make a request.
 --
@@ -115,10 +112,9 @@ data DescribeTagsResponse = DescribeTagsResponse'
 describeTagsResponse
     :: Int -- ^ 'dtrsResponseStatus'
     -> DescribeTagsResponse
-describeTagsResponse pResponseStatus_ =
-  DescribeTagsResponse'
-    {_dtrsTagList = Nothing, _dtrsResponseStatus = pResponseStatus_}
-
+describeTagsResponse pResponseStatus_
+  = DescribeTagsResponse'{_dtrsTagList = Nothing,
+                          _dtrsResponseStatus = pResponseStatus_}
 
 -- | The tags.
 dtrsTagList :: Lens' DescribeTagsResponse [Tag]

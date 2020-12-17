@@ -39,23 +39,19 @@ module Network.AWS.Organizations.DescribeOrganization
 
 import Network.AWS.Lens
 import Network.AWS.Organizations.Types
-import Network.AWS.Organizations.Types.Product
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'describeOrganization' smart constructor.
-data DescribeOrganization =
-  DescribeOrganization'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeOrganization = DescribeOrganization'
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DescribeOrganization' with the minimum fields required to make a request.
 --
 describeOrganization
     :: DescribeOrganization
 describeOrganization = DescribeOrganization'
-
 
 instance AWSRequest DescribeOrganization where
         type Rs DescribeOrganization =
@@ -91,28 +87,31 @@ instance ToQuery DescribeOrganization where
         toQuery = const mempty
 
 -- | /See:/ 'describeOrganizationResponse' smart constructor.
-data DescribeOrganizationResponse = DescribeOrganizationResponse'
-  { _dorsOrganization   :: !(Maybe Organization)
-  , _dorsResponseStatus :: !Int
-  } deriving (Eq, Show, Data, Typeable, Generic)
-
+data DescribeOrganizationResponse = DescribeOrganizationResponse'{_dorsOrganization
+                                                                  ::
+                                                                  !(Maybe
+                                                                      Organization),
+                                                                  _dorsResponseStatus
+                                                                  :: !Int}
+                                      deriving (Eq, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'DescribeOrganizationResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'dorsOrganization' - A structure that contains information about the organization.
+-- * 'dorsOrganization' - A structure that contains information about the organization. /Important:/ The @AvailablePolicyTypes@ part of the response is deprecated, and you shouldn't use it in your apps. It doesn't include any policy type supported by Organizations other than SCPs. To determine which policy types are enabled in your organization, use the @'ListRoots' @ operation.
 --
 -- * 'dorsResponseStatus' - -- | The response status code.
 describeOrganizationResponse
     :: Int -- ^ 'dorsResponseStatus'
     -> DescribeOrganizationResponse
-describeOrganizationResponse pResponseStatus_ =
-  DescribeOrganizationResponse'
-    {_dorsOrganization = Nothing, _dorsResponseStatus = pResponseStatus_}
+describeOrganizationResponse pResponseStatus_
+  = DescribeOrganizationResponse'{_dorsOrganization =
+                                    Nothing,
+                                  _dorsResponseStatus = pResponseStatus_}
 
-
--- | A structure that contains information about the organization.
+-- | A structure that contains information about the organization. /Important:/ The @AvailablePolicyTypes@ part of the response is deprecated, and you shouldn't use it in your apps. It doesn't include any policy type supported by Organizations other than SCPs. To determine which policy types are enabled in your organization, use the @'ListRoots' @ operation.
 dorsOrganization :: Lens' DescribeOrganizationResponse (Maybe Organization)
 dorsOrganization = lens _dorsOrganization (\ s a -> s{_dorsOrganization = a})
 

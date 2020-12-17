@@ -39,7 +39,6 @@ module Network.AWS.EMR.DescribeStep
     ) where
 
 import Network.AWS.EMR.Types
-import Network.AWS.EMR.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -50,11 +49,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'describeStep' smart constructor.
-data DescribeStep = DescribeStep'
-  { _dsClusterId :: !Text
-  , _dsStepId    :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeStep = DescribeStep'{_dsClusterId ::
+                                  !Text,
+                                  _dsStepId :: !Text}
+                      deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DescribeStep' with the minimum fields required to make a request.
 --
@@ -67,9 +65,9 @@ describeStep
     :: Text -- ^ 'dsClusterId'
     -> Text -- ^ 'dsStepId'
     -> DescribeStep
-describeStep pClusterId_ pStepId_ =
-  DescribeStep' {_dsClusterId = pClusterId_, _dsStepId = pStepId_}
-
+describeStep pClusterId_ pStepId_
+  = DescribeStep'{_dsClusterId = pClusterId_,
+                  _dsStepId = pStepId_}
 
 -- | The identifier of the cluster with steps to describe.
 dsClusterId :: Lens' DescribeStep Text
@@ -119,11 +117,10 @@ instance ToQuery DescribeStep where
 --
 --
 -- /See:/ 'describeStepResponse' smart constructor.
-data DescribeStepResponse = DescribeStepResponse'
-  { _dsrsStep           :: !(Maybe Step)
-  , _dsrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeStepResponse = DescribeStepResponse'{_dsrsStep
+                                                  :: !(Maybe Step),
+                                                  _dsrsResponseStatus :: !Int}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DescribeStepResponse' with the minimum fields required to make a request.
 --
@@ -135,10 +132,9 @@ data DescribeStepResponse = DescribeStepResponse'
 describeStepResponse
     :: Int -- ^ 'dsrsResponseStatus'
     -> DescribeStepResponse
-describeStepResponse pResponseStatus_ =
-  DescribeStepResponse'
-    {_dsrsStep = Nothing, _dsrsResponseStatus = pResponseStatus_}
-
+describeStepResponse pResponseStatus_
+  = DescribeStepResponse'{_dsrsStep = Nothing,
+                          _dsrsResponseStatus = pResponseStatus_}
 
 -- | The step details for the requested step identifier.
 dsrsStep :: Lens' DescribeStepResponse (Maybe Step)

@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Attaches tags to an existing Elasticsearch domain. Tags are a set of case-sensitive key value pairs. An Elasticsearch domain may have up to 10 tags. See <http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-awsresorcetagging Tagging Amazon Elasticsearch Service Domains for more information.>
+-- Attaches tags to an existing Elasticsearch domain. Tags are a set of case-sensitive key value pairs. An Elasticsearch domain may have up to 10 tags. See <http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-awsresorcetagging Tagging Amazon Elasticsearch Service Domains for more information.> 
 --
 --
 module Network.AWS.ElasticSearch.AddTags
@@ -36,7 +36,6 @@ module Network.AWS.ElasticSearch.AddTags
     ) where
 
 import Network.AWS.ElasticSearch.Types
-import Network.AWS.ElasticSearch.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -47,11 +46,9 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'addTags' smart constructor.
-data AddTags = AddTags'
-  { _atARN     :: !Text
-  , _atTagList :: ![Tag]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data AddTags = AddTags'{_atARN :: !Text,
+                        _atTagList :: ![Tag]}
+                 deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'AddTags' with the minimum fields required to make a request.
 --
@@ -59,18 +56,18 @@ data AddTags = AddTags'
 --
 -- * 'atARN' - Specify the @ARN@ for which you want to add the tags.
 --
--- * 'atTagList' - List of @Tag@ that need to be added for the Elasticsearch domain.
+-- * 'atTagList' - List of @Tag@ that need to be added for the Elasticsearch domain. 
 addTags
     :: Text -- ^ 'atARN'
     -> AddTags
-addTags pARN_ = AddTags' {_atARN = pARN_, _atTagList = mempty}
-
+addTags pARN_
+  = AddTags'{_atARN = pARN_, _atTagList = mempty}
 
 -- | Specify the @ARN@ for which you want to add the tags.
 atARN :: Lens' AddTags Text
 atARN = lens _atARN (\ s a -> s{_atARN = a})
 
--- | List of @Tag@ that need to be added for the Elasticsearch domain.
+-- | List of @Tag@ that need to be added for the Elasticsearch domain. 
 atTagList :: Lens' AddTags [Tag]
 atTagList = lens _atTagList (\ s a -> s{_atTagList = a}) . _Coerce
 
@@ -100,16 +97,13 @@ instance ToQuery AddTags where
         toQuery = const mempty
 
 -- | /See:/ 'addTagsResponse' smart constructor.
-data AddTagsResponse =
-  AddTagsResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data AddTagsResponse = AddTagsResponse'
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'AddTagsResponse' with the minimum fields required to make a request.
 --
 addTagsResponse
     :: AddTagsResponse
 addTagsResponse = AddTagsResponse'
-
 
 instance NFData AddTagsResponse where

@@ -25,8 +25,17 @@ module Network.AWS.XRay
     -- ** InvalidRequestException
     , _InvalidRequestException
 
+    -- ** RuleLimitExceededException
+    , _RuleLimitExceededException
+
     -- ** ThrottledException
     , _ThrottledException
+
+    -- ** TooManyTagsException
+    , _TooManyTagsException
+
+    -- ** ResourceNotFoundException
+    , _ResourceNotFoundException
 
     -- * Waiters
     -- $waiters
@@ -34,29 +43,86 @@ module Network.AWS.XRay
     -- * Operations
     -- $operations
 
-    -- ** PutEncryptionConfig
+    -- ** PutEncryptionConfig 
     , module Network.AWS.XRay.PutEncryptionConfig
 
     -- ** GetServiceGraph (Paginated)
     , module Network.AWS.XRay.GetServiceGraph
 
+    -- ** GetSamplingTargets 
+    , module Network.AWS.XRay.GetSamplingTargets
+
+    -- ** ListTagsForResource 
+    , module Network.AWS.XRay.ListTagsForResource
+
     -- ** GetTraceSummaries (Paginated)
     , module Network.AWS.XRay.GetTraceSummaries
 
-    -- ** PutTraceSegments
+    -- ** PutTraceSegments 
     , module Network.AWS.XRay.PutTraceSegments
 
     -- ** BatchGetTraces (Paginated)
     , module Network.AWS.XRay.BatchGetTraces
 
-    -- ** GetEncryptionConfig
+    -- ** GetInsight 
+    , module Network.AWS.XRay.GetInsight
+
+    -- ** GetTimeSeriesServiceStatistics (Paginated)
+    , module Network.AWS.XRay.GetTimeSeriesServiceStatistics
+
+    -- ** GetEncryptionConfig 
     , module Network.AWS.XRay.GetEncryptionConfig
 
-    -- ** PutTelemetryRecords
+    -- ** GetInsightImpactGraph 
+    , module Network.AWS.XRay.GetInsightImpactGraph
+
+    -- ** UpdateSamplingRule 
+    , module Network.AWS.XRay.UpdateSamplingRule
+
+    -- ** DeleteSamplingRule 
+    , module Network.AWS.XRay.DeleteSamplingRule
+
+    -- ** GetInsightEvents 
+    , module Network.AWS.XRay.GetInsightEvents
+
+    -- ** GetGroups (Paginated)
+    , module Network.AWS.XRay.GetGroups
+
+    -- ** GetInsightSummaries 
+    , module Network.AWS.XRay.GetInsightSummaries
+
+    -- ** PutTelemetryRecords 
     , module Network.AWS.XRay.PutTelemetryRecords
+
+    -- ** GetSamplingRules (Paginated)
+    , module Network.AWS.XRay.GetSamplingRules
+
+    -- ** TagResource 
+    , module Network.AWS.XRay.TagResource
 
     -- ** GetTraceGraph (Paginated)
     , module Network.AWS.XRay.GetTraceGraph
+
+    -- ** CreateGroup 
+    , module Network.AWS.XRay.CreateGroup
+
+    -- ** UntagResource 
+    , module Network.AWS.XRay.UntagResource
+
+    -- ** DeleteGroup 
+    , module Network.AWS.XRay.DeleteGroup
+
+    -- ** UpdateGroup 
+    , module Network.AWS.XRay.UpdateGroup
+
+    -- ** GetGroup 
+    , module Network.AWS.XRay.GetGroup
+
+    -- ** GetSamplingStatisticSummaries (Paginated)
+    , module Network.AWS.XRay.GetSamplingStatisticSummaries
+
+    -- ** CreateSamplingRule 
+    , module Network.AWS.XRay.CreateSamplingRule
 
     -- * Types
 
@@ -65,6 +131,18 @@ module Network.AWS.XRay
 
     -- ** EncryptionType
     , EncryptionType (..)
+
+    -- ** InsightCategory
+    , InsightCategory (..)
+
+    -- ** InsightState
+    , InsightState (..)
+
+    -- ** SamplingStrategyName
+    , SamplingStrategyName (..)
+
+    -- ** TimeRangeType
+    , TimeRangeType (..)
 
     -- ** Alias
     , Alias
@@ -79,6 +157,16 @@ module Network.AWS.XRay
     , avNumberValue
     , avStringValue
     , avBooleanValue
+
+    -- ** AnomalousService
+    , AnomalousService
+    , anomalousService
+    , asServiceId
+
+    -- ** AvailabilityZoneDetail
+    , AvailabilityZoneDetail
+    , availabilityZoneDetail
+    , azdName
 
     -- ** BackendConnectionErrors
     , BackendConnectionErrors
@@ -116,6 +204,29 @@ module Network.AWS.XRay
     , ecKeyId
     , ecType
 
+    -- ** ErrorRootCause
+    , ErrorRootCause
+    , errorRootCause
+    , ercClientImpacting
+    , ercServices
+
+    -- ** ErrorRootCauseEntity
+    , ErrorRootCauseEntity
+    , errorRootCauseEntity
+    , erceExceptions
+    , erceRemote
+    , erceName
+
+    -- ** ErrorRootCauseService
+    , ErrorRootCauseService
+    , errorRootCauseService
+    , ercsEntityPath
+    , ercsAccountId
+    , ercsNames
+    , ercsName
+    , ercsInferred
+    , ercsType
+
     -- ** ErrorStatistics
     , ErrorStatistics
     , errorStatistics
@@ -123,11 +234,56 @@ module Network.AWS.XRay
     , eThrottleCount
     , eTotalCount
 
+    -- ** FaultRootCause
+    , FaultRootCause
+    , faultRootCause
+    , frcClientImpacting
+    , frcServices
+
+    -- ** FaultRootCauseEntity
+    , FaultRootCauseEntity
+    , faultRootCauseEntity
+    , frceExceptions
+    , frceRemote
+    , frceName
+
+    -- ** FaultRootCauseService
+    , FaultRootCauseService
+    , faultRootCauseService
+    , frcsEntityPath
+    , frcsAccountId
+    , frcsNames
+    , frcsName
+    , frcsInferred
+    , frcsType
+
     -- ** FaultStatistics
     , FaultStatistics
     , faultStatistics
     , fsOtherCount
     , fsTotalCount
+
+    -- ** ForecastStatistics
+    , ForecastStatistics
+    , forecastStatistics
+    , fsFaultCountLow
+    , fsFaultCountHigh
+
+    -- ** Group
+    , Group
+    , group'
+    , gFilterExpression
+    , gInsightsConfiguration
+    , gGroupARN
+    , gGroupName
+
+    -- ** GroupSummary
+    , GroupSummary
+    , groupSummary
+    , gsFilterExpression
+    , gsInsightsConfiguration
+    , gsGroupARN
+    , gsGroupName
 
     -- ** HTTP
     , HTTP
@@ -143,6 +299,189 @@ module Network.AWS.XRay
     , histogramEntry
     , heCount
     , heValue
+
+    -- ** Insight
+    , Insight
+    , insight
+    , iSummary
+    , iState
+    , iStartTime
+    , iInsightId
+    , iCategories
+    , iRootCauseServiceRequestImpactStatistics
+    , iTopAnomalousServices
+    , iRootCauseServiceId
+    , iClientRequestImpactStatistics
+    , iEndTime
+    , iGroupARN
+    , iGroupName
+
+    -- ** InsightEvent
+    , InsightEvent
+    , insightEvent
+    , ieSummary
+    , ieEventTime
+    , ieRootCauseServiceRequestImpactStatistics
+    , ieTopAnomalousServices
+    , ieClientRequestImpactStatistics
+
+    -- ** InsightImpactGraphEdge
+    , InsightImpactGraphEdge
+    , insightImpactGraphEdge
+    , iigeReferenceId
+
+    -- ** InsightImpactGraphService
+    , InsightImpactGraphService
+    , insightImpactGraphService
+    , iigsReferenceId
+    , iigsAccountId
+    , iigsNames
+    , iigsName
+    , iigsType
+    , iigsEdges
+
+    -- ** InsightSummary
+    , InsightSummary
+    , insightSummary
+    , isSummary
+    , isState
+    , isStartTime
+    , isInsightId
+    , isCategories
+    , isRootCauseServiceRequestImpactStatistics
+    , isTopAnomalousServices
+    , isRootCauseServiceId
+    , isClientRequestImpactStatistics
+    , isEndTime
+    , isGroupARN
+    , isGroupName
+    , isLastUpdateTime
+
+    -- ** InsightsConfiguration
+    , InsightsConfiguration
+    , insightsConfiguration
+    , icNotificationsEnabled
+    , icInsightsEnabled
+
+    -- ** InstanceIdDetail
+    , InstanceIdDetail
+    , instanceIdDetail
+    , iidId
+
+    -- ** RequestImpactStatistics
+    , RequestImpactStatistics
+    , requestImpactStatistics
+    , risOKCount
+    , risFaultCount
+    , risTotalCount
+
+    -- ** ResourceARNDetail
+    , ResourceARNDetail
+    , resourceARNDetail
+    , radARN
+
+    -- ** ResponseTimeRootCause
+    , ResponseTimeRootCause
+    , responseTimeRootCause
+    , rtrcClientImpacting
+    , rtrcServices
+
+    -- ** ResponseTimeRootCauseEntity
+    , ResponseTimeRootCauseEntity
+    , responseTimeRootCauseEntity
+    , rtrceRemote
+    , rtrceCoverage
+    , rtrceName
+
+    -- ** ResponseTimeRootCauseService
+    , ResponseTimeRootCauseService
+    , responseTimeRootCauseService
+    , rtrcsEntityPath
+    , rtrcsAccountId
+    , rtrcsNames
+    , rtrcsName
+    , rtrcsInferred
+    , rtrcsType
+
+    -- ** RootCauseException
+    , RootCauseException
+    , rootCauseException
+    , rceName
+    , rceMessage
+
+    -- ** SamplingRule
+    , SamplingRule
+    , samplingRule
+    , srRuleName
+    , srAttributes
+    , srRuleARN
+    , srResourceARN
+    , srPriority
+    , srFixedRate
+    , srReservoirSize
+    , srServiceName
+    , srServiceType
+    , srHost
+    , srHTTPMethod
+    , srURLPath
+    , srVersion
+
+    -- ** SamplingRuleRecord
+    , SamplingRuleRecord
+    , samplingRuleRecord
+    , srrModifiedAt
+    , srrSamplingRule
+    , srrCreatedAt
+
+    -- ** SamplingRuleUpdate
+    , SamplingRuleUpdate
+    , samplingRuleUpdate
+    , sruHTTPMethod
+    , sruPriority
+    , sruRuleName
+    , sruReservoirSize
+    , sruFixedRate
+    , sruResourceARN
+    , sruAttributes
+    , sruServiceName
+    , sruServiceType
+    , sruHost
+    , sruRuleARN
+    , sruURLPath
+
+    -- ** SamplingStatisticSummary
+    , SamplingStatisticSummary
+    , samplingStatisticSummary
+    , sssRequestCount
+    , sssBorrowCount
+    , sssRuleName
+    , sssTimestamp
+    , sssSampledCount
+
+    -- ** SamplingStatisticsDocument
+    , SamplingStatisticsDocument
+    , samplingStatisticsDocument
+    , ssdBorrowCount
+    , ssdRuleName
+    , ssdClientId
+    , ssdTimestamp
+    , ssdRequestCount
+    , ssdSampledCount
+
+    -- ** SamplingStrategy
+    , SamplingStrategy
+    , samplingStrategy
+    , ssValue
+    , ssName
+
+    -- ** SamplingTargetDocument
+    , SamplingTargetDocument
+    , samplingTargetDocument
+    , stdReservoirQuota
+    , stdRuleName
+    , stdFixedRate
+    , stdInterval
+    , stdReservoirQuotaTTL
 
     -- ** Segment
     , Segment
@@ -184,6 +523,12 @@ module Network.AWS.XRay
     , ssErrorStatistics
     , ssTotalCount
 
+    -- ** Tag
+    , Tag
+    , tag
+    , tagKey
+    , tagValue
+
     -- ** TelemetryRecord
     , TelemetryRecord
     , telemetryRecord
@@ -194,9 +539,19 @@ module Network.AWS.XRay
     , trBackendConnectionErrors
     , trTimestamp
 
+    -- ** TimeSeriesServiceStatistics
+    , TimeSeriesServiceStatistics
+    , timeSeriesServiceStatistics
+    , tsssServiceSummaryStatistics
+    , tsssResponseTimeHistogram
+    , tsssEdgeSummaryStatistics
+    , tsssServiceForecastStatistics
+    , tsssTimestamp
+
     -- ** Trace
     , Trace
     , trace
+    , tLimitExceeded
     , tId
     , tSegments
     , tDuration
@@ -207,13 +562,22 @@ module Network.AWS.XRay
     , tsAnnotations
     , tsHasThrottle
     , tsUsers
+    , tsEntryPoint
     , tsHasFault
     , tsServiceIds
+    , tsMatchedEventTime
     , tsIsPartial
+    , tsErrorRootCauses
+    , tsResourceARNs
+    , tsAvailabilityZones
+    , tsInstanceIds
+    , tsResponseTimeRootCauses
     , tsHasError
     , tsId
     , tsHTTP
+    , tsRevision
     , tsDuration
+    , tsFaultRootCauses
     , tsResponseTime
 
     -- ** TraceUser
@@ -221,6 +585,13 @@ module Network.AWS.XRay
     , traceUser
     , tuServiceIds
     , tuUserName
+
+    -- ** UnprocessedStatistics
+    , UnprocessedStatistics
+    , unprocessedStatistics
+    , usRuleName
+    , usErrorCode
+    , usMessage
 
     -- ** UnprocessedTraceSegment
     , UnprocessedTraceSegment
@@ -237,14 +608,33 @@ module Network.AWS.XRay
     ) where
 
 import Network.AWS.XRay.BatchGetTraces
+import Network.AWS.XRay.CreateGroup
+import Network.AWS.XRay.CreateSamplingRule
+import Network.AWS.XRay.DeleteGroup
+import Network.AWS.XRay.DeleteSamplingRule
 import Network.AWS.XRay.GetEncryptionConfig
+import Network.AWS.XRay.GetGroup
+import Network.AWS.XRay.GetGroups
+import Network.AWS.XRay.GetInsight
+import Network.AWS.XRay.GetInsightEvents
+import Network.AWS.XRay.GetInsightImpactGraph
+import Network.AWS.XRay.GetInsightSummaries
+import Network.AWS.XRay.GetSamplingRules
+import Network.AWS.XRay.GetSamplingStatisticSummaries
+import Network.AWS.XRay.GetSamplingTargets
 import Network.AWS.XRay.GetServiceGraph
+import Network.AWS.XRay.GetTimeSeriesServiceStatistics
 import Network.AWS.XRay.GetTraceGraph
 import Network.AWS.XRay.GetTraceSummaries
+import Network.AWS.XRay.ListTagsForResource
 import Network.AWS.XRay.PutEncryptionConfig
 import Network.AWS.XRay.PutTelemetryRecords
 import Network.AWS.XRay.PutTraceSegments
+import Network.AWS.XRay.TagResource
 import Network.AWS.XRay.Types
+import Network.AWS.XRay.UntagResource
+import Network.AWS.XRay.UpdateGroup
+import Network.AWS.XRay.UpdateSamplingRule
 import Network.AWS.XRay.Waiters
 
 {- $errors

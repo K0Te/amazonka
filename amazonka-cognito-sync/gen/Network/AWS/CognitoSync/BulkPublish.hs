@@ -40,7 +40,6 @@ module Network.AWS.CognitoSync.BulkPublish
     ) where
 
 import Network.AWS.CognitoSync.Types
-import Network.AWS.CognitoSync.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -49,10 +48,9 @@ import Network.AWS.Response
 -- | The input for the BulkPublish operation.
 --
 -- /See:/ 'bulkPublish' smart constructor.
-newtype BulkPublish = BulkPublish'
-  { _bpIdentityPoolId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype BulkPublish = BulkPublish'{_bpIdentityPoolId
+                                   :: Text}
+                        deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'BulkPublish' with the minimum fields required to make a request.
 --
@@ -62,9 +60,8 @@ newtype BulkPublish = BulkPublish'
 bulkPublish
     :: Text -- ^ 'bpIdentityPoolId'
     -> BulkPublish
-bulkPublish pIdentityPoolId_ =
-  BulkPublish' {_bpIdentityPoolId = pIdentityPoolId_}
-
+bulkPublish pIdentityPoolId_
+  = BulkPublish'{_bpIdentityPoolId = pIdentityPoolId_}
 
 -- | A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE) created by Amazon Cognito. GUID generation is unique within a region.
 bpIdentityPoolId :: Lens' BulkPublish Text
@@ -105,11 +102,10 @@ instance ToQuery BulkPublish where
 -- | The output for the BulkPublish operation.
 --
 -- /See:/ 'bulkPublishResponse' smart constructor.
-data BulkPublishResponse = BulkPublishResponse'
-  { _bprsIdentityPoolId :: !(Maybe Text)
-  , _bprsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data BulkPublishResponse = BulkPublishResponse'{_bprsIdentityPoolId
+                                                :: !(Maybe Text),
+                                                _bprsResponseStatus :: !Int}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'BulkPublishResponse' with the minimum fields required to make a request.
 --
@@ -121,10 +117,9 @@ data BulkPublishResponse = BulkPublishResponse'
 bulkPublishResponse
     :: Int -- ^ 'bprsResponseStatus'
     -> BulkPublishResponse
-bulkPublishResponse pResponseStatus_ =
-  BulkPublishResponse'
-    {_bprsIdentityPoolId = Nothing, _bprsResponseStatus = pResponseStatus_}
-
+bulkPublishResponse pResponseStatus_
+  = BulkPublishResponse'{_bprsIdentityPoolId = Nothing,
+                         _bprsResponseStatus = pResponseStatus_}
 
 -- | A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE) created by Amazon Cognito. GUID generation is unique within a region.
 bprsIdentityPoolId :: Lens' BulkPublishResponse (Maybe Text)

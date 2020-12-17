@@ -23,8 +23,6 @@
 --
 -- To enable Amazon Cognito advanced security features, update the user pool to include the @UserPoolAddOns@ key@AdvancedSecurityMode@ .
 --
--- See .
---
 module Network.AWS.CognitoIdentityProvider.SetRiskConfiguration
     (
     -- * Creating a Request
@@ -46,21 +44,28 @@ module Network.AWS.CognitoIdentityProvider.SetRiskConfiguration
     ) where
 
 import Network.AWS.CognitoIdentityProvider.Types
-import Network.AWS.CognitoIdentityProvider.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'setRiskConfiguration' smart constructor.
-data SetRiskConfiguration = SetRiskConfiguration'
-  { _srcRiskExceptionConfiguration :: !(Maybe RiskExceptionConfigurationType)
-  , _srcClientId :: !(Maybe (Sensitive Text))
-  , _srcAccountTakeoverRiskConfiguration :: !(Maybe AccountTakeoverRiskConfigurationType)
-  , _srcCompromisedCredentialsRiskConfiguration :: !(Maybe CompromisedCredentialsRiskConfigurationType)
-  , _srcUserPoolId :: !Text
-  } deriving (Eq, Show, Data, Typeable, Generic)
-
+data SetRiskConfiguration = SetRiskConfiguration'{_srcRiskExceptionConfiguration
+                                                  ::
+                                                  !(Maybe
+                                                      RiskExceptionConfigurationType),
+                                                  _srcClientId ::
+                                                  !(Maybe (Sensitive Text)),
+                                                  _srcAccountTakeoverRiskConfiguration
+                                                  ::
+                                                  !(Maybe
+                                                      AccountTakeoverRiskConfigurationType),
+                                                  _srcCompromisedCredentialsRiskConfiguration
+                                                  ::
+                                                  !(Maybe
+                                                      CompromisedCredentialsRiskConfigurationType),
+                                                  _srcUserPoolId :: !Text}
+                              deriving (Eq, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'SetRiskConfiguration' with the minimum fields required to make a request.
 --
@@ -74,19 +79,18 @@ data SetRiskConfiguration = SetRiskConfiguration'
 --
 -- * 'srcCompromisedCredentialsRiskConfiguration' - The compromised credentials risk configuration.
 --
--- * 'srcUserPoolId' - The user pool ID.
+-- * 'srcUserPoolId' - The user pool ID. 
 setRiskConfiguration
     :: Text -- ^ 'srcUserPoolId'
     -> SetRiskConfiguration
-setRiskConfiguration pUserPoolId_ =
-  SetRiskConfiguration'
-    { _srcRiskExceptionConfiguration = Nothing
-    , _srcClientId = Nothing
-    , _srcAccountTakeoverRiskConfiguration = Nothing
-    , _srcCompromisedCredentialsRiskConfiguration = Nothing
-    , _srcUserPoolId = pUserPoolId_
-    }
-
+setRiskConfiguration pUserPoolId_
+  = SetRiskConfiguration'{_srcRiskExceptionConfiguration
+                            = Nothing,
+                          _srcClientId = Nothing,
+                          _srcAccountTakeoverRiskConfiguration = Nothing,
+                          _srcCompromisedCredentialsRiskConfiguration =
+                            Nothing,
+                          _srcUserPoolId = pUserPoolId_}
 
 -- | The configuration to override the risk decision.
 srcRiskExceptionConfiguration :: Lens' SetRiskConfiguration (Maybe RiskExceptionConfigurationType)
@@ -104,7 +108,7 @@ srcAccountTakeoverRiskConfiguration = lens _srcAccountTakeoverRiskConfiguration 
 srcCompromisedCredentialsRiskConfiguration :: Lens' SetRiskConfiguration (Maybe CompromisedCredentialsRiskConfigurationType)
 srcCompromisedCredentialsRiskConfiguration = lens _srcCompromisedCredentialsRiskConfiguration (\ s a -> s{_srcCompromisedCredentialsRiskConfiguration = a})
 
--- | The user pool ID.
+-- | The user pool ID. 
 srcUserPoolId :: Lens' SetRiskConfiguration Text
 srcUserPoolId = lens _srcUserPoolId (\ s a -> s{_srcUserPoolId = a})
 
@@ -152,11 +156,13 @@ instance ToQuery SetRiskConfiguration where
         toQuery = const mempty
 
 -- | /See:/ 'setRiskConfigurationResponse' smart constructor.
-data SetRiskConfigurationResponse = SetRiskConfigurationResponse'
-  { _srcrsResponseStatus    :: !Int
-  , _srcrsRiskConfiguration :: !RiskConfigurationType
-  } deriving (Eq, Show, Data, Typeable, Generic)
-
+data SetRiskConfigurationResponse = SetRiskConfigurationResponse'{_srcrsResponseStatus
+                                                                  :: !Int,
+                                                                  _srcrsRiskConfiguration
+                                                                  ::
+                                                                  !RiskConfigurationType}
+                                      deriving (Eq, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'SetRiskConfigurationResponse' with the minimum fields required to make a request.
 --
@@ -169,12 +175,11 @@ setRiskConfigurationResponse
     :: Int -- ^ 'srcrsResponseStatus'
     -> RiskConfigurationType -- ^ 'srcrsRiskConfiguration'
     -> SetRiskConfigurationResponse
-setRiskConfigurationResponse pResponseStatus_ pRiskConfiguration_ =
-  SetRiskConfigurationResponse'
-    { _srcrsResponseStatus = pResponseStatus_
-    , _srcrsRiskConfiguration = pRiskConfiguration_
-    }
-
+setRiskConfigurationResponse pResponseStatus_
+  pRiskConfiguration_
+  = SetRiskConfigurationResponse'{_srcrsResponseStatus
+                                    = pResponseStatus_,
+                                  _srcrsRiskConfiguration = pRiskConfiguration_}
 
 -- | -- | The response status code.
 srcrsResponseStatus :: Lens' SetRiskConfigurationResponse Int

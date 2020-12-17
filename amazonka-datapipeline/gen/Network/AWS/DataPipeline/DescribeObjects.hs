@@ -45,7 +45,6 @@ module Network.AWS.DataPipeline.DescribeObjects
     ) where
 
 import Network.AWS.DataPipeline.Types
-import Network.AWS.DataPipeline.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
@@ -57,13 +56,12 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'describeObjects' smart constructor.
-data DescribeObjects = DescribeObjects'
-  { _doEvaluateExpressions :: !(Maybe Bool)
-  , _doMarker              :: !(Maybe Text)
-  , _doPipelineId          :: !Text
-  , _doObjectIds           :: ![Text]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeObjects = DescribeObjects'{_doEvaluateExpressions
+                                        :: !(Maybe Bool),
+                                        _doMarker :: !(Maybe Text),
+                                        _doPipelineId :: !Text,
+                                        _doObjectIds :: ![Text]}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DescribeObjects' with the minimum fields required to make a request.
 --
@@ -79,14 +77,10 @@ data DescribeObjects = DescribeObjects'
 describeObjects
     :: Text -- ^ 'doPipelineId'
     -> DescribeObjects
-describeObjects pPipelineId_ =
-  DescribeObjects'
-    { _doEvaluateExpressions = Nothing
-    , _doMarker = Nothing
-    , _doPipelineId = pPipelineId_
-    , _doObjectIds = mempty
-    }
-
+describeObjects pPipelineId_
+  = DescribeObjects'{_doEvaluateExpressions = Nothing,
+                     _doMarker = Nothing, _doPipelineId = pPipelineId_,
+                     _doObjectIds = mempty}
 
 -- | Indicates whether any expressions in the object should be evaluated when the object descriptions are returned.
 doEvaluateExpressions :: Lens' DescribeObjects (Maybe Bool)
@@ -156,13 +150,16 @@ instance ToQuery DescribeObjects where
 --
 --
 -- /See:/ 'describeObjectsResponse' smart constructor.
-data DescribeObjectsResponse = DescribeObjectsResponse'
-  { _dorsHasMoreResults  :: !(Maybe Bool)
-  , _dorsMarker          :: !(Maybe Text)
-  , _dorsResponseStatus  :: !Int
-  , _dorsPipelineObjects :: ![PipelineObject]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeObjectsResponse = DescribeObjectsResponse'{_dorsHasMoreResults
+                                                        :: !(Maybe Bool),
+                                                        _dorsMarker ::
+                                                        !(Maybe Text),
+                                                        _dorsResponseStatus ::
+                                                        !Int,
+                                                        _dorsPipelineObjects ::
+                                                        ![PipelineObject]}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'DescribeObjectsResponse' with the minimum fields required to make a request.
 --
@@ -178,14 +175,12 @@ data DescribeObjectsResponse = DescribeObjectsResponse'
 describeObjectsResponse
     :: Int -- ^ 'dorsResponseStatus'
     -> DescribeObjectsResponse
-describeObjectsResponse pResponseStatus_ =
-  DescribeObjectsResponse'
-    { _dorsHasMoreResults = Nothing
-    , _dorsMarker = Nothing
-    , _dorsResponseStatus = pResponseStatus_
-    , _dorsPipelineObjects = mempty
-    }
-
+describeObjectsResponse pResponseStatus_
+  = DescribeObjectsResponse'{_dorsHasMoreResults =
+                               Nothing,
+                             _dorsMarker = Nothing,
+                             _dorsResponseStatus = pResponseStatus_,
+                             _dorsPipelineObjects = mempty}
 
 -- | Indicates whether there are more results to return.
 dorsHasMoreResults :: Lens' DescribeObjectsResponse (Maybe Bool)

@@ -18,7 +18,9 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Returns information about an export job.
+-- Retrieves information about the status and settings of a specific export job for an application.
+--
+--
 module Network.AWS.Pinpoint.GetExportJob
     (
     -- * Creating a Request
@@ -32,44 +34,42 @@ module Network.AWS.Pinpoint.GetExportJob
     , getExportJobResponse
     , GetExportJobResponse
     -- * Response Lenses
-    , getrsResponseStatus
-    , getrsExportJobResponse
+    , gejersResponseStatus
+    , gejersExportJobResponse
     ) where
 
 import Network.AWS.Lens
 import Network.AWS.Pinpoint.Types
-import Network.AWS.Pinpoint.Types.Product
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'getExportJob' smart constructor.
-data GetExportJob = GetExportJob'
-  { _gejApplicationId :: !Text
-  , _gejJobId         :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetExportJob = GetExportJob'{_gejApplicationId
+                                  :: !Text,
+                                  _gejJobId :: !Text}
+                      deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetExportJob' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'gejApplicationId' - Undocumented member.
+-- * 'gejApplicationId' - The unique identifier for the application. This identifier is displayed as the __Project ID__ on the Amazon Pinpoint console.
 --
--- * 'gejJobId' - Undocumented member.
+-- * 'gejJobId' - The unique identifier for the job.
 getExportJob
     :: Text -- ^ 'gejApplicationId'
     -> Text -- ^ 'gejJobId'
     -> GetExportJob
-getExportJob pApplicationId_ pJobId_ =
-  GetExportJob' {_gejApplicationId = pApplicationId_, _gejJobId = pJobId_}
+getExportJob pApplicationId_ pJobId_
+  = GetExportJob'{_gejApplicationId = pApplicationId_,
+                  _gejJobId = pJobId_}
 
-
--- | Undocumented member.
+-- | The unique identifier for the application. This identifier is displayed as the __Project ID__ on the Amazon Pinpoint console.
 gejApplicationId :: Lens' GetExportJob Text
 gejApplicationId = lens _gejApplicationId (\ s a -> s{_gejApplicationId = a})
 
--- | Undocumented member.
+-- | The unique identifier for the job.
 gejJobId :: Lens' GetExportJob Text
 gejJobId = lens _gejJobId (\ s a -> s{_gejJobId = a})
 
@@ -103,36 +103,35 @@ instance ToQuery GetExportJob where
         toQuery = const mempty
 
 -- | /See:/ 'getExportJobResponse' smart constructor.
-data GetExportJobResponse = GetExportJobResponse'
-  { _getrsResponseStatus    :: !Int
-  , _getrsExportJobResponse :: !ExportJobResponse
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetExportJobResponse = GetExportJobResponse'{_gejersResponseStatus
+                                                  :: !Int,
+                                                  _gejersExportJobResponse ::
+                                                  !ExportJobResponse}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetExportJobResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'getrsResponseStatus' - -- | The response status code.
+-- * 'gejersResponseStatus' - -- | The response status code.
 --
--- * 'getrsExportJobResponse' - Undocumented member.
+-- * 'gejersExportJobResponse' - Undocumented member.
 getExportJobResponse
-    :: Int -- ^ 'getrsResponseStatus'
-    -> ExportJobResponse -- ^ 'getrsExportJobResponse'
+    :: Int -- ^ 'gejersResponseStatus'
+    -> ExportJobResponse -- ^ 'gejersExportJobResponse'
     -> GetExportJobResponse
-getExportJobResponse pResponseStatus_ pExportJobResponse_ =
-  GetExportJobResponse'
-    { _getrsResponseStatus = pResponseStatus_
-    , _getrsExportJobResponse = pExportJobResponse_
-    }
-
+getExportJobResponse pResponseStatus_
+  pExportJobResponse_
+  = GetExportJobResponse'{_gejersResponseStatus =
+                            pResponseStatus_,
+                          _gejersExportJobResponse = pExportJobResponse_}
 
 -- | -- | The response status code.
-getrsResponseStatus :: Lens' GetExportJobResponse Int
-getrsResponseStatus = lens _getrsResponseStatus (\ s a -> s{_getrsResponseStatus = a})
+gejersResponseStatus :: Lens' GetExportJobResponse Int
+gejersResponseStatus = lens _gejersResponseStatus (\ s a -> s{_gejersResponseStatus = a})
 
 -- | Undocumented member.
-getrsExportJobResponse :: Lens' GetExportJobResponse ExportJobResponse
-getrsExportJobResponse = lens _getrsExportJobResponse (\ s a -> s{_getrsExportJobResponse = a})
+gejersExportJobResponse :: Lens' GetExportJobResponse ExportJobResponse
+gejersExportJobResponse = lens _gejersExportJobResponse (\ s a -> s{_gejersExportJobResponse = a})
 
 instance NFData GetExportJobResponse where

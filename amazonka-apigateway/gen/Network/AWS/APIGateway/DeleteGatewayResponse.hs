@@ -36,7 +36,6 @@ module Network.AWS.APIGateway.DeleteGatewayResponse
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -47,11 +46,12 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'deleteGatewayResponse' smart constructor.
-data DeleteGatewayResponse = DeleteGatewayResponse'
-  { _dgRestAPIId    :: !Text
-  , _dgResponseType :: !GatewayResponseType
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteGatewayResponse = DeleteGatewayResponse'{_dgRestAPIId
+                                                    :: !Text,
+                                                    _dgResponseType ::
+                                                    !GatewayResponseType}
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'DeleteGatewayResponse' with the minimum fields required to make a request.
 --
@@ -64,10 +64,9 @@ deleteGatewayResponse
     :: Text -- ^ 'dgRestAPIId'
     -> GatewayResponseType -- ^ 'dgResponseType'
     -> DeleteGatewayResponse
-deleteGatewayResponse pRestAPIId_ pResponseType_ =
-  DeleteGatewayResponse'
-    {_dgRestAPIId = pRestAPIId_, _dgResponseType = pResponseType_}
-
+deleteGatewayResponse pRestAPIId_ pResponseType_
+  = DeleteGatewayResponse'{_dgRestAPIId = pRestAPIId_,
+                           _dgResponseType = pResponseType_}
 
 -- | [Required] The string identifier of the associated 'RestApi' .
 dgRestAPIId :: Lens' DeleteGatewayResponse Text
@@ -103,16 +102,15 @@ instance ToQuery DeleteGatewayResponse where
         toQuery = const mempty
 
 -- | /See:/ 'deleteGatewayResponseResponse' smart constructor.
-data DeleteGatewayResponseResponse =
-  DeleteGatewayResponseResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteGatewayResponseResponse = DeleteGatewayResponseResponse'
+                                       deriving (Eq, Read, Show, Data, Typeable,
+                                                 Generic)
 
 -- | Creates a value of 'DeleteGatewayResponseResponse' with the minimum fields required to make a request.
 --
 deleteGatewayResponseResponse
     :: DeleteGatewayResponseResponse
-deleteGatewayResponseResponse = DeleteGatewayResponseResponse'
-
+deleteGatewayResponseResponse
+  = DeleteGatewayResponseResponse'
 
 instance NFData DeleteGatewayResponseResponse where

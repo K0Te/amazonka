@@ -41,18 +41,15 @@ module Network.AWS.MachineLearning.Predict
 
 import Network.AWS.Lens
 import Network.AWS.MachineLearning.Types
-import Network.AWS.MachineLearning.Types.Product
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'predict' smart constructor.
-data Predict = Predict'
-  { _pMLModelId       :: !Text
-  , _pRecord          :: !(Map Text Text)
-  , _pPredictEndpoint :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data Predict = Predict'{_pMLModelId :: !Text,
+                        _pRecord :: !(Map Text Text),
+                        _pPredictEndpoint :: !Text}
+                 deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'Predict' with the minimum fields required to make a request.
 --
@@ -67,13 +64,10 @@ predict
     :: Text -- ^ 'pMLModelId'
     -> Text -- ^ 'pPredictEndpoint'
     -> Predict
-predict pMLModelId_ pPredictEndpoint_ =
-  Predict'
-    { _pMLModelId = pMLModelId_
-    , _pRecord = mempty
-    , _pPredictEndpoint = pPredictEndpoint_
-    }
-
+predict pMLModelId_ pPredictEndpoint_
+  = Predict'{_pMLModelId = pMLModelId_,
+             _pRecord = mempty,
+             _pPredictEndpoint = pPredictEndpoint_}
 
 -- | A unique identifier of the @MLModel@ .
 pMLModelId :: Lens' Predict Text
@@ -124,11 +118,10 @@ instance ToQuery Predict where
         toQuery = const mempty
 
 -- | /See:/ 'predictResponse' smart constructor.
-data PredictResponse = PredictResponse'
-  { _prsPrediction     :: !(Maybe Prediction)
-  , _prsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data PredictResponse = PredictResponse'{_prsPrediction
+                                        :: !(Maybe Prediction),
+                                        _prsResponseStatus :: !Int}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'PredictResponse' with the minimum fields required to make a request.
 --
@@ -140,10 +133,9 @@ data PredictResponse = PredictResponse'
 predictResponse
     :: Int -- ^ 'prsResponseStatus'
     -> PredictResponse
-predictResponse pResponseStatus_ =
-  PredictResponse'
-    {_prsPrediction = Nothing, _prsResponseStatus = pResponseStatus_}
-
+predictResponse pResponseStatus_
+  = PredictResponse'{_prsPrediction = Nothing,
+                     _prsResponseStatus = pResponseStatus_}
 
 -- | Undocumented member.
 prsPrediction :: Lens' PredictResponse (Maybe Prediction)

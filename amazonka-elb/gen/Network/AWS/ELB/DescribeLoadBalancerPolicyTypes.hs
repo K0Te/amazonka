@@ -42,7 +42,6 @@ module Network.AWS.ELB.DescribeLoadBalancerPolicyTypes
     ) where
 
 import Network.AWS.ELB.Types
-import Network.AWS.ELB.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -53,10 +52,12 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'describeLoadBalancerPolicyTypes' smart constructor.
-newtype DescribeLoadBalancerPolicyTypes = DescribeLoadBalancerPolicyTypes'
-  { _dlbptPolicyTypeNames :: Maybe [Text]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DescribeLoadBalancerPolicyTypes = DescribeLoadBalancerPolicyTypes'{_dlbptPolicyTypeNames
+                                                                           ::
+                                                                           Maybe
+                                                                             [Text]}
+                                            deriving (Eq, Read, Show, Data,
+                                                      Typeable, Generic)
 
 -- | Creates a value of 'DescribeLoadBalancerPolicyTypes' with the minimum fields required to make a request.
 --
@@ -65,9 +66,9 @@ newtype DescribeLoadBalancerPolicyTypes = DescribeLoadBalancerPolicyTypes'
 -- * 'dlbptPolicyTypeNames' - The names of the policy types. If no names are specified, describes all policy types defined by Elastic Load Balancing.
 describeLoadBalancerPolicyTypes
     :: DescribeLoadBalancerPolicyTypes
-describeLoadBalancerPolicyTypes =
-  DescribeLoadBalancerPolicyTypes' {_dlbptPolicyTypeNames = Nothing}
-
+describeLoadBalancerPolicyTypes
+  = DescribeLoadBalancerPolicyTypes'{_dlbptPolicyTypeNames
+                                       = Nothing}
 
 -- | The names of the policy types. If no names are specified, describes all policy types defined by Elastic Load Balancing.
 dlbptPolicyTypeNames :: Lens' DescribeLoadBalancerPolicyTypes [Text]
@@ -115,11 +116,15 @@ instance ToQuery DescribeLoadBalancerPolicyTypes
 --
 --
 -- /See:/ 'describeLoadBalancerPolicyTypesResponse' smart constructor.
-data DescribeLoadBalancerPolicyTypesResponse = DescribeLoadBalancerPolicyTypesResponse'
-  { _dlbptrsPolicyTypeDescriptions :: !(Maybe [PolicyTypeDescription])
-  , _dlbptrsResponseStatus         :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeLoadBalancerPolicyTypesResponse = DescribeLoadBalancerPolicyTypesResponse'{_dlbptrsPolicyTypeDescriptions
+                                                                                        ::
+                                                                                        !(Maybe
+                                                                                            [PolicyTypeDescription]),
+                                                                                        _dlbptrsResponseStatus
+                                                                                        ::
+                                                                                        !Int}
+                                                 deriving (Eq, Read, Show, Data,
+                                                           Typeable, Generic)
 
 -- | Creates a value of 'DescribeLoadBalancerPolicyTypesResponse' with the minimum fields required to make a request.
 --
@@ -131,12 +136,12 @@ data DescribeLoadBalancerPolicyTypesResponse = DescribeLoadBalancerPolicyTypesRe
 describeLoadBalancerPolicyTypesResponse
     :: Int -- ^ 'dlbptrsResponseStatus'
     -> DescribeLoadBalancerPolicyTypesResponse
-describeLoadBalancerPolicyTypesResponse pResponseStatus_ =
-  DescribeLoadBalancerPolicyTypesResponse'
-    { _dlbptrsPolicyTypeDescriptions = Nothing
-    , _dlbptrsResponseStatus = pResponseStatus_
-    }
-
+describeLoadBalancerPolicyTypesResponse
+  pResponseStatus_
+  = DescribeLoadBalancerPolicyTypesResponse'{_dlbptrsPolicyTypeDescriptions
+                                               = Nothing,
+                                             _dlbptrsResponseStatus =
+                                               pResponseStatus_}
 
 -- | Information about the policy types.
 dlbptrsPolicyTypeDescriptions :: Lens' DescribeLoadBalancerPolicyTypesResponse [PolicyTypeDescription]

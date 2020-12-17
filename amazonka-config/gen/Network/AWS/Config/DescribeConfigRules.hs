@@ -42,23 +42,21 @@ module Network.AWS.Config.DescribeConfigRules
     ) where
 
 import Network.AWS.Config.Types
-import Network.AWS.Config.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- |
+-- | 
 --
 --
 --
 -- /See:/ 'describeConfigRules' smart constructor.
-data DescribeConfigRules = DescribeConfigRules'
-  { _dcrConfigRuleNames :: !(Maybe [Text])
-  , _dcrNextToken       :: !(Maybe Text)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeConfigRules = DescribeConfigRules'{_dcrConfigRuleNames
+                                                :: !(Maybe [Text]),
+                                                _dcrNextToken :: !(Maybe Text)}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DescribeConfigRules' with the minimum fields required to make a request.
 --
@@ -69,9 +67,9 @@ data DescribeConfigRules = DescribeConfigRules'
 -- * 'dcrNextToken' - The @nextToken@ string returned on a previous page that you use to get the next page of results in a paginated response.
 describeConfigRules
     :: DescribeConfigRules
-describeConfigRules =
-  DescribeConfigRules' {_dcrConfigRuleNames = Nothing, _dcrNextToken = Nothing}
-
+describeConfigRules
+  = DescribeConfigRules'{_dcrConfigRuleNames = Nothing,
+                         _dcrNextToken = Nothing}
 
 -- | The names of the AWS Config rules for which you want details. If you do not specify any names, AWS Config returns details for all your rules.
 dcrConfigRuleNames :: Lens' DescribeConfigRules [Text]
@@ -127,17 +125,22 @@ instance ToPath DescribeConfigRules where
 instance ToQuery DescribeConfigRules where
         toQuery = const mempty
 
--- |
+-- | 
 --
 --
 --
 -- /See:/ 'describeConfigRulesResponse' smart constructor.
-data DescribeConfigRulesResponse = DescribeConfigRulesResponse'
-  { _dcrrsConfigRules    :: !(Maybe [ConfigRule])
-  , _dcrrsNextToken      :: !(Maybe Text)
-  , _dcrrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeConfigRulesResponse = DescribeConfigRulesResponse'{_dcrrsConfigRules
+                                                                ::
+                                                                !(Maybe
+                                                                    [ConfigRule]),
+                                                                _dcrrsNextToken
+                                                                ::
+                                                                !(Maybe Text),
+                                                                _dcrrsResponseStatus
+                                                                :: !Int}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'DescribeConfigRulesResponse' with the minimum fields required to make a request.
 --
@@ -151,13 +154,11 @@ data DescribeConfigRulesResponse = DescribeConfigRulesResponse'
 describeConfigRulesResponse
     :: Int -- ^ 'dcrrsResponseStatus'
     -> DescribeConfigRulesResponse
-describeConfigRulesResponse pResponseStatus_ =
-  DescribeConfigRulesResponse'
-    { _dcrrsConfigRules = Nothing
-    , _dcrrsNextToken = Nothing
-    , _dcrrsResponseStatus = pResponseStatus_
-    }
-
+describeConfigRulesResponse pResponseStatus_
+  = DescribeConfigRulesResponse'{_dcrrsConfigRules =
+                                   Nothing,
+                                 _dcrrsNextToken = Nothing,
+                                 _dcrrsResponseStatus = pResponseStatus_}
 
 -- | The details about your AWS Config rules.
 dcrrsConfigRules :: Lens' DescribeConfigRulesResponse [ConfigRule]

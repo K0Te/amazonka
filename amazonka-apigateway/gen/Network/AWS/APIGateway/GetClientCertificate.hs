@@ -38,10 +38,10 @@ module Network.AWS.APIGateway.GetClientCertificate
     , ccCreatedDate
     , ccExpirationDate
     , ccDescription
+    , ccTags
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -52,10 +52,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'getClientCertificate' smart constructor.
-newtype GetClientCertificate = GetClientCertificate'
-  { _gccClientCertificateId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetClientCertificate = GetClientCertificate'{_gccClientCertificateId
+                                                     :: Text}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'GetClientCertificate' with the minimum fields required to make a request.
 --
@@ -65,9 +65,9 @@ newtype GetClientCertificate = GetClientCertificate'
 getClientCertificate
     :: Text -- ^ 'gccClientCertificateId'
     -> GetClientCertificate
-getClientCertificate pClientCertificateId_ =
-  GetClientCertificate' {_gccClientCertificateId = pClientCertificateId_}
-
+getClientCertificate pClientCertificateId_
+  = GetClientCertificate'{_gccClientCertificateId =
+                            pClientCertificateId_}
 
 -- | [Required] The identifier of the 'ClientCertificate' resource to be described.
 gccClientCertificateId :: Lens' GetClientCertificate Text

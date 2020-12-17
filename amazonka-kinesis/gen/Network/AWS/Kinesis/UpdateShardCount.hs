@@ -23,11 +23,13 @@
 --
 -- Updating the shard count is an asynchronous operation. Upon receiving the request, Kinesis Data Streams returns immediately and sets the status of the stream to @UPDATING@ . After the update is complete, Kinesis Data Streams sets the status of the stream back to @ACTIVE@ . Depending on the size of the stream, the scaling action could take a few minutes to complete. You can continue to read and write data to your stream while its status is @UPDATING@ .
 --
--- To update the shard count, Kinesis Data Streams performs splits or merges on individual shards. This can cause short-lived shards to be created, in addition to the final shards. We recommend that you double or halve the shard count, as this results in the fewest number of splits or merges.
+-- To update the shard count, Kinesis Data Streams performs splits or merges on individual shards. This can cause short-lived shards to be created, in addition to the final shards. These short-lived shards count towards your total shard limit for your account in the Region.
 --
--- This operation has the following limits. You cannot do the following:
+-- When using this operation, we recommend that you specify a target shard count that is a multiple of 25% (25%, 50%, 75%, 100%). You can specify any target value within your shard limit. However, if you specify a target that isn't a multiple of 25%, the scaling action might take longer to complete. 
 --
---     * Scale more than twice per rolling 24-hour period per stream
+-- This operation has the following default limits. By default, you cannot do the following:
+--
+--     * Scale more than ten times per rolling 24-hour period per stream
 --
 --     * Scale up to more than double your current shard count for a stream
 --
@@ -41,7 +43,7 @@
 --
 --
 --
--- For the default limits for an AWS account, see <http://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html Streams Limits> in the /Amazon Kinesis Data Streams Developer Guide/ . To request an increase in the call rate limit, the shard limit for this API, or your overall shard limit, use the <https://console.aws.amazon.com/support/v1#/case/create?issueType=service-limit-increase&amp;limitType=service-code-kinesis limits form> .
+-- For the default limits for an AWS account, see <https://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html Streams Limits> in the /Amazon Kinesis Data Streams Developer Guide/ . To request an increase in the call rate limit, the shard limit for this API, or your overall shard limit, use the <https://console.aws.amazon.com/support/v1#/case/create?issueType=service-limit-increase&limitType=service-code-kinesis limits form> .
 --
 module Network.AWS.Kinesis.UpdateShardCount
     (
@@ -64,19 +66,17 @@ module Network.AWS.Kinesis.UpdateShardCount
     ) where
 
 import Network.AWS.Kinesis.Types
-import Network.AWS.Kinesis.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'updateShardCount' smart constructor.
-data UpdateShardCount = UpdateShardCount'
-  { _uscStreamName       :: !Text
-  , _uscTargetShardCount :: !Nat
-  , _uscScalingType      :: !ScalingType
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateShardCount = UpdateShardCount'{_uscStreamName
+                                          :: !Text,
+                                          _uscTargetShardCount :: !Nat,
+                                          _uscScalingType :: !ScalingType}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UpdateShardCount' with the minimum fields required to make a request.
 --
@@ -84,7 +84,7 @@ data UpdateShardCount = UpdateShardCount'
 --
 -- * 'uscStreamName' - The name of the stream.
 --
--- * 'uscTargetShardCount' - The new number of shards.
+-- * 'uscTargetShardCount' - The new number of shards. This value has the following default limits. By default, you cannot do the following:      * Set this value to more than double your current shard count for a stream.     * Set this value below half your current shard count for a stream.     * Set this value to more than 500 shards in a stream (the default limit for shard count per stream is 500 per account per region), unless you request a limit increase.     * Scale a stream with more than 500 shards down unless you set this value to less than 500 shards.
 --
 -- * 'uscScalingType' - The scaling type. Uniform scaling creates shards of equal size.
 updateShardCount
@@ -92,19 +92,17 @@ updateShardCount
     -> Natural -- ^ 'uscTargetShardCount'
     -> ScalingType -- ^ 'uscScalingType'
     -> UpdateShardCount
-updateShardCount pStreamName_ pTargetShardCount_ pScalingType_ =
-  UpdateShardCount'
-    { _uscStreamName = pStreamName_
-    , _uscTargetShardCount = _Nat # pTargetShardCount_
-    , _uscScalingType = pScalingType_
-    }
-
+updateShardCount pStreamName_ pTargetShardCount_
+  pScalingType_
+  = UpdateShardCount'{_uscStreamName = pStreamName_,
+                      _uscTargetShardCount = _Nat # pTargetShardCount_,
+                      _uscScalingType = pScalingType_}
 
 -- | The name of the stream.
 uscStreamName :: Lens' UpdateShardCount Text
 uscStreamName = lens _uscStreamName (\ s a -> s{_uscStreamName = a})
 
--- | The new number of shards.
+-- | The new number of shards. This value has the following default limits. By default, you cannot do the following:      * Set this value to more than double your current shard count for a stream.     * Set this value below half your current shard count for a stream.     * Set this value to more than 500 shards in a stream (the default limit for shard count per stream is 500 per account per region), unless you request a limit increase.     * Scale a stream with more than 500 shards down unless you set this value to less than 500 shards.
 uscTargetShardCount :: Lens' UpdateShardCount Natural
 uscTargetShardCount = lens _uscTargetShardCount (\ s a -> s{_uscTargetShardCount = a}) . _Nat
 
@@ -151,13 +149,16 @@ instance ToQuery UpdateShardCount where
         toQuery = const mempty
 
 -- | /See:/ 'updateShardCountResponse' smart constructor.
-data UpdateShardCountResponse = UpdateShardCountResponse'
-  { _uscrsTargetShardCount  :: !(Maybe Nat)
-  , _uscrsStreamName        :: !(Maybe Text)
-  , _uscrsCurrentShardCount :: !(Maybe Nat)
-  , _uscrsResponseStatus    :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateShardCountResponse = UpdateShardCountResponse'{_uscrsTargetShardCount
+                                                          :: !(Maybe Nat),
+                                                          _uscrsStreamName ::
+                                                          !(Maybe Text),
+                                                          _uscrsCurrentShardCount
+                                                          :: !(Maybe Nat),
+                                                          _uscrsResponseStatus
+                                                          :: !Int}
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'UpdateShardCountResponse' with the minimum fields required to make a request.
 --
@@ -173,14 +174,12 @@ data UpdateShardCountResponse = UpdateShardCountResponse'
 updateShardCountResponse
     :: Int -- ^ 'uscrsResponseStatus'
     -> UpdateShardCountResponse
-updateShardCountResponse pResponseStatus_ =
-  UpdateShardCountResponse'
-    { _uscrsTargetShardCount = Nothing
-    , _uscrsStreamName = Nothing
-    , _uscrsCurrentShardCount = Nothing
-    , _uscrsResponseStatus = pResponseStatus_
-    }
-
+updateShardCountResponse pResponseStatus_
+  = UpdateShardCountResponse'{_uscrsTargetShardCount =
+                                Nothing,
+                              _uscrsStreamName = Nothing,
+                              _uscrsCurrentShardCount = Nothing,
+                              _uscrsResponseStatus = pResponseStatus_}
 
 -- | The updated number of shards.
 uscrsTargetShardCount :: Lens' UpdateShardCountResponse (Maybe Natural)

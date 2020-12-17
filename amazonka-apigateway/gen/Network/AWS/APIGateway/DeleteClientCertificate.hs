@@ -35,7 +35,6 @@ module Network.AWS.APIGateway.DeleteClientCertificate
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -46,10 +45,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'deleteClientCertificate' smart constructor.
-newtype DeleteClientCertificate = DeleteClientCertificate'
-  { _dccClientCertificateId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteClientCertificate = DeleteClientCertificate'{_dccClientCertificateId
+                                                           :: Text}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'DeleteClientCertificate' with the minimum fields required to make a request.
 --
@@ -59,9 +58,9 @@ newtype DeleteClientCertificate = DeleteClientCertificate'
 deleteClientCertificate
     :: Text -- ^ 'dccClientCertificateId'
     -> DeleteClientCertificate
-deleteClientCertificate pClientCertificateId_ =
-  DeleteClientCertificate' {_dccClientCertificateId = pClientCertificateId_}
-
+deleteClientCertificate pClientCertificateId_
+  = DeleteClientCertificate'{_dccClientCertificateId =
+                               pClientCertificateId_}
 
 -- | [Required] The identifier of the 'ClientCertificate' resource to be deleted.
 dccClientCertificateId :: Lens' DeleteClientCertificate Text
@@ -94,16 +93,15 @@ instance ToQuery DeleteClientCertificate where
         toQuery = const mempty
 
 -- | /See:/ 'deleteClientCertificateResponse' smart constructor.
-data DeleteClientCertificateResponse =
-  DeleteClientCertificateResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteClientCertificateResponse = DeleteClientCertificateResponse'
+                                         deriving (Eq, Read, Show, Data,
+                                                   Typeable, Generic)
 
 -- | Creates a value of 'DeleteClientCertificateResponse' with the minimum fields required to make a request.
 --
 deleteClientCertificateResponse
     :: DeleteClientCertificateResponse
-deleteClientCertificateResponse = DeleteClientCertificateResponse'
-
+deleteClientCertificateResponse
+  = DeleteClientCertificateResponse'
 
 instance NFData DeleteClientCertificateResponse where

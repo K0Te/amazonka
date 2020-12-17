@@ -18,10 +18,10 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Starts a specified instance. For more information, see <http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-starting.html Starting, Stopping, and Rebooting Instances> .
+-- Starts a specified instance. For more information, see <https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-starting.html Starting, Stopping, and Rebooting Instances> .
 --
 --
--- __Required Permissions__ : To use this action, an IAM user must have a Manage permissions level for the stack, or an attached policy that explicitly grants permissions. For more information on user permissions, see <http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html Managing User Permissions> .
+-- __Required Permissions__ : To use this action, an IAM user must have a Manage permissions level for the stack, or an attached policy that explicitly grants permissions. For more information on user permissions, see <https://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html Managing User Permissions> .
 --
 module Network.AWS.OpsWorks.StartInstance
     (
@@ -38,16 +38,14 @@ module Network.AWS.OpsWorks.StartInstance
 
 import Network.AWS.Lens
 import Network.AWS.OpsWorks.Types
-import Network.AWS.OpsWorks.Types.Product
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'startInstance' smart constructor.
-newtype StartInstance = StartInstance'
-  { _sInstanceId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype StartInstance = StartInstance'{_sInstanceId
+                                       :: Text}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'StartInstance' with the minimum fields required to make a request.
 --
@@ -57,8 +55,8 @@ newtype StartInstance = StartInstance'
 startInstance
     :: Text -- ^ 'sInstanceId'
     -> StartInstance
-startInstance pInstanceId_ = StartInstance' {_sInstanceId = pInstanceId_}
-
+startInstance pInstanceId_
+  = StartInstance'{_sInstanceId = pInstanceId_}
 
 -- | The instance ID.
 sInstanceId :: Lens' StartInstance Text
@@ -94,16 +92,14 @@ instance ToQuery StartInstance where
         toQuery = const mempty
 
 -- | /See:/ 'startInstanceResponse' smart constructor.
-data StartInstanceResponse =
-  StartInstanceResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data StartInstanceResponse = StartInstanceResponse'
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'StartInstanceResponse' with the minimum fields required to make a request.
 --
 startInstanceResponse
     :: StartInstanceResponse
 startInstanceResponse = StartInstanceResponse'
-
 
 instance NFData StartInstanceResponse where

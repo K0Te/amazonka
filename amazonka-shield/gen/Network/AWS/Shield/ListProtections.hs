@@ -47,14 +47,12 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.Shield.Types
-import Network.AWS.Shield.Types.Product
 
 -- | /See:/ 'listProtections' smart constructor.
-data ListProtections = ListProtections'
-  { _lpNextToken  :: !(Maybe Text)
-  , _lpMaxResults :: !(Maybe Nat)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListProtections = ListProtections'{_lpNextToken
+                                        :: !(Maybe Text),
+                                        _lpMaxResults :: !(Maybe Nat)}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListProtections' with the minimum fields required to make a request.
 --
@@ -62,18 +60,18 @@ data ListProtections = ListProtections'
 --
 -- * 'lpNextToken' - The @ListProtectionsRequest.NextToken@ value from a previous call to @ListProtections@ . Pass null if this is the first call.
 --
--- * 'lpMaxResults' - The maximum number of 'Protection' objects to be returned. If this is left blank the first 20 results will be returned.
+-- * 'lpMaxResults' - The maximum number of 'Protection' objects to return. If you leave this blank, Shield Advanced returns the first 20 results. This is a maximum value. Shield Advanced might return the results in smaller batches. That is, the number of objects returned could be less than @MaxResults@ , even if there are still more objects yet to return. If there are more objects to return, Shield Advanced returns a value in @NextToken@ that you can use in your next request, to get the next batch of objects.
 listProtections
     :: ListProtections
-listProtections =
-  ListProtections' {_lpNextToken = Nothing, _lpMaxResults = Nothing}
-
+listProtections
+  = ListProtections'{_lpNextToken = Nothing,
+                     _lpMaxResults = Nothing}
 
 -- | The @ListProtectionsRequest.NextToken@ value from a previous call to @ListProtections@ . Pass null if this is the first call.
 lpNextToken :: Lens' ListProtections (Maybe Text)
 lpNextToken = lens _lpNextToken (\ s a -> s{_lpNextToken = a})
 
--- | The maximum number of 'Protection' objects to be returned. If this is left blank the first 20 results will be returned.
+-- | The maximum number of 'Protection' objects to return. If you leave this blank, Shield Advanced returns the first 20 results. This is a maximum value. Shield Advanced might return the results in smaller batches. That is, the number of objects returned could be less than @MaxResults@ , even if there are still more objects yet to return. If there are more objects to return, Shield Advanced returns a value in @NextToken@ that you can use in your next request, to get the next batch of objects.
 lpMaxResults :: Lens' ListProtections (Maybe Natural)
 lpMaxResults = lens _lpMaxResults (\ s a -> s{_lpMaxResults = a}) . mapping _Nat
 
@@ -122,12 +120,15 @@ instance ToQuery ListProtections where
         toQuery = const mempty
 
 -- | /See:/ 'listProtectionsResponse' smart constructor.
-data ListProtectionsResponse = ListProtectionsResponse'
-  { _lprsProtections    :: !(Maybe [Protection])
-  , _lprsNextToken      :: !(Maybe Text)
-  , _lprsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListProtectionsResponse = ListProtectionsResponse'{_lprsProtections
+                                                        ::
+                                                        !(Maybe [Protection]),
+                                                        _lprsNextToken ::
+                                                        !(Maybe Text),
+                                                        _lprsResponseStatus ::
+                                                        !Int}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'ListProtectionsResponse' with the minimum fields required to make a request.
 --
@@ -135,25 +136,23 @@ data ListProtectionsResponse = ListProtectionsResponse'
 --
 -- * 'lprsProtections' - The array of enabled 'Protection' objects.
 --
--- * 'lprsNextToken' - If you specify a value for @MaxResults@ and you have more Protections than the value of MaxResults, AWS Shield Advanced returns a NextToken value in the response that allows you to list another group of Protections. For the second and subsequent ListProtections requests, specify the value of NextToken from the previous response to get information about another batch of Protections.
+-- * 'lprsNextToken' - If you specify a value for @MaxResults@ and you have more Protections than the value of MaxResults, AWS Shield Advanced returns a NextToken value in the response that allows you to list another group of Protections. For the second and subsequent ListProtections requests, specify the value of NextToken from the previous response to get information about another batch of Protections. Shield Advanced might return the list of 'Protection' objects in batches smaller than the number specified by MaxResults. If there are more 'Protection' objects to return, Shield Advanced will always also return a @NextToken@ .
 --
 -- * 'lprsResponseStatus' - -- | The response status code.
 listProtectionsResponse
     :: Int -- ^ 'lprsResponseStatus'
     -> ListProtectionsResponse
-listProtectionsResponse pResponseStatus_ =
-  ListProtectionsResponse'
-    { _lprsProtections = Nothing
-    , _lprsNextToken = Nothing
-    , _lprsResponseStatus = pResponseStatus_
-    }
-
+listProtectionsResponse pResponseStatus_
+  = ListProtectionsResponse'{_lprsProtections =
+                               Nothing,
+                             _lprsNextToken = Nothing,
+                             _lprsResponseStatus = pResponseStatus_}
 
 -- | The array of enabled 'Protection' objects.
 lprsProtections :: Lens' ListProtectionsResponse [Protection]
 lprsProtections = lens _lprsProtections (\ s a -> s{_lprsProtections = a}) . _Default . _Coerce
 
--- | If you specify a value for @MaxResults@ and you have more Protections than the value of MaxResults, AWS Shield Advanced returns a NextToken value in the response that allows you to list another group of Protections. For the second and subsequent ListProtections requests, specify the value of NextToken from the previous response to get information about another batch of Protections.
+-- | If you specify a value for @MaxResults@ and you have more Protections than the value of MaxResults, AWS Shield Advanced returns a NextToken value in the response that allows you to list another group of Protections. For the second and subsequent ListProtections requests, specify the value of NextToken from the previous response to get information about another batch of Protections. Shield Advanced might return the list of 'Protection' objects in batches smaller than the number specified by MaxResults. If there are more 'Protection' objects to return, Shield Advanced will always also return a @NextToken@ .
 lprsNextToken :: Lens' ListProtectionsResponse (Maybe Text)
 lprsNextToken = lens _lprsNextToken (\ s a -> s{_lprsNextToken = a})
 

@@ -36,16 +36,13 @@ module Network.AWS.MediaConvert.DeletePreset
 
 import Network.AWS.Lens
 import Network.AWS.MediaConvert.Types
-import Network.AWS.MediaConvert.Types.Product
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deletePreset' smart constructor.
-newtype DeletePreset = DeletePreset'
-  { _dpName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeletePreset = DeletePreset'{_dpName :: Text}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeletePreset' with the minimum fields required to make a request.
 --
@@ -55,8 +52,7 @@ newtype DeletePreset = DeletePreset'
 deletePreset
     :: Text -- ^ 'dpName'
     -> DeletePreset
-deletePreset pName_ = DeletePreset' {_dpName = pName_}
-
+deletePreset pName_ = DeletePreset'{_dpName = pName_}
 
 -- | The name of the preset to be deleted.
 dpName :: Lens' DeletePreset Text
@@ -89,10 +85,10 @@ instance ToQuery DeletePreset where
         toQuery = const mempty
 
 -- | /See:/ 'deletePresetResponse' smart constructor.
-newtype DeletePresetResponse = DeletePresetResponse'
-  { _dprsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeletePresetResponse = DeletePresetResponse'{_dprsResponseStatus
+                                                     :: Int}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'DeletePresetResponse' with the minimum fields required to make a request.
 --
@@ -102,9 +98,9 @@ newtype DeletePresetResponse = DeletePresetResponse'
 deletePresetResponse
     :: Int -- ^ 'dprsResponseStatus'
     -> DeletePresetResponse
-deletePresetResponse pResponseStatus_ =
-  DeletePresetResponse' {_dprsResponseStatus = pResponseStatus_}
-
+deletePresetResponse pResponseStatus_
+  = DeletePresetResponse'{_dprsResponseStatus =
+                            pResponseStatus_}
 
 -- | -- | The response status code.
 dprsResponseStatus :: Lens' DeletePresetResponse Int

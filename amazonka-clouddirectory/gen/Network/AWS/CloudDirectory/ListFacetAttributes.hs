@@ -44,7 +44,6 @@ module Network.AWS.CloudDirectory.ListFacetAttributes
     ) where
 
 import Network.AWS.CloudDirectory.Types
-import Network.AWS.CloudDirectory.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
@@ -52,13 +51,12 @@ import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'listFacetAttributes' smart constructor.
-data ListFacetAttributes = ListFacetAttributes'
-  { _lfaNextToken  :: !(Maybe Text)
-  , _lfaMaxResults :: !(Maybe Nat)
-  , _lfaSchemaARN  :: !Text
-  , _lfaName       :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListFacetAttributes = ListFacetAttributes'{_lfaNextToken
+                                                :: !(Maybe Text),
+                                                _lfaMaxResults :: !(Maybe Nat),
+                                                _lfaSchemaARN :: !Text,
+                                                _lfaName :: !Text}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListFacetAttributes' with the minimum fields required to make a request.
 --
@@ -75,14 +73,10 @@ listFacetAttributes
     :: Text -- ^ 'lfaSchemaARN'
     -> Text -- ^ 'lfaName'
     -> ListFacetAttributes
-listFacetAttributes pSchemaARN_ pName_ =
-  ListFacetAttributes'
-    { _lfaNextToken = Nothing
-    , _lfaMaxResults = Nothing
-    , _lfaSchemaARN = pSchemaARN_
-    , _lfaName = pName_
-    }
-
+listFacetAttributes pSchemaARN_ pName_
+  = ListFacetAttributes'{_lfaNextToken = Nothing,
+                         _lfaMaxResults = Nothing,
+                         _lfaSchemaARN = pSchemaARN_, _lfaName = pName_}
 
 -- | The pagination token.
 lfaNextToken :: Lens' ListFacetAttributes (Maybe Text)
@@ -144,12 +138,17 @@ instance ToQuery ListFacetAttributes where
         toQuery = const mempty
 
 -- | /See:/ 'listFacetAttributesResponse' smart constructor.
-data ListFacetAttributesResponse = ListFacetAttributesResponse'
-  { _lfarsNextToken      :: !(Maybe Text)
-  , _lfarsAttributes     :: !(Maybe [FacetAttribute])
-  , _lfarsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListFacetAttributesResponse = ListFacetAttributesResponse'{_lfarsNextToken
+                                                                ::
+                                                                !(Maybe Text),
+                                                                _lfarsAttributes
+                                                                ::
+                                                                !(Maybe
+                                                                    [FacetAttribute]),
+                                                                _lfarsResponseStatus
+                                                                :: !Int}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'ListFacetAttributesResponse' with the minimum fields required to make a request.
 --
@@ -163,13 +162,11 @@ data ListFacetAttributesResponse = ListFacetAttributesResponse'
 listFacetAttributesResponse
     :: Int -- ^ 'lfarsResponseStatus'
     -> ListFacetAttributesResponse
-listFacetAttributesResponse pResponseStatus_ =
-  ListFacetAttributesResponse'
-    { _lfarsNextToken = Nothing
-    , _lfarsAttributes = Nothing
-    , _lfarsResponseStatus = pResponseStatus_
-    }
-
+listFacetAttributesResponse pResponseStatus_
+  = ListFacetAttributesResponse'{_lfarsNextToken =
+                                   Nothing,
+                                 _lfarsAttributes = Nothing,
+                                 _lfarsResponseStatus = pResponseStatus_}
 
 -- | The pagination token.
 lfarsNextToken :: Lens' ListFacetAttributesResponse (Maybe Text)

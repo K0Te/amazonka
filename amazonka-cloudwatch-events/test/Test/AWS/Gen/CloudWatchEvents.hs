@@ -14,11 +14,11 @@
 module Test.AWS.Gen.CloudWatchEvents where
 
 import Data.Proxy
-import Network.AWS.CloudWatchEvents
-import Test.AWS.CloudWatchEvents.Internal
 import Test.AWS.Fixture
 import Test.AWS.Prelude
 import Test.Tasty
+import Network.AWS.CloudWatchEvents
+import Test.AWS.CloudWatchEvents.Internal
 
 -- Auto-generated: the actual test selection needs to be manually placed into
 -- the top-level so that real test data can be incrementally added.
@@ -52,6 +52,12 @@ import Test.Tasty
 --         , requestListTagsForResource $
 --             listTagsForResource
 --
+--         , requestListReplays $
+--             listReplays
+--
+--         , requestCancelReplay $
+--             cancelReplay
+--
 --         , requestListTargetsByRule $
 --             listTargetsByRule
 --
@@ -67,8 +73,17 @@ import Test.Tasty
 --         , requestDescribeRule $
 --             describeRule
 --
+--         , requestListArchives $
+--             listArchives
+--
+--         , requestStartReplay $
+--             startReplay
+--
 --         , requestDeletePartnerEventSource $
 --             deletePartnerEventSource
+--
+--         , requestDescribeReplay $
+--             describeReplay
 --
 --         , requestListEventBuses $
 --             listEventBuses
@@ -78,6 +93,9 @@ import Test.Tasty
 --
 --         , requestDescribeEventSource $
 --             describeEventSource
+--
+--         , requestDescribeArchive $
+--             describeArchive
 --
 --         , requestEnableRule $
 --             enableRule
@@ -106,6 +124,12 @@ import Test.Tasty
 --         , requestPutTargets $
 --             putTargets
 --
+--         , requestUpdateArchive $
+--             updateArchive
+--
+--         , requestDeleteArchive $
+--             deleteArchive
+--
 --         , requestUntagResource $
 --             untagResource
 --
@@ -114,6 +138,9 @@ import Test.Tasty
 --
 --         , requestListPartnerEventSources $
 --             listPartnerEventSources
+--
+--         , requestCreateArchive $
+--             createArchive
 --
 --         , requestDeactivateEventSource $
 --             deactivateEventSource
@@ -148,6 +175,12 @@ import Test.Tasty
 --         , responseListTagsForResource $
 --             listTagsForResourceResponse
 --
+--         , responseListReplays $
+--             listReplaysResponse
+--
+--         , responseCancelReplay $
+--             cancelReplayResponse
+--
 --         , responseListTargetsByRule $
 --             listTargetsByRuleResponse
 --
@@ -163,8 +196,17 @@ import Test.Tasty
 --         , responseDescribeRule $
 --             describeRuleResponse
 --
+--         , responseListArchives $
+--             listArchivesResponse
+--
+--         , responseStartReplay $
+--             startReplayResponse
+--
 --         , responseDeletePartnerEventSource $
 --             deletePartnerEventSourceResponse
+--
+--         , responseDescribeReplay $
+--             describeReplayResponse
 --
 --         , responseListEventBuses $
 --             listEventBusesResponse
@@ -174,6 +216,9 @@ import Test.Tasty
 --
 --         , responseDescribeEventSource $
 --             describeEventSourceResponse
+--
+--         , responseDescribeArchive $
+--             describeArchiveResponse
 --
 --         , responseEnableRule $
 --             enableRuleResponse
@@ -202,6 +247,12 @@ import Test.Tasty
 --         , responsePutTargets $
 --             putTargetsResponse
 --
+--         , responseUpdateArchive $
+--             updateArchiveResponse
+--
+--         , responseDeleteArchive $
+--             deleteArchiveResponse
+--
 --         , responseUntagResource $
 --             untagResourceResponse
 --
@@ -210,6 +261,9 @@ import Test.Tasty
 --
 --         , responseListPartnerEventSources $
 --             listPartnerEventSourcesResponse
+--
+--         , responseCreateArchive $
+--             createArchiveResponse
 --
 --         , responseDeactivateEventSource $
 --             deactivateEventSourceResponse
@@ -262,6 +316,16 @@ requestListTagsForResource = req
     "ListTagsForResource"
     "fixture/ListTagsForResource.yaml"
 
+requestListReplays :: ListReplays -> TestTree
+requestListReplays = req
+    "ListReplays"
+    "fixture/ListReplays.yaml"
+
+requestCancelReplay :: CancelReplay -> TestTree
+requestCancelReplay = req
+    "CancelReplay"
+    "fixture/CancelReplay.yaml"
+
 requestListTargetsByRule :: ListTargetsByRule -> TestTree
 requestListTargetsByRule = req
     "ListTargetsByRule"
@@ -287,10 +351,25 @@ requestDescribeRule = req
     "DescribeRule"
     "fixture/DescribeRule.yaml"
 
+requestListArchives :: ListArchives -> TestTree
+requestListArchives = req
+    "ListArchives"
+    "fixture/ListArchives.yaml"
+
+requestStartReplay :: StartReplay -> TestTree
+requestStartReplay = req
+    "StartReplay"
+    "fixture/StartReplay.yaml"
+
 requestDeletePartnerEventSource :: DeletePartnerEventSource -> TestTree
 requestDeletePartnerEventSource = req
     "DeletePartnerEventSource"
     "fixture/DeletePartnerEventSource.yaml"
+
+requestDescribeReplay :: DescribeReplay -> TestTree
+requestDescribeReplay = req
+    "DescribeReplay"
+    "fixture/DescribeReplay.yaml"
 
 requestListEventBuses :: ListEventBuses -> TestTree
 requestListEventBuses = req
@@ -306,6 +385,11 @@ requestDescribeEventSource :: DescribeEventSource -> TestTree
 requestDescribeEventSource = req
     "DescribeEventSource"
     "fixture/DescribeEventSource.yaml"
+
+requestDescribeArchive :: DescribeArchive -> TestTree
+requestDescribeArchive = req
+    "DescribeArchive"
+    "fixture/DescribeArchive.yaml"
 
 requestEnableRule :: EnableRule -> TestTree
 requestEnableRule = req
@@ -352,6 +436,16 @@ requestPutTargets = req
     "PutTargets"
     "fixture/PutTargets.yaml"
 
+requestUpdateArchive :: UpdateArchive -> TestTree
+requestUpdateArchive = req
+    "UpdateArchive"
+    "fixture/UpdateArchive.yaml"
+
+requestDeleteArchive :: DeleteArchive -> TestTree
+requestDeleteArchive = req
+    "DeleteArchive"
+    "fixture/DeleteArchive.yaml"
+
 requestUntagResource :: UntagResource -> TestTree
 requestUntagResource = req
     "UntagResource"
@@ -366,6 +460,11 @@ requestListPartnerEventSources :: ListPartnerEventSources -> TestTree
 requestListPartnerEventSources = req
     "ListPartnerEventSources"
     "fixture/ListPartnerEventSources.yaml"
+
+requestCreateArchive :: CreateArchive -> TestTree
+requestCreateArchive = req
+    "CreateArchive"
+    "fixture/CreateArchive.yaml"
 
 requestDeactivateEventSource :: DeactivateEventSource -> TestTree
 requestDeactivateEventSource = req
@@ -435,6 +534,20 @@ responseListTagsForResource = res
     cloudWatchEvents
     (Proxy :: Proxy ListTagsForResource)
 
+responseListReplays :: ListReplaysResponse -> TestTree
+responseListReplays = res
+    "ListReplaysResponse"
+    "fixture/ListReplaysResponse.proto"
+    cloudWatchEvents
+    (Proxy :: Proxy ListReplays)
+
+responseCancelReplay :: CancelReplayResponse -> TestTree
+responseCancelReplay = res
+    "CancelReplayResponse"
+    "fixture/CancelReplayResponse.proto"
+    cloudWatchEvents
+    (Proxy :: Proxy CancelReplay)
+
 responseListTargetsByRule :: ListTargetsByRuleResponse -> TestTree
 responseListTargetsByRule = res
     "ListTargetsByRuleResponse"
@@ -470,12 +583,33 @@ responseDescribeRule = res
     cloudWatchEvents
     (Proxy :: Proxy DescribeRule)
 
+responseListArchives :: ListArchivesResponse -> TestTree
+responseListArchives = res
+    "ListArchivesResponse"
+    "fixture/ListArchivesResponse.proto"
+    cloudWatchEvents
+    (Proxy :: Proxy ListArchives)
+
+responseStartReplay :: StartReplayResponse -> TestTree
+responseStartReplay = res
+    "StartReplayResponse"
+    "fixture/StartReplayResponse.proto"
+    cloudWatchEvents
+    (Proxy :: Proxy StartReplay)
+
 responseDeletePartnerEventSource :: DeletePartnerEventSourceResponse -> TestTree
 responseDeletePartnerEventSource = res
     "DeletePartnerEventSourceResponse"
     "fixture/DeletePartnerEventSourceResponse.proto"
     cloudWatchEvents
     (Proxy :: Proxy DeletePartnerEventSource)
+
+responseDescribeReplay :: DescribeReplayResponse -> TestTree
+responseDescribeReplay = res
+    "DescribeReplayResponse"
+    "fixture/DescribeReplayResponse.proto"
+    cloudWatchEvents
+    (Proxy :: Proxy DescribeReplay)
 
 responseListEventBuses :: ListEventBusesResponse -> TestTree
 responseListEventBuses = res
@@ -497,6 +631,13 @@ responseDescribeEventSource = res
     "fixture/DescribeEventSourceResponse.proto"
     cloudWatchEvents
     (Proxy :: Proxy DescribeEventSource)
+
+responseDescribeArchive :: DescribeArchiveResponse -> TestTree
+responseDescribeArchive = res
+    "DescribeArchiveResponse"
+    "fixture/DescribeArchiveResponse.proto"
+    cloudWatchEvents
+    (Proxy :: Proxy DescribeArchive)
 
 responseEnableRule :: EnableRuleResponse -> TestTree
 responseEnableRule = res
@@ -561,6 +702,20 @@ responsePutTargets = res
     cloudWatchEvents
     (Proxy :: Proxy PutTargets)
 
+responseUpdateArchive :: UpdateArchiveResponse -> TestTree
+responseUpdateArchive = res
+    "UpdateArchiveResponse"
+    "fixture/UpdateArchiveResponse.proto"
+    cloudWatchEvents
+    (Proxy :: Proxy UpdateArchive)
+
+responseDeleteArchive :: DeleteArchiveResponse -> TestTree
+responseDeleteArchive = res
+    "DeleteArchiveResponse"
+    "fixture/DeleteArchiveResponse.proto"
+    cloudWatchEvents
+    (Proxy :: Proxy DeleteArchive)
+
 responseUntagResource :: UntagResourceResponse -> TestTree
 responseUntagResource = res
     "UntagResourceResponse"
@@ -581,6 +736,13 @@ responseListPartnerEventSources = res
     "fixture/ListPartnerEventSourcesResponse.proto"
     cloudWatchEvents
     (Proxy :: Proxy ListPartnerEventSources)
+
+responseCreateArchive :: CreateArchiveResponse -> TestTree
+responseCreateArchive = res
+    "CreateArchiveResponse"
+    "fixture/CreateArchiveResponse.proto"
+    cloudWatchEvents
+    (Proxy :: Proxy CreateArchive)
 
 responseDeactivateEventSource :: DeactivateEventSourceResponse -> TestTree
 responseDeactivateEventSource = res

@@ -38,18 +38,16 @@ module Network.AWS.AlexaBusiness.RevokeInvitation
     ) where
 
 import Network.AWS.AlexaBusiness.Types
-import Network.AWS.AlexaBusiness.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'revokeInvitation' smart constructor.
-data RevokeInvitation = RevokeInvitation'
-  { _riEnrollmentId :: !(Maybe Text)
-  , _riUserARN      :: !(Maybe Text)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data RevokeInvitation = RevokeInvitation'{_riEnrollmentId
+                                          :: !(Maybe Text),
+                                          _riUserARN :: !(Maybe Text)}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'RevokeInvitation' with the minimum fields required to make a request.
 --
@@ -60,9 +58,9 @@ data RevokeInvitation = RevokeInvitation'
 -- * 'riUserARN' - The ARN of the user for whom to revoke an enrollment invitation. Required.
 revokeInvitation
     :: RevokeInvitation
-revokeInvitation =
-  RevokeInvitation' {_riEnrollmentId = Nothing, _riUserARN = Nothing}
-
+revokeInvitation
+  = RevokeInvitation'{_riEnrollmentId = Nothing,
+                      _riUserARN = Nothing}
 
 -- | The ARN of the enrollment invitation to revoke. Required.
 riEnrollmentId :: Lens' RevokeInvitation (Maybe Text)
@@ -107,10 +105,10 @@ instance ToQuery RevokeInvitation where
         toQuery = const mempty
 
 -- | /See:/ 'revokeInvitationResponse' smart constructor.
-newtype RevokeInvitationResponse = RevokeInvitationResponse'
-  { _rirsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype RevokeInvitationResponse = RevokeInvitationResponse'{_rirsResponseStatus
+                                                             :: Int}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'RevokeInvitationResponse' with the minimum fields required to make a request.
 --
@@ -120,9 +118,9 @@ newtype RevokeInvitationResponse = RevokeInvitationResponse'
 revokeInvitationResponse
     :: Int -- ^ 'rirsResponseStatus'
     -> RevokeInvitationResponse
-revokeInvitationResponse pResponseStatus_ =
-  RevokeInvitationResponse' {_rirsResponseStatus = pResponseStatus_}
-
+revokeInvitationResponse pResponseStatus_
+  = RevokeInvitationResponse'{_rirsResponseStatus =
+                                pResponseStatus_}
 
 -- | -- | The response status code.
 rirsResponseStatus :: Lens' RevokeInvitationResponse Int

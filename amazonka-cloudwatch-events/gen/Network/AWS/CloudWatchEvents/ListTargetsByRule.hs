@@ -44,7 +44,6 @@ module Network.AWS.CloudWatchEvents.ListTargetsByRule
     ) where
 
 import Network.AWS.CloudWatchEvents.Types
-import Network.AWS.CloudWatchEvents.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
@@ -52,13 +51,12 @@ import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'listTargetsByRule' smart constructor.
-data ListTargetsByRule = ListTargetsByRule'
-  { _ltbrNextToken    :: !(Maybe Text)
-  , _ltbrEventBusName :: !(Maybe Text)
-  , _ltbrLimit        :: !(Maybe Nat)
-  , _ltbrRule         :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListTargetsByRule = ListTargetsByRule'{_ltbrNextToken
+                                            :: !(Maybe Text),
+                                            _ltbrEventBusName :: !(Maybe Text),
+                                            _ltbrLimit :: !(Maybe Nat),
+                                            _ltbrRule :: !Text}
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListTargetsByRule' with the minimum fields required to make a request.
 --
@@ -66,7 +64,7 @@ data ListTargetsByRule = ListTargetsByRule'
 --
 -- * 'ltbrNextToken' - The token returned by a previous call to retrieve the next set of results.
 --
--- * 'ltbrEventBusName' - The event bus associated with the rule. If you omit this, the default event bus is used.
+-- * 'ltbrEventBusName' - The name or ARN of the event bus associated with the rule. If you omit this, the default event bus is used.
 --
 -- * 'ltbrLimit' - The maximum number of results to return.
 --
@@ -74,20 +72,16 @@ data ListTargetsByRule = ListTargetsByRule'
 listTargetsByRule
     :: Text -- ^ 'ltbrRule'
     -> ListTargetsByRule
-listTargetsByRule pRule_ =
-  ListTargetsByRule'
-    { _ltbrNextToken = Nothing
-    , _ltbrEventBusName = Nothing
-    , _ltbrLimit = Nothing
-    , _ltbrRule = pRule_
-    }
-
+listTargetsByRule pRule_
+  = ListTargetsByRule'{_ltbrNextToken = Nothing,
+                       _ltbrEventBusName = Nothing, _ltbrLimit = Nothing,
+                       _ltbrRule = pRule_}
 
 -- | The token returned by a previous call to retrieve the next set of results.
 ltbrNextToken :: Lens' ListTargetsByRule (Maybe Text)
 ltbrNextToken = lens _ltbrNextToken (\ s a -> s{_ltbrNextToken = a})
 
--- | The event bus associated with the rule. If you omit this, the default event bus is used.
+-- | The name or ARN of the event bus associated with the rule. If you omit this, the default event bus is used.
 ltbrEventBusName :: Lens' ListTargetsByRule (Maybe Text)
 ltbrEventBusName = lens _ltbrEventBusName (\ s a -> s{_ltbrEventBusName = a})
 
@@ -145,12 +139,15 @@ instance ToQuery ListTargetsByRule where
         toQuery = const mempty
 
 -- | /See:/ 'listTargetsByRuleResponse' smart constructor.
-data ListTargetsByRuleResponse = ListTargetsByRuleResponse'
-  { _ltbrrsNextToken      :: !(Maybe Text)
-  , _ltbrrsTargets        :: !(Maybe (List1 Target))
-  , _ltbrrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListTargetsByRuleResponse = ListTargetsByRuleResponse'{_ltbrrsNextToken
+                                                            :: !(Maybe Text),
+                                                            _ltbrrsTargets ::
+                                                            !(Maybe
+                                                                (List1 Target)),
+                                                            _ltbrrsResponseStatus
+                                                            :: !Int}
+                                   deriving (Eq, Read, Show, Data, Typeable,
+                                             Generic)
 
 -- | Creates a value of 'ListTargetsByRuleResponse' with the minimum fields required to make a request.
 --
@@ -164,13 +161,11 @@ data ListTargetsByRuleResponse = ListTargetsByRuleResponse'
 listTargetsByRuleResponse
     :: Int -- ^ 'ltbrrsResponseStatus'
     -> ListTargetsByRuleResponse
-listTargetsByRuleResponse pResponseStatus_ =
-  ListTargetsByRuleResponse'
-    { _ltbrrsNextToken = Nothing
-    , _ltbrrsTargets = Nothing
-    , _ltbrrsResponseStatus = pResponseStatus_
-    }
-
+listTargetsByRuleResponse pResponseStatus_
+  = ListTargetsByRuleResponse'{_ltbrrsNextToken =
+                                 Nothing,
+                               _ltbrrsTargets = Nothing,
+                               _ltbrrsResponseStatus = pResponseStatus_}
 
 -- | Indicates whether there are additional results to retrieve. If there are no more results, the value is null.
 ltbrrsNextToken :: Lens' ListTargetsByRuleResponse (Maybe Text)

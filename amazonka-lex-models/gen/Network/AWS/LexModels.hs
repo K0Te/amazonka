@@ -11,9 +11,9 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- __Amazon Lex Build-Time Actions__
+-- __Amazon Lex Build-Time Actions__ 
 --
--- Amazon Lex is an AWS service for building conversational voice and text interfaces. Use these actions to create, update, and delete conversational bots for new and existing client applications.
+-- Amazon Lex is an AWS service for building conversational voice and text interfaces. Use these actions to create, update, and delete conversational bots for new and existing client applications. 
 --
 module Network.AWS.LexModels
     (
@@ -50,46 +50,49 @@ module Network.AWS.LexModels
     -- * Operations
     -- $operations
 
-    -- ** DeleteIntentVersion
+    -- ** DeleteIntentVersion 
     , module Network.AWS.LexModels.DeleteIntentVersion
 
     -- ** GetBotAliases (Paginated)
     , module Network.AWS.LexModels.GetBotAliases
 
-    -- ** DeleteBotChannelAssociation
+    -- ** DeleteBotChannelAssociation 
     , module Network.AWS.LexModels.DeleteBotChannelAssociation
 
-    -- ** CreateSlotTypeVersion
+    -- ** CreateSlotTypeVersion 
     , module Network.AWS.LexModels.CreateSlotTypeVersion
 
-    -- ** GetIntent
+    -- ** ListTagsForResource 
+    , module Network.AWS.LexModels.ListTagsForResource
+
+    -- ** GetIntent 
     , module Network.AWS.LexModels.GetIntent
 
-    -- ** PutIntent
+    -- ** PutIntent 
     , module Network.AWS.LexModels.PutIntent
 
-    -- ** DeleteIntent
+    -- ** DeleteIntent 
     , module Network.AWS.LexModels.DeleteIntent
 
     -- ** GetBuiltinIntents (Paginated)
     , module Network.AWS.LexModels.GetBuiltinIntents
 
-    -- ** PutBot
+    -- ** PutBot 
     , module Network.AWS.LexModels.PutBot
 
-    -- ** DeleteBot
+    -- ** DeleteBot 
     , module Network.AWS.LexModels.DeleteBot
 
-    -- ** GetImport
+    -- ** GetImport 
     , module Network.AWS.LexModels.GetImport
 
     -- ** GetIntentVersions (Paginated)
     , module Network.AWS.LexModels.GetIntentVersions
 
-    -- ** GetBuiltinIntent
+    -- ** GetBuiltinIntent 
     , module Network.AWS.LexModels.GetBuiltinIntent
 
-    -- ** PutBotAlias
+    -- ** PutBotAlias 
     , module Network.AWS.LexModels.PutBotAlias
 
     -- ** GetBotVersions (Paginated)
@@ -98,64 +101,70 @@ module Network.AWS.LexModels
     -- ** GetBotChannelAssociations (Paginated)
     , module Network.AWS.LexModels.GetBotChannelAssociations
 
-    -- ** DeleteBotAlias
+    -- ** DeleteBotAlias 
     , module Network.AWS.LexModels.DeleteBotAlias
 
     -- ** GetSlotTypes (Paginated)
     , module Network.AWS.LexModels.GetSlotTypes
 
-    -- ** DeleteUtterances
+    -- ** DeleteUtterances 
     , module Network.AWS.LexModels.DeleteUtterances
 
     -- ** GetBots (Paginated)
     , module Network.AWS.LexModels.GetBots
 
-    -- ** GetBot
+    -- ** GetBot 
     , module Network.AWS.LexModels.GetBot
 
-    -- ** CreateBotVersion
+    -- ** CreateBotVersion 
     , module Network.AWS.LexModels.CreateBotVersion
 
-    -- ** DeleteSlotTypeVersion
+    -- ** DeleteSlotTypeVersion 
     , module Network.AWS.LexModels.DeleteSlotTypeVersion
 
-    -- ** DeleteBotVersion
+    -- ** DeleteBotVersion 
     , module Network.AWS.LexModels.DeleteBotVersion
 
-    -- ** GetSlotType
+    -- ** GetSlotType 
     , module Network.AWS.LexModels.GetSlotType
 
-    -- ** GetExport
+    -- ** GetExport 
     , module Network.AWS.LexModels.GetExport
 
-    -- ** CreateIntentVersion
+    -- ** CreateIntentVersion 
     , module Network.AWS.LexModels.CreateIntentVersion
 
-    -- ** DeleteSlotType
+    -- ** DeleteSlotType 
     , module Network.AWS.LexModels.DeleteSlotType
 
-    -- ** StartImport
+    -- ** StartImport 
     , module Network.AWS.LexModels.StartImport
 
-    -- ** GetBotChannelAssociation
+    -- ** GetBotChannelAssociation 
     , module Network.AWS.LexModels.GetBotChannelAssociation
 
-    -- ** PutSlotType
+    -- ** PutSlotType 
     , module Network.AWS.LexModels.PutSlotType
 
     -- ** GetBuiltinSlotTypes (Paginated)
     , module Network.AWS.LexModels.GetBuiltinSlotTypes
 
-    -- ** GetUtterancesView
+    -- ** TagResource 
+    , module Network.AWS.LexModels.TagResource
+
+    -- ** GetUtterancesView 
     , module Network.AWS.LexModels.GetUtterancesView
 
     -- ** GetSlotTypeVersions (Paginated)
     , module Network.AWS.LexModels.GetSlotTypeVersions
 
+    -- ** UntagResource 
+    , module Network.AWS.LexModels.UntagResource
+
     -- ** GetIntents (Paginated)
     , module Network.AWS.LexModels.GetIntents
 
-    -- ** GetBotAlias
+    -- ** GetBotAlias 
     , module Network.AWS.LexModels.GetBotAlias
 
     -- * Types
@@ -168,6 +177,9 @@ module Network.AWS.LexModels
 
     -- ** ContentType
     , ContentType (..)
+
+    -- ** Destination
+    , Destination (..)
 
     -- ** ExportStatus
     , ExportStatus (..)
@@ -187,8 +199,14 @@ module Network.AWS.LexModels
     -- ** Locale
     , Locale (..)
 
+    -- ** LogType
+    , LogType (..)
+
     -- ** MergeStrategy
     , MergeStrategy (..)
+
+    -- ** ObfuscationSetting
+    , ObfuscationSetting (..)
 
     -- ** ProcessBehavior
     , ProcessBehavior (..)
@@ -213,6 +231,7 @@ module Network.AWS.LexModels
     , bamBotName
     , bamCreatedDate
     , bamName
+    , bamConversationLogs
     , bamLastUpdatedDate
     , bamDescription
 
@@ -262,6 +281,18 @@ module Network.AWS.LexModels
     , chUri
     , chMessageVersion
 
+    -- ** ConversationLogsRequest
+    , ConversationLogsRequest
+    , conversationLogsRequest
+    , clrLogSettings
+    , clrIamRoleARN
+
+    -- ** ConversationLogsResponse
+    , ConversationLogsResponse
+    , conversationLogsResponse
+    , clIamRoleARN
+    , clLogSettings
+
     -- ** EnumerationValue
     , EnumerationValue
     , enumerationValue
@@ -280,6 +311,11 @@ module Network.AWS.LexModels
     , faCodeHook
     , faType
 
+    -- ** InputContext
+    , InputContext
+    , inputContext
+    , icName
+
     -- ** Intent
     , Intent
     , intent
@@ -295,12 +331,43 @@ module Network.AWS.LexModels
     , imLastUpdatedDate
     , imDescription
 
+    -- ** KendraConfiguration
+    , KendraConfiguration
+    , kendraConfiguration
+    , kcQueryFilterString
+    , kcKendraIndex
+    , kcRole
+
+    -- ** LogSettingsRequest
+    , LogSettingsRequest
+    , logSettingsRequest
+    , lsrKmsKeyARN
+    , lsrLogType
+    , lsrDestination
+    , lsrResourceARN
+
+    -- ** LogSettingsResponse
+    , LogSettingsResponse
+    , logSettingsResponse
+    , lsDestination
+    , lsKmsKeyARN
+    , lsLogType
+    , lsResourceARN
+    , lsResourcePrefix
+
     -- ** Message
     , Message
     , message
     , mGroupNumber
     , mContentType
     , mContent
+
+    -- ** OutputContext
+    , OutputContext
+    , outputContext
+    , ocName
+    , ocTimeToLiveInSeconds
+    , ocTurnsToLive
 
     -- ** Prompt
     , Prompt
@@ -316,11 +383,28 @@ module Network.AWS.LexModels
     , sValueElicitationPrompt
     , sResponseCard
     , sPriority
+    , sObfuscationSetting
+    , sDefaultValueSpec
     , sSlotTypeVersion
     , sSampleUtterances
     , sDescription
     , sName
     , sSlotConstraint
+
+    -- ** SlotDefaultValue
+    , SlotDefaultValue
+    , slotDefaultValue
+    , sdvDefaultValue
+
+    -- ** SlotDefaultValueSpec
+    , SlotDefaultValueSpec
+    , slotDefaultValueSpec
+    , sdvsDefaultValueList
+
+    -- ** SlotTypeConfiguration
+    , SlotTypeConfiguration
+    , slotTypeConfiguration
+    , stcRegexConfiguration
 
     -- ** SlotTypeMetadata
     , SlotTypeMetadata
@@ -331,11 +415,22 @@ module Network.AWS.LexModels
     , stmLastUpdatedDate
     , stmDescription
 
+    -- ** SlotTypeRegexConfiguration
+    , SlotTypeRegexConfiguration
+    , slotTypeRegexConfiguration
+    , strcPattern
+
     -- ** Statement
     , Statement
     , statement
     , staResponseCard
     , staMessages
+
+    -- ** Tag
+    , Tag
+    , tag
+    , tagKey
+    , tagValue
 
     -- ** UtteranceData
     , UtteranceData
@@ -370,26 +465,29 @@ import Network.AWS.LexModels.GetBotAlias
 import Network.AWS.LexModels.GetBotAliases
 import Network.AWS.LexModels.GetBotChannelAssociation
 import Network.AWS.LexModels.GetBotChannelAssociations
-import Network.AWS.LexModels.GetBots
 import Network.AWS.LexModels.GetBotVersions
+import Network.AWS.LexModels.GetBots
 import Network.AWS.LexModels.GetBuiltinIntent
 import Network.AWS.LexModels.GetBuiltinIntents
 import Network.AWS.LexModels.GetBuiltinSlotTypes
 import Network.AWS.LexModels.GetExport
 import Network.AWS.LexModels.GetImport
 import Network.AWS.LexModels.GetIntent
-import Network.AWS.LexModels.GetIntents
 import Network.AWS.LexModels.GetIntentVersions
+import Network.AWS.LexModels.GetIntents
 import Network.AWS.LexModels.GetSlotType
-import Network.AWS.LexModels.GetSlotTypes
 import Network.AWS.LexModels.GetSlotTypeVersions
+import Network.AWS.LexModels.GetSlotTypes
 import Network.AWS.LexModels.GetUtterancesView
+import Network.AWS.LexModels.ListTagsForResource
 import Network.AWS.LexModels.PutBot
 import Network.AWS.LexModels.PutBotAlias
 import Network.AWS.LexModels.PutIntent
 import Network.AWS.LexModels.PutSlotType
 import Network.AWS.LexModels.StartImport
+import Network.AWS.LexModels.TagResource
 import Network.AWS.LexModels.Types
+import Network.AWS.LexModels.UntagResource
 import Network.AWS.LexModels.Waiters
 
 {- $errors

@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Returns the most current information about the specified stream. You must specify either the @StreamName@ or the @StreamARN@ .
+-- Returns the most current information about the specified stream. You must specify either the @StreamName@ or the @StreamARN@ . 
 --
 --
 module Network.AWS.KinesisVideo.DescribeStream
@@ -39,18 +39,16 @@ module Network.AWS.KinesisVideo.DescribeStream
     ) where
 
 import Network.AWS.KinesisVideo.Types
-import Network.AWS.KinesisVideo.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'describeStream' smart constructor.
-data DescribeStream = DescribeStream'
-  { _dStreamARN  :: !(Maybe Text)
-  , _dStreamName :: !(Maybe Text)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeStream = DescribeStream'{_dStreamARN ::
+                                      !(Maybe Text),
+                                      _dStreamName :: !(Maybe Text)}
+                        deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DescribeStream' with the minimum fields required to make a request.
 --
@@ -61,8 +59,9 @@ data DescribeStream = DescribeStream'
 -- * 'dStreamName' - The name of the stream.
 describeStream
     :: DescribeStream
-describeStream = DescribeStream' {_dStreamARN = Nothing, _dStreamName = Nothing}
-
+describeStream
+  = DescribeStream'{_dStreamARN = Nothing,
+                    _dStreamName = Nothing}
 
 -- | The Amazon Resource Name (ARN) of the stream.
 dStreamARN :: Lens' DescribeStream (Maybe Text)
@@ -102,11 +101,12 @@ instance ToQuery DescribeStream where
         toQuery = const mempty
 
 -- | /See:/ 'describeStreamResponse' smart constructor.
-data DescribeStreamResponse = DescribeStreamResponse'
-  { _drsStreamInfo     :: !(Maybe StreamInfo)
-  , _drsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeStreamResponse = DescribeStreamResponse'{_drsStreamInfo
+                                                      :: !(Maybe StreamInfo),
+                                                      _drsResponseStatus ::
+                                                      !Int}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'DescribeStreamResponse' with the minimum fields required to make a request.
 --
@@ -118,10 +118,9 @@ data DescribeStreamResponse = DescribeStreamResponse'
 describeStreamResponse
     :: Int -- ^ 'drsResponseStatus'
     -> DescribeStreamResponse
-describeStreamResponse pResponseStatus_ =
-  DescribeStreamResponse'
-    {_drsStreamInfo = Nothing, _drsResponseStatus = pResponseStatus_}
-
+describeStreamResponse pResponseStatus_
+  = DescribeStreamResponse'{_drsStreamInfo = Nothing,
+                            _drsResponseStatus = pResponseStatus_}
 
 -- | An object that describes the stream.
 drsStreamInfo :: Lens' DescribeStreamResponse (Maybe StreamInfo)

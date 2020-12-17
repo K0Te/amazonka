@@ -38,18 +38,21 @@ module Network.AWS.Discovery.DisassociateConfigurationItemsFromApplication
     ) where
 
 import Network.AWS.Discovery.Types
-import Network.AWS.Discovery.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'disassociateConfigurationItemsFromApplication' smart constructor.
-data DisassociateConfigurationItemsFromApplication = DisassociateConfigurationItemsFromApplication'
-  { _dcifaApplicationConfigurationId :: !Text
-  , _dcifaConfigurationIds           :: ![Text]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DisassociateConfigurationItemsFromApplication = DisassociateConfigurationItemsFromApplication'{_dcifaApplicationConfigurationId
+                                                                                                    ::
+                                                                                                    !Text,
+                                                                                                    _dcifaConfigurationIds
+                                                                                                    ::
+                                                                                                    ![Text]}
+                                                       deriving (Eq, Read, Show,
+                                                                 Data, Typeable,
+                                                                 Generic)
 
 -- | Creates a value of 'DisassociateConfigurationItemsFromApplication' with the minimum fields required to make a request.
 --
@@ -61,12 +64,13 @@ data DisassociateConfigurationItemsFromApplication = DisassociateConfigurationIt
 disassociateConfigurationItemsFromApplication
     :: Text -- ^ 'dcifaApplicationConfigurationId'
     -> DisassociateConfigurationItemsFromApplication
-disassociateConfigurationItemsFromApplication pApplicationConfigurationId_ =
-  DisassociateConfigurationItemsFromApplication'
-    { _dcifaApplicationConfigurationId = pApplicationConfigurationId_
-    , _dcifaConfigurationIds = mempty
-    }
-
+disassociateConfigurationItemsFromApplication
+  pApplicationConfigurationId_
+  = DisassociateConfigurationItemsFromApplication'{_dcifaApplicationConfigurationId
+                                                     =
+                                                     pApplicationConfigurationId_,
+                                                   _dcifaConfigurationIds =
+                                                     mempty}
 
 -- | Configuration ID of an application from which each item is disassociated.
 dcifaApplicationConfigurationId :: Lens' DisassociateConfigurationItemsFromApplication Text
@@ -132,10 +136,15 @@ instance ToQuery
         toQuery = const mempty
 
 -- | /See:/ 'disassociateConfigurationItemsFromApplicationResponse' smart constructor.
-newtype DisassociateConfigurationItemsFromApplicationResponse = DisassociateConfigurationItemsFromApplicationResponse'
-  { _dcifarsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DisassociateConfigurationItemsFromApplicationResponse = DisassociateConfigurationItemsFromApplicationResponse'{_dcifarsResponseStatus
+                                                                                                                       ::
+                                                                                                                       Int}
+                                                                  deriving (Eq,
+                                                                            Read,
+                                                                            Show,
+                                                                            Data,
+                                                                            Typeable,
+                                                                            Generic)
 
 -- | Creates a value of 'DisassociateConfigurationItemsFromApplicationResponse' with the minimum fields required to make a request.
 --
@@ -145,10 +154,10 @@ newtype DisassociateConfigurationItemsFromApplicationResponse = DisassociateConf
 disassociateConfigurationItemsFromApplicationResponse
     :: Int -- ^ 'dcifarsResponseStatus'
     -> DisassociateConfigurationItemsFromApplicationResponse
-disassociateConfigurationItemsFromApplicationResponse pResponseStatus_ =
-  DisassociateConfigurationItemsFromApplicationResponse'
-    {_dcifarsResponseStatus = pResponseStatus_}
-
+disassociateConfigurationItemsFromApplicationResponse
+  pResponseStatus_
+  = DisassociateConfigurationItemsFromApplicationResponse'{_dcifarsResponseStatus
+                                                             = pResponseStatus_}
 
 -- | -- | The response status code.
 dcifarsResponseStatus :: Lens' DisassociateConfigurationItemsFromApplicationResponse Int

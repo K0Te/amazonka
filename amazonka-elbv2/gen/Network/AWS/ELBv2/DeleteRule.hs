@@ -21,6 +21,8 @@
 -- Deletes the specified rule.
 --
 --
+-- You can't delete the default rule.
+--
 module Network.AWS.ELBv2.DeleteRule
     (
     -- * Creating a Request
@@ -37,17 +39,14 @@ module Network.AWS.ELBv2.DeleteRule
     ) where
 
 import Network.AWS.ELBv2.Types
-import Network.AWS.ELBv2.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deleteRule' smart constructor.
-newtype DeleteRule = DeleteRule'
-  { _drRuleARN :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteRule = DeleteRule'{_drRuleARN :: Text}
+                       deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteRule' with the minimum fields required to make a request.
 --
@@ -57,8 +56,8 @@ newtype DeleteRule = DeleteRule'
 deleteRule
     :: Text -- ^ 'drRuleARN'
     -> DeleteRule
-deleteRule pRuleARN_ = DeleteRule' {_drRuleARN = pRuleARN_}
-
+deleteRule pRuleARN_
+  = DeleteRule'{_drRuleARN = pRuleARN_}
 
 -- | The Amazon Resource Name (ARN) of the rule.
 drRuleARN :: Lens' DeleteRule Text
@@ -90,10 +89,10 @@ instance ToQuery DeleteRule where
                "RuleArn" =: _drRuleARN]
 
 -- | /See:/ 'deleteRuleResponse' smart constructor.
-newtype DeleteRuleResponse = DeleteRuleResponse'
-  { _drrsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteRuleResponse = DeleteRuleResponse'{_drrsResponseStatus
+                                                 :: Int}
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'DeleteRuleResponse' with the minimum fields required to make a request.
 --
@@ -103,9 +102,9 @@ newtype DeleteRuleResponse = DeleteRuleResponse'
 deleteRuleResponse
     :: Int -- ^ 'drrsResponseStatus'
     -> DeleteRuleResponse
-deleteRuleResponse pResponseStatus_ =
-  DeleteRuleResponse' {_drrsResponseStatus = pResponseStatus_}
-
+deleteRuleResponse pResponseStatus_
+  = DeleteRuleResponse'{_drrsResponseStatus =
+                          pResponseStatus_}
 
 -- | -- | The response status code.
 drrsResponseStatus :: Lens' DeleteRuleResponse Int

@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Lists the rules for the specified target. You can see which rules can invoke a specific target in your account.
+-- Lists the rules for the specified target. You can see which of the rules in Amazon EventBridge can invoke a specific target in your account.
 --
 --
 --
@@ -44,7 +44,6 @@ module Network.AWS.CloudWatchEvents.ListRuleNamesByTarget
     ) where
 
 import Network.AWS.CloudWatchEvents.Types
-import Network.AWS.CloudWatchEvents.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
@@ -52,13 +51,14 @@ import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'listRuleNamesByTarget' smart constructor.
-data ListRuleNamesByTarget = ListRuleNamesByTarget'
-  { _lrnbtNextToken    :: !(Maybe Text)
-  , _lrnbtEventBusName :: !(Maybe Text)
-  , _lrnbtLimit        :: !(Maybe Nat)
-  , _lrnbtTargetARN    :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListRuleNamesByTarget = ListRuleNamesByTarget'{_lrnbtNextToken
+                                                    :: !(Maybe Text),
+                                                    _lrnbtEventBusName ::
+                                                    !(Maybe Text),
+                                                    _lrnbtLimit :: !(Maybe Nat),
+                                                    _lrnbtTargetARN :: !Text}
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'ListRuleNamesByTarget' with the minimum fields required to make a request.
 --
@@ -66,7 +66,7 @@ data ListRuleNamesByTarget = ListRuleNamesByTarget'
 --
 -- * 'lrnbtNextToken' - The token returned by a previous call to retrieve the next set of results.
 --
--- * 'lrnbtEventBusName' - Limits the results to show only the rules associated with the specified event bus.
+-- * 'lrnbtEventBusName' - The name or ARN of the event bus to list rules for. If you omit this, the default event bus is used.
 --
 -- * 'lrnbtLimit' - The maximum number of results to return.
 --
@@ -74,20 +74,16 @@ data ListRuleNamesByTarget = ListRuleNamesByTarget'
 listRuleNamesByTarget
     :: Text -- ^ 'lrnbtTargetARN'
     -> ListRuleNamesByTarget
-listRuleNamesByTarget pTargetARN_ =
-  ListRuleNamesByTarget'
-    { _lrnbtNextToken = Nothing
-    , _lrnbtEventBusName = Nothing
-    , _lrnbtLimit = Nothing
-    , _lrnbtTargetARN = pTargetARN_
-    }
-
+listRuleNamesByTarget pTargetARN_
+  = ListRuleNamesByTarget'{_lrnbtNextToken = Nothing,
+                           _lrnbtEventBusName = Nothing, _lrnbtLimit = Nothing,
+                           _lrnbtTargetARN = pTargetARN_}
 
 -- | The token returned by a previous call to retrieve the next set of results.
 lrnbtNextToken :: Lens' ListRuleNamesByTarget (Maybe Text)
 lrnbtNextToken = lens _lrnbtNextToken (\ s a -> s{_lrnbtNextToken = a})
 
--- | Limits the results to show only the rules associated with the specified event bus.
+-- | The name or ARN of the event bus to list rules for. If you omit this, the default event bus is used.
 lrnbtEventBusName :: Lens' ListRuleNamesByTarget (Maybe Text)
 lrnbtEventBusName = lens _lrnbtEventBusName (\ s a -> s{_lrnbtEventBusName = a})
 
@@ -147,12 +143,18 @@ instance ToQuery ListRuleNamesByTarget where
         toQuery = const mempty
 
 -- | /See:/ 'listRuleNamesByTargetResponse' smart constructor.
-data ListRuleNamesByTargetResponse = ListRuleNamesByTargetResponse'
-  { _lrnbtrsRuleNames      :: !(Maybe [Text])
-  , _lrnbtrsNextToken      :: !(Maybe Text)
-  , _lrnbtrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListRuleNamesByTargetResponse = ListRuleNamesByTargetResponse'{_lrnbtrsRuleNames
+                                                                    ::
+                                                                    !(Maybe
+                                                                        [Text]),
+                                                                    _lrnbtrsNextToken
+                                                                    ::
+                                                                    !(Maybe
+                                                                        Text),
+                                                                    _lrnbtrsResponseStatus
+                                                                    :: !Int}
+                                       deriving (Eq, Read, Show, Data, Typeable,
+                                                 Generic)
 
 -- | Creates a value of 'ListRuleNamesByTargetResponse' with the minimum fields required to make a request.
 --
@@ -166,13 +168,11 @@ data ListRuleNamesByTargetResponse = ListRuleNamesByTargetResponse'
 listRuleNamesByTargetResponse
     :: Int -- ^ 'lrnbtrsResponseStatus'
     -> ListRuleNamesByTargetResponse
-listRuleNamesByTargetResponse pResponseStatus_ =
-  ListRuleNamesByTargetResponse'
-    { _lrnbtrsRuleNames = Nothing
-    , _lrnbtrsNextToken = Nothing
-    , _lrnbtrsResponseStatus = pResponseStatus_
-    }
-
+listRuleNamesByTargetResponse pResponseStatus_
+  = ListRuleNamesByTargetResponse'{_lrnbtrsRuleNames =
+                                     Nothing,
+                                   _lrnbtrsNextToken = Nothing,
+                                   _lrnbtrsResponseStatus = pResponseStatus_}
 
 -- | The names of the rules that can invoke the given target.
 lrnbtrsRuleNames :: Lens' ListRuleNamesByTargetResponse [Text]

@@ -39,22 +39,20 @@ module Network.AWS.DMS.RefreshSchemas
     ) where
 
 import Network.AWS.DMS.Types
-import Network.AWS.DMS.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- |
+-- | 
 --
 --
 --
 -- /See:/ 'refreshSchemas' smart constructor.
-data RefreshSchemas = RefreshSchemas'
-  { _rsEndpointARN            :: !Text
-  , _rsReplicationInstanceARN :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data RefreshSchemas = RefreshSchemas'{_rsEndpointARN
+                                      :: !Text,
+                                      _rsReplicationInstanceARN :: !Text}
+                        deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'RefreshSchemas' with the minimum fields required to make a request.
 --
@@ -67,12 +65,9 @@ refreshSchemas
     :: Text -- ^ 'rsEndpointARN'
     -> Text -- ^ 'rsReplicationInstanceARN'
     -> RefreshSchemas
-refreshSchemas pEndpointARN_ pReplicationInstanceARN_ =
-  RefreshSchemas'
-    { _rsEndpointARN = pEndpointARN_
-    , _rsReplicationInstanceARN = pReplicationInstanceARN_
-    }
-
+refreshSchemas pEndpointARN_ pReplicationInstanceARN_
+  = RefreshSchemas'{_rsEndpointARN = pEndpointARN_,
+                    _rsReplicationInstanceARN = pReplicationInstanceARN_}
 
 -- | The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.
 rsEndpointARN :: Lens' RefreshSchemas Text
@@ -120,16 +115,19 @@ instance ToPath RefreshSchemas where
 instance ToQuery RefreshSchemas where
         toQuery = const mempty
 
--- |
+-- | 
 --
 --
 --
 -- /See:/ 'refreshSchemasResponse' smart constructor.
-data RefreshSchemasResponse = RefreshSchemasResponse'
-  { _rsrsRefreshSchemasStatus :: !(Maybe RefreshSchemasStatus)
-  , _rsrsResponseStatus       :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data RefreshSchemasResponse = RefreshSchemasResponse'{_rsrsRefreshSchemasStatus
+                                                      ::
+                                                      !(Maybe
+                                                          RefreshSchemasStatus),
+                                                      _rsrsResponseStatus ::
+                                                      !Int}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'RefreshSchemasResponse' with the minimum fields required to make a request.
 --
@@ -141,12 +139,10 @@ data RefreshSchemasResponse = RefreshSchemasResponse'
 refreshSchemasResponse
     :: Int -- ^ 'rsrsResponseStatus'
     -> RefreshSchemasResponse
-refreshSchemasResponse pResponseStatus_ =
-  RefreshSchemasResponse'
-    { _rsrsRefreshSchemasStatus = Nothing
-    , _rsrsResponseStatus = pResponseStatus_
-    }
-
+refreshSchemasResponse pResponseStatus_
+  = RefreshSchemasResponse'{_rsrsRefreshSchemasStatus =
+                              Nothing,
+                            _rsrsResponseStatus = pResponseStatus_}
 
 -- | The status of the refreshed schema.
 rsrsRefreshSchemasStatus :: Lens' RefreshSchemasResponse (Maybe RefreshSchemasStatus)

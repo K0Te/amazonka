@@ -42,7 +42,6 @@ module Network.AWS.CloudHSM.CreateHAPG
     ) where
 
 import Network.AWS.CloudHSM.Types
-import Network.AWS.CloudHSM.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -53,10 +52,8 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'createHAPG' smart constructor.
-newtype CreateHAPG = CreateHAPG'
-  { _chLabel :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype CreateHAPG = CreateHAPG'{_chLabel :: Text}
+                       deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CreateHAPG' with the minimum fields required to make a request.
 --
@@ -66,8 +63,7 @@ newtype CreateHAPG = CreateHAPG'
 createHAPG
     :: Text -- ^ 'chLabel'
     -> CreateHAPG
-createHAPG pLabel_ = CreateHAPG' {_chLabel = pLabel_}
-
+createHAPG pLabel_ = CreateHAPG'{_chLabel = pLabel_}
 
 -- | The label of the new high-availability partition group.
 chLabel :: Lens' CreateHAPG Text
@@ -110,11 +106,10 @@ instance ToQuery CreateHAPG where
 --
 --
 -- /See:/ 'createHAPGResponse' smart constructor.
-data CreateHAPGResponse = CreateHAPGResponse'
-  { _chapgrsHAPGARN        :: !(Maybe Text)
-  , _chapgrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateHAPGResponse = CreateHAPGResponse'{_chapgrsHAPGARN
+                                              :: !(Maybe Text),
+                                              _chapgrsResponseStatus :: !Int}
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CreateHAPGResponse' with the minimum fields required to make a request.
 --
@@ -126,10 +121,9 @@ data CreateHAPGResponse = CreateHAPGResponse'
 createHAPGResponse
     :: Int -- ^ 'chapgrsResponseStatus'
     -> CreateHAPGResponse
-createHAPGResponse pResponseStatus_ =
-  CreateHAPGResponse'
-    {_chapgrsHAPGARN = Nothing, _chapgrsResponseStatus = pResponseStatus_}
-
+createHAPGResponse pResponseStatus_
+  = CreateHAPGResponse'{_chapgrsHAPGARN = Nothing,
+                        _chapgrsResponseStatus = pResponseStatus_}
 
 -- | The ARN of the high-availability partition group.
 chapgrsHAPGARN :: Lens' CreateHAPGResponse (Maybe Text)

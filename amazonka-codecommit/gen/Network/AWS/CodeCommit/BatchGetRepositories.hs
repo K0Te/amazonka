@@ -39,7 +39,6 @@ module Network.AWS.CodeCommit.BatchGetRepositories
     ) where
 
 import Network.AWS.CodeCommit.Types
-import Network.AWS.CodeCommit.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -50,10 +49,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'batchGetRepositories' smart constructor.
-newtype BatchGetRepositories = BatchGetRepositories'
-  { _bgrRepositoryNames :: [Text]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype BatchGetRepositories = BatchGetRepositories'{_bgrRepositoryNames
+                                                     :: [Text]}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'BatchGetRepositories' with the minimum fields required to make a request.
 --
@@ -62,8 +61,8 @@ newtype BatchGetRepositories = BatchGetRepositories'
 -- * 'bgrRepositoryNames' - The names of the repositories to get information about.
 batchGetRepositories
     :: BatchGetRepositories
-batchGetRepositories = BatchGetRepositories' {_bgrRepositoryNames = mempty}
-
+batchGetRepositories
+  = BatchGetRepositories'{_bgrRepositoryNames = mempty}
 
 -- | The names of the repositories to get information about.
 bgrRepositoryNames :: Lens' BatchGetRepositories [Text]
@@ -112,12 +111,18 @@ instance ToQuery BatchGetRepositories where
 --
 --
 -- /See:/ 'batchGetRepositoriesResponse' smart constructor.
-data BatchGetRepositoriesResponse = BatchGetRepositoriesResponse'
-  { _bgrrsRepositories         :: !(Maybe [RepositoryMetadata])
-  , _bgrrsRepositoriesNotFound :: !(Maybe [Text])
-  , _bgrrsResponseStatus       :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data BatchGetRepositoriesResponse = BatchGetRepositoriesResponse'{_bgrrsRepositories
+                                                                  ::
+                                                                  !(Maybe
+                                                                      [RepositoryMetadata]),
+                                                                  _bgrrsRepositoriesNotFound
+                                                                  ::
+                                                                  !(Maybe
+                                                                      [Text]),
+                                                                  _bgrrsResponseStatus
+                                                                  :: !Int}
+                                      deriving (Eq, Read, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'BatchGetRepositoriesResponse' with the minimum fields required to make a request.
 --
@@ -131,13 +136,11 @@ data BatchGetRepositoriesResponse = BatchGetRepositoriesResponse'
 batchGetRepositoriesResponse
     :: Int -- ^ 'bgrrsResponseStatus'
     -> BatchGetRepositoriesResponse
-batchGetRepositoriesResponse pResponseStatus_ =
-  BatchGetRepositoriesResponse'
-    { _bgrrsRepositories = Nothing
-    , _bgrrsRepositoriesNotFound = Nothing
-    , _bgrrsResponseStatus = pResponseStatus_
-    }
-
+batchGetRepositoriesResponse pResponseStatus_
+  = BatchGetRepositoriesResponse'{_bgrrsRepositories =
+                                    Nothing,
+                                  _bgrrsRepositoriesNotFound = Nothing,
+                                  _bgrrsResponseStatus = pResponseStatus_}
 
 -- | A list of repositories returned by the batch get repositories operation.
 bgrrsRepositories :: Lens' BatchGetRepositoriesResponse [RepositoryMetadata]

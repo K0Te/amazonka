@@ -41,7 +41,6 @@ module Network.AWS.CognitoIdentityProvider.ListUserImportJobs
     ) where
 
 import Network.AWS.CognitoIdentityProvider.Types
-import Network.AWS.CognitoIdentityProvider.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -52,12 +51,11 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'listUserImportJobs' smart constructor.
-data ListUserImportJobs = ListUserImportJobs'
-  { _luijPaginationToken :: !(Maybe Text)
-  , _luijUserPoolId      :: !Text
-  , _luijMaxResults      :: !Nat
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListUserImportJobs = ListUserImportJobs'{_luijPaginationToken
+                                              :: !(Maybe Text),
+                                              _luijUserPoolId :: !Text,
+                                              _luijMaxResults :: !Nat}
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListUserImportJobs' with the minimum fields required to make a request.
 --
@@ -72,13 +70,10 @@ listUserImportJobs
     :: Text -- ^ 'luijUserPoolId'
     -> Natural -- ^ 'luijMaxResults'
     -> ListUserImportJobs
-listUserImportJobs pUserPoolId_ pMaxResults_ =
-  ListUserImportJobs'
-    { _luijPaginationToken = Nothing
-    , _luijUserPoolId = pUserPoolId_
-    , _luijMaxResults = _Nat # pMaxResults_
-    }
-
+listUserImportJobs pUserPoolId_ pMaxResults_
+  = ListUserImportJobs'{_luijPaginationToken = Nothing,
+                        _luijUserPoolId = pUserPoolId_,
+                        _luijMaxResults = _Nat # pMaxResults_}
 
 -- | An identifier that was returned from the previous call to @ListUserImportJobs@ , which can be used to return the next set of import jobs in the list.
 luijPaginationToken :: Lens' ListUserImportJobs (Maybe Text)
@@ -137,12 +132,17 @@ instance ToQuery ListUserImportJobs where
 --
 --
 -- /See:/ 'listUserImportJobsResponse' smart constructor.
-data ListUserImportJobsResponse = ListUserImportJobsResponse'
-  { _luijrsPaginationToken :: !(Maybe Text)
-  , _luijrsUserImportJobs  :: !(Maybe (List1 UserImportJobType))
-  , _luijrsResponseStatus  :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListUserImportJobsResponse = ListUserImportJobsResponse'{_luijrsPaginationToken
+                                                              :: !(Maybe Text),
+                                                              _luijrsUserImportJobs
+                                                              ::
+                                                              !(Maybe
+                                                                  (List1
+                                                                     UserImportJobType)),
+                                                              _luijrsResponseStatus
+                                                              :: !Int}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'ListUserImportJobsResponse' with the minimum fields required to make a request.
 --
@@ -156,13 +156,11 @@ data ListUserImportJobsResponse = ListUserImportJobsResponse'
 listUserImportJobsResponse
     :: Int -- ^ 'luijrsResponseStatus'
     -> ListUserImportJobsResponse
-listUserImportJobsResponse pResponseStatus_ =
-  ListUserImportJobsResponse'
-    { _luijrsPaginationToken = Nothing
-    , _luijrsUserImportJobs = Nothing
-    , _luijrsResponseStatus = pResponseStatus_
-    }
-
+listUserImportJobsResponse pResponseStatus_
+  = ListUserImportJobsResponse'{_luijrsPaginationToken
+                                  = Nothing,
+                                _luijrsUserImportJobs = Nothing,
+                                _luijrsResponseStatus = pResponseStatus_}
 
 -- | An identifier that can be used to return the next set of user import jobs in the list.
 luijrsPaginationToken :: Lens' ListUserImportJobsResponse (Maybe Text)

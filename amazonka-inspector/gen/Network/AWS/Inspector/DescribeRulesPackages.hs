@@ -40,18 +40,18 @@ module Network.AWS.Inspector.DescribeRulesPackages
     ) where
 
 import Network.AWS.Inspector.Types
-import Network.AWS.Inspector.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'describeRulesPackages' smart constructor.
-data DescribeRulesPackages = DescribeRulesPackages'
-  { _drpLocale           :: !(Maybe Locale)
-  , _drpRulesPackageARNs :: !(List1 Text)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeRulesPackages = DescribeRulesPackages'{_drpLocale
+                                                    :: !(Maybe Locale),
+                                                    _drpRulesPackageARNs ::
+                                                    !(List1 Text)}
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'DescribeRulesPackages' with the minimum fields required to make a request.
 --
@@ -63,10 +63,9 @@ data DescribeRulesPackages = DescribeRulesPackages'
 describeRulesPackages
     :: NonEmpty Text -- ^ 'drpRulesPackageARNs'
     -> DescribeRulesPackages
-describeRulesPackages pRulesPackageARNs_ =
-  DescribeRulesPackages'
-    {_drpLocale = Nothing, _drpRulesPackageARNs = _List1 # pRulesPackageARNs_}
-
+describeRulesPackages pRulesPackageARNs_
+  = DescribeRulesPackages'{_drpLocale = Nothing,
+                           _drpRulesPackageARNs = _List1 # pRulesPackageARNs_}
 
 -- | The locale that you want to translate a rules package description into.
 drpLocale :: Lens' DescribeRulesPackages (Maybe Locale)
@@ -116,12 +115,17 @@ instance ToQuery DescribeRulesPackages where
         toQuery = const mempty
 
 -- | /See:/ 'describeRulesPackagesResponse' smart constructor.
-data DescribeRulesPackagesResponse = DescribeRulesPackagesResponse'
-  { _drprsResponseStatus :: !Int
-  , _drprsRulesPackages  :: ![RulesPackage]
-  , _drprsFailedItems    :: !(Map Text FailedItemDetails)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeRulesPackagesResponse = DescribeRulesPackagesResponse'{_drprsResponseStatus
+                                                                    :: !Int,
+                                                                    _drprsRulesPackages
+                                                                    ::
+                                                                    ![RulesPackage],
+                                                                    _drprsFailedItems
+                                                                    ::
+                                                                    !(Map Text
+                                                                        FailedItemDetails)}
+                                       deriving (Eq, Read, Show, Data, Typeable,
+                                                 Generic)
 
 -- | Creates a value of 'DescribeRulesPackagesResponse' with the minimum fields required to make a request.
 --
@@ -135,13 +139,11 @@ data DescribeRulesPackagesResponse = DescribeRulesPackagesResponse'
 describeRulesPackagesResponse
     :: Int -- ^ 'drprsResponseStatus'
     -> DescribeRulesPackagesResponse
-describeRulesPackagesResponse pResponseStatus_ =
-  DescribeRulesPackagesResponse'
-    { _drprsResponseStatus = pResponseStatus_
-    , _drprsRulesPackages = mempty
-    , _drprsFailedItems = mempty
-    }
-
+describeRulesPackagesResponse pResponseStatus_
+  = DescribeRulesPackagesResponse'{_drprsResponseStatus
+                                     = pResponseStatus_,
+                                   _drprsRulesPackages = mempty,
+                                   _drprsFailedItems = mempty}
 
 -- | -- | The response status code.
 drprsResponseStatus :: Lens' DescribeRulesPackagesResponse Int

@@ -39,10 +39,10 @@ module Network.AWS.APIGateway.GetVPCLink
     , vlStatusMessage
     , vlId
     , vlDescription
+    , vlTags
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -53,10 +53,9 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'getVPCLink' smart constructor.
-newtype GetVPCLink = GetVPCLink'
-  { _gvlVpcLinkId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetVPCLink = GetVPCLink'{_gvlVpcLinkId ::
+                                 Text}
+                       deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetVPCLink' with the minimum fields required to make a request.
 --
@@ -66,8 +65,8 @@ newtype GetVPCLink = GetVPCLink'
 getVPCLink
     :: Text -- ^ 'gvlVpcLinkId'
     -> GetVPCLink
-getVPCLink pVpcLinkId_ = GetVPCLink' {_gvlVpcLinkId = pVpcLinkId_}
-
+getVPCLink pVpcLinkId_
+  = GetVPCLink'{_gvlVpcLinkId = pVpcLinkId_}
 
 -- | [Required] The identifier of the 'VpcLink' . It is used in an 'Integration' to reference this 'VpcLink' .
 gvlVpcLinkId :: Lens' GetVPCLink Text

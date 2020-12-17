@@ -38,7 +38,6 @@ module Network.AWS.CloudFormation.SignalResource
     ) where
 
 import Network.AWS.CloudFormation.Types
-import Network.AWS.CloudFormation.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -49,13 +48,12 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'signalResource' smart constructor.
-data SignalResource = SignalResource'
-  { _sigStackName         :: !Text
-  , _sigLogicalResourceId :: !Text
-  , _sigUniqueId          :: !Text
-  , _sigStatus            :: !ResourceSignalStatus
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data SignalResource = SignalResource'{_sigStackName
+                                      :: !Text,
+                                      _sigLogicalResourceId :: !Text,
+                                      _sigUniqueId :: !Text,
+                                      _sigStatus :: !ResourceSignalStatus}
+                        deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'SignalResource' with the minimum fields required to make a request.
 --
@@ -74,14 +72,11 @@ signalResource
     -> Text -- ^ 'sigUniqueId'
     -> ResourceSignalStatus -- ^ 'sigStatus'
     -> SignalResource
-signalResource pStackName_ pLogicalResourceId_ pUniqueId_ pStatus_ =
-  SignalResource'
-    { _sigStackName = pStackName_
-    , _sigLogicalResourceId = pLogicalResourceId_
-    , _sigUniqueId = pUniqueId_
-    , _sigStatus = pStatus_
-    }
-
+signalResource pStackName_ pLogicalResourceId_
+  pUniqueId_ pStatus_
+  = SignalResource'{_sigStackName = pStackName_,
+                    _sigLogicalResourceId = pLogicalResourceId_,
+                    _sigUniqueId = pUniqueId_, _sigStatus = pStatus_}
 
 -- | The stack name or unique stack ID that includes the resource that you want to signal.
 sigStackName :: Lens' SignalResource Text
@@ -124,16 +119,14 @@ instance ToQuery SignalResource where
                "UniqueId" =: _sigUniqueId, "Status" =: _sigStatus]
 
 -- | /See:/ 'signalResourceResponse' smart constructor.
-data SignalResourceResponse =
-  SignalResourceResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data SignalResourceResponse = SignalResourceResponse'
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'SignalResourceResponse' with the minimum fields required to make a request.
 --
 signalResourceResponse
     :: SignalResourceResponse
 signalResourceResponse = SignalResourceResponse'
-
 
 instance NFData SignalResourceResponse where

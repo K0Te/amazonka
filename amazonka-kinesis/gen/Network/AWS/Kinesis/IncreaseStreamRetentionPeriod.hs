@@ -38,7 +38,6 @@ module Network.AWS.Kinesis.IncreaseStreamRetentionPeriod
     ) where
 
 import Network.AWS.Kinesis.Types
-import Network.AWS.Kinesis.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -49,11 +48,12 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'increaseStreamRetentionPeriod' smart constructor.
-data IncreaseStreamRetentionPeriod = IncreaseStreamRetentionPeriod'
-  { _isrpStreamName           :: !Text
-  , _isrpRetentionPeriodHours :: !Nat
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data IncreaseStreamRetentionPeriod = IncreaseStreamRetentionPeriod'{_isrpStreamName
+                                                                    :: !Text,
+                                                                    _isrpRetentionPeriodHours
+                                                                    :: !Int}
+                                       deriving (Eq, Read, Show, Data, Typeable,
+                                                 Generic)
 
 -- | Creates a value of 'IncreaseStreamRetentionPeriod' with the minimum fields required to make a request.
 --
@@ -64,22 +64,22 @@ data IncreaseStreamRetentionPeriod = IncreaseStreamRetentionPeriod'
 -- * 'isrpRetentionPeriodHours' - The new retention period of the stream, in hours. Must be more than the current retention period.
 increaseStreamRetentionPeriod
     :: Text -- ^ 'isrpStreamName'
-    -> Natural -- ^ 'isrpRetentionPeriodHours'
+    -> Int -- ^ 'isrpRetentionPeriodHours'
     -> IncreaseStreamRetentionPeriod
-increaseStreamRetentionPeriod pStreamName_ pRetentionPeriodHours_ =
-  IncreaseStreamRetentionPeriod'
-    { _isrpStreamName = pStreamName_
-    , _isrpRetentionPeriodHours = _Nat # pRetentionPeriodHours_
-    }
-
+increaseStreamRetentionPeriod pStreamName_
+  pRetentionPeriodHours_
+  = IncreaseStreamRetentionPeriod'{_isrpStreamName =
+                                     pStreamName_,
+                                   _isrpRetentionPeriodHours =
+                                     pRetentionPeriodHours_}
 
 -- | The name of the stream to modify.
 isrpStreamName :: Lens' IncreaseStreamRetentionPeriod Text
 isrpStreamName = lens _isrpStreamName (\ s a -> s{_isrpStreamName = a})
 
 -- | The new retention period of the stream, in hours. Must be more than the current retention period.
-isrpRetentionPeriodHours :: Lens' IncreaseStreamRetentionPeriod Natural
-isrpRetentionPeriodHours = lens _isrpRetentionPeriodHours (\ s a -> s{_isrpRetentionPeriodHours = a}) . _Nat
+isrpRetentionPeriodHours :: Lens' IncreaseStreamRetentionPeriod Int
+isrpRetentionPeriodHours = lens _isrpRetentionPeriodHours (\ s a -> s{_isrpRetentionPeriodHours = a})
 
 instance AWSRequest IncreaseStreamRetentionPeriod
          where
@@ -120,17 +120,16 @@ instance ToQuery IncreaseStreamRetentionPeriod where
         toQuery = const mempty
 
 -- | /See:/ 'increaseStreamRetentionPeriodResponse' smart constructor.
-data IncreaseStreamRetentionPeriodResponse =
-  IncreaseStreamRetentionPeriodResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data IncreaseStreamRetentionPeriodResponse = IncreaseStreamRetentionPeriodResponse'
+                                               deriving (Eq, Read, Show, Data,
+                                                         Typeable, Generic)
 
 -- | Creates a value of 'IncreaseStreamRetentionPeriodResponse' with the minimum fields required to make a request.
 --
 increaseStreamRetentionPeriodResponse
     :: IncreaseStreamRetentionPeriodResponse
-increaseStreamRetentionPeriodResponse = IncreaseStreamRetentionPeriodResponse'
-
+increaseStreamRetentionPeriodResponse
+  = IncreaseStreamRetentionPeriodResponse'
 
 instance NFData IncreaseStreamRetentionPeriodResponse
          where

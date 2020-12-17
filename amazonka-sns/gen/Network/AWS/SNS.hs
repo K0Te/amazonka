@@ -11,11 +11,13 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- __Amazon Simple Notification Service__
+-- __Amazon Simple Notification Service__ 
 --
--- Amazon Simple Notification Service (Amazon SNS) is a web service that enables you to build distributed web-enabled applications. Applications can use Amazon SNS to easily push real-time notification messages to interested subscribers over multiple delivery protocols. For more information about this product see <http://aws.amazon.com/sns/ http://aws.amazon.com/sns> . For detailed information about Amazon SNS features and their associated API calls, see the <http://docs.aws.amazon.com/sns/latest/dg/ Amazon SNS Developer Guide> .
+-- Amazon Simple Notification Service (Amazon SNS) is a web service that enables you to build distributed web-enabled applications. Applications can use Amazon SNS to easily push real-time notification messages to interested subscribers over multiple delivery protocols. For more information about this product see <http://aws.amazon.com/sns/ https://aws.amazon.com/sns> . For detailed information about Amazon SNS features and their associated API calls, see the <https://docs.aws.amazon.com/sns/latest/dg/ Amazon SNS Developer Guide> . 
 --
--- We also provide SDKs that enable you to access Amazon SNS from your preferred programming language. The SDKs contain functionality that automatically takes care of tasks such as: cryptographically signing your service requests, retrying requests, and handling error responses. For a list of available SDKs, go to <http://aws.amazon.com/tools/ Tools for Amazon Web Services> .
+-- For information on the permissions you need to use this API, see <https://docs.aws.amazon.com/sns/latest/dg/sns-authentication-and-access-control.html Identity and access management in Amazon SNS> in the /Amazon SNS Developer Guide./ 
+--
+-- We also provide SDKs that enable you to access Amazon SNS from your preferred programming language. The SDKs contain functionality that automatically takes care of tasks such as: cryptographically signing your service requests, retrying requests, and handling error responses. For a list of available SDKs, go to <http://aws.amazon.com/tools/ Tools for Amazon Web Services> . 
 --
 module Network.AWS.SNS
     (
@@ -25,11 +27,17 @@ module Network.AWS.SNS
     -- * Errors
     -- $errors
 
+    -- ** KMSInvalidStateException
+    , _KMSInvalidStateException
+
     -- ** EndpointDisabledException
     , _EndpointDisabledException
 
     -- ** AuthorizationErrorException
     , _AuthorizationErrorException
+
+    -- ** KMSThrottlingException
+    , _KMSThrottlingException
 
     -- ** InvalidParameterException
     , _InvalidParameterException
@@ -40,11 +48,17 @@ module Network.AWS.SNS
     -- ** PlatformApplicationDisabledException
     , _PlatformApplicationDisabledException
 
+    -- ** KMSOptInRequired
+    , _KMSOptInRequired
+
     -- ** InternalErrorException
     , _InternalErrorException
 
     -- ** ThrottledException
     , _ThrottledException
+
+    -- ** KMSNotFoundException
+    , _KMSNotFoundException
 
     -- ** InvalidParameterValueException
     , _InvalidParameterValueException
@@ -52,8 +66,35 @@ module Network.AWS.SNS
     -- ** NotFoundException
     , _NotFoundException
 
+    -- ** StaleTagException
+    , _StaleTagException
+
+    -- ** KMSDisabledException
+    , _KMSDisabledException
+
+    -- ** TagPolicyException
+    , _TagPolicyException
+
+    -- ** InvalidSecurityException
+    , _InvalidSecurityException
+
     -- ** TopicLimitExceededException
     , _TopicLimitExceededException
+
+    -- ** ConcurrentAccessException
+    , _ConcurrentAccessException
+
+    -- ** TagLimitExceededException
+    , _TagLimitExceededException
+
+    -- ** ResourceNotFoundException
+    , _ResourceNotFoundException
+
+    -- ** FilterPolicyLimitExceededException
+    , _FilterPolicyLimitExceededException
+
+    -- ** KMSAccessDeniedException
+    , _KMSAccessDeniedException
 
     -- * Waiters
     -- $waiters
@@ -61,94 +102,103 @@ module Network.AWS.SNS
     -- * Operations
     -- $operations
 
-    -- ** ListPhoneNumbersOptedOut
+    -- ** ListPhoneNumbersOptedOut (Paginated)
     , module Network.AWS.SNS.ListPhoneNumbersOptedOut
 
-    -- ** DeleteEndpoint
+    -- ** DeleteEndpoint 
     , module Network.AWS.SNS.DeleteEndpoint
 
-    -- ** RemovePermission
+    -- ** ListTagsForResource 
+    , module Network.AWS.SNS.ListTagsForResource
+
+    -- ** RemovePermission 
     , module Network.AWS.SNS.RemovePermission
 
-    -- ** DeleteTopic
+    -- ** DeleteTopic 
     , module Network.AWS.SNS.DeleteTopic
 
-    -- ** SetSMSAttributes
+    -- ** SetSMSAttributes 
     , module Network.AWS.SNS.SetSMSAttributes
 
     -- ** ListTopics (Paginated)
     , module Network.AWS.SNS.ListTopics
 
-    -- ** CreatePlatformEndpoint
+    -- ** CreatePlatformEndpoint 
     , module Network.AWS.SNS.CreatePlatformEndpoint
 
-    -- ** SetPlatformApplicationAttributes
+    -- ** SetPlatformApplicationAttributes 
     , module Network.AWS.SNS.SetPlatformApplicationAttributes
 
     -- ** ListSubscriptionsByTopic (Paginated)
     , module Network.AWS.SNS.ListSubscriptionsByTopic
 
-    -- ** GetTopicAttributes
+    -- ** GetTopicAttributes 
     , module Network.AWS.SNS.GetTopicAttributes
 
-    -- ** OptInPhoneNumber
+    -- ** OptInPhoneNumber 
     , module Network.AWS.SNS.OptInPhoneNumber
 
-    -- ** CreatePlatformApplication
+    -- ** CreatePlatformApplication 
     , module Network.AWS.SNS.CreatePlatformApplication
 
-    -- ** GetPlatformApplicationAttributes
+    -- ** GetPlatformApplicationAttributes 
     , module Network.AWS.SNS.GetPlatformApplicationAttributes
 
     -- ** ListEndpointsByPlatformApplication (Paginated)
     , module Network.AWS.SNS.ListEndpointsByPlatformApplication
 
-    -- ** SetTopicAttributes
+    -- ** SetTopicAttributes 
     , module Network.AWS.SNS.SetTopicAttributes
 
-    -- ** DeletePlatformApplication
+    -- ** DeletePlatformApplication 
     , module Network.AWS.SNS.DeletePlatformApplication
 
-    -- ** GetSMSAttributes
+    -- ** GetSMSAttributes 
     , module Network.AWS.SNS.GetSMSAttributes
 
     -- ** ListPlatformApplications (Paginated)
     , module Network.AWS.SNS.ListPlatformApplications
 
-    -- ** AddPermission
+    -- ** AddPermission 
     , module Network.AWS.SNS.AddPermission
 
-    -- ** GetEndpointAttributes
+    -- ** GetEndpointAttributes 
     , module Network.AWS.SNS.GetEndpointAttributes
 
     -- ** ListSubscriptions (Paginated)
     , module Network.AWS.SNS.ListSubscriptions
 
-    -- ** GetSubscriptionAttributes
+    -- ** GetSubscriptionAttributes 
     , module Network.AWS.SNS.GetSubscriptionAttributes
 
-    -- ** CreateTopic
+    -- ** CreateTopic 
     , module Network.AWS.SNS.CreateTopic
 
-    -- ** CheckIfPhoneNumberIsOptedOut
+    -- ** CheckIfPhoneNumberIsOptedOut 
     , module Network.AWS.SNS.CheckIfPhoneNumberIsOptedOut
 
-    -- ** Subscribe
+    -- ** TagResource 
+    , module Network.AWS.SNS.TagResource
+
+    -- ** Subscribe 
     , module Network.AWS.SNS.Subscribe
 
-    -- ** Unsubscribe
+    -- ** UntagResource 
+    , module Network.AWS.SNS.UntagResource
+
+    -- ** Unsubscribe 
     , module Network.AWS.SNS.Unsubscribe
 
-    -- ** SetEndpointAttributes
+    -- ** SetEndpointAttributes 
     , module Network.AWS.SNS.SetEndpointAttributes
 
-    -- ** SetSubscriptionAttributes
+    -- ** SetSubscriptionAttributes 
     , module Network.AWS.SNS.SetSubscriptionAttributes
 
-    -- ** ConfirmSubscription
+    -- ** ConfirmSubscription 
     , module Network.AWS.SNS.ConfirmSubscription
 
-    -- ** Publish
+    -- ** Publish 
     , module Network.AWS.SNS.Publish
 
     -- * Types
@@ -181,6 +231,12 @@ module Network.AWS.SNS
     , sEndpoint
     , sSubscriptionARN
 
+    -- ** Tag
+    , Tag
+    , tag
+    , tagKey
+    , tagValue
+
     -- ** Topic
     , Topic
     , topic
@@ -206,6 +262,7 @@ import Network.AWS.SNS.ListPhoneNumbersOptedOut
 import Network.AWS.SNS.ListPlatformApplications
 import Network.AWS.SNS.ListSubscriptions
 import Network.AWS.SNS.ListSubscriptionsByTopic
+import Network.AWS.SNS.ListTagsForResource
 import Network.AWS.SNS.ListTopics
 import Network.AWS.SNS.OptInPhoneNumber
 import Network.AWS.SNS.Publish
@@ -216,8 +273,10 @@ import Network.AWS.SNS.SetSMSAttributes
 import Network.AWS.SNS.SetSubscriptionAttributes
 import Network.AWS.SNS.SetTopicAttributes
 import Network.AWS.SNS.Subscribe
+import Network.AWS.SNS.TagResource
 import Network.AWS.SNS.Types
 import Network.AWS.SNS.Unsubscribe
+import Network.AWS.SNS.UntagResource
 import Network.AWS.SNS.Waiters
 
 {- $errors

@@ -37,18 +37,21 @@ module Network.AWS.Greengrass.CreateGroupCertificateAuthority
     ) where
 
 import Network.AWS.Greengrass.Types
-import Network.AWS.Greengrass.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'createGroupCertificateAuthority' smart constructor.
-data CreateGroupCertificateAuthority = CreateGroupCertificateAuthority'
-  { _cgcaAmznClientToken :: !(Maybe Text)
-  , _cgcaGroupId         :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateGroupCertificateAuthority = CreateGroupCertificateAuthority'{_cgcaAmznClientToken
+                                                                        ::
+                                                                        !(Maybe
+                                                                            Text),
+                                                                        _cgcaGroupId
+                                                                        ::
+                                                                        !Text}
+                                         deriving (Eq, Read, Show, Data,
+                                                   Typeable, Generic)
 
 -- | Creates a value of 'CreateGroupCertificateAuthority' with the minimum fields required to make a request.
 --
@@ -56,20 +59,20 @@ data CreateGroupCertificateAuthority = CreateGroupCertificateAuthority'
 --
 -- * 'cgcaAmznClientToken' - A client token used to correlate requests and responses.
 --
--- * 'cgcaGroupId' - The ID of the AWS Greengrass group.
+-- * 'cgcaGroupId' - The ID of the Greengrass group.
 createGroupCertificateAuthority
     :: Text -- ^ 'cgcaGroupId'
     -> CreateGroupCertificateAuthority
-createGroupCertificateAuthority pGroupId_ =
-  CreateGroupCertificateAuthority'
-    {_cgcaAmznClientToken = Nothing, _cgcaGroupId = pGroupId_}
-
+createGroupCertificateAuthority pGroupId_
+  = CreateGroupCertificateAuthority'{_cgcaAmznClientToken
+                                       = Nothing,
+                                     _cgcaGroupId = pGroupId_}
 
 -- | A client token used to correlate requests and responses.
 cgcaAmznClientToken :: Lens' CreateGroupCertificateAuthority (Maybe Text)
 cgcaAmznClientToken = lens _cgcaAmznClientToken (\ s a -> s{_cgcaAmznClientToken = a})
 
--- | The ID of the AWS Greengrass group.
+-- | The ID of the Greengrass group.
 cgcaGroupId :: Lens' CreateGroupCertificateAuthority Text
 cgcaGroupId = lens _cgcaGroupId (\ s a -> s{_cgcaGroupId = a})
 
@@ -112,11 +115,15 @@ instance ToQuery CreateGroupCertificateAuthority
         toQuery = const mempty
 
 -- | /See:/ 'createGroupCertificateAuthorityResponse' smart constructor.
-data CreateGroupCertificateAuthorityResponse = CreateGroupCertificateAuthorityResponse'
-  { _cgcarsGroupCertificateAuthorityARN :: !(Maybe Text)
-  , _cgcarsResponseStatus               :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateGroupCertificateAuthorityResponse = CreateGroupCertificateAuthorityResponse'{_cgcarsGroupCertificateAuthorityARN
+                                                                                        ::
+                                                                                        !(Maybe
+                                                                                            Text),
+                                                                                        _cgcarsResponseStatus
+                                                                                        ::
+                                                                                        !Int}
+                                                 deriving (Eq, Read, Show, Data,
+                                                           Typeable, Generic)
 
 -- | Creates a value of 'CreateGroupCertificateAuthorityResponse' with the minimum fields required to make a request.
 --
@@ -128,12 +135,12 @@ data CreateGroupCertificateAuthorityResponse = CreateGroupCertificateAuthorityRe
 createGroupCertificateAuthorityResponse
     :: Int -- ^ 'cgcarsResponseStatus'
     -> CreateGroupCertificateAuthorityResponse
-createGroupCertificateAuthorityResponse pResponseStatus_ =
-  CreateGroupCertificateAuthorityResponse'
-    { _cgcarsGroupCertificateAuthorityARN = Nothing
-    , _cgcarsResponseStatus = pResponseStatus_
-    }
-
+createGroupCertificateAuthorityResponse
+  pResponseStatus_
+  = CreateGroupCertificateAuthorityResponse'{_cgcarsGroupCertificateAuthorityARN
+                                               = Nothing,
+                                             _cgcarsResponseStatus =
+                                               pResponseStatus_}
 
 -- | The ARN of the group certificate authority.
 cgcarsGroupCertificateAuthorityARN :: Lens' CreateGroupCertificateAuthorityResponse (Maybe Text)

@@ -40,7 +40,6 @@ module Network.AWS.APIGateway.UpdateAccount
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -51,10 +50,9 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'updateAccount' smart constructor.
-newtype UpdateAccount = UpdateAccount'
-  { _uaPatchOperations :: Maybe [PatchOperation]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype UpdateAccount = UpdateAccount'{_uaPatchOperations
+                                       :: Maybe [PatchOperation]}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UpdateAccount' with the minimum fields required to make a request.
 --
@@ -63,8 +61,8 @@ newtype UpdateAccount = UpdateAccount'
 -- * 'uaPatchOperations' - A list of update operations to be applied to the specified resource and in the order specified in this list.
 updateAccount
     :: UpdateAccount
-updateAccount = UpdateAccount' {_uaPatchOperations = Nothing}
-
+updateAccount
+  = UpdateAccount'{_uaPatchOperations = Nothing}
 
 -- | A list of update operations to be applied to the specified resource and in the order specified in this list.
 uaPatchOperations :: Lens' UpdateAccount [PatchOperation]

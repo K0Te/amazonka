@@ -18,10 +18,20 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Disassociates a VPC from a Amazon Route 53 private hosted zone.
+-- Disassociates an Amazon Virtual Private Cloud (Amazon VPC) from an Amazon Route 53 private hosted zone. Note the following:
 --
 --
--- /Important:/ You can't disassociate a VPC from a private hosted zone when only one VPC is associated with the hosted zone. You also can't convert a private hosted zone into a public hosted zone.
+--     * You can't disassociate the last Amazon VPC from a private hosted zone.
+--
+--     * You can't convert a private hosted zone into a public hosted zone.
+--
+--     * You can submit a @DisassociateVPCFromHostedZone@ request using either the account that created the hosted zone or the account that created the Amazon VPC.
+--
+--     * Some services, such as AWS Cloud Map and Amazon Elastic File System (Amazon EFS) automatically create hosted zones and associate VPCs with the hosted zones. A service can create a hosted zone using your account or using its own account. You can disassociate a VPC from a hosted zone only if the service created the hosted zone using your account.
+--
+-- When you run <https://docs.aws.amazon.com/Route53/latest/APIReference/API_ListHostedZonesByVPC.html DisassociateVPCFromHostedZone> , if the hosted zone has a value for @OwningAccount@ , you can use @DisassociateVPCFromHostedZone@ . If the hosted zone has a value for @OwningService@ , you can't use @DisassociateVPCFromHostedZone@ .
+--
+--
 --
 module Network.AWS.Route53.DisassociateVPCFromHostedZone
     (
@@ -46,19 +56,23 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.Route53.Types
-import Network.AWS.Route53.Types.Product
 
 -- | A complex type that contains information about the VPC that you want to disassociate from a specified private hosted zone.
 --
 --
 --
 -- /See:/ 'disassociateVPCFromHostedZone' smart constructor.
-data DisassociateVPCFromHostedZone = DisassociateVPCFromHostedZone'
-  { _dvfhzComment      :: !(Maybe Text)
-  , _dvfhzHostedZoneId :: !ResourceId
-  , _dvfhzVPC          :: !VPC
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DisassociateVPCFromHostedZone = DisassociateVPCFromHostedZone'{_dvfhzComment
+                                                                    ::
+                                                                    !(Maybe
+                                                                        Text),
+                                                                    _dvfhzHostedZoneId
+                                                                    ::
+                                                                    !ResourceId,
+                                                                    _dvfhzVPC ::
+                                                                    !VPC}
+                                       deriving (Eq, Read, Show, Data, Typeable,
+                                                 Generic)
 
 -- | Creates a value of 'DisassociateVPCFromHostedZone' with the minimum fields required to make a request.
 --
@@ -73,13 +87,11 @@ disassociateVPCFromHostedZone
     :: ResourceId -- ^ 'dvfhzHostedZoneId'
     -> VPC -- ^ 'dvfhzVPC'
     -> DisassociateVPCFromHostedZone
-disassociateVPCFromHostedZone pHostedZoneId_ pVPC_ =
-  DisassociateVPCFromHostedZone'
-    { _dvfhzComment = Nothing
-    , _dvfhzHostedZoneId = pHostedZoneId_
-    , _dvfhzVPC = pVPC_
-    }
-
+disassociateVPCFromHostedZone pHostedZoneId_ pVPC_
+  = DisassociateVPCFromHostedZone'{_dvfhzComment =
+                                     Nothing,
+                                   _dvfhzHostedZoneId = pHostedZoneId_,
+                                   _dvfhzVPC = pVPC_}
 
 -- | /Optional:/ A comment about the disassociation request.
 dvfhzComment :: Lens' DisassociateVPCFromHostedZone (Maybe Text)
@@ -137,11 +149,14 @@ instance ToXML DisassociateVPCFromHostedZone where
 --
 --
 -- /See:/ 'disassociateVPCFromHostedZoneResponse' smart constructor.
-data DisassociateVPCFromHostedZoneResponse = DisassociateVPCFromHostedZoneResponse'
-  { _dvfhzrsResponseStatus :: !Int
-  , _dvfhzrsChangeInfo     :: !ChangeInfo
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DisassociateVPCFromHostedZoneResponse = DisassociateVPCFromHostedZoneResponse'{_dvfhzrsResponseStatus
+                                                                                    ::
+                                                                                    !Int,
+                                                                                    _dvfhzrsChangeInfo
+                                                                                    ::
+                                                                                    !ChangeInfo}
+                                               deriving (Eq, Read, Show, Data,
+                                                         Typeable, Generic)
 
 -- | Creates a value of 'DisassociateVPCFromHostedZoneResponse' with the minimum fields required to make a request.
 --
@@ -154,12 +169,11 @@ disassociateVPCFromHostedZoneResponse
     :: Int -- ^ 'dvfhzrsResponseStatus'
     -> ChangeInfo -- ^ 'dvfhzrsChangeInfo'
     -> DisassociateVPCFromHostedZoneResponse
-disassociateVPCFromHostedZoneResponse pResponseStatus_ pChangeInfo_ =
-  DisassociateVPCFromHostedZoneResponse'
-    { _dvfhzrsResponseStatus = pResponseStatus_
-    , _dvfhzrsChangeInfo = pChangeInfo_
-    }
-
+disassociateVPCFromHostedZoneResponse
+  pResponseStatus_ pChangeInfo_
+  = DisassociateVPCFromHostedZoneResponse'{_dvfhzrsResponseStatus
+                                             = pResponseStatus_,
+                                           _dvfhzrsChangeInfo = pChangeInfo_}
 
 -- | -- | The response status code.
 dvfhzrsResponseStatus :: Lens' DisassociateVPCFromHostedZoneResponse Int

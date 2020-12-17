@@ -21,27 +21,25 @@
 -- Retrieves the location of stored game session logs for a specified game session. When a game session is terminated, Amazon GameLift automatically stores the logs in Amazon S3 and retains them for 14 days. Use this URL to download the logs.
 --
 --
--- Game-session-related operations include:
+--     * 'CreateGameSession' 
 --
---     * 'CreateGameSession'
+--     * 'DescribeGameSessions' 
 --
---     * 'DescribeGameSessions'
+--     * 'DescribeGameSessionDetails' 
 --
---     * 'DescribeGameSessionDetails'
+--     * 'SearchGameSessions' 
 --
---     * 'SearchGameSessions'
+--     * 'UpdateGameSession' 
 --
---     * 'UpdateGameSession'
---
---     * 'GetGameSessionLogUrl'
+--     * 'GetGameSessionLogUrl' 
 --
 --     * Game session placements
 --
---     * 'StartGameSessionPlacement'
+--     * 'StartGameSessionPlacement' 
 --
---     * 'DescribeGameSessionPlacement'
+--     * 'DescribeGameSessionPlacement' 
 --
---     * 'StopGameSessionPlacement'
+--     * 'StopGameSessionPlacement' 
 --
 --
 --
@@ -64,35 +62,34 @@ module Network.AWS.GameLift.GetGameSessionLogURL
     ) where
 
 import Network.AWS.GameLift.Types
-import Network.AWS.GameLift.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- | Represents the input for a request action.
+-- | Represents the input for a request operation.
 --
 --
 --
 -- /See:/ 'getGameSessionLogURL' smart constructor.
-newtype GetGameSessionLogURL = GetGameSessionLogURL'
-  { _ggsluGameSessionId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetGameSessionLogURL = GetGameSessionLogURL'{_ggsluGameSessionId
+                                                     :: Text}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'GetGameSessionLogURL' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'ggsluGameSessionId' - Unique identifier for the game session to get logs for.
+-- * 'ggsluGameSessionId' - A unique identifier for the game session to get logs for. 
 getGameSessionLogURL
     :: Text -- ^ 'ggsluGameSessionId'
     -> GetGameSessionLogURL
-getGameSessionLogURL pGameSessionId_ =
-  GetGameSessionLogURL' {_ggsluGameSessionId = pGameSessionId_}
+getGameSessionLogURL pGameSessionId_
+  = GetGameSessionLogURL'{_ggsluGameSessionId =
+                            pGameSessionId_}
 
-
--- | Unique identifier for the game session to get logs for.
+-- | A unique identifier for the game session to get logs for. 
 ggsluGameSessionId :: Lens' GetGameSessionLogURL Text
 ggsluGameSessionId = lens _ggsluGameSessionId (\ s a -> s{_ggsluGameSessionId = a})
 
@@ -131,33 +128,35 @@ instance ToPath GetGameSessionLogURL where
 instance ToQuery GetGameSessionLogURL where
         toQuery = const mempty
 
--- | Represents the returned data in response to a request action.
+-- | Represents the returned data in response to a request operation.
 --
 --
 --
 -- /See:/ 'getGameSessionLogURLResponse' smart constructor.
-data GetGameSessionLogURLResponse = GetGameSessionLogURLResponse'
-  { _ggslursPreSignedURL   :: !(Maybe Text)
-  , _ggslursResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetGameSessionLogURLResponse = GetGameSessionLogURLResponse'{_ggslursPreSignedURL
+                                                                  ::
+                                                                  !(Maybe Text),
+                                                                  _ggslursResponseStatus
+                                                                  :: !Int}
+                                      deriving (Eq, Read, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'GetGameSessionLogURLResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'ggslursPreSignedURL' - Location of the requested game session logs, available for download.
+-- * 'ggslursPreSignedURL' - Location of the requested game session logs, available for download. This URL is valid for 15 minutes, after which S3 will reject any download request using this URL. You can request a new URL any time within the 14-day period that the logs are retained.
 --
 -- * 'ggslursResponseStatus' - -- | The response status code.
 getGameSessionLogURLResponse
     :: Int -- ^ 'ggslursResponseStatus'
     -> GetGameSessionLogURLResponse
-getGameSessionLogURLResponse pResponseStatus_ =
-  GetGameSessionLogURLResponse'
-    {_ggslursPreSignedURL = Nothing, _ggslursResponseStatus = pResponseStatus_}
+getGameSessionLogURLResponse pResponseStatus_
+  = GetGameSessionLogURLResponse'{_ggslursPreSignedURL
+                                    = Nothing,
+                                  _ggslursResponseStatus = pResponseStatus_}
 
-
--- | Location of the requested game session logs, available for download.
+-- | Location of the requested game session logs, available for download. This URL is valid for 15 minutes, after which S3 will reject any download request using this URL. You can request a new URL any time within the 14-day period that the logs are retained.
 ggslursPreSignedURL :: Lens' GetGameSessionLogURLResponse (Maybe Text)
 ggslursPreSignedURL = lens _ggslursPreSignedURL (\ s a -> s{_ggslursPreSignedURL = a})
 

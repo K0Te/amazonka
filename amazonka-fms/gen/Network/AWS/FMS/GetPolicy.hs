@@ -39,17 +39,14 @@ module Network.AWS.FMS.GetPolicy
     ) where
 
 import Network.AWS.FMS.Types
-import Network.AWS.FMS.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'getPolicy' smart constructor.
-newtype GetPolicy = GetPolicy'
-  { _gpPolicyId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetPolicy = GetPolicy'{_gpPolicyId :: Text}
+                      deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetPolicy' with the minimum fields required to make a request.
 --
@@ -59,8 +56,8 @@ newtype GetPolicy = GetPolicy'
 getPolicy
     :: Text -- ^ 'gpPolicyId'
     -> GetPolicy
-getPolicy pPolicyId_ = GetPolicy' {_gpPolicyId = pPolicyId_}
-
+getPolicy pPolicyId_
+  = GetPolicy'{_gpPolicyId = pPolicyId_}
 
 -- | The ID of the AWS Firewall Manager policy that you want the details for.
 gpPolicyId :: Lens' GetPolicy Text
@@ -101,12 +98,11 @@ instance ToQuery GetPolicy where
         toQuery = const mempty
 
 -- | /See:/ 'getPolicyResponse' smart constructor.
-data GetPolicyResponse = GetPolicyResponse'
-  { _gprsPolicyARN      :: !(Maybe Text)
-  , _gprsPolicy         :: !(Maybe Policy)
-  , _gprsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetPolicyResponse = GetPolicyResponse'{_gprsPolicyARN
+                                            :: !(Maybe Text),
+                                            _gprsPolicy :: !(Maybe Policy),
+                                            _gprsResponseStatus :: !Int}
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetPolicyResponse' with the minimum fields required to make a request.
 --
@@ -120,13 +116,10 @@ data GetPolicyResponse = GetPolicyResponse'
 getPolicyResponse
     :: Int -- ^ 'gprsResponseStatus'
     -> GetPolicyResponse
-getPolicyResponse pResponseStatus_ =
-  GetPolicyResponse'
-    { _gprsPolicyARN = Nothing
-    , _gprsPolicy = Nothing
-    , _gprsResponseStatus = pResponseStatus_
-    }
-
+getPolicyResponse pResponseStatus_
+  = GetPolicyResponse'{_gprsPolicyARN = Nothing,
+                       _gprsPolicy = Nothing,
+                       _gprsResponseStatus = pResponseStatus_}
 
 -- | The Amazon Resource Name (ARN) of the specified policy.
 gprsPolicyARN :: Lens' GetPolicyResponse (Maybe Text)

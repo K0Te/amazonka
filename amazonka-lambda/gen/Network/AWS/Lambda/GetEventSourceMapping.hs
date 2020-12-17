@@ -18,10 +18,8 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Returns configuration information for the specified event source mapping (see 'CreateEventSourceMapping' ).
+-- Returns details about an event source mapping. You can get the identifier of a mapping from the output of 'ListEventSourceMappings' .
 --
---
--- This operation requires permission for the @lambda:GetEventSourceMapping@ action.
 --
 module Network.AWS.Lambda.GetEventSourceMapping
     (
@@ -37,43 +35,52 @@ module Network.AWS.Lambda.GetEventSourceMapping
     -- * Response Lenses
     , esmcEventSourceARN
     , esmcState
+    , esmcStartingPositionTimestamp
     , esmcFunctionARN
+    , esmcTopics
+    , esmcQueues
+    , esmcBisectBatchOnFunctionError
     , esmcUUId
+    , esmcParallelizationFactor
     , esmcLastProcessingResult
+    , esmcMaximumRetryAttempts
     , esmcBatchSize
     , esmcStateTransitionReason
+    , esmcMaximumBatchingWindowInSeconds
+    , esmcSourceAccessConfigurations
+    , esmcMaximumRecordAgeInSeconds
+    , esmcFunctionResponseTypes
+    , esmcTumblingWindowInSeconds
+    , esmcSelfManagedEventSource
     , esmcLastModified
+    , esmcDestinationConfig
+    , esmcStartingPosition
     ) where
 
 import Network.AWS.Lambda.Types
-import Network.AWS.Lambda.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- |
---
---
---
--- /See:/ 'getEventSourceMapping' smart constructor.
-newtype GetEventSourceMapping = GetEventSourceMapping'
-  { _gesmUUId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+-- | /See:/ 'getEventSourceMapping' smart constructor.
+newtype GetEventSourceMapping = GetEventSourceMapping'{_gesmUUId
+                                                       :: Text}
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'GetEventSourceMapping' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'gesmUUId' - The AWS Lambda assigned ID of the event source mapping.
+-- * 'gesmUUId' - The identifier of the event source mapping.
 getEventSourceMapping
     :: Text -- ^ 'gesmUUId'
     -> GetEventSourceMapping
-getEventSourceMapping pUUId_ = GetEventSourceMapping' {_gesmUUId = pUUId_}
+getEventSourceMapping pUUId_
+  = GetEventSourceMapping'{_gesmUUId = pUUId_}
 
-
--- | The AWS Lambda assigned ID of the event source mapping.
+-- | The identifier of the event source mapping.
 gesmUUId :: Lens' GetEventSourceMapping Text
 gesmUUId = lens _gesmUUId (\ s a -> s{_gesmUUId = a})
 

@@ -35,17 +35,16 @@ module Network.AWS.Inspector.DeleteAssessmentTarget
     ) where
 
 import Network.AWS.Inspector.Types
-import Network.AWS.Inspector.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deleteAssessmentTarget' smart constructor.
-newtype DeleteAssessmentTarget = DeleteAssessmentTarget'
-  { _datAssessmentTargetARN :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteAssessmentTarget = DeleteAssessmentTarget'{_datAssessmentTargetARN
+                                                         :: Text}
+                                   deriving (Eq, Read, Show, Data, Typeable,
+                                             Generic)
 
 -- | Creates a value of 'DeleteAssessmentTarget' with the minimum fields required to make a request.
 --
@@ -55,9 +54,9 @@ newtype DeleteAssessmentTarget = DeleteAssessmentTarget'
 deleteAssessmentTarget
     :: Text -- ^ 'datAssessmentTargetARN'
     -> DeleteAssessmentTarget
-deleteAssessmentTarget pAssessmentTargetARN_ =
-  DeleteAssessmentTarget' {_datAssessmentTargetARN = pAssessmentTargetARN_}
-
+deleteAssessmentTarget pAssessmentTargetARN_
+  = DeleteAssessmentTarget'{_datAssessmentTargetARN =
+                              pAssessmentTargetARN_}
 
 -- | The ARN that specifies the assessment target that you want to delete.
 datAssessmentTargetARN :: Lens' DeleteAssessmentTarget Text
@@ -98,16 +97,15 @@ instance ToQuery DeleteAssessmentTarget where
         toQuery = const mempty
 
 -- | /See:/ 'deleteAssessmentTargetResponse' smart constructor.
-data DeleteAssessmentTargetResponse =
-  DeleteAssessmentTargetResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteAssessmentTargetResponse = DeleteAssessmentTargetResponse'
+                                        deriving (Eq, Read, Show, Data,
+                                                  Typeable, Generic)
 
 -- | Creates a value of 'DeleteAssessmentTargetResponse' with the minimum fields required to make a request.
 --
 deleteAssessmentTargetResponse
     :: DeleteAssessmentTargetResponse
-deleteAssessmentTargetResponse = DeleteAssessmentTargetResponse'
-
+deleteAssessmentTargetResponse
+  = DeleteAssessmentTargetResponse'
 
 instance NFData DeleteAssessmentTargetResponse where

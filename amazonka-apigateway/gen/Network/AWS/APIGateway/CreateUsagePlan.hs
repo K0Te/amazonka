@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Creates a usage plan with the throttle and quota limits, as well as the associated API stages, specified in the payload.
+-- Creates a usage plan with the throttle and quota limits, as well as the associated API stages, specified in the payload. 
 --
 --
 module Network.AWS.APIGateway.CreateUsagePlan
@@ -31,6 +31,7 @@ module Network.AWS.APIGateway.CreateUsagePlan
     , cupThrottle
     , cupQuota
     , cupDescription
+    , cupTags
     , cupName
 
     -- * Destructuring the Response
@@ -44,10 +45,10 @@ module Network.AWS.APIGateway.CreateUsagePlan
     , upQuota
     , upDescription
     , upProductCode
+    , upTags
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -58,14 +59,15 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'createUsagePlan' smart constructor.
-data CreateUsagePlan = CreateUsagePlan'
-  { _cupApiStages   :: !(Maybe [APIStage])
-  , _cupThrottle    :: !(Maybe ThrottleSettings)
-  , _cupQuota       :: !(Maybe QuotaSettings)
-  , _cupDescription :: !(Maybe Text)
-  , _cupName        :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateUsagePlan = CreateUsagePlan'{_cupApiStages
+                                        :: !(Maybe [APIStage]),
+                                        _cupThrottle ::
+                                        !(Maybe ThrottleSettings),
+                                        _cupQuota :: !(Maybe QuotaSettings),
+                                        _cupDescription :: !(Maybe Text),
+                                        _cupTags :: !(Maybe (Map Text Text)),
+                                        _cupName :: !Text}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CreateUsagePlan' with the minimum fields required to make a request.
 --
@@ -79,19 +81,17 @@ data CreateUsagePlan = CreateUsagePlan'
 --
 -- * 'cupDescription' - The description of the usage plan.
 --
+-- * 'cupTags' - The key-value map of strings. The valid character set is [a-zA-Z+-=._:/]. The tag key can be up to 128 characters and must not start with @aws:@ . The tag value can be up to 256 characters.
+--
 -- * 'cupName' - [Required] The name of the usage plan.
 createUsagePlan
     :: Text -- ^ 'cupName'
     -> CreateUsagePlan
-createUsagePlan pName_ =
-  CreateUsagePlan'
-    { _cupApiStages = Nothing
-    , _cupThrottle = Nothing
-    , _cupQuota = Nothing
-    , _cupDescription = Nothing
-    , _cupName = pName_
-    }
-
+createUsagePlan pName_
+  = CreateUsagePlan'{_cupApiStages = Nothing,
+                     _cupThrottle = Nothing, _cupQuota = Nothing,
+                     _cupDescription = Nothing, _cupTags = Nothing,
+                     _cupName = pName_}
 
 -- | The associated API stages of the usage plan.
 cupApiStages :: Lens' CreateUsagePlan [APIStage]
@@ -108,6 +108,10 @@ cupQuota = lens _cupQuota (\ s a -> s{_cupQuota = a})
 -- | The description of the usage plan.
 cupDescription :: Lens' CreateUsagePlan (Maybe Text)
 cupDescription = lens _cupDescription (\ s a -> s{_cupDescription = a})
+
+-- | The key-value map of strings. The valid character set is [a-zA-Z+-=._:/]. The tag key can be up to 128 characters and must not start with @aws:@ . The tag value can be up to 256 characters.
+cupTags :: Lens' CreateUsagePlan (HashMap Text Text)
+cupTags = lens _cupTags (\ s a -> s{_cupTags = a}) . _Default . _Map
 
 -- | [Required] The name of the usage plan.
 cupName :: Lens' CreateUsagePlan Text
@@ -136,7 +140,7 @@ instance ToJSON CreateUsagePlan where
                   ("throttle" .=) <$> _cupThrottle,
                   ("quota" .=) <$> _cupQuota,
                   ("description" .=) <$> _cupDescription,
-                  Just ("name" .= _cupName)])
+                  ("tags" .=) <$> _cupTags, Just ("name" .= _cupName)])
 
 instance ToPath CreateUsagePlan where
         toPath = const "/usageplans"

@@ -36,7 +36,6 @@ module Network.AWS.APIGateway.DeleteUsagePlanKey
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -47,11 +46,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'deleteUsagePlanKey' smart constructor.
-data DeleteUsagePlanKey = DeleteUsagePlanKey'
-  { _dupkUsagePlanId :: !Text
-  , _dupkKeyId       :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteUsagePlanKey = DeleteUsagePlanKey'{_dupkUsagePlanId
+                                              :: !Text,
+                                              _dupkKeyId :: !Text}
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteUsagePlanKey' with the minimum fields required to make a request.
 --
@@ -64,9 +62,10 @@ deleteUsagePlanKey
     :: Text -- ^ 'dupkUsagePlanId'
     -> Text -- ^ 'dupkKeyId'
     -> DeleteUsagePlanKey
-deleteUsagePlanKey pUsagePlanId_ pKeyId_ =
-  DeleteUsagePlanKey' {_dupkUsagePlanId = pUsagePlanId_, _dupkKeyId = pKeyId_}
-
+deleteUsagePlanKey pUsagePlanId_ pKeyId_
+  = DeleteUsagePlanKey'{_dupkUsagePlanId =
+                          pUsagePlanId_,
+                        _dupkKeyId = pKeyId_}
 
 -- | [Required] The Id of the 'UsagePlan' resource representing the usage plan containing the to-be-deleted 'UsagePlanKey' resource representing a plan customer.
 dupkUsagePlanId :: Lens' DeleteUsagePlanKey Text
@@ -102,16 +101,15 @@ instance ToQuery DeleteUsagePlanKey where
         toQuery = const mempty
 
 -- | /See:/ 'deleteUsagePlanKeyResponse' smart constructor.
-data DeleteUsagePlanKeyResponse =
-  DeleteUsagePlanKeyResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteUsagePlanKeyResponse = DeleteUsagePlanKeyResponse'
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'DeleteUsagePlanKeyResponse' with the minimum fields required to make a request.
 --
 deleteUsagePlanKeyResponse
     :: DeleteUsagePlanKeyResponse
-deleteUsagePlanKeyResponse = DeleteUsagePlanKeyResponse'
-
+deleteUsagePlanKeyResponse
+  = DeleteUsagePlanKeyResponse'
 
 instance NFData DeleteUsagePlanKeyResponse where

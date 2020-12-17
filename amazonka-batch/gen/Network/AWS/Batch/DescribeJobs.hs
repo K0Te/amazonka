@@ -38,29 +38,26 @@ module Network.AWS.Batch.DescribeJobs
     ) where
 
 import Network.AWS.Batch.Types
-import Network.AWS.Batch.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'describeJobs' smart constructor.
-newtype DescribeJobs = DescribeJobs'
-  { _djJobs :: [Text]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DescribeJobs = DescribeJobs'{_djJobs ::
+                                     [Text]}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DescribeJobs' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'djJobs' - A space-separated list of up to 100 job IDs.
+-- * 'djJobs' - A list of up to 100 job IDs.
 describeJobs
     :: DescribeJobs
-describeJobs = DescribeJobs' {_djJobs = mempty}
+describeJobs = DescribeJobs'{_djJobs = mempty}
 
-
--- | A space-separated list of up to 100 job IDs.
+-- | A list of up to 100 job IDs.
 djJobs :: Lens' DescribeJobs [Text]
 djJobs = lens _djJobs (\ s a -> s{_djJobs = a}) . _Coerce
 
@@ -95,11 +92,10 @@ instance ToQuery DescribeJobs where
         toQuery = const mempty
 
 -- | /See:/ 'describeJobsResponse' smart constructor.
-data DescribeJobsResponse = DescribeJobsResponse'
-  { _djrsJobs           :: !(Maybe [JobDetail])
-  , _djrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeJobsResponse = DescribeJobsResponse'{_djrsJobs
+                                                  :: !(Maybe [JobDetail]),
+                                                  _djrsResponseStatus :: !Int}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DescribeJobsResponse' with the minimum fields required to make a request.
 --
@@ -111,10 +107,9 @@ data DescribeJobsResponse = DescribeJobsResponse'
 describeJobsResponse
     :: Int -- ^ 'djrsResponseStatus'
     -> DescribeJobsResponse
-describeJobsResponse pResponseStatus_ =
-  DescribeJobsResponse'
-    {_djrsJobs = Nothing, _djrsResponseStatus = pResponseStatus_}
-
+describeJobsResponse pResponseStatus_
+  = DescribeJobsResponse'{_djrsJobs = Nothing,
+                          _djrsResponseStatus = pResponseStatus_}
 
 -- | The list of jobs.
 djrsJobs :: Lens' DescribeJobsResponse [JobDetail]

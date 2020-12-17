@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Deletes an AWS DMS event subscription.
+-- Deletes an AWS DMS event subscription. 
 --
 --
 module Network.AWS.DMS.DeleteEventSubscription
@@ -38,21 +38,20 @@ module Network.AWS.DMS.DeleteEventSubscription
     ) where
 
 import Network.AWS.DMS.Types
-import Network.AWS.DMS.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- |
+-- | 
 --
 --
 --
 -- /See:/ 'deleteEventSubscription' smart constructor.
-newtype DeleteEventSubscription = DeleteEventSubscription'
-  { _desSubscriptionName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteEventSubscription = DeleteEventSubscription'{_desSubscriptionName
+                                                           :: Text}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'DeleteEventSubscription' with the minimum fields required to make a request.
 --
@@ -62,9 +61,9 @@ newtype DeleteEventSubscription = DeleteEventSubscription'
 deleteEventSubscription
     :: Text -- ^ 'desSubscriptionName'
     -> DeleteEventSubscription
-deleteEventSubscription pSubscriptionName_ =
-  DeleteEventSubscription' {_desSubscriptionName = pSubscriptionName_}
-
+deleteEventSubscription pSubscriptionName_
+  = DeleteEventSubscription'{_desSubscriptionName =
+                               pSubscriptionName_}
 
 -- | The name of the DMS event notification subscription to be deleted.
 desSubscriptionName :: Lens' DeleteEventSubscription Text
@@ -106,16 +105,19 @@ instance ToPath DeleteEventSubscription where
 instance ToQuery DeleteEventSubscription where
         toQuery = const mempty
 
--- |
+-- | 
 --
 --
 --
 -- /See:/ 'deleteEventSubscriptionResponse' smart constructor.
-data DeleteEventSubscriptionResponse = DeleteEventSubscriptionResponse'
-  { _desersEventSubscription :: !(Maybe EventSubscription)
-  , _desersResponseStatus    :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteEventSubscriptionResponse = DeleteEventSubscriptionResponse'{_desersEventSubscription
+                                                                        ::
+                                                                        !(Maybe
+                                                                            EventSubscription),
+                                                                        _desersResponseStatus
+                                                                        :: !Int}
+                                         deriving (Eq, Read, Show, Data,
+                                                   Typeable, Generic)
 
 -- | Creates a value of 'DeleteEventSubscriptionResponse' with the minimum fields required to make a request.
 --
@@ -127,12 +129,10 @@ data DeleteEventSubscriptionResponse = DeleteEventSubscriptionResponse'
 deleteEventSubscriptionResponse
     :: Int -- ^ 'desersResponseStatus'
     -> DeleteEventSubscriptionResponse
-deleteEventSubscriptionResponse pResponseStatus_ =
-  DeleteEventSubscriptionResponse'
-    { _desersEventSubscription = Nothing
-    , _desersResponseStatus = pResponseStatus_
-    }
-
+deleteEventSubscriptionResponse pResponseStatus_
+  = DeleteEventSubscriptionResponse'{_desersEventSubscription
+                                       = Nothing,
+                                     _desersResponseStatus = pResponseStatus_}
 
 -- | The event subscription that was deleted.
 desersEventSubscription :: Lens' DeleteEventSubscriptionResponse (Maybe EventSubscription)

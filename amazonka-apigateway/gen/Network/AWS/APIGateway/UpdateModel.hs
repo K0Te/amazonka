@@ -43,7 +43,6 @@ module Network.AWS.APIGateway.UpdateModel
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -54,12 +53,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'updateModel' smart constructor.
-data UpdateModel = UpdateModel'
-  { _uPatchOperations :: !(Maybe [PatchOperation])
-  , _uRestAPIId       :: !Text
-  , _uModelName       :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateModel = UpdateModel'{_uPatchOperations ::
+                                !(Maybe [PatchOperation]),
+                                _uRestAPIId :: !Text, _uModelName :: !Text}
+                     deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UpdateModel' with the minimum fields required to make a request.
 --
@@ -74,13 +71,9 @@ updateModel
     :: Text -- ^ 'uRestAPIId'
     -> Text -- ^ 'uModelName'
     -> UpdateModel
-updateModel pRestAPIId_ pModelName_ =
-  UpdateModel'
-    { _uPatchOperations = Nothing
-    , _uRestAPIId = pRestAPIId_
-    , _uModelName = pModelName_
-    }
-
+updateModel pRestAPIId_ pModelName_
+  = UpdateModel'{_uPatchOperations = Nothing,
+                 _uRestAPIId = pRestAPIId_, _uModelName = pModelName_}
 
 -- | A list of update operations to be applied to the specified resource and in the order specified in this list.
 uPatchOperations :: Lens' UpdateModel [PatchOperation]

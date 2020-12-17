@@ -38,17 +38,16 @@ module Network.AWS.Cloud9.DescribeEnvironments
     ) where
 
 import Network.AWS.Cloud9.Types
-import Network.AWS.Cloud9.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'describeEnvironments' smart constructor.
-newtype DescribeEnvironments = DescribeEnvironments'
-  { _deEnvironmentIds :: List1 Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DescribeEnvironments = DescribeEnvironments'{_deEnvironmentIds
+                                                     :: List1 Text}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'DescribeEnvironments' with the minimum fields required to make a request.
 --
@@ -58,9 +57,9 @@ newtype DescribeEnvironments = DescribeEnvironments'
 describeEnvironments
     :: NonEmpty Text -- ^ 'deEnvironmentIds'
     -> DescribeEnvironments
-describeEnvironments pEnvironmentIds_ =
-  DescribeEnvironments' {_deEnvironmentIds = _List1 # pEnvironmentIds_}
-
+describeEnvironments pEnvironmentIds_
+  = DescribeEnvironments'{_deEnvironmentIds =
+                            _List1 # pEnvironmentIds_}
 
 -- | The IDs of individual environments to get information about.
 deEnvironmentIds :: Lens' DescribeEnvironments (NonEmpty Text)
@@ -104,11 +103,14 @@ instance ToQuery DescribeEnvironments where
         toQuery = const mempty
 
 -- | /See:/ 'describeEnvironmentsResponse' smart constructor.
-data DescribeEnvironmentsResponse = DescribeEnvironmentsResponse'
-  { _deersEnvironments   :: !(Maybe [Environment])
-  , _deersResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeEnvironmentsResponse = DescribeEnvironmentsResponse'{_deersEnvironments
+                                                                  ::
+                                                                  !(Maybe
+                                                                      [Environment]),
+                                                                  _deersResponseStatus
+                                                                  :: !Int}
+                                      deriving (Eq, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'DescribeEnvironmentsResponse' with the minimum fields required to make a request.
 --
@@ -120,10 +122,10 @@ data DescribeEnvironmentsResponse = DescribeEnvironmentsResponse'
 describeEnvironmentsResponse
     :: Int -- ^ 'deersResponseStatus'
     -> DescribeEnvironmentsResponse
-describeEnvironmentsResponse pResponseStatus_ =
-  DescribeEnvironmentsResponse'
-    {_deersEnvironments = Nothing, _deersResponseStatus = pResponseStatus_}
-
+describeEnvironmentsResponse pResponseStatus_
+  = DescribeEnvironmentsResponse'{_deersEnvironments =
+                                    Nothing,
+                                  _deersResponseStatus = pResponseStatus_}
 
 -- | Information about the environments that are returned.
 deersEnvironments :: Lens' DescribeEnvironmentsResponse [Environment]

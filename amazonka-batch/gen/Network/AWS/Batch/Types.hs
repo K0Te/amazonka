@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings  #-}
 
 -- Derived from AWS service descriptions, licensed under Apache 2.0.
 
@@ -22,6 +22,9 @@ module Network.AWS.Batch.Types
     -- * ArrayJobDependency
     , ArrayJobDependency (..)
 
+    -- * AssignPublicIP
+    , AssignPublicIP (..)
+
     -- * CEState
     , CEState (..)
 
@@ -31,8 +34,14 @@ module Network.AWS.Batch.Types
     -- * CEType
     , CEType (..)
 
+    -- * CRAllocationStrategy
+    , CRAllocationStrategy (..)
+
     -- * CRType
     , CRType (..)
+
+    -- * DeviceCgroupPermission
+    , DeviceCgroupPermission (..)
 
     -- * JQState
     , JQState (..)
@@ -45,6 +54,18 @@ module Network.AWS.Batch.Types
 
     -- * JobStatus
     , JobStatus (..)
+
+    -- * LogDriver
+    , LogDriver (..)
+
+    -- * PlatformCapability
+    , PlatformCapability (..)
+
+    -- * ResourceType
+    , ResourceType (..)
+
+    -- * RetryAction
+    , RetryAction (..)
 
     -- * ArrayProperties
     , ArrayProperties
@@ -67,6 +88,7 @@ module Network.AWS.Batch.Types
     -- * AttemptContainerDetail
     , AttemptContainerDetail
     , attemptContainerDetail
+    , acdNetworkInterfaces
     , acdTaskARN
     , acdContainerInstanceARN
     , acdReason
@@ -90,6 +112,7 @@ module Network.AWS.Batch.Types
     , cedStatusReason
     , cedType
     , cedServiceRole
+    , cedTags
     , cedComputeEnvironmentName
     , cedComputeEnvironmentARN
     , cedEcsClusterARN
@@ -103,23 +126,29 @@ module Network.AWS.Batch.Types
     -- * ComputeResource
     , ComputeResource
     , computeResource
+    , crSecurityGroupIds
+    , crInstanceTypes
+    , crInstanceRole
     , crEc2KeyPair
+    , crMinvCPUs
+    , crEc2Configuration
     , crBidPercentage
     , crSpotIAMFleetRole
     , crImageId
+    , crLaunchTemplate
     , crDesiredvCPUs
+    , crAllocationStrategy
+    , crPlacementGroup
     , crTags
     , crType
-    , crMinvCPUs
     , crMaxvCPUs
-    , crInstanceTypes
     , crSubnets
-    , crSecurityGroupIds
-    , crInstanceRole
 
     -- * ComputeResourceUpdate
     , ComputeResourceUpdate
     , computeResourceUpdate
+    , cruSecurityGroupIds
+    , cruSubnets
     , cruMinvCPUs
     , cruMaxvCPUs
     , cruDesiredvCPUs
@@ -129,51 +158,96 @@ module Network.AWS.Batch.Types
     , containerDetail
     , cdImage
     , cdCommand
+    , cdSecrets
     , cdEnvironment
+    , cdNetworkInterfaces
     , cdTaskARN
     , cdUlimits
     , cdContainerInstanceARN
+    , cdExecutionRoleARN
     , cdPrivileged
     , cdJobRoleARN
+    , cdResourceRequirements
+    , cdInstanceType
     , cdMemory
     , cdUser
+    , cdLogConfiguration
+    , cdLinuxParameters
     , cdReason
     , cdLogStreamName
     , cdMountPoints
     , cdExitCode
+    , cdFargatePlatformConfiguration
     , cdVcpus
     , cdReadonlyRootFilesystem
     , cdVolumes
+    , cdNetworkConfiguration
 
     -- * ContainerOverrides
     , ContainerOverrides
     , containerOverrides
     , coCommand
     , coEnvironment
+    , coResourceRequirements
+    , coInstanceType
     , coMemory
     , coVcpus
 
     -- * ContainerProperties
     , ContainerProperties
     , containerProperties
+    , cpImage
     , cpCommand
+    , cpSecrets
     , cpEnvironment
     , cpUlimits
+    , cpExecutionRoleARN
     , cpPrivileged
     , cpJobRoleARN
+    , cpResourceRequirements
+    , cpInstanceType
+    , cpMemory
     , cpUser
+    , cpLogConfiguration
+    , cpLinuxParameters
     , cpMountPoints
+    , cpFargatePlatformConfiguration
+    , cpVcpus
     , cpReadonlyRootFilesystem
     , cpVolumes
-    , cpImage
-    , cpVcpus
-    , cpMemory
+    , cpNetworkConfiguration
 
     -- * ContainerSummary
     , ContainerSummary
     , containerSummary
     , csReason
     , csExitCode
+
+    -- * Device
+    , Device
+    , device
+    , dContainerPath
+    , dPermissions
+    , dHostPath
+
+    -- * EC2Configuration
+    , EC2Configuration
+    , ec2Configuration
+    , ecImageIdOverride
+    , ecImageType
+
+    -- * EvaluateOnExit
+    , EvaluateOnExit
+    , evaluateOnExit
+    , eoeOnExitCode
+    , eoeOnReason
+    , eoeOnStatusReason
+    , eoeAction
+
+    -- * FargatePlatformConfiguration
+    , FargatePlatformConfiguration
+    , fargatePlatformConfiguration
+    , fpcPlatformVersion
 
     -- * Host
     , Host
@@ -184,10 +258,14 @@ module Network.AWS.Batch.Types
     , JobDefinition
     , jobDefinition
     , jddStatus
+    , jddPropagateTags
     , jddRetryStrategy
+    , jddPlatformCapabilities
     , jddParameters
     , jddTimeout
     , jddContainerProperties
+    , jddNodeProperties
+    , jddTags
     , jddJobDefinitionName
     , jddJobDefinitionARN
     , jddRevision
@@ -203,20 +281,26 @@ module Network.AWS.Batch.Types
     , JobDetail
     , jobDetail
     , jdStoppedAt
+    , jdJobARN
+    , jdPropagateTags
     , jdCreatedAt
     , jdRetryStrategy
     , jdAttempts
+    , jdPlatformCapabilities
+    , jdStartedAt
     , jdDependsOn
     , jdContainer
+    , jdNodeDetails
     , jdParameters
     , jdStatusReason
     , jdArrayProperties
     , jdTimeout
+    , jdNodeProperties
+    , jdTags
     , jdJobName
     , jdJobId
     , jdJobQueue
     , jdStatus
-    , jdStartedAt
     , jdJobDefinition
 
     -- * JobQueueDetail
@@ -224,6 +308,7 @@ module Network.AWS.Batch.Types
     , jobQueueDetail
     , jqdStatus
     , jqdStatusReason
+    , jqdTags
     , jqdJobQueueName
     , jqdJobQueueARN
     , jqdState
@@ -235,11 +320,13 @@ module Network.AWS.Batch.Types
     , jobSummary
     , jsStoppedAt
     , jsStatus
+    , jsJobARN
     , jsCreatedAt
     , jsStartedAt
     , jsContainer
     , jsStatusReason
     , jsArrayProperties
+    , jsNodeProperties
     , jsJobId
     , jsJobName
 
@@ -254,6 +341,30 @@ module Network.AWS.Batch.Types
     , kvpValue
     , kvpName
 
+    -- * LaunchTemplateSpecification
+    , LaunchTemplateSpecification
+    , launchTemplateSpecification
+    , ltsLaunchTemplateName
+    , ltsLaunchTemplateId
+    , ltsVersion
+
+    -- * LinuxParameters
+    , LinuxParameters
+    , linuxParameters
+    , lpSharedMemorySize
+    , lpInitProcessEnabled
+    , lpTmpfs
+    , lpSwappiness
+    , lpDevices
+    , lpMaxSwap
+
+    -- * LogConfiguration
+    , LogConfiguration
+    , logConfiguration
+    , lcOptions
+    , lcSecretOptions
+    , lcLogDriver
+
     -- * MountPoint
     , MountPoint
     , mountPoint
@@ -261,10 +372,80 @@ module Network.AWS.Batch.Types
     , mpSourceVolume
     , mpReadOnly
 
+    -- * NetworkConfiguration
+    , NetworkConfiguration
+    , networkConfiguration
+    , ncAssignPublicIP
+
+    -- * NetworkInterface
+    , NetworkInterface
+    , networkInterface
+    , niIpv6Address
+    , niPrivateIPv4Address
+    , niAttachmentId
+
+    -- * NodeDetails
+    , NodeDetails
+    , nodeDetails
+    , ndNodeIndex
+    , ndIsMainNode
+
+    -- * NodeOverrides
+    , NodeOverrides
+    , nodeOverrides
+    , noNumNodes
+    , noNodePropertyOverrides
+
+    -- * NodeProperties
+    , NodeProperties
+    , nodeProperties
+    , npNumNodes
+    , npMainNode
+    , npNodeRangeProperties
+
+    -- * NodePropertiesSummary
+    , NodePropertiesSummary
+    , nodePropertiesSummary
+    , npsNumNodes
+    , npsNodeIndex
+    , npsIsMainNode
+
+    -- * NodePropertyOverride
+    , NodePropertyOverride
+    , nodePropertyOverride
+    , npoContainerOverrides
+    , npoTargetNodes
+
+    -- * NodeRangeProperty
+    , NodeRangeProperty
+    , nodeRangeProperty
+    , nrpContainer
+    , nrpTargetNodes
+
+    -- * ResourceRequirement
+    , ResourceRequirement
+    , resourceRequirement
+    , rrValue
+    , rrType
+
     -- * RetryStrategy
     , RetryStrategy
     , retryStrategy
+    , rsEvaluateOnExit
     , rsAttempts
+
+    -- * Secret
+    , Secret
+    , secret
+    , sName
+    , sValueFrom
+
+    -- * Tmpfs
+    , Tmpfs
+    , tmpfs
+    , tMountOptions
+    , tContainerPath
+    , tSize
 
     -- * Ulimit
     , Ulimit
@@ -280,61 +461,119 @@ module Network.AWS.Batch.Types
     , vHost
     ) where
 
-import Network.AWS.Batch.Types.Product
-import Network.AWS.Batch.Types.Sum
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Sign.V4
+import Network.AWS.Batch.Types.ArrayJobDependency
+import Network.AWS.Batch.Types.AssignPublicIP
+import Network.AWS.Batch.Types.CEState
+import Network.AWS.Batch.Types.CEStatus
+import Network.AWS.Batch.Types.CEType
+import Network.AWS.Batch.Types.CRAllocationStrategy
+import Network.AWS.Batch.Types.CRType
+import Network.AWS.Batch.Types.DeviceCgroupPermission
+import Network.AWS.Batch.Types.JQState
+import Network.AWS.Batch.Types.JQStatus
+import Network.AWS.Batch.Types.JobDefinitionType
+import Network.AWS.Batch.Types.JobStatus
+import Network.AWS.Batch.Types.LogDriver
+import Network.AWS.Batch.Types.PlatformCapability
+import Network.AWS.Batch.Types.ResourceType
+import Network.AWS.Batch.Types.RetryAction
+import Network.AWS.Batch.Types.ArrayProperties
+import Network.AWS.Batch.Types.ArrayPropertiesDetail
+import Network.AWS.Batch.Types.ArrayPropertiesSummary
+import Network.AWS.Batch.Types.AttemptContainerDetail
+import Network.AWS.Batch.Types.AttemptDetail
+import Network.AWS.Batch.Types.ComputeEnvironmentDetail
+import Network.AWS.Batch.Types.ComputeEnvironmentOrder
+import Network.AWS.Batch.Types.ComputeResource
+import Network.AWS.Batch.Types.ComputeResourceUpdate
+import Network.AWS.Batch.Types.ContainerDetail
+import Network.AWS.Batch.Types.ContainerOverrides
+import Network.AWS.Batch.Types.ContainerProperties
+import Network.AWS.Batch.Types.ContainerSummary
+import Network.AWS.Batch.Types.Device
+import Network.AWS.Batch.Types.EC2Configuration
+import Network.AWS.Batch.Types.EvaluateOnExit
+import Network.AWS.Batch.Types.FargatePlatformConfiguration
+import Network.AWS.Batch.Types.Host
+import Network.AWS.Batch.Types.JobDefinition
+import Network.AWS.Batch.Types.JobDependency
+import Network.AWS.Batch.Types.JobDetail
+import Network.AWS.Batch.Types.JobQueueDetail
+import Network.AWS.Batch.Types.JobSummary
+import Network.AWS.Batch.Types.JobTimeout
+import Network.AWS.Batch.Types.KeyValuePair
+import Network.AWS.Batch.Types.LaunchTemplateSpecification
+import Network.AWS.Batch.Types.LinuxParameters
+import Network.AWS.Batch.Types.LogConfiguration
+import Network.AWS.Batch.Types.MountPoint
+import Network.AWS.Batch.Types.NetworkConfiguration
+import Network.AWS.Batch.Types.NetworkInterface
+import Network.AWS.Batch.Types.NodeDetails
+import Network.AWS.Batch.Types.NodeOverrides
+import Network.AWS.Batch.Types.NodeProperties
+import Network.AWS.Batch.Types.NodePropertiesSummary
+import Network.AWS.Batch.Types.NodePropertyOverride
+import Network.AWS.Batch.Types.NodeRangeProperty
+import Network.AWS.Batch.Types.ResourceRequirement
+import Network.AWS.Batch.Types.RetryStrategy
+import Network.AWS.Batch.Types.Secret
+import Network.AWS.Batch.Types.Tmpfs
+import Network.AWS.Batch.Types.Ulimit
+import Network.AWS.Batch.Types.Volume
 
 -- | API version @2016-08-10@ of the Amazon Batch SDK configuration.
 batch :: Service
-batch =
-  Service
-    { _svcAbbrev = "Batch"
-    , _svcSigner = v4
-    , _svcPrefix = "batch"
-    , _svcVersion = "2016-08-10"
-    , _svcEndpoint = defaultEndpoint batch
-    , _svcTimeout = Just 70
-    , _svcCheck = statusSuccess
-    , _svcError = parseJSONError "Batch"
-    , _svcRetry = retry
-    }
-  where
-    retry =
-      Exponential
-        { _retryBase = 5.0e-2
-        , _retryGrowth = 2
-        , _retryAttempts = 5
-        , _retryCheck = check
-        }
-    check e
-      | has (hasCode "ThrottledException" . hasStatus 400) e =
-        Just "throttled_exception"
-      | has (hasStatus 429) e = Just "too_many_requests"
-      | has (hasCode "ThrottlingException" . hasStatus 400) e =
-        Just "throttling_exception"
-      | has (hasCode "Throttling" . hasStatus 400) e = Just "throttling"
-      | has (hasStatus 504) e = Just "gateway_timeout"
-      | has (hasCode "RequestThrottledException" . hasStatus 400) e =
-        Just "request_throttled_exception"
-      | has (hasStatus 502) e = Just "bad_gateway"
-      | has (hasStatus 503) e = Just "service_unavailable"
-      | has (hasStatus 500) e = Just "general_server_error"
-      | has (hasStatus 509) e = Just "limit_exceeded"
-      | otherwise = Nothing
-
+batch
+  = Service{_svcAbbrev = "Batch", _svcSigner = v4,
+            _svcPrefix = "batch", _svcVersion = "2016-08-10",
+            _svcEndpoint = defaultEndpoint batch,
+            _svcTimeout = Just 70, _svcCheck = statusSuccess,
+            _svcError = parseJSONError "Batch",
+            _svcRetry = retry}
+  where retry
+          = Exponential{_retryBase = 5.0e-2, _retryGrowth = 2,
+                        _retryAttempts = 5, _retryCheck = check}
+        check e
+          | has (hasCode "ThrottledException" . hasStatus 400)
+              e
+            = Just "throttled_exception"
+          | has (hasStatus 429) e = Just "too_many_requests"
+          | has (hasCode "ThrottlingException" . hasStatus 400)
+              e
+            = Just "throttling_exception"
+          | has (hasCode "Throttling" . hasStatus 400) e =
+            Just "throttling"
+          | has
+              (hasCode "ProvisionedThroughputExceededException" .
+                 hasStatus 400)
+              e
+            = Just "throughput_exceeded"
+          | has (hasStatus 504) e = Just "gateway_timeout"
+          | has
+              (hasCode "RequestThrottledException" . hasStatus 400)
+              e
+            = Just "request_throttled_exception"
+          | has (hasStatus 502) e = Just "bad_gateway"
+          | has (hasStatus 503) e = Just "service_unavailable"
+          | has (hasStatus 500) e = Just "general_server_error"
+          | has (hasStatus 509) e = Just "limit_exceeded"
+          | otherwise = Nothing
 
 -- | These errors are usually caused by a server issue.
 --
 --
 _ServerException :: AsError a => Getting (First ServiceError) a ServiceError
-_ServerException = _MatchServiceError batch "ServerException" . hasStatus 500
+_ServerException
+  = _MatchServiceError batch "ServerException" .
+      hasStatus 500
 
-
--- | These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an identifier that is not valid.
+-- | These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an identifier that isn't valid.
 --
 --
 _ClientException :: AsError a => Getting (First ServiceError) a ServiceError
-_ClientException = _MatchServiceError batch "ClientException" . hasStatus 400
-
+_ClientException
+  = _MatchServiceError batch "ClientException" .
+      hasStatus 400

@@ -21,19 +21,17 @@
 -- Updates properties for an alias. To update properties, specify the alias ID to be updated and provide the information to be changed. To reassign an alias to another fleet, provide an updated routing strategy. If successful, the updated alias record is returned.
 --
 --
--- Alias-related operations include:
+--     * 'CreateAlias' 
 --
---     * 'CreateAlias'
+--     * 'ListAliases' 
 --
---     * 'ListAliases'
+--     * 'DescribeAlias' 
 --
---     * 'DescribeAlias'
+--     * 'UpdateAlias' 
 --
---     * 'UpdateAlias'
+--     * 'DeleteAlias' 
 --
---     * 'DeleteAlias'
---
---     * 'ResolveAlias'
+--     * 'ResolveAlias' 
 --
 --
 --
@@ -57,61 +55,55 @@ module Network.AWS.GameLift.UpdateAlias
     ) where
 
 import Network.AWS.GameLift.Types
-import Network.AWS.GameLift.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- | Represents the input for a request action.
+-- | Represents the input for a request operation.
 --
 --
 --
 -- /See:/ 'updateAlias' smart constructor.
-data UpdateAlias = UpdateAlias'
-  { _uaRoutingStrategy :: !(Maybe RoutingStrategy)
-  , _uaName            :: !(Maybe Text)
-  , _uaDescription     :: !(Maybe Text)
-  , _uaAliasId         :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateAlias = UpdateAlias'{_uaRoutingStrategy ::
+                                !(Maybe RoutingStrategy),
+                                _uaName :: !(Maybe Text),
+                                _uaDescription :: !(Maybe Text),
+                                _uaAliasId :: !Text}
+                     deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UpdateAlias' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'uaRoutingStrategy' - Object that specifies the fleet and routing type to use for the alias.
+-- * 'uaRoutingStrategy' - The routing configuration, including routing type and fleet target, for the alias.
 --
--- * 'uaName' - Descriptive label that is associated with an alias. Alias names do not need to be unique.
+-- * 'uaName' - A descriptive label that is associated with an alias. Alias names do not need to be unique.
 --
--- * 'uaDescription' - Human-readable description of an alias.
+-- * 'uaDescription' - A human-readable description of the alias.
 --
--- * 'uaAliasId' - Unique identifier for a fleet alias. Specify the alias you want to update.
+-- * 'uaAliasId' - A unique identifier for the alias that you want to update. You can use either the alias ID or ARN value.
 updateAlias
     :: Text -- ^ 'uaAliasId'
     -> UpdateAlias
-updateAlias pAliasId_ =
-  UpdateAlias'
-    { _uaRoutingStrategy = Nothing
-    , _uaName = Nothing
-    , _uaDescription = Nothing
-    , _uaAliasId = pAliasId_
-    }
+updateAlias pAliasId_
+  = UpdateAlias'{_uaRoutingStrategy = Nothing,
+                 _uaName = Nothing, _uaDescription = Nothing,
+                 _uaAliasId = pAliasId_}
 
-
--- | Object that specifies the fleet and routing type to use for the alias.
+-- | The routing configuration, including routing type and fleet target, for the alias.
 uaRoutingStrategy :: Lens' UpdateAlias (Maybe RoutingStrategy)
 uaRoutingStrategy = lens _uaRoutingStrategy (\ s a -> s{_uaRoutingStrategy = a})
 
--- | Descriptive label that is associated with an alias. Alias names do not need to be unique.
+-- | A descriptive label that is associated with an alias. Alias names do not need to be unique.
 uaName :: Lens' UpdateAlias (Maybe Text)
 uaName = lens _uaName (\ s a -> s{_uaName = a})
 
--- | Human-readable description of an alias.
+-- | A human-readable description of the alias.
 uaDescription :: Lens' UpdateAlias (Maybe Text)
 uaDescription = lens _uaDescription (\ s a -> s{_uaDescription = a})
 
--- | Unique identifier for a fleet alias. Specify the alias you want to update.
+-- | A unique identifier for the alias that you want to update. You can use either the alias ID or ARN value.
 uaAliasId :: Lens' UpdateAlias Text
 uaAliasId = lens _uaAliasId (\ s a -> s{_uaAliasId = a})
 
@@ -152,33 +144,31 @@ instance ToPath UpdateAlias where
 instance ToQuery UpdateAlias where
         toQuery = const mempty
 
--- | Represents the returned data in response to a request action.
+-- | Represents the returned data in response to a request operation.
 --
 --
 --
 -- /See:/ 'updateAliasResponse' smart constructor.
-data UpdateAliasResponse = UpdateAliasResponse'
-  { _uarsAlias          :: !(Maybe Alias)
-  , _uarsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateAliasResponse = UpdateAliasResponse'{_uarsAlias
+                                                :: !(Maybe Alias),
+                                                _uarsResponseStatus :: !Int}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UpdateAliasResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'uarsAlias' - Object that contains the updated alias configuration.
+-- * 'uarsAlias' - The updated alias resource.
 --
 -- * 'uarsResponseStatus' - -- | The response status code.
 updateAliasResponse
     :: Int -- ^ 'uarsResponseStatus'
     -> UpdateAliasResponse
-updateAliasResponse pResponseStatus_ =
-  UpdateAliasResponse'
-    {_uarsAlias = Nothing, _uarsResponseStatus = pResponseStatus_}
+updateAliasResponse pResponseStatus_
+  = UpdateAliasResponse'{_uarsAlias = Nothing,
+                         _uarsResponseStatus = pResponseStatus_}
 
-
--- | Object that contains the updated alias configuration.
+-- | The updated alias resource.
 uarsAlias :: Lens' UpdateAliasResponse (Maybe Alias)
 uarsAlias = lens _uarsAlias (\ s a -> s{_uarsAlias = a})
 

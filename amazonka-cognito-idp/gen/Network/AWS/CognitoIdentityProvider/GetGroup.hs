@@ -21,7 +21,7 @@
 -- Gets a group.
 --
 --
--- Requires developer credentials.
+-- Calling this action requires developer credentials.
 --
 module Network.AWS.CognitoIdentityProvider.GetGroup
     (
@@ -41,18 +41,15 @@ module Network.AWS.CognitoIdentityProvider.GetGroup
     ) where
 
 import Network.AWS.CognitoIdentityProvider.Types
-import Network.AWS.CognitoIdentityProvider.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'getGroup' smart constructor.
-data GetGroup = GetGroup'
-  { _ggGroupName  :: !Text
-  , _ggUserPoolId :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetGroup = GetGroup'{_ggGroupName :: !Text,
+                          _ggUserPoolId :: !Text}
+                  deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetGroup' with the minimum fields required to make a request.
 --
@@ -65,9 +62,9 @@ getGroup
     :: Text -- ^ 'ggGroupName'
     -> Text -- ^ 'ggUserPoolId'
     -> GetGroup
-getGroup pGroupName_ pUserPoolId_ =
-  GetGroup' {_ggGroupName = pGroupName_, _ggUserPoolId = pUserPoolId_}
-
+getGroup pGroupName_ pUserPoolId_
+  = GetGroup'{_ggGroupName = pGroupName_,
+              _ggUserPoolId = pUserPoolId_}
 
 -- | The name of the group.
 ggGroupName :: Lens' GetGroup Text
@@ -114,11 +111,10 @@ instance ToQuery GetGroup where
         toQuery = const mempty
 
 -- | /See:/ 'getGroupResponse' smart constructor.
-data GetGroupResponse = GetGroupResponse'
-  { _ggrsGroup          :: !(Maybe GroupType)
-  , _ggrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetGroupResponse = GetGroupResponse'{_ggrsGroup
+                                          :: !(Maybe GroupType),
+                                          _ggrsResponseStatus :: !Int}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetGroupResponse' with the minimum fields required to make a request.
 --
@@ -130,10 +126,9 @@ data GetGroupResponse = GetGroupResponse'
 getGroupResponse
     :: Int -- ^ 'ggrsResponseStatus'
     -> GetGroupResponse
-getGroupResponse pResponseStatus_ =
-  GetGroupResponse'
-    {_ggrsGroup = Nothing, _ggrsResponseStatus = pResponseStatus_}
-
+getGroupResponse pResponseStatus_
+  = GetGroupResponse'{_ggrsGroup = Nothing,
+                      _ggrsResponseStatus = pResponseStatus_}
 
 -- | The group object for the group.
 ggrsGroup :: Lens' GetGroupResponse (Maybe GroupType)

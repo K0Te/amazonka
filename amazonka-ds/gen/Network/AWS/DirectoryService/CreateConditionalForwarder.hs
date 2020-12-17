@@ -39,7 +39,6 @@ module Network.AWS.DirectoryService.CreateConditionalForwarder
     ) where
 
 import Network.AWS.DirectoryService.Types
-import Network.AWS.DirectoryService.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -50,12 +49,14 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'createConditionalForwarder' smart constructor.
-data CreateConditionalForwarder = CreateConditionalForwarder'
-  { _ccfDirectoryId      :: !Text
-  , _ccfRemoteDomainName :: !Text
-  , _ccfDNSIPAddrs       :: ![Text]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateConditionalForwarder = CreateConditionalForwarder'{_ccfDirectoryId
+                                                              :: !Text,
+                                                              _ccfRemoteDomainName
+                                                              :: !Text,
+                                                              _ccfDNSIPAddrs ::
+                                                              ![Text]}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'CreateConditionalForwarder' with the minimum fields required to make a request.
 --
@@ -70,13 +71,12 @@ createConditionalForwarder
     :: Text -- ^ 'ccfDirectoryId'
     -> Text -- ^ 'ccfRemoteDomainName'
     -> CreateConditionalForwarder
-createConditionalForwarder pDirectoryId_ pRemoteDomainName_ =
-  CreateConditionalForwarder'
-    { _ccfDirectoryId = pDirectoryId_
-    , _ccfRemoteDomainName = pRemoteDomainName_
-    , _ccfDNSIPAddrs = mempty
-    }
-
+createConditionalForwarder pDirectoryId_
+  pRemoteDomainName_
+  = CreateConditionalForwarder'{_ccfDirectoryId =
+                                  pDirectoryId_,
+                                _ccfRemoteDomainName = pRemoteDomainName_,
+                                _ccfDNSIPAddrs = mempty}
 
 -- | The directory ID of the AWS directory for which you are creating the conditional forwarder.
 ccfDirectoryId :: Lens' CreateConditionalForwarder Text
@@ -133,10 +133,11 @@ instance ToQuery CreateConditionalForwarder where
 --
 --
 -- /See:/ 'createConditionalForwarderResponse' smart constructor.
-newtype CreateConditionalForwarderResponse = CreateConditionalForwarderResponse'
-  { _ccfrsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype CreateConditionalForwarderResponse = CreateConditionalForwarderResponse'{_ccfrsResponseStatus
+                                                                                 ::
+                                                                                 Int}
+                                               deriving (Eq, Read, Show, Data,
+                                                         Typeable, Generic)
 
 -- | Creates a value of 'CreateConditionalForwarderResponse' with the minimum fields required to make a request.
 --
@@ -146,9 +147,9 @@ newtype CreateConditionalForwarderResponse = CreateConditionalForwarderResponse'
 createConditionalForwarderResponse
     :: Int -- ^ 'ccfrsResponseStatus'
     -> CreateConditionalForwarderResponse
-createConditionalForwarderResponse pResponseStatus_ =
-  CreateConditionalForwarderResponse' {_ccfrsResponseStatus = pResponseStatus_}
-
+createConditionalForwarderResponse pResponseStatus_
+  = CreateConditionalForwarderResponse'{_ccfrsResponseStatus
+                                          = pResponseStatus_}
 
 -- | -- | The response status code.
 ccfrsResponseStatus :: Lens' CreateConditionalForwarderResponse Int

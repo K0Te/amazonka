@@ -21,9 +21,7 @@
 -- Creates a rule for the specified listener. The listener must be associated with an Application Load Balancer.
 --
 --
--- Rules are evaluated in priority order, from the lowest value to the highest value. When the condition for a rule is met, the specified action is taken. If no conditions are met, the action for the default rule is taken. For more information, see <http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html#listener-rules Listener Rules> in the /Application Load Balancers Guide/ .
---
--- To view your current rules, use 'DescribeRules' . To update a rule, use 'ModifyRule' . To set the priorities of your rules, use 'SetRulePriorities' . To delete a rule, use 'DeleteRule' .
+-- Each rule consists of a priority, one or more actions, and one or more conditions. Rules are evaluated in priority order, from the lowest value to the highest value. When the conditions for a rule are met, its actions are performed. If the conditions for no rules are met, the actions for the default rule are performed. For more information, see <https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html#listener-rules Listener rules> in the /Application Load Balancers Guide/ .
 --
 module Network.AWS.ELBv2.CreateRule
     (
@@ -31,6 +29,7 @@ module Network.AWS.ELBv2.CreateRule
       createRule
     , CreateRule
     -- * Request Lenses
+    , crTags
     , crListenerARN
     , crConditions
     , crPriority
@@ -45,58 +44,59 @@ module Network.AWS.ELBv2.CreateRule
     ) where
 
 import Network.AWS.ELBv2.Types
-import Network.AWS.ELBv2.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'createRule' smart constructor.
-data CreateRule = CreateRule'
-  { _crListenerARN :: !Text
-  , _crConditions  :: ![RuleCondition]
-  , _crPriority    :: !Nat
-  , _crActions     :: ![Action]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateRule = CreateRule'{_crTags ::
+                              !(Maybe (List1 Tag)),
+                              _crListenerARN :: !Text,
+                              _crConditions :: ![RuleCondition],
+                              _crPriority :: !Nat, _crActions :: ![Action]}
+                    deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CreateRule' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
+-- * 'crTags' - The tags to assign to the rule.
+--
 -- * 'crListenerARN' - The Amazon Resource Name (ARN) of the listener.
 --
--- * 'crConditions' - The conditions. Each condition specifies a field name and a single value. If the field name is @host-header@ , you can specify a single host name (for example, my.example.com). A host name is case insensitive, can be up to 128 characters in length, and can contain any of the following characters. Note that you can include up to three wildcard characters.     * A-Z, a-z, 0-9     * - .     * * (matches 0 or more characters)     * ? (matches exactly 1 character) If the field name is @path-pattern@ , you can specify a single path pattern. A path pattern is case sensitive, can be up to 128 characters in length, and can contain any of the following characters. Note that you can include up to three wildcard characters.     * A-Z, a-z, 0-9     * _ - . $ / ~ " ' @ : +     * & (using &amp;)     * * (matches 0 or more characters)     * ? (matches exactly 1 character)
+-- * 'crConditions' - The conditions.
 --
--- * 'crPriority' - The priority for the rule. A listener can't have multiple rules with the same priority.
+-- * 'crPriority' - The rule priority. A listener can't have multiple rules with the same priority.
 --
--- * 'crActions' - An action. Each action has the type @forward@ and specifies a target group.
+-- * 'crActions' - The actions.
 createRule
     :: Text -- ^ 'crListenerARN'
     -> Natural -- ^ 'crPriority'
     -> CreateRule
-createRule pListenerARN_ pPriority_ =
-  CreateRule'
-    { _crListenerARN = pListenerARN_
-    , _crConditions = mempty
-    , _crPriority = _Nat # pPriority_
-    , _crActions = mempty
-    }
+createRule pListenerARN_ pPriority_
+  = CreateRule'{_crTags = Nothing,
+                _crListenerARN = pListenerARN_,
+                _crConditions = mempty,
+                _crPriority = _Nat # pPriority_, _crActions = mempty}
 
+-- | The tags to assign to the rule.
+crTags :: Lens' CreateRule (Maybe (NonEmpty Tag))
+crTags = lens _crTags (\ s a -> s{_crTags = a}) . mapping _List1
 
 -- | The Amazon Resource Name (ARN) of the listener.
 crListenerARN :: Lens' CreateRule Text
 crListenerARN = lens _crListenerARN (\ s a -> s{_crListenerARN = a})
 
--- | The conditions. Each condition specifies a field name and a single value. If the field name is @host-header@ , you can specify a single host name (for example, my.example.com). A host name is case insensitive, can be up to 128 characters in length, and can contain any of the following characters. Note that you can include up to three wildcard characters.     * A-Z, a-z, 0-9     * - .     * * (matches 0 or more characters)     * ? (matches exactly 1 character) If the field name is @path-pattern@ , you can specify a single path pattern. A path pattern is case sensitive, can be up to 128 characters in length, and can contain any of the following characters. Note that you can include up to three wildcard characters.     * A-Z, a-z, 0-9     * _ - . $ / ~ " ' @ : +     * & (using &amp;)     * * (matches 0 or more characters)     * ? (matches exactly 1 character)
+-- | The conditions.
 crConditions :: Lens' CreateRule [RuleCondition]
 crConditions = lens _crConditions (\ s a -> s{_crConditions = a}) . _Coerce
 
--- | The priority for the rule. A listener can't have multiple rules with the same priority.
+-- | The rule priority. A listener can't have multiple rules with the same priority.
 crPriority :: Lens' CreateRule Natural
 crPriority = lens _crPriority (\ s a -> s{_crPriority = a}) . _Nat
 
--- | An action. Each action has the type @forward@ and specifies a target group.
+-- | The actions.
 crActions :: Lens' CreateRule [Action]
 crActions = lens _crActions (\ s a -> s{_crActions = a}) . _Coerce
 
@@ -126,17 +126,17 @@ instance ToQuery CreateRule where
           = mconcat
               ["Action" =: ("CreateRule" :: ByteString),
                "Version" =: ("2015-12-01" :: ByteString),
+               "Tags" =: toQuery (toQueryList "member" <$> _crTags),
                "ListenerArn" =: _crListenerARN,
                "Conditions" =: toQueryList "member" _crConditions,
                "Priority" =: _crPriority,
                "Actions" =: toQueryList "member" _crActions]
 
 -- | /See:/ 'createRuleResponse' smart constructor.
-data CreateRuleResponse = CreateRuleResponse'
-  { _crrsRules          :: !(Maybe [Rule])
-  , _crrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateRuleResponse = CreateRuleResponse'{_crrsRules
+                                              :: !(Maybe [Rule]),
+                                              _crrsResponseStatus :: !Int}
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CreateRuleResponse' with the minimum fields required to make a request.
 --
@@ -148,10 +148,9 @@ data CreateRuleResponse = CreateRuleResponse'
 createRuleResponse
     :: Int -- ^ 'crrsResponseStatus'
     -> CreateRuleResponse
-createRuleResponse pResponseStatus_ =
-  CreateRuleResponse'
-    {_crrsRules = Nothing, _crrsResponseStatus = pResponseStatus_}
-
+createRuleResponse pResponseStatus_
+  = CreateRuleResponse'{_crrsRules = Nothing,
+                        _crrsResponseStatus = pResponseStatus_}
 
 -- | Information about the rule.
 crrsRules :: Lens' CreateRuleResponse [Rule]

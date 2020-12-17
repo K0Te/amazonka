@@ -14,11 +14,11 @@
 module Test.AWS.Gen.StepFunctions where
 
 import Data.Proxy
-import Network.AWS.StepFunctions
 import Test.AWS.Fixture
 import Test.AWS.Prelude
-import Test.AWS.StepFunctions.Internal
 import Test.Tasty
+import Network.AWS.StepFunctions
+import Test.AWS.StepFunctions.Internal
 
 -- Auto-generated: the actual test selection needs to be manually placed into
 -- the top-level so that real test data can be incrementally added.
@@ -33,6 +33,9 @@ import Test.Tasty
 --
 --         , requestDescribeStateMachine $
 --             describeStateMachine
+--
+--         , requestListTagsForResource $
+--             listTagsForResource
 --
 --         , requestStopExecution $
 --             stopExecution
@@ -79,6 +82,15 @@ import Test.Tasty
 --         , requestStartExecution $
 --             startExecution
 --
+--         , requestStartSyncExecution $
+--             startSyncExecution
+--
+--         , requestTagResource $
+--             tagResource
+--
+--         , requestUntagResource $
+--             untagResource
+--
 --         , requestGetExecutionHistory $
 --             getExecutionHistory
 --
@@ -93,6 +105,9 @@ import Test.Tasty
 --
 --         , responseDescribeStateMachine $
 --             describeStateMachineResponse
+--
+--         , responseListTagsForResource $
+--             listTagsForResourceResponse
 --
 --         , responseStopExecution $
 --             stopExecutionResponse
@@ -139,6 +154,15 @@ import Test.Tasty
 --         , responseStartExecution $
 --             startExecutionResponse
 --
+--         , responseStartSyncExecution $
+--             startSyncExecutionResponse
+--
+--         , responseTagResource $
+--             tagResourceResponse
+--
+--         , responseUntagResource $
+--             untagResourceResponse
+--
 --         , responseGetExecutionHistory $
 --             getExecutionHistoryResponse
 --
@@ -159,6 +183,11 @@ requestDescribeStateMachine :: DescribeStateMachine -> TestTree
 requestDescribeStateMachine = req
     "DescribeStateMachine"
     "fixture/DescribeStateMachine.yaml"
+
+requestListTagsForResource :: ListTagsForResource -> TestTree
+requestListTagsForResource = req
+    "ListTagsForResource"
+    "fixture/ListTagsForResource.yaml"
 
 requestStopExecution :: StopExecution -> TestTree
 requestStopExecution = req
@@ -235,6 +264,21 @@ requestStartExecution = req
     "StartExecution"
     "fixture/StartExecution.yaml"
 
+requestStartSyncExecution :: StartSyncExecution -> TestTree
+requestStartSyncExecution = req
+    "StartSyncExecution"
+    "fixture/StartSyncExecution.yaml"
+
+requestTagResource :: TagResource -> TestTree
+requestTagResource = req
+    "TagResource"
+    "fixture/TagResource.yaml"
+
+requestUntagResource :: UntagResource -> TestTree
+requestUntagResource = req
+    "UntagResource"
+    "fixture/UntagResource.yaml"
+
 requestGetExecutionHistory :: GetExecutionHistory -> TestTree
 requestGetExecutionHistory = req
     "GetExecutionHistory"
@@ -260,6 +304,13 @@ responseDescribeStateMachine = res
     "fixture/DescribeStateMachineResponse.proto"
     stepFunctions
     (Proxy :: Proxy DescribeStateMachine)
+
+responseListTagsForResource :: ListTagsForResourceResponse -> TestTree
+responseListTagsForResource = res
+    "ListTagsForResourceResponse"
+    "fixture/ListTagsForResourceResponse.proto"
+    stepFunctions
+    (Proxy :: Proxy ListTagsForResource)
 
 responseStopExecution :: StopExecutionResponse -> TestTree
 responseStopExecution = res
@@ -365,6 +416,27 @@ responseStartExecution = res
     "fixture/StartExecutionResponse.proto"
     stepFunctions
     (Proxy :: Proxy StartExecution)
+
+responseStartSyncExecution :: StartSyncExecutionResponse -> TestTree
+responseStartSyncExecution = res
+    "StartSyncExecutionResponse"
+    "fixture/StartSyncExecutionResponse.proto"
+    stepFunctions
+    (Proxy :: Proxy StartSyncExecution)
+
+responseTagResource :: TagResourceResponse -> TestTree
+responseTagResource = res
+    "TagResourceResponse"
+    "fixture/TagResourceResponse.proto"
+    stepFunctions
+    (Proxy :: Proxy TagResource)
+
+responseUntagResource :: UntagResourceResponse -> TestTree
+responseUntagResource = res
+    "UntagResourceResponse"
+    "fixture/UntagResourceResponse.proto"
+    stepFunctions
+    (Proxy :: Proxy UntagResource)
 
 responseGetExecutionHistory :: GetExecutionHistoryResponse -> TestTree
 responseGetExecutionHistory = res

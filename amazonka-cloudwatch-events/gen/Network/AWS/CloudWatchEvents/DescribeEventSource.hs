@@ -43,17 +43,16 @@ module Network.AWS.CloudWatchEvents.DescribeEventSource
     ) where
 
 import Network.AWS.CloudWatchEvents.Types
-import Network.AWS.CloudWatchEvents.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'describeEventSource' smart constructor.
-newtype DescribeEventSource = DescribeEventSource'
-  { _deseName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DescribeEventSource = DescribeEventSource'{_deseName
+                                                   :: Text}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'DescribeEventSource' with the minimum fields required to make a request.
 --
@@ -63,8 +62,8 @@ newtype DescribeEventSource = DescribeEventSource'
 describeEventSource
     :: Text -- ^ 'deseName'
     -> DescribeEventSource
-describeEventSource pName_ = DescribeEventSource' {_deseName = pName_}
-
+describeEventSource pName_
+  = DescribeEventSource'{_deseName = pName_}
 
 -- | The name of the partner event source to display the details of.
 deseName :: Lens' DescribeEventSource Text
@@ -109,16 +108,26 @@ instance ToQuery DescribeEventSource where
         toQuery = const mempty
 
 -- | /See:/ 'describeEventSourceResponse' smart constructor.
-data DescribeEventSourceResponse = DescribeEventSourceResponse'
-  { _desrsCreationTime   :: !(Maybe POSIX)
-  , _desrsState          :: !(Maybe EventSourceState)
-  , _desrsARN            :: !(Maybe Text)
-  , _desrsCreatedBy      :: !(Maybe Text)
-  , _desrsName           :: !(Maybe Text)
-  , _desrsExpirationTime :: !(Maybe POSIX)
-  , _desrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeEventSourceResponse = DescribeEventSourceResponse'{_desrsCreationTime
+                                                                ::
+                                                                !(Maybe POSIX),
+                                                                _desrsState ::
+                                                                !(Maybe
+                                                                    EventSourceState),
+                                                                _desrsARN ::
+                                                                !(Maybe Text),
+                                                                _desrsCreatedBy
+                                                                ::
+                                                                !(Maybe Text),
+                                                                _desrsName ::
+                                                                !(Maybe Text),
+                                                                _desrsExpirationTime
+                                                                ::
+                                                                !(Maybe POSIX),
+                                                                _desrsResponseStatus
+                                                                :: !Int}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'DescribeEventSourceResponse' with the minimum fields required to make a request.
 --
@@ -126,7 +135,7 @@ data DescribeEventSourceResponse = DescribeEventSourceResponse'
 --
 -- * 'desrsCreationTime' - The date and time that the event source was created.
 --
--- * 'desrsState' - The state of the event source. If it's @ACTIVE@ , you have already created a matching event bus for this event source, and that event bus is active. If it's @PENDING@ , either you haven't yet created a matching event bus, or that event bus is deactivated. If it's @DELETED@ , you have created a matching event bus, but the event source has since been deleted.
+-- * 'desrsState' - The state of the event source. If it is ACTIVE, you have already created a matching event bus for this event source, and that event bus is active. If it is PENDING, either you haven't yet created a matching event bus, or that event bus is deactivated. If it is DELETED, you have created a matching event bus, but the event source has since been deleted.
 --
 -- * 'desrsARN' - The ARN of the partner event source.
 --
@@ -134,29 +143,26 @@ data DescribeEventSourceResponse = DescribeEventSourceResponse'
 --
 -- * 'desrsName' - The name of the partner event source.
 --
--- * 'desrsExpirationTime' - The date and time that the event source will expire if you don't create a matching event bus.
+-- * 'desrsExpirationTime' - The date and time that the event source will expire if you do not create a matching event bus.
 --
 -- * 'desrsResponseStatus' - -- | The response status code.
 describeEventSourceResponse
     :: Int -- ^ 'desrsResponseStatus'
     -> DescribeEventSourceResponse
-describeEventSourceResponse pResponseStatus_ =
-  DescribeEventSourceResponse'
-    { _desrsCreationTime = Nothing
-    , _desrsState = Nothing
-    , _desrsARN = Nothing
-    , _desrsCreatedBy = Nothing
-    , _desrsName = Nothing
-    , _desrsExpirationTime = Nothing
-    , _desrsResponseStatus = pResponseStatus_
-    }
-
+describeEventSourceResponse pResponseStatus_
+  = DescribeEventSourceResponse'{_desrsCreationTime =
+                                   Nothing,
+                                 _desrsState = Nothing, _desrsARN = Nothing,
+                                 _desrsCreatedBy = Nothing,
+                                 _desrsName = Nothing,
+                                 _desrsExpirationTime = Nothing,
+                                 _desrsResponseStatus = pResponseStatus_}
 
 -- | The date and time that the event source was created.
 desrsCreationTime :: Lens' DescribeEventSourceResponse (Maybe UTCTime)
 desrsCreationTime = lens _desrsCreationTime (\ s a -> s{_desrsCreationTime = a}) . mapping _Time
 
--- | The state of the event source. If it's @ACTIVE@ , you have already created a matching event bus for this event source, and that event bus is active. If it's @PENDING@ , either you haven't yet created a matching event bus, or that event bus is deactivated. If it's @DELETED@ , you have created a matching event bus, but the event source has since been deleted.
+-- | The state of the event source. If it is ACTIVE, you have already created a matching event bus for this event source, and that event bus is active. If it is PENDING, either you haven't yet created a matching event bus, or that event bus is deactivated. If it is DELETED, you have created a matching event bus, but the event source has since been deleted.
 desrsState :: Lens' DescribeEventSourceResponse (Maybe EventSourceState)
 desrsState = lens _desrsState (\ s a -> s{_desrsState = a})
 
@@ -172,7 +178,7 @@ desrsCreatedBy = lens _desrsCreatedBy (\ s a -> s{_desrsCreatedBy = a})
 desrsName :: Lens' DescribeEventSourceResponse (Maybe Text)
 desrsName = lens _desrsName (\ s a -> s{_desrsName = a})
 
--- | The date and time that the event source will expire if you don't create a matching event bus.
+-- | The date and time that the event source will expire if you do not create a matching event bus.
 desrsExpirationTime :: Lens' DescribeEventSourceResponse (Maybe UTCTime)
 desrsExpirationTime = lens _desrsExpirationTime (\ s a -> s{_desrsExpirationTime = a}) . mapping _Time
 

@@ -38,7 +38,6 @@ module Network.AWS.ElasticBeanstalk.DeleteEnvironmentConfiguration
     ) where
 
 import Network.AWS.ElasticBeanstalk.Types
-import Network.AWS.ElasticBeanstalk.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -49,11 +48,12 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'deleteEnvironmentConfiguration' smart constructor.
-data DeleteEnvironmentConfiguration = DeleteEnvironmentConfiguration'
-  { _decApplicationName :: !Text
-  , _decEnvironmentName :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteEnvironmentConfiguration = DeleteEnvironmentConfiguration'{_decApplicationName
+                                                                      :: !Text,
+                                                                      _decEnvironmentName
+                                                                      :: !Text}
+                                        deriving (Eq, Read, Show, Data,
+                                                  Typeable, Generic)
 
 -- | Creates a value of 'DeleteEnvironmentConfiguration' with the minimum fields required to make a request.
 --
@@ -66,12 +66,11 @@ deleteEnvironmentConfiguration
     :: Text -- ^ 'decApplicationName'
     -> Text -- ^ 'decEnvironmentName'
     -> DeleteEnvironmentConfiguration
-deleteEnvironmentConfiguration pApplicationName_ pEnvironmentName_ =
-  DeleteEnvironmentConfiguration'
-    { _decApplicationName = pApplicationName_
-    , _decEnvironmentName = pEnvironmentName_
-    }
-
+deleteEnvironmentConfiguration pApplicationName_
+  pEnvironmentName_
+  = DeleteEnvironmentConfiguration'{_decApplicationName
+                                      = pApplicationName_,
+                                    _decEnvironmentName = pEnvironmentName_}
 
 -- | The name of the application the environment is associated with.
 decApplicationName :: Lens' DeleteEnvironmentConfiguration Text
@@ -111,17 +110,16 @@ instance ToQuery DeleteEnvironmentConfiguration where
                "EnvironmentName" =: _decEnvironmentName]
 
 -- | /See:/ 'deleteEnvironmentConfigurationResponse' smart constructor.
-data DeleteEnvironmentConfigurationResponse =
-  DeleteEnvironmentConfigurationResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteEnvironmentConfigurationResponse = DeleteEnvironmentConfigurationResponse'
+                                                deriving (Eq, Read, Show, Data,
+                                                          Typeable, Generic)
 
 -- | Creates a value of 'DeleteEnvironmentConfigurationResponse' with the minimum fields required to make a request.
 --
 deleteEnvironmentConfigurationResponse
     :: DeleteEnvironmentConfigurationResponse
-deleteEnvironmentConfigurationResponse = DeleteEnvironmentConfigurationResponse'
-
+deleteEnvironmentConfigurationResponse
+  = DeleteEnvironmentConfigurationResponse'
 
 instance NFData
            DeleteEnvironmentConfigurationResponse

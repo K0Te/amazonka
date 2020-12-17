@@ -11,9 +11,9 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- __Amazon WorkSpaces Service__
+-- __Amazon WorkSpaces Service__ 
 --
--- Amazon WorkSpaces enables you to provision virtual, cloud-based Microsoft Windows desktops for your users.
+-- Amazon WorkSpaces enables you to provision virtual, cloud-based Microsoft Windows and Amazon Linux desktops for your users.
 --
 module Network.AWS.WorkSpaces
     (
@@ -22,6 +22,9 @@ module Network.AWS.WorkSpaces
 
     -- * Errors
     -- $errors
+
+    -- ** UnsupportedNetworkConfigurationException
+    , _UnsupportedNetworkConfigurationException
 
     -- ** AccessDeniedException
     , _AccessDeniedException
@@ -56,6 +59,9 @@ module Network.AWS.WorkSpaces
     -- ** UnsupportedWorkspaceConfigurationException
     , _UnsupportedWorkspaceConfigurationException
 
+    -- ** WorkspacesDefaultRoleNotFoundException
+    , _WorkspacesDefaultRoleNotFoundException
+
     -- ** ResourceNotFoundException
     , _ResourceNotFoundException
 
@@ -65,82 +71,187 @@ module Network.AWS.WorkSpaces
     -- * Operations
     -- $operations
 
-    -- ** RevokeIPRules
+    -- ** AssociateConnectionAlias 
+    , module Network.AWS.WorkSpaces.AssociateConnectionAlias
+
+    -- ** DescribeAccount 
+    , module Network.AWS.WorkSpaces.DescribeAccount
+
+    -- ** RevokeIPRules 
     , module Network.AWS.WorkSpaces.RevokeIPRules
 
-    -- ** ModifyWorkspaceProperties
+    -- ** DescribeWorkspaceImages (Paginated)
+    , module Network.AWS.WorkSpaces.DescribeWorkspaceImages
+
+    -- ** ModifyWorkspaceProperties 
     , module Network.AWS.WorkSpaces.ModifyWorkspaceProperties
 
-    -- ** DescribeTags
+    -- ** DeregisterWorkspaceDirectory 
+    , module Network.AWS.WorkSpaces.DeregisterWorkspaceDirectory
+
+    -- ** MigrateWorkspace 
+    , module Network.AWS.WorkSpaces.MigrateWorkspace
+
+    -- ** DescribeTags 
     , module Network.AWS.WorkSpaces.DescribeTags
 
     -- ** DescribeWorkspaceDirectories (Paginated)
     , module Network.AWS.WorkSpaces.DescribeWorkspaceDirectories
 
-    -- ** DisassociateIPGroups
+    -- ** DisassociateIPGroups 
     , module Network.AWS.WorkSpaces.DisassociateIPGroups
 
     -- ** DescribeWorkspaceBundles (Paginated)
     , module Network.AWS.WorkSpaces.DescribeWorkspaceBundles
 
-    -- ** AuthorizeIPRules
+    -- ** AuthorizeIPRules 
     , module Network.AWS.WorkSpaces.AuthorizeIPRules
 
-    -- ** RebuildWorkspaces
+    -- ** DescribeWorkspaceImagePermissions 
+    , module Network.AWS.WorkSpaces.DescribeWorkspaceImagePermissions
+
+    -- ** RebuildWorkspaces 
     , module Network.AWS.WorkSpaces.RebuildWorkspaces
 
-    -- ** ModifyWorkspaceState
+    -- ** ImportWorkspaceImage 
+    , module Network.AWS.WorkSpaces.ImportWorkspaceImage
+
+    -- ** ModifyWorkspaceState 
     , module Network.AWS.WorkSpaces.ModifyWorkspaceState
 
-    -- ** CreateIPGroup
+    -- ** CreateIPGroup 
     , module Network.AWS.WorkSpaces.CreateIPGroup
 
-    -- ** CreateTags
+    -- ** DisassociateConnectionAlias 
+    , module Network.AWS.WorkSpaces.DisassociateConnectionAlias
+
+    -- ** ModifyWorkspaceCreationProperties 
+    , module Network.AWS.WorkSpaces.ModifyWorkspaceCreationProperties
+
+    -- ** RegisterWorkspaceDirectory 
+    , module Network.AWS.WorkSpaces.RegisterWorkspaceDirectory
+
+    -- ** RestoreWorkspace 
+    , module Network.AWS.WorkSpaces.RestoreWorkspace
+
+    -- ** DescribeConnectionAliasPermissions 
+    , module Network.AWS.WorkSpaces.DescribeConnectionAliasPermissions
+
+    -- ** CreateTags 
     , module Network.AWS.WorkSpaces.CreateTags
 
-    -- ** DeleteTags
+    -- ** DeleteTags 
     , module Network.AWS.WorkSpaces.DeleteTags
 
-    -- ** UpdateRulesOfIPGroup
+    -- ** ModifyWorkspaceAccessProperties 
+    , module Network.AWS.WorkSpaces.ModifyWorkspaceAccessProperties
+
+    -- ** UpdateRulesOfIPGroup 
     , module Network.AWS.WorkSpaces.UpdateRulesOfIPGroup
 
-    -- ** StopWorkspaces
+    -- ** DeleteWorkspaceImage 
+    , module Network.AWS.WorkSpaces.DeleteWorkspaceImage
+
+    -- ** StopWorkspaces 
     , module Network.AWS.WorkSpaces.StopWorkspaces
 
-    -- ** AssociateIPGroups
+    -- ** AssociateIPGroups 
     , module Network.AWS.WorkSpaces.AssociateIPGroups
 
-    -- ** DescribeWorkspacesConnectionStatus
+    -- ** ModifySelfservicePermissions 
+    , module Network.AWS.WorkSpaces.ModifySelfservicePermissions
+
+    -- ** DeleteConnectionAlias 
+    , module Network.AWS.WorkSpaces.DeleteConnectionAlias
+
+    -- ** DescribeWorkspacesConnectionStatus (Paginated)
     , module Network.AWS.WorkSpaces.DescribeWorkspacesConnectionStatus
 
-    -- ** RebootWorkspaces
+    -- ** CreateConnectionAlias 
+    , module Network.AWS.WorkSpaces.CreateConnectionAlias
+
+    -- ** RebootWorkspaces 
     , module Network.AWS.WorkSpaces.RebootWorkspaces
 
-    -- ** DeleteIPGroup
+    -- ** DeleteIPGroup 
     , module Network.AWS.WorkSpaces.DeleteIPGroup
 
-    -- ** TerminateWorkspaces
+    -- ** CopyWorkspaceImage 
+    , module Network.AWS.WorkSpaces.CopyWorkspaceImage
+
+    -- ** DescribeWorkspaceSnapshots 
+    , module Network.AWS.WorkSpaces.DescribeWorkspaceSnapshots
+
+    -- ** TerminateWorkspaces 
     , module Network.AWS.WorkSpaces.TerminateWorkspaces
 
-    -- ** CreateWorkspaces
+    -- ** UpdateConnectionAliasPermission 
+    , module Network.AWS.WorkSpaces.UpdateConnectionAliasPermission
+
+    -- ** CreateWorkspaces 
     , module Network.AWS.WorkSpaces.CreateWorkspaces
 
-    -- ** DescribeIPGroups
+    -- ** DescribeClientProperties 
+    , module Network.AWS.WorkSpaces.DescribeClientProperties
+
+    -- ** ModifyClientProperties 
+    , module Network.AWS.WorkSpaces.ModifyClientProperties
+
+    -- ** DescribeIPGroups (Paginated)
     , module Network.AWS.WorkSpaces.DescribeIPGroups
+
+    -- ** ListAvailableManagementCidrRanges (Paginated)
+    , module Network.AWS.WorkSpaces.ListAvailableManagementCidrRanges
+
+    -- ** UpdateWorkspaceImagePermission 
+    , module Network.AWS.WorkSpaces.UpdateWorkspaceImagePermission
 
     -- ** DescribeWorkspaces (Paginated)
     , module Network.AWS.WorkSpaces.DescribeWorkspaces
 
-    -- ** StartWorkspaces
+    -- ** DescribeConnectionAliases 
+    , module Network.AWS.WorkSpaces.DescribeConnectionAliases
+
+    -- ** StartWorkspaces 
     , module Network.AWS.WorkSpaces.StartWorkspaces
 
+    -- ** DescribeAccountModifications (Paginated)
+    , module Network.AWS.WorkSpaces.DescribeAccountModifications
+
+    -- ** ModifyAccount 
+    , module Network.AWS.WorkSpaces.ModifyAccount
+
     -- * Types
+
+    -- ** AccessPropertyValue
+    , AccessPropertyValue (..)
+
+    -- ** Application
+    , Application (..)
+
+    -- ** AssociationStatus
+    , AssociationStatus (..)
 
     -- ** Compute
     , Compute (..)
 
+    -- ** ConnectionAliasState
+    , ConnectionAliasState (..)
+
     -- ** ConnectionState
     , ConnectionState (..)
+
+    -- ** DedicatedTenancyModificationStateEnum
+    , DedicatedTenancyModificationStateEnum (..)
+
+    -- ** DedicatedTenancySupportEnum
+    , DedicatedTenancySupportEnum (..)
+
+    -- ** DedicatedTenancySupportResultEnum
+    , DedicatedTenancySupportResultEnum (..)
+
+    -- ** ImageType
+    , ImageType (..)
 
     -- ** ModificationResourceEnum
     , ModificationResourceEnum (..)
@@ -148,11 +259,20 @@ module Network.AWS.WorkSpaces
     -- ** ModificationStateEnum
     , ModificationStateEnum (..)
 
+    -- ** OperatingSystemType
+    , OperatingSystemType (..)
+
+    -- ** ReconnectEnum
+    , ReconnectEnum (..)
+
     -- ** RunningMode
     , RunningMode (..)
 
     -- ** TargetWorkspaceState
     , TargetWorkspaceState (..)
+
+    -- ** Tenancy
+    , Tenancy (..)
 
     -- ** WorkspaceDirectoryState
     , WorkspaceDirectoryState (..)
@@ -160,13 +280,66 @@ module Network.AWS.WorkSpaces
     -- ** WorkspaceDirectoryType
     , WorkspaceDirectoryType (..)
 
+    -- ** WorkspaceImageIngestionProcess
+    , WorkspaceImageIngestionProcess (..)
+
+    -- ** WorkspaceImageRequiredTenancy
+    , WorkspaceImageRequiredTenancy (..)
+
+    -- ** WorkspaceImageState
+    , WorkspaceImageState (..)
+
     -- ** WorkspaceState
     , WorkspaceState (..)
+
+    -- ** AccountModification
+    , AccountModification
+    , accountModification
+    , amStartTime
+    , amDedicatedTenancySupport
+    , amModificationState
+    , amDedicatedTenancyManagementCidrRange
+    , amErrorCode
+    , amErrorMessage
+
+    -- ** ClientProperties
+    , ClientProperties
+    , clientProperties
+    , cpReconnectEnabled
+
+    -- ** ClientPropertiesResult
+    , ClientPropertiesResult
+    , clientPropertiesResult
+    , cprResourceId
+    , cprClientProperties
 
     -- ** ComputeType
     , ComputeType
     , computeType
     , ctName
+
+    -- ** ConnectionAlias
+    , ConnectionAlias
+    , connectionAlias
+    , caState
+    , caOwnerAccountId
+    , caAliasId
+    , caAssociations
+    , caConnectionString
+
+    -- ** ConnectionAliasAssociation
+    , ConnectionAliasAssociation
+    , connectionAliasAssociation
+    , caaAssociatedAccountId
+    , caaResourceId
+    , caaAssociationStatus
+    , caaConnectionIdentifier
+
+    -- ** ConnectionAliasPermission
+    , ConnectionAliasPermission
+    , connectionAliasPermission
+    , capSharedAccountId
+    , capAllowAssociation
 
     -- ** DefaultWorkspaceCreationProperties
     , DefaultWorkspaceCreationProperties
@@ -174,6 +347,7 @@ module Network.AWS.WorkSpaces
     , dwcpCustomSecurityGroupId
     , dwcpUserEnabledAsLocalAdministrator
     , dwcpEnableWorkDocs
+    , dwcpEnableMaintenanceMode
     , dwcpEnableInternetAccess
     , dwcpDefaultOu
 
@@ -197,11 +371,21 @@ module Network.AWS.WorkSpaces
     , iriRuleDesc
     , iriIpRule
 
+    -- ** ImagePermission
+    , ImagePermission
+    , imagePermission
+    , ipSharedAccountId
+
     -- ** ModificationState
     , ModificationState
     , modificationState
     , msState
     , msResource
+
+    -- ** OperatingSystem
+    , OperatingSystem
+    , operatingSystem
+    , osType
 
     -- ** RebootRequest
     , RebootRequest
@@ -217,6 +401,20 @@ module Network.AWS.WorkSpaces
     , RootStorage
     , rootStorage
     , rsCapacity
+
+    -- ** SelfservicePermissions
+    , SelfservicePermissions
+    , selfservicePermissions
+    , spRestartWorkspace
+    , spChangeComputeType
+    , spSwitchRunningMode
+    , spRebuildWorkspace
+    , spIncreaseVolumeSize
+
+    -- ** Snapshot
+    , Snapshot
+    , snapshot
+    , sSnapshotTime
 
     -- ** StartRequest
     , StartRequest
@@ -263,13 +461,26 @@ module Network.AWS.WorkSpaces
     , wUserVolumeEncryptionEnabled
     , wErrorMessage
 
+    -- ** WorkspaceAccessProperties
+    , WorkspaceAccessProperties
+    , workspaceAccessProperties
+    , wapDeviceTypeWindows
+    , wapDeviceTypeWeb
+    , wapDeviceTypeAndroid
+    , wapDeviceTypeOSx
+    , wapDeviceTypeChromeOS
+    , wapDeviceTypeIos
+    , wapDeviceTypeZeroClient
+
     -- ** WorkspaceBundle
     , WorkspaceBundle
     , workspaceBundle
+    , wbLastUpdatedTime
     , wbBundleId
     , wbOwner
     , wbRootStorage
     , wbName
+    , wbImageId
     , wbComputeType
     , wbUserStorage
     , wbDescription
@@ -281,6 +492,16 @@ module Network.AWS.WorkSpaces
     , wcsConnectionStateCheckTimestamp
     , wcsWorkspaceId
     , wcsConnectionState
+
+    -- ** WorkspaceCreationProperties
+    , WorkspaceCreationProperties
+    , workspaceCreationProperties
+    , wcpCustomSecurityGroupId
+    , wcpUserEnabledAsLocalAdministrator
+    , wcpEnableWorkDocs
+    , wcpEnableMaintenanceMode
+    , wcpEnableInternetAccess
+    , wcpDefaultOu
 
     -- ** WorkspaceDirectory
     , WorkspaceDirectory
@@ -295,9 +516,26 @@ module Network.AWS.WorkSpaces
     , wdAlias
     , wdWorkspaceSecurityGroupId
     , wdDirectoryType
+    , wdTenancy
     , wdWorkspaceCreationProperties
     , wdDNSIPAddresses
+    , wdWorkspaceAccessProperties
     , wdDirectoryName
+    , wdSelfservicePermissions
+
+    -- ** WorkspaceImage
+    , WorkspaceImage
+    , workspaceImage
+    , wiState
+    , wiOwnerAccountId
+    , wiOperatingSystem
+    , wiCreated
+    , wiRequiredTenancy
+    , wiName
+    , wiImageId
+    , wiErrorCode
+    , wiErrorMessage
+    , wiDescription
 
     -- ** WorkspaceProperties
     , WorkspaceProperties
@@ -329,30 +567,57 @@ module Network.AWS.WorkSpaces
     , wigGroupName
     ) where
 
+import Network.AWS.WorkSpaces.AssociateConnectionAlias
 import Network.AWS.WorkSpaces.AssociateIPGroups
 import Network.AWS.WorkSpaces.AuthorizeIPRules
+import Network.AWS.WorkSpaces.CopyWorkspaceImage
+import Network.AWS.WorkSpaces.CreateConnectionAlias
 import Network.AWS.WorkSpaces.CreateIPGroup
 import Network.AWS.WorkSpaces.CreateTags
 import Network.AWS.WorkSpaces.CreateWorkspaces
+import Network.AWS.WorkSpaces.DeleteConnectionAlias
 import Network.AWS.WorkSpaces.DeleteIPGroup
 import Network.AWS.WorkSpaces.DeleteTags
+import Network.AWS.WorkSpaces.DeleteWorkspaceImage
+import Network.AWS.WorkSpaces.DeregisterWorkspaceDirectory
+import Network.AWS.WorkSpaces.DescribeAccount
+import Network.AWS.WorkSpaces.DescribeAccountModifications
+import Network.AWS.WorkSpaces.DescribeClientProperties
+import Network.AWS.WorkSpaces.DescribeConnectionAliasPermissions
+import Network.AWS.WorkSpaces.DescribeConnectionAliases
 import Network.AWS.WorkSpaces.DescribeIPGroups
 import Network.AWS.WorkSpaces.DescribeTags
 import Network.AWS.WorkSpaces.DescribeWorkspaceBundles
 import Network.AWS.WorkSpaces.DescribeWorkspaceDirectories
+import Network.AWS.WorkSpaces.DescribeWorkspaceImagePermissions
+import Network.AWS.WorkSpaces.DescribeWorkspaceImages
+import Network.AWS.WorkSpaces.DescribeWorkspaceSnapshots
 import Network.AWS.WorkSpaces.DescribeWorkspaces
 import Network.AWS.WorkSpaces.DescribeWorkspacesConnectionStatus
+import Network.AWS.WorkSpaces.DisassociateConnectionAlias
 import Network.AWS.WorkSpaces.DisassociateIPGroups
+import Network.AWS.WorkSpaces.ImportWorkspaceImage
+import Network.AWS.WorkSpaces.ListAvailableManagementCidrRanges
+import Network.AWS.WorkSpaces.MigrateWorkspace
+import Network.AWS.WorkSpaces.ModifyAccount
+import Network.AWS.WorkSpaces.ModifyClientProperties
+import Network.AWS.WorkSpaces.ModifySelfservicePermissions
+import Network.AWS.WorkSpaces.ModifyWorkspaceAccessProperties
+import Network.AWS.WorkSpaces.ModifyWorkspaceCreationProperties
 import Network.AWS.WorkSpaces.ModifyWorkspaceProperties
 import Network.AWS.WorkSpaces.ModifyWorkspaceState
 import Network.AWS.WorkSpaces.RebootWorkspaces
 import Network.AWS.WorkSpaces.RebuildWorkspaces
+import Network.AWS.WorkSpaces.RegisterWorkspaceDirectory
+import Network.AWS.WorkSpaces.RestoreWorkspace
 import Network.AWS.WorkSpaces.RevokeIPRules
 import Network.AWS.WorkSpaces.StartWorkspaces
 import Network.AWS.WorkSpaces.StopWorkspaces
 import Network.AWS.WorkSpaces.TerminateWorkspaces
 import Network.AWS.WorkSpaces.Types
+import Network.AWS.WorkSpaces.UpdateConnectionAliasPermission
 import Network.AWS.WorkSpaces.UpdateRulesOfIPGroup
+import Network.AWS.WorkSpaces.UpdateWorkspaceImagePermission
 import Network.AWS.WorkSpaces.Waiters
 
 {- $errors

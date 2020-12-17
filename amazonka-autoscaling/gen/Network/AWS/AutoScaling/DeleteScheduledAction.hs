@@ -36,18 +36,18 @@ module Network.AWS.AutoScaling.DeleteScheduledAction
     ) where
 
 import Network.AWS.AutoScaling.Types
-import Network.AWS.AutoScaling.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deleteScheduledAction' smart constructor.
-data DeleteScheduledAction = DeleteScheduledAction'
-  { _dsaAutoScalingGroupName :: !Text
-  , _dsaScheduledActionName  :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteScheduledAction = DeleteScheduledAction'{_dsaAutoScalingGroupName
+                                                    :: !Text,
+                                                    _dsaScheduledActionName ::
+                                                    !Text}
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'DeleteScheduledAction' with the minimum fields required to make a request.
 --
@@ -60,12 +60,11 @@ deleteScheduledAction
     :: Text -- ^ 'dsaAutoScalingGroupName'
     -> Text -- ^ 'dsaScheduledActionName'
     -> DeleteScheduledAction
-deleteScheduledAction pAutoScalingGroupName_ pScheduledActionName_ =
-  DeleteScheduledAction'
-    { _dsaAutoScalingGroupName = pAutoScalingGroupName_
-    , _dsaScheduledActionName = pScheduledActionName_
-    }
-
+deleteScheduledAction pAutoScalingGroupName_
+  pScheduledActionName_
+  = DeleteScheduledAction'{_dsaAutoScalingGroupName =
+                             pAutoScalingGroupName_,
+                           _dsaScheduledActionName = pScheduledActionName_}
 
 -- | The name of the Auto Scaling group.
 dsaAutoScalingGroupName :: Lens' DeleteScheduledAction Text
@@ -100,16 +99,15 @@ instance ToQuery DeleteScheduledAction where
                "ScheduledActionName" =: _dsaScheduledActionName]
 
 -- | /See:/ 'deleteScheduledActionResponse' smart constructor.
-data DeleteScheduledActionResponse =
-  DeleteScheduledActionResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteScheduledActionResponse = DeleteScheduledActionResponse'
+                                       deriving (Eq, Read, Show, Data, Typeable,
+                                                 Generic)
 
 -- | Creates a value of 'DeleteScheduledActionResponse' with the minimum fields required to make a request.
 --
 deleteScheduledActionResponse
     :: DeleteScheduledActionResponse
-deleteScheduledActionResponse = DeleteScheduledActionResponse'
-
+deleteScheduledActionResponse
+  = DeleteScheduledActionResponse'
 
 instance NFData DeleteScheduledActionResponse where

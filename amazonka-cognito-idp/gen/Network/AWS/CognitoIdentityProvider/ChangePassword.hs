@@ -39,7 +39,6 @@ module Network.AWS.CognitoIdentityProvider.ChangePassword
     ) where
 
 import Network.AWS.CognitoIdentityProvider.Types
-import Network.AWS.CognitoIdentityProvider.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -50,12 +49,11 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'changePassword' smart constructor.
-data ChangePassword = ChangePassword'
-  { _cpPreviousPassword :: !(Sensitive Text)
-  , _cpProposedPassword :: !(Sensitive Text)
-  , _cpAccessToken      :: !(Sensitive Text)
-  } deriving (Eq, Show, Data, Typeable, Generic)
-
+data ChangePassword = ChangePassword'{_cpPreviousPassword
+                                      :: !(Sensitive Text),
+                                      _cpProposedPassword :: !(Sensitive Text),
+                                      _cpAccessToken :: !(Sensitive Text)}
+                        deriving (Eq, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ChangePassword' with the minimum fields required to make a request.
 --
@@ -71,13 +69,13 @@ changePassword
     -> Text -- ^ 'cpProposedPassword'
     -> Text -- ^ 'cpAccessToken'
     -> ChangePassword
-changePassword pPreviousPassword_ pProposedPassword_ pAccessToken_ =
-  ChangePassword'
-    { _cpPreviousPassword = _Sensitive # pPreviousPassword_
-    , _cpProposedPassword = _Sensitive # pProposedPassword_
-    , _cpAccessToken = _Sensitive # pAccessToken_
-    }
-
+changePassword pPreviousPassword_ pProposedPassword_
+  pAccessToken_
+  = ChangePassword'{_cpPreviousPassword =
+                      _Sensitive # pPreviousPassword_,
+                    _cpProposedPassword =
+                      _Sensitive # pProposedPassword_,
+                    _cpAccessToken = _Sensitive # pAccessToken_}
 
 -- | The old password.
 cpPreviousPassword :: Lens' ChangePassword Text
@@ -132,10 +130,10 @@ instance ToQuery ChangePassword where
 --
 --
 -- /See:/ 'changePasswordResponse' smart constructor.
-newtype ChangePasswordResponse = ChangePasswordResponse'
-  { _cprsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype ChangePasswordResponse = ChangePasswordResponse'{_cprsResponseStatus
+                                                         :: Int}
+                                   deriving (Eq, Read, Show, Data, Typeable,
+                                             Generic)
 
 -- | Creates a value of 'ChangePasswordResponse' with the minimum fields required to make a request.
 --
@@ -145,9 +143,9 @@ newtype ChangePasswordResponse = ChangePasswordResponse'
 changePasswordResponse
     :: Int -- ^ 'cprsResponseStatus'
     -> ChangePasswordResponse
-changePasswordResponse pResponseStatus_ =
-  ChangePasswordResponse' {_cprsResponseStatus = pResponseStatus_}
-
+changePasswordResponse pResponseStatus_
+  = ChangePasswordResponse'{_cprsResponseStatus =
+                              pResponseStatus_}
 
 -- | -- | The response status code.
 cprsResponseStatus :: Lens' ChangePasswordResponse Int

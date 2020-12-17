@@ -40,7 +40,6 @@ module Network.AWS.ElastiCache.AuthorizeCacheSecurityGroupIngress
     ) where
 
 import Network.AWS.ElastiCache.Types
-import Network.AWS.ElastiCache.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -51,12 +50,17 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'authorizeCacheSecurityGroupIngress' smart constructor.
-data AuthorizeCacheSecurityGroupIngress = AuthorizeCacheSecurityGroupIngress'
-  { _acsgiCacheSecurityGroupName  :: !Text
-  , _acsgiEC2SecurityGroupName    :: !Text
-  , _acsgiEC2SecurityGroupOwnerId :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data AuthorizeCacheSecurityGroupIngress = AuthorizeCacheSecurityGroupIngress'{_acsgiCacheSecurityGroupName
+                                                                              ::
+                                                                              !Text,
+                                                                              _acsgiEC2SecurityGroupName
+                                                                              ::
+                                                                              !Text,
+                                                                              _acsgiEC2SecurityGroupOwnerId
+                                                                              ::
+                                                                              !Text}
+                                            deriving (Eq, Read, Show, Data,
+                                                      Typeable, Generic)
 
 -- | Creates a value of 'AuthorizeCacheSecurityGroupIngress' with the minimum fields required to make a request.
 --
@@ -72,13 +76,15 @@ authorizeCacheSecurityGroupIngress
     -> Text -- ^ 'acsgiEC2SecurityGroupName'
     -> Text -- ^ 'acsgiEC2SecurityGroupOwnerId'
     -> AuthorizeCacheSecurityGroupIngress
-authorizeCacheSecurityGroupIngress pCacheSecurityGroupName_ pEC2SecurityGroupName_ pEC2SecurityGroupOwnerId_ =
-  AuthorizeCacheSecurityGroupIngress'
-    { _acsgiCacheSecurityGroupName = pCacheSecurityGroupName_
-    , _acsgiEC2SecurityGroupName = pEC2SecurityGroupName_
-    , _acsgiEC2SecurityGroupOwnerId = pEC2SecurityGroupOwnerId_
-    }
-
+authorizeCacheSecurityGroupIngress
+  pCacheSecurityGroupName_ pEC2SecurityGroupName_
+  pEC2SecurityGroupOwnerId_
+  = AuthorizeCacheSecurityGroupIngress'{_acsgiCacheSecurityGroupName
+                                          = pCacheSecurityGroupName_,
+                                        _acsgiEC2SecurityGroupName =
+                                          pEC2SecurityGroupName_,
+                                        _acsgiEC2SecurityGroupOwnerId =
+                                          pEC2SecurityGroupOwnerId_}
 
 -- | The cache security group that allows network ingress.
 acsgiCacheSecurityGroupName :: Lens' AuthorizeCacheSecurityGroupIngress Text
@@ -133,11 +139,16 @@ instance ToQuery AuthorizeCacheSecurityGroupIngress
                  _acsgiEC2SecurityGroupOwnerId]
 
 -- | /See:/ 'authorizeCacheSecurityGroupIngressResponse' smart constructor.
-data AuthorizeCacheSecurityGroupIngressResponse = AuthorizeCacheSecurityGroupIngressResponse'
-  { _acsgirsCacheSecurityGroup :: !(Maybe CacheSecurityGroup)
-  , _acsgirsResponseStatus     :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data AuthorizeCacheSecurityGroupIngressResponse = AuthorizeCacheSecurityGroupIngressResponse'{_acsgirsCacheSecurityGroup
+                                                                                              ::
+                                                                                              !(Maybe
+                                                                                                  CacheSecurityGroup),
+                                                                                              _acsgirsResponseStatus
+                                                                                              ::
+                                                                                              !Int}
+                                                    deriving (Eq, Read, Show,
+                                                              Data, Typeable,
+                                                              Generic)
 
 -- | Creates a value of 'AuthorizeCacheSecurityGroupIngressResponse' with the minimum fields required to make a request.
 --
@@ -149,12 +160,12 @@ data AuthorizeCacheSecurityGroupIngressResponse = AuthorizeCacheSecurityGroupIng
 authorizeCacheSecurityGroupIngressResponse
     :: Int -- ^ 'acsgirsResponseStatus'
     -> AuthorizeCacheSecurityGroupIngressResponse
-authorizeCacheSecurityGroupIngressResponse pResponseStatus_ =
-  AuthorizeCacheSecurityGroupIngressResponse'
-    { _acsgirsCacheSecurityGroup = Nothing
-    , _acsgirsResponseStatus = pResponseStatus_
-    }
-
+authorizeCacheSecurityGroupIngressResponse
+  pResponseStatus_
+  = AuthorizeCacheSecurityGroupIngressResponse'{_acsgirsCacheSecurityGroup
+                                                  = Nothing,
+                                                _acsgirsResponseStatus =
+                                                  pResponseStatus_}
 
 -- | Undocumented member.
 acsgirsCacheSecurityGroup :: Lens' AuthorizeCacheSecurityGroupIngressResponse (Maybe CacheSecurityGroup)

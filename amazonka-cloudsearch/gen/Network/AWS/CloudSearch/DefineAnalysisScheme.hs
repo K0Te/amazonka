@@ -39,7 +39,6 @@ module Network.AWS.CloudSearch.DefineAnalysisScheme
     ) where
 
 import Network.AWS.CloudSearch.Types
-import Network.AWS.CloudSearch.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -50,11 +49,11 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'defineAnalysisScheme' smart constructor.
-data DefineAnalysisScheme = DefineAnalysisScheme'
-  { _dasaDomainName     :: !Text
-  , _dasaAnalysisScheme :: !AnalysisScheme
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DefineAnalysisScheme = DefineAnalysisScheme'{_dasaDomainName
+                                                  :: !Text,
+                                                  _dasaAnalysisScheme ::
+                                                  !AnalysisScheme}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DefineAnalysisScheme' with the minimum fields required to make a request.
 --
@@ -67,10 +66,10 @@ defineAnalysisScheme
     :: Text -- ^ 'dasaDomainName'
     -> AnalysisScheme -- ^ 'dasaAnalysisScheme'
     -> DefineAnalysisScheme
-defineAnalysisScheme pDomainName_ pAnalysisScheme_ =
-  DefineAnalysisScheme'
-    {_dasaDomainName = pDomainName_, _dasaAnalysisScheme = pAnalysisScheme_}
-
+defineAnalysisScheme pDomainName_ pAnalysisScheme_
+  = DefineAnalysisScheme'{_dasaDomainName =
+                            pDomainName_,
+                          _dasaAnalysisScheme = pAnalysisScheme_}
 
 -- | Undocumented member.
 dasaDomainName :: Lens' DefineAnalysisScheme Text
@@ -113,11 +112,13 @@ instance ToQuery DefineAnalysisScheme where
 --
 --
 -- /See:/ 'defineAnalysisSchemeResponse' smart constructor.
-data DefineAnalysisSchemeResponse = DefineAnalysisSchemeResponse'
-  { _defersResponseStatus :: !Int
-  , _defersAnalysisScheme :: !AnalysisSchemeStatus
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DefineAnalysisSchemeResponse = DefineAnalysisSchemeResponse'{_defersResponseStatus
+                                                                  :: !Int,
+                                                                  _defersAnalysisScheme
+                                                                  ::
+                                                                  !AnalysisSchemeStatus}
+                                      deriving (Eq, Read, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'DefineAnalysisSchemeResponse' with the minimum fields required to make a request.
 --
@@ -130,12 +131,11 @@ defineAnalysisSchemeResponse
     :: Int -- ^ 'defersResponseStatus'
     -> AnalysisSchemeStatus -- ^ 'defersAnalysisScheme'
     -> DefineAnalysisSchemeResponse
-defineAnalysisSchemeResponse pResponseStatus_ pAnalysisScheme_ =
-  DefineAnalysisSchemeResponse'
-    { _defersResponseStatus = pResponseStatus_
-    , _defersAnalysisScheme = pAnalysisScheme_
-    }
-
+defineAnalysisSchemeResponse pResponseStatus_
+  pAnalysisScheme_
+  = DefineAnalysisSchemeResponse'{_defersResponseStatus
+                                    = pResponseStatus_,
+                                  _defersAnalysisScheme = pAnalysisScheme_}
 
 -- | -- | The response status code.
 defersResponseStatus :: Lens' DefineAnalysisSchemeResponse Int

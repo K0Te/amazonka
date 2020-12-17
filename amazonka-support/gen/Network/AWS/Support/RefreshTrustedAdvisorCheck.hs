@@ -18,18 +18,10 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Requests a refresh of the Trusted Advisor check that has the specified check ID. Check IDs can be obtained by calling 'DescribeTrustedAdvisorChecks' .
+-- Refreshes the AWS Trusted Advisor check that you specify using the check ID. You can get the check IDs by calling the 'DescribeTrustedAdvisorChecks' operation.
 --
 --
--- The response contains a 'TrustedAdvisorCheckRefreshStatus' object, which contains these fields:
---
---     * __status.__ The refresh status of the check: "none", "enqueued", "processing", "success", or "abandoned".
---
---     * __millisUntilNextRefreshable.__ The amount of time, in milliseconds, until the check is eligible for refresh.
---
---     * __checkId.__ The unique identifier for the check.
---
---
+-- The response contains a 'TrustedAdvisorCheckRefreshStatus' object.
 --
 module Network.AWS.Support.RefreshTrustedAdvisorCheck
     (
@@ -52,17 +44,16 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.Support.Types
-import Network.AWS.Support.Types.Product
 
--- |
+-- | 
 --
 --
 --
 -- /See:/ 'refreshTrustedAdvisorCheck' smart constructor.
-newtype RefreshTrustedAdvisorCheck = RefreshTrustedAdvisorCheck'
-  { _rtacCheckId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype RefreshTrustedAdvisorCheck = RefreshTrustedAdvisorCheck'{_rtacCheckId
+                                                                 :: Text}
+                                       deriving (Eq, Read, Show, Data, Typeable,
+                                                 Generic)
 
 -- | Creates a value of 'RefreshTrustedAdvisorCheck' with the minimum fields required to make a request.
 --
@@ -72,9 +63,9 @@ newtype RefreshTrustedAdvisorCheck = RefreshTrustedAdvisorCheck'
 refreshTrustedAdvisorCheck
     :: Text -- ^ 'rtacCheckId'
     -> RefreshTrustedAdvisorCheck
-refreshTrustedAdvisorCheck pCheckId_ =
-  RefreshTrustedAdvisorCheck' {_rtacCheckId = pCheckId_}
-
+refreshTrustedAdvisorCheck pCheckId_
+  = RefreshTrustedAdvisorCheck'{_rtacCheckId =
+                                  pCheckId_}
 
 -- | The unique identifier for the Trusted Advisor check to refresh. __Note:__ Specifying the check ID of a check that is automatically refreshed causes an @InvalidParameterValue@ error.
 rtacCheckId :: Lens' RefreshTrustedAdvisorCheck Text
@@ -120,11 +111,14 @@ instance ToQuery RefreshTrustedAdvisorCheck where
 --
 --
 -- /See:/ 'refreshTrustedAdvisorCheckResponse' smart constructor.
-data RefreshTrustedAdvisorCheckResponse = RefreshTrustedAdvisorCheckResponse'
-  { _rtacrsResponseStatus :: !Int
-  , _rtacrsStatus         :: !TrustedAdvisorCheckRefreshStatus
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data RefreshTrustedAdvisorCheckResponse = RefreshTrustedAdvisorCheckResponse'{_rtacrsResponseStatus
+                                                                              ::
+                                                                              !Int,
+                                                                              _rtacrsStatus
+                                                                              ::
+                                                                              !TrustedAdvisorCheckRefreshStatus}
+                                            deriving (Eq, Read, Show, Data,
+                                                      Typeable, Generic)
 
 -- | Creates a value of 'RefreshTrustedAdvisorCheckResponse' with the minimum fields required to make a request.
 --
@@ -137,10 +131,11 @@ refreshTrustedAdvisorCheckResponse
     :: Int -- ^ 'rtacrsResponseStatus'
     -> TrustedAdvisorCheckRefreshStatus -- ^ 'rtacrsStatus'
     -> RefreshTrustedAdvisorCheckResponse
-refreshTrustedAdvisorCheckResponse pResponseStatus_ pStatus_ =
-  RefreshTrustedAdvisorCheckResponse'
-    {_rtacrsResponseStatus = pResponseStatus_, _rtacrsStatus = pStatus_}
-
+refreshTrustedAdvisorCheckResponse pResponseStatus_
+  pStatus_
+  = RefreshTrustedAdvisorCheckResponse'{_rtacrsResponseStatus
+                                          = pResponseStatus_,
+                                        _rtacrsStatus = pStatus_}
 
 -- | -- | The response status code.
 rtacrsResponseStatus :: Lens' RefreshTrustedAdvisorCheckResponse Int

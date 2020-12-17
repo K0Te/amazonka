@@ -18,18 +18,18 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Returns a list of cases that you specify by passing one or more case IDs. In addition, you can filter the cases by date by setting values for the @afterTime@ and @beforeTime@ request parameters. You can set values for the @includeResolvedCases@ and @includeCommunications@ request parameters to control how much information is returned.
+-- Returns a list of cases that you specify by passing one or more case IDs. You can use the @afterTime@ and @beforeTime@ parameters to filter the cases by date. You can set values for the @includeResolvedCases@ and @includeCommunications@ parameters to specify how much information to return.
 --
---
--- Case data is available for 12 months after creation. If a case was created more than 12 months ago, a request for data might cause an error.
 --
 -- The response returns the following in JSON format:
 --
---     * One or more 'CaseDetails' data types.
+--     * One or more <https://docs.aws.amazon.com/awssupport/latest/APIReference/API_CaseDetails.html CaseDetails> data types.
 --
 --     * One or more @nextToken@ values, which specify where to paginate the returned records represented by the @CaseDetails@ objects.
 --
 --
+--
+-- Case data is available for 12 months after creation. If a case was created more than 12 months ago, a request might return an error.
 --
 --
 -- This operation returns paginated results.
@@ -64,31 +64,25 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.Support.Types
-import Network.AWS.Support.Types.Product
 
--- |
---
---
---
--- /See:/ 'describeCases' smart constructor.
-data DescribeCases = DescribeCases'
-  { _dcIncludeResolvedCases  :: !(Maybe Bool)
-  , _dcCaseIdList            :: !(Maybe [Text])
-  , _dcAfterTime             :: !(Maybe Text)
-  , _dcBeforeTime            :: !(Maybe Text)
-  , _dcNextToken             :: !(Maybe Text)
-  , _dcIncludeCommunications :: !(Maybe Bool)
-  , _dcDisplayId             :: !(Maybe Text)
-  , _dcLanguage              :: !(Maybe Text)
-  , _dcMaxResults            :: !(Maybe Nat)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+-- | /See:/ 'describeCases' smart constructor.
+data DescribeCases = DescribeCases'{_dcIncludeResolvedCases
+                                    :: !(Maybe Bool),
+                                    _dcCaseIdList :: !(Maybe [Text]),
+                                    _dcAfterTime :: !(Maybe Text),
+                                    _dcBeforeTime :: !(Maybe Text),
+                                    _dcNextToken :: !(Maybe Text),
+                                    _dcIncludeCommunications :: !(Maybe Bool),
+                                    _dcDisplayId :: !(Maybe Text),
+                                    _dcLanguage :: !(Maybe Text),
+                                    _dcMaxResults :: !(Maybe Nat)}
+                       deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DescribeCases' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'dcIncludeResolvedCases' - Specifies whether resolved support cases should be included in the 'DescribeCases' results. The default is /false/ .
+-- * 'dcIncludeResolvedCases' - Specifies whether to include resolved support cases in the @DescribeCases@ response. By default, resolved cases aren't included.
 --
 -- * 'dcCaseIdList' - A list of ID numbers of the support cases you want returned. The maximum number of cases is 100.
 --
@@ -98,7 +92,7 @@ data DescribeCases = DescribeCases'
 --
 -- * 'dcNextToken' - A resumption point for pagination.
 --
--- * 'dcIncludeCommunications' - Specifies whether communications should be included in the 'DescribeCases' results. The default is /true/ .
+-- * 'dcIncludeCommunications' - Specifies whether to include communications in the @DescribeCases@ response. By default, communications are incuded.
 --
 -- * 'dcDisplayId' - The ID displayed for a case in the AWS Support Center user interface.
 --
@@ -107,21 +101,15 @@ data DescribeCases = DescribeCases'
 -- * 'dcMaxResults' - The maximum number of results to return before paginating.
 describeCases
     :: DescribeCases
-describeCases =
-  DescribeCases'
-    { _dcIncludeResolvedCases = Nothing
-    , _dcCaseIdList = Nothing
-    , _dcAfterTime = Nothing
-    , _dcBeforeTime = Nothing
-    , _dcNextToken = Nothing
-    , _dcIncludeCommunications = Nothing
-    , _dcDisplayId = Nothing
-    , _dcLanguage = Nothing
-    , _dcMaxResults = Nothing
-    }
+describeCases
+  = DescribeCases'{_dcIncludeResolvedCases = Nothing,
+                   _dcCaseIdList = Nothing, _dcAfterTime = Nothing,
+                   _dcBeforeTime = Nothing, _dcNextToken = Nothing,
+                   _dcIncludeCommunications = Nothing,
+                   _dcDisplayId = Nothing, _dcLanguage = Nothing,
+                   _dcMaxResults = Nothing}
 
-
--- | Specifies whether resolved support cases should be included in the 'DescribeCases' results. The default is /false/ .
+-- | Specifies whether to include resolved support cases in the @DescribeCases@ response. By default, resolved cases aren't included.
 dcIncludeResolvedCases :: Lens' DescribeCases (Maybe Bool)
 dcIncludeResolvedCases = lens _dcIncludeResolvedCases (\ s a -> s{_dcIncludeResolvedCases = a})
 
@@ -141,7 +129,7 @@ dcBeforeTime = lens _dcBeforeTime (\ s a -> s{_dcBeforeTime = a})
 dcNextToken :: Lens' DescribeCases (Maybe Text)
 dcNextToken = lens _dcNextToken (\ s a -> s{_dcNextToken = a})
 
--- | Specifies whether communications should be included in the 'DescribeCases' results. The default is /true/ .
+-- | Specifies whether to include communications in the @DescribeCases@ response. By default, communications are incuded.
 dcIncludeCommunications :: Lens' DescribeCases (Maybe Bool)
 dcIncludeCommunications = lens _dcIncludeCommunications (\ s a -> s{_dcIncludeCommunications = a})
 
@@ -209,17 +197,18 @@ instance ToPath DescribeCases where
 instance ToQuery DescribeCases where
         toQuery = const mempty
 
--- | Returns an array of 'CaseDetails' objects and a @nextToken@ that defines a point for pagination in the result set.
+-- | Returns an array of <https://docs.aws.amazon.com/awssupport/latest/APIReference/API_CaseDetails.html CaseDetails> objects and a @nextToken@ that defines a point for pagination in the result set.
 --
 --
 --
 -- /See:/ 'describeCasesResponse' smart constructor.
-data DescribeCasesResponse = DescribeCasesResponse'
-  { _drsCases          :: !(Maybe [CaseDetails])
-  , _drsNextToken      :: !(Maybe Text)
-  , _drsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeCasesResponse = DescribeCasesResponse'{_drsCases
+                                                    :: !(Maybe [CaseDetails]),
+                                                    _drsNextToken ::
+                                                    !(Maybe Text),
+                                                    _drsResponseStatus :: !Int}
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'DescribeCasesResponse' with the minimum fields required to make a request.
 --
@@ -233,13 +222,10 @@ data DescribeCasesResponse = DescribeCasesResponse'
 describeCasesResponse
     :: Int -- ^ 'drsResponseStatus'
     -> DescribeCasesResponse
-describeCasesResponse pResponseStatus_ =
-  DescribeCasesResponse'
-    { _drsCases = Nothing
-    , _drsNextToken = Nothing
-    , _drsResponseStatus = pResponseStatus_
-    }
-
+describeCasesResponse pResponseStatus_
+  = DescribeCasesResponse'{_drsCases = Nothing,
+                           _drsNextToken = Nothing,
+                           _drsResponseStatus = pResponseStatus_}
 
 -- | The details for the cases that match the request.
 drsCases :: Lens' DescribeCasesResponse [CaseDetails]

@@ -18,27 +18,39 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Retrieves the details of FlexMatch matchmaking configurations. with this operation, you have the following options: (1) retrieve all existing configurations, (2) provide the names of one or more configurations to retrieve, or (3) retrieve all configurations that use a specified rule set name. When requesting multiple items, use the pagination parameters to retrieve results as a set of sequential pages. If successful, a configuration is returned for each requested name. When specifying a list of names, only configurations that currently exist are returned.
+-- Retrieves the details of FlexMatch matchmaking configurations. 
 --
 --
--- Operations related to match configurations and rule sets include:
+-- This operation offers the following options: (1) retrieve all matchmaking configurations, (2) retrieve configurations for a specified list, or (3) retrieve all configurations that use a specified rule set name. When requesting multiple items, use the pagination parameters to retrieve results as a set of sequential pages. 
 --
---     * 'CreateMatchmakingConfiguration'
+-- If successful, a configuration is returned for each requested name. When specifying a list of names, only configurations that currently exist are returned. 
 --
---     * 'DescribeMatchmakingConfigurations'
+-- __Learn more__ 
 --
---     * 'UpdateMatchmakingConfiguration'
+-- <https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/matchmaker-build.html Setting Up FlexMatch Matchmakers> 
 --
---     * 'DeleteMatchmakingConfiguration'
+-- __Related operations__ 
 --
---     * 'CreateMatchmakingRuleSet'
+--     * 'CreateMatchmakingConfiguration' 
 --
---     * 'DescribeMatchmakingRuleSets'
+--     * 'DescribeMatchmakingConfigurations' 
 --
---     * 'ValidateMatchmakingRuleSet'
+--     * 'UpdateMatchmakingConfiguration' 
+--
+--     * 'DeleteMatchmakingConfiguration' 
+--
+--     * 'CreateMatchmakingRuleSet' 
+--
+--     * 'DescribeMatchmakingRuleSets' 
+--
+--     * 'ValidateMatchmakingRuleSet' 
+--
+--     * 'DeleteMatchmakingRuleSet' 
 --
 --
 --
+--
+-- This operation returns paginated results.
 module Network.AWS.GameLift.DescribeMatchmakingConfigurations
     (
     -- * Creating a Request
@@ -60,62 +72,78 @@ module Network.AWS.GameLift.DescribeMatchmakingConfigurations
     ) where
 
 import Network.AWS.GameLift.Types
-import Network.AWS.GameLift.Types.Product
 import Network.AWS.Lens
+import Network.AWS.Pager
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- | Represents the input for a request action.
+-- | Represents the input for a request operation.
 --
 --
 --
 -- /See:/ 'describeMatchmakingConfigurations' smart constructor.
-data DescribeMatchmakingConfigurations = DescribeMatchmakingConfigurations'
-  { _dmcRuleSetName :: !(Maybe Text)
-  , _dmcNextToken   :: !(Maybe Text)
-  , _dmcNames       :: !(Maybe [Text])
-  , _dmcLimit       :: !(Maybe Nat)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeMatchmakingConfigurations = DescribeMatchmakingConfigurations'{_dmcRuleSetName
+                                                                            ::
+                                                                            !(Maybe
+                                                                                Text),
+                                                                            _dmcNextToken
+                                                                            ::
+                                                                            !(Maybe
+                                                                                Text),
+                                                                            _dmcNames
+                                                                            ::
+                                                                            !(Maybe
+                                                                                [Text]),
+                                                                            _dmcLimit
+                                                                            ::
+                                                                            !(Maybe
+                                                                                Nat)}
+                                           deriving (Eq, Read, Show, Data,
+                                                     Typeable, Generic)
 
 -- | Creates a value of 'DescribeMatchmakingConfigurations' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'dmcRuleSetName' - Unique identifier for a matchmaking rule set. Use this parameter to retrieve all matchmaking configurations that use this rule set.
+-- * 'dmcRuleSetName' - A unique identifier for a matchmaking rule set. You can use either the rule set name or ARN value. Use this parameter to retrieve all matchmaking configurations that use this rule set.
 --
--- * 'dmcNextToken' - Token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this action. To start at the beginning of the result set, do not specify a value.
+-- * 'dmcNextToken' - A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value.
 --
--- * 'dmcNames' - Unique identifier for a matchmaking configuration(s) to retrieve. To request all existing configurations, leave this parameter empty.
+-- * 'dmcNames' - A unique identifier for a matchmaking configuration(s) to retrieve. You can use either the configuration name or ARN value. To request all existing configurations, leave this parameter empty.
 --
--- * 'dmcLimit' - Maximum number of results to return. Use this parameter with @NextToken@ to get results as a set of sequential pages. This parameter is limited to 10.
+-- * 'dmcLimit' - The maximum number of results to return. Use this parameter with @NextToken@ to get results as a set of sequential pages. This parameter is limited to 10.
 describeMatchmakingConfigurations
     :: DescribeMatchmakingConfigurations
-describeMatchmakingConfigurations =
-  DescribeMatchmakingConfigurations'
-    { _dmcRuleSetName = Nothing
-    , _dmcNextToken = Nothing
-    , _dmcNames = Nothing
-    , _dmcLimit = Nothing
-    }
+describeMatchmakingConfigurations
+  = DescribeMatchmakingConfigurations'{_dmcRuleSetName
+                                         = Nothing,
+                                       _dmcNextToken = Nothing,
+                                       _dmcNames = Nothing, _dmcLimit = Nothing}
 
-
--- | Unique identifier for a matchmaking rule set. Use this parameter to retrieve all matchmaking configurations that use this rule set.
+-- | A unique identifier for a matchmaking rule set. You can use either the rule set name or ARN value. Use this parameter to retrieve all matchmaking configurations that use this rule set.
 dmcRuleSetName :: Lens' DescribeMatchmakingConfigurations (Maybe Text)
 dmcRuleSetName = lens _dmcRuleSetName (\ s a -> s{_dmcRuleSetName = a})
 
--- | Token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this action. To start at the beginning of the result set, do not specify a value.
+-- | A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value.
 dmcNextToken :: Lens' DescribeMatchmakingConfigurations (Maybe Text)
 dmcNextToken = lens _dmcNextToken (\ s a -> s{_dmcNextToken = a})
 
--- | Unique identifier for a matchmaking configuration(s) to retrieve. To request all existing configurations, leave this parameter empty.
+-- | A unique identifier for a matchmaking configuration(s) to retrieve. You can use either the configuration name or ARN value. To request all existing configurations, leave this parameter empty.
 dmcNames :: Lens' DescribeMatchmakingConfigurations [Text]
 dmcNames = lens _dmcNames (\ s a -> s{_dmcNames = a}) . _Default . _Coerce
 
--- | Maximum number of results to return. Use this parameter with @NextToken@ to get results as a set of sequential pages. This parameter is limited to 10.
+-- | The maximum number of results to return. Use this parameter with @NextToken@ to get results as a set of sequential pages. This parameter is limited to 10.
 dmcLimit :: Lens' DescribeMatchmakingConfigurations (Maybe Natural)
 dmcLimit = lens _dmcLimit (\ s a -> s{_dmcLimit = a}) . mapping _Nat
+
+instance AWSPager DescribeMatchmakingConfigurations
+         where
+        page rq rs
+          | stop (rs ^. dmcsrsNextToken) = Nothing
+          | stop (rs ^. dmcsrsConfigurations) = Nothing
+          | otherwise =
+            Just $ rq & dmcNextToken .~ rs ^. dmcsrsNextToken
 
 instance AWSRequest DescribeMatchmakingConfigurations
          where
@@ -165,43 +193,51 @@ instance ToQuery DescribeMatchmakingConfigurations
          where
         toQuery = const mempty
 
--- | Represents the returned data in response to a request action.
+-- | Represents the returned data in response to a request operation.
 --
 --
 --
 -- /See:/ 'describeMatchmakingConfigurationsResponse' smart constructor.
-data DescribeMatchmakingConfigurationsResponse = DescribeMatchmakingConfigurationsResponse'
-  { _dmcsrsConfigurations :: !(Maybe [MatchmakingConfiguration])
-  , _dmcsrsNextToken      :: !(Maybe Text)
-  , _dmcsrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeMatchmakingConfigurationsResponse = DescribeMatchmakingConfigurationsResponse'{_dmcsrsConfigurations
+                                                                                            ::
+                                                                                            !(Maybe
+                                                                                                [MatchmakingConfiguration]),
+                                                                                            _dmcsrsNextToken
+                                                                                            ::
+                                                                                            !(Maybe
+                                                                                                Text),
+                                                                                            _dmcsrsResponseStatus
+                                                                                            ::
+                                                                                            !Int}
+                                                   deriving (Eq, Read, Show,
+                                                             Data, Typeable,
+                                                             Generic)
 
 -- | Creates a value of 'DescribeMatchmakingConfigurationsResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'dmcsrsConfigurations' - Collection of requested matchmaking configuration objects.
+-- * 'dmcsrsConfigurations' - A collection of requested matchmaking configurations.
 --
--- * 'dmcsrsNextToken' - Token that indicates where to resume retrieving results on the next call to this action. If no token is returned, these results represent the end of the list.
+-- * 'dmcsrsNextToken' - A token that indicates where to resume retrieving results on the next call to this operation. If no token is returned, these results represent the end of the list.
 --
 -- * 'dmcsrsResponseStatus' - -- | The response status code.
 describeMatchmakingConfigurationsResponse
     :: Int -- ^ 'dmcsrsResponseStatus'
     -> DescribeMatchmakingConfigurationsResponse
-describeMatchmakingConfigurationsResponse pResponseStatus_ =
-  DescribeMatchmakingConfigurationsResponse'
-    { _dmcsrsConfigurations = Nothing
-    , _dmcsrsNextToken = Nothing
-    , _dmcsrsResponseStatus = pResponseStatus_
-    }
+describeMatchmakingConfigurationsResponse
+  pResponseStatus_
+  = DescribeMatchmakingConfigurationsResponse'{_dmcsrsConfigurations
+                                                 = Nothing,
+                                               _dmcsrsNextToken = Nothing,
+                                               _dmcsrsResponseStatus =
+                                                 pResponseStatus_}
 
-
--- | Collection of requested matchmaking configuration objects.
+-- | A collection of requested matchmaking configurations.
 dmcsrsConfigurations :: Lens' DescribeMatchmakingConfigurationsResponse [MatchmakingConfiguration]
 dmcsrsConfigurations = lens _dmcsrsConfigurations (\ s a -> s{_dmcsrsConfigurations = a}) . _Default . _Coerce
 
--- | Token that indicates where to resume retrieving results on the next call to this action. If no token is returned, these results represent the end of the list.
+-- | A token that indicates where to resume retrieving results on the next call to this operation. If no token is returned, these results represent the end of the list.
 dmcsrsNextToken :: Lens' DescribeMatchmakingConfigurationsResponse (Maybe Text)
 dmcsrsNextToken = lens _dmcsrsNextToken (\ s a -> s{_dmcsrsNextToken = a})
 

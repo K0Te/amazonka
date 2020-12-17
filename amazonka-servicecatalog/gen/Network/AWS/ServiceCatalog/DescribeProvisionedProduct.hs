@@ -27,6 +27,7 @@ module Network.AWS.ServiceCatalog.DescribeProvisionedProduct
       describeProvisionedProduct
     , DescribeProvisionedProduct
     -- * Request Lenses
+    , deseName
     , deseAcceptLanguage
     , deseId
 
@@ -44,35 +45,45 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.ServiceCatalog.Types
-import Network.AWS.ServiceCatalog.Types.Product
 
--- | /See:/ 'describeProvisionedProduct' smart constructor.
-data DescribeProvisionedProduct = DescribeProvisionedProduct'
-  { _deseAcceptLanguage :: !(Maybe Text)
-  , _deseId             :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+-- | DescribeProvisionedProductAPI input structure. AcceptLanguage - [Optional] The language code for localization. Id - [Optional] The provisioned product identifier. Name - [Optional] Another provisioned product identifier. Customers must provide either Id or Name.
+--
+-- /See:/ 'describeProvisionedProduct' smart constructor.
+data DescribeProvisionedProduct = DescribeProvisionedProduct'{_deseName
+                                                              :: !(Maybe Text),
+                                                              _deseAcceptLanguage
+                                                              :: !(Maybe Text),
+                                                              _deseId ::
+                                                              !(Maybe Text)}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'DescribeProvisionedProduct' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
+-- * 'deseName' - The name of the provisioned product. You must provide the name or ID, but not both. If you do not provide a name or ID, or you provide both name and ID, an @InvalidParametersException@ will occur.
+--
 -- * 'deseAcceptLanguage' - The language code.     * @en@ - English (default)     * @jp@ - Japanese     * @zh@ - Chinese
 --
--- * 'deseId' - The provisioned product identifier.
+-- * 'deseId' - The provisioned product identifier. You must provide the name or ID, but not both. If you do not provide a name or ID, or you provide both name and ID, an @InvalidParametersException@ will occur.
 describeProvisionedProduct
-    :: Text -- ^ 'deseId'
-    -> DescribeProvisionedProduct
-describeProvisionedProduct pId_ =
-  DescribeProvisionedProduct' {_deseAcceptLanguage = Nothing, _deseId = pId_}
+    :: DescribeProvisionedProduct
+describeProvisionedProduct
+  = DescribeProvisionedProduct'{_deseName = Nothing,
+                                _deseAcceptLanguage = Nothing,
+                                _deseId = Nothing}
 
+-- | The name of the provisioned product. You must provide the name or ID, but not both. If you do not provide a name or ID, or you provide both name and ID, an @InvalidParametersException@ will occur.
+deseName :: Lens' DescribeProvisionedProduct (Maybe Text)
+deseName = lens _deseName (\ s a -> s{_deseName = a})
 
 -- | The language code.     * @en@ - English (default)     * @jp@ - Japanese     * @zh@ - Chinese
 deseAcceptLanguage :: Lens' DescribeProvisionedProduct (Maybe Text)
 deseAcceptLanguage = lens _deseAcceptLanguage (\ s a -> s{_deseAcceptLanguage = a})
 
--- | The provisioned product identifier.
-deseId :: Lens' DescribeProvisionedProduct Text
+-- | The provisioned product identifier. You must provide the name or ID, but not both. If you do not provide a name or ID, or you provide both name and ID, an @InvalidParametersException@ will occur.
+deseId :: Lens' DescribeProvisionedProduct (Maybe Text)
 deseId = lens _deseId (\ s a -> s{_deseId = a})
 
 instance AWSRequest DescribeProvisionedProduct where
@@ -105,8 +116,9 @@ instance ToJSON DescribeProvisionedProduct where
         toJSON DescribeProvisionedProduct'{..}
           = object
               (catMaybes
-                 [("AcceptLanguage" .=) <$> _deseAcceptLanguage,
-                  Just ("Id" .= _deseId)])
+                 [("Name" .=) <$> _deseName,
+                  ("AcceptLanguage" .=) <$> _deseAcceptLanguage,
+                  ("Id" .=) <$> _deseId])
 
 instance ToPath DescribeProvisionedProduct where
         toPath = const "/"
@@ -115,12 +127,19 @@ instance ToQuery DescribeProvisionedProduct where
         toQuery = const mempty
 
 -- | /See:/ 'describeProvisionedProductResponse' smart constructor.
-data DescribeProvisionedProductResponse = DescribeProvisionedProductResponse'
-  { _drsProvisionedProductDetail :: !(Maybe ProvisionedProductDetail)
-  , _drsCloudWatchDashboards     :: !(Maybe [CloudWatchDashboard])
-  , _drsResponseStatus           :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeProvisionedProductResponse = DescribeProvisionedProductResponse'{_drsProvisionedProductDetail
+                                                                              ::
+                                                                              !(Maybe
+                                                                                  ProvisionedProductDetail),
+                                                                              _drsCloudWatchDashboards
+                                                                              ::
+                                                                              !(Maybe
+                                                                                  [CloudWatchDashboard]),
+                                                                              _drsResponseStatus
+                                                                              ::
+                                                                              !Int}
+                                            deriving (Eq, Read, Show, Data,
+                                                      Typeable, Generic)
 
 -- | Creates a value of 'DescribeProvisionedProductResponse' with the minimum fields required to make a request.
 --
@@ -134,13 +153,11 @@ data DescribeProvisionedProductResponse = DescribeProvisionedProductResponse'
 describeProvisionedProductResponse
     :: Int -- ^ 'drsResponseStatus'
     -> DescribeProvisionedProductResponse
-describeProvisionedProductResponse pResponseStatus_ =
-  DescribeProvisionedProductResponse'
-    { _drsProvisionedProductDetail = Nothing
-    , _drsCloudWatchDashboards = Nothing
-    , _drsResponseStatus = pResponseStatus_
-    }
-
+describeProvisionedProductResponse pResponseStatus_
+  = DescribeProvisionedProductResponse'{_drsProvisionedProductDetail
+                                          = Nothing,
+                                        _drsCloudWatchDashboards = Nothing,
+                                        _drsResponseStatus = pResponseStatus_}
 
 -- | Information about the provisioned product.
 drsProvisionedProductDetail :: Lens' DescribeProvisionedProductResponse (Maybe ProvisionedProductDetail)

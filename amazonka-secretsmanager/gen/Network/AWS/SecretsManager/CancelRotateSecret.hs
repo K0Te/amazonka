@@ -18,22 +18,22 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Disables automatic scheduled rotation and cancels the rotation of a secret if one is currently in progress.
+-- Disables automatic scheduled rotation and cancels the rotation of a secret if currently in progress.
 --
 --
--- To re-enable scheduled rotation, call 'RotateSecret' with @AutomaticallyRotateAfterDays@ set to a value greater than 0. This will immediately rotate your secret and then enable the automatic schedule.
+-- To re-enable scheduled rotation, call 'RotateSecret' with @AutomaticallyRotateAfterDays@ set to a value greater than 0. This immediately rotates your secret and then enables the automatic schedule.
 --
 -- To successfully start a rotation, the staging label @AWSPENDING@ must be in one of the following states:
 --
---     * Not be attached to any version at all
+--     * Not attached to any version at all
 --
---     * Attached to the same version as the staging label @AWSCURRENT@
+--     * Attached to the same version as the staging label @AWSCURRENT@ 
 --
 --
 --
--- If the staging label @AWSPENDING@ is attached to a different version than the version with @AWSCURRENT@ then the attempt to rotate fails.
+-- If the staging label @AWSPENDING@ attached to a different version than the version with @AWSCURRENT@ then the attempt to rotate fails.
 --
--- __Minimum permissions__
+-- __Minimum permissions__ 
 --
 -- To run this command, you must have the following permissions:
 --
@@ -41,7 +41,7 @@
 --
 --
 --
--- __Related operations__
+-- __Related operations__ 
 --
 --     * To configure rotation for a secret or to manually trigger a rotation, use 'RotateSecret' .
 --
@@ -76,26 +76,25 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.SecretsManager.Types
-import Network.AWS.SecretsManager.Types.Product
 
 -- | /See:/ 'cancelRotateSecret' smart constructor.
-newtype CancelRotateSecret = CancelRotateSecret'
-  { _crsSecretId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype CancelRotateSecret = CancelRotateSecret'{_crsSecretId
+                                                 :: Text}
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'CancelRotateSecret' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'crsSecretId' - Specifies the secret for which you want to cancel a rotation request. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.
+-- * 'crsSecretId' - Specifies the secret to cancel a rotation request. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.
 cancelRotateSecret
     :: Text -- ^ 'crsSecretId'
     -> CancelRotateSecret
-cancelRotateSecret pSecretId_ = CancelRotateSecret' {_crsSecretId = pSecretId_}
+cancelRotateSecret pSecretId_
+  = CancelRotateSecret'{_crsSecretId = pSecretId_}
 
-
--- | Specifies the secret for which you want to cancel a rotation request. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.
+-- | Specifies the secret to cancel a rotation request. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.
 crsSecretId :: Lens' CancelRotateSecret Text
 crsSecretId = lens _crsSecretId (\ s a -> s{_crsSecretId = a})
 
@@ -136,19 +135,22 @@ instance ToQuery CancelRotateSecret where
         toQuery = const mempty
 
 -- | /See:/ 'cancelRotateSecretResponse' smart constructor.
-data CancelRotateSecretResponse = CancelRotateSecretResponse'
-  { _crsrsVersionId      :: !(Maybe Text)
-  , _crsrsARN            :: !(Maybe Text)
-  , _crsrsName           :: !(Maybe Text)
-  , _crsrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CancelRotateSecretResponse = CancelRotateSecretResponse'{_crsrsVersionId
+                                                              :: !(Maybe Text),
+                                                              _crsrsARN ::
+                                                              !(Maybe Text),
+                                                              _crsrsName ::
+                                                              !(Maybe Text),
+                                                              _crsrsResponseStatus
+                                                              :: !Int}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'CancelRotateSecretResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'crsrsVersionId' - The unique identifier of the version of the secret that was created during the rotation. This version might not be complete, and should be evaluated for possible deletion. At the very least, you should remove the @VersionStage@ value @AWSPENDING@ to enable this version to be deleted. Failing to clean up a cancelled rotation can block you from successfully starting future rotations.
+-- * 'crsrsVersionId' - The unique identifier of the version of the secret created during the rotation. This version might not be complete, and should be evaluated for possible deletion. At the very least, you should remove the @VersionStage@ value @AWSPENDING@ to enable this version to be deleted. Failing to clean up a cancelled rotation can block you from successfully starting future rotations.
 --
 -- * 'crsrsARN' - The ARN of the secret for which rotation was canceled.
 --
@@ -158,16 +160,13 @@ data CancelRotateSecretResponse = CancelRotateSecretResponse'
 cancelRotateSecretResponse
     :: Int -- ^ 'crsrsResponseStatus'
     -> CancelRotateSecretResponse
-cancelRotateSecretResponse pResponseStatus_ =
-  CancelRotateSecretResponse'
-    { _crsrsVersionId = Nothing
-    , _crsrsARN = Nothing
-    , _crsrsName = Nothing
-    , _crsrsResponseStatus = pResponseStatus_
-    }
+cancelRotateSecretResponse pResponseStatus_
+  = CancelRotateSecretResponse'{_crsrsVersionId =
+                                  Nothing,
+                                _crsrsARN = Nothing, _crsrsName = Nothing,
+                                _crsrsResponseStatus = pResponseStatus_}
 
-
--- | The unique identifier of the version of the secret that was created during the rotation. This version might not be complete, and should be evaluated for possible deletion. At the very least, you should remove the @VersionStage@ value @AWSPENDING@ to enable this version to be deleted. Failing to clean up a cancelled rotation can block you from successfully starting future rotations.
+-- | The unique identifier of the version of the secret created during the rotation. This version might not be complete, and should be evaluated for possible deletion. At the very least, you should remove the @VersionStage@ value @AWSPENDING@ to enable this version to be deleted. Failing to clean up a cancelled rotation can block you from successfully starting future rotations.
 crsrsVersionId :: Lens' CancelRotateSecretResponse (Maybe Text)
 crsrsVersionId = lens _crsrsVersionId (\ s a -> s{_crsrsVersionId = a})
 

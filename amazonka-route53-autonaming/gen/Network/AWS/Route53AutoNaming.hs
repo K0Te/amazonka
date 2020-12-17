@@ -11,7 +11,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Amazon Route 53 auto naming lets you configure public or private namespaces that your microservice applications run in. When instances of the service become available, you can call the auto naming API to register the instance, and Route 53 automatically creates up to five DNS records and an optional health check. Clients that submit DNS queries for the service receive an answer that contains up to eight healthy records.
+-- AWS Cloud Map lets you configure public DNS, private DNS, or HTTP namespaces that your microservice applications run in. When an instance of the service becomes available, you can call the AWS Cloud Map API to register the instance with AWS Cloud Map. For public or private DNS namespaces, AWS Cloud Map automatically creates DNS records and an optional health check. Clients that submit public or private DNS queries, or HTTP requests, for the service receive an answer that contains up to eight healthy records. 
 --
 --
 module Network.AWS.Route53AutoNaming
@@ -40,8 +40,14 @@ module Network.AWS.Route53AutoNaming
     -- ** ResourceInUse
     , _ResourceInUse
 
+    -- ** TooManyTagsException
+    , _TooManyTagsException
+
     -- ** CustomHealthNotFound
     , _CustomHealthNotFound
+
+    -- ** RequestLimitExceeded
+    , _RequestLimitExceeded
 
     -- ** InstanceNotFound
     , _InstanceNotFound
@@ -55,6 +61,9 @@ module Network.AWS.Route53AutoNaming
     -- ** OperationNotFound
     , _OperationNotFound
 
+    -- ** ResourceNotFoundException
+    , _ResourceNotFoundException
+
     -- * Waiters
     -- $waiters
 
@@ -64,55 +73,70 @@ module Network.AWS.Route53AutoNaming
     -- ** ListServices (Paginated)
     , module Network.AWS.Route53AutoNaming.ListServices
 
-    -- ** DeleteService
+    -- ** DeleteService 
     , module Network.AWS.Route53AutoNaming.DeleteService
 
-    -- ** UpdateService
+    -- ** UpdateService 
     , module Network.AWS.Route53AutoNaming.UpdateService
 
     -- ** ListOperations (Paginated)
     , module Network.AWS.Route53AutoNaming.ListOperations
 
-    -- ** CreatePublicDNSNamespace
+    -- ** CreateHTTPNamespace 
+    , module Network.AWS.Route53AutoNaming.CreateHTTPNamespace
+
+    -- ** CreatePublicDNSNamespace 
     , module Network.AWS.Route53AutoNaming.CreatePublicDNSNamespace
 
-    -- ** GetInstance
+    -- ** GetInstance 
     , module Network.AWS.Route53AutoNaming.GetInstance
 
     -- ** ListNamespaces (Paginated)
     , module Network.AWS.Route53AutoNaming.ListNamespaces
 
-    -- ** DeleteNamespace
+    -- ** DeleteNamespace 
     , module Network.AWS.Route53AutoNaming.DeleteNamespace
 
-    -- ** GetInstancesHealthStatus
+    -- ** ListTagsForResource 
+    , module Network.AWS.Route53AutoNaming.ListTagsForResource
+
+    -- ** DiscoverInstances 
+    , module Network.AWS.Route53AutoNaming.DiscoverInstances
+
+    -- ** GetInstancesHealthStatus 
     , module Network.AWS.Route53AutoNaming.GetInstancesHealthStatus
 
-    -- ** GetNamespace
+    -- ** GetNamespace 
     , module Network.AWS.Route53AutoNaming.GetNamespace
 
-    -- ** RegisterInstance
+    -- ** RegisterInstance 
     , module Network.AWS.Route53AutoNaming.RegisterInstance
+
+    -- ** TagResource 
+    , module Network.AWS.Route53AutoNaming.TagResource
 
     -- ** ListInstances (Paginated)
     , module Network.AWS.Route53AutoNaming.ListInstances
 
-    -- ** GetOperation
+    -- ** GetOperation 
     , module Network.AWS.Route53AutoNaming.GetOperation
 
-    -- ** UpdateInstanceCustomHealthStatus
+    -- ** UpdateInstanceCustomHealthStatus 
     , module Network.AWS.Route53AutoNaming.UpdateInstanceCustomHealthStatus
 
-    -- ** GetService
+    -- ** GetService 
     , module Network.AWS.Route53AutoNaming.GetService
 
-    -- ** CreatePrivateDNSNamespace
+    -- ** CreatePrivateDNSNamespace 
     , module Network.AWS.Route53AutoNaming.CreatePrivateDNSNamespace
 
-    -- ** CreateService
+    -- ** UntagResource 
+    , module Network.AWS.Route53AutoNaming.UntagResource
+
+    -- ** CreateService 
     , module Network.AWS.Route53AutoNaming.CreateService
 
-    -- ** DeregisterInstance
+    -- ** DeregisterInstance 
     , module Network.AWS.Route53AutoNaming.DeregisterInstance
 
     -- * Types
@@ -128,6 +152,9 @@ module Network.AWS.Route53AutoNaming
 
     -- ** HealthStatus
     , HealthStatus (..)
+
+    -- ** HealthStatusFilter
+    , HealthStatusFilter (..)
 
     -- ** NamespaceFilterName
     , NamespaceFilterName (..)
@@ -179,6 +206,20 @@ module Network.AWS.Route53AutoNaming
     , drType
     , drTTL
 
+    -- ** HTTPInstanceSummary
+    , HTTPInstanceSummary
+    , hTTPInstanceSummary
+    , httpisInstanceId
+    , httpisNamespaceName
+    , httpisAttributes
+    , httpisServiceName
+    , httpisHealthStatus
+
+    -- ** HTTPProperties
+    , HTTPProperties
+    , hTTPProperties
+    , httppHTTPName
+
     -- ** HealthCheckConfig
     , HealthCheckConfig
     , healthCheckConfig
@@ -228,14 +269,19 @@ module Network.AWS.Route53AutoNaming
     , NamespaceProperties
     , namespaceProperties
     , npDNSProperties
+    , npHTTPProperties
 
     -- ** NamespaceSummary
     , NamespaceSummary
     , namespaceSummary
     , nsARN
+    , nsCreateDate
+    , nsServiceCount
     , nsName
     , nsId
     , nsType
+    , nsDescription
+    , nsProperties
 
     -- ** Operation
     , Operation
@@ -266,8 +312,8 @@ module Network.AWS.Route53AutoNaming
     , ServiceChange
     , serviceChange
     , scHealthCheckConfig
-    , scDescription
     , scDNSConfig
+    , scDescription
 
     -- ** ServiceFilter
     , ServiceFilter
@@ -285,6 +331,7 @@ module Network.AWS.Route53AutoNaming
     , siCreatorRequestId
     , siCreateDate
     , siHealthCheckCustomConfig
+    , siNamespaceId
     , siName
     , siId
     , siDNSConfig
@@ -295,17 +342,29 @@ module Network.AWS.Route53AutoNaming
     , serviceSummary
     , ssInstanceCount
     , ssARN
+    , ssHealthCheckConfig
+    , ssCreateDate
+    , ssHealthCheckCustomConfig
     , ssName
     , ssId
+    , ssDNSConfig
     , ssDescription
+
+    -- ** Tag
+    , Tag
+    , tag
+    , tagKey
+    , tagValue
     ) where
 
+import Network.AWS.Route53AutoNaming.CreateHTTPNamespace
 import Network.AWS.Route53AutoNaming.CreatePrivateDNSNamespace
 import Network.AWS.Route53AutoNaming.CreatePublicDNSNamespace
 import Network.AWS.Route53AutoNaming.CreateService
 import Network.AWS.Route53AutoNaming.DeleteNamespace
 import Network.AWS.Route53AutoNaming.DeleteService
 import Network.AWS.Route53AutoNaming.DeregisterInstance
+import Network.AWS.Route53AutoNaming.DiscoverInstances
 import Network.AWS.Route53AutoNaming.GetInstance
 import Network.AWS.Route53AutoNaming.GetInstancesHealthStatus
 import Network.AWS.Route53AutoNaming.GetNamespace
@@ -315,8 +374,11 @@ import Network.AWS.Route53AutoNaming.ListInstances
 import Network.AWS.Route53AutoNaming.ListNamespaces
 import Network.AWS.Route53AutoNaming.ListOperations
 import Network.AWS.Route53AutoNaming.ListServices
+import Network.AWS.Route53AutoNaming.ListTagsForResource
 import Network.AWS.Route53AutoNaming.RegisterInstance
+import Network.AWS.Route53AutoNaming.TagResource
 import Network.AWS.Route53AutoNaming.Types
+import Network.AWS.Route53AutoNaming.UntagResource
 import Network.AWS.Route53AutoNaming.UpdateInstanceCustomHealthStatus
 import Network.AWS.Route53AutoNaming.UpdateService
 import Network.AWS.Route53AutoNaming.Waiters

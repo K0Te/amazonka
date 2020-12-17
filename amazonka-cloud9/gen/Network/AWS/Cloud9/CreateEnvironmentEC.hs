@@ -31,7 +31,9 @@ module Network.AWS.Cloud9.CreateEnvironmentEC
     , ceecSubnetId
     , ceecOwnerARN
     , ceecClientRequestToken
+    , ceecConnectionType
     , ceecDescription
+    , ceecTags
     , ceecName
     , ceecInstanceType
 
@@ -44,23 +46,26 @@ module Network.AWS.Cloud9.CreateEnvironmentEC
     ) where
 
 import Network.AWS.Cloud9.Types
-import Network.AWS.Cloud9.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'createEnvironmentEC' smart constructor.
-data CreateEnvironmentEC = CreateEnvironmentEC'
-  { _ceecAutomaticStopTimeMinutes :: !(Maybe Int)
-  , _ceecSubnetId                 :: !(Maybe Text)
-  , _ceecOwnerARN                 :: !(Maybe Text)
-  , _ceecClientRequestToken       :: !(Maybe Text)
-  , _ceecDescription              :: !(Maybe Text)
-  , _ceecName                     :: !Text
-  , _ceecInstanceType             :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateEnvironmentEC = CreateEnvironmentEC'{_ceecAutomaticStopTimeMinutes
+                                                :: !(Maybe Int),
+                                                _ceecSubnetId :: !(Maybe Text),
+                                                _ceecOwnerARN :: !(Maybe Text),
+                                                _ceecClientRequestToken ::
+                                                !(Maybe Text),
+                                                _ceecConnectionType ::
+                                                !(Maybe ConnectionType),
+                                                _ceecDescription ::
+                                                !(Maybe (Sensitive Text)),
+                                                _ceecTags :: !(Maybe [Tag]),
+                                                _ceecName :: !Text,
+                                                _ceecInstanceType :: !Text}
+                             deriving (Eq, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CreateEnvironmentEC' with the minimum fields required to make a request.
 --
@@ -74,7 +79,11 @@ data CreateEnvironmentEC = CreateEnvironmentEC'
 --
 -- * 'ceecClientRequestToken' - A unique, case-sensitive string that helps AWS Cloud9 to ensure this operation completes no more than one time. For more information, see <http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html Client Tokens> in the /Amazon EC2 API Reference/ .
 --
+-- * 'ceecConnectionType' - The connection type used for connecting to an Amazon EC2 environment.
+--
 -- * 'ceecDescription' - The description of the environment to create.
+--
+-- * 'ceecTags' - An array of key-value pairs that will be associated with the new AWS Cloud9 development environment.
 --
 -- * 'ceecName' - The name of the environment to create. This name is visible to other AWS IAM users in the same AWS account.
 --
@@ -83,17 +92,15 @@ createEnvironmentEC
     :: Text -- ^ 'ceecName'
     -> Text -- ^ 'ceecInstanceType'
     -> CreateEnvironmentEC
-createEnvironmentEC pName_ pInstanceType_ =
-  CreateEnvironmentEC'
-    { _ceecAutomaticStopTimeMinutes = Nothing
-    , _ceecSubnetId = Nothing
-    , _ceecOwnerARN = Nothing
-    , _ceecClientRequestToken = Nothing
-    , _ceecDescription = Nothing
-    , _ceecName = pName_
-    , _ceecInstanceType = pInstanceType_
-    }
-
+createEnvironmentEC pName_ pInstanceType_
+  = CreateEnvironmentEC'{_ceecAutomaticStopTimeMinutes
+                           = Nothing,
+                         _ceecSubnetId = Nothing, _ceecOwnerARN = Nothing,
+                         _ceecClientRequestToken = Nothing,
+                         _ceecConnectionType = Nothing,
+                         _ceecDescription = Nothing, _ceecTags = Nothing,
+                         _ceecName = pName_,
+                         _ceecInstanceType = pInstanceType_}
 
 -- | The number of minutes until the running instance is shut down after the environment has last been used.
 ceecAutomaticStopTimeMinutes :: Lens' CreateEnvironmentEC (Maybe Int)
@@ -111,9 +118,17 @@ ceecOwnerARN = lens _ceecOwnerARN (\ s a -> s{_ceecOwnerARN = a})
 ceecClientRequestToken :: Lens' CreateEnvironmentEC (Maybe Text)
 ceecClientRequestToken = lens _ceecClientRequestToken (\ s a -> s{_ceecClientRequestToken = a})
 
+-- | The connection type used for connecting to an Amazon EC2 environment.
+ceecConnectionType :: Lens' CreateEnvironmentEC (Maybe ConnectionType)
+ceecConnectionType = lens _ceecConnectionType (\ s a -> s{_ceecConnectionType = a})
+
 -- | The description of the environment to create.
 ceecDescription :: Lens' CreateEnvironmentEC (Maybe Text)
-ceecDescription = lens _ceecDescription (\ s a -> s{_ceecDescription = a})
+ceecDescription = lens _ceecDescription (\ s a -> s{_ceecDescription = a}) . mapping _Sensitive
+
+-- | An array of key-value pairs that will be associated with the new AWS Cloud9 development environment.
+ceecTags :: Lens' CreateEnvironmentEC [Tag]
+ceecTags = lens _ceecTags (\ s a -> s{_ceecTags = a}) . _Default . _Coerce
 
 -- | The name of the environment to create. This name is visible to other AWS IAM users in the same AWS account.
 ceecName :: Lens' CreateEnvironmentEC Text
@@ -157,7 +172,9 @@ instance ToJSON CreateEnvironmentEC where
                   ("ownerArn" .=) <$> _ceecOwnerARN,
                   ("clientRequestToken" .=) <$>
                     _ceecClientRequestToken,
+                  ("connectionType" .=) <$> _ceecConnectionType,
                   ("description" .=) <$> _ceecDescription,
+                  ("tags" .=) <$> _ceecTags,
                   Just ("name" .= _ceecName),
                   Just ("instanceType" .= _ceecInstanceType)])
 
@@ -168,11 +185,13 @@ instance ToQuery CreateEnvironmentEC where
         toQuery = const mempty
 
 -- | /See:/ 'createEnvironmentECResponse' smart constructor.
-data CreateEnvironmentECResponse = CreateEnvironmentECResponse'
-  { _ceecrsEnvironmentId  :: !(Maybe Text)
-  , _ceecrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateEnvironmentECResponse = CreateEnvironmentECResponse'{_ceecrsEnvironmentId
+                                                                ::
+                                                                !(Maybe Text),
+                                                                _ceecrsResponseStatus
+                                                                :: !Int}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'CreateEnvironmentECResponse' with the minimum fields required to make a request.
 --
@@ -184,10 +203,10 @@ data CreateEnvironmentECResponse = CreateEnvironmentECResponse'
 createEnvironmentECResponse
     :: Int -- ^ 'ceecrsResponseStatus'
     -> CreateEnvironmentECResponse
-createEnvironmentECResponse pResponseStatus_ =
-  CreateEnvironmentECResponse'
-    {_ceecrsEnvironmentId = Nothing, _ceecrsResponseStatus = pResponseStatus_}
-
+createEnvironmentECResponse pResponseStatus_
+  = CreateEnvironmentECResponse'{_ceecrsEnvironmentId =
+                                   Nothing,
+                                 _ceecrsResponseStatus = pResponseStatus_}
 
 -- | The ID of the environment that was created.
 ceecrsEnvironmentId :: Lens' CreateEnvironmentECResponse (Maybe Text)

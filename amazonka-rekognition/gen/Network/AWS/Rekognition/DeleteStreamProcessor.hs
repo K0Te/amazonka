@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Deletes the stream processor identified by @Name@ . You assign the value for @Name@ when you create the stream processor with . You might not be able to use the same name for a stream processor for a few seconds after calling @DeleteStreamProcessor@ .
+-- Deletes the stream processor identified by @Name@ . You assign the value for @Name@ when you create the stream processor with 'CreateStreamProcessor' . You might not be able to use the same name for a stream processor for a few seconds after calling @DeleteStreamProcessor@ .
 --
 --
 module Network.AWS.Rekognition.DeleteStreamProcessor
@@ -33,21 +33,20 @@ module Network.AWS.Rekognition.DeleteStreamProcessor
     , deleteStreamProcessorResponse
     , DeleteStreamProcessorResponse
     -- * Response Lenses
-    , drsResponseStatus
+    , dspsrsResponseStatus
     ) where
 
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Rekognition.Types
-import Network.AWS.Rekognition.Types.Product
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deleteStreamProcessor' smart constructor.
-newtype DeleteStreamProcessor = DeleteStreamProcessor'
-  { _dName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteStreamProcessor = DeleteStreamProcessor'{_dName
+                                                       :: Text}
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'DeleteStreamProcessor' with the minimum fields required to make a request.
 --
@@ -57,8 +56,8 @@ newtype DeleteStreamProcessor = DeleteStreamProcessor'
 deleteStreamProcessor
     :: Text -- ^ 'dName'
     -> DeleteStreamProcessor
-deleteStreamProcessor pName_ = DeleteStreamProcessor' {_dName = pName_}
-
+deleteStreamProcessor pName_
+  = DeleteStreamProcessor'{_dName = pName_}
 
 -- | The name of the stream processor you want to delete.
 dName :: Lens' DeleteStreamProcessor Text
@@ -99,25 +98,25 @@ instance ToQuery DeleteStreamProcessor where
         toQuery = const mempty
 
 -- | /See:/ 'deleteStreamProcessorResponse' smart constructor.
-newtype DeleteStreamProcessorResponse = DeleteStreamProcessorResponse'
-  { _drsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteStreamProcessorResponse = DeleteStreamProcessorResponse'{_dspsrsResponseStatus
+                                                                       :: Int}
+                                          deriving (Eq, Read, Show, Data,
+                                                    Typeable, Generic)
 
 -- | Creates a value of 'DeleteStreamProcessorResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'drsResponseStatus' - -- | The response status code.
+-- * 'dspsrsResponseStatus' - -- | The response status code.
 deleteStreamProcessorResponse
-    :: Int -- ^ 'drsResponseStatus'
+    :: Int -- ^ 'dspsrsResponseStatus'
     -> DeleteStreamProcessorResponse
-deleteStreamProcessorResponse pResponseStatus_ =
-  DeleteStreamProcessorResponse' {_drsResponseStatus = pResponseStatus_}
-
+deleteStreamProcessorResponse pResponseStatus_
+  = DeleteStreamProcessorResponse'{_dspsrsResponseStatus
+                                     = pResponseStatus_}
 
 -- | -- | The response status code.
-drsResponseStatus :: Lens' DeleteStreamProcessorResponse Int
-drsResponseStatus = lens _drsResponseStatus (\ s a -> s{_drsResponseStatus = a})
+dspsrsResponseStatus :: Lens' DeleteStreamProcessorResponse Int
+dspsrsResponseStatus = lens _dspsrsResponseStatus (\ s a -> s{_dspsrsResponseStatus = a})
 
 instance NFData DeleteStreamProcessorResponse where

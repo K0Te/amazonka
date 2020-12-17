@@ -36,7 +36,6 @@ module Network.AWS.APIGateway.DeleteRequestValidator
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -47,11 +46,12 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'deleteRequestValidator' smart constructor.
-data DeleteRequestValidator = DeleteRequestValidator'
-  { _drvRestAPIId          :: !Text
-  , _drvRequestValidatorId :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteRequestValidator = DeleteRequestValidator'{_drvRestAPIId
+                                                      :: !Text,
+                                                      _drvRequestValidatorId ::
+                                                      !Text}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'DeleteRequestValidator' with the minimum fields required to make a request.
 --
@@ -64,10 +64,11 @@ deleteRequestValidator
     :: Text -- ^ 'drvRestAPIId'
     -> Text -- ^ 'drvRequestValidatorId'
     -> DeleteRequestValidator
-deleteRequestValidator pRestAPIId_ pRequestValidatorId_ =
-  DeleteRequestValidator'
-    {_drvRestAPIId = pRestAPIId_, _drvRequestValidatorId = pRequestValidatorId_}
-
+deleteRequestValidator pRestAPIId_
+  pRequestValidatorId_
+  = DeleteRequestValidator'{_drvRestAPIId =
+                              pRestAPIId_,
+                            _drvRequestValidatorId = pRequestValidatorId_}
 
 -- | [Required] The string identifier of the associated 'RestApi' .
 drvRestAPIId :: Lens' DeleteRequestValidator Text
@@ -104,16 +105,15 @@ instance ToQuery DeleteRequestValidator where
         toQuery = const mempty
 
 -- | /See:/ 'deleteRequestValidatorResponse' smart constructor.
-data DeleteRequestValidatorResponse =
-  DeleteRequestValidatorResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteRequestValidatorResponse = DeleteRequestValidatorResponse'
+                                        deriving (Eq, Read, Show, Data,
+                                                  Typeable, Generic)
 
 -- | Creates a value of 'DeleteRequestValidatorResponse' with the minimum fields required to make a request.
 --
 deleteRequestValidatorResponse
     :: DeleteRequestValidatorResponse
-deleteRequestValidatorResponse = DeleteRequestValidatorResponse'
-
+deleteRequestValidatorResponse
+  = DeleteRequestValidatorResponse'
 
 instance NFData DeleteRequestValidatorResponse where

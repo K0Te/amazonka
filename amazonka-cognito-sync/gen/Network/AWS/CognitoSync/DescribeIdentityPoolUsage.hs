@@ -40,7 +40,6 @@ module Network.AWS.CognitoSync.DescribeIdentityPoolUsage
     ) where
 
 import Network.AWS.CognitoSync.Types
-import Network.AWS.CognitoSync.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -49,10 +48,10 @@ import Network.AWS.Response
 -- | A request for usage information about the identity pool.
 --
 -- /See:/ 'describeIdentityPoolUsage' smart constructor.
-newtype DescribeIdentityPoolUsage = DescribeIdentityPoolUsage'
-  { _dipuIdentityPoolId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DescribeIdentityPoolUsage = DescribeIdentityPoolUsage'{_dipuIdentityPoolId
+                                                               :: Text}
+                                      deriving (Eq, Read, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'DescribeIdentityPoolUsage' with the minimum fields required to make a request.
 --
@@ -62,9 +61,9 @@ newtype DescribeIdentityPoolUsage = DescribeIdentityPoolUsage'
 describeIdentityPoolUsage
     :: Text -- ^ 'dipuIdentityPoolId'
     -> DescribeIdentityPoolUsage
-describeIdentityPoolUsage pIdentityPoolId_ =
-  DescribeIdentityPoolUsage' {_dipuIdentityPoolId = pIdentityPoolId_}
-
+describeIdentityPoolUsage pIdentityPoolId_
+  = DescribeIdentityPoolUsage'{_dipuIdentityPoolId =
+                                 pIdentityPoolId_}
 
 -- | A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE) created by Amazon Cognito. GUID generation is unique within a region.
 dipuIdentityPoolId :: Lens' DescribeIdentityPoolUsage Text
@@ -102,11 +101,15 @@ instance ToQuery DescribeIdentityPoolUsage where
 -- | Response to a successful DescribeIdentityPoolUsage request.
 --
 -- /See:/ 'describeIdentityPoolUsageResponse' smart constructor.
-data DescribeIdentityPoolUsageResponse = DescribeIdentityPoolUsageResponse'
-  { _dipursIdentityPoolUsage :: !(Maybe IdentityPoolUsage)
-  , _dipursResponseStatus    :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeIdentityPoolUsageResponse = DescribeIdentityPoolUsageResponse'{_dipursIdentityPoolUsage
+                                                                            ::
+                                                                            !(Maybe
+                                                                                IdentityPoolUsage),
+                                                                            _dipursResponseStatus
+                                                                            ::
+                                                                            !Int}
+                                           deriving (Eq, Read, Show, Data,
+                                                     Typeable, Generic)
 
 -- | Creates a value of 'DescribeIdentityPoolUsageResponse' with the minimum fields required to make a request.
 --
@@ -118,12 +121,10 @@ data DescribeIdentityPoolUsageResponse = DescribeIdentityPoolUsageResponse'
 describeIdentityPoolUsageResponse
     :: Int -- ^ 'dipursResponseStatus'
     -> DescribeIdentityPoolUsageResponse
-describeIdentityPoolUsageResponse pResponseStatus_ =
-  DescribeIdentityPoolUsageResponse'
-    { _dipursIdentityPoolUsage = Nothing
-    , _dipursResponseStatus = pResponseStatus_
-    }
-
+describeIdentityPoolUsageResponse pResponseStatus_
+  = DescribeIdentityPoolUsageResponse'{_dipursIdentityPoolUsage
+                                         = Nothing,
+                                       _dipursResponseStatus = pResponseStatus_}
 
 -- | Information about the usage of the identity pool.
 dipursIdentityPoolUsage :: Lens' DescribeIdentityPoolUsageResponse (Maybe IdentityPoolUsage)

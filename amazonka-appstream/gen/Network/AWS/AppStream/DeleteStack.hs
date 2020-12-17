@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Deletes the specified stack. After this operation completes, the environment can no longer be activated and any reservations made for the stack are released.
+-- Deletes the specified stack. After the stack is deleted, the application streaming environment provided by the stack is no longer available to users. Also, any reservations made for application streaming sessions for the stack are released.
 --
 --
 module Network.AWS.AppStream.DeleteStack
@@ -37,17 +37,14 @@ module Network.AWS.AppStream.DeleteStack
     ) where
 
 import Network.AWS.AppStream.Types
-import Network.AWS.AppStream.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deleteStack' smart constructor.
-newtype DeleteStack = DeleteStack'
-  { _dsName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteStack = DeleteStack'{_dsName :: Text}
+                        deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteStack' with the minimum fields required to make a request.
 --
@@ -57,8 +54,7 @@ newtype DeleteStack = DeleteStack'
 deleteStack
     :: Text -- ^ 'dsName'
     -> DeleteStack
-deleteStack pName_ = DeleteStack' {_dsName = pName_}
-
+deleteStack pName_ = DeleteStack'{_dsName = pName_}
 
 -- | The name of the stack.
 dsName :: Lens' DeleteStack Text
@@ -97,10 +93,10 @@ instance ToQuery DeleteStack where
         toQuery = const mempty
 
 -- | /See:/ 'deleteStackResponse' smart constructor.
-newtype DeleteStackResponse = DeleteStackResponse'
-  { _dsrsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteStackResponse = DeleteStackResponse'{_dsrsResponseStatus
+                                                   :: Int}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'DeleteStackResponse' with the minimum fields required to make a request.
 --
@@ -110,9 +106,9 @@ newtype DeleteStackResponse = DeleteStackResponse'
 deleteStackResponse
     :: Int -- ^ 'dsrsResponseStatus'
     -> DeleteStackResponse
-deleteStackResponse pResponseStatus_ =
-  DeleteStackResponse' {_dsrsResponseStatus = pResponseStatus_}
-
+deleteStackResponse pResponseStatus_
+  = DeleteStackResponse'{_dsrsResponseStatus =
+                           pResponseStatus_}
 
 -- | -- | The response status code.
 dsrsResponseStatus :: Lens' DeleteStackResponse Int

@@ -42,7 +42,6 @@ module Network.AWS.APIGateway.GetGatewayResponse
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -53,11 +52,11 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'getGatewayResponse' smart constructor.
-data GetGatewayResponse = GetGatewayResponse'
-  { _gggRestAPIId    :: !Text
-  , _gggResponseType :: !GatewayResponseType
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetGatewayResponse = GetGatewayResponse'{_gggRestAPIId
+                                              :: !Text,
+                                              _gggResponseType ::
+                                              !GatewayResponseType}
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetGatewayResponse' with the minimum fields required to make a request.
 --
@@ -70,10 +69,9 @@ getGatewayResponse
     :: Text -- ^ 'gggRestAPIId'
     -> GatewayResponseType -- ^ 'gggResponseType'
     -> GetGatewayResponse
-getGatewayResponse pRestAPIId_ pResponseType_ =
-  GetGatewayResponse'
-    {_gggRestAPIId = pRestAPIId_, _gggResponseType = pResponseType_}
-
+getGatewayResponse pRestAPIId_ pResponseType_
+  = GetGatewayResponse'{_gggRestAPIId = pRestAPIId_,
+                        _gggResponseType = pResponseType_}
 
 -- | [Required] The string identifier of the associated 'RestApi' .
 gggRestAPIId :: Lens' GetGatewayResponse Text

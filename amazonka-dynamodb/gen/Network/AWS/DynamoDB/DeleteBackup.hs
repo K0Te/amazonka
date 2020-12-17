@@ -40,17 +40,15 @@ module Network.AWS.DynamoDB.DeleteBackup
     ) where
 
 import Network.AWS.DynamoDB.Types
-import Network.AWS.DynamoDB.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deleteBackup' smart constructor.
-newtype DeleteBackup = DeleteBackup'
-  { _dbBackupARN :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteBackup = DeleteBackup'{_dbBackupARN ::
+                                     Text}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteBackup' with the minimum fields required to make a request.
 --
@@ -60,8 +58,8 @@ newtype DeleteBackup = DeleteBackup'
 deleteBackup
     :: Text -- ^ 'dbBackupARN'
     -> DeleteBackup
-deleteBackup pBackupARN_ = DeleteBackup' {_dbBackupARN = pBackupARN_}
-
+deleteBackup pBackupARN_
+  = DeleteBackup'{_dbBackupARN = pBackupARN_}
 
 -- | The ARN associated with the backup.
 dbBackupARN :: Lens' DeleteBackup Text
@@ -101,11 +99,10 @@ instance ToQuery DeleteBackup where
         toQuery = const mempty
 
 -- | /See:/ 'deleteBackupResponse' smart constructor.
-data DeleteBackupResponse = DeleteBackupResponse'
-  { _dbrsBackupDescription :: !(Maybe BackupDescription)
-  , _dbrsResponseStatus    :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteBackupResponse = DeleteBackupResponse'{_dbrsBackupDescription
+                                                  :: !(Maybe BackupDescription),
+                                                  _dbrsResponseStatus :: !Int}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteBackupResponse' with the minimum fields required to make a request.
 --
@@ -117,10 +114,10 @@ data DeleteBackupResponse = DeleteBackupResponse'
 deleteBackupResponse
     :: Int -- ^ 'dbrsResponseStatus'
     -> DeleteBackupResponse
-deleteBackupResponse pResponseStatus_ =
-  DeleteBackupResponse'
-    {_dbrsBackupDescription = Nothing, _dbrsResponseStatus = pResponseStatus_}
-
+deleteBackupResponse pResponseStatus_
+  = DeleteBackupResponse'{_dbrsBackupDescription =
+                            Nothing,
+                          _dbrsResponseStatus = pResponseStatus_}
 
 -- | Contains the description of the backup created for the table.
 dbrsBackupDescription :: Lens' DeleteBackupResponse (Maybe BackupDescription)

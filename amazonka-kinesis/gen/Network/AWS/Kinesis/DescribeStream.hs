@@ -23,7 +23,7 @@
 --
 -- The information returned includes the stream name, Amazon Resource Name (ARN), creation time, enhanced metric configuration, and shard map. The shard map is an array of shard objects. For each shard object, there is the hash key and sequence number ranges that the shard spans, and the IDs of any earlier shards that played in a role in creating the shard. Every record ingested in the stream is identified by a sequence number, which is assigned when the record is put into the stream.
 --
--- You can limit the number of shards returned by each call. For more information, see <http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-sdk-java-retrieve-shards.html Retrieving Shards from a Stream> in the /Amazon Kinesis Data Streams Developer Guide/ .
+-- You can limit the number of shards returned by each call. For more information, see <https://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-sdk-java-retrieve-shards.html Retrieving Shards from a Stream> in the /Amazon Kinesis Data Streams Developer Guide/ .
 --
 -- There are no guarantees about the chronological order shards returned. To process shards in chronological order, use the ID of the parent shard to track the lineage to the oldest shard.
 --
@@ -50,7 +50,6 @@ module Network.AWS.Kinesis.DescribeStream
     ) where
 
 import Network.AWS.Kinesis.Types
-import Network.AWS.Kinesis.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
@@ -62,12 +61,11 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'describeStream' smart constructor.
-data DescribeStream = DescribeStream'
-  { _dExclusiveStartShardId :: !(Maybe Text)
-  , _dLimit                 :: !(Maybe Nat)
-  , _dStreamName            :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeStream = DescribeStream'{_dExclusiveStartShardId
+                                      :: !(Maybe Text),
+                                      _dLimit :: !(Maybe Nat),
+                                      _dStreamName :: !Text}
+                        deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DescribeStream' with the minimum fields required to make a request.
 --
@@ -81,13 +79,9 @@ data DescribeStream = DescribeStream'
 describeStream
     :: Text -- ^ 'dStreamName'
     -> DescribeStream
-describeStream pStreamName_ =
-  DescribeStream'
-    { _dExclusiveStartShardId = Nothing
-    , _dLimit = Nothing
-    , _dStreamName = pStreamName_
-    }
-
+describeStream pStreamName_
+  = DescribeStream'{_dExclusiveStartShardId = Nothing,
+                    _dLimit = Nothing, _dStreamName = pStreamName_}
 
 -- | The shard ID of the shard to start with.
 dExclusiveStartShardId :: Lens' DescribeStream (Maybe Text)
@@ -158,11 +152,12 @@ instance ToQuery DescribeStream where
 --
 --
 -- /See:/ 'describeStreamResponse' smart constructor.
-data DescribeStreamResponse = DescribeStreamResponse'
-  { _dsrsResponseStatus    :: !Int
-  , _dsrsStreamDescription :: !StreamDescription
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeStreamResponse = DescribeStreamResponse'{_dsrsResponseStatus
+                                                      :: !Int,
+                                                      _dsrsStreamDescription ::
+                                                      !StreamDescription}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'DescribeStreamResponse' with the minimum fields required to make a request.
 --
@@ -175,12 +170,11 @@ describeStreamResponse
     :: Int -- ^ 'dsrsResponseStatus'
     -> StreamDescription -- ^ 'dsrsStreamDescription'
     -> DescribeStreamResponse
-describeStreamResponse pResponseStatus_ pStreamDescription_ =
-  DescribeStreamResponse'
-    { _dsrsResponseStatus = pResponseStatus_
-    , _dsrsStreamDescription = pStreamDescription_
-    }
-
+describeStreamResponse pResponseStatus_
+  pStreamDescription_
+  = DescribeStreamResponse'{_dsrsResponseStatus =
+                              pResponseStatus_,
+                            _dsrsStreamDescription = pStreamDescription_}
 
 -- | -- | The response status code.
 dsrsResponseStatus :: Lens' DescribeStreamResponse Int

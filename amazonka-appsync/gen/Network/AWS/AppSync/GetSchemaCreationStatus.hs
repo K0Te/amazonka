@@ -39,17 +39,16 @@ module Network.AWS.AppSync.GetSchemaCreationStatus
     ) where
 
 import Network.AWS.AppSync.Types
-import Network.AWS.AppSync.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'getSchemaCreationStatus' smart constructor.
-newtype GetSchemaCreationStatus = GetSchemaCreationStatus'
-  { _gscsApiId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetSchemaCreationStatus = GetSchemaCreationStatus'{_gscsApiId
+                                                           :: Text}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'GetSchemaCreationStatus' with the minimum fields required to make a request.
 --
@@ -59,9 +58,8 @@ newtype GetSchemaCreationStatus = GetSchemaCreationStatus'
 getSchemaCreationStatus
     :: Text -- ^ 'gscsApiId'
     -> GetSchemaCreationStatus
-getSchemaCreationStatus pApiId_ =
-  GetSchemaCreationStatus' {_gscsApiId = pApiId_}
-
+getSchemaCreationStatus pApiId_
+  = GetSchemaCreationStatus'{_gscsApiId = pApiId_}
 
 -- | The API ID.
 gscsApiId :: Lens' GetSchemaCreationStatus Text
@@ -98,18 +96,24 @@ instance ToQuery GetSchemaCreationStatus where
         toQuery = const mempty
 
 -- | /See:/ 'getSchemaCreationStatusResponse' smart constructor.
-data GetSchemaCreationStatusResponse = GetSchemaCreationStatusResponse'
-  { _gscsrsStatus         :: !(Maybe SchemaStatus)
-  , _gscsrsDetails        :: !(Maybe Text)
-  , _gscsrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetSchemaCreationStatusResponse = GetSchemaCreationStatusResponse'{_gscsrsStatus
+                                                                        ::
+                                                                        !(Maybe
+                                                                            SchemaStatus),
+                                                                        _gscsrsDetails
+                                                                        ::
+                                                                        !(Maybe
+                                                                            Text),
+                                                                        _gscsrsResponseStatus
+                                                                        :: !Int}
+                                         deriving (Eq, Read, Show, Data,
+                                                   Typeable, Generic)
 
 -- | Creates a value of 'GetSchemaCreationStatusResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'gscsrsStatus' - The current state of the schema (PROCESSING, ACTIVE, or DELETING). Once the schema is in the ACTIVE state, you can add data.
+-- * 'gscsrsStatus' - The current state of the schema (PROCESSING, FAILED, SUCCESS, or NOT_APPLICABLE). When the schema is in the ACTIVE state, you can add data.
 --
 -- * 'gscsrsDetails' - Detailed information about the status of the schema creation operation.
 --
@@ -117,15 +121,13 @@ data GetSchemaCreationStatusResponse = GetSchemaCreationStatusResponse'
 getSchemaCreationStatusResponse
     :: Int -- ^ 'gscsrsResponseStatus'
     -> GetSchemaCreationStatusResponse
-getSchemaCreationStatusResponse pResponseStatus_ =
-  GetSchemaCreationStatusResponse'
-    { _gscsrsStatus = Nothing
-    , _gscsrsDetails = Nothing
-    , _gscsrsResponseStatus = pResponseStatus_
-    }
+getSchemaCreationStatusResponse pResponseStatus_
+  = GetSchemaCreationStatusResponse'{_gscsrsStatus =
+                                       Nothing,
+                                     _gscsrsDetails = Nothing,
+                                     _gscsrsResponseStatus = pResponseStatus_}
 
-
--- | The current state of the schema (PROCESSING, ACTIVE, or DELETING). Once the schema is in the ACTIVE state, you can add data.
+-- | The current state of the schema (PROCESSING, FAILED, SUCCESS, or NOT_APPLICABLE). When the schema is in the ACTIVE state, you can add data.
 gscsrsStatus :: Lens' GetSchemaCreationStatusResponse (Maybe SchemaStatus)
 gscsrsStatus = lens _gscsrsStatus (\ s a -> s{_gscsrsStatus = a})
 

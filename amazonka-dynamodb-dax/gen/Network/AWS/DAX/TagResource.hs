@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Associates a set of tags with a DAX resource. You can call @TagResource@ up to 5 times per second, per account.
+-- Associates a set of tags with a DAX resource. You can call @TagResource@ up to 5 times per second, per account. 
 --
 --
 module Network.AWS.DAX.TagResource
@@ -39,18 +39,16 @@ module Network.AWS.DAX.TagResource
     ) where
 
 import Network.AWS.DAX.Types
-import Network.AWS.DAX.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'tagResource' smart constructor.
-data TagResource = TagResource'
-  { _trResourceName :: !Text
-  , _trTags         :: ![Tag]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data TagResource = TagResource'{_trResourceName ::
+                                !Text,
+                                _trTags :: ![Tag]}
+                     deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'TagResource' with the minimum fields required to make a request.
 --
@@ -58,19 +56,19 @@ data TagResource = TagResource'
 --
 -- * 'trResourceName' - The name of the DAX resource to which tags should be added.
 --
--- * 'trTags' - The tags to be assigned to the DAX resource.
+-- * 'trTags' - The tags to be assigned to the DAX resource. 
 tagResource
     :: Text -- ^ 'trResourceName'
     -> TagResource
-tagResource pResourceName_ =
-  TagResource' {_trResourceName = pResourceName_, _trTags = mempty}
-
+tagResource pResourceName_
+  = TagResource'{_trResourceName = pResourceName_,
+                 _trTags = mempty}
 
 -- | The name of the DAX resource to which tags should be added.
 trResourceName :: Lens' TagResource Text
 trResourceName = lens _trResourceName (\ s a -> s{_trResourceName = a})
 
--- | The tags to be assigned to the DAX resource.
+-- | The tags to be assigned to the DAX resource. 
 trTags :: Lens' TagResource [Tag]
 trTags = lens _trTags (\ s a -> s{_trTags = a}) . _Coerce
 
@@ -110,11 +108,10 @@ instance ToQuery TagResource where
         toQuery = const mempty
 
 -- | /See:/ 'tagResourceResponse' smart constructor.
-data TagResourceResponse = TagResourceResponse'
-  { _trrsTags           :: !(Maybe [Tag])
-  , _trrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data TagResourceResponse = TagResourceResponse'{_trrsTags
+                                                :: !(Maybe [Tag]),
+                                                _trrsResponseStatus :: !Int}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'TagResourceResponse' with the minimum fields required to make a request.
 --
@@ -126,10 +123,9 @@ data TagResourceResponse = TagResourceResponse'
 tagResourceResponse
     :: Int -- ^ 'trrsResponseStatus'
     -> TagResourceResponse
-tagResourceResponse pResponseStatus_ =
-  TagResourceResponse'
-    {_trrsTags = Nothing, _trrsResponseStatus = pResponseStatus_}
-
+tagResourceResponse pResponseStatus_
+  = TagResourceResponse'{_trrsTags = Nothing,
+                         _trrsResponseStatus = pResponseStatus_}
 
 -- | The list of tags that are associated with the DAX resource.
 trrsTags :: Lens' TagResourceResponse [Tag]

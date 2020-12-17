@@ -37,7 +37,6 @@ module Network.AWS.APIGateway.DeleteIntegration
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -48,12 +47,11 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'deleteIntegration' smart constructor.
-data DeleteIntegration = DeleteIntegration'
-  { _delRestAPIId  :: !Text
-  , _delResourceId :: !Text
-  , _delHttpMethod :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteIntegration = DeleteIntegration'{_delRestAPIId
+                                            :: !Text,
+                                            _delResourceId :: !Text,
+                                            _delHttpMethod :: !Text}
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteIntegration' with the minimum fields required to make a request.
 --
@@ -69,13 +67,11 @@ deleteIntegration
     -> Text -- ^ 'delResourceId'
     -> Text -- ^ 'delHttpMethod'
     -> DeleteIntegration
-deleteIntegration pRestAPIId_ pResourceId_ pHttpMethod_ =
-  DeleteIntegration'
-    { _delRestAPIId = pRestAPIId_
-    , _delResourceId = pResourceId_
-    , _delHttpMethod = pHttpMethod_
-    }
-
+deleteIntegration pRestAPIId_ pResourceId_
+  pHttpMethod_
+  = DeleteIntegration'{_delRestAPIId = pRestAPIId_,
+                       _delResourceId = pResourceId_,
+                       _delHttpMethod = pHttpMethod_}
 
 -- | [Required] The string identifier of the associated 'RestApi' .
 delRestAPIId :: Lens' DeleteIntegration Text
@@ -116,16 +112,15 @@ instance ToQuery DeleteIntegration where
         toQuery = const mempty
 
 -- | /See:/ 'deleteIntegrationResponse'' smart constructor.
-data DeleteIntegrationResponse' =
-  DeleteIntegrationResponse''
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteIntegrationResponse' = DeleteIntegrationResponse''
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'DeleteIntegrationResponse'' with the minimum fields required to make a request.
 --
 deleteIntegrationResponse'
     :: DeleteIntegrationResponse'
-deleteIntegrationResponse' = DeleteIntegrationResponse''
-
+deleteIntegrationResponse'
+  = DeleteIntegrationResponse''
 
 instance NFData DeleteIntegrationResponse' where

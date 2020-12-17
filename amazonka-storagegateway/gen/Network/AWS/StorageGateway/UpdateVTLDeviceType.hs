@@ -43,14 +43,12 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.StorageGateway.Types
-import Network.AWS.StorageGateway.Types.Product
 
 -- | /See:/ 'updateVTLDeviceType' smart constructor.
-data UpdateVTLDeviceType = UpdateVTLDeviceType'
-  { _uvtldtVTLDeviceARN :: !Text
-  , _uvtldtDeviceType   :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateVTLDeviceType = UpdateVTLDeviceType'{_uvtldtVTLDeviceARN
+                                                :: !Text,
+                                                _uvtldtDeviceType :: !Text}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UpdateVTLDeviceType' with the minimum fields required to make a request.
 --
@@ -58,21 +56,21 @@ data UpdateVTLDeviceType = UpdateVTLDeviceType'
 --
 -- * 'uvtldtVTLDeviceARN' - The Amazon Resource Name (ARN) of the medium changer you want to select.
 --
--- * 'uvtldtDeviceType' - The type of medium changer you want to select. Valid Values: "STK-L700", "AWS-Gateway-VTL"
+-- * 'uvtldtDeviceType' - The type of medium changer you want to select. Valid Values: @STK-L700@ | @AWS-Gateway-VTL@ | @IBM-03584L32-0402@ 
 updateVTLDeviceType
     :: Text -- ^ 'uvtldtVTLDeviceARN'
     -> Text -- ^ 'uvtldtDeviceType'
     -> UpdateVTLDeviceType
-updateVTLDeviceType pVTLDeviceARN_ pDeviceType_ =
-  UpdateVTLDeviceType'
-    {_uvtldtVTLDeviceARN = pVTLDeviceARN_, _uvtldtDeviceType = pDeviceType_}
-
+updateVTLDeviceType pVTLDeviceARN_ pDeviceType_
+  = UpdateVTLDeviceType'{_uvtldtVTLDeviceARN =
+                           pVTLDeviceARN_,
+                         _uvtldtDeviceType = pDeviceType_}
 
 -- | The Amazon Resource Name (ARN) of the medium changer you want to select.
 uvtldtVTLDeviceARN :: Lens' UpdateVTLDeviceType Text
 uvtldtVTLDeviceARN = lens _uvtldtVTLDeviceARN (\ s a -> s{_uvtldtVTLDeviceARN = a})
 
--- | The type of medium changer you want to select. Valid Values: "STK-L700", "AWS-Gateway-VTL"
+-- | The type of medium changer you want to select. Valid Values: @STK-L700@ | @AWS-Gateway-VTL@ | @IBM-03584L32-0402@ 
 uvtldtDeviceType :: Lens' UpdateVTLDeviceType Text
 uvtldtDeviceType = lens _uvtldtDeviceType (\ s a -> s{_uvtldtDeviceType = a})
 
@@ -118,11 +116,13 @@ instance ToQuery UpdateVTLDeviceType where
 --
 --
 -- /See:/ 'updateVTLDeviceTypeResponse' smart constructor.
-data UpdateVTLDeviceTypeResponse = UpdateVTLDeviceTypeResponse'
-  { _uvtldtrsVTLDeviceARN   :: !(Maybe Text)
-  , _uvtldtrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateVTLDeviceTypeResponse = UpdateVTLDeviceTypeResponse'{_uvtldtrsVTLDeviceARN
+                                                                ::
+                                                                !(Maybe Text),
+                                                                _uvtldtrsResponseStatus
+                                                                :: !Int}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'UpdateVTLDeviceTypeResponse' with the minimum fields required to make a request.
 --
@@ -134,12 +134,10 @@ data UpdateVTLDeviceTypeResponse = UpdateVTLDeviceTypeResponse'
 updateVTLDeviceTypeResponse
     :: Int -- ^ 'uvtldtrsResponseStatus'
     -> UpdateVTLDeviceTypeResponse
-updateVTLDeviceTypeResponse pResponseStatus_ =
-  UpdateVTLDeviceTypeResponse'
-    { _uvtldtrsVTLDeviceARN = Nothing
-    , _uvtldtrsResponseStatus = pResponseStatus_
-    }
-
+updateVTLDeviceTypeResponse pResponseStatus_
+  = UpdateVTLDeviceTypeResponse'{_uvtldtrsVTLDeviceARN
+                                   = Nothing,
+                                 _uvtldtrsResponseStatus = pResponseStatus_}
 
 -- | The Amazon Resource Name (ARN) of the medium changer you have selected.
 uvtldtrsVTLDeviceARN :: Lens' UpdateVTLDeviceTypeResponse (Maybe Text)

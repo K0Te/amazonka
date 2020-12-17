@@ -18,54 +18,46 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Retrieves the current run-time configuration for the specified fleet. The run-time configuration tells Amazon GameLift how to launch server processes on instances in the fleet.
+-- Retrieves a fleet's runtime configuration settings. The runtime configuration tells Amazon GameLift which server processes to run (and how) on each instance in the fleet.
 --
 --
--- Fleet-related operations include:
+-- To get a runtime configuration, specify the fleet's unique identifier. If successful, a 'RuntimeConfiguration' object is returned for the requested fleet. If the requested fleet has been deleted, the result set is empty.
 --
---     * 'CreateFleet'
+-- __Learn more__ 
 --
---     * 'ListFleets'
+-- <https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html Setting up GameLift Fleets> 
 --
---     * 'DeleteFleet'
+-- <https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-multiprocess.html Running Multiple Processes on a Fleet> 
+--
+-- __Related operations__ 
+--
+--     * 'CreateFleet' 
+--
+--     * 'ListFleets' 
+--
+--     * 'DeleteFleet' 
 --
 --     * Describe fleets:
 --
---     * 'DescribeFleetAttributes'
+--     * 'DescribeFleetAttributes' 
 --
---     * 'DescribeFleetCapacity'
+--     * 'DescribeFleetCapacity' 
 --
---     * 'DescribeFleetPortSettings'
+--     * 'DescribeFleetPortSettings' 
 --
---     * 'DescribeFleetUtilization'
+--     * 'DescribeFleetUtilization' 
 --
---     * 'DescribeRuntimeConfiguration'
+--     * 'DescribeRuntimeConfiguration' 
 --
---     * 'DescribeEC2InstanceLimits'
+--     * 'DescribeEC2InstanceLimits' 
 --
---     * 'DescribeFleetEvents'
---
---
---
---     * Update fleets:
---
---     * 'UpdateFleetAttributes'
---
---     * 'UpdateFleetCapacity'
---
---     * 'UpdateFleetPortSettings'
---
---     * 'UpdateRuntimeConfiguration'
+--     * 'DescribeFleetEvents' 
 --
 --
 --
---     * Manage fleet actions:
+--     * 'UpdateFleetAttributes' 
 --
---     * 'StartFleetActions'
---
---     * 'StopFleetActions'
---
---
+--     * 'StartFleetActions' or 'StopFleetActions' 
 --
 --
 --
@@ -86,35 +78,34 @@ module Network.AWS.GameLift.DescribeRuntimeConfiguration
     ) where
 
 import Network.AWS.GameLift.Types
-import Network.AWS.GameLift.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- | Represents the input for a request action.
+-- | Represents the input for a request operation.
 --
 --
 --
 -- /See:/ 'describeRuntimeConfiguration' smart constructor.
-newtype DescribeRuntimeConfiguration = DescribeRuntimeConfiguration'
-  { _drcFleetId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DescribeRuntimeConfiguration = DescribeRuntimeConfiguration'{_drcFleetId
+                                                                     :: Text}
+                                         deriving (Eq, Read, Show, Data,
+                                                   Typeable, Generic)
 
 -- | Creates a value of 'DescribeRuntimeConfiguration' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'drcFleetId' - Unique identifier for a fleet to get the run-time configuration for.
+-- * 'drcFleetId' - A unique identifier for a fleet to get the runtime configuration for. You can use either the fleet ID or ARN value.
 describeRuntimeConfiguration
     :: Text -- ^ 'drcFleetId'
     -> DescribeRuntimeConfiguration
-describeRuntimeConfiguration pFleetId_ =
-  DescribeRuntimeConfiguration' {_drcFleetId = pFleetId_}
+describeRuntimeConfiguration pFleetId_
+  = DescribeRuntimeConfiguration'{_drcFleetId =
+                                    pFleetId_}
 
-
--- | Unique identifier for a fleet to get the run-time configuration for.
+-- | A unique identifier for a fleet to get the runtime configuration for. You can use either the fleet ID or ARN value.
 drcFleetId :: Lens' DescribeRuntimeConfiguration Text
 drcFleetId = lens _drcFleetId (\ s a -> s{_drcFleetId = a})
 
@@ -155,16 +146,20 @@ instance ToPath DescribeRuntimeConfiguration where
 instance ToQuery DescribeRuntimeConfiguration where
         toQuery = const mempty
 
--- | Represents the returned data in response to a request action.
+-- | Represents the returned data in response to a request operation.
 --
 --
 --
 -- /See:/ 'describeRuntimeConfigurationResponse' smart constructor.
-data DescribeRuntimeConfigurationResponse = DescribeRuntimeConfigurationResponse'
-  { _drcrsRuntimeConfiguration :: !(Maybe RuntimeConfiguration)
-  , _drcrsResponseStatus       :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeRuntimeConfigurationResponse = DescribeRuntimeConfigurationResponse'{_drcrsRuntimeConfiguration
+                                                                                  ::
+                                                                                  !(Maybe
+                                                                                      RuntimeConfiguration),
+                                                                                  _drcrsResponseStatus
+                                                                                  ::
+                                                                                  !Int}
+                                              deriving (Eq, Read, Show, Data,
+                                                        Typeable, Generic)
 
 -- | Creates a value of 'DescribeRuntimeConfigurationResponse' with the minimum fields required to make a request.
 --
@@ -176,12 +171,11 @@ data DescribeRuntimeConfigurationResponse = DescribeRuntimeConfigurationResponse
 describeRuntimeConfigurationResponse
     :: Int -- ^ 'drcrsResponseStatus'
     -> DescribeRuntimeConfigurationResponse
-describeRuntimeConfigurationResponse pResponseStatus_ =
-  DescribeRuntimeConfigurationResponse'
-    { _drcrsRuntimeConfiguration = Nothing
-    , _drcrsResponseStatus = pResponseStatus_
-    }
-
+describeRuntimeConfigurationResponse pResponseStatus_
+  = DescribeRuntimeConfigurationResponse'{_drcrsRuntimeConfiguration
+                                            = Nothing,
+                                          _drcrsResponseStatus =
+                                            pResponseStatus_}
 
 -- | Instructions describing how server processes should be launched and maintained on each instance in the fleet.
 drcrsRuntimeConfiguration :: Lens' DescribeRuntimeConfigurationResponse (Maybe RuntimeConfiguration)

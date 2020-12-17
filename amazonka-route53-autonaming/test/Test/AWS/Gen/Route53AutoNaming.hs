@@ -14,11 +14,11 @@
 module Test.AWS.Gen.Route53AutoNaming where
 
 import Data.Proxy
-import Network.AWS.Route53AutoNaming
 import Test.AWS.Fixture
 import Test.AWS.Prelude
-import Test.AWS.Route53AutoNaming.Internal
 import Test.Tasty
+import Network.AWS.Route53AutoNaming
+import Test.AWS.Route53AutoNaming.Internal
 
 -- Auto-generated: the actual test selection needs to be manually placed into
 -- the top-level so that real test data can be incrementally added.
@@ -40,6 +40,9 @@ import Test.Tasty
 --         , requestListOperations $
 --             listOperations
 --
+--         , requestCreateHTTPNamespace $
+--             createHTTPNamespace
+--
 --         , requestCreatePublicDNSNamespace $
 --             createPublicDNSNamespace
 --
@@ -52,6 +55,12 @@ import Test.Tasty
 --         , requestDeleteNamespace $
 --             deleteNamespace
 --
+--         , requestListTagsForResource $
+--             listTagsForResource
+--
+--         , requestDiscoverInstances $
+--             discoverInstances
+--
 --         , requestGetInstancesHealthStatus $
 --             getInstancesHealthStatus
 --
@@ -60,6 +69,9 @@ import Test.Tasty
 --
 --         , requestRegisterInstance $
 --             registerInstance
+--
+--         , requestTagResource $
+--             tagResource
 --
 --         , requestListInstances $
 --             listInstances
@@ -75,6 +87,9 @@ import Test.Tasty
 --
 --         , requestCreatePrivateDNSNamespace $
 --             createPrivateDNSNamespace
+--
+--         , requestUntagResource $
+--             untagResource
 --
 --         , requestCreateService $
 --             createService
@@ -97,6 +112,9 @@ import Test.Tasty
 --         , responseListOperations $
 --             listOperationsResponse
 --
+--         , responseCreateHTTPNamespace $
+--             createHTTPNamespaceResponse
+--
 --         , responseCreatePublicDNSNamespace $
 --             createPublicDNSNamespaceResponse
 --
@@ -109,6 +127,12 @@ import Test.Tasty
 --         , responseDeleteNamespace $
 --             deleteNamespaceResponse
 --
+--         , responseListTagsForResource $
+--             listTagsForResourceResponse
+--
+--         , responseDiscoverInstances $
+--             discoverInstancesResponse
+--
 --         , responseGetInstancesHealthStatus $
 --             getInstancesHealthStatusResponse
 --
@@ -117,6 +141,9 @@ import Test.Tasty
 --
 --         , responseRegisterInstance $
 --             registerInstanceResponse
+--
+--         , responseTagResource $
+--             tagResourceResponse
 --
 --         , responseListInstances $
 --             listInstancesResponse
@@ -132,6 +159,9 @@ import Test.Tasty
 --
 --         , responseCreatePrivateDNSNamespace $
 --             createPrivateDNSNamespaceResponse
+--
+--         , responseUntagResource $
+--             untagResourceResponse
 --
 --         , responseCreateService $
 --             createServiceResponse
@@ -164,6 +194,11 @@ requestListOperations = req
     "ListOperations"
     "fixture/ListOperations.yaml"
 
+requestCreateHTTPNamespace :: CreateHTTPNamespace -> TestTree
+requestCreateHTTPNamespace = req
+    "CreateHTTPNamespace"
+    "fixture/CreateHTTPNamespace.yaml"
+
 requestCreatePublicDNSNamespace :: CreatePublicDNSNamespace -> TestTree
 requestCreatePublicDNSNamespace = req
     "CreatePublicDNSNamespace"
@@ -184,6 +219,16 @@ requestDeleteNamespace = req
     "DeleteNamespace"
     "fixture/DeleteNamespace.yaml"
 
+requestListTagsForResource :: ListTagsForResource -> TestTree
+requestListTagsForResource = req
+    "ListTagsForResource"
+    "fixture/ListTagsForResource.yaml"
+
+requestDiscoverInstances :: DiscoverInstances -> TestTree
+requestDiscoverInstances = req
+    "DiscoverInstances"
+    "fixture/DiscoverInstances.yaml"
+
 requestGetInstancesHealthStatus :: GetInstancesHealthStatus -> TestTree
 requestGetInstancesHealthStatus = req
     "GetInstancesHealthStatus"
@@ -198,6 +243,11 @@ requestRegisterInstance :: RegisterInstance -> TestTree
 requestRegisterInstance = req
     "RegisterInstance"
     "fixture/RegisterInstance.yaml"
+
+requestTagResource :: TagResource -> TestTree
+requestTagResource = req
+    "TagResource"
+    "fixture/TagResource.yaml"
 
 requestListInstances :: ListInstances -> TestTree
 requestListInstances = req
@@ -223,6 +273,11 @@ requestCreatePrivateDNSNamespace :: CreatePrivateDNSNamespace -> TestTree
 requestCreatePrivateDNSNamespace = req
     "CreatePrivateDNSNamespace"
     "fixture/CreatePrivateDNSNamespace.yaml"
+
+requestUntagResource :: UntagResource -> TestTree
+requestUntagResource = req
+    "UntagResource"
+    "fixture/UntagResource.yaml"
 
 requestCreateService :: CreateService -> TestTree
 requestCreateService = req
@@ -264,6 +319,13 @@ responseListOperations = res
     route53AutoNaming
     (Proxy :: Proxy ListOperations)
 
+responseCreateHTTPNamespace :: CreateHTTPNamespaceResponse -> TestTree
+responseCreateHTTPNamespace = res
+    "CreateHTTPNamespaceResponse"
+    "fixture/CreateHTTPNamespaceResponse.proto"
+    route53AutoNaming
+    (Proxy :: Proxy CreateHTTPNamespace)
+
 responseCreatePublicDNSNamespace :: CreatePublicDNSNamespaceResponse -> TestTree
 responseCreatePublicDNSNamespace = res
     "CreatePublicDNSNamespaceResponse"
@@ -292,6 +354,20 @@ responseDeleteNamespace = res
     route53AutoNaming
     (Proxy :: Proxy DeleteNamespace)
 
+responseListTagsForResource :: ListTagsForResourceResponse -> TestTree
+responseListTagsForResource = res
+    "ListTagsForResourceResponse"
+    "fixture/ListTagsForResourceResponse.proto"
+    route53AutoNaming
+    (Proxy :: Proxy ListTagsForResource)
+
+responseDiscoverInstances :: DiscoverInstancesResponse -> TestTree
+responseDiscoverInstances = res
+    "DiscoverInstancesResponse"
+    "fixture/DiscoverInstancesResponse.proto"
+    route53AutoNaming
+    (Proxy :: Proxy DiscoverInstances)
+
 responseGetInstancesHealthStatus :: GetInstancesHealthStatusResponse -> TestTree
 responseGetInstancesHealthStatus = res
     "GetInstancesHealthStatusResponse"
@@ -312,6 +388,13 @@ responseRegisterInstance = res
     "fixture/RegisterInstanceResponse.proto"
     route53AutoNaming
     (Proxy :: Proxy RegisterInstance)
+
+responseTagResource :: TagResourceResponse -> TestTree
+responseTagResource = res
+    "TagResourceResponse"
+    "fixture/TagResourceResponse.proto"
+    route53AutoNaming
+    (Proxy :: Proxy TagResource)
 
 responseListInstances :: ListInstancesResponse -> TestTree
 responseListInstances = res
@@ -347,6 +430,13 @@ responseCreatePrivateDNSNamespace = res
     "fixture/CreatePrivateDNSNamespaceResponse.proto"
     route53AutoNaming
     (Proxy :: Proxy CreatePrivateDNSNamespace)
+
+responseUntagResource :: UntagResourceResponse -> TestTree
+responseUntagResource = res
+    "UntagResourceResponse"
+    "fixture/UntagResourceResponse.proto"
+    route53AutoNaming
+    (Proxy :: Proxy UntagResource)
 
 responseCreateService :: CreateServiceResponse -> TestTree
 responseCreateService = res

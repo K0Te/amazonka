@@ -39,13 +39,11 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.SNS.Types
-import Network.AWS.SNS.Types.Product
 
 -- | /See:/ 'deleteTopic' smart constructor.
-newtype DeleteTopic = DeleteTopic'
-  { _dtTopicARN :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteTopic = DeleteTopic'{_dtTopicARN ::
+                                   Text}
+                        deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteTopic' with the minimum fields required to make a request.
 --
@@ -55,8 +53,8 @@ newtype DeleteTopic = DeleteTopic'
 deleteTopic
     :: Text -- ^ 'dtTopicARN'
     -> DeleteTopic
-deleteTopic pTopicARN_ = DeleteTopic' {_dtTopicARN = pTopicARN_}
-
+deleteTopic pTopicARN_
+  = DeleteTopic'{_dtTopicARN = pTopicARN_}
 
 -- | The ARN of the topic you want to delete.
 dtTopicARN :: Lens' DeleteTopic Text
@@ -85,16 +83,13 @@ instance ToQuery DeleteTopic where
                "TopicArn" =: _dtTopicARN]
 
 -- | /See:/ 'deleteTopicResponse' smart constructor.
-data DeleteTopicResponse =
-  DeleteTopicResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteTopicResponse = DeleteTopicResponse'
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteTopicResponse' with the minimum fields required to make a request.
 --
 deleteTopicResponse
     :: DeleteTopicResponse
 deleteTopicResponse = DeleteTopicResponse'
-
 
 instance NFData DeleteTopicResponse where

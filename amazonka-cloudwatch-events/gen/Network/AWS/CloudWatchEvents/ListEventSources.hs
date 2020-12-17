@@ -41,19 +41,17 @@ module Network.AWS.CloudWatchEvents.ListEventSources
     ) where
 
 import Network.AWS.CloudWatchEvents.Types
-import Network.AWS.CloudWatchEvents.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'listEventSources' smart constructor.
-data ListEventSources = ListEventSources'
-  { _lesNextToken  :: !(Maybe Text)
-  , _lesNamePrefix :: !(Maybe Text)
-  , _lesLimit      :: !(Maybe Nat)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListEventSources = ListEventSources'{_lesNextToken
+                                          :: !(Maybe Text),
+                                          _lesNamePrefix :: !(Maybe Text),
+                                          _lesLimit :: !(Maybe Nat)}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListEventSources' with the minimum fields required to make a request.
 --
@@ -63,13 +61,12 @@ data ListEventSources = ListEventSources'
 --
 -- * 'lesNamePrefix' - Specifying this limits the results to only those partner event sources with names that start with the specified prefix.
 --
--- * 'lesLimit' - Specifying this limits the number of results returned by this operation. The operation also returns a @NextToken@ that you can use in a subsequent operation to retrieve the next set of results.
+-- * 'lesLimit' - Specifying this limits the number of results returned by this operation. The operation also returns a NextToken which you can use in a subsequent operation to retrieve the next set of results.
 listEventSources
     :: ListEventSources
-listEventSources =
-  ListEventSources'
-    {_lesNextToken = Nothing, _lesNamePrefix = Nothing, _lesLimit = Nothing}
-
+listEventSources
+  = ListEventSources'{_lesNextToken = Nothing,
+                      _lesNamePrefix = Nothing, _lesLimit = Nothing}
 
 -- | The token returned by a previous call to retrieve the next set of results.
 lesNextToken :: Lens' ListEventSources (Maybe Text)
@@ -79,7 +76,7 @@ lesNextToken = lens _lesNextToken (\ s a -> s{_lesNextToken = a})
 lesNamePrefix :: Lens' ListEventSources (Maybe Text)
 lesNamePrefix = lens _lesNamePrefix (\ s a -> s{_lesNamePrefix = a})
 
--- | Specifying this limits the number of results returned by this operation. The operation also returns a @NextToken@ that you can use in a subsequent operation to retrieve the next set of results.
+-- | Specifying this limits the number of results returned by this operation. The operation also returns a NextToken which you can use in a subsequent operation to retrieve the next set of results.
 lesLimit :: Lens' ListEventSources (Maybe Natural)
 lesLimit = lens _lesLimit (\ s a -> s{_lesLimit = a}) . mapping _Nat
 
@@ -122,12 +119,15 @@ instance ToQuery ListEventSources where
         toQuery = const mempty
 
 -- | /See:/ 'listEventSourcesResponse' smart constructor.
-data ListEventSourcesResponse = ListEventSourcesResponse'
-  { _lesrsNextToken      :: !(Maybe Text)
-  , _lesrsEventSources   :: !(Maybe [EventSource])
-  , _lesrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListEventSourcesResponse = ListEventSourcesResponse'{_lesrsNextToken
+                                                          :: !(Maybe Text),
+                                                          _lesrsEventSources ::
+                                                          !(Maybe
+                                                              [EventSource]),
+                                                          _lesrsResponseStatus
+                                                          :: !Int}
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'ListEventSourcesResponse' with the minimum fields required to make a request.
 --
@@ -141,13 +141,11 @@ data ListEventSourcesResponse = ListEventSourcesResponse'
 listEventSourcesResponse
     :: Int -- ^ 'lesrsResponseStatus'
     -> ListEventSourcesResponse
-listEventSourcesResponse pResponseStatus_ =
-  ListEventSourcesResponse'
-    { _lesrsNextToken = Nothing
-    , _lesrsEventSources = Nothing
-    , _lesrsResponseStatus = pResponseStatus_
-    }
-
+listEventSourcesResponse pResponseStatus_
+  = ListEventSourcesResponse'{_lesrsNextToken =
+                                Nothing,
+                              _lesrsEventSources = Nothing,
+                              _lesrsResponseStatus = pResponseStatus_}
 
 -- | A token you can use in a subsequent operation to retrieve the next set of results.
 lesrsNextToken :: Lens' ListEventSourcesResponse (Maybe Text)

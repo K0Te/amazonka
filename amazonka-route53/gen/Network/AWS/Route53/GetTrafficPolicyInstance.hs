@@ -42,17 +42,16 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.Route53.Types
-import Network.AWS.Route53.Types.Product
 
 -- | Gets information about a specified traffic policy instance.
 --
 --
 --
 -- /See:/ 'getTrafficPolicyInstance' smart constructor.
-newtype GetTrafficPolicyInstance = GetTrafficPolicyInstance'
-  { _gtpiId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetTrafficPolicyInstance = GetTrafficPolicyInstance'{_gtpiId
+                                                             :: Text}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'GetTrafficPolicyInstance' with the minimum fields required to make a request.
 --
@@ -62,8 +61,8 @@ newtype GetTrafficPolicyInstance = GetTrafficPolicyInstance'
 getTrafficPolicyInstance
     :: Text -- ^ 'gtpiId'
     -> GetTrafficPolicyInstance
-getTrafficPolicyInstance pId_ = GetTrafficPolicyInstance' {_gtpiId = pId_}
-
+getTrafficPolicyInstance pId_
+  = GetTrafficPolicyInstance'{_gtpiId = pId_}
 
 -- | The ID of the traffic policy instance that you want to get information about.
 gtpiId :: Lens' GetTrafficPolicyInstance Text
@@ -100,11 +99,14 @@ instance ToQuery GetTrafficPolicyInstance where
 --
 --
 -- /See:/ 'getTrafficPolicyInstanceResponse' smart constructor.
-data GetTrafficPolicyInstanceResponse = GetTrafficPolicyInstanceResponse'
-  { _gtpirsResponseStatus        :: !Int
-  , _gtpirsTrafficPolicyInstance :: !TrafficPolicyInstance
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetTrafficPolicyInstanceResponse = GetTrafficPolicyInstanceResponse'{_gtpirsResponseStatus
+                                                                          ::
+                                                                          !Int,
+                                                                          _gtpirsTrafficPolicyInstance
+                                                                          ::
+                                                                          !TrafficPolicyInstance}
+                                          deriving (Eq, Read, Show, Data,
+                                                    Typeable, Generic)
 
 -- | Creates a value of 'GetTrafficPolicyInstanceResponse' with the minimum fields required to make a request.
 --
@@ -117,12 +119,12 @@ getTrafficPolicyInstanceResponse
     :: Int -- ^ 'gtpirsResponseStatus'
     -> TrafficPolicyInstance -- ^ 'gtpirsTrafficPolicyInstance'
     -> GetTrafficPolicyInstanceResponse
-getTrafficPolicyInstanceResponse pResponseStatus_ pTrafficPolicyInstance_ =
-  GetTrafficPolicyInstanceResponse'
-    { _gtpirsResponseStatus = pResponseStatus_
-    , _gtpirsTrafficPolicyInstance = pTrafficPolicyInstance_
-    }
-
+getTrafficPolicyInstanceResponse pResponseStatus_
+  pTrafficPolicyInstance_
+  = GetTrafficPolicyInstanceResponse'{_gtpirsResponseStatus
+                                        = pResponseStatus_,
+                                      _gtpirsTrafficPolicyInstance =
+                                        pTrafficPolicyInstance_}
 
 -- | -- | The response status code.
 gtpirsResponseStatus :: Lens' GetTrafficPolicyInstanceResponse Int

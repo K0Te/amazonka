@@ -43,31 +43,94 @@ module Network.AWS.Transcribe
     -- * Operations
     -- $operations
 
-    -- ** GetVocabulary
+    -- ** ListLanguageModels 
+    , module Network.AWS.Transcribe.ListLanguageModels
+
+    -- ** GetVocabulary 
     , module Network.AWS.Transcribe.GetVocabulary
 
-    -- ** GetTranscriptionJob
+    -- ** DeleteLanguageModel 
+    , module Network.AWS.Transcribe.DeleteLanguageModel
+
+    -- ** GetTranscriptionJob 
     , module Network.AWS.Transcribe.GetTranscriptionJob
 
-    -- ** DeleteVocabulary
+    -- ** StartMedicalTranscriptionJob 
+    , module Network.AWS.Transcribe.StartMedicalTranscriptionJob
+
+    -- ** DeleteMedicalVocabulary 
+    , module Network.AWS.Transcribe.DeleteMedicalVocabulary
+
+    -- ** UpdateMedicalVocabulary 
+    , module Network.AWS.Transcribe.UpdateMedicalVocabulary
+
+    -- ** DeleteTranscriptionJob 
+    , module Network.AWS.Transcribe.DeleteTranscriptionJob
+
+    -- ** DescribeLanguageModel 
+    , module Network.AWS.Transcribe.DescribeLanguageModel
+
+    -- ** DeleteMedicalTranscriptionJob 
+    , module Network.AWS.Transcribe.DeleteMedicalTranscriptionJob
+
+    -- ** DeleteVocabulary 
     , module Network.AWS.Transcribe.DeleteVocabulary
 
-    -- ** UpdateVocabulary
+    -- ** UpdateVocabulary 
     , module Network.AWS.Transcribe.UpdateVocabulary
 
-    -- ** ListTranscriptionJobs
+    -- ** CreateVocabularyFilter 
+    , module Network.AWS.Transcribe.CreateVocabularyFilter
+
+    -- ** GetMedicalTranscriptionJob 
+    , module Network.AWS.Transcribe.GetMedicalTranscriptionJob
+
+    -- ** GetVocabularyFilter 
+    , module Network.AWS.Transcribe.GetVocabularyFilter
+
+    -- ** GetMedicalVocabulary 
+    , module Network.AWS.Transcribe.GetMedicalVocabulary
+
+    -- ** CreateMedicalVocabulary 
+    , module Network.AWS.Transcribe.CreateMedicalVocabulary
+
+    -- ** ListMedicalVocabularies 
+    , module Network.AWS.Transcribe.ListMedicalVocabularies
+
+    -- ** ListTranscriptionJobs 
     , module Network.AWS.Transcribe.ListTranscriptionJobs
 
-    -- ** ListVocabularies
+    -- ** ListMedicalTranscriptionJobs 
+    , module Network.AWS.Transcribe.ListMedicalTranscriptionJobs
+
+    -- ** DeleteVocabularyFilter 
+    , module Network.AWS.Transcribe.DeleteVocabularyFilter
+
+    -- ** ListVocabularyFilters 
+    , module Network.AWS.Transcribe.ListVocabularyFilters
+
+    -- ** UpdateVocabularyFilter 
+    , module Network.AWS.Transcribe.UpdateVocabularyFilter
+
+    -- ** ListVocabularies 
     , module Network.AWS.Transcribe.ListVocabularies
 
-    -- ** CreateVocabulary
+    -- ** CreateVocabulary 
     , module Network.AWS.Transcribe.CreateVocabulary
 
-    -- ** StartTranscriptionJob
+    -- ** CreateLanguageModel 
+    , module Network.AWS.Transcribe.CreateLanguageModel
+
+    -- ** StartTranscriptionJob 
     , module Network.AWS.Transcribe.StartTranscriptionJob
 
     -- * Types
+
+    -- ** BaseModelName
+    , BaseModelName (..)
+
+    -- ** CLMLanguageCode
+    , CLMLanguageCode (..)
 
     -- ** LanguageCode
     , LanguageCode (..)
@@ -75,27 +138,138 @@ module Network.AWS.Transcribe
     -- ** MediaFormat
     , MediaFormat (..)
 
+    -- ** ModelStatus
+    , ModelStatus (..)
+
+    -- ** OutputLocationType
+    , OutputLocationType (..)
+
+    -- ** RedactionOutput
+    , RedactionOutput (..)
+
+    -- ** RedactionType
+    , RedactionType (..)
+
+    -- ** Specialty
+    , Specialty (..)
+
     -- ** TranscriptionJobStatus
     , TranscriptionJobStatus (..)
 
+    -- ** Type
+    , Type (..)
+
+    -- ** VocabularyFilterMethod
+    , VocabularyFilterMethod (..)
+
     -- ** VocabularyState
     , VocabularyState (..)
+
+    -- ** ContentRedaction
+    , ContentRedaction
+    , contentRedaction
+    , crRedactionType
+    , crRedactionOutput
+
+    -- ** InputDataConfig
+    , InputDataConfig
+    , inputDataConfig
+    , idcTuningDataS3URI
+    , idcS3URI
+    , idcDataAccessRoleARN
+
+    -- ** JobExecutionSettings
+    , JobExecutionSettings
+    , jobExecutionSettings
+    , jesDataAccessRoleARN
+    , jesAllowDeferredExecution
+
+    -- ** LanguageModel
+    , LanguageModel
+    , languageModel
+    , lmFailureReason
+    , lmLanguageCode
+    , lmModelName
+    , lmLastModifiedTime
+    , lmUpgradeAvailability
+    , lmInputDataConfig
+    , lmBaseModelName
+    , lmModelStatus
+    , lmCreateTime
 
     -- ** Media
     , Media
     , media
     , mMediaFileURI
 
+    -- ** MedicalTranscript
+    , MedicalTranscript
+    , medicalTranscript
+    , mtTranscriptFileURI
+
+    -- ** MedicalTranscriptionJob
+    , MedicalTranscriptionJob
+    , medicalTranscriptionJob
+    , mtjCreationTime
+    , mtjSpecialty
+    , mtjFailureReason
+    , mtjLanguageCode
+    , mtjSettings
+    , mtjStartTime
+    , mtjCompletionTime
+    , mtjMedia
+    , mtjMediaFormat
+    , mtjMedicalTranscriptionJobName
+    , mtjTranscriptionJobStatus
+    , mtjType
+    , mtjTranscript
+    , mtjMediaSampleRateHertz
+
+    -- ** MedicalTranscriptionJobSummary
+    , MedicalTranscriptionJobSummary
+    , medicalTranscriptionJobSummary
+    , mtjsCreationTime
+    , mtjsSpecialty
+    , mtjsFailureReason
+    , mtjsLanguageCode
+    , mtjsOutputLocationType
+    , mtjsStartTime
+    , mtjsCompletionTime
+    , mtjsMedicalTranscriptionJobName
+    , mtjsTranscriptionJobStatus
+    , mtjsType
+
+    -- ** MedicalTranscriptionSetting
+    , MedicalTranscriptionSetting
+    , medicalTranscriptionSetting
+    , mtsVocabularyName
+    , mtsMaxAlternatives
+    , mtsChannelIdentification
+    , mtsShowAlternatives
+    , mtsMaxSpeakerLabels
+    , mtsShowSpeakerLabels
+
+    -- ** ModelSettings
+    , ModelSettings
+    , modelSettings
+    , msLanguageModelName
+
     -- ** Settings
     , Settings
     , settings
     , sVocabularyName
+    , sMaxAlternatives
+    , sChannelIdentification
+    , sShowAlternatives
     , sMaxSpeakerLabels
+    , sVocabularyFilterName
     , sShowSpeakerLabels
+    , sVocabularyFilterMethod
 
     -- ** Transcript
     , Transcript
     , transcript
+    , tRedactedTranscriptFileURI
     , tTranscriptFileURI
 
     -- ** TranscriptionJob
@@ -103,13 +277,20 @@ module Network.AWS.Transcribe
     , transcriptionJob
     , tjCreationTime
     , tjFailureReason
+    , tjContentRedaction
+    , tjIdentifiedLanguageScore
     , tjLanguageCode
+    , tjLanguageOptions
     , tjSettings
+    , tjStartTime
     , tjCompletionTime
     , tjMedia
     , tjMediaFormat
+    , tjModelSettings
     , tjTranscriptionJobStatus
+    , tjJobExecutionSettings
     , tjTranscriptionJobName
+    , tjIdentifyLanguage
     , tjTranscript
     , tjMediaSampleRateHertz
 
@@ -118,10 +299,23 @@ module Network.AWS.Transcribe
     , transcriptionJobSummary
     , tjsCreationTime
     , tjsFailureReason
+    , tjsContentRedaction
+    , tjsIdentifiedLanguageScore
     , tjsLanguageCode
+    , tjsOutputLocationType
+    , tjsStartTime
     , tjsCompletionTime
+    , tjsModelSettings
     , tjsTranscriptionJobStatus
     , tjsTranscriptionJobName
+    , tjsIdentifyLanguage
+
+    -- ** VocabularyFilterInfo
+    , VocabularyFilterInfo
+    , vocabularyFilterInfo
+    , vfiLanguageCode
+    , vfiLastModifiedTime
+    , vfiVocabularyFilterName
 
     -- ** VocabularyInfo
     , VocabularyInfo
@@ -132,15 +326,34 @@ module Network.AWS.Transcribe
     , viVocabularyState
     ) where
 
+import Network.AWS.Transcribe.CreateLanguageModel
+import Network.AWS.Transcribe.CreateMedicalVocabulary
 import Network.AWS.Transcribe.CreateVocabulary
+import Network.AWS.Transcribe.CreateVocabularyFilter
+import Network.AWS.Transcribe.DeleteLanguageModel
+import Network.AWS.Transcribe.DeleteMedicalTranscriptionJob
+import Network.AWS.Transcribe.DeleteMedicalVocabulary
+import Network.AWS.Transcribe.DeleteTranscriptionJob
 import Network.AWS.Transcribe.DeleteVocabulary
+import Network.AWS.Transcribe.DeleteVocabularyFilter
+import Network.AWS.Transcribe.DescribeLanguageModel
+import Network.AWS.Transcribe.GetMedicalTranscriptionJob
+import Network.AWS.Transcribe.GetMedicalVocabulary
 import Network.AWS.Transcribe.GetTranscriptionJob
 import Network.AWS.Transcribe.GetVocabulary
+import Network.AWS.Transcribe.GetVocabularyFilter
+import Network.AWS.Transcribe.ListLanguageModels
+import Network.AWS.Transcribe.ListMedicalTranscriptionJobs
+import Network.AWS.Transcribe.ListMedicalVocabularies
 import Network.AWS.Transcribe.ListTranscriptionJobs
 import Network.AWS.Transcribe.ListVocabularies
+import Network.AWS.Transcribe.ListVocabularyFilters
+import Network.AWS.Transcribe.StartMedicalTranscriptionJob
 import Network.AWS.Transcribe.StartTranscriptionJob
 import Network.AWS.Transcribe.Types
+import Network.AWS.Transcribe.UpdateMedicalVocabulary
 import Network.AWS.Transcribe.UpdateVocabulary
+import Network.AWS.Transcribe.UpdateVocabularyFilter
 import Network.AWS.Transcribe.Waiters
 
 {- $errors

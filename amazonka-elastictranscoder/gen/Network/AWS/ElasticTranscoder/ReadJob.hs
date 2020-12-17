@@ -38,7 +38,6 @@ module Network.AWS.ElasticTranscoder.ReadJob
     ) where
 
 import Network.AWS.ElasticTranscoder.Types
-import Network.AWS.ElasticTranscoder.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -49,10 +48,8 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'readJob' smart constructor.
-newtype ReadJob = ReadJob'
-  { _rjId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype ReadJob = ReadJob'{_rjId :: Text}
+                    deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ReadJob' with the minimum fields required to make a request.
 --
@@ -62,8 +59,7 @@ newtype ReadJob = ReadJob'
 readJob
     :: Text -- ^ 'rjId'
     -> ReadJob
-readJob pId_ = ReadJob' {_rjId = pId_}
-
+readJob pId_ = ReadJob'{_rjId = pId_}
 
 -- | The identifier of the job for which you want to get detailed information.
 rjId :: Lens' ReadJob Text
@@ -97,11 +93,10 @@ instance ToQuery ReadJob where
 --
 --
 -- /See:/ 'readJobResponse' smart constructor.
-data ReadJobResponse = ReadJobResponse'
-  { _rjrsResponseStatus :: !Int
-  , _rjrsJob            :: !Job'
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ReadJobResponse = ReadJobResponse'{_rjrsResponseStatus
+                                        :: !Int,
+                                        _rjrsJob :: !Job'}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ReadJobResponse' with the minimum fields required to make a request.
 --
@@ -114,9 +109,10 @@ readJobResponse
     :: Int -- ^ 'rjrsResponseStatus'
     -> Job' -- ^ 'rjrsJob'
     -> ReadJobResponse
-readJobResponse pResponseStatus_ pJob_ =
-  ReadJobResponse' {_rjrsResponseStatus = pResponseStatus_, _rjrsJob = pJob_}
-
+readJobResponse pResponseStatus_ pJob_
+  = ReadJobResponse'{_rjrsResponseStatus =
+                       pResponseStatus_,
+                     _rjrsJob = pJob_}
 
 -- | -- | The response status code.
 rjrsResponseStatus :: Lens' ReadJobResponse Int

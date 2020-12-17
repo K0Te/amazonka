@@ -18,7 +18,9 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Delete a specified report definition
+-- Deletes the specified report.
+--
+--
 module Network.AWS.CostAndUsageReport.DeleteReportDefinition
     (
     -- * Creating a Request
@@ -36,31 +38,32 @@ module Network.AWS.CostAndUsageReport.DeleteReportDefinition
     ) where
 
 import Network.AWS.CostAndUsageReport.Types
-import Network.AWS.CostAndUsageReport.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- | Request of DeleteReportDefinition
+-- | Deletes the specified report.
+--
+--
 --
 -- /See:/ 'deleteReportDefinition' smart constructor.
-newtype DeleteReportDefinition = DeleteReportDefinition'
-  { _drdReportName :: Maybe Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteReportDefinition = DeleteReportDefinition'{_drdReportName
+                                                         :: Maybe Text}
+                                   deriving (Eq, Read, Show, Data, Typeable,
+                                             Generic)
 
 -- | Creates a value of 'DeleteReportDefinition' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'drdReportName' - Undocumented member.
+-- * 'drdReportName' - The name of the report that you want to delete. The name must be unique, is case sensitive, and can't include spaces.
 deleteReportDefinition
     :: DeleteReportDefinition
-deleteReportDefinition = DeleteReportDefinition' {_drdReportName = Nothing}
+deleteReportDefinition
+  = DeleteReportDefinition'{_drdReportName = Nothing}
 
-
--- | Undocumented member.
+-- | The name of the report that you want to delete. The name must be unique, is case sensitive, and can't include spaces.
 drdReportName :: Lens' DeleteReportDefinition (Maybe Text)
 drdReportName = lens _drdReportName (\ s a -> s{_drdReportName = a})
 
@@ -99,14 +102,19 @@ instance ToPath DeleteReportDefinition where
 instance ToQuery DeleteReportDefinition where
         toQuery = const mempty
 
--- | Response of DeleteReportDefinition
+-- | If the action is successful, the service sends back an HTTP 200 response.
+--
+--
 --
 -- /See:/ 'deleteReportDefinitionResponse' smart constructor.
-data DeleteReportDefinitionResponse = DeleteReportDefinitionResponse'
-  { _drsResponseMessage :: !(Maybe Text)
-  , _drsResponseStatus  :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteReportDefinitionResponse = DeleteReportDefinitionResponse'{_drsResponseMessage
+                                                                      ::
+                                                                      !(Maybe
+                                                                          Text),
+                                                                      _drsResponseStatus
+                                                                      :: !Int}
+                                        deriving (Eq, Read, Show, Data,
+                                                  Typeable, Generic)
 
 -- | Creates a value of 'DeleteReportDefinitionResponse' with the minimum fields required to make a request.
 --
@@ -118,10 +126,10 @@ data DeleteReportDefinitionResponse = DeleteReportDefinitionResponse'
 deleteReportDefinitionResponse
     :: Int -- ^ 'drsResponseStatus'
     -> DeleteReportDefinitionResponse
-deleteReportDefinitionResponse pResponseStatus_ =
-  DeleteReportDefinitionResponse'
-    {_drsResponseMessage = Nothing, _drsResponseStatus = pResponseStatus_}
-
+deleteReportDefinitionResponse pResponseStatus_
+  = DeleteReportDefinitionResponse'{_drsResponseMessage
+                                      = Nothing,
+                                    _drsResponseStatus = pResponseStatus_}
 
 -- | Undocumented member.
 drsResponseMessage :: Lens' DeleteReportDefinitionResponse (Maybe Text)

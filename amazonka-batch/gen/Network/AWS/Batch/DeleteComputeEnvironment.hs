@@ -21,7 +21,7 @@
 -- Deletes an AWS Batch compute environment.
 --
 --
--- Before you can delete a compute environment, you must set its state to @DISABLED@ with the 'UpdateComputeEnvironment' API operation and disassociate it from any job queues with the 'UpdateJobQueue' API operation.
+-- Before you can delete a compute environment, you must set its state to @DISABLED@ with the 'UpdateComputeEnvironment' API operation and disassociate it from any job queues with the 'UpdateJobQueue' API operation. Compute environments that use AWS Fargate resources must terminate all active jobs on that compute environment before deleting the compute environment. If this isn't done, the compute environment will end up in an invalid state.
 --
 module Network.AWS.Batch.DeleteComputeEnvironment
     (
@@ -39,17 +39,16 @@ module Network.AWS.Batch.DeleteComputeEnvironment
     ) where
 
 import Network.AWS.Batch.Types
-import Network.AWS.Batch.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deleteComputeEnvironment' smart constructor.
-newtype DeleteComputeEnvironment = DeleteComputeEnvironment'
-  { _dceComputeEnvironment :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteComputeEnvironment = DeleteComputeEnvironment'{_dceComputeEnvironment
+                                                             :: Text}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'DeleteComputeEnvironment' with the minimum fields required to make a request.
 --
@@ -59,9 +58,9 @@ newtype DeleteComputeEnvironment = DeleteComputeEnvironment'
 deleteComputeEnvironment
     :: Text -- ^ 'dceComputeEnvironment'
     -> DeleteComputeEnvironment
-deleteComputeEnvironment pComputeEnvironment_ =
-  DeleteComputeEnvironment' {_dceComputeEnvironment = pComputeEnvironment_}
-
+deleteComputeEnvironment pComputeEnvironment_
+  = DeleteComputeEnvironment'{_dceComputeEnvironment =
+                                pComputeEnvironment_}
 
 -- | The name or Amazon Resource Name (ARN) of the compute environment to delete.
 dceComputeEnvironment :: Lens' DeleteComputeEnvironment Text
@@ -102,10 +101,11 @@ instance ToQuery DeleteComputeEnvironment where
         toQuery = const mempty
 
 -- | /See:/ 'deleteComputeEnvironmentResponse' smart constructor.
-newtype DeleteComputeEnvironmentResponse = DeleteComputeEnvironmentResponse'
-  { _dcersResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteComputeEnvironmentResponse = DeleteComputeEnvironmentResponse'{_dcersResponseStatus
+                                                                             ::
+                                                                             Int}
+                                             deriving (Eq, Read, Show, Data,
+                                                       Typeable, Generic)
 
 -- | Creates a value of 'DeleteComputeEnvironmentResponse' with the minimum fields required to make a request.
 --
@@ -115,9 +115,9 @@ newtype DeleteComputeEnvironmentResponse = DeleteComputeEnvironmentResponse'
 deleteComputeEnvironmentResponse
     :: Int -- ^ 'dcersResponseStatus'
     -> DeleteComputeEnvironmentResponse
-deleteComputeEnvironmentResponse pResponseStatus_ =
-  DeleteComputeEnvironmentResponse' {_dcersResponseStatus = pResponseStatus_}
-
+deleteComputeEnvironmentResponse pResponseStatus_
+  = DeleteComputeEnvironmentResponse'{_dcersResponseStatus
+                                        = pResponseStatus_}
 
 -- | -- | The response status code.
 dcersResponseStatus :: Lens' DeleteComputeEnvironmentResponse Int

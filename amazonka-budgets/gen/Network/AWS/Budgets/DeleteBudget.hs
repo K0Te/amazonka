@@ -21,7 +21,7 @@
 -- Deletes a budget. You can delete your budget at any time.
 --
 --
--- __Deleting a budget also deletes the notifications and subscribers associated with that budget.__
+-- /Important:/ Deleting a budget also deletes the notifications and subscribers that are associated with that budget.
 --
 module Network.AWS.Budgets.DeleteBudget
     (
@@ -36,26 +36,24 @@ module Network.AWS.Budgets.DeleteBudget
     , deleteBudgetResponse
     , DeleteBudgetResponse
     -- * Response Lenses
-    , drsResponseStatus
+    , delrsResponseStatus
     ) where
 
 import Network.AWS.Budgets.Types
-import Network.AWS.Budgets.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- | Request of DeleteBudget
+-- | Request of DeleteBudget 
 --
 --
 --
 -- /See:/ 'deleteBudget' smart constructor.
-data DeleteBudget = DeleteBudget'
-  { _dAccountId  :: !Text
-  , _dBudgetName :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteBudget = DeleteBudget'{_dAccountId ::
+                                  !Text,
+                                  _dBudgetName :: !Text}
+                      deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteBudget' with the minimum fields required to make a request.
 --
@@ -68,9 +66,9 @@ deleteBudget
     :: Text -- ^ 'dAccountId'
     -> Text -- ^ 'dBudgetName'
     -> DeleteBudget
-deleteBudget pAccountId_ pBudgetName_ =
-  DeleteBudget' {_dAccountId = pAccountId_, _dBudgetName = pBudgetName_}
-
+deleteBudget pAccountId_ pBudgetName_
+  = DeleteBudget'{_dAccountId = pAccountId_,
+                  _dBudgetName = pBudgetName_}
 
 -- | The @accountId@ that is associated with the budget that you want to delete.
 dAccountId :: Lens' DeleteBudget Text
@@ -115,30 +113,30 @@ instance ToPath DeleteBudget where
 instance ToQuery DeleteBudget where
         toQuery = const mempty
 
--- | Response of DeleteBudget
+-- | Response of DeleteBudget 
 --
 --
 --
 -- /See:/ 'deleteBudgetResponse' smart constructor.
-newtype DeleteBudgetResponse = DeleteBudgetResponse'
-  { _drsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteBudgetResponse = DeleteBudgetResponse'{_delrsResponseStatus
+                                                     :: Int}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'DeleteBudgetResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'drsResponseStatus' - -- | The response status code.
+-- * 'delrsResponseStatus' - -- | The response status code.
 deleteBudgetResponse
-    :: Int -- ^ 'drsResponseStatus'
+    :: Int -- ^ 'delrsResponseStatus'
     -> DeleteBudgetResponse
-deleteBudgetResponse pResponseStatus_ =
-  DeleteBudgetResponse' {_drsResponseStatus = pResponseStatus_}
-
+deleteBudgetResponse pResponseStatus_
+  = DeleteBudgetResponse'{_delrsResponseStatus =
+                            pResponseStatus_}
 
 -- | -- | The response status code.
-drsResponseStatus :: Lens' DeleteBudgetResponse Int
-drsResponseStatus = lens _drsResponseStatus (\ s a -> s{_drsResponseStatus = a})
+delrsResponseStatus :: Lens' DeleteBudgetResponse Int
+delrsResponseStatus = lens _delrsResponseStatus (\ s a -> s{_delrsResponseStatus = a})
 
 instance NFData DeleteBudgetResponse where

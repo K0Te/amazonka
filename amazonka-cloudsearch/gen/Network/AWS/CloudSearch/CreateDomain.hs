@@ -38,7 +38,6 @@ module Network.AWS.CloudSearch.CreateDomain
     ) where
 
 import Network.AWS.CloudSearch.Types
-import Network.AWS.CloudSearch.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -49,10 +48,9 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'createDomain' smart constructor.
-newtype CreateDomain = CreateDomain'
-  { _cdDomainName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype CreateDomain = CreateDomain'{_cdDomainName ::
+                                     Text}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CreateDomain' with the minimum fields required to make a request.
 --
@@ -62,8 +60,8 @@ newtype CreateDomain = CreateDomain'
 createDomain
     :: Text -- ^ 'cdDomainName'
     -> CreateDomain
-createDomain pDomainName_ = CreateDomain' {_cdDomainName = pDomainName_}
-
+createDomain pDomainName_
+  = CreateDomain'{_cdDomainName = pDomainName_}
 
 -- | A name for the domain you are creating. Allowed characters are a-z (lower-case letters), 0-9, and hyphen (-). Domain names must start with a letter or number and be at least 3 and no more than 28 characters long.
 cdDomainName :: Lens' CreateDomain Text
@@ -100,11 +98,10 @@ instance ToQuery CreateDomain where
 --
 --
 -- /See:/ 'createDomainResponse' smart constructor.
-data CreateDomainResponse = CreateDomainResponse'
-  { _cdrsDomainStatus   :: !(Maybe DomainStatus)
-  , _cdrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateDomainResponse = CreateDomainResponse'{_cdrsDomainStatus
+                                                  :: !(Maybe DomainStatus),
+                                                  _cdrsResponseStatus :: !Int}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CreateDomainResponse' with the minimum fields required to make a request.
 --
@@ -116,10 +113,9 @@ data CreateDomainResponse = CreateDomainResponse'
 createDomainResponse
     :: Int -- ^ 'cdrsResponseStatus'
     -> CreateDomainResponse
-createDomainResponse pResponseStatus_ =
-  CreateDomainResponse'
-    {_cdrsDomainStatus = Nothing, _cdrsResponseStatus = pResponseStatus_}
-
+createDomainResponse pResponseStatus_
+  = CreateDomainResponse'{_cdrsDomainStatus = Nothing,
+                          _cdrsResponseStatus = pResponseStatus_}
 
 -- | Undocumented member.
 cdrsDomainStatus :: Lens' CreateDomainResponse (Maybe DomainStatus)

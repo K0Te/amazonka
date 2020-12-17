@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Delete an origin access identity.
+-- Delete an origin access identity. 
 --
 --
 module Network.AWS.CloudFront.DeleteCloudFrontOriginAccessIdentity
@@ -36,7 +36,6 @@ module Network.AWS.CloudFront.DeleteCloudFrontOriginAccessIdentity
     ) where
 
 import Network.AWS.CloudFront.Types
-import Network.AWS.CloudFront.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -47,11 +46,15 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'deleteCloudFrontOriginAccessIdentity' smart constructor.
-data DeleteCloudFrontOriginAccessIdentity = DeleteCloudFrontOriginAccessIdentity'
-  { _dcfoaiIfMatch :: !(Maybe Text)
-  , _dcfoaiId      :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteCloudFrontOriginAccessIdentity = DeleteCloudFrontOriginAccessIdentity'{_dcfoaiIfMatch
+                                                                                  ::
+                                                                                  !(Maybe
+                                                                                      Text),
+                                                                                  _dcfoaiId
+                                                                                  ::
+                                                                                  !Text}
+                                              deriving (Eq, Read, Show, Data,
+                                                        Typeable, Generic)
 
 -- | Creates a value of 'DeleteCloudFrontOriginAccessIdentity' with the minimum fields required to make a request.
 --
@@ -63,10 +66,10 @@ data DeleteCloudFrontOriginAccessIdentity = DeleteCloudFrontOriginAccessIdentity
 deleteCloudFrontOriginAccessIdentity
     :: Text -- ^ 'dcfoaiId'
     -> DeleteCloudFrontOriginAccessIdentity
-deleteCloudFrontOriginAccessIdentity pId_ =
-  DeleteCloudFrontOriginAccessIdentity'
-    {_dcfoaiIfMatch = Nothing, _dcfoaiId = pId_}
-
+deleteCloudFrontOriginAccessIdentity pId_
+  = DeleteCloudFrontOriginAccessIdentity'{_dcfoaiIfMatch
+                                            = Nothing,
+                                          _dcfoaiId = pId_}
 
 -- | The value of the @ETag@ header you received from a previous @GET@ or @PUT@ request. For example: @E2QWRUHAPOMQZL@ .
 dcfoaiIfMatch :: Lens' DeleteCloudFrontOriginAccessIdentity (Maybe Text)
@@ -103,7 +106,7 @@ instance ToPath DeleteCloudFrontOriginAccessIdentity
          where
         toPath DeleteCloudFrontOriginAccessIdentity'{..}
           = mconcat
-              ["/2017-10-30/origin-access-identity/cloudfront/",
+              ["/2020-05-31/origin-access-identity/cloudfront/",
                toBS _dcfoaiId]
 
 instance ToQuery DeleteCloudFrontOriginAccessIdentity
@@ -111,18 +114,17 @@ instance ToQuery DeleteCloudFrontOriginAccessIdentity
         toQuery = const mempty
 
 -- | /See:/ 'deleteCloudFrontOriginAccessIdentityResponse' smart constructor.
-data DeleteCloudFrontOriginAccessIdentityResponse =
-  DeleteCloudFrontOriginAccessIdentityResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteCloudFrontOriginAccessIdentityResponse = DeleteCloudFrontOriginAccessIdentityResponse'
+                                                      deriving (Eq, Read, Show,
+                                                                Data, Typeable,
+                                                                Generic)
 
 -- | Creates a value of 'DeleteCloudFrontOriginAccessIdentityResponse' with the minimum fields required to make a request.
 --
 deleteCloudFrontOriginAccessIdentityResponse
     :: DeleteCloudFrontOriginAccessIdentityResponse
-deleteCloudFrontOriginAccessIdentityResponse =
-  DeleteCloudFrontOriginAccessIdentityResponse'
-
+deleteCloudFrontOriginAccessIdentityResponse
+  = DeleteCloudFrontOriginAccessIdentityResponse'
 
 instance NFData
            DeleteCloudFrontOriginAccessIdentityResponse

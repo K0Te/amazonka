@@ -41,13 +41,11 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.Shield.Types
-import Network.AWS.Shield.Types.Product
 
 -- | /See:/ 'deleteProtection' smart constructor.
-newtype DeleteProtection = DeleteProtection'
-  { _dProtectionId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteProtection = DeleteProtection'{_dProtectionId
+                                             :: Text}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteProtection' with the minimum fields required to make a request.
 --
@@ -57,9 +55,8 @@ newtype DeleteProtection = DeleteProtection'
 deleteProtection
     :: Text -- ^ 'dProtectionId'
     -> DeleteProtection
-deleteProtection pProtectionId_ =
-  DeleteProtection' {_dProtectionId = pProtectionId_}
-
+deleteProtection pProtectionId_
+  = DeleteProtection'{_dProtectionId = pProtectionId_}
 
 -- | The unique identifier (ID) for the 'Protection' object to be deleted.
 dProtectionId :: Lens' DeleteProtection Text
@@ -99,10 +96,10 @@ instance ToQuery DeleteProtection where
         toQuery = const mempty
 
 -- | /See:/ 'deleteProtectionResponse' smart constructor.
-newtype DeleteProtectionResponse = DeleteProtectionResponse'
-  { _delrsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteProtectionResponse = DeleteProtectionResponse'{_delrsResponseStatus
+                                                             :: Int}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'DeleteProtectionResponse' with the minimum fields required to make a request.
 --
@@ -112,9 +109,9 @@ newtype DeleteProtectionResponse = DeleteProtectionResponse'
 deleteProtectionResponse
     :: Int -- ^ 'delrsResponseStatus'
     -> DeleteProtectionResponse
-deleteProtectionResponse pResponseStatus_ =
-  DeleteProtectionResponse' {_delrsResponseStatus = pResponseStatus_}
-
+deleteProtectionResponse pResponseStatus_
+  = DeleteProtectionResponse'{_delrsResponseStatus =
+                                pResponseStatus_}
 
 -- | -- | The response status code.
 delrsResponseStatus :: Lens' DeleteProtectionResponse Int

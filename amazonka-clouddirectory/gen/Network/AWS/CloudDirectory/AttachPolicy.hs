@@ -39,19 +39,17 @@ module Network.AWS.CloudDirectory.AttachPolicy
     ) where
 
 import Network.AWS.CloudDirectory.Types
-import Network.AWS.CloudDirectory.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'attachPolicy' smart constructor.
-data AttachPolicy = AttachPolicy'
-  { _apDirectoryARN    :: !Text
-  , _apPolicyReference :: !ObjectReference
-  , _apObjectReference :: !ObjectReference
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data AttachPolicy = AttachPolicy'{_apDirectoryARN ::
+                                  !Text,
+                                  _apPolicyReference :: !ObjectReference,
+                                  _apObjectReference :: !ObjectReference}
+                      deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'AttachPolicy' with the minimum fields required to make a request.
 --
@@ -67,13 +65,11 @@ attachPolicy
     -> ObjectReference -- ^ 'apPolicyReference'
     -> ObjectReference -- ^ 'apObjectReference'
     -> AttachPolicy
-attachPolicy pDirectoryARN_ pPolicyReference_ pObjectReference_ =
-  AttachPolicy'
-    { _apDirectoryARN = pDirectoryARN_
-    , _apPolicyReference = pPolicyReference_
-    , _apObjectReference = pObjectReference_
-    }
-
+attachPolicy pDirectoryARN_ pPolicyReference_
+  pObjectReference_
+  = AttachPolicy'{_apDirectoryARN = pDirectoryARN_,
+                  _apPolicyReference = pPolicyReference_,
+                  _apObjectReference = pObjectReference_}
 
 -- | The Amazon Resource Name (ARN) that is associated with the 'Directory' where both objects reside. For more information, see 'arns' .
 apDirectoryARN :: Lens' AttachPolicy Text
@@ -119,10 +115,10 @@ instance ToQuery AttachPolicy where
         toQuery = const mempty
 
 -- | /See:/ 'attachPolicyResponse' smart constructor.
-newtype AttachPolicyResponse = AttachPolicyResponse'
-  { _aprsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype AttachPolicyResponse = AttachPolicyResponse'{_aprsResponseStatus
+                                                     :: Int}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'AttachPolicyResponse' with the minimum fields required to make a request.
 --
@@ -132,9 +128,9 @@ newtype AttachPolicyResponse = AttachPolicyResponse'
 attachPolicyResponse
     :: Int -- ^ 'aprsResponseStatus'
     -> AttachPolicyResponse
-attachPolicyResponse pResponseStatus_ =
-  AttachPolicyResponse' {_aprsResponseStatus = pResponseStatus_}
-
+attachPolicyResponse pResponseStatus_
+  = AttachPolicyResponse'{_aprsResponseStatus =
+                            pResponseStatus_}
 
 -- | -- | The response status code.
 aprsResponseStatus :: Lens' AttachPolicyResponse Int

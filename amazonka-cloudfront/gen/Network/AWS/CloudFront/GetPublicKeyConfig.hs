@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Return public key configuration informaation
+-- Gets a public key configuration.
 --
 --
 module Network.AWS.CloudFront.GetPublicKeyConfig
@@ -39,30 +39,29 @@ module Network.AWS.CloudFront.GetPublicKeyConfig
     ) where
 
 import Network.AWS.CloudFront.Types
-import Network.AWS.CloudFront.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'getPublicKeyConfig' smart constructor.
-newtype GetPublicKeyConfig = GetPublicKeyConfig'
-  { _gpkcId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetPublicKeyConfig = GetPublicKeyConfig'{_gpkcId
+                                                 :: Text}
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'GetPublicKeyConfig' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'gpkcId' - Request the ID for the public key configuration.
+-- * 'gpkcId' - The identifier of the public key whose configuration you are getting.
 getPublicKeyConfig
     :: Text -- ^ 'gpkcId'
     -> GetPublicKeyConfig
-getPublicKeyConfig pId_ = GetPublicKeyConfig' {_gpkcId = pId_}
+getPublicKeyConfig pId_
+  = GetPublicKeyConfig'{_gpkcId = pId_}
 
-
--- | Request the ID for the public key configuration.
+-- | The identifier of the public key whose configuration you are getting.
 gpkcId :: Lens' GetPublicKeyConfig Text
 gpkcId = lens _gpkcId (\ s a -> s{_gpkcId = a})
 
@@ -87,44 +86,45 @@ instance ToHeaders GetPublicKeyConfig where
 instance ToPath GetPublicKeyConfig where
         toPath GetPublicKeyConfig'{..}
           = mconcat
-              ["/2017-10-30/public-key/", toBS _gpkcId, "/config"]
+              ["/2020-05-31/public-key/", toBS _gpkcId, "/config"]
 
 instance ToQuery GetPublicKeyConfig where
         toQuery = const mempty
 
 -- | /See:/ 'getPublicKeyConfigResponse' smart constructor.
-data GetPublicKeyConfigResponse = GetPublicKeyConfigResponse'
-  { _gpkcrsETag            :: !(Maybe Text)
-  , _gpkcrsPublicKeyConfig :: !(Maybe PublicKeyConfig)
-  , _gpkcrsResponseStatus  :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetPublicKeyConfigResponse = GetPublicKeyConfigResponse'{_gpkcrsETag
+                                                              :: !(Maybe Text),
+                                                              _gpkcrsPublicKeyConfig
+                                                              ::
+                                                              !(Maybe
+                                                                  PublicKeyConfig),
+                                                              _gpkcrsResponseStatus
+                                                              :: !Int}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'GetPublicKeyConfigResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'gpkcrsETag' - The current version of the public key configuration. For example: @E2QWRUHAPOMQZL@ .
+-- * 'gpkcrsETag' - The identifier for this version of the public key configuration.
 --
--- * 'gpkcrsPublicKeyConfig' - Return the result for the public key configuration.
+-- * 'gpkcrsPublicKeyConfig' - A public key configuration.
 --
 -- * 'gpkcrsResponseStatus' - -- | The response status code.
 getPublicKeyConfigResponse
     :: Int -- ^ 'gpkcrsResponseStatus'
     -> GetPublicKeyConfigResponse
-getPublicKeyConfigResponse pResponseStatus_ =
-  GetPublicKeyConfigResponse'
-    { _gpkcrsETag = Nothing
-    , _gpkcrsPublicKeyConfig = Nothing
-    , _gpkcrsResponseStatus = pResponseStatus_
-    }
+getPublicKeyConfigResponse pResponseStatus_
+  = GetPublicKeyConfigResponse'{_gpkcrsETag = Nothing,
+                                _gpkcrsPublicKeyConfig = Nothing,
+                                _gpkcrsResponseStatus = pResponseStatus_}
 
-
--- | The current version of the public key configuration. For example: @E2QWRUHAPOMQZL@ .
+-- | The identifier for this version of the public key configuration.
 gpkcrsETag :: Lens' GetPublicKeyConfigResponse (Maybe Text)
 gpkcrsETag = lens _gpkcrsETag (\ s a -> s{_gpkcrsETag = a})
 
--- | Return the result for the public key configuration.
+-- | A public key configuration.
 gpkcrsPublicKeyConfig :: Lens' GetPublicKeyConfigResponse (Maybe PublicKeyConfig)
 gpkcrsPublicKeyConfig = lens _gpkcrsPublicKeyConfig (\ s a -> s{_gpkcrsPublicKeyConfig = a})
 

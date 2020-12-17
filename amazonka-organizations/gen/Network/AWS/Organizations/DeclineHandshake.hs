@@ -21,9 +21,9 @@
 -- Declines a handshake request. This sets the handshake state to @DECLINED@ and effectively deactivates the request.
 --
 --
--- This operation can be called only from the account that received the handshake. The originator of the handshake can use 'CancelHandshake' instead. The originator can't reactivate a declined request, but can re-initiate the process with a new handshake request.
+-- This operation can be called only from the account that received the handshake. The originator of the handshake can use 'CancelHandshake' instead. The originator can't reactivate a declined request, but can reinitiate the process with a new handshake request.
 --
--- After you decline a handshake, it continues to appear in the results of relevant APIs for only 30 days. After that it is deleted.
+-- After you decline a handshake, it continues to appear in the results of relevant APIs for only 30 days. After that, it's deleted.
 --
 module Network.AWS.Organizations.DeclineHandshake
     (
@@ -43,30 +43,27 @@ module Network.AWS.Organizations.DeclineHandshake
 
 import Network.AWS.Lens
 import Network.AWS.Organizations.Types
-import Network.AWS.Organizations.Types.Product
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'declineHandshake' smart constructor.
-newtype DeclineHandshake = DeclineHandshake'
-  { _dHandshakeId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeclineHandshake = DeclineHandshake'{_dHandshakeId
+                                             :: Text}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeclineHandshake' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'dHandshakeId' - The unique identifier (ID) of the handshake that you want to decline. You can get the ID from the 'ListHandshakesForAccount' operation. The <http://wikipedia.org/wiki/regex regex pattern> for handshake ID string requires "h-" followed by from 8 to 32 lower-case letters or digits.
+-- * 'dHandshakeId' - The unique identifier (ID) of the handshake that you want to decline. You can get the ID from the 'ListHandshakesForAccount' operation. The <http://wikipedia.org/wiki/regex regex pattern> for handshake ID string requires "h-" followed by from 8 to 32 lowercase letters or digits.
 declineHandshake
     :: Text -- ^ 'dHandshakeId'
     -> DeclineHandshake
-declineHandshake pHandshakeId_ =
-  DeclineHandshake' {_dHandshakeId = pHandshakeId_}
+declineHandshake pHandshakeId_
+  = DeclineHandshake'{_dHandshakeId = pHandshakeId_}
 
-
--- | The unique identifier (ID) of the handshake that you want to decline. You can get the ID from the 'ListHandshakesForAccount' operation. The <http://wikipedia.org/wiki/regex regex pattern> for handshake ID string requires "h-" followed by from 8 to 32 lower-case letters or digits.
+-- | The unique identifier (ID) of the handshake that you want to decline. You can get the ID from the 'ListHandshakesForAccount' operation. The <http://wikipedia.org/wiki/regex regex pattern> for handshake ID string requires "h-" followed by from 8 to 32 lowercase letters or digits.
 dHandshakeId :: Lens' DeclineHandshake Text
 dHandshakeId = lens _dHandshakeId (\ s a -> s{_dHandshakeId = a})
 
@@ -105,11 +102,11 @@ instance ToQuery DeclineHandshake where
         toQuery = const mempty
 
 -- | /See:/ 'declineHandshakeResponse' smart constructor.
-data DeclineHandshakeResponse = DeclineHandshakeResponse'
-  { _drsHandshake      :: !(Maybe Handshake)
-  , _drsResponseStatus :: !Int
-  } deriving (Eq, Show, Data, Typeable, Generic)
-
+data DeclineHandshakeResponse = DeclineHandshakeResponse'{_drsHandshake
+                                                          :: !(Maybe Handshake),
+                                                          _drsResponseStatus ::
+                                                          !Int}
+                                  deriving (Eq, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeclineHandshakeResponse' with the minimum fields required to make a request.
 --
@@ -121,10 +118,9 @@ data DeclineHandshakeResponse = DeclineHandshakeResponse'
 declineHandshakeResponse
     :: Int -- ^ 'drsResponseStatus'
     -> DeclineHandshakeResponse
-declineHandshakeResponse pResponseStatus_ =
-  DeclineHandshakeResponse'
-    {_drsHandshake = Nothing, _drsResponseStatus = pResponseStatus_}
-
+declineHandshakeResponse pResponseStatus_
+  = DeclineHandshakeResponse'{_drsHandshake = Nothing,
+                              _drsResponseStatus = pResponseStatus_}
 
 -- | A structure that contains details about the declined handshake. The state is updated to show the value @DECLINED@ .
 drsHandshake :: Lens' DeclineHandshakeResponse (Maybe Handshake)

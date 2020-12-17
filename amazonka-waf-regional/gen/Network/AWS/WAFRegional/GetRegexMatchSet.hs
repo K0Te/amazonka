@@ -42,13 +42,11 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.WAFRegional.Types
-import Network.AWS.WAFRegional.Types.Product
 
 -- | /See:/ 'getRegexMatchSet' smart constructor.
-newtype GetRegexMatchSet = GetRegexMatchSet'
-  { _grmsRegexMatchSetId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetRegexMatchSet = GetRegexMatchSet'{_grmsRegexMatchSetId
+                                             :: Text}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetRegexMatchSet' with the minimum fields required to make a request.
 --
@@ -58,9 +56,9 @@ newtype GetRegexMatchSet = GetRegexMatchSet'
 getRegexMatchSet
     :: Text -- ^ 'grmsRegexMatchSetId'
     -> GetRegexMatchSet
-getRegexMatchSet pRegexMatchSetId_ =
-  GetRegexMatchSet' {_grmsRegexMatchSetId = pRegexMatchSetId_}
-
+getRegexMatchSet pRegexMatchSetId_
+  = GetRegexMatchSet'{_grmsRegexMatchSetId =
+                        pRegexMatchSetId_}
 
 -- | The @RegexMatchSetId@ of the 'RegexMatchSet' that you want to get. @RegexMatchSetId@ is returned by 'CreateRegexMatchSet' and by 'ListRegexMatchSets' .
 grmsRegexMatchSetId :: Lens' GetRegexMatchSet Text
@@ -102,11 +100,14 @@ instance ToQuery GetRegexMatchSet where
         toQuery = const mempty
 
 -- | /See:/ 'getRegexMatchSetResponse' smart constructor.
-data GetRegexMatchSetResponse = GetRegexMatchSetResponse'
-  { _grmsrsRegexMatchSet  :: !(Maybe RegexMatchSet)
-  , _grmsrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetRegexMatchSetResponse = GetRegexMatchSetResponse'{_grmsrsRegexMatchSet
+                                                          ::
+                                                          !(Maybe
+                                                              RegexMatchSet),
+                                                          _grmsrsResponseStatus
+                                                          :: !Int}
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'GetRegexMatchSetResponse' with the minimum fields required to make a request.
 --
@@ -118,10 +119,10 @@ data GetRegexMatchSetResponse = GetRegexMatchSetResponse'
 getRegexMatchSetResponse
     :: Int -- ^ 'grmsrsResponseStatus'
     -> GetRegexMatchSetResponse
-getRegexMatchSetResponse pResponseStatus_ =
-  GetRegexMatchSetResponse'
-    {_grmsrsRegexMatchSet = Nothing, _grmsrsResponseStatus = pResponseStatus_}
-
+getRegexMatchSetResponse pResponseStatus_
+  = GetRegexMatchSetResponse'{_grmsrsRegexMatchSet =
+                                Nothing,
+                              _grmsrsResponseStatus = pResponseStatus_}
 
 -- | Information about the 'RegexMatchSet' that you specified in the @GetRegexMatchSet@ request. For more information, see 'RegexMatchTuple' .
 grmsrsRegexMatchSet :: Lens' GetRegexMatchSetResponse (Maybe RegexMatchSet)

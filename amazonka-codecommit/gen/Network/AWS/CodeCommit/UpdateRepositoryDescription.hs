@@ -36,7 +36,6 @@ module Network.AWS.CodeCommit.UpdateRepositoryDescription
     ) where
 
 import Network.AWS.CodeCommit.Types
-import Network.AWS.CodeCommit.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -47,11 +46,13 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'updateRepositoryDescription' smart constructor.
-data UpdateRepositoryDescription = UpdateRepositoryDescription'
-  { _urdRepositoryDescription :: !(Maybe Text)
-  , _urdRepositoryName        :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateRepositoryDescription = UpdateRepositoryDescription'{_urdRepositoryDescription
+                                                                ::
+                                                                !(Maybe Text),
+                                                                _urdRepositoryName
+                                                                :: !Text}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'UpdateRepositoryDescription' with the minimum fields required to make a request.
 --
@@ -63,10 +64,10 @@ data UpdateRepositoryDescription = UpdateRepositoryDescription'
 updateRepositoryDescription
     :: Text -- ^ 'urdRepositoryName'
     -> UpdateRepositoryDescription
-updateRepositoryDescription pRepositoryName_ =
-  UpdateRepositoryDescription'
-    {_urdRepositoryDescription = Nothing, _urdRepositoryName = pRepositoryName_}
-
+updateRepositoryDescription pRepositoryName_
+  = UpdateRepositoryDescription'{_urdRepositoryDescription
+                                   = Nothing,
+                                 _urdRepositoryName = pRepositoryName_}
 
 -- | The new comment or description for the specified repository. Repository descriptions are limited to 1,000 characters.
 urdRepositoryDescription :: Lens' UpdateRepositoryDescription (Maybe Text)
@@ -112,17 +113,16 @@ instance ToQuery UpdateRepositoryDescription where
         toQuery = const mempty
 
 -- | /See:/ 'updateRepositoryDescriptionResponse' smart constructor.
-data UpdateRepositoryDescriptionResponse =
-  UpdateRepositoryDescriptionResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateRepositoryDescriptionResponse = UpdateRepositoryDescriptionResponse'
+                                             deriving (Eq, Read, Show, Data,
+                                                       Typeable, Generic)
 
 -- | Creates a value of 'UpdateRepositoryDescriptionResponse' with the minimum fields required to make a request.
 --
 updateRepositoryDescriptionResponse
     :: UpdateRepositoryDescriptionResponse
-updateRepositoryDescriptionResponse = UpdateRepositoryDescriptionResponse'
-
+updateRepositoryDescriptionResponse
+  = UpdateRepositoryDescriptionResponse'
 
 instance NFData UpdateRepositoryDescriptionResponse
          where

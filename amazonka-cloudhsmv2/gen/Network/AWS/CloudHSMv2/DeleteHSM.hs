@@ -41,20 +41,17 @@ module Network.AWS.CloudHSMv2.DeleteHSM
     ) where
 
 import Network.AWS.CloudHSMv2.Types
-import Network.AWS.CloudHSMv2.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deleteHSM' smart constructor.
-data DeleteHSM = DeleteHSM'
-  { _dhEniId     :: !(Maybe Text)
-  , _dhHSMId     :: !(Maybe Text)
-  , _dhEniIP     :: !(Maybe Text)
-  , _dhClusterId :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteHSM = DeleteHSM'{_dhEniId ::
+                            !(Maybe Text),
+                            _dhHSMId :: !(Maybe Text),
+                            _dhEniIP :: !(Maybe Text), _dhClusterId :: !Text}
+                   deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteHSM' with the minimum fields required to make a request.
 --
@@ -70,14 +67,9 @@ data DeleteHSM = DeleteHSM'
 deleteHSM
     :: Text -- ^ 'dhClusterId'
     -> DeleteHSM
-deleteHSM pClusterId_ =
-  DeleteHSM'
-    { _dhEniId = Nothing
-    , _dhHSMId = Nothing
-    , _dhEniIP = Nothing
-    , _dhClusterId = pClusterId_
-    }
-
+deleteHSM pClusterId_
+  = DeleteHSM'{_dhEniId = Nothing, _dhHSMId = Nothing,
+               _dhEniIP = Nothing, _dhClusterId = pClusterId_}
 
 -- | The identifier (ID) of the elastic network interface (ENI) of the HSM that you are deleting.
 dhEniId :: Lens' DeleteHSM (Maybe Text)
@@ -132,11 +124,10 @@ instance ToQuery DeleteHSM where
         toQuery = const mempty
 
 -- | /See:/ 'deleteHSMResponse' smart constructor.
-data DeleteHSMResponse = DeleteHSMResponse'
-  { _dhrsHSMId          :: !(Maybe Text)
-  , _dhrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteHSMResponse = DeleteHSMResponse'{_dhrsHSMId
+                                            :: !(Maybe Text),
+                                            _dhrsResponseStatus :: !Int}
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteHSMResponse' with the minimum fields required to make a request.
 --
@@ -148,10 +139,9 @@ data DeleteHSMResponse = DeleteHSMResponse'
 deleteHSMResponse
     :: Int -- ^ 'dhrsResponseStatus'
     -> DeleteHSMResponse
-deleteHSMResponse pResponseStatus_ =
-  DeleteHSMResponse'
-    {_dhrsHSMId = Nothing, _dhrsResponseStatus = pResponseStatus_}
-
+deleteHSMResponse pResponseStatus_
+  = DeleteHSMResponse'{_dhrsHSMId = Nothing,
+                       _dhrsResponseStatus = pResponseStatus_}
 
 -- | The identifier (ID) of the HSM that was deleted.
 dhrsHSMId :: Lens' DeleteHSMResponse (Maybe Text)

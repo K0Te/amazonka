@@ -49,7 +49,6 @@ module Network.AWS.APIGateway.GetMethod
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -60,12 +59,9 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'getMethod' smart constructor.
-data GetMethod = GetMethod'
-  { _gmmRestAPIId  :: !Text
-  , _gmmResourceId :: !Text
-  , _gmmHttpMethod :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetMethod = GetMethod'{_gmmRestAPIId :: !Text,
+                            _gmmResourceId :: !Text, _gmmHttpMethod :: !Text}
+                   deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetMethod' with the minimum fields required to make a request.
 --
@@ -81,13 +77,10 @@ getMethod
     -> Text -- ^ 'gmmResourceId'
     -> Text -- ^ 'gmmHttpMethod'
     -> GetMethod
-getMethod pRestAPIId_ pResourceId_ pHttpMethod_ =
-  GetMethod'
-    { _gmmRestAPIId = pRestAPIId_
-    , _gmmResourceId = pResourceId_
-    , _gmmHttpMethod = pHttpMethod_
-    }
-
+getMethod pRestAPIId_ pResourceId_ pHttpMethod_
+  = GetMethod'{_gmmRestAPIId = pRestAPIId_,
+               _gmmResourceId = pResourceId_,
+               _gmmHttpMethod = pHttpMethod_}
 
 -- | [Required] The string identifier of the associated 'RestApi' .
 gmmRestAPIId :: Lens' GetMethod Text

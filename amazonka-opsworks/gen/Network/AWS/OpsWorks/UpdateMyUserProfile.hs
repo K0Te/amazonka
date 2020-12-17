@@ -21,7 +21,7 @@
 -- Updates a user's SSH public key.
 --
 --
--- __Required Permissions__ : To use this action, an IAM user must have self-management enabled or an attached policy that explicitly grants permissions. For more information on user permissions, see <http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html Managing User Permissions> .
+-- __Required Permissions__ : To use this action, an IAM user must have self-management enabled or an attached policy that explicitly grants permissions. For more information about user permissions, see <https://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html Managing User Permissions> .
 --
 module Network.AWS.OpsWorks.UpdateMyUserProfile
     (
@@ -38,16 +38,15 @@ module Network.AWS.OpsWorks.UpdateMyUserProfile
 
 import Network.AWS.Lens
 import Network.AWS.OpsWorks.Types
-import Network.AWS.OpsWorks.Types.Product
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'updateMyUserProfile' smart constructor.
-newtype UpdateMyUserProfile = UpdateMyUserProfile'
-  { _umupSSHPublicKey :: Maybe Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype UpdateMyUserProfile = UpdateMyUserProfile'{_umupSSHPublicKey
+                                                   :: Maybe Text}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'UpdateMyUserProfile' with the minimum fields required to make a request.
 --
@@ -56,8 +55,8 @@ newtype UpdateMyUserProfile = UpdateMyUserProfile'
 -- * 'umupSSHPublicKey' - The user's SSH public key.
 updateMyUserProfile
     :: UpdateMyUserProfile
-updateMyUserProfile = UpdateMyUserProfile' {_umupSSHPublicKey = Nothing}
-
+updateMyUserProfile
+  = UpdateMyUserProfile'{_umupSSHPublicKey = Nothing}
 
 -- | The user's SSH public key.
 umupSSHPublicKey :: Lens' UpdateMyUserProfile (Maybe Text)
@@ -96,16 +95,15 @@ instance ToQuery UpdateMyUserProfile where
         toQuery = const mempty
 
 -- | /See:/ 'updateMyUserProfileResponse' smart constructor.
-data UpdateMyUserProfileResponse =
-  UpdateMyUserProfileResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateMyUserProfileResponse = UpdateMyUserProfileResponse'
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'UpdateMyUserProfileResponse' with the minimum fields required to make a request.
 --
 updateMyUserProfileResponse
     :: UpdateMyUserProfileResponse
-updateMyUserProfileResponse = UpdateMyUserProfileResponse'
-
+updateMyUserProfileResponse
+  = UpdateMyUserProfileResponse'
 
 instance NFData UpdateMyUserProfileResponse where

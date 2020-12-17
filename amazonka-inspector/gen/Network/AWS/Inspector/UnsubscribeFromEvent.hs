@@ -37,19 +37,17 @@ module Network.AWS.Inspector.UnsubscribeFromEvent
     ) where
 
 import Network.AWS.Inspector.Types
-import Network.AWS.Inspector.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'unsubscribeFromEvent' smart constructor.
-data UnsubscribeFromEvent = UnsubscribeFromEvent'
-  { _ufeResourceARN :: !Text
-  , _ufeEvent       :: !InspectorEvent
-  , _ufeTopicARN    :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UnsubscribeFromEvent = UnsubscribeFromEvent'{_ufeResourceARN
+                                                  :: !Text,
+                                                  _ufeEvent :: !InspectorEvent,
+                                                  _ufeTopicARN :: !Text}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UnsubscribeFromEvent' with the minimum fields required to make a request.
 --
@@ -65,13 +63,10 @@ unsubscribeFromEvent
     -> InspectorEvent -- ^ 'ufeEvent'
     -> Text -- ^ 'ufeTopicARN'
     -> UnsubscribeFromEvent
-unsubscribeFromEvent pResourceARN_ pEvent_ pTopicARN_ =
-  UnsubscribeFromEvent'
-    { _ufeResourceARN = pResourceARN_
-    , _ufeEvent = pEvent_
-    , _ufeTopicARN = pTopicARN_
-    }
-
+unsubscribeFromEvent pResourceARN_ pEvent_ pTopicARN_
+  = UnsubscribeFromEvent'{_ufeResourceARN =
+                            pResourceARN_,
+                          _ufeEvent = pEvent_, _ufeTopicARN = pTopicARN_}
 
 -- | The ARN of the assessment template that is used during the event for which you want to stop receiving SNS notifications.
 ufeResourceARN :: Lens' UnsubscribeFromEvent Text
@@ -120,16 +115,15 @@ instance ToQuery UnsubscribeFromEvent where
         toQuery = const mempty
 
 -- | /See:/ 'unsubscribeFromEventResponse' smart constructor.
-data UnsubscribeFromEventResponse =
-  UnsubscribeFromEventResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UnsubscribeFromEventResponse = UnsubscribeFromEventResponse'
+                                      deriving (Eq, Read, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'UnsubscribeFromEventResponse' with the minimum fields required to make a request.
 --
 unsubscribeFromEventResponse
     :: UnsubscribeFromEventResponse
-unsubscribeFromEventResponse = UnsubscribeFromEventResponse'
-
+unsubscribeFromEventResponse
+  = UnsubscribeFromEventResponse'
 
 instance NFData UnsubscribeFromEventResponse where

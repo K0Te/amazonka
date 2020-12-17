@@ -21,6 +21,8 @@
 -- Retrieve a list of application versions.
 --
 --
+--
+-- This operation returns paginated results.
 module Network.AWS.ElasticBeanstalk.DescribeApplicationVersions
     (
     -- * Creating a Request
@@ -42,8 +44,8 @@ module Network.AWS.ElasticBeanstalk.DescribeApplicationVersions
     ) where
 
 import Network.AWS.ElasticBeanstalk.Types
-import Network.AWS.ElasticBeanstalk.Types.Product
 import Network.AWS.Lens
+import Network.AWS.Pager
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
@@ -53,13 +55,18 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'describeApplicationVersions' smart constructor.
-data DescribeApplicationVersions = DescribeApplicationVersions'
-  { _dVersionLabels   :: !(Maybe [Text])
-  , _dNextToken       :: !(Maybe Text)
-  , _dMaxRecords      :: !(Maybe Nat)
-  , _dApplicationName :: !(Maybe Text)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeApplicationVersions = DescribeApplicationVersions'{_dVersionLabels
+                                                                ::
+                                                                !(Maybe [Text]),
+                                                                _dNextToken ::
+                                                                !(Maybe Text),
+                                                                _dMaxRecords ::
+                                                                !(Maybe Nat),
+                                                                _dApplicationName
+                                                                ::
+                                                                !(Maybe Text)}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'DescribeApplicationVersions' with the minimum fields required to make a request.
 --
@@ -74,14 +81,11 @@ data DescribeApplicationVersions = DescribeApplicationVersions'
 -- * 'dApplicationName' - Specify an application name to show only application versions for that application.
 describeApplicationVersions
     :: DescribeApplicationVersions
-describeApplicationVersions =
-  DescribeApplicationVersions'
-    { _dVersionLabels = Nothing
-    , _dNextToken = Nothing
-    , _dMaxRecords = Nothing
-    , _dApplicationName = Nothing
-    }
-
+describeApplicationVersions
+  = DescribeApplicationVersions'{_dVersionLabels =
+                                   Nothing,
+                                 _dNextToken = Nothing, _dMaxRecords = Nothing,
+                                 _dApplicationName = Nothing}
 
 -- | Specify a version label to show a specific application version.
 dVersionLabels :: Lens' DescribeApplicationVersions [Text]
@@ -98,6 +102,13 @@ dMaxRecords = lens _dMaxRecords (\ s a -> s{_dMaxRecords = a}) . mapping _Nat
 -- | Specify an application name to show only application versions for that application.
 dApplicationName :: Lens' DescribeApplicationVersions (Maybe Text)
 dApplicationName = lens _dApplicationName (\ s a -> s{_dApplicationName = a})
+
+instance AWSPager DescribeApplicationVersions where
+        page rq rs
+          | stop (rs ^. davrsNextToken) = Nothing
+          | stop (rs ^. davrsApplicationVersions) = Nothing
+          | otherwise =
+            Just $ rq & dNextToken .~ rs ^. davrsNextToken
 
 instance AWSRequest DescribeApplicationVersions where
         type Rs DescribeApplicationVersions =
@@ -140,12 +151,19 @@ instance ToQuery DescribeApplicationVersions where
 --
 --
 -- /See:/ 'describeApplicationVersionsResponse' smart constructor.
-data DescribeApplicationVersionsResponse = DescribeApplicationVersionsResponse'
-  { _davrsApplicationVersions :: !(Maybe [ApplicationVersionDescription])
-  , _davrsNextToken           :: !(Maybe Text)
-  , _davrsResponseStatus      :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeApplicationVersionsResponse = DescribeApplicationVersionsResponse'{_davrsApplicationVersions
+                                                                                ::
+                                                                                !(Maybe
+                                                                                    [ApplicationVersionDescription]),
+                                                                                _davrsNextToken
+                                                                                ::
+                                                                                !(Maybe
+                                                                                    Text),
+                                                                                _davrsResponseStatus
+                                                                                ::
+                                                                                !Int}
+                                             deriving (Eq, Read, Show, Data,
+                                                       Typeable, Generic)
 
 -- | Creates a value of 'DescribeApplicationVersionsResponse' with the minimum fields required to make a request.
 --
@@ -159,13 +177,12 @@ data DescribeApplicationVersionsResponse = DescribeApplicationVersionsResponse'
 describeApplicationVersionsResponse
     :: Int -- ^ 'davrsResponseStatus'
     -> DescribeApplicationVersionsResponse
-describeApplicationVersionsResponse pResponseStatus_ =
-  DescribeApplicationVersionsResponse'
-    { _davrsApplicationVersions = Nothing
-    , _davrsNextToken = Nothing
-    , _davrsResponseStatus = pResponseStatus_
-    }
-
+describeApplicationVersionsResponse pResponseStatus_
+  = DescribeApplicationVersionsResponse'{_davrsApplicationVersions
+                                           = Nothing,
+                                         _davrsNextToken = Nothing,
+                                         _davrsResponseStatus =
+                                           pResponseStatus_}
 
 -- | List of @ApplicationVersionDescription@ objects sorted in order of creation.
 davrsApplicationVersions :: Lens' DescribeApplicationVersionsResponse [ApplicationVersionDescription]

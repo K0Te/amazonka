@@ -48,25 +48,44 @@ library
         , Network.AWS.ResourceGroups.CreateGroup
         , Network.AWS.ResourceGroups.DeleteGroup
         , Network.AWS.ResourceGroups.GetGroup
+        , Network.AWS.ResourceGroups.GetGroupConfiguration
         , Network.AWS.ResourceGroups.GetGroupQuery
         , Network.AWS.ResourceGroups.GetTags
+        , Network.AWS.ResourceGroups.GroupResources
         , Network.AWS.ResourceGroups.ListGroupResources
         , Network.AWS.ResourceGroups.ListGroups
         , Network.AWS.ResourceGroups.SearchResources
         , Network.AWS.ResourceGroups.Tag
         , Network.AWS.ResourceGroups.Types
+        , Network.AWS.ResourceGroups.UngroupResources
         , Network.AWS.ResourceGroups.Untag
         , Network.AWS.ResourceGroups.UpdateGroup
         , Network.AWS.ResourceGroups.UpdateGroupQuery
         , Network.AWS.ResourceGroups.Waiters
 
     other-modules:
-          Network.AWS.ResourceGroups.Types.Product
-        , Network.AWS.ResourceGroups.Types.Sum
+          Network.AWS.ResourceGroups.Types.FailedResource
+        , Network.AWS.ResourceGroups.Types.Group
+        , Network.AWS.ResourceGroups.Types.GroupConfiguration
+        , Network.AWS.ResourceGroups.Types.GroupConfigurationItem
+        , Network.AWS.ResourceGroups.Types.GroupConfigurationParameter
+        , Network.AWS.ResourceGroups.Types.GroupConfigurationStatus
+        , Network.AWS.ResourceGroups.Types.GroupFilter
+        , Network.AWS.ResourceGroups.Types.GroupFilterName
+        , Network.AWS.ResourceGroups.Types.GroupIdentifier
+        , Network.AWS.ResourceGroups.Types.GroupQuery
+        , Network.AWS.ResourceGroups.Types.QueryError
+        , Network.AWS.ResourceGroups.Types.QueryErrorCode
+        , Network.AWS.ResourceGroups.Types.QueryType
+        , Network.AWS.ResourceGroups.Types.ResourceFilter
+        , Network.AWS.ResourceGroups.Types.ResourceFilterName
+        , Network.AWS.ResourceGroups.Types.ResourceIdentifier
+        , Network.AWS.ResourceGroups.Types.ResourceQuery
 
     build-depends:
           amazonka-core == 1.6.1.*
         , base          >= 4.7     && < 5
+        , case-insensitive
 
 test-suite amazonka-resourcegroups-test
     type:              exitcode-stdio-1.0
@@ -90,6 +109,7 @@ test-suite amazonka-resourcegroups-test
         , amazonka-resourcegroups
         , base
         , bytestring
+        , case-insensitive
         , tasty
         , tasty-hunit
         , text

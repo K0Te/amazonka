@@ -14,11 +14,11 @@
 module Test.AWS.Gen.Route53 where
 
 import Data.Proxy
-import Network.AWS.Route53
 import Test.AWS.Fixture
 import Test.AWS.Prelude
-import Test.AWS.Route53.Internal
 import Test.Tasty
+import Network.AWS.Route53
+import Test.AWS.Route53.Internal
 
 -- Auto-generated: the actual test selection needs to be manually placed into
 -- the top-level so that real test data can be incrementally added.
@@ -159,6 +159,9 @@ import Test.Tasty
 --
 --         , requestGetHealthCheckStatus $
 --             getHealthCheckStatus
+--
+--         , requestListHostedZonesByVPC $
+--             listHostedZonesByVPC
 --
 --         , requestGetReusableDelegationSetLimit $
 --             getReusableDelegationSetLimit
@@ -330,6 +333,9 @@ import Test.Tasty
 --
 --         , responseGetHealthCheckStatus $
 --             getHealthCheckStatusResponse
+--
+--         , responseListHostedZonesByVPC $
+--             listHostedZonesByVPCResponse
 --
 --         , responseGetReusableDelegationSetLimit $
 --             getReusableDelegationSetLimitResponse
@@ -591,6 +597,11 @@ requestGetHealthCheckStatus :: GetHealthCheckStatus -> TestTree
 requestGetHealthCheckStatus = req
     "GetHealthCheckStatus"
     "fixture/GetHealthCheckStatus.yaml"
+
+requestListHostedZonesByVPC :: ListHostedZonesByVPC -> TestTree
+requestListHostedZonesByVPC = req
+    "ListHostedZonesByVPC"
+    "fixture/ListHostedZonesByVPC.yaml"
 
 requestGetReusableDelegationSetLimit :: GetReusableDelegationSetLimit -> TestTree
 requestGetReusableDelegationSetLimit = req
@@ -961,6 +972,13 @@ responseGetHealthCheckStatus = res
     "fixture/GetHealthCheckStatusResponse.proto"
     route53
     (Proxy :: Proxy GetHealthCheckStatus)
+
+responseListHostedZonesByVPC :: ListHostedZonesByVPCResponse -> TestTree
+responseListHostedZonesByVPC = res
+    "ListHostedZonesByVPCResponse"
+    "fixture/ListHostedZonesByVPCResponse.proto"
+    route53
+    (Proxy :: Proxy ListHostedZonesByVPC)
 
 responseGetReusableDelegationSetLimit :: GetReusableDelegationSetLimitResponse -> TestTree
 responseGetReusableDelegationSetLimit = res

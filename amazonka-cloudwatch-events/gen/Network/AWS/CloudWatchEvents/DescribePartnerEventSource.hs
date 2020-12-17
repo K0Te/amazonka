@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- An SaaS partner can use this operation to list details about a partner event source that they have created.
+-- An SaaS partner can use this operation to list details about a partner event source that they have created. AWS customers do not use this operation. Instead, AWS customers can use 'DescribeEventSource' to see details about a partner event source that is shared with them.
 --
 --
 module Network.AWS.CloudWatchEvents.DescribePartnerEventSource
@@ -39,17 +39,16 @@ module Network.AWS.CloudWatchEvents.DescribePartnerEventSource
     ) where
 
 import Network.AWS.CloudWatchEvents.Types
-import Network.AWS.CloudWatchEvents.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'describePartnerEventSource' smart constructor.
-newtype DescribePartnerEventSource = DescribePartnerEventSource'
-  { _dpespName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DescribePartnerEventSource = DescribePartnerEventSource'{_dpespName
+                                                                 :: Text}
+                                       deriving (Eq, Read, Show, Data, Typeable,
+                                                 Generic)
 
 -- | Creates a value of 'DescribePartnerEventSource' with the minimum fields required to make a request.
 --
@@ -59,9 +58,8 @@ newtype DescribePartnerEventSource = DescribePartnerEventSource'
 describePartnerEventSource
     :: Text -- ^ 'dpespName'
     -> DescribePartnerEventSource
-describePartnerEventSource pName_ =
-  DescribePartnerEventSource' {_dpespName = pName_}
-
+describePartnerEventSource pName_
+  = DescribePartnerEventSource'{_dpespName = pName_}
 
 -- | The name of the event source to display.
 dpespName :: Lens' DescribePartnerEventSource Text
@@ -103,12 +101,19 @@ instance ToQuery DescribePartnerEventSource where
         toQuery = const mempty
 
 -- | /See:/ 'describePartnerEventSourceResponse' smart constructor.
-data DescribePartnerEventSourceResponse = DescribePartnerEventSourceResponse'
-  { _dpesrsARN            :: !(Maybe Text)
-  , _dpesrsName           :: !(Maybe Text)
-  , _dpesrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribePartnerEventSourceResponse = DescribePartnerEventSourceResponse'{_dpesrsARN
+                                                                              ::
+                                                                              !(Maybe
+                                                                                  Text),
+                                                                              _dpesrsName
+                                                                              ::
+                                                                              !(Maybe
+                                                                                  Text),
+                                                                              _dpesrsResponseStatus
+                                                                              ::
+                                                                              !Int}
+                                            deriving (Eq, Read, Show, Data,
+                                                      Typeable, Generic)
 
 -- | Creates a value of 'DescribePartnerEventSourceResponse' with the minimum fields required to make a request.
 --
@@ -122,13 +127,12 @@ data DescribePartnerEventSourceResponse = DescribePartnerEventSourceResponse'
 describePartnerEventSourceResponse
     :: Int -- ^ 'dpesrsResponseStatus'
     -> DescribePartnerEventSourceResponse
-describePartnerEventSourceResponse pResponseStatus_ =
-  DescribePartnerEventSourceResponse'
-    { _dpesrsARN = Nothing
-    , _dpesrsName = Nothing
-    , _dpesrsResponseStatus = pResponseStatus_
-    }
-
+describePartnerEventSourceResponse pResponseStatus_
+  = DescribePartnerEventSourceResponse'{_dpesrsARN =
+                                          Nothing,
+                                        _dpesrsName = Nothing,
+                                        _dpesrsResponseStatus =
+                                          pResponseStatus_}
 
 -- | The ARN of the event source.
 dpesrsARN :: Lens' DescribePartnerEventSourceResponse (Maybe Text)

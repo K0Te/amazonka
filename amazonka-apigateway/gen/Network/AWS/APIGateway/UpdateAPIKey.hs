@@ -43,10 +43,10 @@ module Network.AWS.APIGateway.UpdateAPIKey
     , akStageKeys
     , akLastUpdatedDate
     , akDescription
+    , akTags
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -57,11 +57,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'updateAPIKey' smart constructor.
-data UpdateAPIKey = UpdateAPIKey'
-  { _uakPatchOperations :: !(Maybe [PatchOperation])
-  , _uakApiKey          :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateAPIKey = UpdateAPIKey'{_uakPatchOperations
+                                  :: !(Maybe [PatchOperation]),
+                                  _uakApiKey :: !Text}
+                      deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UpdateAPIKey' with the minimum fields required to make a request.
 --
@@ -73,9 +72,9 @@ data UpdateAPIKey = UpdateAPIKey'
 updateAPIKey
     :: Text -- ^ 'uakApiKey'
     -> UpdateAPIKey
-updateAPIKey pApiKey_ =
-  UpdateAPIKey' {_uakPatchOperations = Nothing, _uakApiKey = pApiKey_}
-
+updateAPIKey pApiKey_
+  = UpdateAPIKey'{_uakPatchOperations = Nothing,
+                  _uakApiKey = pApiKey_}
 
 -- | A list of update operations to be applied to the specified resource and in the order specified in this list.
 uakPatchOperations :: Lens' UpdateAPIKey [PatchOperation]

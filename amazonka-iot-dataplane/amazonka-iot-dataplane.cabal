@@ -47,18 +47,18 @@ library
           Network.AWS.IoTData
         , Network.AWS.IoTData.DeleteThingShadow
         , Network.AWS.IoTData.GetThingShadow
+        , Network.AWS.IoTData.ListNamedShadowsForThing
         , Network.AWS.IoTData.Publish
         , Network.AWS.IoTData.Types
         , Network.AWS.IoTData.UpdateThingShadow
         , Network.AWS.IoTData.Waiters
 
     other-modules:
-          Network.AWS.IoTData.Types.Product
-        , Network.AWS.IoTData.Types.Sum
 
     build-depends:
           amazonka-core == 1.6.1.*
         , base          >= 4.7     && < 5
+        , case-insensitive
 
 test-suite amazonka-iot-dataplane-test
     type:              exitcode-stdio-1.0
@@ -82,6 +82,7 @@ test-suite amazonka-iot-dataplane-test
         , amazonka-iot-dataplane
         , base
         , bytestring
+        , case-insensitive
         , tasty
         , tasty-hunit
         , text

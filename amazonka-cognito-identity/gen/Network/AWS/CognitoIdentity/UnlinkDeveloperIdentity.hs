@@ -40,7 +40,6 @@ module Network.AWS.CognitoIdentity.UnlinkDeveloperIdentity
     ) where
 
 import Network.AWS.CognitoIdentity.Types
-import Network.AWS.CognitoIdentity.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -51,13 +50,16 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'unlinkDeveloperIdentity' smart constructor.
-data UnlinkDeveloperIdentity = UnlinkDeveloperIdentity'
-  { _udiIdentityId              :: !Text
-  , _udiIdentityPoolId          :: !Text
-  , _udiDeveloperProviderName   :: !Text
-  , _udiDeveloperUserIdentifier :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UnlinkDeveloperIdentity = UnlinkDeveloperIdentity'{_udiIdentityId
+                                                        :: !Text,
+                                                        _udiIdentityPoolId ::
+                                                        !Text,
+                                                        _udiDeveloperProviderName
+                                                        :: !Text,
+                                                        _udiDeveloperUserIdentifier
+                                                        :: !Text}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'UnlinkDeveloperIdentity' with the minimum fields required to make a request.
 --
@@ -76,14 +78,15 @@ unlinkDeveloperIdentity
     -> Text -- ^ 'udiDeveloperProviderName'
     -> Text -- ^ 'udiDeveloperUserIdentifier'
     -> UnlinkDeveloperIdentity
-unlinkDeveloperIdentity pIdentityId_ pIdentityPoolId_ pDeveloperProviderName_ pDeveloperUserIdentifier_ =
-  UnlinkDeveloperIdentity'
-    { _udiIdentityId = pIdentityId_
-    , _udiIdentityPoolId = pIdentityPoolId_
-    , _udiDeveloperProviderName = pDeveloperProviderName_
-    , _udiDeveloperUserIdentifier = pDeveloperUserIdentifier_
-    }
-
+unlinkDeveloperIdentity pIdentityId_ pIdentityPoolId_
+  pDeveloperProviderName_ pDeveloperUserIdentifier_
+  = UnlinkDeveloperIdentity'{_udiIdentityId =
+                               pIdentityId_,
+                             _udiIdentityPoolId = pIdentityPoolId_,
+                             _udiDeveloperProviderName =
+                               pDeveloperProviderName_,
+                             _udiDeveloperUserIdentifier =
+                               pDeveloperUserIdentifier_}
 
 -- | A unique identifier in the format REGION:GUID.
 udiIdentityId :: Lens' UnlinkDeveloperIdentity Text
@@ -142,16 +145,15 @@ instance ToQuery UnlinkDeveloperIdentity where
         toQuery = const mempty
 
 -- | /See:/ 'unlinkDeveloperIdentityResponse' smart constructor.
-data UnlinkDeveloperIdentityResponse =
-  UnlinkDeveloperIdentityResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UnlinkDeveloperIdentityResponse = UnlinkDeveloperIdentityResponse'
+                                         deriving (Eq, Read, Show, Data,
+                                                   Typeable, Generic)
 
 -- | Creates a value of 'UnlinkDeveloperIdentityResponse' with the minimum fields required to make a request.
 --
 unlinkDeveloperIdentityResponse
     :: UnlinkDeveloperIdentityResponse
-unlinkDeveloperIdentityResponse = UnlinkDeveloperIdentityResponse'
-
+unlinkDeveloperIdentityResponse
+  = UnlinkDeveloperIdentityResponse'
 
 instance NFData UnlinkDeveloperIdentityResponse where

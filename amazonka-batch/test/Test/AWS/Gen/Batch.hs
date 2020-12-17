@@ -14,11 +14,11 @@
 module Test.AWS.Gen.Batch where
 
 import Data.Proxy
-import Network.AWS.Batch
-import Test.AWS.Batch.Internal
 import Test.AWS.Fixture
 import Test.AWS.Prelude
 import Test.Tasty
+import Network.AWS.Batch
+import Test.AWS.Batch.Internal
 
 -- Auto-generated: the actual test selection needs to be manually placed into
 -- the top-level so that real test data can be incrementally added.
@@ -30,6 +30,9 @@ import Test.Tasty
 --     [ testGroup "request"
 --         [ requestCreateComputeEnvironment $
 --             createComputeEnvironment
+--
+--         , requestListTagsForResource $
+--             listTagsForResource
 --
 --         , requestRegisterJobDefinition $
 --             registerJobDefinition
@@ -70,6 +73,12 @@ import Test.Tasty
 --         , requestDescribeJobQueues $
 --             describeJobQueues
 --
+--         , requestTagResource $
+--             tagResource
+--
+--         , requestUntagResource $
+--             untagResource
+--
 --         , requestDescribeComputeEnvironments $
 --             describeComputeEnvironments
 --
@@ -81,6 +90,9 @@ import Test.Tasty
 --     , testGroup "response"
 --         [ responseCreateComputeEnvironment $
 --             createComputeEnvironmentResponse
+--
+--         , responseListTagsForResource $
+--             listTagsForResourceResponse
 --
 --         , responseRegisterJobDefinition $
 --             registerJobDefinitionResponse
@@ -121,6 +133,12 @@ import Test.Tasty
 --         , responseDescribeJobQueues $
 --             describeJobQueuesResponse
 --
+--         , responseTagResource $
+--             tagResourceResponse
+--
+--         , responseUntagResource $
+--             untagResourceResponse
+--
 --         , responseDescribeComputeEnvironments $
 --             describeComputeEnvironmentsResponse
 --
@@ -136,6 +154,11 @@ requestCreateComputeEnvironment :: CreateComputeEnvironment -> TestTree
 requestCreateComputeEnvironment = req
     "CreateComputeEnvironment"
     "fixture/CreateComputeEnvironment.yaml"
+
+requestListTagsForResource :: ListTagsForResource -> TestTree
+requestListTagsForResource = req
+    "ListTagsForResource"
+    "fixture/ListTagsForResource.yaml"
 
 requestRegisterJobDefinition :: RegisterJobDefinition -> TestTree
 requestRegisterJobDefinition = req
@@ -202,6 +225,16 @@ requestDescribeJobQueues = req
     "DescribeJobQueues"
     "fixture/DescribeJobQueues.yaml"
 
+requestTagResource :: TagResource -> TestTree
+requestTagResource = req
+    "TagResource"
+    "fixture/TagResource.yaml"
+
+requestUntagResource :: UntagResource -> TestTree
+requestUntagResource = req
+    "UntagResource"
+    "fixture/UntagResource.yaml"
+
 requestDescribeComputeEnvironments :: DescribeComputeEnvironments -> TestTree
 requestDescribeComputeEnvironments = req
     "DescribeComputeEnvironments"
@@ -220,6 +253,13 @@ responseCreateComputeEnvironment = res
     "fixture/CreateComputeEnvironmentResponse.proto"
     batch
     (Proxy :: Proxy CreateComputeEnvironment)
+
+responseListTagsForResource :: ListTagsForResourceResponse -> TestTree
+responseListTagsForResource = res
+    "ListTagsForResourceResponse"
+    "fixture/ListTagsForResourceResponse.proto"
+    batch
+    (Proxy :: Proxy ListTagsForResource)
 
 responseRegisterJobDefinition :: RegisterJobDefinitionResponse -> TestTree
 responseRegisterJobDefinition = res
@@ -311,6 +351,20 @@ responseDescribeJobQueues = res
     "fixture/DescribeJobQueuesResponse.proto"
     batch
     (Proxy :: Proxy DescribeJobQueues)
+
+responseTagResource :: TagResourceResponse -> TestTree
+responseTagResource = res
+    "TagResourceResponse"
+    "fixture/TagResourceResponse.proto"
+    batch
+    (Proxy :: Proxy TagResource)
+
+responseUntagResource :: UntagResourceResponse -> TestTree
+responseUntagResource = res
+    "UntagResourceResponse"
+    "fixture/UntagResourceResponse.proto"
+    batch
+    (Proxy :: Proxy UntagResource)
 
 responseDescribeComputeEnvironments :: DescribeComputeEnvironmentsResponse -> TestTree
 responseDescribeComputeEnvironments = res

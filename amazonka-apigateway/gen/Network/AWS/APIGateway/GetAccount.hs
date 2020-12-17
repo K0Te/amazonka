@@ -38,7 +38,6 @@ module Network.AWS.APIGateway.GetAccount
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -49,17 +48,14 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'getAccount' smart constructor.
-data GetAccount =
-  GetAccount'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetAccount = GetAccount'
+                    deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetAccount' with the minimum fields required to make a request.
 --
 getAccount
     :: GetAccount
 getAccount = GetAccount'
-
 
 instance AWSRequest GetAccount where
         type Rs GetAccount = Account

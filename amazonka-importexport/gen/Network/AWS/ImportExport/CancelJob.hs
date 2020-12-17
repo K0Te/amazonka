@@ -37,7 +37,6 @@ module Network.AWS.ImportExport.CancelJob
     ) where
 
 import Network.AWS.ImportExport.Types
-import Network.AWS.ImportExport.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -46,11 +45,10 @@ import Network.AWS.Response
 -- | Input structure for the CancelJob operation.
 --
 -- /See:/ 'cancelJob' smart constructor.
-data CancelJob = CancelJob'
-  { _cAPIVersion :: !(Maybe Text)
-  , _cJobId      :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CancelJob = CancelJob'{_cAPIVersion ::
+                            !(Maybe Text),
+                            _cJobId :: !Text}
+                   deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CancelJob' with the minimum fields required to make a request.
 --
@@ -62,8 +60,9 @@ data CancelJob = CancelJob'
 cancelJob
     :: Text -- ^ 'cJobId'
     -> CancelJob
-cancelJob pJobId_ = CancelJob' {_cAPIVersion = Nothing, _cJobId = pJobId_}
-
+cancelJob pJobId_
+  = CancelJob'{_cAPIVersion = Nothing,
+               _cJobId = pJobId_}
 
 -- | Undocumented member.
 cAPIVersion :: Lens' CancelJob (Maybe Text)
@@ -103,11 +102,10 @@ instance ToQuery CancelJob where
 -- | Output structure for the CancelJob operation.
 --
 -- /See:/ 'cancelJobResponse' smart constructor.
-data CancelJobResponse = CancelJobResponse'
-  { _crsSuccess        :: !(Maybe Bool)
-  , _crsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CancelJobResponse = CancelJobResponse'{_crsSuccess
+                                            :: !(Maybe Bool),
+                                            _crsResponseStatus :: !Int}
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CancelJobResponse' with the minimum fields required to make a request.
 --
@@ -119,10 +117,9 @@ data CancelJobResponse = CancelJobResponse'
 cancelJobResponse
     :: Int -- ^ 'crsResponseStatus'
     -> CancelJobResponse
-cancelJobResponse pResponseStatus_ =
-  CancelJobResponse'
-    {_crsSuccess = Nothing, _crsResponseStatus = pResponseStatus_}
-
+cancelJobResponse pResponseStatus_
+  = CancelJobResponse'{_crsSuccess = Nothing,
+                       _crsResponseStatus = pResponseStatus_}
 
 -- | Undocumented member.
 crsSuccess :: Lens' CancelJobResponse (Maybe Bool)

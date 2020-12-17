@@ -42,7 +42,6 @@ module Network.AWS.CloudFormation.ListStacks
     ) where
 
 import Network.AWS.CloudFormation.Types
-import Network.AWS.CloudFormation.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
@@ -54,11 +53,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'listStacks' smart constructor.
-data ListStacks = ListStacks'
-  { _lsNextToken         :: !(Maybe Text)
-  , _lsStackStatusFilter :: !(Maybe [StackStatus])
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListStacks = ListStacks'{_lsNextToken ::
+                              !(Maybe Text),
+                              _lsStackStatusFilter :: !(Maybe [StackStatus])}
+                    deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListStacks' with the minimum fields required to make a request.
 --
@@ -69,9 +67,9 @@ data ListStacks = ListStacks'
 -- * 'lsStackStatusFilter' - Stack status to use as a filter. Specify one or more stack status codes to list only stacks with the specified status codes. For a complete list of stack status codes, see the @StackStatus@ parameter of the 'Stack' data type.
 listStacks
     :: ListStacks
-listStacks =
-  ListStacks' {_lsNextToken = Nothing, _lsStackStatusFilter = Nothing}
-
+listStacks
+  = ListStacks'{_lsNextToken = Nothing,
+                _lsStackStatusFilter = Nothing}
 
 -- | A string that identifies the next page of stacks that you want to retrieve.
 lsNextToken :: Lens' ListStacks (Maybe Text)
@@ -125,12 +123,12 @@ instance ToQuery ListStacks where
 --
 --
 -- /See:/ 'listStacksResponse' smart constructor.
-data ListStacksResponse = ListStacksResponse'
-  { _lsrsNextToken      :: !(Maybe Text)
-  , _lsrsStackSummaries :: !(Maybe [StackSummary])
-  , _lsrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListStacksResponse = ListStacksResponse'{_lsrsNextToken
+                                              :: !(Maybe Text),
+                                              _lsrsStackSummaries ::
+                                              !(Maybe [StackSummary]),
+                                              _lsrsResponseStatus :: !Int}
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListStacksResponse' with the minimum fields required to make a request.
 --
@@ -144,13 +142,10 @@ data ListStacksResponse = ListStacksResponse'
 listStacksResponse
     :: Int -- ^ 'lsrsResponseStatus'
     -> ListStacksResponse
-listStacksResponse pResponseStatus_ =
-  ListStacksResponse'
-    { _lsrsNextToken = Nothing
-    , _lsrsStackSummaries = Nothing
-    , _lsrsResponseStatus = pResponseStatus_
-    }
-
+listStacksResponse pResponseStatus_
+  = ListStacksResponse'{_lsrsNextToken = Nothing,
+                        _lsrsStackSummaries = Nothing,
+                        _lsrsResponseStatus = pResponseStatus_}
 
 -- | If the output exceeds 1 MB in size, a string that identifies the next page of stacks. If no additional page exists, this value is null.
 lsrsNextToken :: Lens' ListStacksResponse (Maybe Text)

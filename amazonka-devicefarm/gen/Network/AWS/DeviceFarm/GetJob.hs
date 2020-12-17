@@ -38,7 +38,6 @@ module Network.AWS.DeviceFarm.GetJob
     ) where
 
 import Network.AWS.DeviceFarm.Types
-import Network.AWS.DeviceFarm.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -49,10 +48,8 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'getJob' smart constructor.
-newtype GetJob = GetJob'
-  { _gjArn :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetJob = GetJob'{_gjArn :: Text}
+                   deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetJob' with the minimum fields required to make a request.
 --
@@ -62,8 +59,7 @@ newtype GetJob = GetJob'
 getJob
     :: Text -- ^ 'gjArn'
     -> GetJob
-getJob pArn_ = GetJob' {_gjArn = pArn_}
-
+getJob pArn_ = GetJob'{_gjArn = pArn_}
 
 -- | The job's ARN.
 gjArn :: Lens' GetJob Text
@@ -106,27 +102,26 @@ instance ToQuery GetJob where
 --
 --
 -- /See:/ 'getJobResponse' smart constructor.
-data GetJobResponse = GetJobResponse'
-  { _gjrsJob            :: !(Maybe Job)
-  , _gjrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetJobResponse = GetJobResponse'{_gjrsJob ::
+                                      !(Maybe Job),
+                                      _gjrsResponseStatus :: !Int}
+                        deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetJobResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'gjrsJob' - An object containing information about the requested job.
+-- * 'gjrsJob' - An object that contains information about the requested job.
 --
 -- * 'gjrsResponseStatus' - -- | The response status code.
 getJobResponse
     :: Int -- ^ 'gjrsResponseStatus'
     -> GetJobResponse
-getJobResponse pResponseStatus_ =
-  GetJobResponse' {_gjrsJob = Nothing, _gjrsResponseStatus = pResponseStatus_}
+getJobResponse pResponseStatus_
+  = GetJobResponse'{_gjrsJob = Nothing,
+                    _gjrsResponseStatus = pResponseStatus_}
 
-
--- | An object containing information about the requested job.
+-- | An object that contains information about the requested job.
 gjrsJob :: Lens' GetJobResponse (Maybe Job)
 gjrsJob = lens _gjrsJob (\ s a -> s{_gjrsJob = a})
 

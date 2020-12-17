@@ -18,10 +18,10 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Updates the thing shadow for the specified thing.
+-- Updates the shadow for the specified thing.
 --
 --
--- For more information, see <http://docs.aws.amazon.com/iot/latest/developerguide/API_UpdateThingShadow.html UpdateThingShadow> in the /AWS IoT Developer Guide/ .
+-- For more information, see <http://docs.aws.amazon.com/iot/latest/developerguide/API_UpdateThingShadow.html UpdateThingShadow> in the AWS IoT Developer Guide.
 --
 module Network.AWS.IoTData.UpdateThingShadow
     (
@@ -29,6 +29,7 @@ module Network.AWS.IoTData.UpdateThingShadow
       updateThingShadow
     , UpdateThingShadow
     -- * Request Lenses
+    , utsShadowName
     , utsThingName
     , utsPayload
 
@@ -41,7 +42,6 @@ module Network.AWS.IoTData.UpdateThingShadow
     ) where
 
 import Network.AWS.IoTData.Types
-import Network.AWS.IoTData.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -52,15 +52,17 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'updateThingShadow' smart constructor.
-data UpdateThingShadow = UpdateThingShadow'
-  { _utsThingName :: !Text
-  , _utsPayload   :: !ByteString
-  } deriving (Eq, Show, Data, Typeable, Generic)
-
+data UpdateThingShadow = UpdateThingShadow'{_utsShadowName
+                                            :: !(Maybe Text),
+                                            _utsThingName :: !Text,
+                                            _utsPayload :: !ByteString}
+                           deriving (Eq, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UpdateThingShadow' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
+--
+-- * 'utsShadowName' - The name of the shadow.
 --
 -- * 'utsThingName' - The name of the thing.
 --
@@ -69,9 +71,13 @@ updateThingShadow
     :: Text -- ^ 'utsThingName'
     -> ByteString -- ^ 'utsPayload'
     -> UpdateThingShadow
-updateThingShadow pThingName_ pPayload_ =
-  UpdateThingShadow' {_utsThingName = pThingName_, _utsPayload = pPayload_}
+updateThingShadow pThingName_ pPayload_
+  = UpdateThingShadow'{_utsShadowName = Nothing,
+                       _utsThingName = pThingName_, _utsPayload = pPayload_}
 
+-- | The name of the shadow.
+utsShadowName :: Lens' UpdateThingShadow (Maybe Text)
+utsShadowName = lens _utsShadowName (\ s a -> s{_utsShadowName = a})
 
 -- | The name of the thing.
 utsThingName :: Lens' UpdateThingShadow Text
@@ -105,18 +111,20 @@ instance ToPath UpdateThingShadow where
           = mconcat ["/things/", toBS _utsThingName, "/shadow"]
 
 instance ToQuery UpdateThingShadow where
-        toQuery = const mempty
+        toQuery UpdateThingShadow'{..}
+          = mconcat ["name" =: _utsShadowName]
 
 -- | The output from the UpdateThingShadow operation.
 --
 --
 --
 -- /See:/ 'updateThingShadowResponse' smart constructor.
-data UpdateThingShadowResponse = UpdateThingShadowResponse'
-  { _utsrsPayload        :: !(Maybe ByteString)
-  , _utsrsResponseStatus :: !Int
-  } deriving (Eq, Show, Data, Typeable, Generic)
-
+data UpdateThingShadowResponse = UpdateThingShadowResponse'{_utsrsPayload
+                                                            ::
+                                                            !(Maybe ByteString),
+                                                            _utsrsResponseStatus
+                                                            :: !Int}
+                                   deriving (Eq, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UpdateThingShadowResponse' with the minimum fields required to make a request.
 --
@@ -128,10 +136,9 @@ data UpdateThingShadowResponse = UpdateThingShadowResponse'
 updateThingShadowResponse
     :: Int -- ^ 'utsrsResponseStatus'
     -> UpdateThingShadowResponse
-updateThingShadowResponse pResponseStatus_ =
-  UpdateThingShadowResponse'
-    {_utsrsPayload = Nothing, _utsrsResponseStatus = pResponseStatus_}
-
+updateThingShadowResponse pResponseStatus_
+  = UpdateThingShadowResponse'{_utsrsPayload = Nothing,
+                               _utsrsResponseStatus = pResponseStatus_}
 
 -- | The state information, in JSON format.
 utsrsPayload :: Lens' UpdateThingShadowResponse (Maybe ByteString)

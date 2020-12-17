@@ -38,7 +38,6 @@ module Network.AWS.APIGateway.DeleteMethodResponse
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -49,13 +48,12 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'deleteMethodResponse' smart constructor.
-data DeleteMethodResponse = DeleteMethodResponse'
-  { _dmRestAPIId  :: !Text
-  , _dmResourceId :: !Text
-  , _dmHttpMethod :: !Text
-  , _dmStatusCode :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteMethodResponse = DeleteMethodResponse'{_dmRestAPIId
+                                                  :: !Text,
+                                                  _dmResourceId :: !Text,
+                                                  _dmHttpMethod :: !Text,
+                                                  _dmStatusCode :: !Text}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteMethodResponse' with the minimum fields required to make a request.
 --
@@ -74,14 +72,12 @@ deleteMethodResponse
     -> Text -- ^ 'dmHttpMethod'
     -> Text -- ^ 'dmStatusCode'
     -> DeleteMethodResponse
-deleteMethodResponse pRestAPIId_ pResourceId_ pHttpMethod_ pStatusCode_ =
-  DeleteMethodResponse'
-    { _dmRestAPIId = pRestAPIId_
-    , _dmResourceId = pResourceId_
-    , _dmHttpMethod = pHttpMethod_
-    , _dmStatusCode = pStatusCode_
-    }
-
+deleteMethodResponse pRestAPIId_ pResourceId_
+  pHttpMethod_ pStatusCode_
+  = DeleteMethodResponse'{_dmRestAPIId = pRestAPIId_,
+                          _dmResourceId = pResourceId_,
+                          _dmHttpMethod = pHttpMethod_,
+                          _dmStatusCode = pStatusCode_}
 
 -- | [Required] The string identifier of the associated 'RestApi' .
 dmRestAPIId :: Lens' DeleteMethodResponse Text
@@ -126,16 +122,15 @@ instance ToQuery DeleteMethodResponse where
         toQuery = const mempty
 
 -- | /See:/ 'deleteMethodResponseResponse' smart constructor.
-data DeleteMethodResponseResponse =
-  DeleteMethodResponseResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteMethodResponseResponse = DeleteMethodResponseResponse'
+                                      deriving (Eq, Read, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'DeleteMethodResponseResponse' with the minimum fields required to make a request.
 --
 deleteMethodResponseResponse
     :: DeleteMethodResponseResponse
-deleteMethodResponseResponse = DeleteMethodResponseResponse'
-
+deleteMethodResponseResponse
+  = DeleteMethodResponseResponse'
 
 instance NFData DeleteMethodResponseResponse where

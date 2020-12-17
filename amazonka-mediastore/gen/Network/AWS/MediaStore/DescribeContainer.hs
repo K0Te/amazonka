@@ -39,16 +39,14 @@ module Network.AWS.MediaStore.DescribeContainer
 
 import Network.AWS.Lens
 import Network.AWS.MediaStore.Types
-import Network.AWS.MediaStore.Types.Product
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'describeContainer' smart constructor.
-newtype DescribeContainer = DescribeContainer'
-  { _dContainerName :: Maybe Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DescribeContainer = DescribeContainer'{_dContainerName
+                                               :: Maybe Text}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DescribeContainer' with the minimum fields required to make a request.
 --
@@ -57,8 +55,8 @@ newtype DescribeContainer = DescribeContainer'
 -- * 'dContainerName' - The name of the container to query.
 describeContainer
     :: DescribeContainer
-describeContainer = DescribeContainer' {_dContainerName = Nothing}
-
+describeContainer
+  = DescribeContainer'{_dContainerName = Nothing}
 
 -- | The name of the container to query.
 dContainerName :: Lens' DescribeContainer (Maybe Text)
@@ -100,11 +98,13 @@ instance ToQuery DescribeContainer where
         toQuery = const mempty
 
 -- | /See:/ 'describeContainerResponse' smart constructor.
-data DescribeContainerResponse = DescribeContainerResponse'
-  { _drsContainer      :: !(Maybe Container)
-  , _drsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeContainerResponse = DescribeContainerResponse'{_drsContainer
+                                                            ::
+                                                            !(Maybe Container),
+                                                            _drsResponseStatus
+                                                            :: !Int}
+                                   deriving (Eq, Read, Show, Data, Typeable,
+                                             Generic)
 
 -- | Creates a value of 'DescribeContainerResponse' with the minimum fields required to make a request.
 --
@@ -116,10 +116,9 @@ data DescribeContainerResponse = DescribeContainerResponse'
 describeContainerResponse
     :: Int -- ^ 'drsResponseStatus'
     -> DescribeContainerResponse
-describeContainerResponse pResponseStatus_ =
-  DescribeContainerResponse'
-    {_drsContainer = Nothing, _drsResponseStatus = pResponseStatus_}
-
+describeContainerResponse pResponseStatus_
+  = DescribeContainerResponse'{_drsContainer = Nothing,
+                               _drsResponseStatus = pResponseStatus_}
 
 -- | The name of the queried container.
 drsContainer :: Lens' DescribeContainerResponse (Maybe Container)

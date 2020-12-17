@@ -29,12 +29,16 @@ module Network.AWS.AppSync.CreateResolver
       createResolver
     , CreateResolver
     -- * Request Lenses
+    , crDataSourceName
+    , crRequestMappingTemplate
+    , crKind
+    , crCachingConfig
     , crResponseMappingTemplate
+    , crSyncConfig
+    , crPipelineConfig
     , crApiId
     , crTypeName
     , crFieldName
-    , crDataSourceName
-    , crRequestMappingTemplate
 
     -- * Destructuring the Response
     , createResolverResponse
@@ -45,59 +49,92 @@ module Network.AWS.AppSync.CreateResolver
     ) where
 
 import Network.AWS.AppSync.Types
-import Network.AWS.AppSync.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'createResolver' smart constructor.
-data CreateResolver = CreateResolver'
-  { _crResponseMappingTemplate :: !(Maybe Text)
-  , _crApiId                   :: !Text
-  , _crTypeName                :: !Text
-  , _crFieldName               :: !Text
-  , _crDataSourceName          :: !Text
-  , _crRequestMappingTemplate  :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateResolver = CreateResolver'{_crDataSourceName
+                                      :: !(Maybe Text),
+                                      _crRequestMappingTemplate ::
+                                      !(Maybe Text),
+                                      _crKind :: !(Maybe ResolverKind),
+                                      _crCachingConfig ::
+                                      !(Maybe CachingConfig),
+                                      _crResponseMappingTemplate ::
+                                      !(Maybe Text),
+                                      _crSyncConfig :: !(Maybe SyncConfig),
+                                      _crPipelineConfig ::
+                                      !(Maybe PipelineConfig),
+                                      _crApiId :: !Text, _crTypeName :: !Text,
+                                      _crFieldName :: !Text}
+                        deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CreateResolver' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
+-- * 'crDataSourceName' - The name of the data source for which the resolver is being created.
+--
+-- * 'crRequestMappingTemplate' - The mapping template to be used for requests. A resolver uses a request mapping template to convert a GraphQL expression into a format that a data source can understand. Mapping templates are written in Apache Velocity Template Language (VTL). VTL request mapping templates are optional when using a Lambda data source. For all other data sources, VTL request and response mapping templates are required.
+--
+-- * 'crKind' - The resolver type.     * __UNIT__ : A UNIT resolver type. A UNIT resolver is the default resolver type. A UNIT resolver enables you to execute a GraphQL query against a single data source.     * __PIPELINE__ : A PIPELINE resolver type. A PIPELINE resolver enables you to execute a series of @Function@ in a serial manner. You can use a pipeline resolver to execute a GraphQL query against multiple data sources.
+--
+-- * 'crCachingConfig' - The caching configuration for the resolver.
+--
 -- * 'crResponseMappingTemplate' - The mapping template to be used for responses from the data source.
+--
+-- * 'crSyncConfig' - The @SyncConfig@ for a resolver attached to a versioned datasource.
+--
+-- * 'crPipelineConfig' - The @PipelineConfig@ .
 --
 -- * 'crApiId' - The ID for the GraphQL API for which the resolver is being created.
 --
 -- * 'crTypeName' - The name of the @Type@ .
 --
 -- * 'crFieldName' - The name of the field to attach the resolver to.
---
--- * 'crDataSourceName' - The name of the data source for which the resolver is being created.
---
--- * 'crRequestMappingTemplate' - The mapping template to be used for requests. A resolver uses a request mapping template to convert a GraphQL expression into a format that a data source can understand. Mapping templates are written in Apache Velocity Template Language (VTL).
 createResolver
     :: Text -- ^ 'crApiId'
     -> Text -- ^ 'crTypeName'
     -> Text -- ^ 'crFieldName'
-    -> Text -- ^ 'crDataSourceName'
-    -> Text -- ^ 'crRequestMappingTemplate'
     -> CreateResolver
-createResolver pApiId_ pTypeName_ pFieldName_ pDataSourceName_ pRequestMappingTemplate_ =
-  CreateResolver'
-    { _crResponseMappingTemplate = Nothing
-    , _crApiId = pApiId_
-    , _crTypeName = pTypeName_
-    , _crFieldName = pFieldName_
-    , _crDataSourceName = pDataSourceName_
-    , _crRequestMappingTemplate = pRequestMappingTemplate_
-    }
+createResolver pApiId_ pTypeName_ pFieldName_
+  = CreateResolver'{_crDataSourceName = Nothing,
+                    _crRequestMappingTemplate = Nothing,
+                    _crKind = Nothing, _crCachingConfig = Nothing,
+                    _crResponseMappingTemplate = Nothing,
+                    _crSyncConfig = Nothing, _crPipelineConfig = Nothing,
+                    _crApiId = pApiId_, _crTypeName = pTypeName_,
+                    _crFieldName = pFieldName_}
 
+-- | The name of the data source for which the resolver is being created.
+crDataSourceName :: Lens' CreateResolver (Maybe Text)
+crDataSourceName = lens _crDataSourceName (\ s a -> s{_crDataSourceName = a})
+
+-- | The mapping template to be used for requests. A resolver uses a request mapping template to convert a GraphQL expression into a format that a data source can understand. Mapping templates are written in Apache Velocity Template Language (VTL). VTL request mapping templates are optional when using a Lambda data source. For all other data sources, VTL request and response mapping templates are required.
+crRequestMappingTemplate :: Lens' CreateResolver (Maybe Text)
+crRequestMappingTemplate = lens _crRequestMappingTemplate (\ s a -> s{_crRequestMappingTemplate = a})
+
+-- | The resolver type.     * __UNIT__ : A UNIT resolver type. A UNIT resolver is the default resolver type. A UNIT resolver enables you to execute a GraphQL query against a single data source.     * __PIPELINE__ : A PIPELINE resolver type. A PIPELINE resolver enables you to execute a series of @Function@ in a serial manner. You can use a pipeline resolver to execute a GraphQL query against multiple data sources.
+crKind :: Lens' CreateResolver (Maybe ResolverKind)
+crKind = lens _crKind (\ s a -> s{_crKind = a})
+
+-- | The caching configuration for the resolver.
+crCachingConfig :: Lens' CreateResolver (Maybe CachingConfig)
+crCachingConfig = lens _crCachingConfig (\ s a -> s{_crCachingConfig = a})
 
 -- | The mapping template to be used for responses from the data source.
 crResponseMappingTemplate :: Lens' CreateResolver (Maybe Text)
 crResponseMappingTemplate = lens _crResponseMappingTemplate (\ s a -> s{_crResponseMappingTemplate = a})
+
+-- | The @SyncConfig@ for a resolver attached to a versioned datasource.
+crSyncConfig :: Lens' CreateResolver (Maybe SyncConfig)
+crSyncConfig = lens _crSyncConfig (\ s a -> s{_crSyncConfig = a})
+
+-- | The @PipelineConfig@ .
+crPipelineConfig :: Lens' CreateResolver (Maybe PipelineConfig)
+crPipelineConfig = lens _crPipelineConfig (\ s a -> s{_crPipelineConfig = a})
 
 -- | The ID for the GraphQL API for which the resolver is being created.
 crApiId :: Lens' CreateResolver Text
@@ -110,14 +147,6 @@ crTypeName = lens _crTypeName (\ s a -> s{_crTypeName = a})
 -- | The name of the field to attach the resolver to.
 crFieldName :: Lens' CreateResolver Text
 crFieldName = lens _crFieldName (\ s a -> s{_crFieldName = a})
-
--- | The name of the data source for which the resolver is being created.
-crDataSourceName :: Lens' CreateResolver Text
-crDataSourceName = lens _crDataSourceName (\ s a -> s{_crDataSourceName = a})
-
--- | The mapping template to be used for requests. A resolver uses a request mapping template to convert a GraphQL expression into a format that a data source can understand. Mapping templates are written in Apache Velocity Template Language (VTL).
-crRequestMappingTemplate :: Lens' CreateResolver Text
-crRequestMappingTemplate = lens _crRequestMappingTemplate (\ s a -> s{_crRequestMappingTemplate = a})
 
 instance AWSRequest CreateResolver where
         type Rs CreateResolver = CreateResolverResponse
@@ -143,13 +172,16 @@ instance ToJSON CreateResolver where
         toJSON CreateResolver'{..}
           = object
               (catMaybes
-                 [("responseMappingTemplate" .=) <$>
+                 [("dataSourceName" .=) <$> _crDataSourceName,
+                  ("requestMappingTemplate" .=) <$>
+                    _crRequestMappingTemplate,
+                  ("kind" .=) <$> _crKind,
+                  ("cachingConfig" .=) <$> _crCachingConfig,
+                  ("responseMappingTemplate" .=) <$>
                     _crResponseMappingTemplate,
-                  Just ("fieldName" .= _crFieldName),
-                  Just ("dataSourceName" .= _crDataSourceName),
-                  Just
-                    ("requestMappingTemplate" .=
-                       _crRequestMappingTemplate)])
+                  ("syncConfig" .=) <$> _crSyncConfig,
+                  ("pipelineConfig" .=) <$> _crPipelineConfig,
+                  Just ("fieldName" .= _crFieldName)])
 
 instance ToPath CreateResolver where
         toPath CreateResolver'{..}
@@ -161,11 +193,12 @@ instance ToQuery CreateResolver where
         toQuery = const mempty
 
 -- | /See:/ 'createResolverResponse' smart constructor.
-data CreateResolverResponse = CreateResolverResponse'
-  { _crrsResolver       :: !(Maybe Resolver)
-  , _crrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateResolverResponse = CreateResolverResponse'{_crrsResolver
+                                                      :: !(Maybe Resolver),
+                                                      _crrsResponseStatus ::
+                                                      !Int}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'CreateResolverResponse' with the minimum fields required to make a request.
 --
@@ -177,10 +210,9 @@ data CreateResolverResponse = CreateResolverResponse'
 createResolverResponse
     :: Int -- ^ 'crrsResponseStatus'
     -> CreateResolverResponse
-createResolverResponse pResponseStatus_ =
-  CreateResolverResponse'
-    {_crrsResolver = Nothing, _crrsResponseStatus = pResponseStatus_}
-
+createResolverResponse pResponseStatus_
+  = CreateResolverResponse'{_crrsResolver = Nothing,
+                            _crrsResponseStatus = pResponseStatus_}
 
 -- | The @Resolver@ object.
 crrsResolver :: Lens' CreateResolverResponse (Maybe Resolver)

@@ -21,7 +21,7 @@
 -- Updates an existing 'Authorizer' resource.
 --
 --
--- <http://docs.aws.amazon.com/cli/latest/reference/apigateway/update-authorizer.html AWS CLI>
+-- <https://docs.aws.amazon.com/cli/latest/reference/apigateway/update-authorizer.html AWS CLI> 
 module Network.AWS.APIGateway.UpdateAuthorizer
     (
     -- * Creating a Request
@@ -49,7 +49,6 @@ module Network.AWS.APIGateway.UpdateAuthorizer
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -60,12 +59,11 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'updateAuthorizer' smart constructor.
-data UpdateAuthorizer = UpdateAuthorizer'
-  { _uaaPatchOperations :: !(Maybe [PatchOperation])
-  , _uaaRestAPIId       :: !Text
-  , _uaaAuthorizerId    :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateAuthorizer = UpdateAuthorizer'{_uaaPatchOperations
+                                          :: !(Maybe [PatchOperation]),
+                                          _uaaRestAPIId :: !Text,
+                                          _uaaAuthorizerId :: !Text}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UpdateAuthorizer' with the minimum fields required to make a request.
 --
@@ -80,13 +78,10 @@ updateAuthorizer
     :: Text -- ^ 'uaaRestAPIId'
     -> Text -- ^ 'uaaAuthorizerId'
     -> UpdateAuthorizer
-updateAuthorizer pRestAPIId_ pAuthorizerId_ =
-  UpdateAuthorizer'
-    { _uaaPatchOperations = Nothing
-    , _uaaRestAPIId = pRestAPIId_
-    , _uaaAuthorizerId = pAuthorizerId_
-    }
-
+updateAuthorizer pRestAPIId_ pAuthorizerId_
+  = UpdateAuthorizer'{_uaaPatchOperations = Nothing,
+                      _uaaRestAPIId = pRestAPIId_,
+                      _uaaAuthorizerId = pAuthorizerId_}
 
 -- | A list of update operations to be applied to the specified resource and in the order specified in this list.
 uaaPatchOperations :: Lens' UpdateAuthorizer [PatchOperation]

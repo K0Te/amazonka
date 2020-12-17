@@ -44,13 +44,11 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.SES.Types
-import Network.AWS.SES.Types.Product
 
 -- | /See:/ 'getTemplate' smart constructor.
-newtype GetTemplate = GetTemplate'
-  { _gtTemplateName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetTemplate = GetTemplate'{_gtTemplateName ::
+                                   Text}
+                        deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetTemplate' with the minimum fields required to make a request.
 --
@@ -60,8 +58,8 @@ newtype GetTemplate = GetTemplate'
 getTemplate
     :: Text -- ^ 'gtTemplateName'
     -> GetTemplate
-getTemplate pTemplateName_ = GetTemplate' {_gtTemplateName = pTemplateName_}
-
+getTemplate pTemplateName_
+  = GetTemplate'{_gtTemplateName = pTemplateName_}
 
 -- | The name of the template you want to retrieve.
 gtTemplateName :: Lens' GetTemplate Text
@@ -94,11 +92,10 @@ instance ToQuery GetTemplate where
                "TemplateName" =: _gtTemplateName]
 
 -- | /See:/ 'getTemplateResponse' smart constructor.
-data GetTemplateResponse = GetTemplateResponse'
-  { _gtrsTemplate       :: !(Maybe Template)
-  , _gtrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetTemplateResponse = GetTemplateResponse'{_gtrsTemplate
+                                                :: !(Maybe Template),
+                                                _gtrsResponseStatus :: !Int}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetTemplateResponse' with the minimum fields required to make a request.
 --
@@ -110,10 +107,9 @@ data GetTemplateResponse = GetTemplateResponse'
 getTemplateResponse
     :: Int -- ^ 'gtrsResponseStatus'
     -> GetTemplateResponse
-getTemplateResponse pResponseStatus_ =
-  GetTemplateResponse'
-    {_gtrsTemplate = Nothing, _gtrsResponseStatus = pResponseStatus_}
-
+getTemplateResponse pResponseStatus_
+  = GetTemplateResponse'{_gtrsTemplate = Nothing,
+                         _gtrsResponseStatus = pResponseStatus_}
 
 -- | Undocumented member.
 gtrsTemplate :: Lens' GetTemplateResponse (Maybe Template)

@@ -38,17 +38,15 @@ module Network.AWS.AlexaBusiness.GetAddressBook
     ) where
 
 import Network.AWS.AlexaBusiness.Types
-import Network.AWS.AlexaBusiness.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'getAddressBook' smart constructor.
-newtype GetAddressBook = GetAddressBook'
-  { _gabAddressBookARN :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetAddressBook = GetAddressBook'{_gabAddressBookARN
+                                         :: Text}
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetAddressBook' with the minimum fields required to make a request.
 --
@@ -58,9 +56,9 @@ newtype GetAddressBook = GetAddressBook'
 getAddressBook
     :: Text -- ^ 'gabAddressBookARN'
     -> GetAddressBook
-getAddressBook pAddressBookARN_ =
-  GetAddressBook' {_gabAddressBookARN = pAddressBookARN_}
-
+getAddressBook pAddressBookARN_
+  = GetAddressBook'{_gabAddressBookARN =
+                      pAddressBookARN_}
 
 -- | The ARN of the address book for which to request details.
 gabAddressBookARN :: Lens' GetAddressBook Text
@@ -101,11 +99,12 @@ instance ToQuery GetAddressBook where
         toQuery = const mempty
 
 -- | /See:/ 'getAddressBookResponse' smart constructor.
-data GetAddressBookResponse = GetAddressBookResponse'
-  { _gabrsAddressBook    :: !(Maybe AddressBook)
-  , _gabrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetAddressBookResponse = GetAddressBookResponse'{_gabrsAddressBook
+                                                      :: !(Maybe AddressBook),
+                                                      _gabrsResponseStatus ::
+                                                      !Int}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'GetAddressBookResponse' with the minimum fields required to make a request.
 --
@@ -117,10 +116,10 @@ data GetAddressBookResponse = GetAddressBookResponse'
 getAddressBookResponse
     :: Int -- ^ 'gabrsResponseStatus'
     -> GetAddressBookResponse
-getAddressBookResponse pResponseStatus_ =
-  GetAddressBookResponse'
-    {_gabrsAddressBook = Nothing, _gabrsResponseStatus = pResponseStatus_}
-
+getAddressBookResponse pResponseStatus_
+  = GetAddressBookResponse'{_gabrsAddressBook =
+                              Nothing,
+                            _gabrsResponseStatus = pResponseStatus_}
 
 -- | The details of the requested address book.
 gabrsAddressBook :: Lens' GetAddressBookResponse (Maybe AddressBook)

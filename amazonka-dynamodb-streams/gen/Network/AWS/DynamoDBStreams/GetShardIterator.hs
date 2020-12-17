@@ -41,7 +41,6 @@ module Network.AWS.DynamoDBStreams.GetShardIterator
     ) where
 
 import Network.AWS.DynamoDBStreams.Types
-import Network.AWS.DynamoDBStreams.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -52,13 +51,13 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'getShardIterator' smart constructor.
-data GetShardIterator = GetShardIterator'
-  { _gsiSequenceNumber    :: !(Maybe Text)
-  , _gsiStreamARN         :: !Text
-  , _gsiShardId           :: !Text
-  , _gsiShardIteratorType :: !ShardIteratorType
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetShardIterator = GetShardIterator'{_gsiSequenceNumber
+                                          :: !(Maybe Text),
+                                          _gsiStreamARN :: !Text,
+                                          _gsiShardId :: !Text,
+                                          _gsiShardIteratorType ::
+                                          !ShardIteratorType}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetShardIterator' with the minimum fields required to make a request.
 --
@@ -76,14 +75,11 @@ getShardIterator
     -> Text -- ^ 'gsiShardId'
     -> ShardIteratorType -- ^ 'gsiShardIteratorType'
     -> GetShardIterator
-getShardIterator pStreamARN_ pShardId_ pShardIteratorType_ =
-  GetShardIterator'
-    { _gsiSequenceNumber = Nothing
-    , _gsiStreamARN = pStreamARN_
-    , _gsiShardId = pShardId_
-    , _gsiShardIteratorType = pShardIteratorType_
-    }
-
+getShardIterator pStreamARN_ pShardId_
+  pShardIteratorType_
+  = GetShardIterator'{_gsiSequenceNumber = Nothing,
+                      _gsiStreamARN = pStreamARN_, _gsiShardId = pShardId_,
+                      _gsiShardIteratorType = pShardIteratorType_}
 
 -- | The sequence number of a stream record in the shard from which to start reading.
 gsiSequenceNumber :: Lens' GetShardIterator (Maybe Text)
@@ -144,11 +140,12 @@ instance ToQuery GetShardIterator where
 --
 --
 -- /See:/ 'getShardIteratorResponse' smart constructor.
-data GetShardIteratorResponse = GetShardIteratorResponse'
-  { _gsirsShardIterator  :: !(Maybe Text)
-  , _gsirsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetShardIteratorResponse = GetShardIteratorResponse'{_gsirsShardIterator
+                                                          :: !(Maybe Text),
+                                                          _gsirsResponseStatus
+                                                          :: !Int}
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'GetShardIteratorResponse' with the minimum fields required to make a request.
 --
@@ -160,10 +157,10 @@ data GetShardIteratorResponse = GetShardIteratorResponse'
 getShardIteratorResponse
     :: Int -- ^ 'gsirsResponseStatus'
     -> GetShardIteratorResponse
-getShardIteratorResponse pResponseStatus_ =
-  GetShardIteratorResponse'
-    {_gsirsShardIterator = Nothing, _gsirsResponseStatus = pResponseStatus_}
-
+getShardIteratorResponse pResponseStatus_
+  = GetShardIteratorResponse'{_gsirsShardIterator =
+                                Nothing,
+                              _gsirsResponseStatus = pResponseStatus_}
 
 -- | The position in the shard from which to start reading stream records sequentially. A shard iterator specifies this position using the sequence number of a stream record in a shard.
 gsirsShardIterator :: Lens' GetShardIteratorResponse (Maybe Text)

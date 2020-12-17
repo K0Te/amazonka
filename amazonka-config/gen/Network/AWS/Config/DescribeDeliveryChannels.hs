@@ -38,7 +38,6 @@ module Network.AWS.Config.DescribeDeliveryChannels
     ) where
 
 import Network.AWS.Config.Types
-import Network.AWS.Config.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -49,10 +48,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'describeDeliveryChannels' smart constructor.
-newtype DescribeDeliveryChannels = DescribeDeliveryChannels'
-  { _ddcDeliveryChannelNames :: Maybe [Text]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DescribeDeliveryChannels = DescribeDeliveryChannels'{_ddcDeliveryChannelNames
+                                                             :: Maybe [Text]}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'DescribeDeliveryChannels' with the minimum fields required to make a request.
 --
@@ -61,9 +60,9 @@ newtype DescribeDeliveryChannels = DescribeDeliveryChannels'
 -- * 'ddcDeliveryChannelNames' - A list of delivery channel names.
 describeDeliveryChannels
     :: DescribeDeliveryChannels
-describeDeliveryChannels =
-  DescribeDeliveryChannels' {_ddcDeliveryChannelNames = Nothing}
-
+describeDeliveryChannels
+  = DescribeDeliveryChannels'{_ddcDeliveryChannelNames
+                                = Nothing}
 
 -- | A list of delivery channel names.
 ddcDeliveryChannelNames :: Lens' DescribeDeliveryChannels [Text]
@@ -112,11 +111,15 @@ instance ToQuery DescribeDeliveryChannels where
 --
 --
 -- /See:/ 'describeDeliveryChannelsResponse' smart constructor.
-data DescribeDeliveryChannelsResponse = DescribeDeliveryChannelsResponse'
-  { _ddcrsDeliveryChannels :: !(Maybe [DeliveryChannel])
-  , _ddcrsResponseStatus   :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeDeliveryChannelsResponse = DescribeDeliveryChannelsResponse'{_ddcrsDeliveryChannels
+                                                                          ::
+                                                                          !(Maybe
+                                                                              [DeliveryChannel]),
+                                                                          _ddcrsResponseStatus
+                                                                          ::
+                                                                          !Int}
+                                          deriving (Eq, Read, Show, Data,
+                                                    Typeable, Generic)
 
 -- | Creates a value of 'DescribeDeliveryChannelsResponse' with the minimum fields required to make a request.
 --
@@ -128,10 +131,10 @@ data DescribeDeliveryChannelsResponse = DescribeDeliveryChannelsResponse'
 describeDeliveryChannelsResponse
     :: Int -- ^ 'ddcrsResponseStatus'
     -> DescribeDeliveryChannelsResponse
-describeDeliveryChannelsResponse pResponseStatus_ =
-  DescribeDeliveryChannelsResponse'
-    {_ddcrsDeliveryChannels = Nothing, _ddcrsResponseStatus = pResponseStatus_}
-
+describeDeliveryChannelsResponse pResponseStatus_
+  = DescribeDeliveryChannelsResponse'{_ddcrsDeliveryChannels
+                                        = Nothing,
+                                      _ddcrsResponseStatus = pResponseStatus_}
 
 -- | A list that contains the descriptions of the specified delivery channel.
 ddcrsDeliveryChannels :: Lens' DescribeDeliveryChannelsResponse [DeliveryChannel]

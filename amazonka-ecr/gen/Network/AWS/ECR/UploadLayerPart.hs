@@ -21,6 +21,8 @@
 -- Uploads an image layer part to Amazon ECR.
 --
 --
+-- When an image is pushed, each new image layer is uploaded in parts. The maximum size of each image layer part can be 20971520 bytes (or about 20MB). The UploadLayerPart API is called once per each new image layer part.
+--
 module Network.AWS.ECR.UploadLayerPart
     (
     -- * Creating a Request
@@ -46,22 +48,20 @@ module Network.AWS.ECR.UploadLayerPart
     ) where
 
 import Network.AWS.ECR.Types
-import Network.AWS.ECR.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'uploadLayerPart' smart constructor.
-data UploadLayerPart = UploadLayerPart'
-  { _ulpRegistryId     :: !(Maybe Text)
-  , _ulpRepositoryName :: !Text
-  , _ulpUploadId       :: !Text
-  , _ulpPartFirstByte  :: !Nat
-  , _ulpPartLastByte   :: !Nat
-  , _ulpLayerPartBlob  :: !Base64
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UploadLayerPart = UploadLayerPart'{_ulpRegistryId
+                                        :: !(Maybe Text),
+                                        _ulpRepositoryName :: !Text,
+                                        _ulpUploadId :: !Text,
+                                        _ulpPartFirstByte :: !Nat,
+                                        _ulpPartLastByte :: !Nat,
+                                        _ulpLayerPartBlob :: !Base64}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UploadLayerPart' with the minimum fields required to make a request.
 --
@@ -73,9 +73,9 @@ data UploadLayerPart = UploadLayerPart'
 --
 -- * 'ulpUploadId' - The upload ID from a previous 'InitiateLayerUpload' operation to associate with the layer part upload.
 --
--- * 'ulpPartFirstByte' - The integer value of the first byte of the layer part.
+-- * 'ulpPartFirstByte' - The position of the first byte of the layer part witin the overall image layer.
 --
--- * 'ulpPartLastByte' - The integer value of the last byte of the layer part.
+-- * 'ulpPartLastByte' - The position of the last byte of the layer part within the overall image layer.
 --
 -- * 'ulpLayerPartBlob' - The base64-encoded layer part payload.-- /Note:/ This 'Lens' automatically encodes and decodes Base64 data. The underlying isomorphism will encode to Base64 representation during serialisation, and decode from Base64 representation during deserialisation. This 'Lens' accepts and returns only raw unencoded data.
 uploadLayerPart
@@ -85,16 +85,14 @@ uploadLayerPart
     -> Natural -- ^ 'ulpPartLastByte'
     -> ByteString -- ^ 'ulpLayerPartBlob'
     -> UploadLayerPart
-uploadLayerPart pRepositoryName_ pUploadId_ pPartFirstByte_ pPartLastByte_ pLayerPartBlob_ =
-  UploadLayerPart'
-    { _ulpRegistryId = Nothing
-    , _ulpRepositoryName = pRepositoryName_
-    , _ulpUploadId = pUploadId_
-    , _ulpPartFirstByte = _Nat # pPartFirstByte_
-    , _ulpPartLastByte = _Nat # pPartLastByte_
-    , _ulpLayerPartBlob = _Base64 # pLayerPartBlob_
-    }
-
+uploadLayerPart pRepositoryName_ pUploadId_
+  pPartFirstByte_ pPartLastByte_ pLayerPartBlob_
+  = UploadLayerPart'{_ulpRegistryId = Nothing,
+                     _ulpRepositoryName = pRepositoryName_,
+                     _ulpUploadId = pUploadId_,
+                     _ulpPartFirstByte = _Nat # pPartFirstByte_,
+                     _ulpPartLastByte = _Nat # pPartLastByte_,
+                     _ulpLayerPartBlob = _Base64 # pLayerPartBlob_}
 
 -- | The AWS account ID associated with the registry to which you are uploading layer parts. If you do not specify a registry, the default registry is assumed.
 ulpRegistryId :: Lens' UploadLayerPart (Maybe Text)
@@ -108,11 +106,11 @@ ulpRepositoryName = lens _ulpRepositoryName (\ s a -> s{_ulpRepositoryName = a})
 ulpUploadId :: Lens' UploadLayerPart Text
 ulpUploadId = lens _ulpUploadId (\ s a -> s{_ulpUploadId = a})
 
--- | The integer value of the first byte of the layer part.
+-- | The position of the first byte of the layer part witin the overall image layer.
 ulpPartFirstByte :: Lens' UploadLayerPart Natural
 ulpPartFirstByte = lens _ulpPartFirstByte (\ s a -> s{_ulpPartFirstByte = a}) . _Nat
 
--- | The integer value of the last byte of the layer part.
+-- | The position of the last byte of the layer part within the overall image layer.
 ulpPartLastByte :: Lens' UploadLayerPart Natural
 ulpPartLastByte = lens _ulpPartLastByte (\ s a -> s{_ulpPartLastByte = a}) . _Nat
 
@@ -164,14 +162,18 @@ instance ToQuery UploadLayerPart where
         toQuery = const mempty
 
 -- | /See:/ 'uploadLayerPartResponse' smart constructor.
-data UploadLayerPartResponse = UploadLayerPartResponse'
-  { _ulprsRegistryId       :: !(Maybe Text)
-  , _ulprsLastByteReceived :: !(Maybe Nat)
-  , _ulprsRepositoryName   :: !(Maybe Text)
-  , _ulprsUploadId         :: !(Maybe Text)
-  , _ulprsResponseStatus   :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UploadLayerPartResponse = UploadLayerPartResponse'{_ulprsRegistryId
+                                                        :: !(Maybe Text),
+                                                        _ulprsLastByteReceived
+                                                        :: !(Maybe Nat),
+                                                        _ulprsRepositoryName ::
+                                                        !(Maybe Text),
+                                                        _ulprsUploadId ::
+                                                        !(Maybe Text),
+                                                        _ulprsResponseStatus ::
+                                                        !Int}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'UploadLayerPartResponse' with the minimum fields required to make a request.
 --
@@ -189,15 +191,13 @@ data UploadLayerPartResponse = UploadLayerPartResponse'
 uploadLayerPartResponse
     :: Int -- ^ 'ulprsResponseStatus'
     -> UploadLayerPartResponse
-uploadLayerPartResponse pResponseStatus_ =
-  UploadLayerPartResponse'
-    { _ulprsRegistryId = Nothing
-    , _ulprsLastByteReceived = Nothing
-    , _ulprsRepositoryName = Nothing
-    , _ulprsUploadId = Nothing
-    , _ulprsResponseStatus = pResponseStatus_
-    }
-
+uploadLayerPartResponse pResponseStatus_
+  = UploadLayerPartResponse'{_ulprsRegistryId =
+                               Nothing,
+                             _ulprsLastByteReceived = Nothing,
+                             _ulprsRepositoryName = Nothing,
+                             _ulprsUploadId = Nothing,
+                             _ulprsResponseStatus = pResponseStatus_}
 
 -- | The registry ID associated with the request.
 ulprsRegistryId :: Lens' UploadLayerPartResponse (Maybe Text)

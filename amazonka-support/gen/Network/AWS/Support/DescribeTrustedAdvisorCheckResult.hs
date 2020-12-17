@@ -18,26 +18,26 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Returns the results of the Trusted Advisor check that has the specified check ID. Check IDs can be obtained by calling 'DescribeTrustedAdvisorChecks' .
+-- Returns the results of the AWS Trusted Advisor check that has the specified check ID. You can get the check IDs by calling the 'DescribeTrustedAdvisorChecks' operation.
 --
 --
 -- The response contains a 'TrustedAdvisorCheckResult' object, which contains these three objects:
 --
---     * 'TrustedAdvisorCategorySpecificSummary'
+--     * 'TrustedAdvisorCategorySpecificSummary' 
 --
---     * 'TrustedAdvisorResourceDetail'
+--     * 'TrustedAdvisorResourceDetail' 
 --
---     * 'TrustedAdvisorResourcesSummary'
+--     * 'TrustedAdvisorResourcesSummary' 
 --
 --
 --
 -- In addition, the response contains these fields:
 --
---     * __status.__ The alert status of the check: "ok" (green), "warning" (yellow), "error" (red), or "not_available".
+--     * __status__ - The alert status of the check: "ok" (green), "warning" (yellow), "error" (red), or "not_available".
 --
---     * __timestamp.__ The time of the last refresh of the check.
+--     * __timestamp__ - The time of the last refresh of the check.
 --
---     * __checkId.__ The unique identifier for the check.
+--     * __checkId__ - The unique identifier for the check.
 --
 --
 --
@@ -63,18 +63,21 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.Support.Types
-import Network.AWS.Support.Types.Product
 
--- |
+-- | 
 --
 --
 --
 -- /See:/ 'describeTrustedAdvisorCheckResult' smart constructor.
-data DescribeTrustedAdvisorCheckResult = DescribeTrustedAdvisorCheckResult'
-  { _dtacrLanguage :: !(Maybe Text)
-  , _dtacrCheckId  :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeTrustedAdvisorCheckResult = DescribeTrustedAdvisorCheckResult'{_dtacrLanguage
+                                                                            ::
+                                                                            !(Maybe
+                                                                                Text),
+                                                                            _dtacrCheckId
+                                                                            ::
+                                                                            !Text}
+                                           deriving (Eq, Read, Show, Data,
+                                                     Typeable, Generic)
 
 -- | Creates a value of 'DescribeTrustedAdvisorCheckResult' with the minimum fields required to make a request.
 --
@@ -86,10 +89,10 @@ data DescribeTrustedAdvisorCheckResult = DescribeTrustedAdvisorCheckResult'
 describeTrustedAdvisorCheckResult
     :: Text -- ^ 'dtacrCheckId'
     -> DescribeTrustedAdvisorCheckResult
-describeTrustedAdvisorCheckResult pCheckId_ =
-  DescribeTrustedAdvisorCheckResult'
-    {_dtacrLanguage = Nothing, _dtacrCheckId = pCheckId_}
-
+describeTrustedAdvisorCheckResult pCheckId_
+  = DescribeTrustedAdvisorCheckResult'{_dtacrLanguage =
+                                         Nothing,
+                                       _dtacrCheckId = pCheckId_}
 
 -- | The ISO 639-1 code for the language in which AWS provides support. AWS Support currently supports English ("en") and Japanese ("ja"). Language parameters must be passed explicitly for operations that take them.
 dtacrLanguage :: Lens' DescribeTrustedAdvisorCheckResult (Maybe Text)
@@ -148,11 +151,16 @@ instance ToQuery DescribeTrustedAdvisorCheckResult
 --
 --
 -- /See:/ 'describeTrustedAdvisorCheckResultResponse' smart constructor.
-data DescribeTrustedAdvisorCheckResultResponse = DescribeTrustedAdvisorCheckResultResponse'
-  { _dtacrrsResult         :: !(Maybe TrustedAdvisorCheckResult)
-  , _dtacrrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeTrustedAdvisorCheckResultResponse = DescribeTrustedAdvisorCheckResultResponse'{_dtacrrsResult
+                                                                                            ::
+                                                                                            !(Maybe
+                                                                                                TrustedAdvisorCheckResult),
+                                                                                            _dtacrrsResponseStatus
+                                                                                            ::
+                                                                                            !Int}
+                                                   deriving (Eq, Read, Show,
+                                                             Data, Typeable,
+                                                             Generic)
 
 -- | Creates a value of 'DescribeTrustedAdvisorCheckResultResponse' with the minimum fields required to make a request.
 --
@@ -164,10 +172,12 @@ data DescribeTrustedAdvisorCheckResultResponse = DescribeTrustedAdvisorCheckResu
 describeTrustedAdvisorCheckResultResponse
     :: Int -- ^ 'dtacrrsResponseStatus'
     -> DescribeTrustedAdvisorCheckResultResponse
-describeTrustedAdvisorCheckResultResponse pResponseStatus_ =
-  DescribeTrustedAdvisorCheckResultResponse'
-    {_dtacrrsResult = Nothing, _dtacrrsResponseStatus = pResponseStatus_}
-
+describeTrustedAdvisorCheckResultResponse
+  pResponseStatus_
+  = DescribeTrustedAdvisorCheckResultResponse'{_dtacrrsResult
+                                                 = Nothing,
+                                               _dtacrrsResponseStatus =
+                                                 pResponseStatus_}
 
 -- | The detailed results of the Trusted Advisor check.
 dtacrrsResult :: Lens' DescribeTrustedAdvisorCheckResultResponse (Maybe TrustedAdvisorCheckResult)

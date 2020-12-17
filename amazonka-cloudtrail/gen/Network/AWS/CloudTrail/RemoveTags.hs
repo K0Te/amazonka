@@ -38,7 +38,6 @@ module Network.AWS.CloudTrail.RemoveTags
     ) where
 
 import Network.AWS.CloudTrail.Types
-import Network.AWS.CloudTrail.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -49,11 +48,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'removeTags' smart constructor.
-data RemoveTags = RemoveTags'
-  { _rtTagsList   :: !(Maybe [Tag])
-  , _rtResourceId :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data RemoveTags = RemoveTags'{_rtTagsList ::
+                              !(Maybe [Tag]),
+                              _rtResourceId :: !Text}
+                    deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'RemoveTags' with the minimum fields required to make a request.
 --
@@ -61,19 +59,19 @@ data RemoveTags = RemoveTags'
 --
 -- * 'rtTagsList' - Specifies a list of tags to be removed.
 --
--- * 'rtResourceId' - Specifies the ARN of the trail from which tags should be removed. The format of a trail ARN is: @arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail@
+-- * 'rtResourceId' - Specifies the ARN of the trail from which tags should be removed. The format of a trail ARN is: @arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail@ 
 removeTags
     :: Text -- ^ 'rtResourceId'
     -> RemoveTags
-removeTags pResourceId_ =
-  RemoveTags' {_rtTagsList = Nothing, _rtResourceId = pResourceId_}
-
+removeTags pResourceId_
+  = RemoveTags'{_rtTagsList = Nothing,
+                _rtResourceId = pResourceId_}
 
 -- | Specifies a list of tags to be removed.
 rtTagsList :: Lens' RemoveTags [Tag]
 rtTagsList = lens _rtTagsList (\ s a -> s{_rtTagsList = a}) . _Default . _Coerce
 
--- | Specifies the ARN of the trail from which tags should be removed. The format of a trail ARN is: @arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail@
+-- | Specifies the ARN of the trail from which tags should be removed. The format of a trail ARN is: @arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail@ 
 rtResourceId :: Lens' RemoveTags Text
 rtResourceId = lens _rtResourceId (\ s a -> s{_rtResourceId = a})
 
@@ -117,10 +115,10 @@ instance ToQuery RemoveTags where
 --
 --
 -- /See:/ 'removeTagsResponse' smart constructor.
-newtype RemoveTagsResponse = RemoveTagsResponse'
-  { _rtrsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype RemoveTagsResponse = RemoveTagsResponse'{_rtrsResponseStatus
+                                                 :: Int}
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'RemoveTagsResponse' with the minimum fields required to make a request.
 --
@@ -130,9 +128,9 @@ newtype RemoveTagsResponse = RemoveTagsResponse'
 removeTagsResponse
     :: Int -- ^ 'rtrsResponseStatus'
     -> RemoveTagsResponse
-removeTagsResponse pResponseStatus_ =
-  RemoveTagsResponse' {_rtrsResponseStatus = pResponseStatus_}
-
+removeTagsResponse pResponseStatus_
+  = RemoveTagsResponse'{_rtrsResponseStatus =
+                          pResponseStatus_}
 
 -- | -- | The response status code.
 rtrsResponseStatus :: Lens' RemoveTagsResponse Int

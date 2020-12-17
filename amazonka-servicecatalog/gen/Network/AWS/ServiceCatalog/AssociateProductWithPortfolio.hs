@@ -21,6 +21,8 @@
 -- Associates the specified product with the specified portfolio.
 --
 --
+-- A delegated admin is authorized to invoke this command.
+--
 module Network.AWS.ServiceCatalog.AssociateProductWithPortfolio
     (
     -- * Creating a Request
@@ -44,16 +46,22 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.ServiceCatalog.Types
-import Network.AWS.ServiceCatalog.Types.Product
 
 -- | /See:/ 'associateProductWithPortfolio' smart constructor.
-data AssociateProductWithPortfolio = AssociateProductWithPortfolio'
-  { _apwpSourcePortfolioId :: !(Maybe Text)
-  , _apwpAcceptLanguage    :: !(Maybe Text)
-  , _apwpProductId         :: !Text
-  , _apwpPortfolioId       :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data AssociateProductWithPortfolio = AssociateProductWithPortfolio'{_apwpSourcePortfolioId
+                                                                    ::
+                                                                    !(Maybe
+                                                                        Text),
+                                                                    _apwpAcceptLanguage
+                                                                    ::
+                                                                    !(Maybe
+                                                                        Text),
+                                                                    _apwpProductId
+                                                                    :: !Text,
+                                                                    _apwpPortfolioId
+                                                                    :: !Text}
+                                       deriving (Eq, Read, Show, Data, Typeable,
+                                                 Generic)
 
 -- | Creates a value of 'AssociateProductWithPortfolio' with the minimum fields required to make a request.
 --
@@ -70,14 +78,13 @@ associateProductWithPortfolio
     :: Text -- ^ 'apwpProductId'
     -> Text -- ^ 'apwpPortfolioId'
     -> AssociateProductWithPortfolio
-associateProductWithPortfolio pProductId_ pPortfolioId_ =
-  AssociateProductWithPortfolio'
-    { _apwpSourcePortfolioId = Nothing
-    , _apwpAcceptLanguage = Nothing
-    , _apwpProductId = pProductId_
-    , _apwpPortfolioId = pPortfolioId_
-    }
-
+associateProductWithPortfolio pProductId_
+  pPortfolioId_
+  = AssociateProductWithPortfolio'{_apwpSourcePortfolioId
+                                     = Nothing,
+                                   _apwpAcceptLanguage = Nothing,
+                                   _apwpProductId = pProductId_,
+                                   _apwpPortfolioId = pPortfolioId_}
 
 -- | The identifier of the source portfolio.
 apwpSourcePortfolioId :: Lens' AssociateProductWithPortfolio (Maybe Text)
@@ -137,10 +144,12 @@ instance ToQuery AssociateProductWithPortfolio where
         toQuery = const mempty
 
 -- | /See:/ 'associateProductWithPortfolioResponse' smart constructor.
-newtype AssociateProductWithPortfolioResponse = AssociateProductWithPortfolioResponse'
-  { _arsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype AssociateProductWithPortfolioResponse = AssociateProductWithPortfolioResponse'{_arsResponseStatus
+                                                                                       ::
+                                                                                       Int}
+                                                  deriving (Eq, Read, Show,
+                                                            Data, Typeable,
+                                                            Generic)
 
 -- | Creates a value of 'AssociateProductWithPortfolioResponse' with the minimum fields required to make a request.
 --
@@ -150,9 +159,10 @@ newtype AssociateProductWithPortfolioResponse = AssociateProductWithPortfolioRes
 associateProductWithPortfolioResponse
     :: Int -- ^ 'arsResponseStatus'
     -> AssociateProductWithPortfolioResponse
-associateProductWithPortfolioResponse pResponseStatus_ =
-  AssociateProductWithPortfolioResponse' {_arsResponseStatus = pResponseStatus_}
-
+associateProductWithPortfolioResponse
+  pResponseStatus_
+  = AssociateProductWithPortfolioResponse'{_arsResponseStatus
+                                             = pResponseStatus_}
 
 -- | -- | The response status code.
 arsResponseStatus :: Lens' AssociateProductWithPortfolioResponse Int

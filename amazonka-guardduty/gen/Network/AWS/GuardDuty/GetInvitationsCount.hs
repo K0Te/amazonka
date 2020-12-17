@@ -19,6 +19,8 @@
 -- Portability : non-portable (GHC extensions)
 --
 -- Returns the count of all GuardDuty membership invitations that were sent to the current member account except the currently accepted invitation.
+--
+--
 module Network.AWS.GuardDuty.GetInvitationsCount
     (
     -- * Creating a Request
@@ -34,24 +36,20 @@ module Network.AWS.GuardDuty.GetInvitationsCount
     ) where
 
 import Network.AWS.GuardDuty.Types
-import Network.AWS.GuardDuty.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'getInvitationsCount' smart constructor.
-data GetInvitationsCount =
-  GetInvitationsCount'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetInvitationsCount = GetInvitationsCount'
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetInvitationsCount' with the minimum fields required to make a request.
 --
 getInvitationsCount
     :: GetInvitationsCount
 getInvitationsCount = GetInvitationsCount'
-
 
 instance AWSRequest GetInvitationsCount where
         type Rs GetInvitationsCount =
@@ -81,11 +79,12 @@ instance ToQuery GetInvitationsCount where
         toQuery = const mempty
 
 -- | /See:/ 'getInvitationsCountResponse' smart constructor.
-data GetInvitationsCountResponse = GetInvitationsCountResponse'
-  { _gicrsInvitationsCount :: !(Maybe Int)
-  , _gicrsResponseStatus   :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetInvitationsCountResponse = GetInvitationsCountResponse'{_gicrsInvitationsCount
+                                                                :: !(Maybe Int),
+                                                                _gicrsResponseStatus
+                                                                :: !Int}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'GetInvitationsCountResponse' with the minimum fields required to make a request.
 --
@@ -97,10 +96,10 @@ data GetInvitationsCountResponse = GetInvitationsCountResponse'
 getInvitationsCountResponse
     :: Int -- ^ 'gicrsResponseStatus'
     -> GetInvitationsCountResponse
-getInvitationsCountResponse pResponseStatus_ =
-  GetInvitationsCountResponse'
-    {_gicrsInvitationsCount = Nothing, _gicrsResponseStatus = pResponseStatus_}
-
+getInvitationsCountResponse pResponseStatus_
+  = GetInvitationsCountResponse'{_gicrsInvitationsCount
+                                   = Nothing,
+                                 _gicrsResponseStatus = pResponseStatus_}
 
 -- | The number of received invitations.
 gicrsInvitationsCount :: Lens' GetInvitationsCountResponse (Maybe Int)

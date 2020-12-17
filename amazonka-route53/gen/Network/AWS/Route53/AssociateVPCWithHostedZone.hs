@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Associates an Amazon VPC with a private hosted zone.
+-- Associates an Amazon VPC with a private hosted zone. 
 --
 --
 -- /Important:/ To perform the association, the VPC and the private hosted zone must already exist. You can't convert a public hosted zone into a private hosted zone.
@@ -46,19 +46,19 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.Route53.Types
-import Network.AWS.Route53.Types.Product
 
 -- | A complex type that contains information about the request to associate a VPC with a private hosted zone.
 --
 --
 --
 -- /See:/ 'associateVPCWithHostedZone' smart constructor.
-data AssociateVPCWithHostedZone = AssociateVPCWithHostedZone'
-  { _avwhzComment      :: !(Maybe Text)
-  , _avwhzHostedZoneId :: !ResourceId
-  , _avwhzVPC          :: !VPC
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data AssociateVPCWithHostedZone = AssociateVPCWithHostedZone'{_avwhzComment
+                                                              :: !(Maybe Text),
+                                                              _avwhzHostedZoneId
+                                                              :: !ResourceId,
+                                                              _avwhzVPC :: !VPC}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'AssociateVPCWithHostedZone' with the minimum fields required to make a request.
 --
@@ -73,13 +73,11 @@ associateVPCWithHostedZone
     :: ResourceId -- ^ 'avwhzHostedZoneId'
     -> VPC -- ^ 'avwhzVPC'
     -> AssociateVPCWithHostedZone
-associateVPCWithHostedZone pHostedZoneId_ pVPC_ =
-  AssociateVPCWithHostedZone'
-    { _avwhzComment = Nothing
-    , _avwhzHostedZoneId = pHostedZoneId_
-    , _avwhzVPC = pVPC_
-    }
-
+associateVPCWithHostedZone pHostedZoneId_ pVPC_
+  = AssociateVPCWithHostedZone'{_avwhzComment =
+                                  Nothing,
+                                _avwhzHostedZoneId = pHostedZoneId_,
+                                _avwhzVPC = pVPC_}
 
 -- | /Optional:/ A comment about the association request.
 avwhzComment :: Lens' AssociateVPCWithHostedZone (Maybe Text)
@@ -134,11 +132,14 @@ instance ToXML AssociateVPCWithHostedZone where
 --
 --
 -- /See:/ 'associateVPCWithHostedZoneResponse' smart constructor.
-data AssociateVPCWithHostedZoneResponse = AssociateVPCWithHostedZoneResponse'
-  { _avwhzrsResponseStatus :: !Int
-  , _avwhzrsChangeInfo     :: !ChangeInfo
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data AssociateVPCWithHostedZoneResponse = AssociateVPCWithHostedZoneResponse'{_avwhzrsResponseStatus
+                                                                              ::
+                                                                              !Int,
+                                                                              _avwhzrsChangeInfo
+                                                                              ::
+                                                                              !ChangeInfo}
+                                            deriving (Eq, Read, Show, Data,
+                                                      Typeable, Generic)
 
 -- | Creates a value of 'AssociateVPCWithHostedZoneResponse' with the minimum fields required to make a request.
 --
@@ -151,12 +152,11 @@ associateVPCWithHostedZoneResponse
     :: Int -- ^ 'avwhzrsResponseStatus'
     -> ChangeInfo -- ^ 'avwhzrsChangeInfo'
     -> AssociateVPCWithHostedZoneResponse
-associateVPCWithHostedZoneResponse pResponseStatus_ pChangeInfo_ =
-  AssociateVPCWithHostedZoneResponse'
-    { _avwhzrsResponseStatus = pResponseStatus_
-    , _avwhzrsChangeInfo = pChangeInfo_
-    }
-
+associateVPCWithHostedZoneResponse pResponseStatus_
+  pChangeInfo_
+  = AssociateVPCWithHostedZoneResponse'{_avwhzrsResponseStatus
+                                          = pResponseStatus_,
+                                        _avwhzrsChangeInfo = pChangeInfo_}
 
 -- | -- | The response status code.
 avwhzrsResponseStatus :: Lens' AssociateVPCWithHostedZoneResponse Int

@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Gets information about one or more applications.
+-- Gets information about one or more applications. The maximum number of applications that can be returned is 100.
 --
 --
 module Network.AWS.CodeDeploy.BatchGetApplications
@@ -38,33 +38,33 @@ module Network.AWS.CodeDeploy.BatchGetApplications
     ) where
 
 import Network.AWS.CodeDeploy.Types
-import Network.AWS.CodeDeploy.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- | Represents the input of a BatchGetApplications operation.
+-- | Represents the input of a @BatchGetApplications@ operation.
 --
 --
 --
 -- /See:/ 'batchGetApplications' smart constructor.
-newtype BatchGetApplications = BatchGetApplications'
-  { _bgaApplicationNames :: [Text]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype BatchGetApplications = BatchGetApplications'{_bgaApplicationNames
+                                                     :: [Text]}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'BatchGetApplications' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'bgaApplicationNames' - A list of application names separated by spaces.
+-- * 'bgaApplicationNames' - A list of application names separated by spaces. The maximum number of application names you can specify is 100.
 batchGetApplications
     :: BatchGetApplications
-batchGetApplications = BatchGetApplications' {_bgaApplicationNames = mempty}
+batchGetApplications
+  = BatchGetApplications'{_bgaApplicationNames =
+                            mempty}
 
-
--- | A list of application names separated by spaces.
+-- | A list of application names separated by spaces. The maximum number of application names you can specify is 100.
 bgaApplicationNames :: Lens' BatchGetApplications [Text]
 bgaApplicationNames = lens _bgaApplicationNames (\ s a -> s{_bgaApplicationNames = a}) . _Coerce
 
@@ -105,16 +105,19 @@ instance ToPath BatchGetApplications where
 instance ToQuery BatchGetApplications where
         toQuery = const mempty
 
--- | Represents the output of a BatchGetApplications operation.
+-- | Represents the output of a @BatchGetApplications@ operation.
 --
 --
 --
 -- /See:/ 'batchGetApplicationsResponse' smart constructor.
-data BatchGetApplicationsResponse = BatchGetApplicationsResponse'
-  { _bgarsApplicationsInfo :: !(Maybe [ApplicationInfo])
-  , _bgarsResponseStatus   :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data BatchGetApplicationsResponse = BatchGetApplicationsResponse'{_bgarsApplicationsInfo
+                                                                  ::
+                                                                  !(Maybe
+                                                                      [ApplicationInfo]),
+                                                                  _bgarsResponseStatus
+                                                                  :: !Int}
+                                      deriving (Eq, Read, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'BatchGetApplicationsResponse' with the minimum fields required to make a request.
 --
@@ -126,10 +129,10 @@ data BatchGetApplicationsResponse = BatchGetApplicationsResponse'
 batchGetApplicationsResponse
     :: Int -- ^ 'bgarsResponseStatus'
     -> BatchGetApplicationsResponse
-batchGetApplicationsResponse pResponseStatus_ =
-  BatchGetApplicationsResponse'
-    {_bgarsApplicationsInfo = Nothing, _bgarsResponseStatus = pResponseStatus_}
-
+batchGetApplicationsResponse pResponseStatus_
+  = BatchGetApplicationsResponse'{_bgarsApplicationsInfo
+                                    = Nothing,
+                                  _bgarsResponseStatus = pResponseStatus_}
 
 -- | Information about the applications.
 bgarsApplicationsInfo :: Lens' BatchGetApplicationsResponse [ApplicationInfo]

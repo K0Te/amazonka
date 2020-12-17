@@ -36,7 +36,6 @@ module Network.AWS.APIGateway.FlushStageAuthorizersCache
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -47,11 +46,12 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'flushStageAuthorizersCache' smart constructor.
-data FlushStageAuthorizersCache = FlushStageAuthorizersCache'
-  { _fsacRestAPIId :: !Text
-  , _fsacStageName :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data FlushStageAuthorizersCache = FlushStageAuthorizersCache'{_fsacRestAPIId
+                                                              :: !Text,
+                                                              _fsacStageName ::
+                                                              !Text}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'FlushStageAuthorizersCache' with the minimum fields required to make a request.
 --
@@ -64,10 +64,10 @@ flushStageAuthorizersCache
     :: Text -- ^ 'fsacRestAPIId'
     -> Text -- ^ 'fsacStageName'
     -> FlushStageAuthorizersCache
-flushStageAuthorizersCache pRestAPIId_ pStageName_ =
-  FlushStageAuthorizersCache'
-    {_fsacRestAPIId = pRestAPIId_, _fsacStageName = pStageName_}
-
+flushStageAuthorizersCache pRestAPIId_ pStageName_
+  = FlushStageAuthorizersCache'{_fsacRestAPIId =
+                                  pRestAPIId_,
+                                _fsacStageName = pStageName_}
 
 -- | The string identifier of the associated 'RestApi' .
 fsacRestAPIId :: Lens' FlushStageAuthorizersCache Text
@@ -104,17 +104,16 @@ instance ToQuery FlushStageAuthorizersCache where
         toQuery = const mempty
 
 -- | /See:/ 'flushStageAuthorizersCacheResponse' smart constructor.
-data FlushStageAuthorizersCacheResponse =
-  FlushStageAuthorizersCacheResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data FlushStageAuthorizersCacheResponse = FlushStageAuthorizersCacheResponse'
+                                            deriving (Eq, Read, Show, Data,
+                                                      Typeable, Generic)
 
 -- | Creates a value of 'FlushStageAuthorizersCacheResponse' with the minimum fields required to make a request.
 --
 flushStageAuthorizersCacheResponse
     :: FlushStageAuthorizersCacheResponse
-flushStageAuthorizersCacheResponse = FlushStageAuthorizersCacheResponse'
-
+flushStageAuthorizersCacheResponse
+  = FlushStageAuthorizersCacheResponse'
 
 instance NFData FlushStageAuthorizersCacheResponse
          where

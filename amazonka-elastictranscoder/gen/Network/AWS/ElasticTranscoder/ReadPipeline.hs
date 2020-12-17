@@ -39,7 +39,6 @@ module Network.AWS.ElasticTranscoder.ReadPipeline
     ) where
 
 import Network.AWS.ElasticTranscoder.Types
-import Network.AWS.ElasticTranscoder.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -50,10 +49,8 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'readPipeline' smart constructor.
-newtype ReadPipeline = ReadPipeline'
-  { _rId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype ReadPipeline = ReadPipeline'{_rId :: Text}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ReadPipeline' with the minimum fields required to make a request.
 --
@@ -63,8 +60,7 @@ newtype ReadPipeline = ReadPipeline'
 readPipeline
     :: Text -- ^ 'rId'
     -> ReadPipeline
-readPipeline pId_ = ReadPipeline' {_rId = pId_}
-
+readPipeline pId_ = ReadPipeline'{_rId = pId_}
 
 -- | The identifier of the pipeline to read.
 rId :: Lens' ReadPipeline Text
@@ -99,12 +95,12 @@ instance ToQuery ReadPipeline where
 --
 --
 -- /See:/ 'readPipelineResponse' smart constructor.
-data ReadPipelineResponse = ReadPipelineResponse'
-  { _rrsWarnings       :: !(Maybe [Warning])
-  , _rrsPipeline       :: !(Maybe Pipeline)
-  , _rrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ReadPipelineResponse = ReadPipelineResponse'{_rrsWarnings
+                                                  :: !(Maybe [Warning]),
+                                                  _rrsPipeline ::
+                                                  !(Maybe Pipeline),
+                                                  _rrsResponseStatus :: !Int}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ReadPipelineResponse' with the minimum fields required to make a request.
 --
@@ -118,13 +114,10 @@ data ReadPipelineResponse = ReadPipelineResponse'
 readPipelineResponse
     :: Int -- ^ 'rrsResponseStatus'
     -> ReadPipelineResponse
-readPipelineResponse pResponseStatus_ =
-  ReadPipelineResponse'
-    { _rrsWarnings = Nothing
-    , _rrsPipeline = Nothing
-    , _rrsResponseStatus = pResponseStatus_
-    }
-
+readPipelineResponse pResponseStatus_
+  = ReadPipelineResponse'{_rrsWarnings = Nothing,
+                          _rrsPipeline = Nothing,
+                          _rrsResponseStatus = pResponseStatus_}
 
 -- | Elastic Transcoder returns a warning if the resources used by your pipeline are not in the same region as the pipeline. Using resources in the same region, such as your Amazon S3 buckets, Amazon SNS notification topics, and AWS KMS key, reduces processing time and prevents cross-regional charges.
 rrsWarnings :: Lens' ReadPipelineResponse [Warning]

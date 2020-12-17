@@ -36,7 +36,6 @@ module Network.AWS.APIGateway.FlushStageCache
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -47,11 +46,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'flushStageCache' smart constructor.
-data FlushStageCache = FlushStageCache'
-  { _fscRestAPIId :: !Text
-  , _fscStageName :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data FlushStageCache = FlushStageCache'{_fscRestAPIId
+                                        :: !Text,
+                                        _fscStageName :: !Text}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'FlushStageCache' with the minimum fields required to make a request.
 --
@@ -64,9 +62,9 @@ flushStageCache
     :: Text -- ^ 'fscRestAPIId'
     -> Text -- ^ 'fscStageName'
     -> FlushStageCache
-flushStageCache pRestAPIId_ pStageName_ =
-  FlushStageCache' {_fscRestAPIId = pRestAPIId_, _fscStageName = pStageName_}
-
+flushStageCache pRestAPIId_ pStageName_
+  = FlushStageCache'{_fscRestAPIId = pRestAPIId_,
+                     _fscStageName = pStageName_}
 
 -- | [Required] The string identifier of the associated 'RestApi' .
 fscRestAPIId :: Lens' FlushStageCache Text
@@ -101,16 +99,14 @@ instance ToQuery FlushStageCache where
         toQuery = const mempty
 
 -- | /See:/ 'flushStageCacheResponse' smart constructor.
-data FlushStageCacheResponse =
-  FlushStageCacheResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data FlushStageCacheResponse = FlushStageCacheResponse'
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'FlushStageCacheResponse' with the minimum fields required to make a request.
 --
 flushStageCacheResponse
     :: FlushStageCacheResponse
 flushStageCacheResponse = FlushStageCacheResponse'
-
 
 instance NFData FlushStageCacheResponse where

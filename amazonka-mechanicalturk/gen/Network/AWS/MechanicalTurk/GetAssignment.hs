@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- The @GetAssignment@ operation retrieves the details of the specified Assignment.
+-- The @GetAssignment@ operation retrieves the details of the specified Assignment. 
 --
 --
 module Network.AWS.MechanicalTurk.GetAssignment
@@ -40,16 +40,14 @@ module Network.AWS.MechanicalTurk.GetAssignment
 
 import Network.AWS.Lens
 import Network.AWS.MechanicalTurk.Types
-import Network.AWS.MechanicalTurk.Types.Product
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'getAssignment' smart constructor.
-newtype GetAssignment = GetAssignment'
-  { _gaAssignmentId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetAssignment = GetAssignment'{_gaAssignmentId
+                                       :: Text}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetAssignment' with the minimum fields required to make a request.
 --
@@ -59,8 +57,8 @@ newtype GetAssignment = GetAssignment'
 getAssignment
     :: Text -- ^ 'gaAssignmentId'
     -> GetAssignment
-getAssignment pAssignmentId_ = GetAssignment' {_gaAssignmentId = pAssignmentId_}
-
+getAssignment pAssignmentId_
+  = GetAssignment'{_gaAssignmentId = pAssignmentId_}
 
 -- | The ID of the Assignment to be retrieved.
 gaAssignmentId :: Lens' GetAssignment Text
@@ -103,12 +101,13 @@ instance ToQuery GetAssignment where
         toQuery = const mempty
 
 -- | /See:/ 'getAssignmentResponse' smart constructor.
-data GetAssignmentResponse = GetAssignmentResponse'
-  { _garsHIT            :: !(Maybe HIT)
-  , _garsAssignment     :: !(Maybe Assignment)
-  , _garsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetAssignmentResponse = GetAssignmentResponse'{_garsHIT
+                                                    :: !(Maybe HIT),
+                                                    _garsAssignment ::
+                                                    !(Maybe Assignment),
+                                                    _garsResponseStatus :: !Int}
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'GetAssignmentResponse' with the minimum fields required to make a request.
 --
@@ -116,25 +115,22 @@ data GetAssignmentResponse = GetAssignmentResponse'
 --
 -- * 'garsHIT' - The HIT associated with this assignment. The response includes one HIT element.
 --
--- * 'garsAssignment' - The assignment. The response includes one Assignment element.
+-- * 'garsAssignment' - The assignment. The response includes one Assignment element. 
 --
 -- * 'garsResponseStatus' - -- | The response status code.
 getAssignmentResponse
     :: Int -- ^ 'garsResponseStatus'
     -> GetAssignmentResponse
-getAssignmentResponse pResponseStatus_ =
-  GetAssignmentResponse'
-    { _garsHIT = Nothing
-    , _garsAssignment = Nothing
-    , _garsResponseStatus = pResponseStatus_
-    }
-
+getAssignmentResponse pResponseStatus_
+  = GetAssignmentResponse'{_garsHIT = Nothing,
+                           _garsAssignment = Nothing,
+                           _garsResponseStatus = pResponseStatus_}
 
 -- | The HIT associated with this assignment. The response includes one HIT element.
 garsHIT :: Lens' GetAssignmentResponse (Maybe HIT)
 garsHIT = lens _garsHIT (\ s a -> s{_garsHIT = a})
 
--- | The assignment. The response includes one Assignment element.
+-- | The assignment. The response includes one Assignment element. 
 garsAssignment :: Lens' GetAssignmentResponse (Maybe Assignment)
 garsAssignment = lens _garsAssignment (\ s a -> s{_garsAssignment = a})
 

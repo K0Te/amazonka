@@ -30,6 +30,7 @@ module Network.AWS.Batch.CreateJobQueue
     , CreateJobQueue
     -- * Request Lenses
     , cjqState
+    , cjqTags
     , cjqJobQueueName
     , cjqPriority
     , cjqComputeEnvironmentOrder
@@ -44,58 +45,62 @@ module Network.AWS.Batch.CreateJobQueue
     ) where
 
 import Network.AWS.Batch.Types
-import Network.AWS.Batch.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'createJobQueue' smart constructor.
-data CreateJobQueue = CreateJobQueue'
-  { _cjqState                   :: !(Maybe JQState)
-  , _cjqJobQueueName            :: !Text
-  , _cjqPriority                :: !Int
-  , _cjqComputeEnvironmentOrder :: ![ComputeEnvironmentOrder]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateJobQueue = CreateJobQueue'{_cjqState ::
+                                      !(Maybe JQState),
+                                      _cjqTags :: !(Maybe (Map Text Text)),
+                                      _cjqJobQueueName :: !Text,
+                                      _cjqPriority :: !Int,
+                                      _cjqComputeEnvironmentOrder ::
+                                      ![ComputeEnvironmentOrder]}
+                        deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CreateJobQueue' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'cjqState' - The state of the job queue. If the job queue state is @ENABLED@ , it is able to accept jobs.
+-- * 'cjqState' - The state of the job queue. If the job queue state is @ENABLED@ , it is able to accept jobs. If the job queue state is @DISABLED@ , new jobs can't be added to the queue, but jobs already in the queue can finish.
+--
+-- * 'cjqTags' - The tags that you apply to the job queue to help you categorize and organize your resources. Each tag consists of a key and an optional value. For more information, see <https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html Tagging AWS Resources> in /AWS General Reference/ .
 --
 -- * 'cjqJobQueueName' - The name of the job queue.
 --
--- * 'cjqPriority' - The priority of the job queue. Job queues with a higher priority (or a higher integer value for the @priority@ parameter) are evaluated first when associated with same compute environment. Priority is determined in descending order, for example, a job queue with a priority value of @10@ is given scheduling preference over a job queue with a priority value of @1@ .
+-- * 'cjqPriority' - The priority of the job queue. Job queues with a higher priority (or a higher integer value for the @priority@ parameter) are evaluated first when associated with the same compute environment. Priority is determined in descending order. For example, a job queue with a priority value of @10@ is given scheduling preference over a job queue with a priority value of @1@ .
 --
--- * 'cjqComputeEnvironmentOrder' - The set of compute environments mapped to a job queue and their order relative to each other. The job scheduler uses this parameter to determine which compute environment should execute a given job. Compute environments must be in the @VALID@ state before you can associate them with a job queue. You can associate up to three compute environments with a job queue.
+-- * 'cjqComputeEnvironmentOrder' - The set of compute environments mapped to a job queue and their order relative to each other. The job scheduler uses this parameter to determine which compute environment should run a specific job. Compute environments must be in the @VALID@ state before you can associate them with a job queue. You can associate up to three compute environments with a job queue. All of the compute environments must be either EC2 (@EC2@ or @SPOT@ ) or Fargate (@FARGATE@ or @FARGATE_SPOT@ ); EC2 and Fargate compute environments can't be mixed.
 createJobQueue
     :: Text -- ^ 'cjqJobQueueName'
     -> Int -- ^ 'cjqPriority'
     -> CreateJobQueue
-createJobQueue pJobQueueName_ pPriority_ =
-  CreateJobQueue'
-    { _cjqState = Nothing
-    , _cjqJobQueueName = pJobQueueName_
-    , _cjqPriority = pPriority_
-    , _cjqComputeEnvironmentOrder = mempty
-    }
+createJobQueue pJobQueueName_ pPriority_
+  = CreateJobQueue'{_cjqState = Nothing,
+                    _cjqTags = Nothing,
+                    _cjqJobQueueName = pJobQueueName_,
+                    _cjqPriority = pPriority_,
+                    _cjqComputeEnvironmentOrder = mempty}
 
-
--- | The state of the job queue. If the job queue state is @ENABLED@ , it is able to accept jobs.
+-- | The state of the job queue. If the job queue state is @ENABLED@ , it is able to accept jobs. If the job queue state is @DISABLED@ , new jobs can't be added to the queue, but jobs already in the queue can finish.
 cjqState :: Lens' CreateJobQueue (Maybe JQState)
 cjqState = lens _cjqState (\ s a -> s{_cjqState = a})
+
+-- | The tags that you apply to the job queue to help you categorize and organize your resources. Each tag consists of a key and an optional value. For more information, see <https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html Tagging AWS Resources> in /AWS General Reference/ .
+cjqTags :: Lens' CreateJobQueue (HashMap Text Text)
+cjqTags = lens _cjqTags (\ s a -> s{_cjqTags = a}) . _Default . _Map
 
 -- | The name of the job queue.
 cjqJobQueueName :: Lens' CreateJobQueue Text
 cjqJobQueueName = lens _cjqJobQueueName (\ s a -> s{_cjqJobQueueName = a})
 
--- | The priority of the job queue. Job queues with a higher priority (or a higher integer value for the @priority@ parameter) are evaluated first when associated with same compute environment. Priority is determined in descending order, for example, a job queue with a priority value of @10@ is given scheduling preference over a job queue with a priority value of @1@ .
+-- | The priority of the job queue. Job queues with a higher priority (or a higher integer value for the @priority@ parameter) are evaluated first when associated with the same compute environment. Priority is determined in descending order. For example, a job queue with a priority value of @10@ is given scheduling preference over a job queue with a priority value of @1@ .
 cjqPriority :: Lens' CreateJobQueue Int
 cjqPriority = lens _cjqPriority (\ s a -> s{_cjqPriority = a})
 
--- | The set of compute environments mapped to a job queue and their order relative to each other. The job scheduler uses this parameter to determine which compute environment should execute a given job. Compute environments must be in the @VALID@ state before you can associate them with a job queue. You can associate up to three compute environments with a job queue.
+-- | The set of compute environments mapped to a job queue and their order relative to each other. The job scheduler uses this parameter to determine which compute environment should run a specific job. Compute environments must be in the @VALID@ state before you can associate them with a job queue. You can associate up to three compute environments with a job queue. All of the compute environments must be either EC2 (@EC2@ or @SPOT@ ) or Fargate (@FARGATE@ or @FARGATE_SPOT@ ); EC2 and Fargate compute environments can't be mixed.
 cjqComputeEnvironmentOrder :: Lens' CreateJobQueue [ComputeEnvironmentOrder]
 cjqComputeEnvironmentOrder = lens _cjqComputeEnvironmentOrder (\ s a -> s{_cjqComputeEnvironmentOrder = a}) . _Coerce
 
@@ -125,6 +130,7 @@ instance ToJSON CreateJobQueue where
           = object
               (catMaybes
                  [("state" .=) <$> _cjqState,
+                  ("tags" .=) <$> _cjqTags,
                   Just ("jobQueueName" .= _cjqJobQueueName),
                   Just ("priority" .= _cjqPriority),
                   Just
@@ -138,12 +144,14 @@ instance ToQuery CreateJobQueue where
         toQuery = const mempty
 
 -- | /See:/ 'createJobQueueResponse' smart constructor.
-data CreateJobQueueResponse = CreateJobQueueResponse'
-  { _cjqrsResponseStatus :: !Int
-  , _cjqrsJobQueueName   :: !Text
-  , _cjqrsJobQueueARN    :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateJobQueueResponse = CreateJobQueueResponse'{_cjqrsResponseStatus
+                                                      :: !Int,
+                                                      _cjqrsJobQueueName ::
+                                                      !Text,
+                                                      _cjqrsJobQueueARN ::
+                                                      !Text}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'CreateJobQueueResponse' with the minimum fields required to make a request.
 --
@@ -159,13 +167,12 @@ createJobQueueResponse
     -> Text -- ^ 'cjqrsJobQueueName'
     -> Text -- ^ 'cjqrsJobQueueARN'
     -> CreateJobQueueResponse
-createJobQueueResponse pResponseStatus_ pJobQueueName_ pJobQueueARN_ =
-  CreateJobQueueResponse'
-    { _cjqrsResponseStatus = pResponseStatus_
-    , _cjqrsJobQueueName = pJobQueueName_
-    , _cjqrsJobQueueARN = pJobQueueARN_
-    }
-
+createJobQueueResponse pResponseStatus_
+  pJobQueueName_ pJobQueueARN_
+  = CreateJobQueueResponse'{_cjqrsResponseStatus =
+                              pResponseStatus_,
+                            _cjqrsJobQueueName = pJobQueueName_,
+                            _cjqrsJobQueueARN = pJobQueueARN_}
 
 -- | -- | The response status code.
 cjqrsResponseStatus :: Lens' CreateJobQueueResponse Int

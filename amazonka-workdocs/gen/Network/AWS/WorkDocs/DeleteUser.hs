@@ -40,14 +40,12 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.WorkDocs.Types
-import Network.AWS.WorkDocs.Types.Product
 
 -- | /See:/ 'deleteUser' smart constructor.
-data DeleteUser = DeleteUser'
-  { _duuAuthenticationToken :: !(Maybe (Sensitive Text))
-  , _duuUserId              :: !Text
-  } deriving (Eq, Show, Data, Typeable, Generic)
-
+data DeleteUser = DeleteUser'{_duuAuthenticationToken
+                              :: !(Maybe (Sensitive Text)),
+                              _duuUserId :: !Text}
+                    deriving (Eq, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteUser' with the minimum fields required to make a request.
 --
@@ -59,9 +57,9 @@ data DeleteUser = DeleteUser'
 deleteUser
     :: Text -- ^ 'duuUserId'
     -> DeleteUser
-deleteUser pUserId_ =
-  DeleteUser' {_duuAuthenticationToken = Nothing, _duuUserId = pUserId_}
-
+deleteUser pUserId_
+  = DeleteUser'{_duuAuthenticationToken = Nothing,
+                _duuUserId = pUserId_}
 
 -- | Amazon WorkDocs authentication token. Do not set this field when using administrative API actions, as in accessing the API using AWS credentials.
 duuAuthenticationToken :: Lens' DeleteUser (Maybe Text)
@@ -95,16 +93,13 @@ instance ToQuery DeleteUser where
         toQuery = const mempty
 
 -- | /See:/ 'deleteUserResponse' smart constructor.
-data DeleteUserResponse =
-  DeleteUserResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteUserResponse = DeleteUserResponse'
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteUserResponse' with the minimum fields required to make a request.
 --
 deleteUserResponse
     :: DeleteUserResponse
 deleteUserResponse = DeleteUserResponse'
-
 
 instance NFData DeleteUserResponse where

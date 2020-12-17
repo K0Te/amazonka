@@ -37,17 +37,16 @@ module Network.AWS.AutoScaling.DeleteLaunchConfiguration
     ) where
 
 import Network.AWS.AutoScaling.Types
-import Network.AWS.AutoScaling.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deleteLaunchConfiguration' smart constructor.
-newtype DeleteLaunchConfiguration = DeleteLaunchConfiguration'
-  { _dlcLaunchConfigurationName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteLaunchConfiguration = DeleteLaunchConfiguration'{_dlcLaunchConfigurationName
+                                                               :: Text}
+                                      deriving (Eq, Read, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'DeleteLaunchConfiguration' with the minimum fields required to make a request.
 --
@@ -57,10 +56,9 @@ newtype DeleteLaunchConfiguration = DeleteLaunchConfiguration'
 deleteLaunchConfiguration
     :: Text -- ^ 'dlcLaunchConfigurationName'
     -> DeleteLaunchConfiguration
-deleteLaunchConfiguration pLaunchConfigurationName_ =
-  DeleteLaunchConfiguration'
-    {_dlcLaunchConfigurationName = pLaunchConfigurationName_}
-
+deleteLaunchConfiguration pLaunchConfigurationName_
+  = DeleteLaunchConfiguration'{_dlcLaunchConfigurationName
+                                 = pLaunchConfigurationName_}
 
 -- | The name of the launch configuration.
 dlcLaunchConfigurationName :: Lens' DeleteLaunchConfiguration Text
@@ -93,17 +91,16 @@ instance ToQuery DeleteLaunchConfiguration where
                  _dlcLaunchConfigurationName]
 
 -- | /See:/ 'deleteLaunchConfigurationResponse' smart constructor.
-data DeleteLaunchConfigurationResponse =
-  DeleteLaunchConfigurationResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteLaunchConfigurationResponse = DeleteLaunchConfigurationResponse'
+                                           deriving (Eq, Read, Show, Data,
+                                                     Typeable, Generic)
 
 -- | Creates a value of 'DeleteLaunchConfigurationResponse' with the minimum fields required to make a request.
 --
 deleteLaunchConfigurationResponse
     :: DeleteLaunchConfigurationResponse
-deleteLaunchConfigurationResponse = DeleteLaunchConfigurationResponse'
-
+deleteLaunchConfigurationResponse
+  = DeleteLaunchConfigurationResponse'
 
 instance NFData DeleteLaunchConfigurationResponse
          where

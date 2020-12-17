@@ -45,7 +45,6 @@ module Network.AWS.AlexaBusiness.SearchUsers
     ) where
 
 import Network.AWS.AlexaBusiness.Types
-import Network.AWS.AlexaBusiness.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
@@ -53,13 +52,12 @@ import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'searchUsers' smart constructor.
-data SearchUsers = SearchUsers'
-  { _suFilters      :: !(Maybe [Filter])
-  , _suSortCriteria :: !(Maybe [Sort])
-  , _suNextToken    :: !(Maybe Text)
-  , _suMaxResults   :: !(Maybe Nat)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data SearchUsers = SearchUsers'{_suFilters ::
+                                !(Maybe [Filter]),
+                                _suSortCriteria :: !(Maybe [Sort]),
+                                _suNextToken :: !(Maybe Text),
+                                _suMaxResults :: !(Maybe Nat)}
+                     deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'SearchUsers' with the minimum fields required to make a request.
 --
@@ -74,14 +72,10 @@ data SearchUsers = SearchUsers'
 -- * 'suMaxResults' - The maximum number of results to include in the response. If more results exist than the specified @MaxResults@ value, a token is included in the response so that the remaining results can be retrieved. Required.
 searchUsers
     :: SearchUsers
-searchUsers =
-  SearchUsers'
-    { _suFilters = Nothing
-    , _suSortCriteria = Nothing
-    , _suNextToken = Nothing
-    , _suMaxResults = Nothing
-    }
-
+searchUsers
+  = SearchUsers'{_suFilters = Nothing,
+                 _suSortCriteria = Nothing, _suNextToken = Nothing,
+                 _suMaxResults = Nothing}
 
 -- | The filters to use for listing a specific set of users. Required. Supported filter keys are UserId, FirstName, LastName, Email, and EnrollmentStatus.
 suFilters :: Lens' SearchUsers [Filter]
@@ -146,13 +140,12 @@ instance ToQuery SearchUsers where
         toQuery = const mempty
 
 -- | /See:/ 'searchUsersResponse' smart constructor.
-data SearchUsersResponse = SearchUsersResponse'
-  { _sursUsers          :: !(Maybe [UserData])
-  , _sursNextToken      :: !(Maybe Text)
-  , _sursTotalCount     :: !(Maybe Int)
-  , _sursResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data SearchUsersResponse = SearchUsersResponse'{_sursUsers
+                                                :: !(Maybe [UserData]),
+                                                _sursNextToken :: !(Maybe Text),
+                                                _sursTotalCount :: !(Maybe Int),
+                                                _sursResponseStatus :: !Int}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'SearchUsersResponse' with the minimum fields required to make a request.
 --
@@ -168,14 +161,10 @@ data SearchUsersResponse = SearchUsersResponse'
 searchUsersResponse
     :: Int -- ^ 'sursResponseStatus'
     -> SearchUsersResponse
-searchUsersResponse pResponseStatus_ =
-  SearchUsersResponse'
-    { _sursUsers = Nothing
-    , _sursNextToken = Nothing
-    , _sursTotalCount = Nothing
-    , _sursResponseStatus = pResponseStatus_
-    }
-
+searchUsersResponse pResponseStatus_
+  = SearchUsersResponse'{_sursUsers = Nothing,
+                         _sursNextToken = Nothing, _sursTotalCount = Nothing,
+                         _sursResponseStatus = pResponseStatus_}
 
 -- | The users that meet the specified set of filter criteria, in sort order.
 sursUsers :: Lens' SearchUsersResponse [UserData]

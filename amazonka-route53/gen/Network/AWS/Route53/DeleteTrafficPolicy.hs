@@ -21,6 +21,16 @@
 -- Deletes a traffic policy.
 --
 --
+-- When you delete a traffic policy, Route 53 sets a flag on the policy to indicate that it has been deleted. However, Route 53 never fully deletes the traffic policy. Note the following:
+--
+--     * Deleted traffic policies aren't listed if you run <https://docs.aws.amazon.com/Route53/latest/APIReference/API_ListTrafficPolicies.html ListTrafficPolicies> .
+--
+--     * There's no way to get a list of deleted policies.
+--
+--     * If you retain the ID of the policy, you can get information about the policy, including the traffic policy document, by running <https://docs.aws.amazon.com/Route53/latest/APIReference/API_GetTrafficPolicy.html GetTrafficPolicy> .
+--
+--
+--
 module Network.AWS.Route53.DeleteTrafficPolicy
     (
     -- * Creating a Request
@@ -42,18 +52,16 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.Route53.Types
-import Network.AWS.Route53.Types.Product
 
 -- | A request to delete a specified traffic policy version.
 --
 --
 --
 -- /See:/ 'deleteTrafficPolicy' smart constructor.
-data DeleteTrafficPolicy = DeleteTrafficPolicy'
-  { _dtpId      :: !Text
-  , _dtpVersion :: !Nat
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteTrafficPolicy = DeleteTrafficPolicy'{_dtpId
+                                                :: !Text,
+                                                _dtpVersion :: !Nat}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteTrafficPolicy' with the minimum fields required to make a request.
 --
@@ -66,9 +74,9 @@ deleteTrafficPolicy
     :: Text -- ^ 'dtpId'
     -> Natural -- ^ 'dtpVersion'
     -> DeleteTrafficPolicy
-deleteTrafficPolicy pId_ pVersion_ =
-  DeleteTrafficPolicy' {_dtpId = pId_, _dtpVersion = _Nat # pVersion_}
-
+deleteTrafficPolicy pId_ pVersion_
+  = DeleteTrafficPolicy'{_dtpId = pId_,
+                         _dtpVersion = _Nat # pVersion_}
 
 -- | The ID of the traffic policy that you want to delete.
 dtpId :: Lens' DeleteTrafficPolicy Text
@@ -108,10 +116,10 @@ instance ToQuery DeleteTrafficPolicy where
 --
 --
 -- /See:/ 'deleteTrafficPolicyResponse' smart constructor.
-newtype DeleteTrafficPolicyResponse = DeleteTrafficPolicyResponse'
-  { _dtprsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteTrafficPolicyResponse = DeleteTrafficPolicyResponse'{_dtprsResponseStatus
+                                                                   :: Int}
+                                        deriving (Eq, Read, Show, Data,
+                                                  Typeable, Generic)
 
 -- | Creates a value of 'DeleteTrafficPolicyResponse' with the minimum fields required to make a request.
 --
@@ -121,9 +129,9 @@ newtype DeleteTrafficPolicyResponse = DeleteTrafficPolicyResponse'
 deleteTrafficPolicyResponse
     :: Int -- ^ 'dtprsResponseStatus'
     -> DeleteTrafficPolicyResponse
-deleteTrafficPolicyResponse pResponseStatus_ =
-  DeleteTrafficPolicyResponse' {_dtprsResponseStatus = pResponseStatus_}
-
+deleteTrafficPolicyResponse pResponseStatus_
+  = DeleteTrafficPolicyResponse'{_dtprsResponseStatus =
+                                   pResponseStatus_}
 
 -- | -- | The response status code.
 dtprsResponseStatus :: Lens' DeleteTrafficPolicyResponse Int

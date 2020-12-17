@@ -14,11 +14,11 @@
 module Test.AWS.Gen.IoTData where
 
 import Data.Proxy
-import Network.AWS.IoTData
 import Test.AWS.Fixture
-import Test.AWS.IoTData.Internal
 import Test.AWS.Prelude
 import Test.Tasty
+import Network.AWS.IoTData
+import Test.AWS.IoTData.Internal
 
 -- Auto-generated: the actual test selection needs to be manually placed into
 -- the top-level so that real test data can be incrementally added.
@@ -30,6 +30,9 @@ import Test.Tasty
 --     [ testGroup "request"
 --         [ requestGetThingShadow $
 --             getThingShadow
+--
+--         , requestListNamedShadowsForThing $
+--             listNamedShadowsForThing
 --
 --         , requestDeleteThingShadow $
 --             deleteThingShadow
@@ -45,6 +48,9 @@ import Test.Tasty
 --     , testGroup "response"
 --         [ responseGetThingShadow $
 --             getThingShadowResponse
+--
+--         , responseListNamedShadowsForThing $
+--             listNamedShadowsForThingResponse
 --
 --         , responseDeleteThingShadow $
 --             deleteThingShadowResponse
@@ -64,6 +70,11 @@ requestGetThingShadow :: GetThingShadow -> TestTree
 requestGetThingShadow = req
     "GetThingShadow"
     "fixture/GetThingShadow.yaml"
+
+requestListNamedShadowsForThing :: ListNamedShadowsForThing -> TestTree
+requestListNamedShadowsForThing = req
+    "ListNamedShadowsForThing"
+    "fixture/ListNamedShadowsForThing.yaml"
 
 requestDeleteThingShadow :: DeleteThingShadow -> TestTree
 requestDeleteThingShadow = req
@@ -88,6 +99,13 @@ responseGetThingShadow = res
     "fixture/GetThingShadowResponse.proto"
     ioTData
     (Proxy :: Proxy GetThingShadow)
+
+responseListNamedShadowsForThing :: ListNamedShadowsForThingResponse -> TestTree
+responseListNamedShadowsForThing = res
+    "ListNamedShadowsForThingResponse"
+    "fixture/ListNamedShadowsForThingResponse.proto"
+    ioTData
+    (Proxy :: Proxy ListNamedShadowsForThing)
 
 responseDeleteThingShadow :: DeleteThingShadowResponse -> TestTree
 responseDeleteThingShadow = res

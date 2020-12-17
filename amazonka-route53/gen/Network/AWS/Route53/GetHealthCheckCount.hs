@@ -40,24 +40,20 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.Route53.Types
-import Network.AWS.Route53.Types.Product
 
 -- | A request for the number of health checks that are associated with the current AWS account.
 --
 --
 --
 -- /See:/ 'getHealthCheckCount' smart constructor.
-data GetHealthCheckCount =
-  GetHealthCheckCount'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetHealthCheckCount = GetHealthCheckCount'
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetHealthCheckCount' with the minimum fields required to make a request.
 --
 getHealthCheckCount
     :: GetHealthCheckCount
 getHealthCheckCount = GetHealthCheckCount'
-
 
 instance AWSRequest GetHealthCheckCount where
         type Rs GetHealthCheckCount =
@@ -87,11 +83,12 @@ instance ToQuery GetHealthCheckCount where
 --
 --
 -- /See:/ 'getHealthCheckCountResponse' smart constructor.
-data GetHealthCheckCountResponse = GetHealthCheckCountResponse'
-  { _ghccrsResponseStatus   :: !Int
-  , _ghccrsHealthCheckCount :: !Integer
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetHealthCheckCountResponse = GetHealthCheckCountResponse'{_ghccrsResponseStatus
+                                                                :: !Int,
+                                                                _ghccrsHealthCheckCount
+                                                                :: !Integer}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'GetHealthCheckCountResponse' with the minimum fields required to make a request.
 --
@@ -104,12 +101,11 @@ getHealthCheckCountResponse
     :: Int -- ^ 'ghccrsResponseStatus'
     -> Integer -- ^ 'ghccrsHealthCheckCount'
     -> GetHealthCheckCountResponse
-getHealthCheckCountResponse pResponseStatus_ pHealthCheckCount_ =
-  GetHealthCheckCountResponse'
-    { _ghccrsResponseStatus = pResponseStatus_
-    , _ghccrsHealthCheckCount = pHealthCheckCount_
-    }
-
+getHealthCheckCountResponse pResponseStatus_
+  pHealthCheckCount_
+  = GetHealthCheckCountResponse'{_ghccrsResponseStatus
+                                   = pResponseStatus_,
+                                 _ghccrsHealthCheckCount = pHealthCheckCount_}
 
 -- | -- | The response status code.
 ghccrsResponseStatus :: Lens' GetHealthCheckCountResponse Int

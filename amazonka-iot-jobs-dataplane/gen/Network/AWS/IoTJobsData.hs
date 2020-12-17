@@ -53,16 +53,16 @@ module Network.AWS.IoTJobsData
     -- * Operations
     -- $operations
 
-    -- ** UpdateJobExecution
+    -- ** UpdateJobExecution 
     , module Network.AWS.IoTJobsData.UpdateJobExecution
 
-    -- ** StartNextPendingJobExecution
+    -- ** StartNextPendingJobExecution 
     , module Network.AWS.IoTJobsData.StartNextPendingJobExecution
 
-    -- ** DescribeJobExecution
+    -- ** DescribeJobExecution 
     , module Network.AWS.IoTJobsData.DescribeJobExecution
 
-    -- ** GetPendingJobExecutions
+    -- ** GetPendingJobExecutions 
     , module Network.AWS.IoTJobsData.GetPendingJobExecutions
 
     -- * Types
@@ -76,6 +76,7 @@ module Network.AWS.IoTJobsData
     , jeStatus
     , jeJobId
     , jeLastUpdatedAt
+    , jeApproximateSecondsBeforeTimedOut
     , jeQueuedAt
     , jeJobDocument
     , jeStatusDetails

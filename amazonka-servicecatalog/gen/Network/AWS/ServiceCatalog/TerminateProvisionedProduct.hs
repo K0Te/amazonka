@@ -32,6 +32,7 @@ module Network.AWS.ServiceCatalog.TerminateProvisionedProduct
     , TerminateProvisionedProduct
     -- * Request Lenses
     , tppProvisionedProductName
+    , tppRetainPhysicalResources
     , tppAcceptLanguage
     , tppIgnoreErrors
     , tppProvisionedProductId
@@ -50,23 +51,35 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.ServiceCatalog.Types
-import Network.AWS.ServiceCatalog.Types.Product
 
 -- | /See:/ 'terminateProvisionedProduct' smart constructor.
-data TerminateProvisionedProduct = TerminateProvisionedProduct'
-  { _tppProvisionedProductName :: !(Maybe Text)
-  , _tppAcceptLanguage         :: !(Maybe Text)
-  , _tppIgnoreErrors           :: !(Maybe Bool)
-  , _tppProvisionedProductId   :: !(Maybe Text)
-  , _tppTerminateToken         :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data TerminateProvisionedProduct = TerminateProvisionedProduct'{_tppProvisionedProductName
+                                                                ::
+                                                                !(Maybe Text),
+                                                                _tppRetainPhysicalResources
+                                                                ::
+                                                                !(Maybe Bool),
+                                                                _tppAcceptLanguage
+                                                                ::
+                                                                !(Maybe Text),
+                                                                _tppIgnoreErrors
+                                                                ::
+                                                                !(Maybe Bool),
+                                                                _tppProvisionedProductId
+                                                                ::
+                                                                !(Maybe Text),
+                                                                _tppTerminateToken
+                                                                :: !Text}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'TerminateProvisionedProduct' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
 -- * 'tppProvisionedProductName' - The name of the provisioned product. You cannot specify both @ProvisionedProductName@ and @ProvisionedProductId@ .
+--
+-- * 'tppRetainPhysicalResources' - When this boolean parameter is set to true, the TerminateProvisionedProduct API deletes the Service Catalog provisioned product. However, it does not remove the CloudFormation stack, stack set, or the underlying resources of the deleted provisioned product. The default value is false.
 --
 -- * 'tppAcceptLanguage' - The language code.     * @en@ - English (default)     * @jp@ - Japanese     * @zh@ - Chinese
 --
@@ -78,19 +91,22 @@ data TerminateProvisionedProduct = TerminateProvisionedProduct'
 terminateProvisionedProduct
     :: Text -- ^ 'tppTerminateToken'
     -> TerminateProvisionedProduct
-terminateProvisionedProduct pTerminateToken_ =
-  TerminateProvisionedProduct'
-    { _tppProvisionedProductName = Nothing
-    , _tppAcceptLanguage = Nothing
-    , _tppIgnoreErrors = Nothing
-    , _tppProvisionedProductId = Nothing
-    , _tppTerminateToken = pTerminateToken_
-    }
-
+terminateProvisionedProduct pTerminateToken_
+  = TerminateProvisionedProduct'{_tppProvisionedProductName
+                                   = Nothing,
+                                 _tppRetainPhysicalResources = Nothing,
+                                 _tppAcceptLanguage = Nothing,
+                                 _tppIgnoreErrors = Nothing,
+                                 _tppProvisionedProductId = Nothing,
+                                 _tppTerminateToken = pTerminateToken_}
 
 -- | The name of the provisioned product. You cannot specify both @ProvisionedProductName@ and @ProvisionedProductId@ .
 tppProvisionedProductName :: Lens' TerminateProvisionedProduct (Maybe Text)
 tppProvisionedProductName = lens _tppProvisionedProductName (\ s a -> s{_tppProvisionedProductName = a})
+
+-- | When this boolean parameter is set to true, the TerminateProvisionedProduct API deletes the Service Catalog provisioned product. However, it does not remove the CloudFormation stack, stack set, or the underlying resources of the deleted provisioned product. The default value is false.
+tppRetainPhysicalResources :: Lens' TerminateProvisionedProduct (Maybe Bool)
+tppRetainPhysicalResources = lens _tppRetainPhysicalResources (\ s a -> s{_tppRetainPhysicalResources = a})
 
 -- | The language code.     * @en@ - English (default)     * @jp@ - Japanese     * @zh@ - Chinese
 tppAcceptLanguage :: Lens' TerminateProvisionedProduct (Maybe Text)
@@ -138,6 +154,8 @@ instance ToJSON TerminateProvisionedProduct where
               (catMaybes
                  [("ProvisionedProductName" .=) <$>
                     _tppProvisionedProductName,
+                  ("RetainPhysicalResources" .=) <$>
+                    _tppRetainPhysicalResources,
                   ("AcceptLanguage" .=) <$> _tppAcceptLanguage,
                   ("IgnoreErrors" .=) <$> _tppIgnoreErrors,
                   ("ProvisionedProductId" .=) <$>
@@ -151,11 +169,15 @@ instance ToQuery TerminateProvisionedProduct where
         toQuery = const mempty
 
 -- | /See:/ 'terminateProvisionedProductResponse' smart constructor.
-data TerminateProvisionedProductResponse = TerminateProvisionedProductResponse'
-  { _tpprsRecordDetail   :: !(Maybe RecordDetail)
-  , _tpprsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data TerminateProvisionedProductResponse = TerminateProvisionedProductResponse'{_tpprsRecordDetail
+                                                                                ::
+                                                                                !(Maybe
+                                                                                    RecordDetail),
+                                                                                _tpprsResponseStatus
+                                                                                ::
+                                                                                !Int}
+                                             deriving (Eq, Read, Show, Data,
+                                                       Typeable, Generic)
 
 -- | Creates a value of 'TerminateProvisionedProductResponse' with the minimum fields required to make a request.
 --
@@ -167,10 +189,11 @@ data TerminateProvisionedProductResponse = TerminateProvisionedProductResponse'
 terminateProvisionedProductResponse
     :: Int -- ^ 'tpprsResponseStatus'
     -> TerminateProvisionedProductResponse
-terminateProvisionedProductResponse pResponseStatus_ =
-  TerminateProvisionedProductResponse'
-    {_tpprsRecordDetail = Nothing, _tpprsResponseStatus = pResponseStatus_}
-
+terminateProvisionedProductResponse pResponseStatus_
+  = TerminateProvisionedProductResponse'{_tpprsRecordDetail
+                                           = Nothing,
+                                         _tpprsResponseStatus =
+                                           pResponseStatus_}
 
 -- | Information about the result of this request.
 tpprsRecordDetail :: Lens' TerminateProvisionedProductResponse (Maybe RecordDetail)

@@ -18,10 +18,10 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Deregisters a specified Elastic IP address. The address can then be registered by another stack. For more information, see <http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html Resource Management> .
+-- Deregisters a specified Elastic IP address. The address can then be registered by another stack. For more information, see <https://docs.aws.amazon.com/opsworks/latest/userguide/resources.html Resource Management> .
 --
 --
--- __Required Permissions__ : To use this action, an IAM user must have a Manage permissions level for the stack, or an attached policy that explicitly grants permissions. For more information on user permissions, see <http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html Managing User Permissions> .
+-- __Required Permissions__ : To use this action, an IAM user must have a Manage permissions level for the stack, or an attached policy that explicitly grants permissions. For more information on user permissions, see <https://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html Managing User Permissions> .
 --
 module Network.AWS.OpsWorks.DeregisterElasticIP
     (
@@ -38,16 +38,15 @@ module Network.AWS.OpsWorks.DeregisterElasticIP
 
 import Network.AWS.Lens
 import Network.AWS.OpsWorks.Types
-import Network.AWS.OpsWorks.Types.Product
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deregisterElasticIP' smart constructor.
-newtype DeregisterElasticIP = DeregisterElasticIP'
-  { _deipElasticIP :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeregisterElasticIP = DeregisterElasticIP'{_deipElasticIP
+                                                   :: Text}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'DeregisterElasticIP' with the minimum fields required to make a request.
 --
@@ -57,9 +56,8 @@ newtype DeregisterElasticIP = DeregisterElasticIP'
 deregisterElasticIP
     :: Text -- ^ 'deipElasticIP'
     -> DeregisterElasticIP
-deregisterElasticIP pElasticIP_ =
-  DeregisterElasticIP' {_deipElasticIP = pElasticIP_}
-
+deregisterElasticIP pElasticIP_
+  = DeregisterElasticIP'{_deipElasticIP = pElasticIP_}
 
 -- | The Elastic IP address.
 deipElasticIP :: Lens' DeregisterElasticIP Text
@@ -97,16 +95,15 @@ instance ToQuery DeregisterElasticIP where
         toQuery = const mempty
 
 -- | /See:/ 'deregisterElasticIPResponse' smart constructor.
-data DeregisterElasticIPResponse =
-  DeregisterElasticIPResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeregisterElasticIPResponse = DeregisterElasticIPResponse'
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'DeregisterElasticIPResponse' with the minimum fields required to make a request.
 --
 deregisterElasticIPResponse
     :: DeregisterElasticIPResponse
-deregisterElasticIPResponse = DeregisterElasticIPResponse'
-
+deregisterElasticIPResponse
+  = DeregisterElasticIPResponse'
 
 instance NFData DeregisterElasticIPResponse where

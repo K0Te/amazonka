@@ -21,7 +21,7 @@
 -- Modifies the parameters of a parameter group.
 --
 --
--- For more information about parameters and parameter groups, go to <http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html Amazon Redshift Parameter Groups> in the /Amazon Redshift Cluster Management Guide/ .
+-- For more information about parameters and parameter groups, go to <https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html Amazon Redshift Parameter Groups> in the /Amazon Redshift Cluster Management Guide/ .
 --
 module Network.AWS.Redshift.ModifyClusterParameterGroup
     (
@@ -43,20 +43,20 @@ module Network.AWS.Redshift.ModifyClusterParameterGroup
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Redshift.Types
-import Network.AWS.Redshift.Types.Product
 import Network.AWS.Request
 import Network.AWS.Response
 
--- |
+-- | Describes a modify cluster parameter group operation. 
 --
 --
 --
 -- /See:/ 'modifyClusterParameterGroup' smart constructor.
-data ModifyClusterParameterGroup = ModifyClusterParameterGroup'
-  { _mcpgParameterGroupName :: !Text
-  , _mcpgParameters         :: ![Parameter]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ModifyClusterParameterGroup = ModifyClusterParameterGroup'{_mcpgParameterGroupName
+                                                                :: !Text,
+                                                                _mcpgParameters
+                                                                :: ![Parameter]}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'ModifyClusterParameterGroup' with the minimum fields required to make a request.
 --
@@ -68,10 +68,10 @@ data ModifyClusterParameterGroup = ModifyClusterParameterGroup'
 modifyClusterParameterGroup
     :: Text -- ^ 'mcpgParameterGroupName'
     -> ModifyClusterParameterGroup
-modifyClusterParameterGroup pParameterGroupName_ =
-  ModifyClusterParameterGroup'
-    {_mcpgParameterGroupName = pParameterGroupName_, _mcpgParameters = mempty}
-
+modifyClusterParameterGroup pParameterGroupName_
+  = ModifyClusterParameterGroup'{_mcpgParameterGroupName
+                                   = pParameterGroupName_,
+                                 _mcpgParameters = mempty}
 
 -- | The name of the parameter group to be modified.
 mcpgParameterGroupName :: Lens' ModifyClusterParameterGroup Text

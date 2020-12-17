@@ -18,18 +18,18 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Enables all features in an organization. This enables the use of organization policies that can restrict the services and actions that can be called in each account. Until you enable all features, you have access only to consolidated billing, and you can't use any of the advanced account administration features that AWS Organizations supports. For more information, see <http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html Enabling All Features in Your Organization> in the /AWS Organizations User Guide/ .
+-- Enables all features in an organization. This enables the use of organization policies that can restrict the services and actions that can be called in each account. Until you enable all features, you have access only to consolidated billing, and you can't use any of the advanced account administration features that AWS Organizations supports. For more information, see <https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html Enabling All Features in Your Organization> in the /AWS Organizations User Guide./ 
 --
 --
--- /Important:/ This operation is required only for organizations that were created explicitly with only the consolidated billing features enabled, or that were migrated from a Consolidated Billing account family to Organizations. Calling this operation sends a handshake to every invited account in the organization. The feature set change can be finalized and the additional features enabled only after all administrators in the invited accounts approve the change by accepting the handshake.
+-- /Important:/ This operation is required only for organizations that were created explicitly with only the consolidated billing features enabled. Calling this operation sends a handshake to every invited account in the organization. The feature set change can be finalized and the additional features enabled only after all administrators in the invited accounts approve the change by accepting the handshake.
 --
 -- After you enable all features, you can separately enable or disable individual policy types in a root using 'EnablePolicyType' and 'DisablePolicyType' . To see the status of policy types in a root, use 'ListRoots' .
 --
 -- After all invited member accounts accept the handshake, you finalize the feature set change by accepting the handshake that contains @"Action": "ENABLE_ALL_FEATURES"@ . This completes the change.
 --
--- After you enable all features in your organization, the master account in the organization can apply policies on all member accounts. These policies can restrict what users and even administrators in those accounts can do. The master account can apply policies that prevent accounts from leaving the organization. Ensure that your account administrators are aware of this.
+-- After you enable all features in your organization, the management account in the organization can apply policies on all member accounts. These policies can restrict what users and even administrators in those accounts can do. The management account can apply policies that prevent accounts from leaving the organization. Ensure that your account administrators are aware of this.
 --
--- This operation can be called only from the organization's master account.
+-- This operation can be called only from the organization's management account.
 --
 module Network.AWS.Organizations.EnableAllFeatures
     (
@@ -47,23 +47,19 @@ module Network.AWS.Organizations.EnableAllFeatures
 
 import Network.AWS.Lens
 import Network.AWS.Organizations.Types
-import Network.AWS.Organizations.Types.Product
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'enableAllFeatures' smart constructor.
-data EnableAllFeatures =
-  EnableAllFeatures'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data EnableAllFeatures = EnableAllFeatures'
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'EnableAllFeatures' with the minimum fields required to make a request.
 --
 enableAllFeatures
     :: EnableAllFeatures
 enableAllFeatures = EnableAllFeatures'
-
 
 instance AWSRequest EnableAllFeatures where
         type Rs EnableAllFeatures = EnableAllFeaturesResponse
@@ -98,11 +94,12 @@ instance ToQuery EnableAllFeatures where
         toQuery = const mempty
 
 -- | /See:/ 'enableAllFeaturesResponse' smart constructor.
-data EnableAllFeaturesResponse = EnableAllFeaturesResponse'
-  { _eafrsHandshake      :: !(Maybe Handshake)
-  , _eafrsResponseStatus :: !Int
-  } deriving (Eq, Show, Data, Typeable, Generic)
-
+data EnableAllFeaturesResponse = EnableAllFeaturesResponse'{_eafrsHandshake
+                                                            ::
+                                                            !(Maybe Handshake),
+                                                            _eafrsResponseStatus
+                                                            :: !Int}
+                                   deriving (Eq, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'EnableAllFeaturesResponse' with the minimum fields required to make a request.
 --
@@ -114,10 +111,10 @@ data EnableAllFeaturesResponse = EnableAllFeaturesResponse'
 enableAllFeaturesResponse
     :: Int -- ^ 'eafrsResponseStatus'
     -> EnableAllFeaturesResponse
-enableAllFeaturesResponse pResponseStatus_ =
-  EnableAllFeaturesResponse'
-    {_eafrsHandshake = Nothing, _eafrsResponseStatus = pResponseStatus_}
-
+enableAllFeaturesResponse pResponseStatus_
+  = EnableAllFeaturesResponse'{_eafrsHandshake =
+                                 Nothing,
+                               _eafrsResponseStatus = pResponseStatus_}
 
 -- | A structure that contains details about the handshake created to support this request to enable all features in the organization.
 eafrsHandshake :: Lens' EnableAllFeaturesResponse (Maybe Handshake)

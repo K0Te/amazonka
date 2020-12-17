@@ -18,10 +18,10 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Creates a log stream for the specified log group.
+-- Creates a log stream for the specified log group. A log stream is a sequence of log events that originate from a single source, such as an application instance or a resource that is being monitored.
 --
 --
--- There is no limit on the number of log streams that you can create for a log group.
+-- There is no limit on the number of log streams that you can create for a log group. There is a limit of 50 TPS on @CreateLogStream@ operations, after which transactions are throttled.
 --
 -- You must use the following guidelines when naming a log stream:
 --
@@ -48,18 +48,16 @@ module Network.AWS.CloudWatchLogs.CreateLogStream
     ) where
 
 import Network.AWS.CloudWatchLogs.Types
-import Network.AWS.CloudWatchLogs.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'createLogStream' smart constructor.
-data CreateLogStream = CreateLogStream'
-  { _clsLogGroupName  :: !Text
-  , _clsLogStreamName :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateLogStream = CreateLogStream'{_clsLogGroupName
+                                        :: !Text,
+                                        _clsLogStreamName :: !Text}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CreateLogStream' with the minimum fields required to make a request.
 --
@@ -72,10 +70,9 @@ createLogStream
     :: Text -- ^ 'clsLogGroupName'
     -> Text -- ^ 'clsLogStreamName'
     -> CreateLogStream
-createLogStream pLogGroupName_ pLogStreamName_ =
-  CreateLogStream'
-    {_clsLogGroupName = pLogGroupName_, _clsLogStreamName = pLogStreamName_}
-
+createLogStream pLogGroupName_ pLogStreamName_
+  = CreateLogStream'{_clsLogGroupName = pLogGroupName_,
+                     _clsLogStreamName = pLogStreamName_}
 
 -- | The name of the log group.
 clsLogGroupName :: Lens' CreateLogStream Text
@@ -117,16 +114,14 @@ instance ToQuery CreateLogStream where
         toQuery = const mempty
 
 -- | /See:/ 'createLogStreamResponse' smart constructor.
-data CreateLogStreamResponse =
-  CreateLogStreamResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateLogStreamResponse = CreateLogStreamResponse'
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'CreateLogStreamResponse' with the minimum fields required to make a request.
 --
 createLogStreamResponse
     :: CreateLogStreamResponse
 createLogStreamResponse = CreateLogStreamResponse'
-
 
 instance NFData CreateLogStreamResponse where

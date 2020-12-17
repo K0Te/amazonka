@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Gets status of a specified health check.
+-- Gets status of a specified health check. 
 --
 --
 module Network.AWS.Route53.GetHealthCheckStatus
@@ -42,17 +42,16 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.Route53.Types
-import Network.AWS.Route53.Types.Product
 
 -- | A request to get the status for a health check.
 --
 --
 --
 -- /See:/ 'getHealthCheckStatus' smart constructor.
-newtype GetHealthCheckStatus = GetHealthCheckStatus'
-  { _ghcsHealthCheckId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetHealthCheckStatus = GetHealthCheckStatus'{_ghcsHealthCheckId
+                                                     :: Text}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'GetHealthCheckStatus' with the minimum fields required to make a request.
 --
@@ -62,9 +61,9 @@ newtype GetHealthCheckStatus = GetHealthCheckStatus'
 getHealthCheckStatus
     :: Text -- ^ 'ghcsHealthCheckId'
     -> GetHealthCheckStatus
-getHealthCheckStatus pHealthCheckId_ =
-  GetHealthCheckStatus' {_ghcsHealthCheckId = pHealthCheckId_}
-
+getHealthCheckStatus pHealthCheckId_
+  = GetHealthCheckStatus'{_ghcsHealthCheckId =
+                            pHealthCheckId_}
 
 -- | The ID for the health check that you want the current status for. When you created the health check, @CreateHealthCheck@ returned the ID in the response, in the @HealthCheckId@ element.
 ghcsHealthCheckId :: Lens' GetHealthCheckStatus Text
@@ -103,11 +102,13 @@ instance ToQuery GetHealthCheckStatus where
 --
 --
 -- /See:/ 'getHealthCheckStatusResponse' smart constructor.
-data GetHealthCheckStatusResponse = GetHealthCheckStatusResponse'
-  { _ghcsrsResponseStatus          :: !Int
-  , _ghcsrsHealthCheckObservations :: ![HealthCheckObservation]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetHealthCheckStatusResponse = GetHealthCheckStatusResponse'{_ghcsrsResponseStatus
+                                                                  :: !Int,
+                                                                  _ghcsrsHealthCheckObservations
+                                                                  ::
+                                                                  ![HealthCheckObservation]}
+                                      deriving (Eq, Read, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'GetHealthCheckStatusResponse' with the minimum fields required to make a request.
 --
@@ -119,12 +120,10 @@ data GetHealthCheckStatusResponse = GetHealthCheckStatusResponse'
 getHealthCheckStatusResponse
     :: Int -- ^ 'ghcsrsResponseStatus'
     -> GetHealthCheckStatusResponse
-getHealthCheckStatusResponse pResponseStatus_ =
-  GetHealthCheckStatusResponse'
-    { _ghcsrsResponseStatus = pResponseStatus_
-    , _ghcsrsHealthCheckObservations = mempty
-    }
-
+getHealthCheckStatusResponse pResponseStatus_
+  = GetHealthCheckStatusResponse'{_ghcsrsResponseStatus
+                                    = pResponseStatus_,
+                                  _ghcsrsHealthCheckObservations = mempty}
 
 -- | -- | The response status code.
 ghcsrsResponseStatus :: Lens' GetHealthCheckStatusResponse Int

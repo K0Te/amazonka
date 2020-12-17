@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Create a new invalidation.
+-- Create a new invalidation. 
 --
 --
 module Network.AWS.CloudFront.CreateInvalidation
@@ -40,7 +40,6 @@ module Network.AWS.CloudFront.CreateInvalidation
     ) where
 
 import Network.AWS.CloudFront.Types
-import Network.AWS.CloudFront.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -51,11 +50,11 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'createInvalidation' smart constructor.
-data CreateInvalidation = CreateInvalidation'
-  { _ciDistributionId    :: !Text
-  , _ciInvalidationBatch :: !InvalidationBatch
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateInvalidation = CreateInvalidation'{_ciDistributionId
+                                              :: !Text,
+                                              _ciInvalidationBatch ::
+                                              !InvalidationBatch}
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CreateInvalidation' with the minimum fields required to make a request.
 --
@@ -68,12 +67,11 @@ createInvalidation
     :: Text -- ^ 'ciDistributionId'
     -> InvalidationBatch -- ^ 'ciInvalidationBatch'
     -> CreateInvalidation
-createInvalidation pDistributionId_ pInvalidationBatch_ =
-  CreateInvalidation'
-    { _ciDistributionId = pDistributionId_
-    , _ciInvalidationBatch = pInvalidationBatch_
-    }
-
+createInvalidation pDistributionId_
+  pInvalidationBatch_
+  = CreateInvalidation'{_ciDistributionId =
+                          pDistributionId_,
+                        _ciInvalidationBatch = pInvalidationBatch_}
 
 -- | The distribution's id.
 ciDistributionId :: Lens' CreateInvalidation Text
@@ -101,7 +99,7 @@ instance NFData CreateInvalidation where
 instance ToElement CreateInvalidation where
         toElement
           = mkElement
-              "{http://cloudfront.amazonaws.com/doc/2017-10-30/}InvalidationBatch"
+              "{http://cloudfront.amazonaws.com/doc/2020-05-31/}InvalidationBatch"
               .
               _ciInvalidationBatch
 
@@ -111,7 +109,7 @@ instance ToHeaders CreateInvalidation where
 instance ToPath CreateInvalidation where
         toPath CreateInvalidation'{..}
           = mconcat
-              ["/2017-10-30/distribution/", toBS _ciDistributionId,
+              ["/2020-05-31/distribution/", toBS _ciDistributionId,
                "/invalidation"]
 
 instance ToQuery CreateInvalidation where
@@ -122,12 +120,16 @@ instance ToQuery CreateInvalidation where
 --
 --
 -- /See:/ 'createInvalidationResponse' smart constructor.
-data CreateInvalidationResponse = CreateInvalidationResponse'
-  { _cirsInvalidation   :: !(Maybe Invalidation)
-  , _cirsLocation       :: !(Maybe Text)
-  , _cirsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateInvalidationResponse = CreateInvalidationResponse'{_cirsInvalidation
+                                                              ::
+                                                              !(Maybe
+                                                                  Invalidation),
+                                                              _cirsLocation ::
+                                                              !(Maybe Text),
+                                                              _cirsResponseStatus
+                                                              :: !Int}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'CreateInvalidationResponse' with the minimum fields required to make a request.
 --
@@ -141,13 +143,11 @@ data CreateInvalidationResponse = CreateInvalidationResponse'
 createInvalidationResponse
     :: Int -- ^ 'cirsResponseStatus'
     -> CreateInvalidationResponse
-createInvalidationResponse pResponseStatus_ =
-  CreateInvalidationResponse'
-    { _cirsInvalidation = Nothing
-    , _cirsLocation = Nothing
-    , _cirsResponseStatus = pResponseStatus_
-    }
-
+createInvalidationResponse pResponseStatus_
+  = CreateInvalidationResponse'{_cirsInvalidation =
+                                  Nothing,
+                                _cirsLocation = Nothing,
+                                _cirsResponseStatus = pResponseStatus_}
 
 -- | The invalidation's information.
 cirsInvalidation :: Lens' CreateInvalidationResponse (Maybe Invalidation)

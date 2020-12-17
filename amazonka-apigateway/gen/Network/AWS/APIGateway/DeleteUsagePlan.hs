@@ -35,7 +35,6 @@ module Network.AWS.APIGateway.DeleteUsagePlan
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -46,10 +45,9 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'deleteUsagePlan' smart constructor.
-newtype DeleteUsagePlan = DeleteUsagePlan'
-  { _dupUsagePlanId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteUsagePlan = DeleteUsagePlan'{_dupUsagePlanId
+                                           :: Text}
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteUsagePlan' with the minimum fields required to make a request.
 --
@@ -59,9 +57,8 @@ newtype DeleteUsagePlan = DeleteUsagePlan'
 deleteUsagePlan
     :: Text -- ^ 'dupUsagePlanId'
     -> DeleteUsagePlan
-deleteUsagePlan pUsagePlanId_ =
-  DeleteUsagePlan' {_dupUsagePlanId = pUsagePlanId_}
-
+deleteUsagePlan pUsagePlanId_
+  = DeleteUsagePlan'{_dupUsagePlanId = pUsagePlanId_}
 
 -- | [Required] The Id of the to-be-deleted usage plan.
 dupUsagePlanId :: Lens' DeleteUsagePlan Text
@@ -90,16 +87,14 @@ instance ToQuery DeleteUsagePlan where
         toQuery = const mempty
 
 -- | /See:/ 'deleteUsagePlanResponse' smart constructor.
-data DeleteUsagePlanResponse =
-  DeleteUsagePlanResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteUsagePlanResponse = DeleteUsagePlanResponse'
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'DeleteUsagePlanResponse' with the minimum fields required to make a request.
 --
 deleteUsagePlanResponse
     :: DeleteUsagePlanResponse
 deleteUsagePlanResponse = DeleteUsagePlanResponse'
-
 
 instance NFData DeleteUsagePlanResponse where

@@ -45,15 +45,16 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.ServiceCatalog.Types
-import Network.AWS.ServiceCatalog.Types.Product
 
 -- | /See:/ 'deleteProvisioningArtifact' smart constructor.
-data DeleteProvisioningArtifact = DeleteProvisioningArtifact'
-  { _dpapAcceptLanguage         :: !(Maybe Text)
-  , _dpapProductId              :: !Text
-  , _dpapProvisioningArtifactId :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteProvisioningArtifact = DeleteProvisioningArtifact'{_dpapAcceptLanguage
+                                                              :: !(Maybe Text),
+                                                              _dpapProductId ::
+                                                              !Text,
+                                                              _dpapProvisioningArtifactId
+                                                              :: !Text}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'DeleteProvisioningArtifact' with the minimum fields required to make a request.
 --
@@ -68,13 +69,13 @@ deleteProvisioningArtifact
     :: Text -- ^ 'dpapProductId'
     -> Text -- ^ 'dpapProvisioningArtifactId'
     -> DeleteProvisioningArtifact
-deleteProvisioningArtifact pProductId_ pProvisioningArtifactId_ =
-  DeleteProvisioningArtifact'
-    { _dpapAcceptLanguage = Nothing
-    , _dpapProductId = pProductId_
-    , _dpapProvisioningArtifactId = pProvisioningArtifactId_
-    }
-
+deleteProvisioningArtifact pProductId_
+  pProvisioningArtifactId_
+  = DeleteProvisioningArtifact'{_dpapAcceptLanguage =
+                                  Nothing,
+                                _dpapProductId = pProductId_,
+                                _dpapProvisioningArtifactId =
+                                  pProvisioningArtifactId_}
 
 -- | The language code.     * @en@ - English (default)     * @jp@ - Japanese     * @zh@ - Chinese
 dpapAcceptLanguage :: Lens' DeleteProvisioningArtifact (Maybe Text)
@@ -129,10 +130,11 @@ instance ToQuery DeleteProvisioningArtifact where
         toQuery = const mempty
 
 -- | /See:/ 'deleteProvisioningArtifactResponse' smart constructor.
-newtype DeleteProvisioningArtifactResponse = DeleteProvisioningArtifactResponse'
-  { _dparsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteProvisioningArtifactResponse = DeleteProvisioningArtifactResponse'{_dparsResponseStatus
+                                                                                 ::
+                                                                                 Int}
+                                               deriving (Eq, Read, Show, Data,
+                                                         Typeable, Generic)
 
 -- | Creates a value of 'DeleteProvisioningArtifactResponse' with the minimum fields required to make a request.
 --
@@ -142,9 +144,9 @@ newtype DeleteProvisioningArtifactResponse = DeleteProvisioningArtifactResponse'
 deleteProvisioningArtifactResponse
     :: Int -- ^ 'dparsResponseStatus'
     -> DeleteProvisioningArtifactResponse
-deleteProvisioningArtifactResponse pResponseStatus_ =
-  DeleteProvisioningArtifactResponse' {_dparsResponseStatus = pResponseStatus_}
-
+deleteProvisioningArtifactResponse pResponseStatus_
+  = DeleteProvisioningArtifactResponse'{_dparsResponseStatus
+                                          = pResponseStatus_}
 
 -- | -- | The response status code.
 dparsResponseStatus :: Lens' DeleteProvisioningArtifactResponse Int

@@ -41,20 +41,20 @@ module Network.AWS.CognitoIdentityProvider.CreateResourceServer
     ) where
 
 import Network.AWS.CognitoIdentityProvider.Types
-import Network.AWS.CognitoIdentityProvider.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'createResourceServer' smart constructor.
-data CreateResourceServer = CreateResourceServer'
-  { _crsScopes     :: !(Maybe [ResourceServerScopeType])
-  , _crsUserPoolId :: !Text
-  , _crsIdentifier :: !Text
-  , _crsName       :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateResourceServer = CreateResourceServer'{_crsScopes
+                                                  ::
+                                                  !(Maybe
+                                                      [ResourceServerScopeType]),
+                                                  _crsUserPoolId :: !Text,
+                                                  _crsIdentifier :: !Text,
+                                                  _crsName :: !Text}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CreateResourceServer' with the minimum fields required to make a request.
 --
@@ -72,14 +72,10 @@ createResourceServer
     -> Text -- ^ 'crsIdentifier'
     -> Text -- ^ 'crsName'
     -> CreateResourceServer
-createResourceServer pUserPoolId_ pIdentifier_ pName_ =
-  CreateResourceServer'
-    { _crsScopes = Nothing
-    , _crsUserPoolId = pUserPoolId_
-    , _crsIdentifier = pIdentifier_
-    , _crsName = pName_
-    }
-
+createResourceServer pUserPoolId_ pIdentifier_ pName_
+  = CreateResourceServer'{_crsScopes = Nothing,
+                          _crsUserPoolId = pUserPoolId_,
+                          _crsIdentifier = pIdentifier_, _crsName = pName_}
 
 -- | A list of scopes. Each scope is map, where the keys are @name@ and @description@ .
 crsScopes :: Lens' CreateResourceServer [ResourceServerScopeType]
@@ -137,11 +133,13 @@ instance ToQuery CreateResourceServer where
         toQuery = const mempty
 
 -- | /See:/ 'createResourceServerResponse' smart constructor.
-data CreateResourceServerResponse = CreateResourceServerResponse'
-  { _crsrsResponseStatus :: !Int
-  , _crsrsResourceServer :: !ResourceServerType
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateResourceServerResponse = CreateResourceServerResponse'{_crsrsResponseStatus
+                                                                  :: !Int,
+                                                                  _crsrsResourceServer
+                                                                  ::
+                                                                  !ResourceServerType}
+                                      deriving (Eq, Read, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'CreateResourceServerResponse' with the minimum fields required to make a request.
 --
@@ -154,12 +152,11 @@ createResourceServerResponse
     :: Int -- ^ 'crsrsResponseStatus'
     -> ResourceServerType -- ^ 'crsrsResourceServer'
     -> CreateResourceServerResponse
-createResourceServerResponse pResponseStatus_ pResourceServer_ =
-  CreateResourceServerResponse'
-    { _crsrsResponseStatus = pResponseStatus_
-    , _crsrsResourceServer = pResourceServer_
-    }
-
+createResourceServerResponse pResponseStatus_
+  pResourceServer_
+  = CreateResourceServerResponse'{_crsrsResponseStatus
+                                    = pResponseStatus_,
+                                  _crsrsResourceServer = pResourceServer_}
 
 -- | -- | The response status code.
 crsrsResponseStatus :: Lens' CreateResourceServerResponse Int

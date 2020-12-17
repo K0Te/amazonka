@@ -36,24 +36,20 @@ module Network.AWS.IAM.ListSAMLProviders
     ) where
 
 import Network.AWS.IAM.Types
-import Network.AWS.IAM.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'listSAMLProviders' smart constructor.
-data ListSAMLProviders =
-  ListSAMLProviders'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListSAMLProviders = ListSAMLProviders'
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListSAMLProviders' with the minimum fields required to make a request.
 --
 listSAMLProviders
     :: ListSAMLProviders
 listSAMLProviders = ListSAMLProviders'
-
 
 instance AWSRequest ListSAMLProviders where
         type Rs ListSAMLProviders = ListSAMLProvidersResponse
@@ -83,16 +79,19 @@ instance ToQuery ListSAMLProviders where
                  ["Action" =: ("ListSAMLProviders" :: ByteString),
                   "Version" =: ("2010-05-08" :: ByteString)])
 
--- | Contains the response to a successful 'ListSAMLProviders' request.
+-- | Contains the response to a successful 'ListSAMLProviders' request. 
 --
 --
 --
 -- /See:/ 'listSAMLProvidersResponse' smart constructor.
-data ListSAMLProvidersResponse = ListSAMLProvidersResponse'
-  { _lsamlprsSAMLProviderList :: !(Maybe [SAMLProviderListEntry])
-  , _lsamlprsResponseStatus   :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListSAMLProvidersResponse = ListSAMLProvidersResponse'{_lsamlprsSAMLProviderList
+                                                            ::
+                                                            !(Maybe
+                                                                [SAMLProviderListEntry]),
+                                                            _lsamlprsResponseStatus
+                                                            :: !Int}
+                                   deriving (Eq, Read, Show, Data, Typeable,
+                                             Generic)
 
 -- | Creates a value of 'ListSAMLProvidersResponse' with the minimum fields required to make a request.
 --
@@ -104,12 +103,10 @@ data ListSAMLProvidersResponse = ListSAMLProvidersResponse'
 listSAMLProvidersResponse
     :: Int -- ^ 'lsamlprsResponseStatus'
     -> ListSAMLProvidersResponse
-listSAMLProvidersResponse pResponseStatus_ =
-  ListSAMLProvidersResponse'
-    { _lsamlprsSAMLProviderList = Nothing
-    , _lsamlprsResponseStatus = pResponseStatus_
-    }
-
+listSAMLProvidersResponse pResponseStatus_
+  = ListSAMLProvidersResponse'{_lsamlprsSAMLProviderList
+                                 = Nothing,
+                               _lsamlprsResponseStatus = pResponseStatus_}
 
 -- | The list of SAML provider resource objects defined in IAM for this AWS account.
 lsamlprsSAMLProviderList :: Lens' ListSAMLProvidersResponse [SAMLProviderListEntry]

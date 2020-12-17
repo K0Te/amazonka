@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Returns the stack instance that's associated with the specified stack set, AWS account, and region.
+-- Returns the stack instance that's associated with the specified stack set, AWS account, and Region.
 --
 --
 -- For a list of stack instances that are associated with a specific stack set, use 'ListStackInstances' .
@@ -42,19 +42,20 @@ module Network.AWS.CloudFormation.DescribeStackInstance
     ) where
 
 import Network.AWS.CloudFormation.Types
-import Network.AWS.CloudFormation.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'describeStackInstance' smart constructor.
-data DescribeStackInstance = DescribeStackInstance'
-  { _dStackSetName         :: !Text
-  , _dStackInstanceAccount :: !Text
-  , _dStackInstanceRegion  :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeStackInstance = DescribeStackInstance'{_dStackSetName
+                                                    :: !Text,
+                                                    _dStackInstanceAccount ::
+                                                    !Text,
+                                                    _dStackInstanceRegion ::
+                                                    !Text}
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'DescribeStackInstance' with the minimum fields required to make a request.
 --
@@ -64,19 +65,18 @@ data DescribeStackInstance = DescribeStackInstance'
 --
 -- * 'dStackInstanceAccount' - The ID of an AWS account that's associated with this stack instance.
 --
--- * 'dStackInstanceRegion' - The name of a region that's associated with this stack instance.
+-- * 'dStackInstanceRegion' - The name of a Region that's associated with this stack instance.
 describeStackInstance
     :: Text -- ^ 'dStackSetName'
     -> Text -- ^ 'dStackInstanceAccount'
     -> Text -- ^ 'dStackInstanceRegion'
     -> DescribeStackInstance
-describeStackInstance pStackSetName_ pStackInstanceAccount_ pStackInstanceRegion_ =
-  DescribeStackInstance'
-    { _dStackSetName = pStackSetName_
-    , _dStackInstanceAccount = pStackInstanceAccount_
-    , _dStackInstanceRegion = pStackInstanceRegion_
-    }
-
+describeStackInstance pStackSetName_
+  pStackInstanceAccount_ pStackInstanceRegion_
+  = DescribeStackInstance'{_dStackSetName =
+                             pStackSetName_,
+                           _dStackInstanceAccount = pStackInstanceAccount_,
+                           _dStackInstanceRegion = pStackInstanceRegion_}
 
 -- | The name or the unique stack ID of the stack set that you want to get stack instance information for.
 dStackSetName :: Lens' DescribeStackInstance Text
@@ -86,7 +86,7 @@ dStackSetName = lens _dStackSetName (\ s a -> s{_dStackSetName = a})
 dStackInstanceAccount :: Lens' DescribeStackInstance Text
 dStackInstanceAccount = lens _dStackInstanceAccount (\ s a -> s{_dStackInstanceAccount = a})
 
--- | The name of a region that's associated with this stack instance.
+-- | The name of a Region that's associated with this stack instance.
 dStackInstanceRegion :: Lens' DescribeStackInstance Text
 dStackInstanceRegion = lens _dStackInstanceRegion (\ s a -> s{_dStackInstanceRegion = a})
 
@@ -120,11 +120,14 @@ instance ToQuery DescribeStackInstance where
                "StackInstanceRegion" =: _dStackInstanceRegion]
 
 -- | /See:/ 'describeStackInstanceResponse' smart constructor.
-data DescribeStackInstanceResponse = DescribeStackInstanceResponse'
-  { _dsisrsStackInstance  :: !(Maybe StackInstance)
-  , _dsisrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeStackInstanceResponse = DescribeStackInstanceResponse'{_dsisrsStackInstance
+                                                                    ::
+                                                                    !(Maybe
+                                                                        StackInstance),
+                                                                    _dsisrsResponseStatus
+                                                                    :: !Int}
+                                       deriving (Eq, Read, Show, Data, Typeable,
+                                                 Generic)
 
 -- | Creates a value of 'DescribeStackInstanceResponse' with the minimum fields required to make a request.
 --
@@ -136,10 +139,10 @@ data DescribeStackInstanceResponse = DescribeStackInstanceResponse'
 describeStackInstanceResponse
     :: Int -- ^ 'dsisrsResponseStatus'
     -> DescribeStackInstanceResponse
-describeStackInstanceResponse pResponseStatus_ =
-  DescribeStackInstanceResponse'
-    {_dsisrsStackInstance = Nothing, _dsisrsResponseStatus = pResponseStatus_}
-
+describeStackInstanceResponse pResponseStatus_
+  = DescribeStackInstanceResponse'{_dsisrsStackInstance
+                                     = Nothing,
+                                   _dsisrsResponseStatus = pResponseStatus_}
 
 -- | The stack instance that matches the specified request parameters.
 dsisrsStackInstance :: Lens' DescribeStackInstanceResponse (Maybe StackInstance)

@@ -182,172 +182,175 @@ module Network.AWS.Route53
     -- * Operations
     -- $operations
 
-    -- ** GetHostedZoneLimit
+    -- ** GetHostedZoneLimit 
     , module Network.AWS.Route53.GetHostedZoneLimit
 
-    -- ** AssociateVPCWithHostedZone
+    -- ** AssociateVPCWithHostedZone 
     , module Network.AWS.Route53.AssociateVPCWithHostedZone
 
-    -- ** DeleteTrafficPolicy
+    -- ** DeleteTrafficPolicy 
     , module Network.AWS.Route53.DeleteTrafficPolicy
 
-    -- ** GetCheckerIPRanges
+    -- ** GetCheckerIPRanges 
     , module Network.AWS.Route53.GetCheckerIPRanges
 
-    -- ** GetTrafficPolicyInstance
+    -- ** GetTrafficPolicyInstance 
     , module Network.AWS.Route53.GetTrafficPolicyInstance
 
-    -- ** GetHealthCheckLastFailureReason
+    -- ** GetHealthCheckLastFailureReason 
     , module Network.AWS.Route53.GetHealthCheckLastFailureReason
 
-    -- ** DeleteReusableDelegationSet
+    -- ** DeleteReusableDelegationSet 
     , module Network.AWS.Route53.DeleteReusableDelegationSet
 
-    -- ** ListHostedZonesByName
+    -- ** ListHostedZonesByName 
     , module Network.AWS.Route53.ListHostedZonesByName
 
-    -- ** ListReusableDelegationSets
+    -- ** ListReusableDelegationSets 
     , module Network.AWS.Route53.ListReusableDelegationSets
 
-    -- ** ListTagsForResource
+    -- ** ListTagsForResource 
     , module Network.AWS.Route53.ListTagsForResource
 
-    -- ** ListQueryLoggingConfigs
+    -- ** ListQueryLoggingConfigs (Paginated)
     , module Network.AWS.Route53.ListQueryLoggingConfigs
 
-    -- ** ListTrafficPolicyInstances
+    -- ** ListTrafficPolicyInstances 
     , module Network.AWS.Route53.ListTrafficPolicyInstances
 
-    -- ** CreateTrafficPolicyInstance
+    -- ** CreateTrafficPolicyInstance 
     , module Network.AWS.Route53.CreateTrafficPolicyInstance
 
-    -- ** GetChange
+    -- ** GetChange 
     , module Network.AWS.Route53.GetChange
 
-    -- ** ChangeResourceRecordSets
+    -- ** ChangeResourceRecordSets 
     , module Network.AWS.Route53.ChangeResourceRecordSets
 
-    -- ** DeleteHealthCheck
+    -- ** DeleteHealthCheck 
     , module Network.AWS.Route53.DeleteHealthCheck
 
-    -- ** UpdateHealthCheck
+    -- ** UpdateHealthCheck 
     , module Network.AWS.Route53.UpdateHealthCheck
 
-    -- ** CreateHostedZone
+    -- ** CreateHostedZone 
     , module Network.AWS.Route53.CreateHostedZone
 
-    -- ** CreateVPCAssociationAuthorization
+    -- ** CreateVPCAssociationAuthorization 
     , module Network.AWS.Route53.CreateVPCAssociationAuthorization
 
-    -- ** ListVPCAssociationAuthorizations
+    -- ** ListVPCAssociationAuthorizations (Paginated)
     , module Network.AWS.Route53.ListVPCAssociationAuthorizations
 
-    -- ** ListTrafficPolicyInstancesByPolicy
+    -- ** ListTrafficPolicyInstancesByPolicy 
     , module Network.AWS.Route53.ListTrafficPolicyInstancesByPolicy
 
-    -- ** DisassociateVPCFromHostedZone
+    -- ** DisassociateVPCFromHostedZone 
     , module Network.AWS.Route53.DisassociateVPCFromHostedZone
 
-    -- ** CreateHealthCheck
+    -- ** CreateHealthCheck 
     , module Network.AWS.Route53.CreateHealthCheck
 
-    -- ** DeleteVPCAssociationAuthorization
+    -- ** DeleteVPCAssociationAuthorization 
     , module Network.AWS.Route53.DeleteVPCAssociationAuthorization
 
-    -- ** ChangeTagsForResource
+    -- ** ChangeTagsForResource 
     , module Network.AWS.Route53.ChangeTagsForResource
 
     -- ** ListHostedZones (Paginated)
     , module Network.AWS.Route53.ListHostedZones
 
-    -- ** GetTrafficPolicyInstanceCount
+    -- ** GetTrafficPolicyInstanceCount 
     , module Network.AWS.Route53.GetTrafficPolicyInstanceCount
 
-    -- ** ListGeoLocations
+    -- ** ListGeoLocations 
     , module Network.AWS.Route53.ListGeoLocations
 
-    -- ** GetHostedZone
+    -- ** GetHostedZone 
     , module Network.AWS.Route53.GetHostedZone
 
-    -- ** GetHealthCheck
+    -- ** GetHealthCheck 
     , module Network.AWS.Route53.GetHealthCheck
 
     -- ** ListResourceRecordSets (Paginated)
     , module Network.AWS.Route53.ListResourceRecordSets
 
-    -- ** CreateReusableDelegationSet
+    -- ** CreateReusableDelegationSet 
     , module Network.AWS.Route53.CreateReusableDelegationSet
 
-    -- ** CreateQueryLoggingConfig
+    -- ** CreateQueryLoggingConfig 
     , module Network.AWS.Route53.CreateQueryLoggingConfig
 
-    -- ** GetHealthCheckCount
+    -- ** GetHealthCheckCount 
     , module Network.AWS.Route53.GetHealthCheckCount
 
-    -- ** UpdateTrafficPolicyComment
+    -- ** UpdateTrafficPolicyComment 
     , module Network.AWS.Route53.UpdateTrafficPolicyComment
 
-    -- ** GetHostedZoneCount
+    -- ** GetHostedZoneCount 
     , module Network.AWS.Route53.GetHostedZoneCount
 
-    -- ** GetAccountLimit
+    -- ** GetAccountLimit 
     , module Network.AWS.Route53.GetAccountLimit
 
-    -- ** DeleteQueryLoggingConfig
+    -- ** DeleteQueryLoggingConfig 
     , module Network.AWS.Route53.DeleteQueryLoggingConfig
 
-    -- ** GetQueryLoggingConfig
+    -- ** GetQueryLoggingConfig 
     , module Network.AWS.Route53.GetQueryLoggingConfig
 
-    -- ** GetReusableDelegationSet
+    -- ** GetReusableDelegationSet 
     , module Network.AWS.Route53.GetReusableDelegationSet
 
-    -- ** DeleteTrafficPolicyInstance
+    -- ** DeleteTrafficPolicyInstance 
     , module Network.AWS.Route53.DeleteTrafficPolicyInstance
 
-    -- ** UpdateTrafficPolicyInstance
+    -- ** UpdateTrafficPolicyInstance 
     , module Network.AWS.Route53.UpdateTrafficPolicyInstance
 
-    -- ** UpdateHostedZoneComment
+    -- ** UpdateHostedZoneComment 
     , module Network.AWS.Route53.UpdateHostedZoneComment
 
-    -- ** GetHealthCheckStatus
+    -- ** GetHealthCheckStatus 
     , module Network.AWS.Route53.GetHealthCheckStatus
 
-    -- ** GetReusableDelegationSetLimit
+    -- ** ListHostedZonesByVPC 
+    , module Network.AWS.Route53.ListHostedZonesByVPC
+
+    -- ** GetReusableDelegationSetLimit 
     , module Network.AWS.Route53.GetReusableDelegationSetLimit
 
-    -- ** CreateTrafficPolicyVersion
+    -- ** CreateTrafficPolicyVersion 
     , module Network.AWS.Route53.CreateTrafficPolicyVersion
 
-    -- ** TestDNSAnswer
+    -- ** TestDNSAnswer 
     , module Network.AWS.Route53.TestDNSAnswer
 
     -- ** ListHealthChecks (Paginated)
     , module Network.AWS.Route53.ListHealthChecks
 
-    -- ** GetTrafficPolicy
+    -- ** GetTrafficPolicy 
     , module Network.AWS.Route53.GetTrafficPolicy
 
-    -- ** ListTrafficPolicyVersions
+    -- ** ListTrafficPolicyVersions 
     , module Network.AWS.Route53.ListTrafficPolicyVersions
 
-    -- ** DeleteHostedZone
+    -- ** DeleteHostedZone 
     , module Network.AWS.Route53.DeleteHostedZone
 
-    -- ** GetGeoLocation
+    -- ** GetGeoLocation 
     , module Network.AWS.Route53.GetGeoLocation
 
-    -- ** ListTagsForResources
+    -- ** ListTagsForResources 
     , module Network.AWS.Route53.ListTagsForResources
 
-    -- ** CreateTrafficPolicy
+    -- ** CreateTrafficPolicy 
     , module Network.AWS.Route53.CreateTrafficPolicy
 
-    -- ** ListTrafficPolicyInstancesByHostedZone
+    -- ** ListTrafficPolicyInstancesByHostedZone 
     , module Network.AWS.Route53.ListTrafficPolicyInstancesByHostedZone
 
-    -- ** ListTrafficPolicies
+    -- ** ListTrafficPolicies 
     , module Network.AWS.Route53.ListTrafficPolicies
 
     -- * Types
@@ -500,6 +503,7 @@ module Network.AWS.Route53
     , hccFailureThreshold
     , hccIPAddress
     , hccEnableSNI
+    , hccDisabled
     , hccSearchString
     , hccHealthThreshold
     , hccRegions
@@ -542,6 +546,19 @@ module Network.AWS.Route53
     , hostedZoneLimit
     , hzlType
     , hzlValue
+
+    -- ** HostedZoneOwner
+    , HostedZoneOwner
+    , hostedZoneOwner
+    , hzoOwningAccount
+    , hzoOwningService
+
+    -- ** HostedZoneSummary
+    , HostedZoneSummary
+    , hostedZoneSummary
+    , hzsHostedZoneId
+    , hzsName
+    , hzsOwner
 
     -- ** LinkedService
     , LinkedService
@@ -678,11 +695,11 @@ import Network.AWS.Route53.GetReusableDelegationSetLimit
 import Network.AWS.Route53.GetTrafficPolicy
 import Network.AWS.Route53.GetTrafficPolicyInstance
 import Network.AWS.Route53.GetTrafficPolicyInstanceCount
-import Network.AWS.Route53.Internal
 import Network.AWS.Route53.ListGeoLocations
 import Network.AWS.Route53.ListHealthChecks
 import Network.AWS.Route53.ListHostedZones
 import Network.AWS.Route53.ListHostedZonesByName
+import Network.AWS.Route53.ListHostedZonesByVPC
 import Network.AWS.Route53.ListQueryLoggingConfigs
 import Network.AWS.Route53.ListResourceRecordSets
 import Network.AWS.Route53.ListReusableDelegationSets
@@ -701,6 +718,7 @@ import Network.AWS.Route53.UpdateHostedZoneComment
 import Network.AWS.Route53.UpdateTrafficPolicyComment
 import Network.AWS.Route53.UpdateTrafficPolicyInstance
 import Network.AWS.Route53.Waiters
+import Network.AWS.Route53.Internal
 
 {- $errors
 Error matchers are designed for use with the functions provided by

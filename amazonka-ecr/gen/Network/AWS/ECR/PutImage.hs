@@ -21,6 +21,8 @@
 -- Creates or updates the image manifest and tags associated with an image.
 --
 --
+-- When an image is pushed and all new image layers have been uploaded, the PutImage API is called once to create or update the image manifest and the tags associated with the image.
+--
 module Network.AWS.ECR.PutImage
     (
     -- * Creating a Request
@@ -28,6 +30,8 @@ module Network.AWS.ECR.PutImage
     , PutImage
     -- * Request Lenses
     , piRegistryId
+    , piImageManifestMediaType
+    , piImageDigest
     , piImageTag
     , piRepositoryName
     , piImageManifest
@@ -41,20 +45,20 @@ module Network.AWS.ECR.PutImage
     ) where
 
 import Network.AWS.ECR.Types
-import Network.AWS.ECR.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'putImage' smart constructor.
-data PutImage = PutImage'
-  { _piRegistryId     :: !(Maybe Text)
-  , _piImageTag       :: !(Maybe Text)
-  , _piRepositoryName :: !Text
-  , _piImageManifest  :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data PutImage = PutImage'{_piRegistryId ::
+                          !(Maybe Text),
+                          _piImageManifestMediaType :: !(Maybe Text),
+                          _piImageDigest :: !(Maybe Text),
+                          _piImageTag :: !(Maybe Text),
+                          _piRepositoryName :: !Text,
+                          _piImageManifest :: !Text}
+                  deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'PutImage' with the minimum fields required to make a request.
 --
@@ -62,7 +66,11 @@ data PutImage = PutImage'
 --
 -- * 'piRegistryId' - The AWS account ID associated with the registry that contains the repository in which to put the image. If you do not specify a registry, the default registry is assumed.
 --
--- * 'piImageTag' - The tag to associate with the image. This parameter is required for images that use the Docker Image Manifest V2 Schema 2 or OCI formats.
+-- * 'piImageManifestMediaType' - The media type of the image manifest. If you push an image manifest that does not contain the @mediaType@ field, you must specify the @imageManifestMediaType@ in the request.
+--
+-- * 'piImageDigest' - The image digest of the image manifest corresponding to the image.
+--
+-- * 'piImageTag' - The tag to associate with the image. This parameter is required for images that use the Docker Image Manifest V2 Schema 2 or Open Container Initiative (OCI) formats.
 --
 -- * 'piRepositoryName' - The name of the repository in which to put the image.
 --
@@ -71,20 +79,26 @@ putImage
     :: Text -- ^ 'piRepositoryName'
     -> Text -- ^ 'piImageManifest'
     -> PutImage
-putImage pRepositoryName_ pImageManifest_ =
-  PutImage'
-    { _piRegistryId = Nothing
-    , _piImageTag = Nothing
-    , _piRepositoryName = pRepositoryName_
-    , _piImageManifest = pImageManifest_
-    }
-
+putImage pRepositoryName_ pImageManifest_
+  = PutImage'{_piRegistryId = Nothing,
+              _piImageManifestMediaType = Nothing,
+              _piImageDigest = Nothing, _piImageTag = Nothing,
+              _piRepositoryName = pRepositoryName_,
+              _piImageManifest = pImageManifest_}
 
 -- | The AWS account ID associated with the registry that contains the repository in which to put the image. If you do not specify a registry, the default registry is assumed.
 piRegistryId :: Lens' PutImage (Maybe Text)
 piRegistryId = lens _piRegistryId (\ s a -> s{_piRegistryId = a})
 
--- | The tag to associate with the image. This parameter is required for images that use the Docker Image Manifest V2 Schema 2 or OCI formats.
+-- | The media type of the image manifest. If you push an image manifest that does not contain the @mediaType@ field, you must specify the @imageManifestMediaType@ in the request.
+piImageManifestMediaType :: Lens' PutImage (Maybe Text)
+piImageManifestMediaType = lens _piImageManifestMediaType (\ s a -> s{_piImageManifestMediaType = a})
+
+-- | The image digest of the image manifest corresponding to the image.
+piImageDigest :: Lens' PutImage (Maybe Text)
+piImageDigest = lens _piImageDigest (\ s a -> s{_piImageDigest = a})
+
+-- | The tag to associate with the image. This parameter is required for images that use the Docker Image Manifest V2 Schema 2 or Open Container Initiative (OCI) formats.
 piImageTag :: Lens' PutImage (Maybe Text)
 piImageTag = lens _piImageTag (\ s a -> s{_piImageTag = a})
 
@@ -124,6 +138,9 @@ instance ToJSON PutImage where
           = object
               (catMaybes
                  [("registryId" .=) <$> _piRegistryId,
+                  ("imageManifestMediaType" .=) <$>
+                    _piImageManifestMediaType,
+                  ("imageDigest" .=) <$> _piImageDigest,
                   ("imageTag" .=) <$> _piImageTag,
                   Just ("repositoryName" .= _piRepositoryName),
                   Just ("imageManifest" .= _piImageManifest)])
@@ -135,11 +152,10 @@ instance ToQuery PutImage where
         toQuery = const mempty
 
 -- | /See:/ 'putImageResponse' smart constructor.
-data PutImageResponse = PutImageResponse'
-  { _pirsImage          :: !(Maybe Image)
-  , _pirsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data PutImageResponse = PutImageResponse'{_pirsImage
+                                          :: !(Maybe Image),
+                                          _pirsResponseStatus :: !Int}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'PutImageResponse' with the minimum fields required to make a request.
 --
@@ -151,10 +167,9 @@ data PutImageResponse = PutImageResponse'
 putImageResponse
     :: Int -- ^ 'pirsResponseStatus'
     -> PutImageResponse
-putImageResponse pResponseStatus_ =
-  PutImageResponse'
-    {_pirsImage = Nothing, _pirsResponseStatus = pResponseStatus_}
-
+putImageResponse pResponseStatus_
+  = PutImageResponse'{_pirsImage = Nothing,
+                      _pirsResponseStatus = pResponseStatus_}
 
 -- | Details of the image uploaded.
 pirsImage :: Lens' PutImageResponse (Maybe Image)

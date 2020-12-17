@@ -40,7 +40,6 @@ module Network.AWS.Kinesis.RemoveTagsFromStream
     ) where
 
 import Network.AWS.Kinesis.Types
-import Network.AWS.Kinesis.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -51,11 +50,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'removeTagsFromStream' smart constructor.
-data RemoveTagsFromStream = RemoveTagsFromStream'
-  { _rtfsStreamName :: !Text
-  , _rtfsTagKeys    :: !(List1 Text)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data RemoveTagsFromStream = RemoveTagsFromStream'{_rtfsStreamName
+                                                  :: !Text,
+                                                  _rtfsTagKeys :: !(List1 Text)}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'RemoveTagsFromStream' with the minimum fields required to make a request.
 --
@@ -68,10 +66,10 @@ removeTagsFromStream
     :: Text -- ^ 'rtfsStreamName'
     -> NonEmpty Text -- ^ 'rtfsTagKeys'
     -> RemoveTagsFromStream
-removeTagsFromStream pStreamName_ pTagKeys_ =
-  RemoveTagsFromStream'
-    {_rtfsStreamName = pStreamName_, _rtfsTagKeys = _List1 # pTagKeys_}
-
+removeTagsFromStream pStreamName_ pTagKeys_
+  = RemoveTagsFromStream'{_rtfsStreamName =
+                            pStreamName_,
+                          _rtfsTagKeys = _List1 # pTagKeys_}
 
 -- | The name of the stream.
 rtfsStreamName :: Lens' RemoveTagsFromStream Text
@@ -115,16 +113,15 @@ instance ToQuery RemoveTagsFromStream where
         toQuery = const mempty
 
 -- | /See:/ 'removeTagsFromStreamResponse' smart constructor.
-data RemoveTagsFromStreamResponse =
-  RemoveTagsFromStreamResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data RemoveTagsFromStreamResponse = RemoveTagsFromStreamResponse'
+                                      deriving (Eq, Read, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'RemoveTagsFromStreamResponse' with the minimum fields required to make a request.
 --
 removeTagsFromStreamResponse
     :: RemoveTagsFromStreamResponse
-removeTagsFromStreamResponse = RemoveTagsFromStreamResponse'
-
+removeTagsFromStreamResponse
+  = RemoveTagsFromStreamResponse'
 
 instance NFData RemoveTagsFromStreamResponse where

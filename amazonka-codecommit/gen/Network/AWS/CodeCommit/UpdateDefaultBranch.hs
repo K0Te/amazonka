@@ -36,7 +36,6 @@ module Network.AWS.CodeCommit.UpdateDefaultBranch
     ) where
 
 import Network.AWS.CodeCommit.Types
-import Network.AWS.CodeCommit.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -47,11 +46,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'updateDefaultBranch' smart constructor.
-data UpdateDefaultBranch = UpdateDefaultBranch'
-  { _udbRepositoryName    :: !Text
-  , _udbDefaultBranchName :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateDefaultBranch = UpdateDefaultBranch'{_udbRepositoryName
+                                                :: !Text,
+                                                _udbDefaultBranchName :: !Text}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UpdateDefaultBranch' with the minimum fields required to make a request.
 --
@@ -64,12 +62,11 @@ updateDefaultBranch
     :: Text -- ^ 'udbRepositoryName'
     -> Text -- ^ 'udbDefaultBranchName'
     -> UpdateDefaultBranch
-updateDefaultBranch pRepositoryName_ pDefaultBranchName_ =
-  UpdateDefaultBranch'
-    { _udbRepositoryName = pRepositoryName_
-    , _udbDefaultBranchName = pDefaultBranchName_
-    }
-
+updateDefaultBranch pRepositoryName_
+  pDefaultBranchName_
+  = UpdateDefaultBranch'{_udbRepositoryName =
+                           pRepositoryName_,
+                         _udbDefaultBranchName = pDefaultBranchName_}
 
 -- | The name of the repository to set or change the default branch for.
 udbRepositoryName :: Lens' UpdateDefaultBranch Text
@@ -113,16 +110,15 @@ instance ToQuery UpdateDefaultBranch where
         toQuery = const mempty
 
 -- | /See:/ 'updateDefaultBranchResponse' smart constructor.
-data UpdateDefaultBranchResponse =
-  UpdateDefaultBranchResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateDefaultBranchResponse = UpdateDefaultBranchResponse'
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'UpdateDefaultBranchResponse' with the minimum fields required to make a request.
 --
 updateDefaultBranchResponse
     :: UpdateDefaultBranchResponse
-updateDefaultBranchResponse = UpdateDefaultBranchResponse'
-
+updateDefaultBranchResponse
+  = UpdateDefaultBranchResponse'
 
 instance NFData UpdateDefaultBranchResponse where

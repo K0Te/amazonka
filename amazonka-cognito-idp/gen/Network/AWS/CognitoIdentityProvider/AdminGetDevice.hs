@@ -21,7 +21,7 @@
 -- Gets the device, as an administrator.
 --
 --
--- Requires developer credentials.
+-- Calling this action requires developer credentials.
 --
 module Network.AWS.CognitoIdentityProvider.AdminGetDevice
     (
@@ -42,7 +42,6 @@ module Network.AWS.CognitoIdentityProvider.AdminGetDevice
     ) where
 
 import Network.AWS.CognitoIdentityProvider.Types
-import Network.AWS.CognitoIdentityProvider.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -53,12 +52,11 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'adminGetDevice' smart constructor.
-data AdminGetDevice = AdminGetDevice'
-  { _agdDeviceKey  :: !Text
-  , _agdUserPoolId :: !Text
-  , _agdUsername   :: !(Sensitive Text)
-  } deriving (Eq, Show, Data, Typeable, Generic)
-
+data AdminGetDevice = AdminGetDevice'{_agdDeviceKey
+                                      :: !Text,
+                                      _agdUserPoolId :: !Text,
+                                      _agdUsername :: !(Sensitive Text)}
+                        deriving (Eq, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'AdminGetDevice' with the minimum fields required to make a request.
 --
@@ -74,13 +72,10 @@ adminGetDevice
     -> Text -- ^ 'agdUserPoolId'
     -> Text -- ^ 'agdUsername'
     -> AdminGetDevice
-adminGetDevice pDeviceKey_ pUserPoolId_ pUsername_ =
-  AdminGetDevice'
-    { _agdDeviceKey = pDeviceKey_
-    , _agdUserPoolId = pUserPoolId_
-    , _agdUsername = _Sensitive # pUsername_
-    }
-
+adminGetDevice pDeviceKey_ pUserPoolId_ pUsername_
+  = AdminGetDevice'{_agdDeviceKey = pDeviceKey_,
+                    _agdUserPoolId = pUserPoolId_,
+                    _agdUsername = _Sensitive # pUsername_}
 
 -- | The device key.
 agdDeviceKey :: Lens' AdminGetDevice Text
@@ -136,11 +131,11 @@ instance ToQuery AdminGetDevice where
 --
 --
 -- /See:/ 'adminGetDeviceResponse' smart constructor.
-data AdminGetDeviceResponse = AdminGetDeviceResponse'
-  { _agdrsResponseStatus :: !Int
-  , _agdrsDevice         :: !DeviceType
-  } deriving (Eq, Show, Data, Typeable, Generic)
-
+data AdminGetDeviceResponse = AdminGetDeviceResponse'{_agdrsResponseStatus
+                                                      :: !Int,
+                                                      _agdrsDevice ::
+                                                      !DeviceType}
+                                deriving (Eq, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'AdminGetDeviceResponse' with the minimum fields required to make a request.
 --
@@ -153,10 +148,10 @@ adminGetDeviceResponse
     :: Int -- ^ 'agdrsResponseStatus'
     -> DeviceType -- ^ 'agdrsDevice'
     -> AdminGetDeviceResponse
-adminGetDeviceResponse pResponseStatus_ pDevice_ =
-  AdminGetDeviceResponse'
-    {_agdrsResponseStatus = pResponseStatus_, _agdrsDevice = pDevice_}
-
+adminGetDeviceResponse pResponseStatus_ pDevice_
+  = AdminGetDeviceResponse'{_agdrsResponseStatus =
+                              pResponseStatus_,
+                            _agdrsDevice = pDevice_}
 
 -- | -- | The response status code.
 agdrsResponseStatus :: Lens' AdminGetDeviceResponse Int

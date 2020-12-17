@@ -38,7 +38,6 @@ module Network.AWS.CognitoSync.SetCognitoEvents
     ) where
 
 import Network.AWS.CognitoSync.Types
-import Network.AWS.CognitoSync.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -49,11 +48,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'setCognitoEvents' smart constructor.
-data SetCognitoEvents = SetCognitoEvents'
-  { _sceIdentityPoolId :: !Text
-  , _sceEvents         :: !(Map Text Text)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data SetCognitoEvents = SetCognitoEvents'{_sceIdentityPoolId
+                                          :: !Text,
+                                          _sceEvents :: !(Map Text Text)}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'SetCognitoEvents' with the minimum fields required to make a request.
 --
@@ -65,9 +63,10 @@ data SetCognitoEvents = SetCognitoEvents'
 setCognitoEvents
     :: Text -- ^ 'sceIdentityPoolId'
     -> SetCognitoEvents
-setCognitoEvents pIdentityPoolId_ =
-  SetCognitoEvents' {_sceIdentityPoolId = pIdentityPoolId_, _sceEvents = mempty}
-
+setCognitoEvents pIdentityPoolId_
+  = SetCognitoEvents'{_sceIdentityPoolId =
+                        pIdentityPoolId_,
+                      _sceEvents = mempty}
 
 -- | The Cognito Identity Pool to use when configuring Cognito Events
 sceIdentityPoolId :: Lens' SetCognitoEvents Text
@@ -107,16 +106,14 @@ instance ToQuery SetCognitoEvents where
         toQuery = const mempty
 
 -- | /See:/ 'setCognitoEventsResponse' smart constructor.
-data SetCognitoEventsResponse =
-  SetCognitoEventsResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data SetCognitoEventsResponse = SetCognitoEventsResponse'
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'SetCognitoEventsResponse' with the minimum fields required to make a request.
 --
 setCognitoEventsResponse
     :: SetCognitoEventsResponse
 setCognitoEventsResponse = SetCognitoEventsResponse'
-
 
 instance NFData SetCognitoEventsResponse where

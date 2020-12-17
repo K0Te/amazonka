@@ -43,18 +43,16 @@ module Network.AWS.MachineLearning.UpdateMLModel
 
 import Network.AWS.Lens
 import Network.AWS.MachineLearning.Types
-import Network.AWS.MachineLearning.Types.Product
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'updateMLModel' smart constructor.
-data UpdateMLModel = UpdateMLModel'
-  { _umlmMLModelName    :: !(Maybe Text)
-  , _umlmScoreThreshold :: !(Maybe Double)
-  , _umlmMLModelId      :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateMLModel = UpdateMLModel'{_umlmMLModelName
+                                    :: !(Maybe Text),
+                                    _umlmScoreThreshold :: !(Maybe Double),
+                                    _umlmMLModelId :: !Text}
+                       deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UpdateMLModel' with the minimum fields required to make a request.
 --
@@ -68,13 +66,10 @@ data UpdateMLModel = UpdateMLModel'
 updateMLModel
     :: Text -- ^ 'umlmMLModelId'
     -> UpdateMLModel
-updateMLModel pMLModelId_ =
-  UpdateMLModel'
-    { _umlmMLModelName = Nothing
-    , _umlmScoreThreshold = Nothing
-    , _umlmMLModelId = pMLModelId_
-    }
-
+updateMLModel pMLModelId_
+  = UpdateMLModel'{_umlmMLModelName = Nothing,
+                   _umlmScoreThreshold = Nothing,
+                   _umlmMLModelId = pMLModelId_}
 
 -- | A user-supplied name or description of the @MLModel@ .
 umlmMLModelName :: Lens' UpdateMLModel (Maybe Text)
@@ -131,11 +126,12 @@ instance ToQuery UpdateMLModel where
 --
 --
 -- /See:/ 'updateMLModelResponse' smart constructor.
-data UpdateMLModelResponse = UpdateMLModelResponse'
-  { _umlmrsMLModelId      :: !(Maybe Text)
-  , _umlmrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateMLModelResponse = UpdateMLModelResponse'{_umlmrsMLModelId
+                                                    :: !(Maybe Text),
+                                                    _umlmrsResponseStatus ::
+                                                    !Int}
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'UpdateMLModelResponse' with the minimum fields required to make a request.
 --
@@ -147,10 +143,9 @@ data UpdateMLModelResponse = UpdateMLModelResponse'
 updateMLModelResponse
     :: Int -- ^ 'umlmrsResponseStatus'
     -> UpdateMLModelResponse
-updateMLModelResponse pResponseStatus_ =
-  UpdateMLModelResponse'
-    {_umlmrsMLModelId = Nothing, _umlmrsResponseStatus = pResponseStatus_}
-
+updateMLModelResponse pResponseStatus_
+  = UpdateMLModelResponse'{_umlmrsMLModelId = Nothing,
+                           _umlmrsResponseStatus = pResponseStatus_}
 
 -- | The ID assigned to the @MLModel@ during creation. This value should be identical to the value of the @MLModelID@ in the request.
 umlmrsMLModelId :: Lens' UpdateMLModelResponse (Maybe Text)

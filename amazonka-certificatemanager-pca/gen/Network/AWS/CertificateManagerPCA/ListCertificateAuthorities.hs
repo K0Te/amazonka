@@ -18,9 +18,11 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Lists the private certificate authorities that you created by using the 'CreateCertificateAuthority' function.
+-- Lists the private certificate authorities that you created by using the <https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_CreateCertificateAuthority.html CreateCertificateAuthority> action.
 --
 --
+--
+-- This operation returns paginated results.
 module Network.AWS.CertificateManagerPCA.ListCertificateAuthorities
     (
     -- * Creating a Request
@@ -28,6 +30,7 @@ module Network.AWS.CertificateManagerPCA.ListCertificateAuthorities
     , ListCertificateAuthorities
     -- * Request Lenses
     , lcaNextToken
+    , lcaResourceOwner
     , lcaMaxResults
 
     -- * Destructuring the Response
@@ -40,18 +43,23 @@ module Network.AWS.CertificateManagerPCA.ListCertificateAuthorities
     ) where
 
 import Network.AWS.CertificateManagerPCA.Types
-import Network.AWS.CertificateManagerPCA.Types.Product
 import Network.AWS.Lens
+import Network.AWS.Pager
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'listCertificateAuthorities' smart constructor.
-data ListCertificateAuthorities = ListCertificateAuthorities'
-  { _lcaNextToken  :: !(Maybe Text)
-  , _lcaMaxResults :: !(Maybe Nat)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListCertificateAuthorities = ListCertificateAuthorities'{_lcaNextToken
+                                                              :: !(Maybe Text),
+                                                              _lcaResourceOwner
+                                                              ::
+                                                              !(Maybe
+                                                                  ResourceOwner),
+                                                              _lcaMaxResults ::
+                                                              !(Maybe Nat)}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'ListCertificateAuthorities' with the minimum fields required to make a request.
 --
@@ -59,21 +67,35 @@ data ListCertificateAuthorities = ListCertificateAuthorities'
 --
 -- * 'lcaNextToken' - Use this parameter when paginating results in a subsequent request after you receive a response with truncated results. Set it to the value of the @NextToken@ parameter from the response you just received.
 --
+-- * 'lcaResourceOwner' - Use this parameter to filter the returned set of certificate authorities based on their owner. The default is SELF.
+--
 -- * 'lcaMaxResults' - Use this parameter when paginating results to specify the maximum number of items to return in the response on each page. If additional items exist beyond the number you specify, the @NextToken@ element is sent in the response. Use this @NextToken@ value in a subsequent request to retrieve additional items.
 listCertificateAuthorities
     :: ListCertificateAuthorities
-listCertificateAuthorities =
-  ListCertificateAuthorities'
-    {_lcaNextToken = Nothing, _lcaMaxResults = Nothing}
-
+listCertificateAuthorities
+  = ListCertificateAuthorities'{_lcaNextToken =
+                                  Nothing,
+                                _lcaResourceOwner = Nothing,
+                                _lcaMaxResults = Nothing}
 
 -- | Use this parameter when paginating results in a subsequent request after you receive a response with truncated results. Set it to the value of the @NextToken@ parameter from the response you just received.
 lcaNextToken :: Lens' ListCertificateAuthorities (Maybe Text)
 lcaNextToken = lens _lcaNextToken (\ s a -> s{_lcaNextToken = a})
 
+-- | Use this parameter to filter the returned set of certificate authorities based on their owner. The default is SELF.
+lcaResourceOwner :: Lens' ListCertificateAuthorities (Maybe ResourceOwner)
+lcaResourceOwner = lens _lcaResourceOwner (\ s a -> s{_lcaResourceOwner = a})
+
 -- | Use this parameter when paginating results to specify the maximum number of items to return in the response on each page. If additional items exist beyond the number you specify, the @NextToken@ element is sent in the response. Use this @NextToken@ value in a subsequent request to retrieve additional items.
 lcaMaxResults :: Lens' ListCertificateAuthorities (Maybe Natural)
 lcaMaxResults = lens _lcaMaxResults (\ s a -> s{_lcaMaxResults = a}) . mapping _Nat
+
+instance AWSPager ListCertificateAuthorities where
+        page rq rs
+          | stop (rs ^. lcarsNextToken) = Nothing
+          | stop (rs ^. lcarsCertificateAuthorities) = Nothing
+          | otherwise =
+            Just $ rq & lcaNextToken .~ rs ^. lcarsNextToken
 
 instance AWSRequest ListCertificateAuthorities where
         type Rs ListCertificateAuthorities =
@@ -106,6 +128,7 @@ instance ToJSON ListCertificateAuthorities where
           = object
               (catMaybes
                  [("NextToken" .=) <$> _lcaNextToken,
+                  ("ResourceOwner" .=) <$> _lcaResourceOwner,
                   ("MaxResults" .=) <$> _lcaMaxResults])
 
 instance ToPath ListCertificateAuthorities where
@@ -115,12 +138,19 @@ instance ToQuery ListCertificateAuthorities where
         toQuery = const mempty
 
 -- | /See:/ 'listCertificateAuthoritiesResponse' smart constructor.
-data ListCertificateAuthoritiesResponse = ListCertificateAuthoritiesResponse'
-  { _lcarsCertificateAuthorities :: !(Maybe [CertificateAuthority])
-  , _lcarsNextToken              :: !(Maybe Text)
-  , _lcarsResponseStatus         :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListCertificateAuthoritiesResponse = ListCertificateAuthoritiesResponse'{_lcarsCertificateAuthorities
+                                                                              ::
+                                                                              !(Maybe
+                                                                                  [CertificateAuthority]),
+                                                                              _lcarsNextToken
+                                                                              ::
+                                                                              !(Maybe
+                                                                                  Text),
+                                                                              _lcarsResponseStatus
+                                                                              ::
+                                                                              !Int}
+                                            deriving (Eq, Read, Show, Data,
+                                                      Typeable, Generic)
 
 -- | Creates a value of 'ListCertificateAuthoritiesResponse' with the minimum fields required to make a request.
 --
@@ -134,13 +164,11 @@ data ListCertificateAuthoritiesResponse = ListCertificateAuthoritiesResponse'
 listCertificateAuthoritiesResponse
     :: Int -- ^ 'lcarsResponseStatus'
     -> ListCertificateAuthoritiesResponse
-listCertificateAuthoritiesResponse pResponseStatus_ =
-  ListCertificateAuthoritiesResponse'
-    { _lcarsCertificateAuthorities = Nothing
-    , _lcarsNextToken = Nothing
-    , _lcarsResponseStatus = pResponseStatus_
-    }
-
+listCertificateAuthoritiesResponse pResponseStatus_
+  = ListCertificateAuthoritiesResponse'{_lcarsCertificateAuthorities
+                                          = Nothing,
+                                        _lcarsNextToken = Nothing,
+                                        _lcarsResponseStatus = pResponseStatus_}
 
 -- | Summary information about each certificate authority you have created.
 lcarsCertificateAuthorities :: Lens' ListCertificateAuthoritiesResponse [CertificateAuthority]

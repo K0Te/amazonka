@@ -37,21 +37,20 @@ module Network.AWS.Config.DeleteDeliveryChannel
     ) where
 
 import Network.AWS.Config.Types
-import Network.AWS.Config.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- | The input for the 'DeleteDeliveryChannel' action. The action accepts the following data, in JSON format.
+-- | The input for the 'DeleteDeliveryChannel' action. The action accepts the following data, in JSON format. 
 --
 --
 --
 -- /See:/ 'deleteDeliveryChannel' smart constructor.
-newtype DeleteDeliveryChannel = DeleteDeliveryChannel'
-  { _ddcDeliveryChannelName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteDeliveryChannel = DeleteDeliveryChannel'{_ddcDeliveryChannelName
+                                                       :: Text}
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'DeleteDeliveryChannel' with the minimum fields required to make a request.
 --
@@ -61,9 +60,9 @@ newtype DeleteDeliveryChannel = DeleteDeliveryChannel'
 deleteDeliveryChannel
     :: Text -- ^ 'ddcDeliveryChannelName'
     -> DeleteDeliveryChannel
-deleteDeliveryChannel pDeliveryChannelName_ =
-  DeleteDeliveryChannel' {_ddcDeliveryChannelName = pDeliveryChannelName_}
-
+deleteDeliveryChannel pDeliveryChannelName_
+  = DeleteDeliveryChannel'{_ddcDeliveryChannelName =
+                             pDeliveryChannelName_}
 
 -- | The name of the delivery channel to delete.
 ddcDeliveryChannelName :: Lens' DeleteDeliveryChannel Text
@@ -103,16 +102,15 @@ instance ToQuery DeleteDeliveryChannel where
         toQuery = const mempty
 
 -- | /See:/ 'deleteDeliveryChannelResponse' smart constructor.
-data DeleteDeliveryChannelResponse =
-  DeleteDeliveryChannelResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteDeliveryChannelResponse = DeleteDeliveryChannelResponse'
+                                       deriving (Eq, Read, Show, Data, Typeable,
+                                                 Generic)
 
 -- | Creates a value of 'DeleteDeliveryChannelResponse' with the minimum fields required to make a request.
 --
 deleteDeliveryChannelResponse
     :: DeleteDeliveryChannelResponse
-deleteDeliveryChannelResponse = DeleteDeliveryChannelResponse'
-
+deleteDeliveryChannelResponse
+  = DeleteDeliveryChannelResponse'
 
 instance NFData DeleteDeliveryChannelResponse where

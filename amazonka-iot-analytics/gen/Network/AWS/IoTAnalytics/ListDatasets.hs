@@ -21,6 +21,8 @@
 -- Retrieves information about data sets.
 --
 --
+--
+-- This operation returns paginated results.
 module Network.AWS.IoTAnalytics.ListDatasets
     (
     -- * Creating a Request
@@ -40,18 +42,17 @@ module Network.AWS.IoTAnalytics.ListDatasets
     ) where
 
 import Network.AWS.IoTAnalytics.Types
-import Network.AWS.IoTAnalytics.Types.Product
 import Network.AWS.Lens
+import Network.AWS.Pager
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'listDatasets' smart constructor.
-data ListDatasets = ListDatasets'
-  { _lNextToken  :: !(Maybe Text)
-  , _lMaxResults :: !(Maybe Nat)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListDatasets = ListDatasets'{_lNextToken ::
+                                  !(Maybe Text),
+                                  _lMaxResults :: !(Maybe Nat)}
+                      deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListDatasets' with the minimum fields required to make a request.
 --
@@ -62,8 +63,9 @@ data ListDatasets = ListDatasets'
 -- * 'lMaxResults' - The maximum number of results to return in this request. The default value is 100.
 listDatasets
     :: ListDatasets
-listDatasets = ListDatasets' {_lNextToken = Nothing, _lMaxResults = Nothing}
-
+listDatasets
+  = ListDatasets'{_lNextToken = Nothing,
+                  _lMaxResults = Nothing}
 
 -- | The token for the next set of results.
 lNextToken :: Lens' ListDatasets (Maybe Text)
@@ -72,6 +74,13 @@ lNextToken = lens _lNextToken (\ s a -> s{_lNextToken = a})
 -- | The maximum number of results to return in this request. The default value is 100.
 lMaxResults :: Lens' ListDatasets (Maybe Natural)
 lMaxResults = lens _lMaxResults (\ s a -> s{_lMaxResults = a}) . mapping _Nat
+
+instance AWSPager ListDatasets where
+        page rq rs
+          | stop (rs ^. lrsNextToken) = Nothing
+          | stop (rs ^. lrsDatasetSummaries) = Nothing
+          | otherwise =
+            Just $ rq & lNextToken .~ rs ^. lrsNextToken
 
 instance AWSRequest ListDatasets where
         type Rs ListDatasets = ListDatasetsResponse
@@ -101,12 +110,12 @@ instance ToQuery ListDatasets where
                "maxResults" =: _lMaxResults]
 
 -- | /See:/ 'listDatasetsResponse' smart constructor.
-data ListDatasetsResponse = ListDatasetsResponse'
-  { _lrsNextToken        :: !(Maybe Text)
-  , _lrsDatasetSummaries :: !(Maybe [DatasetSummary])
-  , _lrsResponseStatus   :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListDatasetsResponse = ListDatasetsResponse'{_lrsNextToken
+                                                  :: !(Maybe Text),
+                                                  _lrsDatasetSummaries ::
+                                                  !(Maybe [DatasetSummary]),
+                                                  _lrsResponseStatus :: !Int}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListDatasetsResponse' with the minimum fields required to make a request.
 --
@@ -114,25 +123,22 @@ data ListDatasetsResponse = ListDatasetsResponse'
 --
 -- * 'lrsNextToken' - The token to retrieve the next set of results, or @null@ if there are no more results.
 --
--- * 'lrsDatasetSummaries' - A list of "DatasetSummary" objects.
+-- * 'lrsDatasetSummaries' - A list of @DatasetSummary@ objects.
 --
 -- * 'lrsResponseStatus' - -- | The response status code.
 listDatasetsResponse
     :: Int -- ^ 'lrsResponseStatus'
     -> ListDatasetsResponse
-listDatasetsResponse pResponseStatus_ =
-  ListDatasetsResponse'
-    { _lrsNextToken = Nothing
-    , _lrsDatasetSummaries = Nothing
-    , _lrsResponseStatus = pResponseStatus_
-    }
-
+listDatasetsResponse pResponseStatus_
+  = ListDatasetsResponse'{_lrsNextToken = Nothing,
+                          _lrsDatasetSummaries = Nothing,
+                          _lrsResponseStatus = pResponseStatus_}
 
 -- | The token to retrieve the next set of results, or @null@ if there are no more results.
 lrsNextToken :: Lens' ListDatasetsResponse (Maybe Text)
 lrsNextToken = lens _lrsNextToken (\ s a -> s{_lrsNextToken = a})
 
--- | A list of "DatasetSummary" objects.
+-- | A list of @DatasetSummary@ objects.
 lrsDatasetSummaries :: Lens' ListDatasetsResponse [DatasetSummary]
 lrsDatasetSummaries = lens _lrsDatasetSummaries (\ s a -> s{_lrsDatasetSummaries = a}) . _Default . _Coerce
 

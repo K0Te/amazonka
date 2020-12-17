@@ -37,17 +37,15 @@ module Network.AWS.Cloud9.DeleteEnvironment
     ) where
 
 import Network.AWS.Cloud9.Types
-import Network.AWS.Cloud9.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deleteEnvironment' smart constructor.
-newtype DeleteEnvironment = DeleteEnvironment'
-  { _deEnvironmentId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteEnvironment = DeleteEnvironment'{_deEnvironmentId
+                                               :: Text}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteEnvironment' with the minimum fields required to make a request.
 --
@@ -57,9 +55,9 @@ newtype DeleteEnvironment = DeleteEnvironment'
 deleteEnvironment
     :: Text -- ^ 'deEnvironmentId'
     -> DeleteEnvironment
-deleteEnvironment pEnvironmentId_ =
-  DeleteEnvironment' {_deEnvironmentId = pEnvironmentId_}
-
+deleteEnvironment pEnvironmentId_
+  = DeleteEnvironment'{_deEnvironmentId =
+                         pEnvironmentId_}
 
 -- | The ID of the environment to delete.
 deEnvironmentId :: Lens' DeleteEnvironment Text
@@ -100,10 +98,10 @@ instance ToQuery DeleteEnvironment where
         toQuery = const mempty
 
 -- | /See:/ 'deleteEnvironmentResponse' smart constructor.
-newtype DeleteEnvironmentResponse = DeleteEnvironmentResponse'
-  { _dersResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteEnvironmentResponse = DeleteEnvironmentResponse'{_dersResponseStatus
+                                                               :: Int}
+                                      deriving (Eq, Read, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'DeleteEnvironmentResponse' with the minimum fields required to make a request.
 --
@@ -113,9 +111,9 @@ newtype DeleteEnvironmentResponse = DeleteEnvironmentResponse'
 deleteEnvironmentResponse
     :: Int -- ^ 'dersResponseStatus'
     -> DeleteEnvironmentResponse
-deleteEnvironmentResponse pResponseStatus_ =
-  DeleteEnvironmentResponse' {_dersResponseStatus = pResponseStatus_}
-
+deleteEnvironmentResponse pResponseStatus_
+  = DeleteEnvironmentResponse'{_dersResponseStatus =
+                                 pResponseStatus_}
 
 -- | -- | The response status code.
 dersResponseStatus :: Lens' DeleteEnvironmentResponse Int

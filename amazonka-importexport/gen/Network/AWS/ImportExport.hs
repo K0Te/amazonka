@@ -11,7 +11,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- __AWS Import/Export Service__
+-- __AWS Import/Export Service__ 
 module Network.AWS.ImportExport
     (
     -- * Service Configuration
@@ -86,22 +86,22 @@ module Network.AWS.ImportExport
     -- * Operations
     -- $operations
 
-    -- ** GetShippingLabel
+    -- ** GetShippingLabel 
     , module Network.AWS.ImportExport.GetShippingLabel
 
-    -- ** CreateJob
+    -- ** CreateJob 
     , module Network.AWS.ImportExport.CreateJob
 
     -- ** ListJobs (Paginated)
     , module Network.AWS.ImportExport.ListJobs
 
-    -- ** UpdateJob
+    -- ** UpdateJob 
     , module Network.AWS.ImportExport.UpdateJob
 
-    -- ** GetStatus
+    -- ** GetStatus 
     , module Network.AWS.ImportExport.GetStatus
 
-    -- ** CancelJob
+    -- ** CancelJob 
     , module Network.AWS.ImportExport.CancelJob
 
     -- * Types

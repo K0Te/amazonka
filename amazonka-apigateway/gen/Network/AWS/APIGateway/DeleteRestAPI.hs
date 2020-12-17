@@ -35,7 +35,6 @@ module Network.AWS.APIGateway.DeleteRestAPI
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -46,10 +45,9 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'deleteRestAPI' smart constructor.
-newtype DeleteRestAPI = DeleteRestAPI'
-  { _draRestAPIId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteRestAPI = DeleteRestAPI'{_draRestAPIId
+                                       :: Text}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteRestAPI' with the minimum fields required to make a request.
 --
@@ -59,8 +57,8 @@ newtype DeleteRestAPI = DeleteRestAPI'
 deleteRestAPI
     :: Text -- ^ 'draRestAPIId'
     -> DeleteRestAPI
-deleteRestAPI pRestAPIId_ = DeleteRestAPI' {_draRestAPIId = pRestAPIId_}
-
+deleteRestAPI pRestAPIId_
+  = DeleteRestAPI'{_draRestAPIId = pRestAPIId_}
 
 -- | [Required] The string identifier of the associated 'RestApi' .
 draRestAPIId :: Lens' DeleteRestAPI Text
@@ -89,16 +87,14 @@ instance ToQuery DeleteRestAPI where
         toQuery = const mempty
 
 -- | /See:/ 'deleteRestAPIResponse' smart constructor.
-data DeleteRestAPIResponse =
-  DeleteRestAPIResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteRestAPIResponse = DeleteRestAPIResponse'
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'DeleteRestAPIResponse' with the minimum fields required to make a request.
 --
 deleteRestAPIResponse
     :: DeleteRestAPIResponse
 deleteRestAPIResponse = DeleteRestAPIResponse'
-
 
 instance NFData DeleteRestAPIResponse where

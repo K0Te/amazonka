@@ -35,17 +35,16 @@ module Network.AWS.CloudWatchEvents.ActivateEventSource
     ) where
 
 import Network.AWS.CloudWatchEvents.Types
-import Network.AWS.CloudWatchEvents.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'activateEventSource' smart constructor.
-newtype ActivateEventSource = ActivateEventSource'
-  { _aesName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype ActivateEventSource = ActivateEventSource'{_aesName
+                                                   :: Text}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'ActivateEventSource' with the minimum fields required to make a request.
 --
@@ -55,8 +54,8 @@ newtype ActivateEventSource = ActivateEventSource'
 activateEventSource
     :: Text -- ^ 'aesName'
     -> ActivateEventSource
-activateEventSource pName_ = ActivateEventSource' {_aesName = pName_}
-
+activateEventSource pName_
+  = ActivateEventSource'{_aesName = pName_}
 
 -- | The name of the partner event source to activate.
 aesName :: Lens' ActivateEventSource Text
@@ -92,16 +91,15 @@ instance ToQuery ActivateEventSource where
         toQuery = const mempty
 
 -- | /See:/ 'activateEventSourceResponse' smart constructor.
-data ActivateEventSourceResponse =
-  ActivateEventSourceResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ActivateEventSourceResponse = ActivateEventSourceResponse'
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'ActivateEventSourceResponse' with the minimum fields required to make a request.
 --
 activateEventSourceResponse
     :: ActivateEventSourceResponse
-activateEventSourceResponse = ActivateEventSourceResponse'
-
+activateEventSourceResponse
+  = ActivateEventSourceResponse'
 
 instance NFData ActivateEventSourceResponse where

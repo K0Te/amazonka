@@ -40,19 +40,15 @@ module Network.AWS.AppSync.GetResolver
     ) where
 
 import Network.AWS.AppSync.Types
-import Network.AWS.AppSync.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'getResolver' smart constructor.
-data GetResolver = GetResolver'
-  { _grApiId     :: !Text
-  , _grTypeName  :: !Text
-  , _grFieldName :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetResolver = GetResolver'{_grApiId :: !Text,
+                                _grTypeName :: !Text, _grFieldName :: !Text}
+                     deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetResolver' with the minimum fields required to make a request.
 --
@@ -68,10 +64,9 @@ getResolver
     -> Text -- ^ 'grTypeName'
     -> Text -- ^ 'grFieldName'
     -> GetResolver
-getResolver pApiId_ pTypeName_ pFieldName_ =
-  GetResolver'
-    {_grApiId = pApiId_, _grTypeName = pTypeName_, _grFieldName = pFieldName_}
-
+getResolver pApiId_ pTypeName_ pFieldName_
+  = GetResolver'{_grApiId = pApiId_,
+                 _grTypeName = pTypeName_, _grFieldName = pFieldName_}
 
 -- | The API ID.
 grApiId :: Lens' GetResolver Text
@@ -115,11 +110,10 @@ instance ToQuery GetResolver where
         toQuery = const mempty
 
 -- | /See:/ 'getResolverResponse' smart constructor.
-data GetResolverResponse = GetResolverResponse'
-  { _grrsResolver       :: !(Maybe Resolver)
-  , _grrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetResolverResponse = GetResolverResponse'{_grrsResolver
+                                                :: !(Maybe Resolver),
+                                                _grrsResponseStatus :: !Int}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetResolverResponse' with the minimum fields required to make a request.
 --
@@ -131,10 +125,9 @@ data GetResolverResponse = GetResolverResponse'
 getResolverResponse
     :: Int -- ^ 'grrsResponseStatus'
     -> GetResolverResponse
-getResolverResponse pResponseStatus_ =
-  GetResolverResponse'
-    {_grrsResolver = Nothing, _grrsResponseStatus = pResponseStatus_}
-
+getResolverResponse pResponseStatus_
+  = GetResolverResponse'{_grrsResolver = Nothing,
+                         _grrsResponseStatus = pResponseStatus_}
 
 -- | The @Resolver@ object.
 grrsResolver :: Lens' GetResolverResponse (Maybe Resolver)

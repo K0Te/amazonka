@@ -14,11 +14,11 @@
 module Test.AWS.Gen.SecretsManager where
 
 import Data.Proxy
-import Network.AWS.SecretsManager
 import Test.AWS.Fixture
 import Test.AWS.Prelude
-import Test.AWS.SecretsManager.Internal
 import Test.Tasty
+import Network.AWS.SecretsManager
+import Test.AWS.SecretsManager.Internal
 
 -- Auto-generated: the actual test selection needs to be manually placed into
 -- the top-level so that real test data can be incrementally added.
@@ -28,7 +28,10 @@ import Test.Tasty
 -- fixtures :: TestTree
 -- fixtures =
 --     [ testGroup "request"
---         [ requestDeleteSecret $
+--         [ requestValidateResourcePolicy $
+--             validateResourcePolicy
+--
+--         , requestDeleteSecret $
 --             deleteSecret
 --
 --         , requestListSecrets $
@@ -55,6 +58,9 @@ import Test.Tasty
 --         , requestCancelRotateSecret $
 --             cancelRotateSecret
 --
+--         , requestGetResourcePolicy $
+--             getResourcePolicy
+--
 --         , requestPutSecretValue $
 --             putSecretValue
 --
@@ -67,6 +73,12 @@ import Test.Tasty
 --         , requestTagResource $
 --             tagResource
 --
+--         , requestPutResourcePolicy $
+--             putResourcePolicy
+--
+--         , requestDeleteResourcePolicy $
+--             deleteResourcePolicy
+--
 --         , requestUntagResource $
 --             untagResource
 --
@@ -76,7 +88,10 @@ import Test.Tasty
 --           ]
 
 --     , testGroup "response"
---         [ responseDeleteSecret $
+--         [ responseValidateResourcePolicy $
+--             validateResourcePolicyResponse
+--
+--         , responseDeleteSecret $
 --             deleteSecretResponse
 --
 --         , responseListSecrets $
@@ -103,6 +118,9 @@ import Test.Tasty
 --         , responseCancelRotateSecret $
 --             cancelRotateSecretResponse
 --
+--         , responseGetResourcePolicy $
+--             getResourcePolicyResponse
+--
 --         , responsePutSecretValue $
 --             putSecretValueResponse
 --
@@ -115,6 +133,12 @@ import Test.Tasty
 --         , responseTagResource $
 --             tagResourceResponse
 --
+--         , responsePutResourcePolicy $
+--             putResourcePolicyResponse
+--
+--         , responseDeleteResourcePolicy $
+--             deleteResourcePolicyResponse
+--
 --         , responseUntagResource $
 --             untagResourceResponse
 --
@@ -125,6 +149,11 @@ import Test.Tasty
 --     ]
 
 -- Requests
+
+requestValidateResourcePolicy :: ValidateResourcePolicy -> TestTree
+requestValidateResourcePolicy = req
+    "ValidateResourcePolicy"
+    "fixture/ValidateResourcePolicy.yaml"
 
 requestDeleteSecret :: DeleteSecret -> TestTree
 requestDeleteSecret = req
@@ -171,6 +200,11 @@ requestCancelRotateSecret = req
     "CancelRotateSecret"
     "fixture/CancelRotateSecret.yaml"
 
+requestGetResourcePolicy :: GetResourcePolicy -> TestTree
+requestGetResourcePolicy = req
+    "GetResourcePolicy"
+    "fixture/GetResourcePolicy.yaml"
+
 requestPutSecretValue :: PutSecretValue -> TestTree
 requestPutSecretValue = req
     "PutSecretValue"
@@ -191,6 +225,16 @@ requestTagResource = req
     "TagResource"
     "fixture/TagResource.yaml"
 
+requestPutResourcePolicy :: PutResourcePolicy -> TestTree
+requestPutResourcePolicy = req
+    "PutResourcePolicy"
+    "fixture/PutResourcePolicy.yaml"
+
+requestDeleteResourcePolicy :: DeleteResourcePolicy -> TestTree
+requestDeleteResourcePolicy = req
+    "DeleteResourcePolicy"
+    "fixture/DeleteResourcePolicy.yaml"
+
 requestUntagResource :: UntagResource -> TestTree
 requestUntagResource = req
     "UntagResource"
@@ -202,6 +246,13 @@ requestUpdateSecretVersionStage = req
     "fixture/UpdateSecretVersionStage.yaml"
 
 -- Responses
+
+responseValidateResourcePolicy :: ValidateResourcePolicyResponse -> TestTree
+responseValidateResourcePolicy = res
+    "ValidateResourcePolicyResponse"
+    "fixture/ValidateResourcePolicyResponse.proto"
+    secretsManager
+    (Proxy :: Proxy ValidateResourcePolicy)
 
 responseDeleteSecret :: DeleteSecretResponse -> TestTree
 responseDeleteSecret = res
@@ -266,6 +317,13 @@ responseCancelRotateSecret = res
     secretsManager
     (Proxy :: Proxy CancelRotateSecret)
 
+responseGetResourcePolicy :: GetResourcePolicyResponse -> TestTree
+responseGetResourcePolicy = res
+    "GetResourcePolicyResponse"
+    "fixture/GetResourcePolicyResponse.proto"
+    secretsManager
+    (Proxy :: Proxy GetResourcePolicy)
+
 responsePutSecretValue :: PutSecretValueResponse -> TestTree
 responsePutSecretValue = res
     "PutSecretValueResponse"
@@ -293,6 +351,20 @@ responseTagResource = res
     "fixture/TagResourceResponse.proto"
     secretsManager
     (Proxy :: Proxy TagResource)
+
+responsePutResourcePolicy :: PutResourcePolicyResponse -> TestTree
+responsePutResourcePolicy = res
+    "PutResourcePolicyResponse"
+    "fixture/PutResourcePolicyResponse.proto"
+    secretsManager
+    (Proxy :: Proxy PutResourcePolicy)
+
+responseDeleteResourcePolicy :: DeleteResourcePolicyResponse -> TestTree
+responseDeleteResourcePolicy = res
+    "DeleteResourcePolicyResponse"
+    "fixture/DeleteResourcePolicyResponse.proto"
+    secretsManager
+    (Proxy :: Proxy DeleteResourcePolicy)
 
 responseUntagResource :: UntagResourceResponse -> TestTree
 responseUntagResource = res

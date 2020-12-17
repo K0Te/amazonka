@@ -38,17 +38,16 @@ module Network.AWS.CloudDirectory.GetAppliedSchemaVersion
     ) where
 
 import Network.AWS.CloudDirectory.Types
-import Network.AWS.CloudDirectory.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'getAppliedSchemaVersion' smart constructor.
-newtype GetAppliedSchemaVersion = GetAppliedSchemaVersion'
-  { _gasvSchemaARN :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetAppliedSchemaVersion = GetAppliedSchemaVersion'{_gasvSchemaARN
+                                                           :: Text}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'GetAppliedSchemaVersion' with the minimum fields required to make a request.
 --
@@ -58,9 +57,9 @@ newtype GetAppliedSchemaVersion = GetAppliedSchemaVersion'
 getAppliedSchemaVersion
     :: Text -- ^ 'gasvSchemaARN'
     -> GetAppliedSchemaVersion
-getAppliedSchemaVersion pSchemaARN_ =
-  GetAppliedSchemaVersion' {_gasvSchemaARN = pSchemaARN_}
-
+getAppliedSchemaVersion pSchemaARN_
+  = GetAppliedSchemaVersion'{_gasvSchemaARN =
+                               pSchemaARN_}
 
 -- | The ARN of the applied schema.
 gasvSchemaARN :: Lens' GetAppliedSchemaVersion Text
@@ -97,11 +96,14 @@ instance ToQuery GetAppliedSchemaVersion where
         toQuery = const mempty
 
 -- | /See:/ 'getAppliedSchemaVersionResponse' smart constructor.
-data GetAppliedSchemaVersionResponse = GetAppliedSchemaVersionResponse'
-  { _gasvrsAppliedSchemaARN :: !(Maybe Text)
-  , _gasvrsResponseStatus   :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetAppliedSchemaVersionResponse = GetAppliedSchemaVersionResponse'{_gasvrsAppliedSchemaARN
+                                                                        ::
+                                                                        !(Maybe
+                                                                            Text),
+                                                                        _gasvrsResponseStatus
+                                                                        :: !Int}
+                                         deriving (Eq, Read, Show, Data,
+                                                   Typeable, Generic)
 
 -- | Creates a value of 'GetAppliedSchemaVersionResponse' with the minimum fields required to make a request.
 --
@@ -113,12 +115,10 @@ data GetAppliedSchemaVersionResponse = GetAppliedSchemaVersionResponse'
 getAppliedSchemaVersionResponse
     :: Int -- ^ 'gasvrsResponseStatus'
     -> GetAppliedSchemaVersionResponse
-getAppliedSchemaVersionResponse pResponseStatus_ =
-  GetAppliedSchemaVersionResponse'
-    { _gasvrsAppliedSchemaARN = Nothing
-    , _gasvrsResponseStatus = pResponseStatus_
-    }
-
+getAppliedSchemaVersionResponse pResponseStatus_
+  = GetAppliedSchemaVersionResponse'{_gasvrsAppliedSchemaARN
+                                       = Nothing,
+                                     _gasvrsResponseStatus = pResponseStatus_}
 
 -- | Current applied schema ARN, including the minor version in use if one was provided.
 gasvrsAppliedSchemaARN :: Lens' GetAppliedSchemaVersionResponse (Maybe Text)

@@ -11,7 +11,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- AWS Snowball is a petabyte-scale data transport solution that uses secure appliances to transfer large amounts of data between your on-premises data centers and Amazon Simple Storage Service (Amazon S3). The Snowball commands described here provide access to the same functionality that is available in the AWS Snowball Management Console, which enables you to create and manage jobs for Snowball. To transfer data locally with a Snowball appliance, you'll need to use the Snowball client or the Amazon S3 API adapter for Snowball. For more information, see the <http://docs.aws.amazon.com/AWSImportExport/latest/ug/api-reference.html User Guide> .
+-- AWS Snow Family is a petabyte-scale data transport solution that uses secure devices to transfer large amounts of data between your on-premises data centers and Amazon Simple Storage Service (Amazon S3). The Snow commands described here provide access to the same functionality that is available in the AWS Snow Family Management Console, which enables you to create and manage jobs for a Snow device. To transfer data locally with a Snow device, you'll need to use the Snowball Edge client or the Amazon S3 API Interface for Snowball or AWS OpsHub for Snow Family. For more information, see the <https://docs.aws.amazon.com/AWSImportExport/latest/ug/api-reference.html User Guide> .
 --
 --
 module Network.AWS.Snowball
@@ -28,6 +28,9 @@ module Network.AWS.Snowball
     -- ** UnsupportedAddressException
     , _UnsupportedAddressException
 
+    -- ** ReturnShippingLabelAlreadyExistsException
+    , _ReturnShippingLabelAlreadyExistsException
+
     -- ** KMSRequestFailedException
     , _KMSRequestFailedException
 
@@ -36,6 +39,12 @@ module Network.AWS.Snowball
 
     -- ** InvalidInputCombinationException
     , _InvalidInputCombinationException
+
+    -- ** ConflictException
+    , _ConflictException
+
+    -- ** EC2RequestFailedException
+    , _EC2RequestFailedException
 
     -- ** InvalidNextTokenException
     , _InvalidNextTokenException
@@ -52,55 +61,70 @@ module Network.AWS.Snowball
     -- * Operations
     -- $operations
 
-    -- ** CancelCluster
+    -- ** CancelCluster 
     , module Network.AWS.Snowball.CancelCluster
 
-    -- ** DescribeCluster
+    -- ** DescribeCluster 
     , module Network.AWS.Snowball.DescribeCluster
 
-    -- ** CreateAddress
+    -- ** CreateAddress 
     , module Network.AWS.Snowball.CreateAddress
 
-    -- ** GetSnowballUsage
+    -- ** CreateReturnShippingLabel 
+    , module Network.AWS.Snowball.CreateReturnShippingLabel
+
+    -- ** GetSnowballUsage 
     , module Network.AWS.Snowball.GetSnowballUsage
 
     -- ** DescribeAddresses (Paginated)
     , module Network.AWS.Snowball.DescribeAddresses
 
-    -- ** UpdateCluster
+    -- ** ListCompatibleImages (Paginated)
+    , module Network.AWS.Snowball.ListCompatibleImages
+
+    -- ** UpdateCluster 
     , module Network.AWS.Snowball.UpdateCluster
 
-    -- ** CreateJob
+    -- ** GetSoftwareUpdates 
+    , module Network.AWS.Snowball.GetSoftwareUpdates
+
+    -- ** CreateJob 
     , module Network.AWS.Snowball.CreateJob
 
-    -- ** GetJobManifest
+    -- ** GetJobManifest 
     , module Network.AWS.Snowball.GetJobManifest
 
-    -- ** CreateCluster
+    -- ** CreateCluster 
     , module Network.AWS.Snowball.CreateCluster
 
     -- ** ListJobs (Paginated)
     , module Network.AWS.Snowball.ListJobs
 
-    -- ** UpdateJob
+    -- ** UpdateJob 
     , module Network.AWS.Snowball.UpdateJob
 
-    -- ** GetJobUnlockCode
+    -- ** UpdateJobShipmentState 
+    , module Network.AWS.Snowball.UpdateJobShipmentState
+
+    -- ** GetJobUnlockCode 
     , module Network.AWS.Snowball.GetJobUnlockCode
 
-    -- ** ListClusterJobs
+    -- ** ListClusterJobs (Paginated)
     , module Network.AWS.Snowball.ListClusterJobs
 
-    -- ** DescribeJob
+    -- ** DescribeJob 
     , module Network.AWS.Snowball.DescribeJob
 
-    -- ** ListClusters
+    -- ** ListClusters (Paginated)
     , module Network.AWS.Snowball.ListClusters
 
-    -- ** DescribeAddress
+    -- ** DescribeAddress 
     , module Network.AWS.Snowball.DescribeAddress
 
-    -- ** CancelJob
+    -- ** DescribeReturnShippingLabel 
+    , module Network.AWS.Snowball.DescribeReturnShippingLabel
+
+    -- ** CancelJob 
     , module Network.AWS.Snowball.CancelJob
 
     -- * Types
@@ -113,6 +137,12 @@ module Network.AWS.Snowball
 
     -- ** JobType
     , JobType (..)
+
+    -- ** ShipmentState
+    , ShipmentState (..)
+
+    -- ** ShippingLabelStatus
+    , ShippingLabelStatus (..)
 
     -- ** ShippingOption
     , ShippingOption (..)
@@ -164,7 +194,14 @@ module Network.AWS.Snowball
     , cmClusterId
     , cmCreationDate
     , cmDescription
+    , cmTaxDocuments
     , cmRoleARN
+
+    -- ** CompatibleImage
+    , CompatibleImage
+    , compatibleImage
+    , ciName
+    , ciAMIId
 
     -- ** DataTransfer
     , DataTransfer
@@ -174,10 +211,26 @@ module Network.AWS.Snowball
     , dtObjectsTransferred
     , dtBytesTransferred
 
+    -- ** DeviceConfiguration
+    , DeviceConfiguration
+    , deviceConfiguration
+    , dcSnowconeDeviceConfiguration
+
+    -- ** EC2AMIResource
+    , EC2AMIResource
+    , ec2AMIResource
+    , earSnowballAMIId
+    , earAMIId
+
     -- ** EventTriggerDefinition
     , EventTriggerDefinition
     , eventTriggerDefinition
     , etdEventResourceARN
+
+    -- ** INDTaxDocuments
+    , INDTaxDocuments
+    , iNDTaxDocuments
+    , indtdGSTIN
 
     -- ** JobListEntry
     , JobListEntry
@@ -214,13 +267,16 @@ module Network.AWS.Snowball
     , jmResources
     , jmClusterId
     , jmCreationDate
+    , jmDeviceConfiguration
     , jmDescription
+    , jmTaxDocuments
     , jmRoleARN
     , jmSnowballCapacityPreference
 
     -- ** JobResource
     , JobResource
     , jobResource
+    , jrEC2AMIResources
     , jrLambdaResources
     , jrS3Resources
 
@@ -261,6 +317,21 @@ module Network.AWS.Snowball
     , sdShippingOption
     , sdOutboundShipment
     , sdInboundShipment
+
+    -- ** SnowconeDeviceConfiguration
+    , SnowconeDeviceConfiguration
+    , snowconeDeviceConfiguration
+    , sdcWirelessConnection
+
+    -- ** TaxDocuments
+    , TaxDocuments
+    , taxDocuments
+    , tdIND
+
+    -- ** WirelessConnection
+    , WirelessConnection
+    , wirelessConnection
+    , wcIsWifiEnabled
     ) where
 
 import Network.AWS.Snowball.CancelCluster
@@ -268,19 +339,24 @@ import Network.AWS.Snowball.CancelJob
 import Network.AWS.Snowball.CreateAddress
 import Network.AWS.Snowball.CreateCluster
 import Network.AWS.Snowball.CreateJob
+import Network.AWS.Snowball.CreateReturnShippingLabel
 import Network.AWS.Snowball.DescribeAddress
 import Network.AWS.Snowball.DescribeAddresses
 import Network.AWS.Snowball.DescribeCluster
 import Network.AWS.Snowball.DescribeJob
+import Network.AWS.Snowball.DescribeReturnShippingLabel
 import Network.AWS.Snowball.GetJobManifest
 import Network.AWS.Snowball.GetJobUnlockCode
 import Network.AWS.Snowball.GetSnowballUsage
+import Network.AWS.Snowball.GetSoftwareUpdates
 import Network.AWS.Snowball.ListClusterJobs
 import Network.AWS.Snowball.ListClusters
+import Network.AWS.Snowball.ListCompatibleImages
 import Network.AWS.Snowball.ListJobs
 import Network.AWS.Snowball.Types
 import Network.AWS.Snowball.UpdateCluster
 import Network.AWS.Snowball.UpdateJob
+import Network.AWS.Snowball.UpdateJobShipmentState
 import Network.AWS.Snowball.Waiters
 
 {- $errors

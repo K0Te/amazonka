@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Gets information about a vocabulary.
+-- Gets information about a vocabulary. 
 --
 --
 module Network.AWS.Transcribe.GetVocabulary
@@ -47,27 +47,25 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.Transcribe.Types
-import Network.AWS.Transcribe.Types.Product
 
 -- | /See:/ 'getVocabulary' smart constructor.
-newtype GetVocabulary = GetVocabulary'
-  { _gvVocabularyName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetVocabulary = GetVocabulary'{_gvVocabularyName
+                                       :: Text}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetVocabulary' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'gvVocabularyName' - The name of the vocabulary to return information about. The name is case-sensitive.
+-- * 'gvVocabularyName' - The name of the vocabulary to return information about. The name is case sensitive.
 getVocabulary
     :: Text -- ^ 'gvVocabularyName'
     -> GetVocabulary
-getVocabulary pVocabularyName_ =
-  GetVocabulary' {_gvVocabularyName = pVocabularyName_}
+getVocabulary pVocabularyName_
+  = GetVocabulary'{_gvVocabularyName =
+                     pVocabularyName_}
 
-
--- | The name of the vocabulary to return information about. The name is case-sensitive.
+-- | The name of the vocabulary to return information about. The name is case sensitive.
 gvVocabularyName :: Lens' GetVocabulary Text
 gvVocabularyName = lens _gvVocabularyName (\ s a -> s{_gvVocabularyName = a})
 
@@ -111,16 +109,21 @@ instance ToQuery GetVocabulary where
         toQuery = const mempty
 
 -- | /See:/ 'getVocabularyResponse' smart constructor.
-data GetVocabularyResponse = GetVocabularyResponse'
-  { _gvrsFailureReason    :: !(Maybe Text)
-  , _gvrsLanguageCode     :: !(Maybe LanguageCode)
-  , _gvrsDownloadURI      :: !(Maybe Text)
-  , _gvrsVocabularyName   :: !(Maybe Text)
-  , _gvrsLastModifiedTime :: !(Maybe POSIX)
-  , _gvrsVocabularyState  :: !(Maybe VocabularyState)
-  , _gvrsResponseStatus   :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetVocabularyResponse = GetVocabularyResponse'{_gvrsFailureReason
+                                                    :: !(Maybe Text),
+                                                    _gvrsLanguageCode ::
+                                                    !(Maybe LanguageCode),
+                                                    _gvrsDownloadURI ::
+                                                    !(Maybe Text),
+                                                    _gvrsVocabularyName ::
+                                                    !(Maybe Text),
+                                                    _gvrsLastModifiedTime ::
+                                                    !(Maybe POSIX),
+                                                    _gvrsVocabularyState ::
+                                                    !(Maybe VocabularyState),
+                                                    _gvrsResponseStatus :: !Int}
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'GetVocabularyResponse' with the minimum fields required to make a request.
 --
@@ -142,17 +145,15 @@ data GetVocabularyResponse = GetVocabularyResponse'
 getVocabularyResponse
     :: Int -- ^ 'gvrsResponseStatus'
     -> GetVocabularyResponse
-getVocabularyResponse pResponseStatus_ =
-  GetVocabularyResponse'
-    { _gvrsFailureReason = Nothing
-    , _gvrsLanguageCode = Nothing
-    , _gvrsDownloadURI = Nothing
-    , _gvrsVocabularyName = Nothing
-    , _gvrsLastModifiedTime = Nothing
-    , _gvrsVocabularyState = Nothing
-    , _gvrsResponseStatus = pResponseStatus_
-    }
-
+getVocabularyResponse pResponseStatus_
+  = GetVocabularyResponse'{_gvrsFailureReason =
+                             Nothing,
+                           _gvrsLanguageCode = Nothing,
+                           _gvrsDownloadURI = Nothing,
+                           _gvrsVocabularyName = Nothing,
+                           _gvrsLastModifiedTime = Nothing,
+                           _gvrsVocabularyState = Nothing,
+                           _gvrsResponseStatus = pResponseStatus_}
 
 -- | If the @VocabularyState@ field is @FAILED@ , this field contains information about why the job failed.
 gvrsFailureReason :: Lens' GetVocabularyResponse (Maybe Text)

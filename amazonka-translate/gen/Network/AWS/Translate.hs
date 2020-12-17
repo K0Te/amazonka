@@ -11,7 +11,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Provides translation between English and one of six languages, or between one of the six languages and English.
+-- Provides translation between one source language and another of the same set of languages.
 --
 --
 module Network.AWS.Translate
@@ -31,8 +31,17 @@ module Network.AWS.Translate
     -- ** DetectedLanguageLowConfidenceException
     , _DetectedLanguageLowConfidenceException
 
+    -- ** ConflictException
+    , _ConflictException
+
+    -- ** InvalidParameterValueException
+    , _InvalidParameterValueException
+
     -- ** TooManyRequestsException
     , _TooManyRequestsException
+
+    -- ** ConcurrentModificationException
+    , _ConcurrentModificationException
 
     -- ** InternalServerException
     , _InternalServerException
@@ -40,8 +49,17 @@ module Network.AWS.Translate
     -- ** ServiceUnavailableException
     , _ServiceUnavailableException
 
+    -- ** InvalidFilterException
+    , _InvalidFilterException
+
+    -- ** ResourceNotFoundException
+    , _ResourceNotFoundException
+
     -- ** TextSizeLimitExceededException
     , _TextSizeLimitExceededException
+
+    -- ** LimitExceededException
+    , _LimitExceededException
 
     -- * Waiters
     -- $waiters
@@ -49,14 +67,205 @@ module Network.AWS.Translate
     -- * Operations
     -- $operations
 
-    -- ** TranslateText
+    -- ** DescribeTextTranslationJob 
+    , module Network.AWS.Translate.DescribeTextTranslationJob
+
+    -- ** ListTerminologies (Paginated)
+    , module Network.AWS.Translate.ListTerminologies
+
+    -- ** CreateParallelData 
+    , module Network.AWS.Translate.CreateParallelData
+
+    -- ** UpdateParallelData 
+    , module Network.AWS.Translate.UpdateParallelData
+
+    -- ** DeleteParallelData 
+    , module Network.AWS.Translate.DeleteParallelData
+
+    -- ** GetParallelData 
+    , module Network.AWS.Translate.GetParallelData
+
+    -- ** GetTerminology 
+    , module Network.AWS.Translate.GetTerminology
+
+    -- ** TranslateText 
     , module Network.AWS.Translate.TranslateText
 
+    -- ** ImportTerminology 
+    , module Network.AWS.Translate.ImportTerminology
+
+    -- ** StopTextTranslationJob 
+    , module Network.AWS.Translate.StopTextTranslationJob
+
+    -- ** DeleteTerminology 
+    , module Network.AWS.Translate.DeleteTerminology
+
+    -- ** ListTextTranslationJobs 
+    , module Network.AWS.Translate.ListTextTranslationJobs
+
+    -- ** StartTextTranslationJob 
+    , module Network.AWS.Translate.StartTextTranslationJob
+
+    -- ** ListParallelData 
+    , module Network.AWS.Translate.ListParallelData
+
     -- * Types
+
+    -- ** EncryptionKeyType
+    , EncryptionKeyType (..)
+
+    -- ** JobStatus
+    , JobStatus (..)
+
+    -- ** MergeStrategy
+    , MergeStrategy (..)
+
+    -- ** ParallelDataFormat
+    , ParallelDataFormat (..)
+
+    -- ** ParallelDataStatus
+    , ParallelDataStatus (..)
+
+    -- ** TerminologyDataFormat
+    , TerminologyDataFormat (..)
+
+    -- ** AppliedTerminology
+    , AppliedTerminology
+    , appliedTerminology
+    , atTerms
+    , atName
+
+    -- ** EncryptionKey
+    , EncryptionKey
+    , encryptionKey
+    , ekType
+    , ekId
+
+    -- ** InputDataConfig
+    , InputDataConfig
+    , inputDataConfig
+    , idcS3URI
+    , idcContentType
+
+    -- ** JobDetails
+    , JobDetails
+    , jobDetails
+    , jdTranslatedDocumentsCount
+    , jdDocumentsWithErrorsCount
+    , jdInputDocumentsCount
+
+    -- ** OutputDataConfig
+    , OutputDataConfig
+    , outputDataConfig
+    , odcS3URI
+
+    -- ** ParallelDataConfig
+    , ParallelDataConfig
+    , parallelDataConfig
+    , pdcS3URI
+    , pdcFormat
+
+    -- ** ParallelDataDataLocation
+    , ParallelDataDataLocation
+    , parallelDataDataLocation
+    , pddlRepositoryType
+    , pddlLocation
+
+    -- ** ParallelDataProperties
+    , ParallelDataProperties
+    , parallelDataProperties
+    , pdpStatus
+    , pdpLastUpdatedAt
+    , pdpImportedRecordCount
+    , pdpARN
+    , pdpTargetLanguageCodes
+    , pdpCreatedAt
+    , pdpFailedRecordCount
+    , pdpImportedDataSize
+    , pdpName
+    , pdpSourceLanguageCode
+    , pdpLatestUpdateAttemptAt
+    , pdpEncryptionKey
+    , pdpLatestUpdateAttemptStatus
+    , pdpMessage
+    , pdpDescription
+    , pdpSkippedRecordCount
+    , pdpParallelDataConfig
+
+    -- ** Term
+    , Term
+    , term
+    , tTargetText
+    , tSourceText
+
+    -- ** TerminologyData
+    , TerminologyData
+    , terminologyData
+    , tdFile
+    , tdFormat
+
+    -- ** TerminologyDataLocation
+    , TerminologyDataLocation
+    , terminologyDataLocation
+    , tdlRepositoryType
+    , tdlLocation
+
+    -- ** TerminologyProperties
+    , TerminologyProperties
+    , terminologyProperties
+    , tpSizeBytes
+    , tpLastUpdatedAt
+    , tpARN
+    , tpTargetLanguageCodes
+    , tpCreatedAt
+    , tpName
+    , tpSourceLanguageCode
+    , tpTermCount
+    , tpEncryptionKey
+    , tpDescription
+
+    -- ** TextTranslationJobFilter
+    , TextTranslationJobFilter
+    , textTranslationJobFilter
+    , ttjfSubmittedBeforeTime
+    , ttjfSubmittedAfterTime
+    , ttjfJobName
+    , ttjfJobStatus
+
+    -- ** TextTranslationJobProperties
+    , TextTranslationJobProperties
+    , textTranslationJobProperties
+    , ttjpJobId
+    , ttjpTargetLanguageCodes
+    , ttjpJobName
+    , ttjpSubmittedTime
+    , ttjpInputDataConfig
+    , ttjpParallelDataNames
+    , ttjpTerminologyNames
+    , ttjpSourceLanguageCode
+    , ttjpEndTime
+    , ttjpOutputDataConfig
+    , ttjpJobDetails
+    , ttjpDataAccessRoleARN
+    , ttjpJobStatus
+    , ttjpMessage
     ) where
 
+import Network.AWS.Translate.CreateParallelData
+import Network.AWS.Translate.DeleteParallelData
+import Network.AWS.Translate.DeleteTerminology
+import Network.AWS.Translate.DescribeTextTranslationJob
+import Network.AWS.Translate.GetParallelData
+import Network.AWS.Translate.GetTerminology
+import Network.AWS.Translate.ImportTerminology
+import Network.AWS.Translate.ListParallelData
+import Network.AWS.Translate.ListTerminologies
+import Network.AWS.Translate.ListTextTranslationJobs
+import Network.AWS.Translate.StartTextTranslationJob
+import Network.AWS.Translate.StopTextTranslationJob
 import Network.AWS.Translate.TranslateText
 import Network.AWS.Translate.Types
+import Network.AWS.Translate.UpdateParallelData
 import Network.AWS.Translate.Waiters
 
 {- $errors

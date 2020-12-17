@@ -36,18 +36,19 @@ module Network.AWS.Greengrass.UpdateSubscriptionDefinition
     ) where
 
 import Network.AWS.Greengrass.Types
-import Network.AWS.Greengrass.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'updateSubscriptionDefinition' smart constructor.
-data UpdateSubscriptionDefinition = UpdateSubscriptionDefinition'
-  { _usdName                     :: !(Maybe Text)
-  , _usdSubscriptionDefinitionId :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateSubscriptionDefinition = UpdateSubscriptionDefinition'{_usdName
+                                                                  ::
+                                                                  !(Maybe Text),
+                                                                  _usdSubscriptionDefinitionId
+                                                                  :: !Text}
+                                      deriving (Eq, Read, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'UpdateSubscriptionDefinition' with the minimum fields required to make a request.
 --
@@ -59,12 +60,11 @@ data UpdateSubscriptionDefinition = UpdateSubscriptionDefinition'
 updateSubscriptionDefinition
     :: Text -- ^ 'usdSubscriptionDefinitionId'
     -> UpdateSubscriptionDefinition
-updateSubscriptionDefinition pSubscriptionDefinitionId_ =
-  UpdateSubscriptionDefinition'
-    { _usdName = Nothing
-    , _usdSubscriptionDefinitionId = pSubscriptionDefinitionId_
-    }
-
+updateSubscriptionDefinition
+  pSubscriptionDefinitionId_
+  = UpdateSubscriptionDefinition'{_usdName = Nothing,
+                                  _usdSubscriptionDefinitionId =
+                                    pSubscriptionDefinitionId_}
 
 -- | The name of the definition.
 usdName :: Lens' UpdateSubscriptionDefinition (Maybe Text)
@@ -110,10 +110,11 @@ instance ToQuery UpdateSubscriptionDefinition where
         toQuery = const mempty
 
 -- | /See:/ 'updateSubscriptionDefinitionResponse' smart constructor.
-newtype UpdateSubscriptionDefinitionResponse = UpdateSubscriptionDefinitionResponse'
-  { _usdrsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype UpdateSubscriptionDefinitionResponse = UpdateSubscriptionDefinitionResponse'{_usdrsResponseStatus
+                                                                                     ::
+                                                                                     Int}
+                                                 deriving (Eq, Read, Show, Data,
+                                                           Typeable, Generic)
 
 -- | Creates a value of 'UpdateSubscriptionDefinitionResponse' with the minimum fields required to make a request.
 --
@@ -123,10 +124,9 @@ newtype UpdateSubscriptionDefinitionResponse = UpdateSubscriptionDefinitionRespo
 updateSubscriptionDefinitionResponse
     :: Int -- ^ 'usdrsResponseStatus'
     -> UpdateSubscriptionDefinitionResponse
-updateSubscriptionDefinitionResponse pResponseStatus_ =
-  UpdateSubscriptionDefinitionResponse'
-    {_usdrsResponseStatus = pResponseStatus_}
-
+updateSubscriptionDefinitionResponse pResponseStatus_
+  = UpdateSubscriptionDefinitionResponse'{_usdrsResponseStatus
+                                            = pResponseStatus_}
 
 -- | -- | The response status code.
 usdrsResponseStatus :: Lens' UpdateSubscriptionDefinitionResponse Int

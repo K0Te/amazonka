@@ -42,7 +42,6 @@ module Network.AWS.ELB.CreateLoadBalancerPolicy
     ) where
 
 import Network.AWS.ELB.Types
-import Network.AWS.ELB.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -53,13 +52,18 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'createLoadBalancerPolicy' smart constructor.
-data CreateLoadBalancerPolicy = CreateLoadBalancerPolicy'
-  { _clbpPolicyAttributes :: !(Maybe [PolicyAttribute])
-  , _clbpLoadBalancerName :: !Text
-  , _clbpPolicyName       :: !Text
-  , _clbpPolicyTypeName   :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateLoadBalancerPolicy = CreateLoadBalancerPolicy'{_clbpPolicyAttributes
+                                                          ::
+                                                          !(Maybe
+                                                              [PolicyAttribute]),
+                                                          _clbpLoadBalancerName
+                                                          :: !Text,
+                                                          _clbpPolicyName ::
+                                                          !Text,
+                                                          _clbpPolicyTypeName ::
+                                                          !Text}
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'CreateLoadBalancerPolicy' with the minimum fields required to make a request.
 --
@@ -77,14 +81,13 @@ createLoadBalancerPolicy
     -> Text -- ^ 'clbpPolicyName'
     -> Text -- ^ 'clbpPolicyTypeName'
     -> CreateLoadBalancerPolicy
-createLoadBalancerPolicy pLoadBalancerName_ pPolicyName_ pPolicyTypeName_ =
-  CreateLoadBalancerPolicy'
-    { _clbpPolicyAttributes = Nothing
-    , _clbpLoadBalancerName = pLoadBalancerName_
-    , _clbpPolicyName = pPolicyName_
-    , _clbpPolicyTypeName = pPolicyTypeName_
-    }
-
+createLoadBalancerPolicy pLoadBalancerName_
+  pPolicyName_ pPolicyTypeName_
+  = CreateLoadBalancerPolicy'{_clbpPolicyAttributes =
+                                Nothing,
+                              _clbpLoadBalancerName = pLoadBalancerName_,
+                              _clbpPolicyName = pPolicyName_,
+                              _clbpPolicyTypeName = pPolicyTypeName_}
 
 -- | The policy attributes.
 clbpPolicyAttributes :: Lens' CreateLoadBalancerPolicy [PolicyAttribute]
@@ -140,10 +143,11 @@ instance ToQuery CreateLoadBalancerPolicy where
 --
 --
 -- /See:/ 'createLoadBalancerPolicyResponse' smart constructor.
-newtype CreateLoadBalancerPolicyResponse = CreateLoadBalancerPolicyResponse'
-  { _clbprsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype CreateLoadBalancerPolicyResponse = CreateLoadBalancerPolicyResponse'{_clbprsResponseStatus
+                                                                             ::
+                                                                             Int}
+                                             deriving (Eq, Read, Show, Data,
+                                                       Typeable, Generic)
 
 -- | Creates a value of 'CreateLoadBalancerPolicyResponse' with the minimum fields required to make a request.
 --
@@ -153,9 +157,9 @@ newtype CreateLoadBalancerPolicyResponse = CreateLoadBalancerPolicyResponse'
 createLoadBalancerPolicyResponse
     :: Int -- ^ 'clbprsResponseStatus'
     -> CreateLoadBalancerPolicyResponse
-createLoadBalancerPolicyResponse pResponseStatus_ =
-  CreateLoadBalancerPolicyResponse' {_clbprsResponseStatus = pResponseStatus_}
-
+createLoadBalancerPolicyResponse pResponseStatus_
+  = CreateLoadBalancerPolicyResponse'{_clbprsResponseStatus
+                                        = pResponseStatus_}
 
 -- | -- | The response status code.
 clbprsResponseStatus :: Lens' CreateLoadBalancerPolicyResponse Int

@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Deletes an existing trust relationship between your Microsoft AD in the AWS cloud and an external domain.
+-- Deletes an existing trust relationship between your AWS Managed Microsoft AD directory and an external domain.
 --
 --
 module Network.AWS.DirectoryService.DeleteTrust
@@ -39,22 +39,20 @@ module Network.AWS.DirectoryService.DeleteTrust
     ) where
 
 import Network.AWS.DirectoryService.Types
-import Network.AWS.DirectoryService.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- | Deletes the local side of an existing trust relationship between the Microsoft AD in the AWS cloud and the external domain.
+-- | Deletes the local side of an existing trust relationship between the AWS Managed Microsoft AD directory and the external domain.
 --
 --
 --
 -- /See:/ 'deleteTrust' smart constructor.
-data DeleteTrust = DeleteTrust'
-  { _dtDeleteAssociatedConditionalForwarder :: !(Maybe Bool)
-  , _dtTrustId                              :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteTrust = DeleteTrust'{_dtDeleteAssociatedConditionalForwarder
+                                :: !(Maybe Bool),
+                                _dtTrustId :: !Text}
+                     deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteTrust' with the minimum fields required to make a request.
 --
@@ -66,10 +64,10 @@ data DeleteTrust = DeleteTrust'
 deleteTrust
     :: Text -- ^ 'dtTrustId'
     -> DeleteTrust
-deleteTrust pTrustId_ =
-  DeleteTrust'
-    {_dtDeleteAssociatedConditionalForwarder = Nothing, _dtTrustId = pTrustId_}
-
+deleteTrust pTrustId_
+  = DeleteTrust'{_dtDeleteAssociatedConditionalForwarder
+                   = Nothing,
+                 _dtTrustId = pTrustId_}
 
 -- | Delete a conditional forwarder as part of a DeleteTrustRequest.
 dtDeleteAssociatedConditionalForwarder :: Lens' DeleteTrust (Maybe Bool)
@@ -121,11 +119,10 @@ instance ToQuery DeleteTrust where
 --
 --
 -- /See:/ 'deleteTrustResponse' smart constructor.
-data DeleteTrustResponse = DeleteTrustResponse'
-  { _dttrsTrustId        :: !(Maybe Text)
-  , _dttrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteTrustResponse = DeleteTrustResponse'{_dttrsTrustId
+                                                :: !(Maybe Text),
+                                                _dttrsResponseStatus :: !Int}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteTrustResponse' with the minimum fields required to make a request.
 --
@@ -137,10 +134,9 @@ data DeleteTrustResponse = DeleteTrustResponse'
 deleteTrustResponse
     :: Int -- ^ 'dttrsResponseStatus'
     -> DeleteTrustResponse
-deleteTrustResponse pResponseStatus_ =
-  DeleteTrustResponse'
-    {_dttrsTrustId = Nothing, _dttrsResponseStatus = pResponseStatus_}
-
+deleteTrustResponse pResponseStatus_
+  = DeleteTrustResponse'{_dttrsTrustId = Nothing,
+                         _dttrsResponseStatus = pResponseStatus_}
 
 -- | The Trust ID of the trust relationship that was deleted.
 dttrsTrustId :: Lens' DeleteTrustResponse (Maybe Text)

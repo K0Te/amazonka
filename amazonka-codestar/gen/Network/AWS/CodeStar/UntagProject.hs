@@ -38,18 +38,15 @@ module Network.AWS.CodeStar.UntagProject
     ) where
 
 import Network.AWS.CodeStar.Types
-import Network.AWS.CodeStar.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'untagProject' smart constructor.
-data UntagProject = UntagProject'
-  { _uId   :: !Text
-  , _uTags :: ![Text]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UntagProject = UntagProject'{_uId :: !Text,
+                                  _uTags :: ![Text]}
+                      deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UntagProject' with the minimum fields required to make a request.
 --
@@ -61,8 +58,8 @@ data UntagProject = UntagProject'
 untagProject
     :: Text -- ^ 'uId'
     -> UntagProject
-untagProject pId_ = UntagProject' {_uId = pId_, _uTags = mempty}
-
+untagProject pId_
+  = UntagProject'{_uId = pId_, _uTags = mempty}
 
 -- | The ID of the project to remove tags from.
 uId :: Lens' UntagProject Text
@@ -106,10 +103,10 @@ instance ToQuery UntagProject where
         toQuery = const mempty
 
 -- | /See:/ 'untagProjectResponse' smart constructor.
-newtype UntagProjectResponse = UntagProjectResponse'
-  { _ursResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype UntagProjectResponse = UntagProjectResponse'{_ursResponseStatus
+                                                     :: Int}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'UntagProjectResponse' with the minimum fields required to make a request.
 --
@@ -119,9 +116,9 @@ newtype UntagProjectResponse = UntagProjectResponse'
 untagProjectResponse
     :: Int -- ^ 'ursResponseStatus'
     -> UntagProjectResponse
-untagProjectResponse pResponseStatus_ =
-  UntagProjectResponse' {_ursResponseStatus = pResponseStatus_}
-
+untagProjectResponse pResponseStatus_
+  = UntagProjectResponse'{_ursResponseStatus =
+                            pResponseStatus_}
 
 -- | -- | The response status code.
 ursResponseStatus :: Lens' UntagProjectResponse Int

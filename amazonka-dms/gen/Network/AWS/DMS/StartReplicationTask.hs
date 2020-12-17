@@ -21,7 +21,7 @@
 -- Starts the replication task.
 --
 --
--- For more information about AWS DMS tasks, see the AWS DMS user guide at <http://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.html Working with Migration Tasks >
+-- For more information about AWS DMS tasks, see <https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.html Working with Migration Tasks > in the /AWS Database Migration Service User Guide./ 
 --
 module Network.AWS.DMS.StartReplicationTask
     (
@@ -44,25 +44,28 @@ module Network.AWS.DMS.StartReplicationTask
     ) where
 
 import Network.AWS.DMS.Types
-import Network.AWS.DMS.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- |
+-- | 
 --
 --
 --
 -- /See:/ 'startReplicationTask' smart constructor.
-data StartReplicationTask = StartReplicationTask'
-  { _srtCdcStartPosition         :: !(Maybe Text)
-  , _srtCdcStopPosition          :: !(Maybe Text)
-  , _srtCdcStartTime             :: !(Maybe POSIX)
-  , _srtReplicationTaskARN       :: !Text
-  , _srtStartReplicationTaskType :: !StartReplicationTaskTypeValue
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data StartReplicationTask = StartReplicationTask'{_srtCdcStartPosition
+                                                  :: !(Maybe Text),
+                                                  _srtCdcStopPosition ::
+                                                  !(Maybe Text),
+                                                  _srtCdcStartTime ::
+                                                  !(Maybe POSIX),
+                                                  _srtReplicationTaskARN ::
+                                                  !Text,
+                                                  _srtStartReplicationTaskType
+                                                  ::
+                                                  !StartReplicationTaskTypeValue}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'StartReplicationTask' with the minimum fields required to make a request.
 --
@@ -70,36 +73,36 @@ data StartReplicationTask = StartReplicationTask'
 --
 -- * 'srtCdcStartPosition' - Indicates when you want a change data capture (CDC) operation to start. Use either CdcStartPosition or CdcStartTime to specify when you want a CDC operation to start. Specifying both values results in an error. The value can be in date, checkpoint, or LSN/SCN format. Date Example: --cdc-start-position “2018-03-08T12:12:12” Checkpoint Example: --cdc-start-position "checkpoint:V1#27#mysql-bin-changelog.157832:1975:-1:2002:677883278264080:mysql-bin-changelog.157832:1876#0#0#*#0#93" LSN Example: --cdc-start-position “mysql-bin-changelog.000024:373”
 --
--- * 'srtCdcStopPosition' - Indicates when you want a change data capture (CDC) operation to stop. The value can be either server time or commit time. Server time example: --cdc-stop-position “server_time:3018-02-09T12:12:12” Commit time example: --cdc-stop-position “commit_time: 3018-02-09T12:12:12 “
+-- * 'srtCdcStopPosition' - Indicates when you want a change data capture (CDC) operation to stop. The value can be either server time or commit time. Server time example: --cdc-stop-position “server_time:2018-02-09T12:12:12” Commit time example: --cdc-stop-position “commit_time: 2018-02-09T12:12:12 “
 --
--- * 'srtCdcStartTime' - Indicates the start time for a change data capture (CDC) operation. Use either CdcStartTime or CdcStartPosition to specify when you want a CDC operation to start. Specifying both values results in an error.
+-- * 'srtCdcStartTime' - Indicates the start time for a change data capture (CDC) operation. Use either CdcStartTime or CdcStartPosition to specify when you want a CDC operation to start. Specifying both values results in an error. Timestamp Example: --cdc-start-time “2018-03-08T12:12:12”
 --
 -- * 'srtReplicationTaskARN' - The Amazon Resource Name (ARN) of the replication task to be started.
 --
--- * 'srtStartReplicationTaskType' - The type of replication task.
+-- * 'srtStartReplicationTaskType' - A type of replication task.
 startReplicationTask
     :: Text -- ^ 'srtReplicationTaskARN'
     -> StartReplicationTaskTypeValue -- ^ 'srtStartReplicationTaskType'
     -> StartReplicationTask
-startReplicationTask pReplicationTaskARN_ pStartReplicationTaskType_ =
-  StartReplicationTask'
-    { _srtCdcStartPosition = Nothing
-    , _srtCdcStopPosition = Nothing
-    , _srtCdcStartTime = Nothing
-    , _srtReplicationTaskARN = pReplicationTaskARN_
-    , _srtStartReplicationTaskType = pStartReplicationTaskType_
-    }
-
+startReplicationTask pReplicationTaskARN_
+  pStartReplicationTaskType_
+  = StartReplicationTask'{_srtCdcStartPosition =
+                            Nothing,
+                          _srtCdcStopPosition = Nothing,
+                          _srtCdcStartTime = Nothing,
+                          _srtReplicationTaskARN = pReplicationTaskARN_,
+                          _srtStartReplicationTaskType =
+                            pStartReplicationTaskType_}
 
 -- | Indicates when you want a change data capture (CDC) operation to start. Use either CdcStartPosition or CdcStartTime to specify when you want a CDC operation to start. Specifying both values results in an error. The value can be in date, checkpoint, or LSN/SCN format. Date Example: --cdc-start-position “2018-03-08T12:12:12” Checkpoint Example: --cdc-start-position "checkpoint:V1#27#mysql-bin-changelog.157832:1975:-1:2002:677883278264080:mysql-bin-changelog.157832:1876#0#0#*#0#93" LSN Example: --cdc-start-position “mysql-bin-changelog.000024:373”
 srtCdcStartPosition :: Lens' StartReplicationTask (Maybe Text)
 srtCdcStartPosition = lens _srtCdcStartPosition (\ s a -> s{_srtCdcStartPosition = a})
 
--- | Indicates when you want a change data capture (CDC) operation to stop. The value can be either server time or commit time. Server time example: --cdc-stop-position “server_time:3018-02-09T12:12:12” Commit time example: --cdc-stop-position “commit_time: 3018-02-09T12:12:12 “
+-- | Indicates when you want a change data capture (CDC) operation to stop. The value can be either server time or commit time. Server time example: --cdc-stop-position “server_time:2018-02-09T12:12:12” Commit time example: --cdc-stop-position “commit_time: 2018-02-09T12:12:12 “
 srtCdcStopPosition :: Lens' StartReplicationTask (Maybe Text)
 srtCdcStopPosition = lens _srtCdcStopPosition (\ s a -> s{_srtCdcStopPosition = a})
 
--- | Indicates the start time for a change data capture (CDC) operation. Use either CdcStartTime or CdcStartPosition to specify when you want a CDC operation to start. Specifying both values results in an error.
+-- | Indicates the start time for a change data capture (CDC) operation. Use either CdcStartTime or CdcStartPosition to specify when you want a CDC operation to start. Specifying both values results in an error. Timestamp Example: --cdc-start-time “2018-03-08T12:12:12”
 srtCdcStartTime :: Lens' StartReplicationTask (Maybe UTCTime)
 srtCdcStartTime = lens _srtCdcStartTime (\ s a -> s{_srtCdcStartTime = a}) . mapping _Time
 
@@ -107,7 +110,7 @@ srtCdcStartTime = lens _srtCdcStartTime (\ s a -> s{_srtCdcStartTime = a}) . map
 srtReplicationTaskARN :: Lens' StartReplicationTask Text
 srtReplicationTaskARN = lens _srtReplicationTaskARN (\ s a -> s{_srtReplicationTaskARN = a})
 
--- | The type of replication task.
+-- | A type of replication task.
 srtStartReplicationTaskType :: Lens' StartReplicationTask StartReplicationTaskTypeValue
 srtStartReplicationTaskType = lens _srtStartReplicationTaskType (\ s a -> s{_srtStartReplicationTaskType = a})
 
@@ -154,16 +157,19 @@ instance ToPath StartReplicationTask where
 instance ToQuery StartReplicationTask where
         toQuery = const mempty
 
--- |
+-- | 
 --
 --
 --
 -- /See:/ 'startReplicationTaskResponse' smart constructor.
-data StartReplicationTaskResponse = StartReplicationTaskResponse'
-  { _srtrsReplicationTask :: !(Maybe ReplicationTask)
-  , _srtrsResponseStatus  :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data StartReplicationTaskResponse = StartReplicationTaskResponse'{_srtrsReplicationTask
+                                                                  ::
+                                                                  !(Maybe
+                                                                      ReplicationTask),
+                                                                  _srtrsResponseStatus
+                                                                  :: !Int}
+                                      deriving (Eq, Read, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'StartReplicationTaskResponse' with the minimum fields required to make a request.
 --
@@ -175,10 +181,10 @@ data StartReplicationTaskResponse = StartReplicationTaskResponse'
 startReplicationTaskResponse
     :: Int -- ^ 'srtrsResponseStatus'
     -> StartReplicationTaskResponse
-startReplicationTaskResponse pResponseStatus_ =
-  StartReplicationTaskResponse'
-    {_srtrsReplicationTask = Nothing, _srtrsResponseStatus = pResponseStatus_}
-
+startReplicationTaskResponse pResponseStatus_
+  = StartReplicationTaskResponse'{_srtrsReplicationTask
+                                    = Nothing,
+                                  _srtrsResponseStatus = pResponseStatus_}
 
 -- | The replication task started.
 srtrsReplicationTask :: Lens' StartReplicationTaskResponse (Maybe ReplicationTask)

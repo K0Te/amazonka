@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Lists the deployments in a deployment group for an application registered with the applicable IAM user or AWS account.
+-- Lists the deployments in a deployment group for an application registered with the IAM user or AWS account.
 --
 --
 --
@@ -33,6 +33,7 @@ module Network.AWS.CodeDeploy.ListDeployments
     , ldNextToken
     , ldIncludeOnlyStatuses
     , ldApplicationName
+    , ldExternalId
     , ldDeploymentGroupName
 
     -- * Destructuring the Response
@@ -45,26 +46,26 @@ module Network.AWS.CodeDeploy.ListDeployments
     ) where
 
 import Network.AWS.CodeDeploy.Types
-import Network.AWS.CodeDeploy.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- | Represents the input of a ListDeployments operation.
+-- | Represents the input of a @ListDeployments@ operation.
 --
 --
 --
 -- /See:/ 'listDeployments' smart constructor.
-data ListDeployments = ListDeployments'
-  { _ldCreateTimeRange     :: !(Maybe TimeRange)
-  , _ldNextToken           :: !(Maybe Text)
-  , _ldIncludeOnlyStatuses :: !(Maybe [DeploymentStatus])
-  , _ldApplicationName     :: !(Maybe Text)
-  , _ldDeploymentGroupName :: !(Maybe Text)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListDeployments = ListDeployments'{_ldCreateTimeRange
+                                        :: !(Maybe TimeRange),
+                                        _ldNextToken :: !(Maybe Text),
+                                        _ldIncludeOnlyStatuses ::
+                                        !(Maybe [DeploymentStatus]),
+                                        _ldApplicationName :: !(Maybe Text),
+                                        _ldExternalId :: !(Maybe Text),
+                                        _ldDeploymentGroupName :: !(Maybe Text)}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListDeployments' with the minimum fields required to make a request.
 --
@@ -74,22 +75,22 @@ data ListDeployments = ListDeployments'
 --
 -- * 'ldNextToken' - An identifier returned from the previous list deployments call. It can be used to return the next set of deployments in the list.
 --
--- * 'ldIncludeOnlyStatuses' - A subset of deployments to list by status:     * Created: Include created deployments in the resulting list.     * Queued: Include queued deployments in the resulting list.     * In Progress: Include in-progress deployments in the resulting list.     * Succeeded: Include successful deployments in the resulting list.     * Failed: Include failed deployments in the resulting list.     * Stopped: Include stopped deployments in the resulting list.
+-- * 'ldIncludeOnlyStatuses' - A subset of deployments to list by status:     * @Created@ : Include created deployments in the resulting list.     * @Queued@ : Include queued deployments in the resulting list.     * @In Progress@ : Include in-progress deployments in the resulting list.     * @Succeeded@ : Include successful deployments in the resulting list.     * @Failed@ : Include failed deployments in the resulting list.     * @Stopped@ : Include stopped deployments in the resulting list.
 --
--- * 'ldApplicationName' - The name of an AWS CodeDeploy application associated with the applicable IAM user or AWS account.
+-- * 'ldApplicationName' - The name of an AWS CodeDeploy application associated with the IAM user or AWS account.
 --
--- * 'ldDeploymentGroupName' - The name of an existing deployment group for the specified application.
+-- * 'ldExternalId' - The unique ID of an external resource for returning deployments linked to the external resource.
+--
+-- * 'ldDeploymentGroupName' - The name of a deployment group for the specified application.
 listDeployments
     :: ListDeployments
-listDeployments =
-  ListDeployments'
-    { _ldCreateTimeRange = Nothing
-    , _ldNextToken = Nothing
-    , _ldIncludeOnlyStatuses = Nothing
-    , _ldApplicationName = Nothing
-    , _ldDeploymentGroupName = Nothing
-    }
-
+listDeployments
+  = ListDeployments'{_ldCreateTimeRange = Nothing,
+                     _ldNextToken = Nothing,
+                     _ldIncludeOnlyStatuses = Nothing,
+                     _ldApplicationName = Nothing,
+                     _ldExternalId = Nothing,
+                     _ldDeploymentGroupName = Nothing}
 
 -- | A time range (start and end) for returning a subset of the list of deployments.
 ldCreateTimeRange :: Lens' ListDeployments (Maybe TimeRange)
@@ -99,15 +100,19 @@ ldCreateTimeRange = lens _ldCreateTimeRange (\ s a -> s{_ldCreateTimeRange = a})
 ldNextToken :: Lens' ListDeployments (Maybe Text)
 ldNextToken = lens _ldNextToken (\ s a -> s{_ldNextToken = a})
 
--- | A subset of deployments to list by status:     * Created: Include created deployments in the resulting list.     * Queued: Include queued deployments in the resulting list.     * In Progress: Include in-progress deployments in the resulting list.     * Succeeded: Include successful deployments in the resulting list.     * Failed: Include failed deployments in the resulting list.     * Stopped: Include stopped deployments in the resulting list.
+-- | A subset of deployments to list by status:     * @Created@ : Include created deployments in the resulting list.     * @Queued@ : Include queued deployments in the resulting list.     * @In Progress@ : Include in-progress deployments in the resulting list.     * @Succeeded@ : Include successful deployments in the resulting list.     * @Failed@ : Include failed deployments in the resulting list.     * @Stopped@ : Include stopped deployments in the resulting list.
 ldIncludeOnlyStatuses :: Lens' ListDeployments [DeploymentStatus]
 ldIncludeOnlyStatuses = lens _ldIncludeOnlyStatuses (\ s a -> s{_ldIncludeOnlyStatuses = a}) . _Default . _Coerce
 
--- | The name of an AWS CodeDeploy application associated with the applicable IAM user or AWS account.
+-- | The name of an AWS CodeDeploy application associated with the IAM user or AWS account.
 ldApplicationName :: Lens' ListDeployments (Maybe Text)
 ldApplicationName = lens _ldApplicationName (\ s a -> s{_ldApplicationName = a})
 
--- | The name of an existing deployment group for the specified application.
+-- | The unique ID of an external resource for returning deployments linked to the external resource.
+ldExternalId :: Lens' ListDeployments (Maybe Text)
+ldExternalId = lens _ldExternalId (\ s a -> s{_ldExternalId = a})
+
+-- | The name of a deployment group for the specified application.
 ldDeploymentGroupName :: Lens' ListDeployments (Maybe Text)
 ldDeploymentGroupName = lens _ldDeploymentGroupName (\ s a -> s{_ldDeploymentGroupName = a})
 
@@ -152,6 +157,7 @@ instance ToJSON ListDeployments where
                   ("includeOnlyStatuses" .=) <$>
                     _ldIncludeOnlyStatuses,
                   ("applicationName" .=) <$> _ldApplicationName,
+                  ("externalId" .=) <$> _ldExternalId,
                   ("deploymentGroupName" .=) <$>
                     _ldDeploymentGroupName])
 
@@ -161,17 +167,19 @@ instance ToPath ListDeployments where
 instance ToQuery ListDeployments where
         toQuery = const mempty
 
--- | Represents the output of a ListDeployments operation.
+-- | Represents the output of a @ListDeployments@ operation.
 --
 --
 --
 -- /See:/ 'listDeploymentsResponse' smart constructor.
-data ListDeploymentsResponse = ListDeploymentsResponse'
-  { _ldrsNextToken      :: !(Maybe Text)
-  , _ldrsDeployments    :: !(Maybe [Text])
-  , _ldrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListDeploymentsResponse = ListDeploymentsResponse'{_ldrsNextToken
+                                                        :: !(Maybe Text),
+                                                        _ldrsDeployments ::
+                                                        !(Maybe [Text]),
+                                                        _ldrsResponseStatus ::
+                                                        !Int}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'ListDeploymentsResponse' with the minimum fields required to make a request.
 --
@@ -185,13 +193,10 @@ data ListDeploymentsResponse = ListDeploymentsResponse'
 listDeploymentsResponse
     :: Int -- ^ 'ldrsResponseStatus'
     -> ListDeploymentsResponse
-listDeploymentsResponse pResponseStatus_ =
-  ListDeploymentsResponse'
-    { _ldrsNextToken = Nothing
-    , _ldrsDeployments = Nothing
-    , _ldrsResponseStatus = pResponseStatus_
-    }
-
+listDeploymentsResponse pResponseStatus_
+  = ListDeploymentsResponse'{_ldrsNextToken = Nothing,
+                             _ldrsDeployments = Nothing,
+                             _ldrsResponseStatus = pResponseStatus_}
 
 -- | If a large amount of information is returned, an identifier is also returned. It can be used in a subsequent list deployments call to return the next set of deployments in the list.
 ldrsNextToken :: Lens' ListDeploymentsResponse (Maybe Text)

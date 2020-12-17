@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Update a field-level encryption configuration.
+-- Update a field-level encryption configuration. 
 --
 --
 module Network.AWS.CloudFront.UpdateFieldLevelEncryptionConfig
@@ -41,19 +41,24 @@ module Network.AWS.CloudFront.UpdateFieldLevelEncryptionConfig
     ) where
 
 import Network.AWS.CloudFront.Types
-import Network.AWS.CloudFront.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'updateFieldLevelEncryptionConfig' smart constructor.
-data UpdateFieldLevelEncryptionConfig = UpdateFieldLevelEncryptionConfig'
-  { _uflecIfMatch                    :: !(Maybe Text)
-  , _uflecFieldLevelEncryptionConfig :: !FieldLevelEncryptionConfig
-  , _uflecId                         :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateFieldLevelEncryptionConfig = UpdateFieldLevelEncryptionConfig'{_uflecIfMatch
+                                                                          ::
+                                                                          !(Maybe
+                                                                              Text),
+                                                                          _uflecFieldLevelEncryptionConfig
+                                                                          ::
+                                                                          !FieldLevelEncryptionConfig,
+                                                                          _uflecId
+                                                                          ::
+                                                                          !Text}
+                                          deriving (Eq, Read, Show, Data,
+                                                    Typeable, Generic)
 
 -- | Creates a value of 'UpdateFieldLevelEncryptionConfig' with the minimum fields required to make a request.
 --
@@ -61,26 +66,26 @@ data UpdateFieldLevelEncryptionConfig = UpdateFieldLevelEncryptionConfig'
 --
 -- * 'uflecIfMatch' - The value of the @ETag@ header that you received when retrieving the configuration identity to update. For example: @E2QWRUHAPOMQZL@ .
 --
--- * 'uflecFieldLevelEncryptionConfig' - Request to update a field-level encryption configuration.
+-- * 'uflecFieldLevelEncryptionConfig' - Request to update a field-level encryption configuration. 
 --
 -- * 'uflecId' - The ID of the configuration you want to update.
 updateFieldLevelEncryptionConfig
     :: FieldLevelEncryptionConfig -- ^ 'uflecFieldLevelEncryptionConfig'
     -> Text -- ^ 'uflecId'
     -> UpdateFieldLevelEncryptionConfig
-updateFieldLevelEncryptionConfig pFieldLevelEncryptionConfig_ pId_ =
-  UpdateFieldLevelEncryptionConfig'
-    { _uflecIfMatch = Nothing
-    , _uflecFieldLevelEncryptionConfig = pFieldLevelEncryptionConfig_
-    , _uflecId = pId_
-    }
-
+updateFieldLevelEncryptionConfig
+  pFieldLevelEncryptionConfig_ pId_
+  = UpdateFieldLevelEncryptionConfig'{_uflecIfMatch =
+                                        Nothing,
+                                      _uflecFieldLevelEncryptionConfig =
+                                        pFieldLevelEncryptionConfig_,
+                                      _uflecId = pId_}
 
 -- | The value of the @ETag@ header that you received when retrieving the configuration identity to update. For example: @E2QWRUHAPOMQZL@ .
 uflecIfMatch :: Lens' UpdateFieldLevelEncryptionConfig (Maybe Text)
 uflecIfMatch = lens _uflecIfMatch (\ s a -> s{_uflecIfMatch = a})
 
--- | Request to update a field-level encryption configuration.
+-- | Request to update a field-level encryption configuration. 
 uflecFieldLevelEncryptionConfig :: Lens' UpdateFieldLevelEncryptionConfig FieldLevelEncryptionConfig
 uflecFieldLevelEncryptionConfig = lens _uflecFieldLevelEncryptionConfig (\ s a -> s{_uflecFieldLevelEncryptionConfig = a})
 
@@ -110,7 +115,7 @@ instance ToElement UpdateFieldLevelEncryptionConfig
          where
         toElement
           = mkElement
-              "{http://cloudfront.amazonaws.com/doc/2017-10-30/}FieldLevelEncryptionConfig"
+              "{http://cloudfront.amazonaws.com/doc/2020-05-31/}FieldLevelEncryptionConfig"
               .
               _uflecFieldLevelEncryptionConfig
 
@@ -123,7 +128,7 @@ instance ToPath UpdateFieldLevelEncryptionConfig
          where
         toPath UpdateFieldLevelEncryptionConfig'{..}
           = mconcat
-              ["/2017-10-30/field-level-encryption/",
+              ["/2020-05-31/field-level-encryption/",
                toBS _uflecId, "/config"]
 
 instance ToQuery UpdateFieldLevelEncryptionConfig
@@ -131,12 +136,20 @@ instance ToQuery UpdateFieldLevelEncryptionConfig
         toQuery = const mempty
 
 -- | /See:/ 'updateFieldLevelEncryptionConfigResponse' smart constructor.
-data UpdateFieldLevelEncryptionConfigResponse = UpdateFieldLevelEncryptionConfigResponse'
-  { _uflecrsETag                 :: !(Maybe Text)
-  , _uflecrsFieldLevelEncryption :: !(Maybe FieldLevelEncryption)
-  , _uflecrsResponseStatus       :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateFieldLevelEncryptionConfigResponse = UpdateFieldLevelEncryptionConfigResponse'{_uflecrsETag
+                                                                                          ::
+                                                                                          !(Maybe
+                                                                                              Text),
+                                                                                          _uflecrsFieldLevelEncryption
+                                                                                          ::
+                                                                                          !(Maybe
+                                                                                              FieldLevelEncryption),
+                                                                                          _uflecrsResponseStatus
+                                                                                          ::
+                                                                                          !Int}
+                                                  deriving (Eq, Read, Show,
+                                                            Data, Typeable,
+                                                            Generic)
 
 -- | Creates a value of 'UpdateFieldLevelEncryptionConfigResponse' with the minimum fields required to make a request.
 --
@@ -150,13 +163,14 @@ data UpdateFieldLevelEncryptionConfigResponse = UpdateFieldLevelEncryptionConfig
 updateFieldLevelEncryptionConfigResponse
     :: Int -- ^ 'uflecrsResponseStatus'
     -> UpdateFieldLevelEncryptionConfigResponse
-updateFieldLevelEncryptionConfigResponse pResponseStatus_ =
-  UpdateFieldLevelEncryptionConfigResponse'
-    { _uflecrsETag = Nothing
-    , _uflecrsFieldLevelEncryption = Nothing
-    , _uflecrsResponseStatus = pResponseStatus_
-    }
-
+updateFieldLevelEncryptionConfigResponse
+  pResponseStatus_
+  = UpdateFieldLevelEncryptionConfigResponse'{_uflecrsETag
+                                                = Nothing,
+                                              _uflecrsFieldLevelEncryption =
+                                                Nothing,
+                                              _uflecrsResponseStatus =
+                                                pResponseStatus_}
 
 -- | The value of the @ETag@ header that you received when updating the configuration. For example: @E2QWRUHAPOMQZL@ .
 uflecrsETag :: Lens' UpdateFieldLevelEncryptionConfigResponse (Maybe Text)

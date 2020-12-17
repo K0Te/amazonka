@@ -46,7 +46,6 @@ module Network.AWS.CloudDirectory.ListIndex
     ) where
 
 import Network.AWS.CloudDirectory.Types
-import Network.AWS.CloudDirectory.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
@@ -54,15 +53,14 @@ import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'listIndex' smart constructor.
-data ListIndex = ListIndex'
-  { _liRangesOnIndexedValues :: !(Maybe [ObjectAttributeRange])
-  , _liConsistencyLevel      :: !(Maybe ConsistencyLevel)
-  , _liNextToken             :: !(Maybe Text)
-  , _liMaxResults            :: !(Maybe Nat)
-  , _liDirectoryARN          :: !Text
-  , _liIndexReference        :: !ObjectReference
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListIndex = ListIndex'{_liRangesOnIndexedValues
+                            :: !(Maybe [ObjectAttributeRange]),
+                            _liConsistencyLevel :: !(Maybe ConsistencyLevel),
+                            _liNextToken :: !(Maybe Text),
+                            _liMaxResults :: !(Maybe Nat),
+                            _liDirectoryARN :: !Text,
+                            _liIndexReference :: !ObjectReference}
+                   deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListIndex' with the minimum fields required to make a request.
 --
@@ -74,7 +72,7 @@ data ListIndex = ListIndex'
 --
 -- * 'liNextToken' - The pagination token.
 --
--- * 'liMaxResults' - The maximum number of objects in a single page to retrieve from the index during a request. For more information, see <http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html#limits_cd AWS Directory Service Limits> .
+-- * 'liMaxResults' - The maximum number of objects in a single page to retrieve from the index during a request. For more information, see <http://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html Amazon Cloud Directory Limits> .
 --
 -- * 'liDirectoryARN' - The ARN of the directory that the index exists in.
 --
@@ -83,16 +81,12 @@ listIndex
     :: Text -- ^ 'liDirectoryARN'
     -> ObjectReference -- ^ 'liIndexReference'
     -> ListIndex
-listIndex pDirectoryARN_ pIndexReference_ =
-  ListIndex'
-    { _liRangesOnIndexedValues = Nothing
-    , _liConsistencyLevel = Nothing
-    , _liNextToken = Nothing
-    , _liMaxResults = Nothing
-    , _liDirectoryARN = pDirectoryARN_
-    , _liIndexReference = pIndexReference_
-    }
-
+listIndex pDirectoryARN_ pIndexReference_
+  = ListIndex'{_liRangesOnIndexedValues = Nothing,
+               _liConsistencyLevel = Nothing,
+               _liNextToken = Nothing, _liMaxResults = Nothing,
+               _liDirectoryARN = pDirectoryARN_,
+               _liIndexReference = pIndexReference_}
 
 -- | Specifies the ranges of indexed values that you want to query.
 liRangesOnIndexedValues :: Lens' ListIndex [ObjectAttributeRange]
@@ -106,7 +100,7 @@ liConsistencyLevel = lens _liConsistencyLevel (\ s a -> s{_liConsistencyLevel = 
 liNextToken :: Lens' ListIndex (Maybe Text)
 liNextToken = lens _liNextToken (\ s a -> s{_liNextToken = a})
 
--- | The maximum number of objects in a single page to retrieve from the index during a request. For more information, see <http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html#limits_cd AWS Directory Service Limits> .
+-- | The maximum number of objects in a single page to retrieve from the index during a request. For more information, see <http://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html Amazon Cloud Directory Limits> .
 liMaxResults :: Lens' ListIndex (Maybe Natural)
 liMaxResults = lens _liMaxResults (\ s a -> s{_liMaxResults = a}) . mapping _Nat
 
@@ -165,12 +159,11 @@ instance ToQuery ListIndex where
         toQuery = const mempty
 
 -- | /See:/ 'listIndexResponse' smart constructor.
-data ListIndexResponse = ListIndexResponse'
-  { _lirsIndexAttachments :: !(Maybe [IndexAttachment])
-  , _lirsNextToken        :: !(Maybe Text)
-  , _lirsResponseStatus   :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListIndexResponse = ListIndexResponse'{_lirsIndexAttachments
+                                            :: !(Maybe [IndexAttachment]),
+                                            _lirsNextToken :: !(Maybe Text),
+                                            _lirsResponseStatus :: !Int}
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListIndexResponse' with the minimum fields required to make a request.
 --
@@ -184,13 +177,10 @@ data ListIndexResponse = ListIndexResponse'
 listIndexResponse
     :: Int -- ^ 'lirsResponseStatus'
     -> ListIndexResponse
-listIndexResponse pResponseStatus_ =
-  ListIndexResponse'
-    { _lirsIndexAttachments = Nothing
-    , _lirsNextToken = Nothing
-    , _lirsResponseStatus = pResponseStatus_
-    }
-
+listIndexResponse pResponseStatus_
+  = ListIndexResponse'{_lirsIndexAttachments = Nothing,
+                       _lirsNextToken = Nothing,
+                       _lirsResponseStatus = pResponseStatus_}
 
 -- | The objects and indexed values attached to the index.
 lirsIndexAttachments :: Lens' ListIndexResponse [IndexAttachment]

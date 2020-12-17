@@ -37,17 +37,16 @@ module Network.AWS.IAM.DeleteSAMLProvider
     ) where
 
 import Network.AWS.IAM.Types
-import Network.AWS.IAM.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deleteSAMLProvider' smart constructor.
-newtype DeleteSAMLProvider = DeleteSAMLProvider'
-  { _dsamlpSAMLProviderARN :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteSAMLProvider = DeleteSAMLProvider'{_dsamlpSAMLProviderARN
+                                                 :: Text}
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'DeleteSAMLProvider' with the minimum fields required to make a request.
 --
@@ -57,9 +56,9 @@ newtype DeleteSAMLProvider = DeleteSAMLProvider'
 deleteSAMLProvider
     :: Text -- ^ 'dsamlpSAMLProviderARN'
     -> DeleteSAMLProvider
-deleteSAMLProvider pSAMLProviderARN_ =
-  DeleteSAMLProvider' {_dsamlpSAMLProviderARN = pSAMLProviderARN_}
-
+deleteSAMLProvider pSAMLProviderARN_
+  = DeleteSAMLProvider'{_dsamlpSAMLProviderARN =
+                          pSAMLProviderARN_}
 
 -- | The Amazon Resource Name (ARN) of the SAML provider to delete.
 dsamlpSAMLProviderARN :: Lens' DeleteSAMLProvider Text
@@ -89,16 +88,15 @@ instance ToQuery DeleteSAMLProvider where
                "SAMLProviderArn" =: _dsamlpSAMLProviderARN]
 
 -- | /See:/ 'deleteSAMLProviderResponse' smart constructor.
-data DeleteSAMLProviderResponse =
-  DeleteSAMLProviderResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteSAMLProviderResponse = DeleteSAMLProviderResponse'
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'DeleteSAMLProviderResponse' with the minimum fields required to make a request.
 --
 deleteSAMLProviderResponse
     :: DeleteSAMLProviderResponse
-deleteSAMLProviderResponse = DeleteSAMLProviderResponse'
-
+deleteSAMLProviderResponse
+  = DeleteSAMLProviderResponse'
 
 instance NFData DeleteSAMLProviderResponse where

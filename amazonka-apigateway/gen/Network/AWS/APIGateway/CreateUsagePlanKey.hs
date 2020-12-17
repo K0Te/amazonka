@@ -42,7 +42,6 @@ module Network.AWS.APIGateway.CreateUsagePlanKey
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -53,12 +52,11 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'createUsagePlanKey' smart constructor.
-data CreateUsagePlanKey = CreateUsagePlanKey'
-  { _cupkUsagePlanId :: !Text
-  , _cupkKeyId       :: !Text
-  , _cupkKeyType     :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateUsagePlanKey = CreateUsagePlanKey'{_cupkUsagePlanId
+                                              :: !Text,
+                                              _cupkKeyId :: !Text,
+                                              _cupkKeyType :: !Text}
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CreateUsagePlanKey' with the minimum fields required to make a request.
 --
@@ -74,13 +72,10 @@ createUsagePlanKey
     -> Text -- ^ 'cupkKeyId'
     -> Text -- ^ 'cupkKeyType'
     -> CreateUsagePlanKey
-createUsagePlanKey pUsagePlanId_ pKeyId_ pKeyType_ =
-  CreateUsagePlanKey'
-    { _cupkUsagePlanId = pUsagePlanId_
-    , _cupkKeyId = pKeyId_
-    , _cupkKeyType = pKeyType_
-    }
-
+createUsagePlanKey pUsagePlanId_ pKeyId_ pKeyType_
+  = CreateUsagePlanKey'{_cupkUsagePlanId =
+                          pUsagePlanId_,
+                        _cupkKeyId = pKeyId_, _cupkKeyType = pKeyType_}
 
 -- | [Required] The Id of the 'UsagePlan' resource representing the usage plan containing the to-be-created 'UsagePlanKey' resource representing a plan customer.
 cupkUsagePlanId :: Lens' CreateUsagePlanKey Text

@@ -37,7 +37,6 @@ module Network.AWS.DeviceFarm.DeleteDevicePool
     ) where
 
 import Network.AWS.DeviceFarm.Types
-import Network.AWS.DeviceFarm.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -48,23 +47,22 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'deleteDevicePool' smart constructor.
-newtype DeleteDevicePool = DeleteDevicePool'
-  { _ddpArn :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteDevicePool = DeleteDevicePool'{_ddpArn
+                                             :: Text}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteDevicePool' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'ddpArn' - Represents the Amazon Resource Name (ARN) of the Device Farm device pool you wish to delete.
+-- * 'ddpArn' - Represents the Amazon Resource Name (ARN) of the Device Farm device pool to delete.
 deleteDevicePool
     :: Text -- ^ 'ddpArn'
     -> DeleteDevicePool
-deleteDevicePool pArn_ = DeleteDevicePool' {_ddpArn = pArn_}
+deleteDevicePool pArn_
+  = DeleteDevicePool'{_ddpArn = pArn_}
 
-
--- | Represents the Amazon Resource Name (ARN) of the Device Farm device pool you wish to delete.
+-- | Represents the Amazon Resource Name (ARN) of the Device Farm device pool to delete.
 ddpArn :: Lens' DeleteDevicePool Text
 ddpArn = lens _ddpArn (\ s a -> s{_ddpArn = a})
 
@@ -105,10 +103,10 @@ instance ToQuery DeleteDevicePool where
 --
 --
 -- /See:/ 'deleteDevicePoolResponse' smart constructor.
-newtype DeleteDevicePoolResponse = DeleteDevicePoolResponse'
-  { _ddprsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteDevicePoolResponse = DeleteDevicePoolResponse'{_ddprsResponseStatus
+                                                             :: Int}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'DeleteDevicePoolResponse' with the minimum fields required to make a request.
 --
@@ -118,9 +116,9 @@ newtype DeleteDevicePoolResponse = DeleteDevicePoolResponse'
 deleteDevicePoolResponse
     :: Int -- ^ 'ddprsResponseStatus'
     -> DeleteDevicePoolResponse
-deleteDevicePoolResponse pResponseStatus_ =
-  DeleteDevicePoolResponse' {_ddprsResponseStatus = pResponseStatus_}
-
+deleteDevicePoolResponse pResponseStatus_
+  = DeleteDevicePoolResponse'{_ddprsResponseStatus =
+                                pResponseStatus_}
 
 -- | -- | The response status code.
 ddprsResponseStatus :: Lens' DeleteDevicePoolResponse Int

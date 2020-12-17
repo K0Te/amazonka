@@ -46,19 +46,16 @@ module Network.AWS.CloudHSM.GetConfig
     ) where
 
 import Network.AWS.CloudHSM.Types
-import Network.AWS.CloudHSM.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'getConfig' smart constructor.
-data GetConfig = GetConfig'
-  { _gcClientARN     :: !Text
-  , _gcClientVersion :: !ClientVersion
-  , _gcHAPGList      :: ![Text]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetConfig = GetConfig'{_gcClientARN :: !Text,
+                            _gcClientVersion :: !ClientVersion,
+                            _gcHAPGList :: ![Text]}
+                   deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetConfig' with the minimum fields required to make a request.
 --
@@ -73,13 +70,10 @@ getConfig
     :: Text -- ^ 'gcClientARN'
     -> ClientVersion -- ^ 'gcClientVersion'
     -> GetConfig
-getConfig pClientARN_ pClientVersion_ =
-  GetConfig'
-    { _gcClientARN = pClientARN_
-    , _gcClientVersion = pClientVersion_
-    , _gcHAPGList = mempty
-    }
-
+getConfig pClientARN_ pClientVersion_
+  = GetConfig'{_gcClientARN = pClientARN_,
+               _gcClientVersion = pClientVersion_,
+               _gcHAPGList = mempty}
 
 -- | The ARN of the client.
 gcClientARN :: Lens' GetConfig Text
@@ -132,13 +126,12 @@ instance ToQuery GetConfig where
         toQuery = const mempty
 
 -- | /See:/ 'getConfigResponse' smart constructor.
-data GetConfigResponse = GetConfigResponse'
-  { _gcrsConfigFile     :: !(Maybe Text)
-  , _gcrsConfigCred     :: !(Maybe Text)
-  , _gcrsConfigType     :: !(Maybe Text)
-  , _gcrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetConfigResponse = GetConfigResponse'{_gcrsConfigFile
+                                            :: !(Maybe Text),
+                                            _gcrsConfigCred :: !(Maybe Text),
+                                            _gcrsConfigType :: !(Maybe Text),
+                                            _gcrsResponseStatus :: !Int}
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetConfigResponse' with the minimum fields required to make a request.
 --
@@ -154,14 +147,10 @@ data GetConfigResponse = GetConfigResponse'
 getConfigResponse
     :: Int -- ^ 'gcrsResponseStatus'
     -> GetConfigResponse
-getConfigResponse pResponseStatus_ =
-  GetConfigResponse'
-    { _gcrsConfigFile = Nothing
-    , _gcrsConfigCred = Nothing
-    , _gcrsConfigType = Nothing
-    , _gcrsResponseStatus = pResponseStatus_
-    }
-
+getConfigResponse pResponseStatus_
+  = GetConfigResponse'{_gcrsConfigFile = Nothing,
+                       _gcrsConfigCred = Nothing, _gcrsConfigType = Nothing,
+                       _gcrsResponseStatus = pResponseStatus_}
 
 -- | The chrystoki.conf configuration file.
 gcrsConfigFile :: Lens' GetConfigResponse (Maybe Text)

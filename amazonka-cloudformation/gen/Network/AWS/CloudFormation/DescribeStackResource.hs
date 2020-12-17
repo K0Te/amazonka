@@ -41,7 +41,6 @@ module Network.AWS.CloudFormation.DescribeStackResource
     ) where
 
 import Network.AWS.CloudFormation.Types
-import Network.AWS.CloudFormation.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -52,11 +51,12 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'describeStackResource' smart constructor.
-data DescribeStackResource = DescribeStackResource'
-  { _dsrsStackName         :: !Text
-  , _dsrsLogicalResourceId :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeStackResource = DescribeStackResource'{_dsrsStackName
+                                                    :: !Text,
+                                                    _dsrsLogicalResourceId ::
+                                                    !Text}
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'DescribeStackResource' with the minimum fields required to make a request.
 --
@@ -69,10 +69,10 @@ describeStackResource
     :: Text -- ^ 'dsrsStackName'
     -> Text -- ^ 'dsrsLogicalResourceId'
     -> DescribeStackResource
-describeStackResource pStackName_ pLogicalResourceId_ =
-  DescribeStackResource'
-    {_dsrsStackName = pStackName_, _dsrsLogicalResourceId = pLogicalResourceId_}
-
+describeStackResource pStackName_ pLogicalResourceId_
+  = DescribeStackResource'{_dsrsStackName =
+                             pStackName_,
+                           _dsrsLogicalResourceId = pLogicalResourceId_}
 
 -- | The name or the unique stack ID that is associated with the stack, which are not always interchangeable:     * Running stacks: You can specify either the stack's name or its unique stack ID.     * Deleted stacks: You must specify the unique stack ID. Default: There is no default value.
 dsrsStackName :: Lens' DescribeStackResource Text
@@ -116,11 +116,14 @@ instance ToQuery DescribeStackResource where
 --
 --
 -- /See:/ 'describeStackResourceResponse' smart constructor.
-data DescribeStackResourceResponse = DescribeStackResourceResponse'
-  { _dsrrsStackResourceDetail :: !(Maybe StackResourceDetail)
-  , _dsrrsResponseStatus      :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeStackResourceResponse = DescribeStackResourceResponse'{_dsrrsStackResourceDetail
+                                                                    ::
+                                                                    !(Maybe
+                                                                        StackResourceDetail),
+                                                                    _dsrrsResponseStatus
+                                                                    :: !Int}
+                                       deriving (Eq, Read, Show, Data, Typeable,
+                                                 Generic)
 
 -- | Creates a value of 'DescribeStackResourceResponse' with the minimum fields required to make a request.
 --
@@ -132,12 +135,10 @@ data DescribeStackResourceResponse = DescribeStackResourceResponse'
 describeStackResourceResponse
     :: Int -- ^ 'dsrrsResponseStatus'
     -> DescribeStackResourceResponse
-describeStackResourceResponse pResponseStatus_ =
-  DescribeStackResourceResponse'
-    { _dsrrsStackResourceDetail = Nothing
-    , _dsrrsResponseStatus = pResponseStatus_
-    }
-
+describeStackResourceResponse pResponseStatus_
+  = DescribeStackResourceResponse'{_dsrrsStackResourceDetail
+                                     = Nothing,
+                                   _dsrrsResponseStatus = pResponseStatus_}
 
 -- | A @StackResourceDetail@ structure containing the description of the specified resource in the specified stack.
 dsrrsStackResourceDetail :: Lens' DescribeStackResourceResponse (Maybe StackResourceDetail)

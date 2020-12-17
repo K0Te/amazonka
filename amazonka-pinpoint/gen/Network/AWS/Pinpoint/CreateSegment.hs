@@ -18,7 +18,9 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Used to create or update a segment.
+-- Creates a new segment for an application or updates the configuration, dimension, and other settings for an existing segment that's associated with an application.
+--
+--
 module Network.AWS.Pinpoint.CreateSegment
     (
     -- * Creating a Request
@@ -38,37 +40,33 @@ module Network.AWS.Pinpoint.CreateSegment
 
 import Network.AWS.Lens
 import Network.AWS.Pinpoint.Types
-import Network.AWS.Pinpoint.Types.Product
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'createSegment' smart constructor.
-data CreateSegment = CreateSegment'
-  { _csApplicationId       :: !Text
-  , _csWriteSegmentRequest :: !WriteSegmentRequest
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateSegment = CreateSegment'{_csApplicationId
+                                    :: !Text,
+                                    _csWriteSegmentRequest ::
+                                    !WriteSegmentRequest}
+                       deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CreateSegment' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'csApplicationId' - Undocumented member.
+-- * 'csApplicationId' - The unique identifier for the application. This identifier is displayed as the __Project ID__ on the Amazon Pinpoint console.
 --
 -- * 'csWriteSegmentRequest' - Undocumented member.
 createSegment
     :: Text -- ^ 'csApplicationId'
     -> WriteSegmentRequest -- ^ 'csWriteSegmentRequest'
     -> CreateSegment
-createSegment pApplicationId_ pWriteSegmentRequest_ =
-  CreateSegment'
-    { _csApplicationId = pApplicationId_
-    , _csWriteSegmentRequest = pWriteSegmentRequest_
-    }
+createSegment pApplicationId_ pWriteSegmentRequest_
+  = CreateSegment'{_csApplicationId = pApplicationId_,
+                   _csWriteSegmentRequest = pWriteSegmentRequest_}
 
-
--- | Undocumented member.
+-- | The unique identifier for the application. This identifier is displayed as the __Project ID__ on the Amazon Pinpoint console.
 csApplicationId :: Lens' CreateSegment Text
 csApplicationId = lens _csApplicationId (\ s a -> s{_csApplicationId = a})
 
@@ -112,11 +110,12 @@ instance ToQuery CreateSegment where
         toQuery = const mempty
 
 -- | /See:/ 'createSegmentResponse' smart constructor.
-data CreateSegmentResponse = CreateSegmentResponse'
-  { _csrsResponseStatus  :: !Int
-  , _csrsSegmentResponse :: !SegmentResponse
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateSegmentResponse = CreateSegmentResponse'{_csrsResponseStatus
+                                                    :: !Int,
+                                                    _csrsSegmentResponse ::
+                                                    !SegmentResponse}
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'CreateSegmentResponse' with the minimum fields required to make a request.
 --
@@ -129,12 +128,11 @@ createSegmentResponse
     :: Int -- ^ 'csrsResponseStatus'
     -> SegmentResponse -- ^ 'csrsSegmentResponse'
     -> CreateSegmentResponse
-createSegmentResponse pResponseStatus_ pSegmentResponse_ =
-  CreateSegmentResponse'
-    { _csrsResponseStatus = pResponseStatus_
-    , _csrsSegmentResponse = pSegmentResponse_
-    }
-
+createSegmentResponse pResponseStatus_
+  pSegmentResponse_
+  = CreateSegmentResponse'{_csrsResponseStatus =
+                             pResponseStatus_,
+                           _csrsSegmentResponse = pSegmentResponse_}
 
 -- | -- | The response status code.
 csrsResponseStatus :: Lens' CreateSegmentResponse Int

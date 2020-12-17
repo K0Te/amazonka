@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Deletes the bandwidth rate limits of a gateway. You can delete either the upload and download bandwidth rate limit, or you can delete both. If you delete only one of the limits, the other limit remains unchanged. To specify which gateway to work with, use the Amazon Resource Name (ARN) of the gateway in your request.
+-- Deletes the bandwidth rate limits of a gateway. You can delete either the upload and download bandwidth rate limit, or you can delete both. If you delete only one of the limits, the other limit remains unchanged. To specify which gateway to work with, use the Amazon Resource Name (ARN) of the gateway in your request. This operation is supported for the stored volume, cached volume and tape gateway types.
 --
 --
 module Network.AWS.StorageGateway.DeleteBandwidthRateLimit
@@ -43,22 +43,22 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.StorageGateway.Types
-import Network.AWS.StorageGateway.Types.Product
 
 -- | A JSON object containing the following fields:
 --
 --
---     * 'DeleteBandwidthRateLimitInput$BandwidthType'
+--     * 'DeleteBandwidthRateLimitInput$BandwidthType' 
 --
 --
 --
 --
 -- /See:/ 'deleteBandwidthRateLimit' smart constructor.
-data DeleteBandwidthRateLimit = DeleteBandwidthRateLimit'
-  { _dbrlbGatewayARN    :: !Text
-  , _dbrlbBandwidthType :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteBandwidthRateLimit = DeleteBandwidthRateLimit'{_dbrlbGatewayARN
+                                                          :: !Text,
+                                                          _dbrlbBandwidthType ::
+                                                          !Text}
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'DeleteBandwidthRateLimit' with the minimum fields required to make a request.
 --
@@ -66,21 +66,21 @@ data DeleteBandwidthRateLimit = DeleteBandwidthRateLimit'
 --
 -- * 'dbrlbGatewayARN' - Undocumented member.
 --
--- * 'dbrlbBandwidthType' - One of the BandwidthType values that indicates the gateway bandwidth rate limit to delete. Valid Values: @Upload@ , @Download@ , @All@ .
+-- * 'dbrlbBandwidthType' - One of the BandwidthType values that indicates the gateway bandwidth rate limit to delete. Valid Values: @UPLOAD@ | @DOWNLOAD@ | @ALL@ 
 deleteBandwidthRateLimit
     :: Text -- ^ 'dbrlbGatewayARN'
     -> Text -- ^ 'dbrlbBandwidthType'
     -> DeleteBandwidthRateLimit
-deleteBandwidthRateLimit pGatewayARN_ pBandwidthType_ =
-  DeleteBandwidthRateLimit'
-    {_dbrlbGatewayARN = pGatewayARN_, _dbrlbBandwidthType = pBandwidthType_}
-
+deleteBandwidthRateLimit pGatewayARN_ pBandwidthType_
+  = DeleteBandwidthRateLimit'{_dbrlbGatewayARN =
+                                pGatewayARN_,
+                              _dbrlbBandwidthType = pBandwidthType_}
 
 -- | Undocumented member.
 dbrlbGatewayARN :: Lens' DeleteBandwidthRateLimit Text
 dbrlbGatewayARN = lens _dbrlbGatewayARN (\ s a -> s{_dbrlbGatewayARN = a})
 
--- | One of the BandwidthType values that indicates the gateway bandwidth rate limit to delete. Valid Values: @Upload@ , @Download@ , @All@ .
+-- | One of the BandwidthType values that indicates the gateway bandwidth rate limit to delete. Valid Values: @UPLOAD@ | @DOWNLOAD@ | @ALL@ 
 dbrlbBandwidthType :: Lens' DeleteBandwidthRateLimit Text
 dbrlbBandwidthType = lens _dbrlbBandwidthType (\ s a -> s{_dbrlbBandwidthType = a})
 
@@ -121,16 +121,20 @@ instance ToPath DeleteBandwidthRateLimit where
 instance ToQuery DeleteBandwidthRateLimit where
         toQuery = const mempty
 
--- | A JSON object containing the of the gateway whose bandwidth rate information was deleted.
+-- | A JSON object containing the Amazon Resource Name (ARN) of the gateway whose bandwidth rate information was deleted.
 --
 --
 --
 -- /See:/ 'deleteBandwidthRateLimitResponse' smart constructor.
-data DeleteBandwidthRateLimitResponse = DeleteBandwidthRateLimitResponse'
-  { _delrsGatewayARN     :: !(Maybe Text)
-  , _delrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteBandwidthRateLimitResponse = DeleteBandwidthRateLimitResponse'{_delrsGatewayARN
+                                                                          ::
+                                                                          !(Maybe
+                                                                              Text),
+                                                                          _delrsResponseStatus
+                                                                          ::
+                                                                          !Int}
+                                          deriving (Eq, Read, Show, Data,
+                                                    Typeable, Generic)
 
 -- | Creates a value of 'DeleteBandwidthRateLimitResponse' with the minimum fields required to make a request.
 --
@@ -142,10 +146,10 @@ data DeleteBandwidthRateLimitResponse = DeleteBandwidthRateLimitResponse'
 deleteBandwidthRateLimitResponse
     :: Int -- ^ 'delrsResponseStatus'
     -> DeleteBandwidthRateLimitResponse
-deleteBandwidthRateLimitResponse pResponseStatus_ =
-  DeleteBandwidthRateLimitResponse'
-    {_delrsGatewayARN = Nothing, _delrsResponseStatus = pResponseStatus_}
-
+deleteBandwidthRateLimitResponse pResponseStatus_
+  = DeleteBandwidthRateLimitResponse'{_delrsGatewayARN
+                                        = Nothing,
+                                      _delrsResponseStatus = pResponseStatus_}
 
 -- | Undocumented member.
 delrsGatewayARN :: Lens' DeleteBandwidthRateLimitResponse (Maybe Text)

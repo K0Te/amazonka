@@ -40,18 +40,16 @@ module Network.AWS.CloudDirectory.ApplySchema
     ) where
 
 import Network.AWS.CloudDirectory.Types
-import Network.AWS.CloudDirectory.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'applySchema' smart constructor.
-data ApplySchema = ApplySchema'
-  { _asPublishedSchemaARN :: !Text
-  , _asDirectoryARN       :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ApplySchema = ApplySchema'{_asPublishedSchemaARN
+                                :: !Text,
+                                _asDirectoryARN :: !Text}
+                     deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ApplySchema' with the minimum fields required to make a request.
 --
@@ -64,12 +62,10 @@ applySchema
     :: Text -- ^ 'asPublishedSchemaARN'
     -> Text -- ^ 'asDirectoryARN'
     -> ApplySchema
-applySchema pPublishedSchemaARN_ pDirectoryARN_ =
-  ApplySchema'
-    { _asPublishedSchemaARN = pPublishedSchemaARN_
-    , _asDirectoryARN = pDirectoryARN_
-    }
-
+applySchema pPublishedSchemaARN_ pDirectoryARN_
+  = ApplySchema'{_asPublishedSchemaARN =
+                   pPublishedSchemaARN_,
+                 _asDirectoryARN = pDirectoryARN_}
 
 -- | Published schema Amazon Resource Name (ARN) that needs to be copied. For more information, see 'arns' .
 asPublishedSchemaARN :: Lens' ApplySchema Text
@@ -113,12 +109,12 @@ instance ToQuery ApplySchema where
         toQuery = const mempty
 
 -- | /See:/ 'applySchemaResponse' smart constructor.
-data ApplySchemaResponse = ApplySchemaResponse'
-  { _asrsDirectoryARN     :: !(Maybe Text)
-  , _asrsAppliedSchemaARN :: !(Maybe Text)
-  , _asrsResponseStatus   :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ApplySchemaResponse = ApplySchemaResponse'{_asrsDirectoryARN
+                                                :: !(Maybe Text),
+                                                _asrsAppliedSchemaARN ::
+                                                !(Maybe Text),
+                                                _asrsResponseStatus :: !Int}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ApplySchemaResponse' with the minimum fields required to make a request.
 --
@@ -132,13 +128,10 @@ data ApplySchemaResponse = ApplySchemaResponse'
 applySchemaResponse
     :: Int -- ^ 'asrsResponseStatus'
     -> ApplySchemaResponse
-applySchemaResponse pResponseStatus_ =
-  ApplySchemaResponse'
-    { _asrsDirectoryARN = Nothing
-    , _asrsAppliedSchemaARN = Nothing
-    , _asrsResponseStatus = pResponseStatus_
-    }
-
+applySchemaResponse pResponseStatus_
+  = ApplySchemaResponse'{_asrsDirectoryARN = Nothing,
+                         _asrsAppliedSchemaARN = Nothing,
+                         _asrsResponseStatus = pResponseStatus_}
 
 -- | The ARN that is associated with the 'Directory' . For more information, see 'arns' .
 asrsDirectoryARN :: Lens' ApplySchemaResponse (Maybe Text)

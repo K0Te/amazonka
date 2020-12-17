@@ -40,7 +40,6 @@ module Network.AWS.DataPipeline.ReportTaskRunnerHeartbeat
     ) where
 
 import Network.AWS.DataPipeline.Types
-import Network.AWS.DataPipeline.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -51,12 +50,14 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'reportTaskRunnerHeartbeat' smart constructor.
-data ReportTaskRunnerHeartbeat = ReportTaskRunnerHeartbeat'
-  { _rtrhHostname     :: !(Maybe Text)
-  , _rtrhWorkerGroup  :: !(Maybe Text)
-  , _rtrhTaskrunnerId :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ReportTaskRunnerHeartbeat = ReportTaskRunnerHeartbeat'{_rtrhHostname
+                                                            :: !(Maybe Text),
+                                                            _rtrhWorkerGroup ::
+                                                            !(Maybe Text),
+                                                            _rtrhTaskrunnerId ::
+                                                            !Text}
+                                   deriving (Eq, Read, Show, Data, Typeable,
+                                             Generic)
 
 -- | Creates a value of 'ReportTaskRunnerHeartbeat' with the minimum fields required to make a request.
 --
@@ -70,13 +71,10 @@ data ReportTaskRunnerHeartbeat = ReportTaskRunnerHeartbeat'
 reportTaskRunnerHeartbeat
     :: Text -- ^ 'rtrhTaskrunnerId'
     -> ReportTaskRunnerHeartbeat
-reportTaskRunnerHeartbeat pTaskrunnerId_ =
-  ReportTaskRunnerHeartbeat'
-    { _rtrhHostname = Nothing
-    , _rtrhWorkerGroup = Nothing
-    , _rtrhTaskrunnerId = pTaskrunnerId_
-    }
-
+reportTaskRunnerHeartbeat pTaskrunnerId_
+  = ReportTaskRunnerHeartbeat'{_rtrhHostname = Nothing,
+                               _rtrhWorkerGroup = Nothing,
+                               _rtrhTaskrunnerId = pTaskrunnerId_}
 
 -- | The public DNS name of the task runner.
 rtrhHostname :: Lens' ReportTaskRunnerHeartbeat (Maybe Text)
@@ -133,11 +131,14 @@ instance ToQuery ReportTaskRunnerHeartbeat where
 --
 --
 -- /See:/ 'reportTaskRunnerHeartbeatResponse' smart constructor.
-data ReportTaskRunnerHeartbeatResponse = ReportTaskRunnerHeartbeatResponse'
-  { _rtrhrsResponseStatus :: !Int
-  , _rtrhrsTerminate      :: !Bool
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ReportTaskRunnerHeartbeatResponse = ReportTaskRunnerHeartbeatResponse'{_rtrhrsResponseStatus
+                                                                            ::
+                                                                            !Int,
+                                                                            _rtrhrsTerminate
+                                                                            ::
+                                                                            !Bool}
+                                           deriving (Eq, Read, Show, Data,
+                                                     Typeable, Generic)
 
 -- | Creates a value of 'ReportTaskRunnerHeartbeatResponse' with the minimum fields required to make a request.
 --
@@ -150,10 +151,11 @@ reportTaskRunnerHeartbeatResponse
     :: Int -- ^ 'rtrhrsResponseStatus'
     -> Bool -- ^ 'rtrhrsTerminate'
     -> ReportTaskRunnerHeartbeatResponse
-reportTaskRunnerHeartbeatResponse pResponseStatus_ pTerminate_ =
-  ReportTaskRunnerHeartbeatResponse'
-    {_rtrhrsResponseStatus = pResponseStatus_, _rtrhrsTerminate = pTerminate_}
-
+reportTaskRunnerHeartbeatResponse pResponseStatus_
+  pTerminate_
+  = ReportTaskRunnerHeartbeatResponse'{_rtrhrsResponseStatus
+                                         = pResponseStatus_,
+                                       _rtrhrsTerminate = pTerminate_}
 
 -- | -- | The response status code.
 rtrhrsResponseStatus :: Lens' ReportTaskRunnerHeartbeatResponse Int

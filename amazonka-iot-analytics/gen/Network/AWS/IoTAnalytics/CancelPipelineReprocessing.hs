@@ -38,18 +38,18 @@ module Network.AWS.IoTAnalytics.CancelPipelineReprocessing
     ) where
 
 import Network.AWS.IoTAnalytics.Types
-import Network.AWS.IoTAnalytics.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'cancelPipelineReprocessing' smart constructor.
-data CancelPipelineReprocessing = CancelPipelineReprocessing'
-  { _cprPipelineName   :: !Text
-  , _cprReprocessingId :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CancelPipelineReprocessing = CancelPipelineReprocessing'{_cprPipelineName
+                                                              :: !Text,
+                                                              _cprReprocessingId
+                                                              :: !Text}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'CancelPipelineReprocessing' with the minimum fields required to make a request.
 --
@@ -57,21 +57,22 @@ data CancelPipelineReprocessing = CancelPipelineReprocessing'
 --
 -- * 'cprPipelineName' - The name of pipeline for which data reprocessing is canceled.
 --
--- * 'cprReprocessingId' - The ID of the reprocessing task (returned by "StartPipelineReprocessing").
+-- * 'cprReprocessingId' - The ID of the reprocessing task (returned by @StartPipelineReprocessing@ ).
 cancelPipelineReprocessing
     :: Text -- ^ 'cprPipelineName'
     -> Text -- ^ 'cprReprocessingId'
     -> CancelPipelineReprocessing
-cancelPipelineReprocessing pPipelineName_ pReprocessingId_ =
-  CancelPipelineReprocessing'
-    {_cprPipelineName = pPipelineName_, _cprReprocessingId = pReprocessingId_}
-
+cancelPipelineReprocessing pPipelineName_
+  pReprocessingId_
+  = CancelPipelineReprocessing'{_cprPipelineName =
+                                  pPipelineName_,
+                                _cprReprocessingId = pReprocessingId_}
 
 -- | The name of pipeline for which data reprocessing is canceled.
 cprPipelineName :: Lens' CancelPipelineReprocessing Text
 cprPipelineName = lens _cprPipelineName (\ s a -> s{_cprPipelineName = a})
 
--- | The ID of the reprocessing task (returned by "StartPipelineReprocessing").
+-- | The ID of the reprocessing task (returned by @StartPipelineReprocessing@ ).
 cprReprocessingId :: Lens' CancelPipelineReprocessing Text
 cprReprocessingId = lens _cprReprocessingId (\ s a -> s{_cprReprocessingId = a})
 
@@ -102,10 +103,11 @@ instance ToQuery CancelPipelineReprocessing where
         toQuery = const mempty
 
 -- | /See:/ 'cancelPipelineReprocessingResponse' smart constructor.
-newtype CancelPipelineReprocessingResponse = CancelPipelineReprocessingResponse'
-  { _cprrsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype CancelPipelineReprocessingResponse = CancelPipelineReprocessingResponse'{_cprrsResponseStatus
+                                                                                 ::
+                                                                                 Int}
+                                               deriving (Eq, Read, Show, Data,
+                                                         Typeable, Generic)
 
 -- | Creates a value of 'CancelPipelineReprocessingResponse' with the minimum fields required to make a request.
 --
@@ -115,9 +117,9 @@ newtype CancelPipelineReprocessingResponse = CancelPipelineReprocessingResponse'
 cancelPipelineReprocessingResponse
     :: Int -- ^ 'cprrsResponseStatus'
     -> CancelPipelineReprocessingResponse
-cancelPipelineReprocessingResponse pResponseStatus_ =
-  CancelPipelineReprocessingResponse' {_cprrsResponseStatus = pResponseStatus_}
-
+cancelPipelineReprocessingResponse pResponseStatus_
+  = CancelPipelineReprocessingResponse'{_cprrsResponseStatus
+                                          = pResponseStatus_}
 
 -- | -- | The response status code.
 cprrsResponseStatus :: Lens' CancelPipelineReprocessingResponse Int

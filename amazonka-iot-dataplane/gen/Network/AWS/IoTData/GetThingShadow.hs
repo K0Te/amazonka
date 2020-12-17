@@ -18,10 +18,10 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Gets the thing shadow for the specified thing.
+-- Gets the shadow for the specified thing.
 --
 --
--- For more information, see <http://docs.aws.amazon.com/iot/latest/developerguide/API_GetThingShadow.html GetThingShadow> in the /AWS IoT Developer Guide/ .
+-- For more information, see <http://docs.aws.amazon.com/iot/latest/developerguide/API_GetThingShadow.html GetThingShadow> in the AWS IoT Developer Guide.
 --
 module Network.AWS.IoTData.GetThingShadow
     (
@@ -29,6 +29,7 @@ module Network.AWS.IoTData.GetThingShadow
       getThingShadow
     , GetThingShadow
     -- * Request Lenses
+    , gtsShadowName
     , gtsThingName
 
     -- * Destructuring the Response
@@ -40,7 +41,6 @@ module Network.AWS.IoTData.GetThingShadow
     ) where
 
 import Network.AWS.IoTData.Types
-import Network.AWS.IoTData.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -51,21 +51,28 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'getThingShadow' smart constructor.
-newtype GetThingShadow = GetThingShadow'
-  { _gtsThingName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetThingShadow = GetThingShadow'{_gtsShadowName
+                                      :: !(Maybe Text),
+                                      _gtsThingName :: !Text}
+                        deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetThingShadow' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
+-- * 'gtsShadowName' - The name of the shadow.
+--
 -- * 'gtsThingName' - The name of the thing.
 getThingShadow
     :: Text -- ^ 'gtsThingName'
     -> GetThingShadow
-getThingShadow pThingName_ = GetThingShadow' {_gtsThingName = pThingName_}
+getThingShadow pThingName_
+  = GetThingShadow'{_gtsShadowName = Nothing,
+                    _gtsThingName = pThingName_}
 
+-- | The name of the shadow.
+gtsShadowName :: Lens' GetThingShadow (Maybe Text)
+gtsShadowName = lens _gtsShadowName (\ s a -> s{_gtsShadowName = a})
 
 -- | The name of the thing.
 gtsThingName :: Lens' GetThingShadow Text
@@ -92,18 +99,19 @@ instance ToPath GetThingShadow where
           = mconcat ["/things/", toBS _gtsThingName, "/shadow"]
 
 instance ToQuery GetThingShadow where
-        toQuery = const mempty
+        toQuery GetThingShadow'{..}
+          = mconcat ["name" =: _gtsShadowName]
 
 -- | The output from the GetThingShadow operation.
 --
 --
 --
 -- /See:/ 'getThingShadowResponse' smart constructor.
-data GetThingShadowResponse = GetThingShadowResponse'
-  { _gtsrsPayload        :: !(Maybe ByteString)
-  , _gtsrsResponseStatus :: !Int
-  } deriving (Eq, Show, Data, Typeable, Generic)
-
+data GetThingShadowResponse = GetThingShadowResponse'{_gtsrsPayload
+                                                      :: !(Maybe ByteString),
+                                                      _gtsrsResponseStatus ::
+                                                      !Int}
+                                deriving (Eq, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetThingShadowResponse' with the minimum fields required to make a request.
 --
@@ -115,10 +123,9 @@ data GetThingShadowResponse = GetThingShadowResponse'
 getThingShadowResponse
     :: Int -- ^ 'gtsrsResponseStatus'
     -> GetThingShadowResponse
-getThingShadowResponse pResponseStatus_ =
-  GetThingShadowResponse'
-    {_gtsrsPayload = Nothing, _gtsrsResponseStatus = pResponseStatus_}
-
+getThingShadowResponse pResponseStatus_
+  = GetThingShadowResponse'{_gtsrsPayload = Nothing,
+                            _gtsrsResponseStatus = pResponseStatus_}
 
 -- | The state information, in JSON format.
 gtsrsPayload :: Lens' GetThingShadowResponse (Maybe ByteString)

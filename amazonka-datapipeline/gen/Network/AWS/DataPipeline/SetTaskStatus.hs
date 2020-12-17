@@ -41,7 +41,6 @@ module Network.AWS.DataPipeline.SetTaskStatus
     ) where
 
 import Network.AWS.DataPipeline.Types
-import Network.AWS.DataPipeline.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -52,14 +51,13 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'setTaskStatus' smart constructor.
-data SetTaskStatus = SetTaskStatus'
-  { _stsErrorStackTrace :: !(Maybe Text)
-  , _stsErrorId         :: !(Maybe Text)
-  , _stsErrorMessage    :: !(Maybe Text)
-  , _stsTaskId          :: !Text
-  , _stsTaskStatus      :: !TaskStatus
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data SetTaskStatus = SetTaskStatus'{_stsErrorStackTrace
+                                    :: !(Maybe Text),
+                                    _stsErrorId :: !(Maybe Text),
+                                    _stsErrorMessage :: !(Maybe Text),
+                                    _stsTaskId :: !Text,
+                                    _stsTaskStatus :: !TaskStatus}
+                       deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'SetTaskStatus' with the minimum fields required to make a request.
 --
@@ -78,15 +76,10 @@ setTaskStatus
     :: Text -- ^ 'stsTaskId'
     -> TaskStatus -- ^ 'stsTaskStatus'
     -> SetTaskStatus
-setTaskStatus pTaskId_ pTaskStatus_ =
-  SetTaskStatus'
-    { _stsErrorStackTrace = Nothing
-    , _stsErrorId = Nothing
-    , _stsErrorMessage = Nothing
-    , _stsTaskId = pTaskId_
-    , _stsTaskStatus = pTaskStatus_
-    }
-
+setTaskStatus pTaskId_ pTaskStatus_
+  = SetTaskStatus'{_stsErrorStackTrace = Nothing,
+                   _stsErrorId = Nothing, _stsErrorMessage = Nothing,
+                   _stsTaskId = pTaskId_, _stsTaskStatus = pTaskStatus_}
 
 -- | If an error occurred during the task, this value specifies the stack trace associated with the error. This value is set on the physical attempt object. It is used to display error information to the user. The web service does not parse this value.
 stsErrorStackTrace :: Lens' SetTaskStatus (Maybe Text)
@@ -150,10 +143,10 @@ instance ToQuery SetTaskStatus where
 --
 --
 -- /See:/ 'setTaskStatusResponse' smart constructor.
-newtype SetTaskStatusResponse = SetTaskStatusResponse'
-  { _stsrsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype SetTaskStatusResponse = SetTaskStatusResponse'{_stsrsResponseStatus
+                                                       :: Int}
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'SetTaskStatusResponse' with the minimum fields required to make a request.
 --
@@ -163,9 +156,9 @@ newtype SetTaskStatusResponse = SetTaskStatusResponse'
 setTaskStatusResponse
     :: Int -- ^ 'stsrsResponseStatus'
     -> SetTaskStatusResponse
-setTaskStatusResponse pResponseStatus_ =
-  SetTaskStatusResponse' {_stsrsResponseStatus = pResponseStatus_}
-
+setTaskStatusResponse pResponseStatus_
+  = SetTaskStatusResponse'{_stsrsResponseStatus =
+                             pResponseStatus_}
 
 -- | -- | The response status code.
 stsrsResponseStatus :: Lens' SetTaskStatusResponse Int

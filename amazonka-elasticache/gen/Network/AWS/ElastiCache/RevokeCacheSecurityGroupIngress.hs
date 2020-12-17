@@ -40,7 +40,6 @@ module Network.AWS.ElastiCache.RevokeCacheSecurityGroupIngress
     ) where
 
 import Network.AWS.ElastiCache.Types
-import Network.AWS.ElastiCache.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -51,12 +50,17 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'revokeCacheSecurityGroupIngress' smart constructor.
-data RevokeCacheSecurityGroupIngress = RevokeCacheSecurityGroupIngress'
-  { _rcsgiCacheSecurityGroupName  :: !Text
-  , _rcsgiEC2SecurityGroupName    :: !Text
-  , _rcsgiEC2SecurityGroupOwnerId :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data RevokeCacheSecurityGroupIngress = RevokeCacheSecurityGroupIngress'{_rcsgiCacheSecurityGroupName
+                                                                        ::
+                                                                        !Text,
+                                                                        _rcsgiEC2SecurityGroupName
+                                                                        ::
+                                                                        !Text,
+                                                                        _rcsgiEC2SecurityGroupOwnerId
+                                                                        ::
+                                                                        !Text}
+                                         deriving (Eq, Read, Show, Data,
+                                                   Typeable, Generic)
 
 -- | Creates a value of 'RevokeCacheSecurityGroupIngress' with the minimum fields required to make a request.
 --
@@ -72,13 +76,15 @@ revokeCacheSecurityGroupIngress
     -> Text -- ^ 'rcsgiEC2SecurityGroupName'
     -> Text -- ^ 'rcsgiEC2SecurityGroupOwnerId'
     -> RevokeCacheSecurityGroupIngress
-revokeCacheSecurityGroupIngress pCacheSecurityGroupName_ pEC2SecurityGroupName_ pEC2SecurityGroupOwnerId_ =
-  RevokeCacheSecurityGroupIngress'
-    { _rcsgiCacheSecurityGroupName = pCacheSecurityGroupName_
-    , _rcsgiEC2SecurityGroupName = pEC2SecurityGroupName_
-    , _rcsgiEC2SecurityGroupOwnerId = pEC2SecurityGroupOwnerId_
-    }
-
+revokeCacheSecurityGroupIngress
+  pCacheSecurityGroupName_ pEC2SecurityGroupName_
+  pEC2SecurityGroupOwnerId_
+  = RevokeCacheSecurityGroupIngress'{_rcsgiCacheSecurityGroupName
+                                       = pCacheSecurityGroupName_,
+                                     _rcsgiEC2SecurityGroupName =
+                                       pEC2SecurityGroupName_,
+                                     _rcsgiEC2SecurityGroupOwnerId =
+                                       pEC2SecurityGroupOwnerId_}
 
 -- | The name of the cache security group to revoke ingress from.
 rcsgiCacheSecurityGroupName :: Lens' RevokeCacheSecurityGroupIngress Text
@@ -130,11 +136,15 @@ instance ToQuery RevokeCacheSecurityGroupIngress
                  _rcsgiEC2SecurityGroupOwnerId]
 
 -- | /See:/ 'revokeCacheSecurityGroupIngressResponse' smart constructor.
-data RevokeCacheSecurityGroupIngressResponse = RevokeCacheSecurityGroupIngressResponse'
-  { _rcsgirsCacheSecurityGroup :: !(Maybe CacheSecurityGroup)
-  , _rcsgirsResponseStatus     :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data RevokeCacheSecurityGroupIngressResponse = RevokeCacheSecurityGroupIngressResponse'{_rcsgirsCacheSecurityGroup
+                                                                                        ::
+                                                                                        !(Maybe
+                                                                                            CacheSecurityGroup),
+                                                                                        _rcsgirsResponseStatus
+                                                                                        ::
+                                                                                        !Int}
+                                                 deriving (Eq, Read, Show, Data,
+                                                           Typeable, Generic)
 
 -- | Creates a value of 'RevokeCacheSecurityGroupIngressResponse' with the minimum fields required to make a request.
 --
@@ -146,12 +156,12 @@ data RevokeCacheSecurityGroupIngressResponse = RevokeCacheSecurityGroupIngressRe
 revokeCacheSecurityGroupIngressResponse
     :: Int -- ^ 'rcsgirsResponseStatus'
     -> RevokeCacheSecurityGroupIngressResponse
-revokeCacheSecurityGroupIngressResponse pResponseStatus_ =
-  RevokeCacheSecurityGroupIngressResponse'
-    { _rcsgirsCacheSecurityGroup = Nothing
-    , _rcsgirsResponseStatus = pResponseStatus_
-    }
-
+revokeCacheSecurityGroupIngressResponse
+  pResponseStatus_
+  = RevokeCacheSecurityGroupIngressResponse'{_rcsgirsCacheSecurityGroup
+                                               = Nothing,
+                                             _rcsgirsResponseStatus =
+                                               pResponseStatus_}
 
 -- | Undocumented member.
 rcsgirsCacheSecurityGroup :: Lens' RevokeCacheSecurityGroupIngressResponse (Maybe CacheSecurityGroup)

@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Returns detailed compliance information about the specified member account. Details include resources that are in and out of compliance with the specified policy. Resources are considered non-compliant if the specified policy has not been applied to them.
+-- Returns detailed compliance information about the specified member account. Details include resources that are in and out of compliance with the specified policy. Resources are considered noncompliant for AWS WAF and Shield Advanced policies if the specified policy has not been applied to them. Resources are considered noncompliant for security group policies if they are in scope of the policy, they violate one or more of the policy rules, and remediation is disabled or not possible. Resources are considered noncompliant for Network Firewall policies if a firewall is missing in the VPC, if the firewall endpoint isn't set up in an expected Availability Zone and subnet, if a subnet created by the Firewall Manager doesn't have the expected route table, and for modifications to a firewall policy that violate the Firewall Manager policy's rules. 
 --
 --
 module Network.AWS.FMS.GetComplianceDetail
@@ -39,18 +39,16 @@ module Network.AWS.FMS.GetComplianceDetail
     ) where
 
 import Network.AWS.FMS.Types
-import Network.AWS.FMS.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'getComplianceDetail' smart constructor.
-data GetComplianceDetail = GetComplianceDetail'
-  { _gcdPolicyId      :: !Text
-  , _gcdMemberAccount :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetComplianceDetail = GetComplianceDetail'{_gcdPolicyId
+                                                :: !Text,
+                                                _gcdMemberAccount :: !Text}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetComplianceDetail' with the minimum fields required to make a request.
 --
@@ -63,10 +61,9 @@ getComplianceDetail
     :: Text -- ^ 'gcdPolicyId'
     -> Text -- ^ 'gcdMemberAccount'
     -> GetComplianceDetail
-getComplianceDetail pPolicyId_ pMemberAccount_ =
-  GetComplianceDetail'
-    {_gcdPolicyId = pPolicyId_, _gcdMemberAccount = pMemberAccount_}
-
+getComplianceDetail pPolicyId_ pMemberAccount_
+  = GetComplianceDetail'{_gcdPolicyId = pPolicyId_,
+                         _gcdMemberAccount = pMemberAccount_}
 
 -- | The ID of the policy that you want to get the details for. @PolicyId@ is returned by @PutPolicy@ and by @ListPolicies@ .
 gcdPolicyId :: Lens' GetComplianceDetail Text
@@ -115,11 +112,14 @@ instance ToQuery GetComplianceDetail where
         toQuery = const mempty
 
 -- | /See:/ 'getComplianceDetailResponse' smart constructor.
-data GetComplianceDetailResponse = GetComplianceDetailResponse'
-  { _gcdrsPolicyComplianceDetail :: !(Maybe PolicyComplianceDetail)
-  , _gcdrsResponseStatus         :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetComplianceDetailResponse = GetComplianceDetailResponse'{_gcdrsPolicyComplianceDetail
+                                                                ::
+                                                                !(Maybe
+                                                                    PolicyComplianceDetail),
+                                                                _gcdrsResponseStatus
+                                                                :: !Int}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'GetComplianceDetailResponse' with the minimum fields required to make a request.
 --
@@ -131,12 +131,10 @@ data GetComplianceDetailResponse = GetComplianceDetailResponse'
 getComplianceDetailResponse
     :: Int -- ^ 'gcdrsResponseStatus'
     -> GetComplianceDetailResponse
-getComplianceDetailResponse pResponseStatus_ =
-  GetComplianceDetailResponse'
-    { _gcdrsPolicyComplianceDetail = Nothing
-    , _gcdrsResponseStatus = pResponseStatus_
-    }
-
+getComplianceDetailResponse pResponseStatus_
+  = GetComplianceDetailResponse'{_gcdrsPolicyComplianceDetail
+                                   = Nothing,
+                                 _gcdrsResponseStatus = pResponseStatus_}
 
 -- | Information about the resources and the policy that you specified in the @GetComplianceDetail@ request.
 gcdrsPolicyComplianceDetail :: Lens' GetComplianceDetailResponse (Maybe PolicyComplianceDetail)

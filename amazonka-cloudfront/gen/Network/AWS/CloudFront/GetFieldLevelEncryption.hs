@@ -39,17 +39,16 @@ module Network.AWS.CloudFront.GetFieldLevelEncryption
     ) where
 
 import Network.AWS.CloudFront.Types
-import Network.AWS.CloudFront.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'getFieldLevelEncryption' smart constructor.
-newtype GetFieldLevelEncryption = GetFieldLevelEncryption'
-  { _gfleId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetFieldLevelEncryption = GetFieldLevelEncryption'{_gfleId
+                                                           :: Text}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'GetFieldLevelEncryption' with the minimum fields required to make a request.
 --
@@ -59,8 +58,8 @@ newtype GetFieldLevelEncryption = GetFieldLevelEncryption'
 getFieldLevelEncryption
     :: Text -- ^ 'gfleId'
     -> GetFieldLevelEncryption
-getFieldLevelEncryption pId_ = GetFieldLevelEncryption' {_gfleId = pId_}
-
+getFieldLevelEncryption pId_
+  = GetFieldLevelEncryption'{_gfleId = pId_}
 
 -- | Request the ID for the field-level encryption configuration information.
 gfleId :: Lens' GetFieldLevelEncryption Text
@@ -87,18 +86,24 @@ instance ToHeaders GetFieldLevelEncryption where
 instance ToPath GetFieldLevelEncryption where
         toPath GetFieldLevelEncryption'{..}
           = mconcat
-              ["/2017-10-30/field-level-encryption/", toBS _gfleId]
+              ["/2020-05-31/field-level-encryption/", toBS _gfleId]
 
 instance ToQuery GetFieldLevelEncryption where
         toQuery = const mempty
 
 -- | /See:/ 'getFieldLevelEncryptionResponse' smart constructor.
-data GetFieldLevelEncryptionResponse = GetFieldLevelEncryptionResponse'
-  { _gflersETag                 :: !(Maybe Text)
-  , _gflersFieldLevelEncryption :: !(Maybe FieldLevelEncryption)
-  , _gflersResponseStatus       :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetFieldLevelEncryptionResponse = GetFieldLevelEncryptionResponse'{_gflersETag
+                                                                        ::
+                                                                        !(Maybe
+                                                                            Text),
+                                                                        _gflersFieldLevelEncryption
+                                                                        ::
+                                                                        !(Maybe
+                                                                            FieldLevelEncryption),
+                                                                        _gflersResponseStatus
+                                                                        :: !Int}
+                                         deriving (Eq, Read, Show, Data,
+                                                   Typeable, Generic)
 
 -- | Creates a value of 'GetFieldLevelEncryptionResponse' with the minimum fields required to make a request.
 --
@@ -112,13 +117,11 @@ data GetFieldLevelEncryptionResponse = GetFieldLevelEncryptionResponse'
 getFieldLevelEncryptionResponse
     :: Int -- ^ 'gflersResponseStatus'
     -> GetFieldLevelEncryptionResponse
-getFieldLevelEncryptionResponse pResponseStatus_ =
-  GetFieldLevelEncryptionResponse'
-    { _gflersETag = Nothing
-    , _gflersFieldLevelEncryption = Nothing
-    , _gflersResponseStatus = pResponseStatus_
-    }
-
+getFieldLevelEncryptionResponse pResponseStatus_
+  = GetFieldLevelEncryptionResponse'{_gflersETag =
+                                       Nothing,
+                                     _gflersFieldLevelEncryption = Nothing,
+                                     _gflersResponseStatus = pResponseStatus_}
 
 -- | The current version of the field level encryption configuration. For example: @E2QWRUHAPOMQZL@ .
 gflersETag :: Lens' GetFieldLevelEncryptionResponse (Maybe Text)

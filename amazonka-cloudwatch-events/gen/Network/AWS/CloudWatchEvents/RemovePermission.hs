@@ -28,6 +28,7 @@ module Network.AWS.CloudWatchEvents.RemovePermission
     , RemovePermission
     -- * Request Lenses
     , rpEventBusName
+    , rpRemoveAllPermissions
     , rpStatementId
 
     -- * Destructuring the Response
@@ -36,18 +37,18 @@ module Network.AWS.CloudWatchEvents.RemovePermission
     ) where
 
 import Network.AWS.CloudWatchEvents.Types
-import Network.AWS.CloudWatchEvents.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'removePermission' smart constructor.
-data RemovePermission = RemovePermission'
-  { _rpEventBusName :: !(Maybe Text)
-  , _rpStatementId  :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data RemovePermission = RemovePermission'{_rpEventBusName
+                                          :: !(Maybe Text),
+                                          _rpRemoveAllPermissions ::
+                                          !(Maybe Bool),
+                                          _rpStatementId :: !(Maybe Text)}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'RemovePermission' with the minimum fields required to make a request.
 --
@@ -55,20 +56,26 @@ data RemovePermission = RemovePermission'
 --
 -- * 'rpEventBusName' - The name of the event bus to revoke permissions for. If you omit this, the default event bus is used.
 --
+-- * 'rpRemoveAllPermissions' - Specifies whether to remove all permissions.
+--
 -- * 'rpStatementId' - The statement ID corresponding to the account that is no longer allowed to put events to the default event bus.
 removePermission
-    :: Text -- ^ 'rpStatementId'
-    -> RemovePermission
-removePermission pStatementId_ =
-  RemovePermission' {_rpEventBusName = Nothing, _rpStatementId = pStatementId_}
-
+    :: RemovePermission
+removePermission
+  = RemovePermission'{_rpEventBusName = Nothing,
+                      _rpRemoveAllPermissions = Nothing,
+                      _rpStatementId = Nothing}
 
 -- | The name of the event bus to revoke permissions for. If you omit this, the default event bus is used.
 rpEventBusName :: Lens' RemovePermission (Maybe Text)
 rpEventBusName = lens _rpEventBusName (\ s a -> s{_rpEventBusName = a})
 
+-- | Specifies whether to remove all permissions.
+rpRemoveAllPermissions :: Lens' RemovePermission (Maybe Bool)
+rpRemoveAllPermissions = lens _rpRemoveAllPermissions (\ s a -> s{_rpRemoveAllPermissions = a})
+
 -- | The statement ID corresponding to the account that is no longer allowed to put events to the default event bus.
-rpStatementId :: Lens' RemovePermission Text
+rpStatementId :: Lens' RemovePermission (Maybe Text)
 rpStatementId = lens _rpStatementId (\ s a -> s{_rpStatementId = a})
 
 instance AWSRequest RemovePermission where
@@ -94,7 +101,9 @@ instance ToJSON RemovePermission where
           = object
               (catMaybes
                  [("EventBusName" .=) <$> _rpEventBusName,
-                  Just ("StatementId" .= _rpStatementId)])
+                  ("RemoveAllPermissions" .=) <$>
+                    _rpRemoveAllPermissions,
+                  ("StatementId" .=) <$> _rpStatementId])
 
 instance ToPath RemovePermission where
         toPath = const "/"
@@ -103,16 +112,14 @@ instance ToQuery RemovePermission where
         toQuery = const mempty
 
 -- | /See:/ 'removePermissionResponse' smart constructor.
-data RemovePermissionResponse =
-  RemovePermissionResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data RemovePermissionResponse = RemovePermissionResponse'
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'RemovePermissionResponse' with the minimum fields required to make a request.
 --
 removePermissionResponse
     :: RemovePermissionResponse
 removePermissionResponse = RemovePermissionResponse'
-
 
 instance NFData RemovePermissionResponse where

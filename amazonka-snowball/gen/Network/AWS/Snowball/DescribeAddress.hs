@@ -42,13 +42,11 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.Snowball.Types
-import Network.AWS.Snowball.Types.Product
 
 -- | /See:/ 'describeAddress' smart constructor.
-newtype DescribeAddress = DescribeAddress'
-  { _daAddressId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DescribeAddress = DescribeAddress'{_daAddressId
+                                           :: Text}
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DescribeAddress' with the minimum fields required to make a request.
 --
@@ -58,8 +56,8 @@ newtype DescribeAddress = DescribeAddress'
 describeAddress
     :: Text -- ^ 'daAddressId'
     -> DescribeAddress
-describeAddress pAddressId_ = DescribeAddress' {_daAddressId = pAddressId_}
-
+describeAddress pAddressId_
+  = DescribeAddress'{_daAddressId = pAddressId_}
 
 -- | The automatically generated ID for a specific address.
 daAddressId :: Lens' DescribeAddress Text
@@ -100,28 +98,28 @@ instance ToQuery DescribeAddress where
         toQuery = const mempty
 
 -- | /See:/ 'describeAddressResponse' smart constructor.
-data DescribeAddressResponse = DescribeAddressResponse'
-  { _darsAddress        :: !(Maybe Address)
-  , _darsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeAddressResponse = DescribeAddressResponse'{_darsAddress
+                                                        :: !(Maybe Address),
+                                                        _darsResponseStatus ::
+                                                        !Int}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'DescribeAddressResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'darsAddress' - The address that you want the Snowball or Snowballs associated with a specific job to be shipped to.
+-- * 'darsAddress' - The address that you want the Snow device(s) associated with a specific job to be shipped to.
 --
 -- * 'darsResponseStatus' - -- | The response status code.
 describeAddressResponse
     :: Int -- ^ 'darsResponseStatus'
     -> DescribeAddressResponse
-describeAddressResponse pResponseStatus_ =
-  DescribeAddressResponse'
-    {_darsAddress = Nothing, _darsResponseStatus = pResponseStatus_}
+describeAddressResponse pResponseStatus_
+  = DescribeAddressResponse'{_darsAddress = Nothing,
+                             _darsResponseStatus = pResponseStatus_}
 
-
--- | The address that you want the Snowball or Snowballs associated with a specific job to be shipped to.
+-- | The address that you want the Snow device(s) associated with a specific job to be shipped to.
 darsAddress :: Lens' DescribeAddressResponse (Maybe Address)
 darsAddress = lens _darsAddress (\ s a -> s{_darsAddress = a})
 

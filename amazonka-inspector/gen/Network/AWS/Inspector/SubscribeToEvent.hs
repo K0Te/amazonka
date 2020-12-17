@@ -37,19 +37,17 @@ module Network.AWS.Inspector.SubscribeToEvent
     ) where
 
 import Network.AWS.Inspector.Types
-import Network.AWS.Inspector.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'subscribeToEvent' smart constructor.
-data SubscribeToEvent = SubscribeToEvent'
-  { _steResourceARN :: !Text
-  , _steEvent       :: !InspectorEvent
-  , _steTopicARN    :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data SubscribeToEvent = SubscribeToEvent'{_steResourceARN
+                                          :: !Text,
+                                          _steEvent :: !InspectorEvent,
+                                          _steTopicARN :: !Text}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'SubscribeToEvent' with the minimum fields required to make a request.
 --
@@ -65,13 +63,9 @@ subscribeToEvent
     -> InspectorEvent -- ^ 'steEvent'
     -> Text -- ^ 'steTopicARN'
     -> SubscribeToEvent
-subscribeToEvent pResourceARN_ pEvent_ pTopicARN_ =
-  SubscribeToEvent'
-    { _steResourceARN = pResourceARN_
-    , _steEvent = pEvent_
-    , _steTopicARN = pTopicARN_
-    }
-
+subscribeToEvent pResourceARN_ pEvent_ pTopicARN_
+  = SubscribeToEvent'{_steResourceARN = pResourceARN_,
+                      _steEvent = pEvent_, _steTopicARN = pTopicARN_}
 
 -- | The ARN of the assessment template that is used during the event for which you want to receive SNS notifications.
 steResourceARN :: Lens' SubscribeToEvent Text
@@ -118,16 +112,14 @@ instance ToQuery SubscribeToEvent where
         toQuery = const mempty
 
 -- | /See:/ 'subscribeToEventResponse' smart constructor.
-data SubscribeToEventResponse =
-  SubscribeToEventResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data SubscribeToEventResponse = SubscribeToEventResponse'
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'SubscribeToEventResponse' with the minimum fields required to make a request.
 --
 subscribeToEventResponse
     :: SubscribeToEventResponse
 subscribeToEventResponse = SubscribeToEventResponse'
-
 
 instance NFData SubscribeToEventResponse where

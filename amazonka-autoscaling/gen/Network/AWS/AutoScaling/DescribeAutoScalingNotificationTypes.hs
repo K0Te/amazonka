@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Describes the notification types that are supported by Auto Scaling.
+-- Describes the notification types that are supported by Amazon EC2 Auto Scaling.
 --
 --
 module Network.AWS.AutoScaling.DescribeAutoScalingNotificationTypes
@@ -36,24 +36,22 @@ module Network.AWS.AutoScaling.DescribeAutoScalingNotificationTypes
     ) where
 
 import Network.AWS.AutoScaling.Types
-import Network.AWS.AutoScaling.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'describeAutoScalingNotificationTypes' smart constructor.
-data DescribeAutoScalingNotificationTypes =
-  DescribeAutoScalingNotificationTypes'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeAutoScalingNotificationTypes = DescribeAutoScalingNotificationTypes'
+                                              deriving (Eq, Read, Show, Data,
+                                                        Typeable, Generic)
 
 -- | Creates a value of 'DescribeAutoScalingNotificationTypes' with the minimum fields required to make a request.
 --
 describeAutoScalingNotificationTypes
     :: DescribeAutoScalingNotificationTypes
-describeAutoScalingNotificationTypes = DescribeAutoScalingNotificationTypes'
-
+describeAutoScalingNotificationTypes
+  = DescribeAutoScalingNotificationTypes'
 
 instance AWSRequest
            DescribeAutoScalingNotificationTypes
@@ -97,11 +95,16 @@ instance ToQuery DescribeAutoScalingNotificationTypes
                   "Version" =: ("2011-01-01" :: ByteString)])
 
 -- | /See:/ 'describeAutoScalingNotificationTypesResponse' smart constructor.
-data DescribeAutoScalingNotificationTypesResponse = DescribeAutoScalingNotificationTypesResponse'
-  { _dasntrsAutoScalingNotificationTypes :: !(Maybe [Text])
-  , _dasntrsResponseStatus               :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeAutoScalingNotificationTypesResponse = DescribeAutoScalingNotificationTypesResponse'{_dasntrsAutoScalingNotificationTypes
+                                                                                                  ::
+                                                                                                  !(Maybe
+                                                                                                      [Text]),
+                                                                                                  _dasntrsResponseStatus
+                                                                                                  ::
+                                                                                                  !Int}
+                                                      deriving (Eq, Read, Show,
+                                                                Data, Typeable,
+                                                                Generic)
 
 -- | Creates a value of 'DescribeAutoScalingNotificationTypesResponse' with the minimum fields required to make a request.
 --
@@ -113,12 +116,12 @@ data DescribeAutoScalingNotificationTypesResponse = DescribeAutoScalingNotificat
 describeAutoScalingNotificationTypesResponse
     :: Int -- ^ 'dasntrsResponseStatus'
     -> DescribeAutoScalingNotificationTypesResponse
-describeAutoScalingNotificationTypesResponse pResponseStatus_ =
-  DescribeAutoScalingNotificationTypesResponse'
-    { _dasntrsAutoScalingNotificationTypes = Nothing
-    , _dasntrsResponseStatus = pResponseStatus_
-    }
-
+describeAutoScalingNotificationTypesResponse
+  pResponseStatus_
+  = DescribeAutoScalingNotificationTypesResponse'{_dasntrsAutoScalingNotificationTypes
+                                                    = Nothing,
+                                                  _dasntrsResponseStatus =
+                                                    pResponseStatus_}
 
 -- | The notification types.
 dasntrsAutoScalingNotificationTypes :: Lens' DescribeAutoScalingNotificationTypesResponse [Text]

@@ -39,18 +39,17 @@ module Network.AWS.ELBv2.DescribeTargetHealth
     ) where
 
 import Network.AWS.ELBv2.Types
-import Network.AWS.ELBv2.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'describeTargetHealth' smart constructor.
-data DescribeTargetHealth = DescribeTargetHealth'
-  { _dthTargets        :: !(Maybe [TargetDescription])
-  , _dthTargetGroupARN :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeTargetHealth = DescribeTargetHealth'{_dthTargets
+                                                  ::
+                                                  !(Maybe [TargetDescription]),
+                                                  _dthTargetGroupARN :: !Text}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DescribeTargetHealth' with the minimum fields required to make a request.
 --
@@ -62,10 +61,9 @@ data DescribeTargetHealth = DescribeTargetHealth'
 describeTargetHealth
     :: Text -- ^ 'dthTargetGroupARN'
     -> DescribeTargetHealth
-describeTargetHealth pTargetGroupARN_ =
-  DescribeTargetHealth'
-    {_dthTargets = Nothing, _dthTargetGroupARN = pTargetGroupARN_}
-
+describeTargetHealth pTargetGroupARN_
+  = DescribeTargetHealth'{_dthTargets = Nothing,
+                          _dthTargetGroupARN = pTargetGroupARN_}
 
 -- | The targets.
 dthTargets :: Lens' DescribeTargetHealth [TargetDescription]
@@ -107,11 +105,14 @@ instance ToQuery DescribeTargetHealth where
                "TargetGroupArn" =: _dthTargetGroupARN]
 
 -- | /See:/ 'describeTargetHealthResponse' smart constructor.
-data DescribeTargetHealthResponse = DescribeTargetHealthResponse'
-  { _dthrsTargetHealthDescriptions :: !(Maybe [TargetHealthDescription])
-  , _dthrsResponseStatus           :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeTargetHealthResponse = DescribeTargetHealthResponse'{_dthrsTargetHealthDescriptions
+                                                                  ::
+                                                                  !(Maybe
+                                                                      [TargetHealthDescription]),
+                                                                  _dthrsResponseStatus
+                                                                  :: !Int}
+                                      deriving (Eq, Read, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'DescribeTargetHealthResponse' with the minimum fields required to make a request.
 --
@@ -123,12 +124,10 @@ data DescribeTargetHealthResponse = DescribeTargetHealthResponse'
 describeTargetHealthResponse
     :: Int -- ^ 'dthrsResponseStatus'
     -> DescribeTargetHealthResponse
-describeTargetHealthResponse pResponseStatus_ =
-  DescribeTargetHealthResponse'
-    { _dthrsTargetHealthDescriptions = Nothing
-    , _dthrsResponseStatus = pResponseStatus_
-    }
-
+describeTargetHealthResponse pResponseStatus_
+  = DescribeTargetHealthResponse'{_dthrsTargetHealthDescriptions
+                                    = Nothing,
+                                  _dthrsResponseStatus = pResponseStatus_}
 
 -- | Information about the health of the targets.
 dthrsTargetHealthDescriptions :: Lens' DescribeTargetHealthResponse [TargetHealthDescription]

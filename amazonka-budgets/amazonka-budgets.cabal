@@ -46,28 +46,67 @@ library
     exposed-modules:
           Network.AWS.Budgets
         , Network.AWS.Budgets.CreateBudget
+        , Network.AWS.Budgets.CreateBudgetAction
         , Network.AWS.Budgets.CreateNotification
         , Network.AWS.Budgets.CreateSubscriber
         , Network.AWS.Budgets.DeleteBudget
+        , Network.AWS.Budgets.DeleteBudgetAction
         , Network.AWS.Budgets.DeleteNotification
         , Network.AWS.Budgets.DeleteSubscriber
         , Network.AWS.Budgets.DescribeBudget
+        , Network.AWS.Budgets.DescribeBudgetAction
+        , Network.AWS.Budgets.DescribeBudgetActionHistories
+        , Network.AWS.Budgets.DescribeBudgetActionsForAccount
+        , Network.AWS.Budgets.DescribeBudgetActionsForBudget
+        , Network.AWS.Budgets.DescribeBudgetPerformanceHistory
         , Network.AWS.Budgets.DescribeBudgets
         , Network.AWS.Budgets.DescribeNotificationsForBudget
         , Network.AWS.Budgets.DescribeSubscribersForNotification
+        , Network.AWS.Budgets.ExecuteBudgetAction
         , Network.AWS.Budgets.Types
         , Network.AWS.Budgets.UpdateBudget
+        , Network.AWS.Budgets.UpdateBudgetAction
         , Network.AWS.Budgets.UpdateNotification
         , Network.AWS.Budgets.UpdateSubscriber
         , Network.AWS.Budgets.Waiters
 
     other-modules:
-          Network.AWS.Budgets.Types.Product
-        , Network.AWS.Budgets.Types.Sum
+          Network.AWS.Budgets.Types.Action
+        , Network.AWS.Budgets.Types.ActionHistory
+        , Network.AWS.Budgets.Types.ActionHistoryDetails
+        , Network.AWS.Budgets.Types.ActionStatus
+        , Network.AWS.Budgets.Types.ActionSubType
+        , Network.AWS.Budgets.Types.ActionThreshold
+        , Network.AWS.Budgets.Types.ActionType
+        , Network.AWS.Budgets.Types.ApprovalModel
+        , Network.AWS.Budgets.Types.Budget
+        , Network.AWS.Budgets.Types.BudgetPerformanceHistory
+        , Network.AWS.Budgets.Types.BudgetType
+        , Network.AWS.Budgets.Types.BudgetedAndActualAmounts
+        , Network.AWS.Budgets.Types.CalculatedSpend
+        , Network.AWS.Budgets.Types.ComparisonOperator
+        , Network.AWS.Budgets.Types.CostTypes
+        , Network.AWS.Budgets.Types.Definition
+        , Network.AWS.Budgets.Types.EventType
+        , Network.AWS.Budgets.Types.ExecutionType
+        , Network.AWS.Budgets.Types.IAMActionDefinition
+        , Network.AWS.Budgets.Types.Notification
+        , Network.AWS.Budgets.Types.NotificationState
+        , Network.AWS.Budgets.Types.NotificationType
+        , Network.AWS.Budgets.Types.NotificationWithSubscribers
+        , Network.AWS.Budgets.Types.ScpActionDefinition
+        , Network.AWS.Budgets.Types.Spend
+        , Network.AWS.Budgets.Types.SsmActionDefinition
+        , Network.AWS.Budgets.Types.Subscriber
+        , Network.AWS.Budgets.Types.SubscriptionType
+        , Network.AWS.Budgets.Types.ThresholdType
+        , Network.AWS.Budgets.Types.TimePeriod
+        , Network.AWS.Budgets.Types.TimeUnit
 
     build-depends:
           amazonka-core == 1.6.1.*
         , base          >= 4.7     && < 5
+        , case-insensitive
 
 test-suite amazonka-budgets-test
     type:              exitcode-stdio-1.0
@@ -91,6 +130,7 @@ test-suite amazonka-budgets-test
         , amazonka-budgets
         , base
         , bytestring
+        , case-insensitive
         , tasty
         , tasty-hunit
         , text

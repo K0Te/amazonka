@@ -43,7 +43,6 @@ module Network.AWS.APIGateway.UpdateGatewayResponse
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -54,12 +53,14 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'updateGatewayResponse' smart constructor.
-data UpdateGatewayResponse = UpdateGatewayResponse'
-  { _ugPatchOperations :: !(Maybe [PatchOperation])
-  , _ugRestAPIId       :: !Text
-  , _ugResponseType    :: !GatewayResponseType
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateGatewayResponse = UpdateGatewayResponse'{_ugPatchOperations
+                                                    ::
+                                                    !(Maybe [PatchOperation]),
+                                                    _ugRestAPIId :: !Text,
+                                                    _ugResponseType ::
+                                                    !GatewayResponseType}
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'UpdateGatewayResponse' with the minimum fields required to make a request.
 --
@@ -74,13 +75,11 @@ updateGatewayResponse
     :: Text -- ^ 'ugRestAPIId'
     -> GatewayResponseType -- ^ 'ugResponseType'
     -> UpdateGatewayResponse
-updateGatewayResponse pRestAPIId_ pResponseType_ =
-  UpdateGatewayResponse'
-    { _ugPatchOperations = Nothing
-    , _ugRestAPIId = pRestAPIId_
-    , _ugResponseType = pResponseType_
-    }
-
+updateGatewayResponse pRestAPIId_ pResponseType_
+  = UpdateGatewayResponse'{_ugPatchOperations =
+                             Nothing,
+                           _ugRestAPIId = pRestAPIId_,
+                           _ugResponseType = pResponseType_}
 
 -- | A list of update operations to be applied to the specified resource and in the order specified in this list.
 ugPatchOperations :: Lens' UpdateGatewayResponse [PatchOperation]

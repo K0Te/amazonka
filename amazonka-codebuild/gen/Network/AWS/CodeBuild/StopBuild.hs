@@ -38,17 +38,14 @@ module Network.AWS.CodeBuild.StopBuild
     ) where
 
 import Network.AWS.CodeBuild.Types
-import Network.AWS.CodeBuild.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'stopBuild' smart constructor.
-newtype StopBuild = StopBuild'
-  { _sbId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype StopBuild = StopBuild'{_sbId :: Text}
+                      deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'StopBuild' with the minimum fields required to make a request.
 --
@@ -58,8 +55,7 @@ newtype StopBuild = StopBuild'
 stopBuild
     :: Text -- ^ 'sbId'
     -> StopBuild
-stopBuild pId_ = StopBuild' {_sbId = pId_}
-
+stopBuild pId_ = StopBuild'{_sbId = pId_}
 
 -- | The ID of the build.
 sbId :: Lens' StopBuild Text
@@ -98,11 +94,10 @@ instance ToQuery StopBuild where
         toQuery = const mempty
 
 -- | /See:/ 'stopBuildResponse' smart constructor.
-data StopBuildResponse = StopBuildResponse'
-  { _sbrsBuild          :: !(Maybe Build)
-  , _sbrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data StopBuildResponse = StopBuildResponse'{_sbrsBuild
+                                            :: !(Maybe Build),
+                                            _sbrsResponseStatus :: !Int}
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'StopBuildResponse' with the minimum fields required to make a request.
 --
@@ -114,10 +109,9 @@ data StopBuildResponse = StopBuildResponse'
 stopBuildResponse
     :: Int -- ^ 'sbrsResponseStatus'
     -> StopBuildResponse
-stopBuildResponse pResponseStatus_ =
-  StopBuildResponse'
-    {_sbrsBuild = Nothing, _sbrsResponseStatus = pResponseStatus_}
-
+stopBuildResponse pResponseStatus_
+  = StopBuildResponse'{_sbrsBuild = Nothing,
+                       _sbrsResponseStatus = pResponseStatus_}
 
 -- | Information about the build.
 sbrsBuild :: Lens' StopBuildResponse (Maybe Build)

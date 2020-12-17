@@ -21,15 +21,15 @@
 -- Describes the settings for the event selectors that you configured for your trail. The information returned for your event selectors includes the following:
 --
 --
---     * The S3 objects that you are logging for data events.
+--     * If your event selector includes read-only events, write-only events, or all events. This applies to both management events and data events.
 --
 --     * If your event selector includes management events.
 --
---     * If your event selector includes read-only events, write-only events, or all.
+--     * If your event selector includes data events, the Amazon S3 objects or AWS Lambda functions that you are logging for data events.
 --
 --
 --
--- For more information, see <http://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-and-data-events-with-cloudtrail.html Logging Data and Management Events for Trails > in the /AWS CloudTrail User Guide/ .
+-- For more information, see <https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-and-data-events-with-cloudtrail.html Logging Data and Management Events for Trails > in the /AWS CloudTrail User Guide/ .
 --
 module Network.AWS.CloudTrail.GetEventSelectors
     (
@@ -45,34 +45,33 @@ module Network.AWS.CloudTrail.GetEventSelectors
     -- * Response Lenses
     , gesrsTrailARN
     , gesrsEventSelectors
+    , gesrsAdvancedEventSelectors
     , gesrsResponseStatus
     ) where
 
 import Network.AWS.CloudTrail.Types
-import Network.AWS.CloudTrail.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'getEventSelectors' smart constructor.
-newtype GetEventSelectors = GetEventSelectors'
-  { _gesTrailName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetEventSelectors = GetEventSelectors'{_gesTrailName
+                                               :: Text}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetEventSelectors' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'gesTrailName' - Specifies the name of the trail or trail ARN. If you specify a trail name, the string must meet the following requirements:     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores (_), or dashes (-)     * Start with a letter or number, and end with a letter or number     * Be between 3 and 128 characters     * Have no adjacent periods, underscores or dashes. Names like @my-_namespace@ and @my--namespace@ are invalid.     * Not be in IP address format (for example, 192.168.5.4) If you specify a trail ARN, it must be in the format: @arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail@
+-- * 'gesTrailName' - Specifies the name of the trail or trail ARN. If you specify a trail name, the string must meet the following requirements:     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores (_), or dashes (-)     * Start with a letter or number, and end with a letter or number     * Be between 3 and 128 characters     * Have no adjacent periods, underscores or dashes. Names like @my-_namespace@ and @my--namespace@ are not valid.     * Not be in IP address format (for example, 192.168.5.4) If you specify a trail ARN, it must be in the format: @arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail@ 
 getEventSelectors
     :: Text -- ^ 'gesTrailName'
     -> GetEventSelectors
-getEventSelectors pTrailName_ = GetEventSelectors' {_gesTrailName = pTrailName_}
+getEventSelectors pTrailName_
+  = GetEventSelectors'{_gesTrailName = pTrailName_}
 
-
--- | Specifies the name of the trail or trail ARN. If you specify a trail name, the string must meet the following requirements:     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores (_), or dashes (-)     * Start with a letter or number, and end with a letter or number     * Be between 3 and 128 characters     * Have no adjacent periods, underscores or dashes. Names like @my-_namespace@ and @my--namespace@ are invalid.     * Not be in IP address format (for example, 192.168.5.4) If you specify a trail ARN, it must be in the format: @arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail@
+-- | Specifies the name of the trail or trail ARN. If you specify a trail name, the string must meet the following requirements:     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores (_), or dashes (-)     * Start with a letter or number, and end with a letter or number     * Be between 3 and 128 characters     * Have no adjacent periods, underscores or dashes. Names like @my-_namespace@ and @my--namespace@ are not valid.     * Not be in IP address format (for example, 192.168.5.4) If you specify a trail ARN, it must be in the format: @arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail@ 
 gesTrailName :: Lens' GetEventSelectors Text
 gesTrailName = lens _gesTrailName (\ s a -> s{_gesTrailName = a})
 
@@ -85,6 +84,7 @@ instance AWSRequest GetEventSelectors where
                  GetEventSelectorsResponse' <$>
                    (x .?> "TrailARN") <*>
                      (x .?> "EventSelectors" .!@ mempty)
+                     <*> (x .?> "AdvancedEventSelectors" .!@ mempty)
                      <*> (pure (fromEnum s)))
 
 instance Hashable GetEventSelectors where
@@ -113,12 +113,20 @@ instance ToQuery GetEventSelectors where
         toQuery = const mempty
 
 -- | /See:/ 'getEventSelectorsResponse' smart constructor.
-data GetEventSelectorsResponse = GetEventSelectorsResponse'
-  { _gesrsTrailARN       :: !(Maybe Text)
-  , _gesrsEventSelectors :: !(Maybe [EventSelector])
-  , _gesrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetEventSelectorsResponse = GetEventSelectorsResponse'{_gesrsTrailARN
+                                                            :: !(Maybe Text),
+                                                            _gesrsEventSelectors
+                                                            ::
+                                                            !(Maybe
+                                                                [EventSelector]),
+                                                            _gesrsAdvancedEventSelectors
+                                                            ::
+                                                            !(Maybe
+                                                                [AdvancedEventSelector]),
+                                                            _gesrsResponseStatus
+                                                            :: !Int}
+                                   deriving (Eq, Read, Show, Data, Typeable,
+                                             Generic)
 
 -- | Creates a value of 'GetEventSelectorsResponse' with the minimum fields required to make a request.
 --
@@ -128,17 +136,18 @@ data GetEventSelectorsResponse = GetEventSelectorsResponse'
 --
 -- * 'gesrsEventSelectors' - The event selectors that are configured for the trail.
 --
+-- * 'gesrsAdvancedEventSelectors' - The advanced event selectors that are configured for the trail. 
+--
 -- * 'gesrsResponseStatus' - -- | The response status code.
 getEventSelectorsResponse
     :: Int -- ^ 'gesrsResponseStatus'
     -> GetEventSelectorsResponse
-getEventSelectorsResponse pResponseStatus_ =
-  GetEventSelectorsResponse'
-    { _gesrsTrailARN = Nothing
-    , _gesrsEventSelectors = Nothing
-    , _gesrsResponseStatus = pResponseStatus_
-    }
-
+getEventSelectorsResponse pResponseStatus_
+  = GetEventSelectorsResponse'{_gesrsTrailARN =
+                                 Nothing,
+                               _gesrsEventSelectors = Nothing,
+                               _gesrsAdvancedEventSelectors = Nothing,
+                               _gesrsResponseStatus = pResponseStatus_}
 
 -- | The specified trail ARN that has the event selectors.
 gesrsTrailARN :: Lens' GetEventSelectorsResponse (Maybe Text)
@@ -147,6 +156,10 @@ gesrsTrailARN = lens _gesrsTrailARN (\ s a -> s{_gesrsTrailARN = a})
 -- | The event selectors that are configured for the trail.
 gesrsEventSelectors :: Lens' GetEventSelectorsResponse [EventSelector]
 gesrsEventSelectors = lens _gesrsEventSelectors (\ s a -> s{_gesrsEventSelectors = a}) . _Default . _Coerce
+
+-- | The advanced event selectors that are configured for the trail. 
+gesrsAdvancedEventSelectors :: Lens' GetEventSelectorsResponse [AdvancedEventSelector]
+gesrsAdvancedEventSelectors = lens _gesrsAdvancedEventSelectors (\ s a -> s{_gesrsAdvancedEventSelectors = a}) . _Default . _Coerce
 
 -- | -- | The response status code.
 gesrsResponseStatus :: Lens' GetEventSelectorsResponse Int

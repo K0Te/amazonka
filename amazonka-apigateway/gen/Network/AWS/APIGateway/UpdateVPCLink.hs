@@ -40,10 +40,10 @@ module Network.AWS.APIGateway.UpdateVPCLink
     , vlStatusMessage
     , vlId
     , vlDescription
+    , vlTags
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -54,11 +54,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'updateVPCLink' smart constructor.
-data UpdateVPCLink = UpdateVPCLink'
-  { _uvlPatchOperations :: !(Maybe [PatchOperation])
-  , _uvlVpcLinkId       :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateVPCLink = UpdateVPCLink'{_uvlPatchOperations
+                                    :: !(Maybe [PatchOperation]),
+                                    _uvlVpcLinkId :: !Text}
+                       deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UpdateVPCLink' with the minimum fields required to make a request.
 --
@@ -70,9 +69,9 @@ data UpdateVPCLink = UpdateVPCLink'
 updateVPCLink
     :: Text -- ^ 'uvlVpcLinkId'
     -> UpdateVPCLink
-updateVPCLink pVpcLinkId_ =
-  UpdateVPCLink' {_uvlPatchOperations = Nothing, _uvlVpcLinkId = pVpcLinkId_}
-
+updateVPCLink pVpcLinkId_
+  = UpdateVPCLink'{_uvlPatchOperations = Nothing,
+                   _uvlVpcLinkId = pVpcLinkId_}
 
 -- | A list of update operations to be applied to the specified resource and in the order specified in this list.
 uvlPatchOperations :: Lens' UpdateVPCLink [PatchOperation]

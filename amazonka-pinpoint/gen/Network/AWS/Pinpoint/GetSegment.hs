@@ -18,7 +18,9 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Returns information about a segment.
+-- Retrieves information about the configuration, dimension, and other settings for a specific segment that's associated with an application.
+--
+--
 module Network.AWS.Pinpoint.GetSegment
     (
     -- * Creating a Request
@@ -38,38 +40,35 @@ module Network.AWS.Pinpoint.GetSegment
 
 import Network.AWS.Lens
 import Network.AWS.Pinpoint.Types
-import Network.AWS.Pinpoint.Types.Product
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'getSegment' smart constructor.
-data GetSegment = GetSegment'
-  { _gsSegmentId     :: !Text
-  , _gsApplicationId :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetSegment = GetSegment'{_gsSegmentId :: !Text,
+                              _gsApplicationId :: !Text}
+                    deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetSegment' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'gsSegmentId' - Undocumented member.
+-- * 'gsSegmentId' - The unique identifier for the segment.
 --
--- * 'gsApplicationId' - Undocumented member.
+-- * 'gsApplicationId' - The unique identifier for the application. This identifier is displayed as the __Project ID__ on the Amazon Pinpoint console.
 getSegment
     :: Text -- ^ 'gsSegmentId'
     -> Text -- ^ 'gsApplicationId'
     -> GetSegment
-getSegment pSegmentId_ pApplicationId_ =
-  GetSegment' {_gsSegmentId = pSegmentId_, _gsApplicationId = pApplicationId_}
+getSegment pSegmentId_ pApplicationId_
+  = GetSegment'{_gsSegmentId = pSegmentId_,
+                _gsApplicationId = pApplicationId_}
 
-
--- | Undocumented member.
+-- | The unique identifier for the segment.
 gsSegmentId :: Lens' GetSegment Text
 gsSegmentId = lens _gsSegmentId (\ s a -> s{_gsSegmentId = a})
 
--- | Undocumented member.
+-- | The unique identifier for the application. This identifier is displayed as the __Project ID__ on the Amazon Pinpoint console.
 gsApplicationId :: Lens' GetSegment Text
 gsApplicationId = lens _gsApplicationId (\ s a -> s{_gsApplicationId = a})
 
@@ -103,11 +102,11 @@ instance ToQuery GetSegment where
         toQuery = const mempty
 
 -- | /See:/ 'getSegmentResponse' smart constructor.
-data GetSegmentResponse = GetSegmentResponse'
-  { _gssrsResponseStatus  :: !Int
-  , _gssrsSegmentResponse :: !SegmentResponse
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetSegmentResponse = GetSegmentResponse'{_gssrsResponseStatus
+                                              :: !Int,
+                                              _gssrsSegmentResponse ::
+                                              !SegmentResponse}
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetSegmentResponse' with the minimum fields required to make a request.
 --
@@ -120,12 +119,10 @@ getSegmentResponse
     :: Int -- ^ 'gssrsResponseStatus'
     -> SegmentResponse -- ^ 'gssrsSegmentResponse'
     -> GetSegmentResponse
-getSegmentResponse pResponseStatus_ pSegmentResponse_ =
-  GetSegmentResponse'
-    { _gssrsResponseStatus = pResponseStatus_
-    , _gssrsSegmentResponse = pSegmentResponse_
-    }
-
+getSegmentResponse pResponseStatus_ pSegmentResponse_
+  = GetSegmentResponse'{_gssrsResponseStatus =
+                          pResponseStatus_,
+                        _gssrsSegmentResponse = pSegmentResponse_}
 
 -- | -- | The response status code.
 gssrsResponseStatus :: Lens' GetSegmentResponse Int

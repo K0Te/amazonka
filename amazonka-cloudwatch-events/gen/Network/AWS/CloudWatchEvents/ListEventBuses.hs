@@ -41,19 +41,17 @@ module Network.AWS.CloudWatchEvents.ListEventBuses
     ) where
 
 import Network.AWS.CloudWatchEvents.Types
-import Network.AWS.CloudWatchEvents.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'listEventBuses' smart constructor.
-data ListEventBuses = ListEventBuses'
-  { _lebNextToken  :: !(Maybe Text)
-  , _lebNamePrefix :: !(Maybe Text)
-  , _lebLimit      :: !(Maybe Nat)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListEventBuses = ListEventBuses'{_lebNextToken
+                                      :: !(Maybe Text),
+                                      _lebNamePrefix :: !(Maybe Text),
+                                      _lebLimit :: !(Maybe Nat)}
+                        deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListEventBuses' with the minimum fields required to make a request.
 --
@@ -63,13 +61,12 @@ data ListEventBuses = ListEventBuses'
 --
 -- * 'lebNamePrefix' - Specifying this limits the results to only those event buses with names that start with the specified prefix.
 --
--- * 'lebLimit' - Specifying this limits the number of results returned by this operation. The operation also returns a @NextToken@ that you can use in a subsequent operation to retrieve the next set of results.
+-- * 'lebLimit' - Specifying this limits the number of results returned by this operation. The operation also returns a NextToken which you can use in a subsequent operation to retrieve the next set of results.
 listEventBuses
     :: ListEventBuses
-listEventBuses =
-  ListEventBuses'
-    {_lebNextToken = Nothing, _lebNamePrefix = Nothing, _lebLimit = Nothing}
-
+listEventBuses
+  = ListEventBuses'{_lebNextToken = Nothing,
+                    _lebNamePrefix = Nothing, _lebLimit = Nothing}
 
 -- | The token returned by a previous call to retrieve the next set of results.
 lebNextToken :: Lens' ListEventBuses (Maybe Text)
@@ -79,7 +76,7 @@ lebNextToken = lens _lebNextToken (\ s a -> s{_lebNextToken = a})
 lebNamePrefix :: Lens' ListEventBuses (Maybe Text)
 lebNamePrefix = lens _lebNamePrefix (\ s a -> s{_lebNamePrefix = a})
 
--- | Specifying this limits the number of results returned by this operation. The operation also returns a @NextToken@ that you can use in a subsequent operation to retrieve the next set of results.
+-- | Specifying this limits the number of results returned by this operation. The operation also returns a NextToken which you can use in a subsequent operation to retrieve the next set of results.
 lebLimit :: Lens' ListEventBuses (Maybe Natural)
 lebLimit = lens _lebLimit (\ s a -> s{_lebLimit = a}) . mapping _Nat
 
@@ -122,12 +119,14 @@ instance ToQuery ListEventBuses where
         toQuery = const mempty
 
 -- | /See:/ 'listEventBusesResponse' smart constructor.
-data ListEventBusesResponse = ListEventBusesResponse'
-  { _lebrsEventBuses     :: !(Maybe [EventBus])
-  , _lebrsNextToken      :: !(Maybe Text)
-  , _lebrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListEventBusesResponse = ListEventBusesResponse'{_lebrsEventBuses
+                                                      :: !(Maybe [EventBus]),
+                                                      _lebrsNextToken ::
+                                                      !(Maybe Text),
+                                                      _lebrsResponseStatus ::
+                                                      !Int}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'ListEventBusesResponse' with the minimum fields required to make a request.
 --
@@ -141,13 +140,10 @@ data ListEventBusesResponse = ListEventBusesResponse'
 listEventBusesResponse
     :: Int -- ^ 'lebrsResponseStatus'
     -> ListEventBusesResponse
-listEventBusesResponse pResponseStatus_ =
-  ListEventBusesResponse'
-    { _lebrsEventBuses = Nothing
-    , _lebrsNextToken = Nothing
-    , _lebrsResponseStatus = pResponseStatus_
-    }
-
+listEventBusesResponse pResponseStatus_
+  = ListEventBusesResponse'{_lebrsEventBuses = Nothing,
+                            _lebrsNextToken = Nothing,
+                            _lebrsResponseStatus = pResponseStatus_}
 
 -- | This list of event buses.
 lebrsEventBuses :: Lens' ListEventBusesResponse [EventBus]

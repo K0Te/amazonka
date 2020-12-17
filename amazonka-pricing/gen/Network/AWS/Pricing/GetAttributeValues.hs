@@ -47,18 +47,16 @@ import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
 import Network.AWS.Pricing.Types
-import Network.AWS.Pricing.Types.Product
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'getAttributeValues' smart constructor.
-data GetAttributeValues = GetAttributeValues'
-  { _gavNextToken     :: !(Maybe Text)
-  , _gavMaxResults    :: !(Maybe Nat)
-  , _gavServiceCode   :: !Text
-  , _gavAttributeName :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetAttributeValues = GetAttributeValues'{_gavNextToken
+                                              :: !(Maybe Text),
+                                              _gavMaxResults :: !(Maybe Nat),
+                                              _gavServiceCode :: !Text,
+                                              _gavAttributeName :: !Text}
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetAttributeValues' with the minimum fields required to make a request.
 --
@@ -75,14 +73,11 @@ getAttributeValues
     :: Text -- ^ 'gavServiceCode'
     -> Text -- ^ 'gavAttributeName'
     -> GetAttributeValues
-getAttributeValues pServiceCode_ pAttributeName_ =
-  GetAttributeValues'
-    { _gavNextToken = Nothing
-    , _gavMaxResults = Nothing
-    , _gavServiceCode = pServiceCode_
-    , _gavAttributeName = pAttributeName_
-    }
-
+getAttributeValues pServiceCode_ pAttributeName_
+  = GetAttributeValues'{_gavNextToken = Nothing,
+                        _gavMaxResults = Nothing,
+                        _gavServiceCode = pServiceCode_,
+                        _gavAttributeName = pAttributeName_}
 
 -- | The pagination token that indicates the next set of results that you want to retrieve.
 gavNextToken :: Lens' GetAttributeValues (Maybe Text)
@@ -149,12 +144,16 @@ instance ToQuery GetAttributeValues where
         toQuery = const mempty
 
 -- | /See:/ 'getAttributeValuesResponse' smart constructor.
-data GetAttributeValuesResponse = GetAttributeValuesResponse'
-  { _gavrsAttributeValues :: !(Maybe [AttributeValue])
-  , _gavrsNextToken       :: !(Maybe Text)
-  , _gavrsResponseStatus  :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetAttributeValuesResponse = GetAttributeValuesResponse'{_gavrsAttributeValues
+                                                              ::
+                                                              !(Maybe
+                                                                  [AttributeValue]),
+                                                              _gavrsNextToken ::
+                                                              !(Maybe Text),
+                                                              _gavrsResponseStatus
+                                                              :: !Int}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'GetAttributeValuesResponse' with the minimum fields required to make a request.
 --
@@ -168,13 +167,11 @@ data GetAttributeValuesResponse = GetAttributeValuesResponse'
 getAttributeValuesResponse
     :: Int -- ^ 'gavrsResponseStatus'
     -> GetAttributeValuesResponse
-getAttributeValuesResponse pResponseStatus_ =
-  GetAttributeValuesResponse'
-    { _gavrsAttributeValues = Nothing
-    , _gavrsNextToken = Nothing
-    , _gavrsResponseStatus = pResponseStatus_
-    }
-
+getAttributeValuesResponse pResponseStatus_
+  = GetAttributeValuesResponse'{_gavrsAttributeValues =
+                                  Nothing,
+                                _gavrsNextToken = Nothing,
+                                _gavrsResponseStatus = pResponseStatus_}
 
 -- | The list of values for an attribute. For example, @Throughput Optimized HDD@ and @Provisioned IOPS@ are two available values for the @AmazonEC2@ @volumeType@ .
 gavrsAttributeValues :: Lens' GetAttributeValuesResponse [AttributeValue]

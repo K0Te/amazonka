@@ -18,14 +18,12 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Links an existing user account in a user pool (@DestinationUser@ ) to an identity from an external identity provider (@SourceUser@ ) based on a specified attribute name and value from the external identity provider. This allows you to create a link from the existing user account to an external federated user identity that has not yet been used to sign in, so that the federated user identity can be used to sign in as the existing user account.
+-- Links an existing user account in a user pool (@DestinationUser@ ) to an identity from an external identity provider (@SourceUser@ ) based on a specified attribute name and value from the external identity provider. This allows you to create a link from the existing user account to an external federated user identity that has not yet been used to sign in, so that the federated user identity can be used to sign in as the existing user account. 
 --
 --
--- For example, if there is an existing user with a username and password, this API links that user to a federated user identity, so that when the federated user identity is used, the user signs in as the existing user account.
+-- For example, if there is an existing user with a username and password, this API links that user to a federated user identity, so that when the federated user identity is used, the user signs in as the existing user account. 
 --
 -- /Important:/ Because this API allows a user with an external federated identity to sign in as an existing user in the user pool, it is critical that it only be used with external identity providers and provider attributes that have been trusted by the application owner.
---
--- See also .
 --
 -- This action is enabled only for admin access and requires developer credentials.
 --
@@ -47,19 +45,21 @@ module Network.AWS.CognitoIdentityProvider.AdminLinkProviderForUser
     ) where
 
 import Network.AWS.CognitoIdentityProvider.Types
-import Network.AWS.CognitoIdentityProvider.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'adminLinkProviderForUser' smart constructor.
-data AdminLinkProviderForUser = AdminLinkProviderForUser'
-  { _alpfuUserPoolId      :: !Text
-  , _alpfuDestinationUser :: !ProviderUserIdentifierType
-  , _alpfuSourceUser      :: !ProviderUserIdentifierType
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data AdminLinkProviderForUser = AdminLinkProviderForUser'{_alpfuUserPoolId
+                                                          :: !Text,
+                                                          _alpfuDestinationUser
+                                                          ::
+                                                          !ProviderUserIdentifierType,
+                                                          _alpfuSourceUser ::
+                                                          !ProviderUserIdentifierType}
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'AdminLinkProviderForUser' with the minimum fields required to make a request.
 --
@@ -75,13 +75,12 @@ adminLinkProviderForUser
     -> ProviderUserIdentifierType -- ^ 'alpfuDestinationUser'
     -> ProviderUserIdentifierType -- ^ 'alpfuSourceUser'
     -> AdminLinkProviderForUser
-adminLinkProviderForUser pUserPoolId_ pDestinationUser_ pSourceUser_ =
-  AdminLinkProviderForUser'
-    { _alpfuUserPoolId = pUserPoolId_
-    , _alpfuDestinationUser = pDestinationUser_
-    , _alpfuSourceUser = pSourceUser_
-    }
-
+adminLinkProviderForUser pUserPoolId_
+  pDestinationUser_ pSourceUser_
+  = AdminLinkProviderForUser'{_alpfuUserPoolId =
+                                pUserPoolId_,
+                              _alpfuDestinationUser = pDestinationUser_,
+                              _alpfuSourceUser = pSourceUser_}
 
 -- | The user pool ID for the user pool.
 alpfuUserPoolId :: Lens' AdminLinkProviderForUser Text
@@ -134,10 +133,11 @@ instance ToQuery AdminLinkProviderForUser where
         toQuery = const mempty
 
 -- | /See:/ 'adminLinkProviderForUserResponse' smart constructor.
-newtype AdminLinkProviderForUserResponse = AdminLinkProviderForUserResponse'
-  { _alpfursResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype AdminLinkProviderForUserResponse = AdminLinkProviderForUserResponse'{_alpfursResponseStatus
+                                                                             ::
+                                                                             Int}
+                                             deriving (Eq, Read, Show, Data,
+                                                       Typeable, Generic)
 
 -- | Creates a value of 'AdminLinkProviderForUserResponse' with the minimum fields required to make a request.
 --
@@ -147,9 +147,9 @@ newtype AdminLinkProviderForUserResponse = AdminLinkProviderForUserResponse'
 adminLinkProviderForUserResponse
     :: Int -- ^ 'alpfursResponseStatus'
     -> AdminLinkProviderForUserResponse
-adminLinkProviderForUserResponse pResponseStatus_ =
-  AdminLinkProviderForUserResponse' {_alpfursResponseStatus = pResponseStatus_}
-
+adminLinkProviderForUserResponse pResponseStatus_
+  = AdminLinkProviderForUserResponse'{_alpfursResponseStatus
+                                        = pResponseStatus_}
 
 -- | -- | The response status code.
 alpfursResponseStatus :: Lens' AdminLinkProviderForUserResponse Int

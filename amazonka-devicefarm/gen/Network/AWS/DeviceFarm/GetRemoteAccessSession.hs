@@ -38,7 +38,6 @@ module Network.AWS.DeviceFarm.GetRemoteAccessSession
     ) where
 
 import Network.AWS.DeviceFarm.Types
-import Network.AWS.DeviceFarm.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -49,10 +48,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'getRemoteAccessSession' smart constructor.
-newtype GetRemoteAccessSession = GetRemoteAccessSession'
-  { _grasArn :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetRemoteAccessSession = GetRemoteAccessSession'{_grasArn
+                                                         :: Text}
+                                   deriving (Eq, Read, Show, Data, Typeable,
+                                             Generic)
 
 -- | Creates a value of 'GetRemoteAccessSession' with the minimum fields required to make a request.
 --
@@ -62,8 +61,8 @@ newtype GetRemoteAccessSession = GetRemoteAccessSession'
 getRemoteAccessSession
     :: Text -- ^ 'grasArn'
     -> GetRemoteAccessSession
-getRemoteAccessSession pArn_ = GetRemoteAccessSession' {_grasArn = pArn_}
-
+getRemoteAccessSession pArn_
+  = GetRemoteAccessSession'{_grasArn = pArn_}
 
 -- | The Amazon Resource Name (ARN) of the remote access session about which you want to get session information.
 grasArn :: Lens' GetRemoteAccessSession Text
@@ -109,11 +108,14 @@ instance ToQuery GetRemoteAccessSession where
 --
 --
 -- /See:/ 'getRemoteAccessSessionResponse' smart constructor.
-data GetRemoteAccessSessionResponse = GetRemoteAccessSessionResponse'
-  { _grasrsRemoteAccessSession :: !(Maybe RemoteAccessSession)
-  , _grasrsResponseStatus      :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetRemoteAccessSessionResponse = GetRemoteAccessSessionResponse'{_grasrsRemoteAccessSession
+                                                                      ::
+                                                                      !(Maybe
+                                                                          RemoteAccessSession),
+                                                                      _grasrsResponseStatus
+                                                                      :: !Int}
+                                        deriving (Eq, Read, Show, Data,
+                                                  Typeable, Generic)
 
 -- | Creates a value of 'GetRemoteAccessSessionResponse' with the minimum fields required to make a request.
 --
@@ -125,12 +127,10 @@ data GetRemoteAccessSessionResponse = GetRemoteAccessSessionResponse'
 getRemoteAccessSessionResponse
     :: Int -- ^ 'grasrsResponseStatus'
     -> GetRemoteAccessSessionResponse
-getRemoteAccessSessionResponse pResponseStatus_ =
-  GetRemoteAccessSessionResponse'
-    { _grasrsRemoteAccessSession = Nothing
-    , _grasrsResponseStatus = pResponseStatus_
-    }
-
+getRemoteAccessSessionResponse pResponseStatus_
+  = GetRemoteAccessSessionResponse'{_grasrsRemoteAccessSession
+                                      = Nothing,
+                                    _grasrsResponseStatus = pResponseStatus_}
 
 -- | A container that lists detailed information about the remote access session.
 grasrsRemoteAccessSession :: Lens' GetRemoteAccessSessionResponse (Maybe RemoteAccessSession)

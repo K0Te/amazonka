@@ -31,13 +31,17 @@ module Network.AWS.ServiceCatalog.ProvisionProduct
       provisionProduct
     , ProvisionProduct
     -- * Request Lenses
+    , ppProductName
+    , ppProvisioningArtifactId
+    , ppProvisioningArtifactName
     , ppNotificationARNs
+    , ppPathName
     , ppAcceptLanguage
     , ppPathId
     , ppProvisioningParameters
-    , ppTags
     , ppProductId
-    , ppProvisioningArtifactId
+    , ppTags
+    , ppProvisioningPreferences
     , ppProvisionedProductName
     , ppProvisionToken
 
@@ -54,72 +58,100 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.ServiceCatalog.Types
-import Network.AWS.ServiceCatalog.Types.Product
 
 -- | /See:/ 'provisionProduct' smart constructor.
-data ProvisionProduct = ProvisionProduct'
-  { _ppNotificationARNs       :: !(Maybe [Text])
-  , _ppAcceptLanguage         :: !(Maybe Text)
-  , _ppPathId                 :: !(Maybe Text)
-  , _ppProvisioningParameters :: !(Maybe [ProvisioningParameter])
-  , _ppTags                   :: !(Maybe [Tag])
-  , _ppProductId              :: !Text
-  , _ppProvisioningArtifactId :: !Text
-  , _ppProvisionedProductName :: !Text
-  , _ppProvisionToken         :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ProvisionProduct = ProvisionProduct'{_ppProductName
+                                          :: !(Maybe Text),
+                                          _ppProvisioningArtifactId ::
+                                          !(Maybe Text),
+                                          _ppProvisioningArtifactName ::
+                                          !(Maybe Text),
+                                          _ppNotificationARNs ::
+                                          !(Maybe [Text]),
+                                          _ppPathName :: !(Maybe Text),
+                                          _ppAcceptLanguage :: !(Maybe Text),
+                                          _ppPathId :: !(Maybe Text),
+                                          _ppProvisioningParameters ::
+                                          !(Maybe [ProvisioningParameter]),
+                                          _ppProductId :: !(Maybe Text),
+                                          _ppTags :: !(Maybe [Tag]),
+                                          _ppProvisioningPreferences ::
+                                          !(Maybe ProvisioningPreferences),
+                                          _ppProvisionedProductName :: !Text,
+                                          _ppProvisionToken :: !Text}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ProvisionProduct' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
+-- * 'ppProductName' - The name of the product. You must provide the name or ID, but not both.
+--
+-- * 'ppProvisioningArtifactId' - The identifier of the provisioning artifact. You must provide the name or ID, but not both.
+--
+-- * 'ppProvisioningArtifactName' - The name of the provisioning artifact. You must provide the name or ID, but not both.
+--
 -- * 'ppNotificationARNs' - Passed to CloudFormation. The SNS topic ARNs to which to publish stack-related events.
+--
+-- * 'ppPathName' - The name of the path. You must provide the name or ID, but not both.
 --
 -- * 'ppAcceptLanguage' - The language code.     * @en@ - English (default)     * @jp@ - Japanese     * @zh@ - Chinese
 --
--- * 'ppPathId' - The path identifier of the product. This value is optional if the product has a default path, and required if the product has more than one path. To list the paths for a product, use 'ListLaunchPaths' .
+-- * 'ppPathId' - The path identifier of the product. This value is optional if the product has a default path, and required if the product has more than one path. To list the paths for a product, use 'ListLaunchPaths' . You must provide the name or ID, but not both.
 --
 -- * 'ppProvisioningParameters' - Parameters specified by the administrator that are required for provisioning the product.
 --
+-- * 'ppProductId' - The product identifier. You must provide the name or ID, but not both.
+--
 -- * 'ppTags' - One or more tags.
 --
--- * 'ppProductId' - The product identifier.
---
--- * 'ppProvisioningArtifactId' - The identifier of the provisioning artifact.
+-- * 'ppProvisioningPreferences' - An object that contains information about the provisioning preferences for a stack set.
 --
 -- * 'ppProvisionedProductName' - A user-friendly name for the provisioned product. This value must be unique for the AWS account and cannot be updated after the product is provisioned.
 --
 -- * 'ppProvisionToken' - An idempotency token that uniquely identifies the provisioning request.
 provisionProduct
-    :: Text -- ^ 'ppProductId'
-    -> Text -- ^ 'ppProvisioningArtifactId'
-    -> Text -- ^ 'ppProvisionedProductName'
+    :: Text -- ^ 'ppProvisionedProductName'
     -> Text -- ^ 'ppProvisionToken'
     -> ProvisionProduct
-provisionProduct pProductId_ pProvisioningArtifactId_ pProvisionedProductName_ pProvisionToken_ =
-  ProvisionProduct'
-    { _ppNotificationARNs = Nothing
-    , _ppAcceptLanguage = Nothing
-    , _ppPathId = Nothing
-    , _ppProvisioningParameters = Nothing
-    , _ppTags = Nothing
-    , _ppProductId = pProductId_
-    , _ppProvisioningArtifactId = pProvisioningArtifactId_
-    , _ppProvisionedProductName = pProvisionedProductName_
-    , _ppProvisionToken = pProvisionToken_
-    }
+provisionProduct pProvisionedProductName_
+  pProvisionToken_
+  = ProvisionProduct'{_ppProductName = Nothing,
+                      _ppProvisioningArtifactId = Nothing,
+                      _ppProvisioningArtifactName = Nothing,
+                      _ppNotificationARNs = Nothing, _ppPathName = Nothing,
+                      _ppAcceptLanguage = Nothing, _ppPathId = Nothing,
+                      _ppProvisioningParameters = Nothing,
+                      _ppProductId = Nothing, _ppTags = Nothing,
+                      _ppProvisioningPreferences = Nothing,
+                      _ppProvisionedProductName = pProvisionedProductName_,
+                      _ppProvisionToken = pProvisionToken_}
 
+-- | The name of the product. You must provide the name or ID, but not both.
+ppProductName :: Lens' ProvisionProduct (Maybe Text)
+ppProductName = lens _ppProductName (\ s a -> s{_ppProductName = a})
+
+-- | The identifier of the provisioning artifact. You must provide the name or ID, but not both.
+ppProvisioningArtifactId :: Lens' ProvisionProduct (Maybe Text)
+ppProvisioningArtifactId = lens _ppProvisioningArtifactId (\ s a -> s{_ppProvisioningArtifactId = a})
+
+-- | The name of the provisioning artifact. You must provide the name or ID, but not both.
+ppProvisioningArtifactName :: Lens' ProvisionProduct (Maybe Text)
+ppProvisioningArtifactName = lens _ppProvisioningArtifactName (\ s a -> s{_ppProvisioningArtifactName = a})
 
 -- | Passed to CloudFormation. The SNS topic ARNs to which to publish stack-related events.
 ppNotificationARNs :: Lens' ProvisionProduct [Text]
 ppNotificationARNs = lens _ppNotificationARNs (\ s a -> s{_ppNotificationARNs = a}) . _Default . _Coerce
 
+-- | The name of the path. You must provide the name or ID, but not both.
+ppPathName :: Lens' ProvisionProduct (Maybe Text)
+ppPathName = lens _ppPathName (\ s a -> s{_ppPathName = a})
+
 -- | The language code.     * @en@ - English (default)     * @jp@ - Japanese     * @zh@ - Chinese
 ppAcceptLanguage :: Lens' ProvisionProduct (Maybe Text)
 ppAcceptLanguage = lens _ppAcceptLanguage (\ s a -> s{_ppAcceptLanguage = a})
 
--- | The path identifier of the product. This value is optional if the product has a default path, and required if the product has more than one path. To list the paths for a product, use 'ListLaunchPaths' .
+-- | The path identifier of the product. This value is optional if the product has a default path, and required if the product has more than one path. To list the paths for a product, use 'ListLaunchPaths' . You must provide the name or ID, but not both.
 ppPathId :: Lens' ProvisionProduct (Maybe Text)
 ppPathId = lens _ppPathId (\ s a -> s{_ppPathId = a})
 
@@ -127,17 +159,17 @@ ppPathId = lens _ppPathId (\ s a -> s{_ppPathId = a})
 ppProvisioningParameters :: Lens' ProvisionProduct [ProvisioningParameter]
 ppProvisioningParameters = lens _ppProvisioningParameters (\ s a -> s{_ppProvisioningParameters = a}) . _Default . _Coerce
 
+-- | The product identifier. You must provide the name or ID, but not both.
+ppProductId :: Lens' ProvisionProduct (Maybe Text)
+ppProductId = lens _ppProductId (\ s a -> s{_ppProductId = a})
+
 -- | One or more tags.
 ppTags :: Lens' ProvisionProduct [Tag]
 ppTags = lens _ppTags (\ s a -> s{_ppTags = a}) . _Default . _Coerce
 
--- | The product identifier.
-ppProductId :: Lens' ProvisionProduct Text
-ppProductId = lens _ppProductId (\ s a -> s{_ppProductId = a})
-
--- | The identifier of the provisioning artifact.
-ppProvisioningArtifactId :: Lens' ProvisionProduct Text
-ppProvisioningArtifactId = lens _ppProvisioningArtifactId (\ s a -> s{_ppProvisioningArtifactId = a})
+-- | An object that contains information about the provisioning preferences for a stack set.
+ppProvisioningPreferences :: Lens' ProvisionProduct (Maybe ProvisioningPreferences)
+ppProvisioningPreferences = lens _ppProvisioningPreferences (\ s a -> s{_ppProvisioningPreferences = a})
 
 -- | A user-friendly name for the provisioned product. This value must be unique for the AWS account and cannot be updated after the product is provisioned.
 ppProvisionedProductName :: Lens' ProvisionProduct Text
@@ -174,16 +206,21 @@ instance ToJSON ProvisionProduct where
         toJSON ProvisionProduct'{..}
           = object
               (catMaybes
-                 [("NotificationArns" .=) <$> _ppNotificationARNs,
+                 [("ProductName" .=) <$> _ppProductName,
+                  ("ProvisioningArtifactId" .=) <$>
+                    _ppProvisioningArtifactId,
+                  ("ProvisioningArtifactName" .=) <$>
+                    _ppProvisioningArtifactName,
+                  ("NotificationArns" .=) <$> _ppNotificationARNs,
+                  ("PathName" .=) <$> _ppPathName,
                   ("AcceptLanguage" .=) <$> _ppAcceptLanguage,
                   ("PathId" .=) <$> _ppPathId,
                   ("ProvisioningParameters" .=) <$>
                     _ppProvisioningParameters,
+                  ("ProductId" .=) <$> _ppProductId,
                   ("Tags" .=) <$> _ppTags,
-                  Just ("ProductId" .= _ppProductId),
-                  Just
-                    ("ProvisioningArtifactId" .=
-                       _ppProvisioningArtifactId),
+                  ("ProvisioningPreferences" .=) <$>
+                    _ppProvisioningPreferences,
                   Just
                     ("ProvisionedProductName" .=
                        _ppProvisionedProductName),
@@ -196,11 +233,13 @@ instance ToQuery ProvisionProduct where
         toQuery = const mempty
 
 -- | /See:/ 'provisionProductResponse' smart constructor.
-data ProvisionProductResponse = ProvisionProductResponse'
-  { _pprsRecordDetail   :: !(Maybe RecordDetail)
-  , _pprsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ProvisionProductResponse = ProvisionProductResponse'{_pprsRecordDetail
+                                                          ::
+                                                          !(Maybe RecordDetail),
+                                                          _pprsResponseStatus ::
+                                                          !Int}
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'ProvisionProductResponse' with the minimum fields required to make a request.
 --
@@ -212,10 +251,10 @@ data ProvisionProductResponse = ProvisionProductResponse'
 provisionProductResponse
     :: Int -- ^ 'pprsResponseStatus'
     -> ProvisionProductResponse
-provisionProductResponse pResponseStatus_ =
-  ProvisionProductResponse'
-    {_pprsRecordDetail = Nothing, _pprsResponseStatus = pResponseStatus_}
-
+provisionProductResponse pResponseStatus_
+  = ProvisionProductResponse'{_pprsRecordDetail =
+                                Nothing,
+                              _pprsResponseStatus = pResponseStatus_}
 
 -- | Information about the result of provisioning the product.
 pprsRecordDetail :: Lens' ProvisionProductResponse (Maybe RecordDetail)

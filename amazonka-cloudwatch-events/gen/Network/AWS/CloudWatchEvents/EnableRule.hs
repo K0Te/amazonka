@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Enables the specified rule. If the rule doesn't exist, the operation fails.
+-- Enables the specified rule. If the rule does not exist, the operation fails.
 --
 --
 -- When you enable a rule, incoming events might not immediately start matching to a newly enabled rule. Allow a short period of time for changes to take effect.
@@ -38,33 +38,32 @@ module Network.AWS.CloudWatchEvents.EnableRule
     ) where
 
 import Network.AWS.CloudWatchEvents.Types
-import Network.AWS.CloudWatchEvents.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'enableRule' smart constructor.
-data EnableRule = EnableRule'
-  { _erEventBusName :: !(Maybe Text)
-  , _erName         :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data EnableRule = EnableRule'{_erEventBusName ::
+                              !(Maybe Text),
+                              _erName :: !Text}
+                    deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'EnableRule' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'erEventBusName' - The event bus associated with the rule. If you omit this, the default event bus is used.
+-- * 'erEventBusName' - The name or ARN of the event bus associated with the rule. If you omit this, the default event bus is used.
 --
 -- * 'erName' - The name of the rule.
 enableRule
     :: Text -- ^ 'erName'
     -> EnableRule
-enableRule pName_ = EnableRule' {_erEventBusName = Nothing, _erName = pName_}
+enableRule pName_
+  = EnableRule'{_erEventBusName = Nothing,
+                _erName = pName_}
 
-
--- | The event bus associated with the rule. If you omit this, the default event bus is used.
+-- | The name or ARN of the event bus associated with the rule. If you omit this, the default event bus is used.
 erEventBusName :: Lens' EnableRule (Maybe Text)
 erEventBusName = lens _erEventBusName (\ s a -> s{_erEventBusName = a})
 
@@ -104,16 +103,13 @@ instance ToQuery EnableRule where
         toQuery = const mempty
 
 -- | /See:/ 'enableRuleResponse' smart constructor.
-data EnableRuleResponse =
-  EnableRuleResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data EnableRuleResponse = EnableRuleResponse'
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'EnableRuleResponse' with the minimum fields required to make a request.
 --
 enableRuleResponse
     :: EnableRuleResponse
 enableRuleResponse = EnableRuleResponse'
-
 
 instance NFData EnableRuleResponse where

@@ -18,8 +18,10 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Deletes a user from Amazon WorkMail and all subsequent systems. The action can't be undone. The mailbox is kept as-is for a minimum of 30 days, without any means to restore it.
+-- Deletes a user from Amazon WorkMail and all subsequent systems. Before you can delete a user, the user state must be @DISABLED@ . Use the 'DescribeUser' action to confirm the user state.
 --
+--
+-- Deleting a user is permanent and cannot be undone. WorkMail archives user mailboxes for 30 days before they are permanently removed.
 --
 module Network.AWS.WorkMail.DeleteUser
     (
@@ -34,7 +36,7 @@ module Network.AWS.WorkMail.DeleteUser
     , deleteUserResponse
     , DeleteUserResponse
     -- * Response Lenses
-    , delrsResponseStatus
+    , duursResponseStatus
     ) where
 
 import Network.AWS.Lens
@@ -42,31 +44,29 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.WorkMail.Types
-import Network.AWS.WorkMail.Types.Product
 
 -- | /See:/ 'deleteUser' smart constructor.
-data DeleteUser = DeleteUser'
-  { _delOrganizationId :: !Text
-  , _delUserId         :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteUser = DeleteUser'{_delOrganizationId ::
+                              !Text,
+                              _delUserId :: !Text}
+                    deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteUser' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'delOrganizationId' - The organization that contains the user.
+-- * 'delOrganizationId' - The organization that contains the user to be deleted.
 --
 -- * 'delUserId' - The identifier of the user to be deleted.
 deleteUser
     :: Text -- ^ 'delOrganizationId'
     -> Text -- ^ 'delUserId'
     -> DeleteUser
-deleteUser pOrganizationId_ pUserId_ =
-  DeleteUser' {_delOrganizationId = pOrganizationId_, _delUserId = pUserId_}
+deleteUser pOrganizationId_ pUserId_
+  = DeleteUser'{_delOrganizationId = pOrganizationId_,
+                _delUserId = pUserId_}
 
-
--- | The organization that contains the user.
+-- | The organization that contains the user to be deleted.
 delOrganizationId :: Lens' DeleteUser Text
 delOrganizationId = lens _delOrganizationId (\ s a -> s{_delOrganizationId = a})
 
@@ -109,25 +109,25 @@ instance ToQuery DeleteUser where
         toQuery = const mempty
 
 -- | /See:/ 'deleteUserResponse' smart constructor.
-newtype DeleteUserResponse = DeleteUserResponse'
-  { _delrsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteUserResponse = DeleteUserResponse'{_duursResponseStatus
+                                                 :: Int}
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'DeleteUserResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'delrsResponseStatus' - -- | The response status code.
+-- * 'duursResponseStatus' - -- | The response status code.
 deleteUserResponse
-    :: Int -- ^ 'delrsResponseStatus'
+    :: Int -- ^ 'duursResponseStatus'
     -> DeleteUserResponse
-deleteUserResponse pResponseStatus_ =
-  DeleteUserResponse' {_delrsResponseStatus = pResponseStatus_}
-
+deleteUserResponse pResponseStatus_
+  = DeleteUserResponse'{_duursResponseStatus =
+                          pResponseStatus_}
 
 -- | -- | The response status code.
-delrsResponseStatus :: Lens' DeleteUserResponse Int
-delrsResponseStatus = lens _delrsResponseStatus (\ s a -> s{_delrsResponseStatus = a})
+duursResponseStatus :: Lens' DeleteUserResponse Int
+duursResponseStatus = lens _duursResponseStatus (\ s a -> s{_duursResponseStatus = a})
 
 instance NFData DeleteUserResponse where

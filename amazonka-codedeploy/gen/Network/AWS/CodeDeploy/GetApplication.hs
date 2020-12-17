@@ -38,35 +38,33 @@ module Network.AWS.CodeDeploy.GetApplication
     ) where
 
 import Network.AWS.CodeDeploy.Types
-import Network.AWS.CodeDeploy.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- | Represents the input of a GetApplication operation.
+-- | Represents the input of a @GetApplication@ operation.
 --
 --
 --
 -- /See:/ 'getApplication' smart constructor.
-newtype GetApplication = GetApplication'
-  { _gaApplicationName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetApplication = GetApplication'{_gaApplicationName
+                                         :: Text}
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetApplication' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'gaApplicationName' - The name of an AWS CodeDeploy application associated with the applicable IAM user or AWS account.
+-- * 'gaApplicationName' - The name of an AWS CodeDeploy application associated with the IAM user or AWS account.
 getApplication
     :: Text -- ^ 'gaApplicationName'
     -> GetApplication
-getApplication pApplicationName_ =
-  GetApplication' {_gaApplicationName = pApplicationName_}
+getApplication pApplicationName_
+  = GetApplication'{_gaApplicationName =
+                      pApplicationName_}
 
-
--- | The name of an AWS CodeDeploy application associated with the applicable IAM user or AWS account.
+-- | The name of an AWS CodeDeploy application associated with the IAM user or AWS account.
 gaApplicationName :: Lens' GetApplication Text
 gaApplicationName = lens _gaApplicationName (\ s a -> s{_gaApplicationName = a})
 
@@ -104,16 +102,18 @@ instance ToPath GetApplication where
 instance ToQuery GetApplication where
         toQuery = const mempty
 
--- | Represents the output of a GetApplication operation.
+-- | Represents the output of a @GetApplication@ operation.
 --
 --
 --
 -- /See:/ 'getApplicationResponse' smart constructor.
-data GetApplicationResponse = GetApplicationResponse'
-  { _garsApplication    :: !(Maybe ApplicationInfo)
-  , _garsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetApplicationResponse = GetApplicationResponse'{_garsApplication
+                                                      ::
+                                                      !(Maybe ApplicationInfo),
+                                                      _garsResponseStatus ::
+                                                      !Int}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'GetApplicationResponse' with the minimum fields required to make a request.
 --
@@ -125,10 +125,9 @@ data GetApplicationResponse = GetApplicationResponse'
 getApplicationResponse
     :: Int -- ^ 'garsResponseStatus'
     -> GetApplicationResponse
-getApplicationResponse pResponseStatus_ =
-  GetApplicationResponse'
-    {_garsApplication = Nothing, _garsResponseStatus = pResponseStatus_}
-
+getApplicationResponse pResponseStatus_
+  = GetApplicationResponse'{_garsApplication = Nothing,
+                            _garsResponseStatus = pResponseStatus_}
 
 -- | Information about the application.
 garsApplication :: Lens' GetApplicationResponse (Maybe ApplicationInfo)

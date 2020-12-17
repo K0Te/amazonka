@@ -38,17 +38,15 @@ module Network.AWS.CloudWatchLogs.ListTagsLogGroup
     ) where
 
 import Network.AWS.CloudWatchLogs.Types
-import Network.AWS.CloudWatchLogs.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'listTagsLogGroup' smart constructor.
-newtype ListTagsLogGroup = ListTagsLogGroup'
-  { _ltlgLogGroupName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype ListTagsLogGroup = ListTagsLogGroup'{_ltlgLogGroupName
+                                             :: Text}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListTagsLogGroup' with the minimum fields required to make a request.
 --
@@ -58,9 +56,9 @@ newtype ListTagsLogGroup = ListTagsLogGroup'
 listTagsLogGroup
     :: Text -- ^ 'ltlgLogGroupName'
     -> ListTagsLogGroup
-listTagsLogGroup pLogGroupName_ =
-  ListTagsLogGroup' {_ltlgLogGroupName = pLogGroupName_}
-
+listTagsLogGroup pLogGroupName_
+  = ListTagsLogGroup'{_ltlgLogGroupName =
+                        pLogGroupName_}
 
 -- | The name of the log group.
 ltlgLogGroupName :: Lens' ListTagsLogGroup Text
@@ -101,11 +99,14 @@ instance ToQuery ListTagsLogGroup where
         toQuery = const mempty
 
 -- | /See:/ 'listTagsLogGroupResponse' smart constructor.
-data ListTagsLogGroupResponse = ListTagsLogGroupResponse'
-  { _ltlgrsTags           :: !(Maybe (Map Text Text))
-  , _ltlgrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListTagsLogGroupResponse = ListTagsLogGroupResponse'{_ltlgrsTags
+                                                          ::
+                                                          !(Maybe
+                                                              (Map Text Text)),
+                                                          _ltlgrsResponseStatus
+                                                          :: !Int}
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'ListTagsLogGroupResponse' with the minimum fields required to make a request.
 --
@@ -117,10 +118,9 @@ data ListTagsLogGroupResponse = ListTagsLogGroupResponse'
 listTagsLogGroupResponse
     :: Int -- ^ 'ltlgrsResponseStatus'
     -> ListTagsLogGroupResponse
-listTagsLogGroupResponse pResponseStatus_ =
-  ListTagsLogGroupResponse'
-    {_ltlgrsTags = Nothing, _ltlgrsResponseStatus = pResponseStatus_}
-
+listTagsLogGroupResponse pResponseStatus_
+  = ListTagsLogGroupResponse'{_ltlgrsTags = Nothing,
+                              _ltlgrsResponseStatus = pResponseStatus_}
 
 -- | The tags for the log group.
 ltlgrsTags :: Lens' ListTagsLogGroupResponse (HashMap Text Text)

@@ -43,17 +43,15 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.SNS.Types
-import Network.AWS.SNS.Types.Product
 
 -- | Input for the OptInPhoneNumber action.
 --
 --
 --
 -- /See:/ 'optInPhoneNumber' smart constructor.
-newtype OptInPhoneNumber = OptInPhoneNumber'
-  { _oipnPhoneNumber :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype OptInPhoneNumber = OptInPhoneNumber'{_oipnPhoneNumber
+                                             :: Text}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'OptInPhoneNumber' with the minimum fields required to make a request.
 --
@@ -63,9 +61,8 @@ newtype OptInPhoneNumber = OptInPhoneNumber'
 optInPhoneNumber
     :: Text -- ^ 'oipnPhoneNumber'
     -> OptInPhoneNumber
-optInPhoneNumber pPhoneNumber_ =
-  OptInPhoneNumber' {_oipnPhoneNumber = pPhoneNumber_}
-
+optInPhoneNumber pPhoneNumber_
+  = OptInPhoneNumber'{_oipnPhoneNumber = pPhoneNumber_}
 
 -- | The phone number to opt in.
 oipnPhoneNumber :: Lens' OptInPhoneNumber Text
@@ -101,10 +98,10 @@ instance ToQuery OptInPhoneNumber where
 --
 --
 -- /See:/ 'optInPhoneNumberResponse' smart constructor.
-newtype OptInPhoneNumberResponse = OptInPhoneNumberResponse'
-  { _oipnrsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype OptInPhoneNumberResponse = OptInPhoneNumberResponse'{_oipnrsResponseStatus
+                                                             :: Int}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'OptInPhoneNumberResponse' with the minimum fields required to make a request.
 --
@@ -114,9 +111,9 @@ newtype OptInPhoneNumberResponse = OptInPhoneNumberResponse'
 optInPhoneNumberResponse
     :: Int -- ^ 'oipnrsResponseStatus'
     -> OptInPhoneNumberResponse
-optInPhoneNumberResponse pResponseStatus_ =
-  OptInPhoneNumberResponse' {_oipnrsResponseStatus = pResponseStatus_}
-
+optInPhoneNumberResponse pResponseStatus_
+  = OptInPhoneNumberResponse'{_oipnrsResponseStatus =
+                                pResponseStatus_}
 
 -- | -- | The response status code.
 oipnrsResponseStatus :: Lens' OptInPhoneNumberResponse Int

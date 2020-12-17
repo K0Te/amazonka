@@ -39,16 +39,20 @@ module Network.AWS.APIGateway.UpdateDomainName
     , dnRegionalCertificateARN
     , dnCertificateARN
     , dnDistributionHostedZoneId
+    , dnSecurityPolicy
     , dnDomainName
+    , dnMutualTLSAuthentication
     , dnRegionalCertificateName
     , dnRegionalDomainName
     , dnCertificateUploadDate
     , dnDistributionDomainName
+    , dnDomainNameStatusMessage
     , dnEndpointConfiguration
+    , dnDomainNameStatus
+    , dnTags
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -59,11 +63,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'updateDomainName' smart constructor.
-data UpdateDomainName = UpdateDomainName'
-  { _udnPatchOperations :: !(Maybe [PatchOperation])
-  , _udnDomainName      :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateDomainName = UpdateDomainName'{_udnPatchOperations
+                                          :: !(Maybe [PatchOperation]),
+                                          _udnDomainName :: !Text}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UpdateDomainName' with the minimum fields required to make a request.
 --
@@ -75,10 +78,9 @@ data UpdateDomainName = UpdateDomainName'
 updateDomainName
     :: Text -- ^ 'udnDomainName'
     -> UpdateDomainName
-updateDomainName pDomainName_ =
-  UpdateDomainName'
-    {_udnPatchOperations = Nothing, _udnDomainName = pDomainName_}
-
+updateDomainName pDomainName_
+  = UpdateDomainName'{_udnPatchOperations = Nothing,
+                      _udnDomainName = pDomainName_}
 
 -- | A list of update operations to be applied to the specified resource and in the order specified in this list.
 udnPatchOperations :: Lens' UpdateDomainName [PatchOperation]

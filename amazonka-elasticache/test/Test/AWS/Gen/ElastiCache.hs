@@ -14,11 +14,11 @@
 module Test.AWS.Gen.ElastiCache where
 
 import Data.Proxy
-import Network.AWS.ElastiCache
-import Test.AWS.ElastiCache.Internal
 import Test.AWS.Fixture
 import Test.AWS.Prelude
 import Test.Tasty
+import Network.AWS.ElastiCache
+import Test.AWS.ElastiCache.Internal
 
 -- Auto-generated: the actual test selection needs to be manually placed into
 -- the top-level so that real test data can be incrementally added.
@@ -28,7 +28,10 @@ import Test.Tasty
 -- fixtures :: TestTree
 -- fixtures =
 --     [ testGroup "request"
---         [ requestDeleteCacheSecurityGroup $
+--         [ requestStartMigration $
+--             startMigration
+--
+--         , requestDeleteCacheSecurityGroup $
 --             deleteCacheSecurityGroup
 --
 --         , requestCreateReplicationGroup $
@@ -37,8 +40,17 @@ import Test.Tasty
 --         , requestDeleteCacheCluster $
 --             deleteCacheCluster
 --
+--         , requestIncreaseNodeGroupsInGlobalReplicationGroup $
+--             increaseNodeGroupsInGlobalReplicationGroup
+--
+--         , requestDescribeUsers $
+--             describeUsers
+--
 --         , requestRebootCacheCluster $
 --             rebootCacheCluster
+--
+--         , requestCreateUserGroup $
+--             createUserGroup
 --
 --         , requestRevokeCacheSecurityGroupIngress $
 --             revokeCacheSecurityGroupIngress
@@ -52,6 +64,9 @@ import Test.Tasty
 --         , requestDescribeEngineDefaultParameters $
 --             describeEngineDefaultParameters
 --
+--         , requestDisassociateGlobalReplicationGroup $
+--             disassociateGlobalReplicationGroup
+--
 --         , requestModifyCacheParameterGroup $
 --             modifyCacheParameterGroup
 --
@@ -63,6 +78,9 @@ import Test.Tasty
 --
 --         , requestListTagsForResource $
 --             listTagsForResource
+--
+--         , requestCompleteMigration $
+--             completeMigration
 --
 --         , requestDescribeCacheClusters $
 --             describeCacheClusters
@@ -79,11 +97,23 @@ import Test.Tasty
 --         , requestDescribeCacheParameters $
 --             describeCacheParameters
 --
+--         , requestDescribeGlobalReplicationGroups $
+--             describeGlobalReplicationGroups
+--
 --         , requestDescribeCacheSubnetGroups $
 --             describeCacheSubnetGroups
 --
+--         , requestDescribeUpdateActions $
+--             describeUpdateActions
+--
+--         , requestRebalanceSlotsInGlobalReplicationGroup $
+--             rebalanceSlotsInGlobalReplicationGroup
+--
 --         , requestCreateCacheSecurityGroup $
 --             createCacheSecurityGroup
+--
+--         , requestDecreaseReplicaCount $
+--             decreaseReplicaCount
 --
 --         , requestAddTagsToResource $
 --             addTagsToResource
@@ -94,8 +124,14 @@ import Test.Tasty
 --         , requestCopySnapshot $
 --             copySnapshot
 --
+--         , requestFailoverGlobalReplicationGroup $
+--             failoverGlobalReplicationGroup
+--
 --         , requestCreateCacheSubnetGroup $
 --             createCacheSubnetGroup
+--
+--         , requestCreateGlobalReplicationGroup $
+--             createGlobalReplicationGroup
 --
 --         , requestDescribeCacheParameterGroups $
 --             describeCacheParameterGroups
@@ -106,14 +142,29 @@ import Test.Tasty
 --         , requestListAllowedNodeTypeModifications $
 --             listAllowedNodeTypeModifications
 --
+--         , requestIncreaseReplicaCount $
+--             increaseReplicaCount
+--
 --         , requestModifyReplicationGroupShardConfiguration $
 --             modifyReplicationGroupShardConfiguration
+--
+--         , requestBatchApplyUpdateAction $
+--             batchApplyUpdateAction
+--
+--         , requestDeleteUserGroup $
+--             deleteUserGroup
+--
+--         , requestDescribeServiceUpdates $
+--             describeServiceUpdates
 --
 --         , requestDescribeSnapshots $
 --             describeSnapshots
 --
 --         , requestDescribeReplicationGroups $
 --             describeReplicationGroups
+--
+--         , requestCreateUser $
+--             createUser
 --
 --         , requestDeleteSnapshot $
 --             deleteSnapshot
@@ -124,8 +175,17 @@ import Test.Tasty
 --         , requestModifyCacheSubnetGroup $
 --             modifyCacheSubnetGroup
 --
+--         , requestDeleteUser $
+--             deleteUser
+--
 --         , requestCreateSnapshot $
 --             createSnapshot
+--
+--         , requestModifyGlobalReplicationGroup $
+--             modifyGlobalReplicationGroup
+--
+--         , requestDescribeUserGroups $
+--             describeUserGroups
 --
 --         , requestDeleteCacheParameterGroup $
 --             deleteCacheParameterGroup
@@ -133,11 +193,17 @@ import Test.Tasty
 --         , requestDescribeCacheSecurityGroups $
 --             describeCacheSecurityGroups
 --
+--         , requestBatchStopUpdateAction $
+--             batchStopUpdateAction
+--
 --         , requestModifyCacheCluster $
 --             modifyCacheCluster
 --
 --         , requestDescribeCacheEngineVersions $
 --             describeCacheEngineVersions
+--
+--         , requestModifyUserGroup $
+--             modifyUserGroup
 --
 --         , requestCreateCacheParameterGroup $
 --             createCacheParameterGroup
@@ -145,13 +211,25 @@ import Test.Tasty
 --         , requestDescribeReservedCacheNodes $
 --             describeReservedCacheNodes
 --
+--         , requestDeleteGlobalReplicationGroup $
+--             deleteGlobalReplicationGroup
+--
+--         , requestDecreaseNodeGroupsInGlobalReplicationGroup $
+--             decreaseNodeGroupsInGlobalReplicationGroup
+--
+--         , requestModifyUser $
+--             modifyUser
+--
 --         , requestDeleteCacheSubnetGroup $
 --             deleteCacheSubnetGroup
 --
 --           ]
 
 --     , testGroup "response"
---         [ responseDeleteCacheSecurityGroup $
+--         [ responseStartMigration $
+--             startMigrationResponse
+--
+--         , responseDeleteCacheSecurityGroup $
 --             deleteCacheSecurityGroupResponse
 --
 --         , responseCreateReplicationGroup $
@@ -160,8 +238,17 @@ import Test.Tasty
 --         , responseDeleteCacheCluster $
 --             deleteCacheClusterResponse
 --
+--         , responseIncreaseNodeGroupsInGlobalReplicationGroup $
+--             increaseNodeGroupsInGlobalReplicationGroupResponse
+--
+--         , responseDescribeUsers $
+--             describeUsersResponse
+--
 --         , responseRebootCacheCluster $
 --             rebootCacheClusterResponse
+--
+--         , responseCreateUserGroup $
+--             userGroup
 --
 --         , responseRevokeCacheSecurityGroupIngress $
 --             revokeCacheSecurityGroupIngressResponse
@@ -175,6 +262,9 @@ import Test.Tasty
 --         , responseDescribeEngineDefaultParameters $
 --             describeEngineDefaultParametersResponse
 --
+--         , responseDisassociateGlobalReplicationGroup $
+--             disassociateGlobalReplicationGroupResponse
+--
 --         , responseModifyCacheParameterGroup $
 --             cacheParameterGroupNameMessage
 --
@@ -186,6 +276,9 @@ import Test.Tasty
 --
 --         , responseListTagsForResource $
 --             tagListMessage
+--
+--         , responseCompleteMigration $
+--             completeMigrationResponse
 --
 --         , responseDescribeCacheClusters $
 --             describeCacheClustersResponse
@@ -202,11 +295,23 @@ import Test.Tasty
 --         , responseDescribeCacheParameters $
 --             describeCacheParametersResponse
 --
+--         , responseDescribeGlobalReplicationGroups $
+--             describeGlobalReplicationGroupsResponse
+--
 --         , responseDescribeCacheSubnetGroups $
 --             describeCacheSubnetGroupsResponse
 --
+--         , responseDescribeUpdateActions $
+--             describeUpdateActionsResponse
+--
+--         , responseRebalanceSlotsInGlobalReplicationGroup $
+--             rebalanceSlotsInGlobalReplicationGroupResponse
+--
 --         , responseCreateCacheSecurityGroup $
 --             createCacheSecurityGroupResponse
+--
+--         , responseDecreaseReplicaCount $
+--             decreaseReplicaCountResponse
 --
 --         , responseAddTagsToResource $
 --             tagListMessage
@@ -217,8 +322,14 @@ import Test.Tasty
 --         , responseCopySnapshot $
 --             copySnapshotResponse
 --
+--         , responseFailoverGlobalReplicationGroup $
+--             failoverGlobalReplicationGroupResponse
+--
 --         , responseCreateCacheSubnetGroup $
 --             createCacheSubnetGroupResponse
+--
+--         , responseCreateGlobalReplicationGroup $
+--             createGlobalReplicationGroupResponse
 --
 --         , responseDescribeCacheParameterGroups $
 --             describeCacheParameterGroupsResponse
@@ -229,14 +340,29 @@ import Test.Tasty
 --         , responseListAllowedNodeTypeModifications $
 --             listAllowedNodeTypeModificationsResponse
 --
+--         , responseIncreaseReplicaCount $
+--             increaseReplicaCountResponse
+--
 --         , responseModifyReplicationGroupShardConfiguration $
 --             modifyReplicationGroupShardConfigurationResponse
+--
+--         , responseBatchApplyUpdateAction $
+--             updateActionResultsMessage
+--
+--         , responseDeleteUserGroup $
+--             userGroup
+--
+--         , responseDescribeServiceUpdates $
+--             describeServiceUpdatesResponse
 --
 --         , responseDescribeSnapshots $
 --             describeSnapshotsResponse
 --
 --         , responseDescribeReplicationGroups $
 --             describeReplicationGroupsResponse
+--
+--         , responseCreateUser $
+--             user
 --
 --         , responseDeleteSnapshot $
 --             deleteSnapshotResponse
@@ -247,8 +373,17 @@ import Test.Tasty
 --         , responseModifyCacheSubnetGroup $
 --             modifyCacheSubnetGroupResponse
 --
+--         , responseDeleteUser $
+--             user
+--
 --         , responseCreateSnapshot $
 --             createSnapshotResponse
+--
+--         , responseModifyGlobalReplicationGroup $
+--             modifyGlobalReplicationGroupResponse
+--
+--         , responseDescribeUserGroups $
+--             describeUserGroupsResponse
 --
 --         , responseDeleteCacheParameterGroup $
 --             deleteCacheParameterGroupResponse
@@ -256,17 +391,32 @@ import Test.Tasty
 --         , responseDescribeCacheSecurityGroups $
 --             describeCacheSecurityGroupsResponse
 --
+--         , responseBatchStopUpdateAction $
+--             updateActionResultsMessage
+--
 --         , responseModifyCacheCluster $
 --             modifyCacheClusterResponse
 --
 --         , responseDescribeCacheEngineVersions $
 --             describeCacheEngineVersionsResponse
 --
+--         , responseModifyUserGroup $
+--             userGroup
+--
 --         , responseCreateCacheParameterGroup $
 --             createCacheParameterGroupResponse
 --
 --         , responseDescribeReservedCacheNodes $
 --             describeReservedCacheNodesResponse
+--
+--         , responseDeleteGlobalReplicationGroup $
+--             deleteGlobalReplicationGroupResponse
+--
+--         , responseDecreaseNodeGroupsInGlobalReplicationGroup $
+--             decreaseNodeGroupsInGlobalReplicationGroupResponse
+--
+--         , responseModifyUser $
+--             user
 --
 --         , responseDeleteCacheSubnetGroup $
 --             deleteCacheSubnetGroupResponse
@@ -275,6 +425,11 @@ import Test.Tasty
 --     ]
 
 -- Requests
+
+requestStartMigration :: StartMigration -> TestTree
+requestStartMigration = req
+    "StartMigration"
+    "fixture/StartMigration.yaml"
 
 requestDeleteCacheSecurityGroup :: DeleteCacheSecurityGroup -> TestTree
 requestDeleteCacheSecurityGroup = req
@@ -291,10 +446,25 @@ requestDeleteCacheCluster = req
     "DeleteCacheCluster"
     "fixture/DeleteCacheCluster.yaml"
 
+requestIncreaseNodeGroupsInGlobalReplicationGroup :: IncreaseNodeGroupsInGlobalReplicationGroup -> TestTree
+requestIncreaseNodeGroupsInGlobalReplicationGroup = req
+    "IncreaseNodeGroupsInGlobalReplicationGroup"
+    "fixture/IncreaseNodeGroupsInGlobalReplicationGroup.yaml"
+
+requestDescribeUsers :: DescribeUsers -> TestTree
+requestDescribeUsers = req
+    "DescribeUsers"
+    "fixture/DescribeUsers.yaml"
+
 requestRebootCacheCluster :: RebootCacheCluster -> TestTree
 requestRebootCacheCluster = req
     "RebootCacheCluster"
     "fixture/RebootCacheCluster.yaml"
+
+requestCreateUserGroup :: CreateUserGroup -> TestTree
+requestCreateUserGroup = req
+    "CreateUserGroup"
+    "fixture/CreateUserGroup.yaml"
 
 requestRevokeCacheSecurityGroupIngress :: RevokeCacheSecurityGroupIngress -> TestTree
 requestRevokeCacheSecurityGroupIngress = req
@@ -316,6 +486,11 @@ requestDescribeEngineDefaultParameters = req
     "DescribeEngineDefaultParameters"
     "fixture/DescribeEngineDefaultParameters.yaml"
 
+requestDisassociateGlobalReplicationGroup :: DisassociateGlobalReplicationGroup -> TestTree
+requestDisassociateGlobalReplicationGroup = req
+    "DisassociateGlobalReplicationGroup"
+    "fixture/DisassociateGlobalReplicationGroup.yaml"
+
 requestModifyCacheParameterGroup :: ModifyCacheParameterGroup -> TestTree
 requestModifyCacheParameterGroup = req
     "ModifyCacheParameterGroup"
@@ -335,6 +510,11 @@ requestListTagsForResource :: ListTagsForResource -> TestTree
 requestListTagsForResource = req
     "ListTagsForResource"
     "fixture/ListTagsForResource.yaml"
+
+requestCompleteMigration :: CompleteMigration -> TestTree
+requestCompleteMigration = req
+    "CompleteMigration"
+    "fixture/CompleteMigration.yaml"
 
 requestDescribeCacheClusters :: DescribeCacheClusters -> TestTree
 requestDescribeCacheClusters = req
@@ -361,15 +541,35 @@ requestDescribeCacheParameters = req
     "DescribeCacheParameters"
     "fixture/DescribeCacheParameters.yaml"
 
+requestDescribeGlobalReplicationGroups :: DescribeGlobalReplicationGroups -> TestTree
+requestDescribeGlobalReplicationGroups = req
+    "DescribeGlobalReplicationGroups"
+    "fixture/DescribeGlobalReplicationGroups.yaml"
+
 requestDescribeCacheSubnetGroups :: DescribeCacheSubnetGroups -> TestTree
 requestDescribeCacheSubnetGroups = req
     "DescribeCacheSubnetGroups"
     "fixture/DescribeCacheSubnetGroups.yaml"
 
+requestDescribeUpdateActions :: DescribeUpdateActions -> TestTree
+requestDescribeUpdateActions = req
+    "DescribeUpdateActions"
+    "fixture/DescribeUpdateActions.yaml"
+
+requestRebalanceSlotsInGlobalReplicationGroup :: RebalanceSlotsInGlobalReplicationGroup -> TestTree
+requestRebalanceSlotsInGlobalReplicationGroup = req
+    "RebalanceSlotsInGlobalReplicationGroup"
+    "fixture/RebalanceSlotsInGlobalReplicationGroup.yaml"
+
 requestCreateCacheSecurityGroup :: CreateCacheSecurityGroup -> TestTree
 requestCreateCacheSecurityGroup = req
     "CreateCacheSecurityGroup"
     "fixture/CreateCacheSecurityGroup.yaml"
+
+requestDecreaseReplicaCount :: DecreaseReplicaCount -> TestTree
+requestDecreaseReplicaCount = req
+    "DecreaseReplicaCount"
+    "fixture/DecreaseReplicaCount.yaml"
 
 requestAddTagsToResource :: AddTagsToResource -> TestTree
 requestAddTagsToResource = req
@@ -386,10 +586,20 @@ requestCopySnapshot = req
     "CopySnapshot"
     "fixture/CopySnapshot.yaml"
 
+requestFailoverGlobalReplicationGroup :: FailoverGlobalReplicationGroup -> TestTree
+requestFailoverGlobalReplicationGroup = req
+    "FailoverGlobalReplicationGroup"
+    "fixture/FailoverGlobalReplicationGroup.yaml"
+
 requestCreateCacheSubnetGroup :: CreateCacheSubnetGroup -> TestTree
 requestCreateCacheSubnetGroup = req
     "CreateCacheSubnetGroup"
     "fixture/CreateCacheSubnetGroup.yaml"
+
+requestCreateGlobalReplicationGroup :: CreateGlobalReplicationGroup -> TestTree
+requestCreateGlobalReplicationGroup = req
+    "CreateGlobalReplicationGroup"
+    "fixture/CreateGlobalReplicationGroup.yaml"
 
 requestDescribeCacheParameterGroups :: DescribeCacheParameterGroups -> TestTree
 requestDescribeCacheParameterGroups = req
@@ -406,10 +616,30 @@ requestListAllowedNodeTypeModifications = req
     "ListAllowedNodeTypeModifications"
     "fixture/ListAllowedNodeTypeModifications.yaml"
 
+requestIncreaseReplicaCount :: IncreaseReplicaCount -> TestTree
+requestIncreaseReplicaCount = req
+    "IncreaseReplicaCount"
+    "fixture/IncreaseReplicaCount.yaml"
+
 requestModifyReplicationGroupShardConfiguration :: ModifyReplicationGroupShardConfiguration -> TestTree
 requestModifyReplicationGroupShardConfiguration = req
     "ModifyReplicationGroupShardConfiguration"
     "fixture/ModifyReplicationGroupShardConfiguration.yaml"
+
+requestBatchApplyUpdateAction :: BatchApplyUpdateAction -> TestTree
+requestBatchApplyUpdateAction = req
+    "BatchApplyUpdateAction"
+    "fixture/BatchApplyUpdateAction.yaml"
+
+requestDeleteUserGroup :: DeleteUserGroup -> TestTree
+requestDeleteUserGroup = req
+    "DeleteUserGroup"
+    "fixture/DeleteUserGroup.yaml"
+
+requestDescribeServiceUpdates :: DescribeServiceUpdates -> TestTree
+requestDescribeServiceUpdates = req
+    "DescribeServiceUpdates"
+    "fixture/DescribeServiceUpdates.yaml"
 
 requestDescribeSnapshots :: DescribeSnapshots -> TestTree
 requestDescribeSnapshots = req
@@ -420,6 +650,11 @@ requestDescribeReplicationGroups :: DescribeReplicationGroups -> TestTree
 requestDescribeReplicationGroups = req
     "DescribeReplicationGroups"
     "fixture/DescribeReplicationGroups.yaml"
+
+requestCreateUser :: CreateUser -> TestTree
+requestCreateUser = req
+    "CreateUser"
+    "fixture/CreateUser.yaml"
 
 requestDeleteSnapshot :: DeleteSnapshot -> TestTree
 requestDeleteSnapshot = req
@@ -436,10 +671,25 @@ requestModifyCacheSubnetGroup = req
     "ModifyCacheSubnetGroup"
     "fixture/ModifyCacheSubnetGroup.yaml"
 
+requestDeleteUser :: DeleteUser -> TestTree
+requestDeleteUser = req
+    "DeleteUser"
+    "fixture/DeleteUser.yaml"
+
 requestCreateSnapshot :: CreateSnapshot -> TestTree
 requestCreateSnapshot = req
     "CreateSnapshot"
     "fixture/CreateSnapshot.yaml"
+
+requestModifyGlobalReplicationGroup :: ModifyGlobalReplicationGroup -> TestTree
+requestModifyGlobalReplicationGroup = req
+    "ModifyGlobalReplicationGroup"
+    "fixture/ModifyGlobalReplicationGroup.yaml"
+
+requestDescribeUserGroups :: DescribeUserGroups -> TestTree
+requestDescribeUserGroups = req
+    "DescribeUserGroups"
+    "fixture/DescribeUserGroups.yaml"
 
 requestDeleteCacheParameterGroup :: DeleteCacheParameterGroup -> TestTree
 requestDeleteCacheParameterGroup = req
@@ -451,6 +701,11 @@ requestDescribeCacheSecurityGroups = req
     "DescribeCacheSecurityGroups"
     "fixture/DescribeCacheSecurityGroups.yaml"
 
+requestBatchStopUpdateAction :: BatchStopUpdateAction -> TestTree
+requestBatchStopUpdateAction = req
+    "BatchStopUpdateAction"
+    "fixture/BatchStopUpdateAction.yaml"
+
 requestModifyCacheCluster :: ModifyCacheCluster -> TestTree
 requestModifyCacheCluster = req
     "ModifyCacheCluster"
@@ -460,6 +715,11 @@ requestDescribeCacheEngineVersions :: DescribeCacheEngineVersions -> TestTree
 requestDescribeCacheEngineVersions = req
     "DescribeCacheEngineVersions"
     "fixture/DescribeCacheEngineVersions.yaml"
+
+requestModifyUserGroup :: ModifyUserGroup -> TestTree
+requestModifyUserGroup = req
+    "ModifyUserGroup"
+    "fixture/ModifyUserGroup.yaml"
 
 requestCreateCacheParameterGroup :: CreateCacheParameterGroup -> TestTree
 requestCreateCacheParameterGroup = req
@@ -471,12 +731,34 @@ requestDescribeReservedCacheNodes = req
     "DescribeReservedCacheNodes"
     "fixture/DescribeReservedCacheNodes.yaml"
 
+requestDeleteGlobalReplicationGroup :: DeleteGlobalReplicationGroup -> TestTree
+requestDeleteGlobalReplicationGroup = req
+    "DeleteGlobalReplicationGroup"
+    "fixture/DeleteGlobalReplicationGroup.yaml"
+
+requestDecreaseNodeGroupsInGlobalReplicationGroup :: DecreaseNodeGroupsInGlobalReplicationGroup -> TestTree
+requestDecreaseNodeGroupsInGlobalReplicationGroup = req
+    "DecreaseNodeGroupsInGlobalReplicationGroup"
+    "fixture/DecreaseNodeGroupsInGlobalReplicationGroup.yaml"
+
+requestModifyUser :: ModifyUser -> TestTree
+requestModifyUser = req
+    "ModifyUser"
+    "fixture/ModifyUser.yaml"
+
 requestDeleteCacheSubnetGroup :: DeleteCacheSubnetGroup -> TestTree
 requestDeleteCacheSubnetGroup = req
     "DeleteCacheSubnetGroup"
     "fixture/DeleteCacheSubnetGroup.yaml"
 
 -- Responses
+
+responseStartMigration :: StartMigrationResponse -> TestTree
+responseStartMigration = res
+    "StartMigrationResponse"
+    "fixture/StartMigrationResponse.proto"
+    elastiCache
+    (Proxy :: Proxy StartMigration)
 
 responseDeleteCacheSecurityGroup :: DeleteCacheSecurityGroupResponse -> TestTree
 responseDeleteCacheSecurityGroup = res
@@ -499,12 +781,33 @@ responseDeleteCacheCluster = res
     elastiCache
     (Proxy :: Proxy DeleteCacheCluster)
 
+responseIncreaseNodeGroupsInGlobalReplicationGroup :: IncreaseNodeGroupsInGlobalReplicationGroupResponse -> TestTree
+responseIncreaseNodeGroupsInGlobalReplicationGroup = res
+    "IncreaseNodeGroupsInGlobalReplicationGroupResponse"
+    "fixture/IncreaseNodeGroupsInGlobalReplicationGroupResponse.proto"
+    elastiCache
+    (Proxy :: Proxy IncreaseNodeGroupsInGlobalReplicationGroup)
+
+responseDescribeUsers :: DescribeUsersResponse -> TestTree
+responseDescribeUsers = res
+    "DescribeUsersResponse"
+    "fixture/DescribeUsersResponse.proto"
+    elastiCache
+    (Proxy :: Proxy DescribeUsers)
+
 responseRebootCacheCluster :: RebootCacheClusterResponse -> TestTree
 responseRebootCacheCluster = res
     "RebootCacheClusterResponse"
     "fixture/RebootCacheClusterResponse.proto"
     elastiCache
     (Proxy :: Proxy RebootCacheCluster)
+
+responseCreateUserGroup :: UserGroup -> TestTree
+responseCreateUserGroup = res
+    "CreateUserGroupResponse"
+    "fixture/CreateUserGroupResponse.proto"
+    elastiCache
+    (Proxy :: Proxy CreateUserGroup)
 
 responseRevokeCacheSecurityGroupIngress :: RevokeCacheSecurityGroupIngressResponse -> TestTree
 responseRevokeCacheSecurityGroupIngress = res
@@ -534,6 +837,13 @@ responseDescribeEngineDefaultParameters = res
     elastiCache
     (Proxy :: Proxy DescribeEngineDefaultParameters)
 
+responseDisassociateGlobalReplicationGroup :: DisassociateGlobalReplicationGroupResponse -> TestTree
+responseDisassociateGlobalReplicationGroup = res
+    "DisassociateGlobalReplicationGroupResponse"
+    "fixture/DisassociateGlobalReplicationGroupResponse.proto"
+    elastiCache
+    (Proxy :: Proxy DisassociateGlobalReplicationGroup)
+
 responseModifyCacheParameterGroup :: CacheParameterGroupNameMessage -> TestTree
 responseModifyCacheParameterGroup = res
     "ModifyCacheParameterGroupResponse"
@@ -561,6 +871,13 @@ responseListTagsForResource = res
     "fixture/ListTagsForResourceResponse.proto"
     elastiCache
     (Proxy :: Proxy ListTagsForResource)
+
+responseCompleteMigration :: CompleteMigrationResponse -> TestTree
+responseCompleteMigration = res
+    "CompleteMigrationResponse"
+    "fixture/CompleteMigrationResponse.proto"
+    elastiCache
+    (Proxy :: Proxy CompleteMigration)
 
 responseDescribeCacheClusters :: DescribeCacheClustersResponse -> TestTree
 responseDescribeCacheClusters = res
@@ -597,6 +914,13 @@ responseDescribeCacheParameters = res
     elastiCache
     (Proxy :: Proxy DescribeCacheParameters)
 
+responseDescribeGlobalReplicationGroups :: DescribeGlobalReplicationGroupsResponse -> TestTree
+responseDescribeGlobalReplicationGroups = res
+    "DescribeGlobalReplicationGroupsResponse"
+    "fixture/DescribeGlobalReplicationGroupsResponse.proto"
+    elastiCache
+    (Proxy :: Proxy DescribeGlobalReplicationGroups)
+
 responseDescribeCacheSubnetGroups :: DescribeCacheSubnetGroupsResponse -> TestTree
 responseDescribeCacheSubnetGroups = res
     "DescribeCacheSubnetGroupsResponse"
@@ -604,12 +928,33 @@ responseDescribeCacheSubnetGroups = res
     elastiCache
     (Proxy :: Proxy DescribeCacheSubnetGroups)
 
+responseDescribeUpdateActions :: DescribeUpdateActionsResponse -> TestTree
+responseDescribeUpdateActions = res
+    "DescribeUpdateActionsResponse"
+    "fixture/DescribeUpdateActionsResponse.proto"
+    elastiCache
+    (Proxy :: Proxy DescribeUpdateActions)
+
+responseRebalanceSlotsInGlobalReplicationGroup :: RebalanceSlotsInGlobalReplicationGroupResponse -> TestTree
+responseRebalanceSlotsInGlobalReplicationGroup = res
+    "RebalanceSlotsInGlobalReplicationGroupResponse"
+    "fixture/RebalanceSlotsInGlobalReplicationGroupResponse.proto"
+    elastiCache
+    (Proxy :: Proxy RebalanceSlotsInGlobalReplicationGroup)
+
 responseCreateCacheSecurityGroup :: CreateCacheSecurityGroupResponse -> TestTree
 responseCreateCacheSecurityGroup = res
     "CreateCacheSecurityGroupResponse"
     "fixture/CreateCacheSecurityGroupResponse.proto"
     elastiCache
     (Proxy :: Proxy CreateCacheSecurityGroup)
+
+responseDecreaseReplicaCount :: DecreaseReplicaCountResponse -> TestTree
+responseDecreaseReplicaCount = res
+    "DecreaseReplicaCountResponse"
+    "fixture/DecreaseReplicaCountResponse.proto"
+    elastiCache
+    (Proxy :: Proxy DecreaseReplicaCount)
 
 responseAddTagsToResource :: TagListMessage -> TestTree
 responseAddTagsToResource = res
@@ -632,12 +977,26 @@ responseCopySnapshot = res
     elastiCache
     (Proxy :: Proxy CopySnapshot)
 
+responseFailoverGlobalReplicationGroup :: FailoverGlobalReplicationGroupResponse -> TestTree
+responseFailoverGlobalReplicationGroup = res
+    "FailoverGlobalReplicationGroupResponse"
+    "fixture/FailoverGlobalReplicationGroupResponse.proto"
+    elastiCache
+    (Proxy :: Proxy FailoverGlobalReplicationGroup)
+
 responseCreateCacheSubnetGroup :: CreateCacheSubnetGroupResponse -> TestTree
 responseCreateCacheSubnetGroup = res
     "CreateCacheSubnetGroupResponse"
     "fixture/CreateCacheSubnetGroupResponse.proto"
     elastiCache
     (Proxy :: Proxy CreateCacheSubnetGroup)
+
+responseCreateGlobalReplicationGroup :: CreateGlobalReplicationGroupResponse -> TestTree
+responseCreateGlobalReplicationGroup = res
+    "CreateGlobalReplicationGroupResponse"
+    "fixture/CreateGlobalReplicationGroupResponse.proto"
+    elastiCache
+    (Proxy :: Proxy CreateGlobalReplicationGroup)
 
 responseDescribeCacheParameterGroups :: DescribeCacheParameterGroupsResponse -> TestTree
 responseDescribeCacheParameterGroups = res
@@ -660,12 +1019,40 @@ responseListAllowedNodeTypeModifications = res
     elastiCache
     (Proxy :: Proxy ListAllowedNodeTypeModifications)
 
+responseIncreaseReplicaCount :: IncreaseReplicaCountResponse -> TestTree
+responseIncreaseReplicaCount = res
+    "IncreaseReplicaCountResponse"
+    "fixture/IncreaseReplicaCountResponse.proto"
+    elastiCache
+    (Proxy :: Proxy IncreaseReplicaCount)
+
 responseModifyReplicationGroupShardConfiguration :: ModifyReplicationGroupShardConfigurationResponse -> TestTree
 responseModifyReplicationGroupShardConfiguration = res
     "ModifyReplicationGroupShardConfigurationResponse"
     "fixture/ModifyReplicationGroupShardConfigurationResponse.proto"
     elastiCache
     (Proxy :: Proxy ModifyReplicationGroupShardConfiguration)
+
+responseBatchApplyUpdateAction :: UpdateActionResultsMessage -> TestTree
+responseBatchApplyUpdateAction = res
+    "BatchApplyUpdateActionResponse"
+    "fixture/BatchApplyUpdateActionResponse.proto"
+    elastiCache
+    (Proxy :: Proxy BatchApplyUpdateAction)
+
+responseDeleteUserGroup :: UserGroup -> TestTree
+responseDeleteUserGroup = res
+    "DeleteUserGroupResponse"
+    "fixture/DeleteUserGroupResponse.proto"
+    elastiCache
+    (Proxy :: Proxy DeleteUserGroup)
+
+responseDescribeServiceUpdates :: DescribeServiceUpdatesResponse -> TestTree
+responseDescribeServiceUpdates = res
+    "DescribeServiceUpdatesResponse"
+    "fixture/DescribeServiceUpdatesResponse.proto"
+    elastiCache
+    (Proxy :: Proxy DescribeServiceUpdates)
 
 responseDescribeSnapshots :: DescribeSnapshotsResponse -> TestTree
 responseDescribeSnapshots = res
@@ -680,6 +1067,13 @@ responseDescribeReplicationGroups = res
     "fixture/DescribeReplicationGroupsResponse.proto"
     elastiCache
     (Proxy :: Proxy DescribeReplicationGroups)
+
+responseCreateUser :: User -> TestTree
+responseCreateUser = res
+    "CreateUserResponse"
+    "fixture/CreateUserResponse.proto"
+    elastiCache
+    (Proxy :: Proxy CreateUser)
 
 responseDeleteSnapshot :: DeleteSnapshotResponse -> TestTree
 responseDeleteSnapshot = res
@@ -702,12 +1096,33 @@ responseModifyCacheSubnetGroup = res
     elastiCache
     (Proxy :: Proxy ModifyCacheSubnetGroup)
 
+responseDeleteUser :: User -> TestTree
+responseDeleteUser = res
+    "DeleteUserResponse"
+    "fixture/DeleteUserResponse.proto"
+    elastiCache
+    (Proxy :: Proxy DeleteUser)
+
 responseCreateSnapshot :: CreateSnapshotResponse -> TestTree
 responseCreateSnapshot = res
     "CreateSnapshotResponse"
     "fixture/CreateSnapshotResponse.proto"
     elastiCache
     (Proxy :: Proxy CreateSnapshot)
+
+responseModifyGlobalReplicationGroup :: ModifyGlobalReplicationGroupResponse -> TestTree
+responseModifyGlobalReplicationGroup = res
+    "ModifyGlobalReplicationGroupResponse"
+    "fixture/ModifyGlobalReplicationGroupResponse.proto"
+    elastiCache
+    (Proxy :: Proxy ModifyGlobalReplicationGroup)
+
+responseDescribeUserGroups :: DescribeUserGroupsResponse -> TestTree
+responseDescribeUserGroups = res
+    "DescribeUserGroupsResponse"
+    "fixture/DescribeUserGroupsResponse.proto"
+    elastiCache
+    (Proxy :: Proxy DescribeUserGroups)
 
 responseDeleteCacheParameterGroup :: DeleteCacheParameterGroupResponse -> TestTree
 responseDeleteCacheParameterGroup = res
@@ -723,6 +1138,13 @@ responseDescribeCacheSecurityGroups = res
     elastiCache
     (Proxy :: Proxy DescribeCacheSecurityGroups)
 
+responseBatchStopUpdateAction :: UpdateActionResultsMessage -> TestTree
+responseBatchStopUpdateAction = res
+    "BatchStopUpdateActionResponse"
+    "fixture/BatchStopUpdateActionResponse.proto"
+    elastiCache
+    (Proxy :: Proxy BatchStopUpdateAction)
+
 responseModifyCacheCluster :: ModifyCacheClusterResponse -> TestTree
 responseModifyCacheCluster = res
     "ModifyCacheClusterResponse"
@@ -737,6 +1159,13 @@ responseDescribeCacheEngineVersions = res
     elastiCache
     (Proxy :: Proxy DescribeCacheEngineVersions)
 
+responseModifyUserGroup :: UserGroup -> TestTree
+responseModifyUserGroup = res
+    "ModifyUserGroupResponse"
+    "fixture/ModifyUserGroupResponse.proto"
+    elastiCache
+    (Proxy :: Proxy ModifyUserGroup)
+
 responseCreateCacheParameterGroup :: CreateCacheParameterGroupResponse -> TestTree
 responseCreateCacheParameterGroup = res
     "CreateCacheParameterGroupResponse"
@@ -750,6 +1179,27 @@ responseDescribeReservedCacheNodes = res
     "fixture/DescribeReservedCacheNodesResponse.proto"
     elastiCache
     (Proxy :: Proxy DescribeReservedCacheNodes)
+
+responseDeleteGlobalReplicationGroup :: DeleteGlobalReplicationGroupResponse -> TestTree
+responseDeleteGlobalReplicationGroup = res
+    "DeleteGlobalReplicationGroupResponse"
+    "fixture/DeleteGlobalReplicationGroupResponse.proto"
+    elastiCache
+    (Proxy :: Proxy DeleteGlobalReplicationGroup)
+
+responseDecreaseNodeGroupsInGlobalReplicationGroup :: DecreaseNodeGroupsInGlobalReplicationGroupResponse -> TestTree
+responseDecreaseNodeGroupsInGlobalReplicationGroup = res
+    "DecreaseNodeGroupsInGlobalReplicationGroupResponse"
+    "fixture/DecreaseNodeGroupsInGlobalReplicationGroupResponse.proto"
+    elastiCache
+    (Proxy :: Proxy DecreaseNodeGroupsInGlobalReplicationGroup)
+
+responseModifyUser :: User -> TestTree
+responseModifyUser = res
+    "ModifyUserResponse"
+    "fixture/ModifyUserResponse.proto"
+    elastiCache
+    (Proxy :: Proxy ModifyUser)
 
 responseDeleteCacheSubnetGroup :: DeleteCacheSubnetGroupResponse -> TestTree
 responseDeleteCacheSubnetGroup = res

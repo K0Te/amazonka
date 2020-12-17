@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Deletes a previously created webhook by name. Deleting the webhook stops AWS CodePipeline from starting a pipeline every time an external event occurs. The API will return successfully when trying to delete a webhook that is already deleted. If a deleted webhook is re-created by calling PutWebhook with the same name, it will have a different URL.
+-- Deletes a previously created webhook by name. Deleting the webhook stops AWS CodePipeline from starting a pipeline every time an external event occurs. The API returns successfully when trying to delete a webhook that is already deleted. If a deleted webhook is re-created by calling PutWebhook with the same name, it will have a different URL.
 --
 --
 module Network.AWS.CodePipeline.DeleteWebhook
@@ -37,17 +37,15 @@ module Network.AWS.CodePipeline.DeleteWebhook
     ) where
 
 import Network.AWS.CodePipeline.Types
-import Network.AWS.CodePipeline.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deleteWebhook' smart constructor.
-newtype DeleteWebhook = DeleteWebhook'
-  { _dwName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteWebhook = DeleteWebhook'{_dwName ::
+                                       Text}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteWebhook' with the minimum fields required to make a request.
 --
@@ -57,8 +55,8 @@ newtype DeleteWebhook = DeleteWebhook'
 deleteWebhook
     :: Text -- ^ 'dwName'
     -> DeleteWebhook
-deleteWebhook pName_ = DeleteWebhook' {_dwName = pName_}
-
+deleteWebhook pName_
+  = DeleteWebhook'{_dwName = pName_}
 
 -- | The name of the webhook you want to delete.
 dwName :: Lens' DeleteWebhook Text
@@ -97,10 +95,10 @@ instance ToQuery DeleteWebhook where
         toQuery = const mempty
 
 -- | /See:/ 'deleteWebhookResponse' smart constructor.
-newtype DeleteWebhookResponse = DeleteWebhookResponse'
-  { _dwrsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteWebhookResponse = DeleteWebhookResponse'{_dwrsResponseStatus
+                                                       :: Int}
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'DeleteWebhookResponse' with the minimum fields required to make a request.
 --
@@ -110,9 +108,9 @@ newtype DeleteWebhookResponse = DeleteWebhookResponse'
 deleteWebhookResponse
     :: Int -- ^ 'dwrsResponseStatus'
     -> DeleteWebhookResponse
-deleteWebhookResponse pResponseStatus_ =
-  DeleteWebhookResponse' {_dwrsResponseStatus = pResponseStatus_}
-
+deleteWebhookResponse pResponseStatus_
+  = DeleteWebhookResponse'{_dwrsResponseStatus =
+                             pResponseStatus_}
 
 -- | -- | The response status code.
 dwrsResponseStatus :: Lens' DeleteWebhookResponse Int

@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Returns the base-64 encoded content of an individual blob within a repository.
+-- Returns the base-64 encoded content of an individual blob in a repository.
 --
 --
 module Network.AWS.CodeCommit.GetBlob
@@ -39,7 +39,6 @@ module Network.AWS.CodeCommit.GetBlob
     ) where
 
 import Network.AWS.CodeCommit.Types
-import Network.AWS.CodeCommit.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -50,11 +49,9 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'getBlob' smart constructor.
-data GetBlob = GetBlob'
-  { _gRepositoryName :: !Text
-  , _gBlobId         :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetBlob = GetBlob'{_gRepositoryName :: !Text,
+                        _gBlobId :: !Text}
+                 deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetBlob' with the minimum fields required to make a request.
 --
@@ -67,9 +64,9 @@ getBlob
     :: Text -- ^ 'gRepositoryName'
     -> Text -- ^ 'gBlobId'
     -> GetBlob
-getBlob pRepositoryName_ pBlobId_ =
-  GetBlob' {_gRepositoryName = pRepositoryName_, _gBlobId = pBlobId_}
-
+getBlob pRepositoryName_ pBlobId_
+  = GetBlob'{_gRepositoryName = pRepositoryName_,
+             _gBlobId = pBlobId_}
 
 -- | The name of the repository that contains the blob.
 gRepositoryName :: Lens' GetBlob Text
@@ -119,11 +116,10 @@ instance ToQuery GetBlob where
 --
 --
 -- /See:/ 'getBlobResponse' smart constructor.
-data GetBlobResponse = GetBlobResponse'
-  { _gbrsResponseStatus :: !Int
-  , _gbrsContent        :: !Base64
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetBlobResponse = GetBlobResponse'{_gbrsResponseStatus
+                                        :: !Int,
+                                        _gbrsContent :: !Base64}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetBlobResponse' with the minimum fields required to make a request.
 --
@@ -136,10 +132,10 @@ getBlobResponse
     :: Int -- ^ 'gbrsResponseStatus'
     -> ByteString -- ^ 'gbrsContent'
     -> GetBlobResponse
-getBlobResponse pResponseStatus_ pContent_ =
-  GetBlobResponse'
-    {_gbrsResponseStatus = pResponseStatus_, _gbrsContent = _Base64 # pContent_}
-
+getBlobResponse pResponseStatus_ pContent_
+  = GetBlobResponse'{_gbrsResponseStatus =
+                       pResponseStatus_,
+                     _gbrsContent = _Base64 # pContent_}
 
 -- | -- | The response status code.
 gbrsResponseStatus :: Lens' GetBlobResponse Int

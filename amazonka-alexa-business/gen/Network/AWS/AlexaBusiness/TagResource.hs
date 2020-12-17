@@ -38,37 +38,34 @@ module Network.AWS.AlexaBusiness.TagResource
     ) where
 
 import Network.AWS.AlexaBusiness.Types
-import Network.AWS.AlexaBusiness.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'tagResource' smart constructor.
-data TagResource = TagResource'
-  { _trARN  :: !Text
-  , _trTags :: ![Tag]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data TagResource = TagResource'{_trARN :: !Text,
+                                _trTags :: ![Tag]}
+                     deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'TagResource' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'trARN' - The ARN of the resource to which to add metadata tags. Required.
+-- * 'trARN' - The ARN of the resource to which to add metadata tags. Required. 
 --
--- * 'trTags' - The tags to be added to the specified resource. Do not provide system tags. Required.
+-- * 'trTags' - The tags to be added to the specified resource. Do not provide system tags. Required. 
 tagResource
     :: Text -- ^ 'trARN'
     -> TagResource
-tagResource pARN_ = TagResource' {_trARN = pARN_, _trTags = mempty}
+tagResource pARN_
+  = TagResource'{_trARN = pARN_, _trTags = mempty}
 
-
--- | The ARN of the resource to which to add metadata tags. Required.
+-- | The ARN of the resource to which to add metadata tags. Required. 
 trARN :: Lens' TagResource Text
 trARN = lens _trARN (\ s a -> s{_trARN = a})
 
--- | The tags to be added to the specified resource. Do not provide system tags. Required.
+-- | The tags to be added to the specified resource. Do not provide system tags. Required. 
 trTags :: Lens' TagResource [Tag]
 trTags = lens _trTags (\ s a -> s{_trTags = a}) . _Coerce
 
@@ -106,10 +103,10 @@ instance ToQuery TagResource where
         toQuery = const mempty
 
 -- | /See:/ 'tagResourceResponse' smart constructor.
-newtype TagResourceResponse = TagResourceResponse'
-  { _trrsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype TagResourceResponse = TagResourceResponse'{_trrsResponseStatus
+                                                   :: Int}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'TagResourceResponse' with the minimum fields required to make a request.
 --
@@ -119,9 +116,9 @@ newtype TagResourceResponse = TagResourceResponse'
 tagResourceResponse
     :: Int -- ^ 'trrsResponseStatus'
     -> TagResourceResponse
-tagResourceResponse pResponseStatus_ =
-  TagResourceResponse' {_trrsResponseStatus = pResponseStatus_}
-
+tagResourceResponse pResponseStatus_
+  = TagResourceResponse'{_trrsResponseStatus =
+                           pResponseStatus_}
 
 -- | -- | The response status code.
 trrsResponseStatus :: Lens' TagResourceResponse Int

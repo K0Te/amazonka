@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Gets a description for one or more file shares from a file gateway. This operation is only supported in the file gateway type.
+-- Gets a description for one or more Network File System (NFS) file shares from a file gateway. This operation is only supported for file gateways.
 --
 --
 module Network.AWS.StorageGateway.DescribeNFSFileShares
@@ -42,17 +42,16 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.StorageGateway.Types
-import Network.AWS.StorageGateway.Types.Product
 
 -- | DescribeNFSFileSharesInput
 --
 --
 --
 -- /See:/ 'describeNFSFileShares' smart constructor.
-newtype DescribeNFSFileShares = DescribeNFSFileShares'
-  { _dnfsfsFileShareARNList :: List1 Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DescribeNFSFileShares = DescribeNFSFileShares'{_dnfsfsFileShareARNList
+                                                       :: List1 Text}
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'DescribeNFSFileShares' with the minimum fields required to make a request.
 --
@@ -62,9 +61,9 @@ newtype DescribeNFSFileShares = DescribeNFSFileShares'
 describeNFSFileShares
     :: NonEmpty Text -- ^ 'dnfsfsFileShareARNList'
     -> DescribeNFSFileShares
-describeNFSFileShares pFileShareARNList_ =
-  DescribeNFSFileShares' {_dnfsfsFileShareARNList = _List1 # pFileShareARNList_}
-
+describeNFSFileShares pFileShareARNList_
+  = DescribeNFSFileShares'{_dnfsfsFileShareARNList =
+                             _List1 # pFileShareARNList_}
 
 -- | An array containing the Amazon Resource Name (ARN) of each file share to be described.
 dnfsfsFileShareARNList :: Lens' DescribeNFSFileShares (NonEmpty Text)
@@ -113,11 +112,14 @@ instance ToQuery DescribeNFSFileShares where
 --
 --
 -- /See:/ 'describeNFSFileSharesResponse' smart constructor.
-data DescribeNFSFileSharesResponse = DescribeNFSFileSharesResponse'
-  { _dnfsfsrsNFSFileShareInfoList :: !(Maybe [NFSFileShareInfo])
-  , _dnfsfsrsResponseStatus       :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeNFSFileSharesResponse = DescribeNFSFileSharesResponse'{_dnfsfsrsNFSFileShareInfoList
+                                                                    ::
+                                                                    !(Maybe
+                                                                        [NFSFileShareInfo]),
+                                                                    _dnfsfsrsResponseStatus
+                                                                    :: !Int}
+                                       deriving (Eq, Read, Show, Data, Typeable,
+                                                 Generic)
 
 -- | Creates a value of 'DescribeNFSFileSharesResponse' with the minimum fields required to make a request.
 --
@@ -129,12 +131,10 @@ data DescribeNFSFileSharesResponse = DescribeNFSFileSharesResponse'
 describeNFSFileSharesResponse
     :: Int -- ^ 'dnfsfsrsResponseStatus'
     -> DescribeNFSFileSharesResponse
-describeNFSFileSharesResponse pResponseStatus_ =
-  DescribeNFSFileSharesResponse'
-    { _dnfsfsrsNFSFileShareInfoList = Nothing
-    , _dnfsfsrsResponseStatus = pResponseStatus_
-    }
-
+describeNFSFileSharesResponse pResponseStatus_
+  = DescribeNFSFileSharesResponse'{_dnfsfsrsNFSFileShareInfoList
+                                     = Nothing,
+                                   _dnfsfsrsResponseStatus = pResponseStatus_}
 
 -- | An array containing a description for each requested file share.
 dnfsfsrsNFSFileShareInfoList :: Lens' DescribeNFSFileSharesResponse [NFSFileShareInfo]

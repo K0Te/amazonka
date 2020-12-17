@@ -35,17 +35,16 @@ module Network.AWS.Inspector.DeleteAssessmentRun
     ) where
 
 import Network.AWS.Inspector.Types
-import Network.AWS.Inspector.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deleteAssessmentRun' smart constructor.
-newtype DeleteAssessmentRun = DeleteAssessmentRun'
-  { _darAssessmentRunARN :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteAssessmentRun = DeleteAssessmentRun'{_darAssessmentRunARN
+                                                   :: Text}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'DeleteAssessmentRun' with the minimum fields required to make a request.
 --
@@ -55,9 +54,9 @@ newtype DeleteAssessmentRun = DeleteAssessmentRun'
 deleteAssessmentRun
     :: Text -- ^ 'darAssessmentRunARN'
     -> DeleteAssessmentRun
-deleteAssessmentRun pAssessmentRunARN_ =
-  DeleteAssessmentRun' {_darAssessmentRunARN = pAssessmentRunARN_}
-
+deleteAssessmentRun pAssessmentRunARN_
+  = DeleteAssessmentRun'{_darAssessmentRunARN =
+                           pAssessmentRunARN_}
 
 -- | The ARN that specifies the assessment run that you want to delete.
 darAssessmentRunARN :: Lens' DeleteAssessmentRun Text
@@ -96,16 +95,15 @@ instance ToQuery DeleteAssessmentRun where
         toQuery = const mempty
 
 -- | /See:/ 'deleteAssessmentRunResponse' smart constructor.
-data DeleteAssessmentRunResponse =
-  DeleteAssessmentRunResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteAssessmentRunResponse = DeleteAssessmentRunResponse'
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'DeleteAssessmentRunResponse' with the minimum fields required to make a request.
 --
 deleteAssessmentRunResponse
     :: DeleteAssessmentRunResponse
-deleteAssessmentRunResponse = DeleteAssessmentRunResponse'
-
+deleteAssessmentRunResponse
+  = DeleteAssessmentRunResponse'
 
 instance NFData DeleteAssessmentRunResponse where

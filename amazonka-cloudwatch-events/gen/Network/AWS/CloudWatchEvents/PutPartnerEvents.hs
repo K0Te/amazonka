@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- This is used by SaaS partners to write events to a customer's partner event bus.
+-- This is used by SaaS partners to write events to a customer's partner event bus. AWS customers do not use this operation.
 --
 --
 module Network.AWS.CloudWatchEvents.PutPartnerEvents
@@ -39,17 +39,16 @@ module Network.AWS.CloudWatchEvents.PutPartnerEvents
     ) where
 
 import Network.AWS.CloudWatchEvents.Types
-import Network.AWS.CloudWatchEvents.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'putPartnerEvents' smart constructor.
-newtype PutPartnerEvents = PutPartnerEvents'
-  { _ppeEntries :: List1 PutPartnerEventsRequestEntry
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype PutPartnerEvents = PutPartnerEvents'{_ppeEntries
+                                             ::
+                                             List1 PutPartnerEventsRequestEntry}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'PutPartnerEvents' with the minimum fields required to make a request.
 --
@@ -59,9 +58,8 @@ newtype PutPartnerEvents = PutPartnerEvents'
 putPartnerEvents
     :: NonEmpty PutPartnerEventsRequestEntry -- ^ 'ppeEntries'
     -> PutPartnerEvents
-putPartnerEvents pEntries_ =
-  PutPartnerEvents' {_ppeEntries = _List1 # pEntries_}
-
+putPartnerEvents pEntries_
+  = PutPartnerEvents'{_ppeEntries = _List1 # pEntries_}
 
 -- | The list of events to write to the event bus.
 ppeEntries :: Lens' PutPartnerEvents (NonEmpty PutPartnerEventsRequestEntry)
@@ -103,18 +101,21 @@ instance ToQuery PutPartnerEvents where
         toQuery = const mempty
 
 -- | /See:/ 'putPartnerEventsResponse' smart constructor.
-data PutPartnerEventsResponse = PutPartnerEventsResponse'
-  { _ppersFailedEntryCount :: !(Maybe Int)
-  , _ppersEntries          :: !(Maybe [PutPartnerEventsResultEntry])
-  , _ppersResponseStatus   :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data PutPartnerEventsResponse = PutPartnerEventsResponse'{_ppersFailedEntryCount
+                                                          :: !(Maybe Int),
+                                                          _ppersEntries ::
+                                                          !(Maybe
+                                                              [PutPartnerEventsResultEntry]),
+                                                          _ppersResponseStatus
+                                                          :: !Int}
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'PutPartnerEventsResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'ppersFailedEntryCount' - The number of events from this operation that couldn't be written to the partner event bus.
+-- * 'ppersFailedEntryCount' - The number of events from this operation that could not be written to the partner event bus.
 --
 -- * 'ppersEntries' - The list of events from this operation that were successfully written to the partner event bus.
 --
@@ -122,15 +123,13 @@ data PutPartnerEventsResponse = PutPartnerEventsResponse'
 putPartnerEventsResponse
     :: Int -- ^ 'ppersResponseStatus'
     -> PutPartnerEventsResponse
-putPartnerEventsResponse pResponseStatus_ =
-  PutPartnerEventsResponse'
-    { _ppersFailedEntryCount = Nothing
-    , _ppersEntries = Nothing
-    , _ppersResponseStatus = pResponseStatus_
-    }
+putPartnerEventsResponse pResponseStatus_
+  = PutPartnerEventsResponse'{_ppersFailedEntryCount =
+                                Nothing,
+                              _ppersEntries = Nothing,
+                              _ppersResponseStatus = pResponseStatus_}
 
-
--- | The number of events from this operation that couldn't be written to the partner event bus.
+-- | The number of events from this operation that could not be written to the partner event bus.
 ppersFailedEntryCount :: Lens' PutPartnerEventsResponse (Maybe Int)
 ppersFailedEntryCount = lens _ppersFailedEntryCount (\ s a -> s{_ppersFailedEntryCount = a})
 

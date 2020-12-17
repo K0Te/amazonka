@@ -38,17 +38,15 @@ module Network.AWS.CloudDirectory.GetDirectory
     ) where
 
 import Network.AWS.CloudDirectory.Types
-import Network.AWS.CloudDirectory.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'getDirectory' smart constructor.
-newtype GetDirectory = GetDirectory'
-  { _gdDirectoryARN :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetDirectory = GetDirectory'{_gdDirectoryARN
+                                     :: Text}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetDirectory' with the minimum fields required to make a request.
 --
@@ -58,8 +56,8 @@ newtype GetDirectory = GetDirectory'
 getDirectory
     :: Text -- ^ 'gdDirectoryARN'
     -> GetDirectory
-getDirectory pDirectoryARN_ = GetDirectory' {_gdDirectoryARN = pDirectoryARN_}
-
+getDirectory pDirectoryARN_
+  = GetDirectory'{_gdDirectoryARN = pDirectoryARN_}
 
 -- | The ARN of the directory.
 gdDirectoryARN :: Lens' GetDirectory Text
@@ -94,11 +92,10 @@ instance ToQuery GetDirectory where
         toQuery = const mempty
 
 -- | /See:/ 'getDirectoryResponse' smart constructor.
-data GetDirectoryResponse = GetDirectoryResponse'
-  { _gdrsResponseStatus :: !Int
-  , _gdrsDirectory      :: !Directory
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetDirectoryResponse = GetDirectoryResponse'{_gdrsResponseStatus
+                                                  :: !Int,
+                                                  _gdrsDirectory :: !Directory}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetDirectoryResponse' with the minimum fields required to make a request.
 --
@@ -111,10 +108,10 @@ getDirectoryResponse
     :: Int -- ^ 'gdrsResponseStatus'
     -> Directory -- ^ 'gdrsDirectory'
     -> GetDirectoryResponse
-getDirectoryResponse pResponseStatus_ pDirectory_ =
-  GetDirectoryResponse'
-    {_gdrsResponseStatus = pResponseStatus_, _gdrsDirectory = pDirectory_}
-
+getDirectoryResponse pResponseStatus_ pDirectory_
+  = GetDirectoryResponse'{_gdrsResponseStatus =
+                            pResponseStatus_,
+                          _gdrsDirectory = pDirectory_}
 
 -- | -- | The response status code.
 gdrsResponseStatus :: Lens' GetDirectoryResponse Int

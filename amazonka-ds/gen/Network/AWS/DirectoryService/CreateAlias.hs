@@ -42,7 +42,6 @@ module Network.AWS.DirectoryService.CreateAlias
     ) where
 
 import Network.AWS.DirectoryService.Types
-import Network.AWS.DirectoryService.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -53,11 +52,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'createAlias' smart constructor.
-data CreateAlias = CreateAlias'
-  { _caDirectoryId :: !Text
-  , _caAlias       :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateAlias = CreateAlias'{_caDirectoryId ::
+                                !Text,
+                                _caAlias :: !Text}
+                     deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CreateAlias' with the minimum fields required to make a request.
 --
@@ -70,9 +68,9 @@ createAlias
     :: Text -- ^ 'caDirectoryId'
     -> Text -- ^ 'caAlias'
     -> CreateAlias
-createAlias pDirectoryId_ pAlias_ =
-  CreateAlias' {_caDirectoryId = pDirectoryId_, _caAlias = pAlias_}
-
+createAlias pDirectoryId_ pAlias_
+  = CreateAlias'{_caDirectoryId = pDirectoryId_,
+                 _caAlias = pAlias_}
 
 -- | The identifier of the directory for which to create the alias.
 caDirectoryId :: Lens' CreateAlias Text
@@ -124,12 +122,11 @@ instance ToQuery CreateAlias where
 --
 --
 -- /See:/ 'createAliasResponse' smart constructor.
-data CreateAliasResponse = CreateAliasResponse'
-  { _carsDirectoryId    :: !(Maybe Text)
-  , _carsAlias          :: !(Maybe Text)
-  , _carsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateAliasResponse = CreateAliasResponse'{_carsDirectoryId
+                                                :: !(Maybe Text),
+                                                _carsAlias :: !(Maybe Text),
+                                                _carsResponseStatus :: !Int}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CreateAliasResponse' with the minimum fields required to make a request.
 --
@@ -143,13 +140,10 @@ data CreateAliasResponse = CreateAliasResponse'
 createAliasResponse
     :: Int -- ^ 'carsResponseStatus'
     -> CreateAliasResponse
-createAliasResponse pResponseStatus_ =
-  CreateAliasResponse'
-    { _carsDirectoryId = Nothing
-    , _carsAlias = Nothing
-    , _carsResponseStatus = pResponseStatus_
-    }
-
+createAliasResponse pResponseStatus_
+  = CreateAliasResponse'{_carsDirectoryId = Nothing,
+                         _carsAlias = Nothing,
+                         _carsResponseStatus = pResponseStatus_}
 
 -- | The identifier of the directory.
 carsDirectoryId :: Lens' CreateAliasResponse (Maybe Text)

@@ -39,18 +39,17 @@ module Network.AWS.DAX.CreateParameterGroup
     ) where
 
 import Network.AWS.DAX.Types
-import Network.AWS.DAX.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'createParameterGroup' smart constructor.
-data CreateParameterGroup = CreateParameterGroup'
-  { _cpgDescription        :: !(Maybe Text)
-  , _cpgParameterGroupName :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateParameterGroup = CreateParameterGroup'{_cpgDescription
+                                                  :: !(Maybe Text),
+                                                  _cpgParameterGroupName ::
+                                                  !Text}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CreateParameterGroup' with the minimum fields required to make a request.
 --
@@ -62,10 +61,9 @@ data CreateParameterGroup = CreateParameterGroup'
 createParameterGroup
     :: Text -- ^ 'cpgParameterGroupName'
     -> CreateParameterGroup
-createParameterGroup pParameterGroupName_ =
-  CreateParameterGroup'
-    {_cpgDescription = Nothing, _cpgParameterGroupName = pParameterGroupName_}
-
+createParameterGroup pParameterGroupName_
+  = CreateParameterGroup'{_cpgDescription = Nothing,
+                          _cpgParameterGroupName = pParameterGroupName_}
 
 -- | A description of the parameter group.
 cpgDescription :: Lens' CreateParameterGroup (Maybe Text)
@@ -113,11 +111,14 @@ instance ToQuery CreateParameterGroup where
         toQuery = const mempty
 
 -- | /See:/ 'createParameterGroupResponse' smart constructor.
-data CreateParameterGroupResponse = CreateParameterGroupResponse'
-  { _cpgrsParameterGroup :: !(Maybe ParameterGroup)
-  , _cpgrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateParameterGroupResponse = CreateParameterGroupResponse'{_cpgrsParameterGroup
+                                                                  ::
+                                                                  !(Maybe
+                                                                      ParameterGroup),
+                                                                  _cpgrsResponseStatus
+                                                                  :: !Int}
+                                      deriving (Eq, Read, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'CreateParameterGroupResponse' with the minimum fields required to make a request.
 --
@@ -129,10 +130,10 @@ data CreateParameterGroupResponse = CreateParameterGroupResponse'
 createParameterGroupResponse
     :: Int -- ^ 'cpgrsResponseStatus'
     -> CreateParameterGroupResponse
-createParameterGroupResponse pResponseStatus_ =
-  CreateParameterGroupResponse'
-    {_cpgrsParameterGroup = Nothing, _cpgrsResponseStatus = pResponseStatus_}
-
+createParameterGroupResponse pResponseStatus_
+  = CreateParameterGroupResponse'{_cpgrsParameterGroup
+                                    = Nothing,
+                                  _cpgrsResponseStatus = pResponseStatus_}
 
 -- | Represents the output of a /CreateParameterGroup/ action.
 cpgrsParameterGroup :: Lens' CreateParameterGroupResponse (Maybe ParameterGroup)

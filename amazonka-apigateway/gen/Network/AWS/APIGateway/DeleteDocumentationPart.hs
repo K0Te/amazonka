@@ -34,7 +34,6 @@ module Network.AWS.APIGateway.DeleteDocumentationPart
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -45,11 +44,12 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'deleteDocumentationPart' smart constructor.
-data DeleteDocumentationPart = DeleteDocumentationPart'
-  { _ddpRestAPIId           :: !Text
-  , _ddpDocumentationPartId :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteDocumentationPart = DeleteDocumentationPart'{_ddpRestAPIId
+                                                        :: !Text,
+                                                        _ddpDocumentationPartId
+                                                        :: !Text}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'DeleteDocumentationPart' with the minimum fields required to make a request.
 --
@@ -62,12 +62,11 @@ deleteDocumentationPart
     :: Text -- ^ 'ddpRestAPIId'
     -> Text -- ^ 'ddpDocumentationPartId'
     -> DeleteDocumentationPart
-deleteDocumentationPart pRestAPIId_ pDocumentationPartId_ =
-  DeleteDocumentationPart'
-    { _ddpRestAPIId = pRestAPIId_
-    , _ddpDocumentationPartId = pDocumentationPartId_
-    }
-
+deleteDocumentationPart pRestAPIId_
+  pDocumentationPartId_
+  = DeleteDocumentationPart'{_ddpRestAPIId =
+                               pRestAPIId_,
+                             _ddpDocumentationPartId = pDocumentationPartId_}
 
 -- | [Required] The string identifier of the associated 'RestApi' .
 ddpRestAPIId :: Lens' DeleteDocumentationPart Text
@@ -105,16 +104,15 @@ instance ToQuery DeleteDocumentationPart where
         toQuery = const mempty
 
 -- | /See:/ 'deleteDocumentationPartResponse' smart constructor.
-data DeleteDocumentationPartResponse =
-  DeleteDocumentationPartResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteDocumentationPartResponse = DeleteDocumentationPartResponse'
+                                         deriving (Eq, Read, Show, Data,
+                                                   Typeable, Generic)
 
 -- | Creates a value of 'DeleteDocumentationPartResponse' with the minimum fields required to make a request.
 --
 deleteDocumentationPartResponse
     :: DeleteDocumentationPartResponse
-deleteDocumentationPartResponse = DeleteDocumentationPartResponse'
-
+deleteDocumentationPartResponse
+  = DeleteDocumentationPartResponse'
 
 instance NFData DeleteDocumentationPartResponse where

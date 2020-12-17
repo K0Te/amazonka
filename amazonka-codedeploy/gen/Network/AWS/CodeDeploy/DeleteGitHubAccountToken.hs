@@ -38,21 +38,20 @@ module Network.AWS.CodeDeploy.DeleteGitHubAccountToken
     ) where
 
 import Network.AWS.CodeDeploy.Types
-import Network.AWS.CodeDeploy.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- | Represents the input of a DeleteGitHubAccount operation.
+-- | Represents the input of a @DeleteGitHubAccount@ operation.
 --
 --
 --
 -- /See:/ 'deleteGitHubAccountToken' smart constructor.
-newtype DeleteGitHubAccountToken = DeleteGitHubAccountToken'
-  { _dghatTokenName :: Maybe Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteGitHubAccountToken = DeleteGitHubAccountToken'{_dghatTokenName
+                                                             :: Maybe Text}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'DeleteGitHubAccountToken' with the minimum fields required to make a request.
 --
@@ -61,8 +60,9 @@ newtype DeleteGitHubAccountToken = DeleteGitHubAccountToken'
 -- * 'dghatTokenName' - The name of the GitHub account connection to delete.
 deleteGitHubAccountToken
     :: DeleteGitHubAccountToken
-deleteGitHubAccountToken = DeleteGitHubAccountToken' {_dghatTokenName = Nothing}
-
+deleteGitHubAccountToken
+  = DeleteGitHubAccountToken'{_dghatTokenName =
+                                Nothing}
 
 -- | The name of the GitHub account connection to delete.
 dghatTokenName :: Lens' DeleteGitHubAccountToken (Maybe Text)
@@ -103,16 +103,20 @@ instance ToPath DeleteGitHubAccountToken where
 instance ToQuery DeleteGitHubAccountToken where
         toQuery = const mempty
 
--- | Represents the output of a DeleteGitHubAccountToken operation.
+-- | Represents the output of a @DeleteGitHubAccountToken@ operation.
 --
 --
 --
 -- /See:/ 'deleteGitHubAccountTokenResponse' smart constructor.
-data DeleteGitHubAccountTokenResponse = DeleteGitHubAccountTokenResponse'
-  { _dghatrsTokenName      :: !(Maybe Text)
-  , _dghatrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteGitHubAccountTokenResponse = DeleteGitHubAccountTokenResponse'{_dghatrsTokenName
+                                                                          ::
+                                                                          !(Maybe
+                                                                              Text),
+                                                                          _dghatrsResponseStatus
+                                                                          ::
+                                                                          !Int}
+                                          deriving (Eq, Read, Show, Data,
+                                                    Typeable, Generic)
 
 -- | Creates a value of 'DeleteGitHubAccountTokenResponse' with the minimum fields required to make a request.
 --
@@ -124,10 +128,10 @@ data DeleteGitHubAccountTokenResponse = DeleteGitHubAccountTokenResponse'
 deleteGitHubAccountTokenResponse
     :: Int -- ^ 'dghatrsResponseStatus'
     -> DeleteGitHubAccountTokenResponse
-deleteGitHubAccountTokenResponse pResponseStatus_ =
-  DeleteGitHubAccountTokenResponse'
-    {_dghatrsTokenName = Nothing, _dghatrsResponseStatus = pResponseStatus_}
-
+deleteGitHubAccountTokenResponse pResponseStatus_
+  = DeleteGitHubAccountTokenResponse'{_dghatrsTokenName
+                                        = Nothing,
+                                      _dghatrsResponseStatus = pResponseStatus_}
 
 -- | The name of the GitHub account connection that was deleted.
 dghatrsTokenName :: Lens' DeleteGitHubAccountTokenResponse (Maybe Text)

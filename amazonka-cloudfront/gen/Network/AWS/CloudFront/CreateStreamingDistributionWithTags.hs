@@ -40,7 +40,6 @@ module Network.AWS.CloudFront.CreateStreamingDistributionWithTags
     ) where
 
 import Network.AWS.CloudFront.Types
-import Network.AWS.CloudFront.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -51,27 +50,27 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'createStreamingDistributionWithTags' smart constructor.
-newtype CreateStreamingDistributionWithTags = CreateStreamingDistributionWithTags'
-  { _csdwtStreamingDistributionConfigWithTags :: StreamingDistributionConfigWithTags
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype CreateStreamingDistributionWithTags = CreateStreamingDistributionWithTags'{_csdwtStreamingDistributionConfigWithTags
+                                                                                   ::
+                                                                                   StreamingDistributionConfigWithTags}
+                                                deriving (Eq, Read, Show, Data,
+                                                          Typeable, Generic)
 
 -- | Creates a value of 'CreateStreamingDistributionWithTags' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'csdwtStreamingDistributionConfigWithTags' - The streaming distribution's configuration information.
+-- * 'csdwtStreamingDistributionConfigWithTags' - The streaming distribution's configuration information. 
 createStreamingDistributionWithTags
     :: StreamingDistributionConfigWithTags -- ^ 'csdwtStreamingDistributionConfigWithTags'
     -> CreateStreamingDistributionWithTags
-createStreamingDistributionWithTags pStreamingDistributionConfigWithTags_ =
-  CreateStreamingDistributionWithTags'
-    { _csdwtStreamingDistributionConfigWithTags =
-        pStreamingDistributionConfigWithTags_
-    }
+createStreamingDistributionWithTags
+  pStreamingDistributionConfigWithTags_
+  = CreateStreamingDistributionWithTags'{_csdwtStreamingDistributionConfigWithTags
+                                           =
+                                           pStreamingDistributionConfigWithTags_}
 
-
--- | The streaming distribution's configuration information.
+-- | The streaming distribution's configuration information. 
 csdwtStreamingDistributionConfigWithTags :: Lens' CreateStreamingDistributionWithTags StreamingDistributionConfigWithTags
 csdwtStreamingDistributionConfigWithTags = lens _csdwtStreamingDistributionConfigWithTags (\ s a -> s{_csdwtStreamingDistributionConfigWithTags = a})
 
@@ -100,7 +99,7 @@ instance ToElement
          where
         toElement
           = mkElement
-              "{http://cloudfront.amazonaws.com/doc/2017-10-30/}StreamingDistributionConfigWithTags"
+              "{http://cloudfront.amazonaws.com/doc/2020-05-31/}StreamingDistributionConfigWithTags"
               .
               _csdwtStreamingDistributionConfigWithTags
 
@@ -111,57 +110,69 @@ instance ToHeaders
 
 instance ToPath CreateStreamingDistributionWithTags
          where
-        toPath = const "/2017-10-30/streaming-distribution"
+        toPath = const "/2020-05-31/streaming-distribution"
 
 instance ToQuery CreateStreamingDistributionWithTags
          where
         toQuery = const (mconcat ["WithTags"])
 
--- | The returned result of the corresponding request.
+-- | The returned result of the corresponding request. 
 --
 --
 --
 -- /See:/ 'createStreamingDistributionWithTagsResponse' smart constructor.
-data CreateStreamingDistributionWithTagsResponse = CreateStreamingDistributionWithTagsResponse'
-  { _csdwtrsETag                  :: !(Maybe Text)
-  , _csdwtrsLocation              :: !(Maybe Text)
-  , _csdwtrsStreamingDistribution :: !(Maybe StreamingDistribution)
-  , _csdwtrsResponseStatus        :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateStreamingDistributionWithTagsResponse = CreateStreamingDistributionWithTagsResponse'{_csdwtrsETag
+                                                                                                ::
+                                                                                                !(Maybe
+                                                                                                    Text),
+                                                                                                _csdwtrsLocation
+                                                                                                ::
+                                                                                                !(Maybe
+                                                                                                    Text),
+                                                                                                _csdwtrsStreamingDistribution
+                                                                                                ::
+                                                                                                !(Maybe
+                                                                                                    StreamingDistribution),
+                                                                                                _csdwtrsResponseStatus
+                                                                                                ::
+                                                                                                !Int}
+                                                     deriving (Eq, Read, Show,
+                                                               Data, Typeable,
+                                                               Generic)
 
 -- | Creates a value of 'CreateStreamingDistributionWithTagsResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'csdwtrsETag' - Undocumented member.
+-- * 'csdwtrsETag' - The current version of the distribution created.
 --
--- * 'csdwtrsLocation' - The fully qualified URI of the new streaming distribution resource just created. For example:@https://cloudfront.amazonaws.com/2010-11-01/streaming-distribution/EGTXBD79H29TRA8@ .
+-- * 'csdwtrsLocation' - The fully qualified URI of the new streaming distribution resource just created.
 --
--- * 'csdwtrsStreamingDistribution' - The streaming distribution's information.
+-- * 'csdwtrsStreamingDistribution' - The streaming distribution's information. 
 --
 -- * 'csdwtrsResponseStatus' - -- | The response status code.
 createStreamingDistributionWithTagsResponse
     :: Int -- ^ 'csdwtrsResponseStatus'
     -> CreateStreamingDistributionWithTagsResponse
-createStreamingDistributionWithTagsResponse pResponseStatus_ =
-  CreateStreamingDistributionWithTagsResponse'
-    { _csdwtrsETag = Nothing
-    , _csdwtrsLocation = Nothing
-    , _csdwtrsStreamingDistribution = Nothing
-    , _csdwtrsResponseStatus = pResponseStatus_
-    }
+createStreamingDistributionWithTagsResponse
+  pResponseStatus_
+  = CreateStreamingDistributionWithTagsResponse'{_csdwtrsETag
+                                                   = Nothing,
+                                                 _csdwtrsLocation = Nothing,
+                                                 _csdwtrsStreamingDistribution =
+                                                   Nothing,
+                                                 _csdwtrsResponseStatus =
+                                                   pResponseStatus_}
 
-
--- | Undocumented member.
+-- | The current version of the distribution created.
 csdwtrsETag :: Lens' CreateStreamingDistributionWithTagsResponse (Maybe Text)
 csdwtrsETag = lens _csdwtrsETag (\ s a -> s{_csdwtrsETag = a})
 
--- | The fully qualified URI of the new streaming distribution resource just created. For example:@https://cloudfront.amazonaws.com/2010-11-01/streaming-distribution/EGTXBD79H29TRA8@ .
+-- | The fully qualified URI of the new streaming distribution resource just created.
 csdwtrsLocation :: Lens' CreateStreamingDistributionWithTagsResponse (Maybe Text)
 csdwtrsLocation = lens _csdwtrsLocation (\ s a -> s{_csdwtrsLocation = a})
 
--- | The streaming distribution's information.
+-- | The streaming distribution's information. 
 csdwtrsStreamingDistribution :: Lens' CreateStreamingDistributionWithTagsResponse (Maybe StreamingDistribution)
 csdwtrsStreamingDistribution = lens _csdwtrsStreamingDistribution (\ s a -> s{_csdwtrsStreamingDistribution = a})
 

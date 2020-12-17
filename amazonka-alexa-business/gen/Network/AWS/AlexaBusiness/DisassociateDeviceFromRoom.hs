@@ -37,17 +37,16 @@ module Network.AWS.AlexaBusiness.DisassociateDeviceFromRoom
     ) where
 
 import Network.AWS.AlexaBusiness.Types
-import Network.AWS.AlexaBusiness.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'disassociateDeviceFromRoom' smart constructor.
-newtype DisassociateDeviceFromRoom = DisassociateDeviceFromRoom'
-  { _ddfrDeviceARN :: Maybe Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DisassociateDeviceFromRoom = DisassociateDeviceFromRoom'{_ddfrDeviceARN
+                                                                 :: Maybe Text}
+                                       deriving (Eq, Read, Show, Data, Typeable,
+                                                 Generic)
 
 -- | Creates a value of 'DisassociateDeviceFromRoom' with the minimum fields required to make a request.
 --
@@ -56,9 +55,9 @@ newtype DisassociateDeviceFromRoom = DisassociateDeviceFromRoom'
 -- * 'ddfrDeviceARN' - The ARN of the device to disassociate from a room. Required.
 disassociateDeviceFromRoom
     :: DisassociateDeviceFromRoom
-disassociateDeviceFromRoom =
-  DisassociateDeviceFromRoom' {_ddfrDeviceARN = Nothing}
-
+disassociateDeviceFromRoom
+  = DisassociateDeviceFromRoom'{_ddfrDeviceARN =
+                                  Nothing}
 
 -- | The ARN of the device to disassociate from a room. Required.
 ddfrDeviceARN :: Lens' DisassociateDeviceFromRoom (Maybe Text)
@@ -100,10 +99,11 @@ instance ToQuery DisassociateDeviceFromRoom where
         toQuery = const mempty
 
 -- | /See:/ 'disassociateDeviceFromRoomResponse' smart constructor.
-newtype DisassociateDeviceFromRoomResponse = DisassociateDeviceFromRoomResponse'
-  { _ddfrrsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DisassociateDeviceFromRoomResponse = DisassociateDeviceFromRoomResponse'{_ddfrrsResponseStatus
+                                                                                 ::
+                                                                                 Int}
+                                               deriving (Eq, Read, Show, Data,
+                                                         Typeable, Generic)
 
 -- | Creates a value of 'DisassociateDeviceFromRoomResponse' with the minimum fields required to make a request.
 --
@@ -113,9 +113,9 @@ newtype DisassociateDeviceFromRoomResponse = DisassociateDeviceFromRoomResponse'
 disassociateDeviceFromRoomResponse
     :: Int -- ^ 'ddfrrsResponseStatus'
     -> DisassociateDeviceFromRoomResponse
-disassociateDeviceFromRoomResponse pResponseStatus_ =
-  DisassociateDeviceFromRoomResponse' {_ddfrrsResponseStatus = pResponseStatus_}
-
+disassociateDeviceFromRoomResponse pResponseStatus_
+  = DisassociateDeviceFromRoomResponse'{_ddfrrsResponseStatus
+                                          = pResponseStatus_}
 
 -- | -- | The response status code.
 ddfrrsResponseStatus :: Lens' DisassociateDeviceFromRoomResponse Int

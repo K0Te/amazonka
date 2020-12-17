@@ -38,24 +38,22 @@ module Network.AWS.ElasticBeanstalk.DescribeAccountAttributes
     ) where
 
 import Network.AWS.ElasticBeanstalk.Types
-import Network.AWS.ElasticBeanstalk.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'describeAccountAttributes' smart constructor.
-data DescribeAccountAttributes =
-  DescribeAccountAttributes'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeAccountAttributes = DescribeAccountAttributes'
+                                   deriving (Eq, Read, Show, Data, Typeable,
+                                             Generic)
 
 -- | Creates a value of 'DescribeAccountAttributes' with the minimum fields required to make a request.
 --
 describeAccountAttributes
     :: DescribeAccountAttributes
-describeAccountAttributes = DescribeAccountAttributes'
-
+describeAccountAttributes
+  = DescribeAccountAttributes'
 
 instance AWSRequest DescribeAccountAttributes where
         type Rs DescribeAccountAttributes =
@@ -86,11 +84,15 @@ instance ToQuery DescribeAccountAttributes where
                   "Version" =: ("2010-12-01" :: ByteString)])
 
 -- | /See:/ 'describeAccountAttributesResponse' smart constructor.
-data DescribeAccountAttributesResponse = DescribeAccountAttributesResponse'
-  { _daarsResourceQuotas :: !(Maybe ResourceQuotas)
-  , _daarsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeAccountAttributesResponse = DescribeAccountAttributesResponse'{_daarsResourceQuotas
+                                                                            ::
+                                                                            !(Maybe
+                                                                                ResourceQuotas),
+                                                                            _daarsResponseStatus
+                                                                            ::
+                                                                            !Int}
+                                           deriving (Eq, Read, Show, Data,
+                                                     Typeable, Generic)
 
 -- | Creates a value of 'DescribeAccountAttributesResponse' with the minimum fields required to make a request.
 --
@@ -102,10 +104,10 @@ data DescribeAccountAttributesResponse = DescribeAccountAttributesResponse'
 describeAccountAttributesResponse
     :: Int -- ^ 'daarsResponseStatus'
     -> DescribeAccountAttributesResponse
-describeAccountAttributesResponse pResponseStatus_ =
-  DescribeAccountAttributesResponse'
-    {_daarsResourceQuotas = Nothing, _daarsResponseStatus = pResponseStatus_}
-
+describeAccountAttributesResponse pResponseStatus_
+  = DescribeAccountAttributesResponse'{_daarsResourceQuotas
+                                         = Nothing,
+                                       _daarsResponseStatus = pResponseStatus_}
 
 -- | The Elastic Beanstalk resource quotas associated with the calling AWS account.
 daarsResourceQuotas :: Lens' DescribeAccountAttributesResponse (Maybe ResourceQuotas)

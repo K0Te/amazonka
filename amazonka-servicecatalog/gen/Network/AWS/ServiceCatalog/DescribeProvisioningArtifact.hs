@@ -27,9 +27,11 @@ module Network.AWS.ServiceCatalog.DescribeProvisioningArtifact
       describeProvisioningArtifact
     , DescribeProvisioningArtifact
     -- * Request Lenses
-    , dpaVerbose
-    , dpaAcceptLanguage
+    , dpaProductName
     , dpaProvisioningArtifactId
+    , dpaVerbose
+    , dpaProvisioningArtifactName
+    , dpaAcceptLanguage
     , dpaProductId
 
     -- * Destructuring the Response
@@ -47,55 +49,76 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.ServiceCatalog.Types
-import Network.AWS.ServiceCatalog.Types.Product
 
 -- | /See:/ 'describeProvisioningArtifact' smart constructor.
-data DescribeProvisioningArtifact = DescribeProvisioningArtifact'
-  { _dpaVerbose                :: !(Maybe Bool)
-  , _dpaAcceptLanguage         :: !(Maybe Text)
-  , _dpaProvisioningArtifactId :: !Text
-  , _dpaProductId              :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeProvisioningArtifact = DescribeProvisioningArtifact'{_dpaProductName
+                                                                  ::
+                                                                  !(Maybe Text),
+                                                                  _dpaProvisioningArtifactId
+                                                                  ::
+                                                                  !(Maybe Text),
+                                                                  _dpaVerbose ::
+                                                                  !(Maybe Bool),
+                                                                  _dpaProvisioningArtifactName
+                                                                  ::
+                                                                  !(Maybe Text),
+                                                                  _dpaAcceptLanguage
+                                                                  ::
+                                                                  !(Maybe Text),
+                                                                  _dpaProductId
+                                                                  ::
+                                                                  !(Maybe Text)}
+                                      deriving (Eq, Read, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'DescribeProvisioningArtifact' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'dpaVerbose' - Indicates whether a verbose level of detail is enabled.
---
--- * 'dpaAcceptLanguage' - The language code.     * @en@ - English (default)     * @jp@ - Japanese     * @zh@ - Chinese
+-- * 'dpaProductName' - The product name.
 --
 -- * 'dpaProvisioningArtifactId' - The identifier of the provisioning artifact.
 --
+-- * 'dpaVerbose' - Indicates whether a verbose level of detail is enabled.
+--
+-- * 'dpaProvisioningArtifactName' - The provisioning artifact name.
+--
+-- * 'dpaAcceptLanguage' - The language code.     * @en@ - English (default)     * @jp@ - Japanese     * @zh@ - Chinese
+--
 -- * 'dpaProductId' - The product identifier.
 describeProvisioningArtifact
-    :: Text -- ^ 'dpaProvisioningArtifactId'
-    -> Text -- ^ 'dpaProductId'
-    -> DescribeProvisioningArtifact
-describeProvisioningArtifact pProvisioningArtifactId_ pProductId_ =
-  DescribeProvisioningArtifact'
-    { _dpaVerbose = Nothing
-    , _dpaAcceptLanguage = Nothing
-    , _dpaProvisioningArtifactId = pProvisioningArtifactId_
-    , _dpaProductId = pProductId_
-    }
+    :: DescribeProvisioningArtifact
+describeProvisioningArtifact
+  = DescribeProvisioningArtifact'{_dpaProductName =
+                                    Nothing,
+                                  _dpaProvisioningArtifactId = Nothing,
+                                  _dpaVerbose = Nothing,
+                                  _dpaProvisioningArtifactName = Nothing,
+                                  _dpaAcceptLanguage = Nothing,
+                                  _dpaProductId = Nothing}
 
+-- | The product name.
+dpaProductName :: Lens' DescribeProvisioningArtifact (Maybe Text)
+dpaProductName = lens _dpaProductName (\ s a -> s{_dpaProductName = a})
+
+-- | The identifier of the provisioning artifact.
+dpaProvisioningArtifactId :: Lens' DescribeProvisioningArtifact (Maybe Text)
+dpaProvisioningArtifactId = lens _dpaProvisioningArtifactId (\ s a -> s{_dpaProvisioningArtifactId = a})
 
 -- | Indicates whether a verbose level of detail is enabled.
 dpaVerbose :: Lens' DescribeProvisioningArtifact (Maybe Bool)
 dpaVerbose = lens _dpaVerbose (\ s a -> s{_dpaVerbose = a})
 
+-- | The provisioning artifact name.
+dpaProvisioningArtifactName :: Lens' DescribeProvisioningArtifact (Maybe Text)
+dpaProvisioningArtifactName = lens _dpaProvisioningArtifactName (\ s a -> s{_dpaProvisioningArtifactName = a})
+
 -- | The language code.     * @en@ - English (default)     * @jp@ - Japanese     * @zh@ - Chinese
 dpaAcceptLanguage :: Lens' DescribeProvisioningArtifact (Maybe Text)
 dpaAcceptLanguage = lens _dpaAcceptLanguage (\ s a -> s{_dpaAcceptLanguage = a})
 
--- | The identifier of the provisioning artifact.
-dpaProvisioningArtifactId :: Lens' DescribeProvisioningArtifact Text
-dpaProvisioningArtifactId = lens _dpaProvisioningArtifactId (\ s a -> s{_dpaProvisioningArtifactId = a})
-
 -- | The product identifier.
-dpaProductId :: Lens' DescribeProvisioningArtifact Text
+dpaProductId :: Lens' DescribeProvisioningArtifact (Maybe Text)
 dpaProductId = lens _dpaProductId (\ s a -> s{_dpaProductId = a})
 
 instance AWSRequest DescribeProvisioningArtifact
@@ -129,12 +152,14 @@ instance ToJSON DescribeProvisioningArtifact where
         toJSON DescribeProvisioningArtifact'{..}
           = object
               (catMaybes
-                 [("Verbose" .=) <$> _dpaVerbose,
+                 [("ProductName" .=) <$> _dpaProductName,
+                  ("ProvisioningArtifactId" .=) <$>
+                    _dpaProvisioningArtifactId,
+                  ("Verbose" .=) <$> _dpaVerbose,
+                  ("ProvisioningArtifactName" .=) <$>
+                    _dpaProvisioningArtifactName,
                   ("AcceptLanguage" .=) <$> _dpaAcceptLanguage,
-                  Just
-                    ("ProvisioningArtifactId" .=
-                       _dpaProvisioningArtifactId),
-                  Just ("ProductId" .= _dpaProductId)])
+                  ("ProductId" .=) <$> _dpaProductId])
 
 instance ToPath DescribeProvisioningArtifact where
         toPath = const "/"
@@ -143,13 +168,25 @@ instance ToQuery DescribeProvisioningArtifact where
         toQuery = const mempty
 
 -- | /See:/ 'describeProvisioningArtifactResponse' smart constructor.
-data DescribeProvisioningArtifactResponse = DescribeProvisioningArtifactResponse'
-  { _dpaprsStatus                     :: !(Maybe RequestStatus)
-  , _dpaprsInfo                       :: !(Maybe (Map Text Text))
-  , _dpaprsProvisioningArtifactDetail :: !(Maybe ProvisioningArtifactDetail)
-  , _dpaprsResponseStatus             :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeProvisioningArtifactResponse = DescribeProvisioningArtifactResponse'{_dpaprsStatus
+                                                                                  ::
+                                                                                  !(Maybe
+                                                                                      RequestStatus),
+                                                                                  _dpaprsInfo
+                                                                                  ::
+                                                                                  !(Maybe
+                                                                                      (Map
+                                                                                         Text
+                                                                                         Text)),
+                                                                                  _dpaprsProvisioningArtifactDetail
+                                                                                  ::
+                                                                                  !(Maybe
+                                                                                      ProvisioningArtifactDetail),
+                                                                                  _dpaprsResponseStatus
+                                                                                  ::
+                                                                                  !Int}
+                                              deriving (Eq, Read, Show, Data,
+                                                        Typeable, Generic)
 
 -- | Creates a value of 'DescribeProvisioningArtifactResponse' with the minimum fields required to make a request.
 --
@@ -165,14 +202,14 @@ data DescribeProvisioningArtifactResponse = DescribeProvisioningArtifactResponse
 describeProvisioningArtifactResponse
     :: Int -- ^ 'dpaprsResponseStatus'
     -> DescribeProvisioningArtifactResponse
-describeProvisioningArtifactResponse pResponseStatus_ =
-  DescribeProvisioningArtifactResponse'
-    { _dpaprsStatus = Nothing
-    , _dpaprsInfo = Nothing
-    , _dpaprsProvisioningArtifactDetail = Nothing
-    , _dpaprsResponseStatus = pResponseStatus_
-    }
-
+describeProvisioningArtifactResponse pResponseStatus_
+  = DescribeProvisioningArtifactResponse'{_dpaprsStatus
+                                            = Nothing,
+                                          _dpaprsInfo = Nothing,
+                                          _dpaprsProvisioningArtifactDetail =
+                                            Nothing,
+                                          _dpaprsResponseStatus =
+                                            pResponseStatus_}
 
 -- | The status of the current request.
 dpaprsStatus :: Lens' DescribeProvisioningArtifactResponse (Maybe RequestStatus)

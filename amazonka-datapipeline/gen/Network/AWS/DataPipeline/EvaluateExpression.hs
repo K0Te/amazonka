@@ -40,7 +40,6 @@ module Network.AWS.DataPipeline.EvaluateExpression
     ) where
 
 import Network.AWS.DataPipeline.Types
-import Network.AWS.DataPipeline.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -51,12 +50,11 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'evaluateExpression' smart constructor.
-data EvaluateExpression = EvaluateExpression'
-  { _eePipelineId :: !Text
-  , _eeObjectId   :: !Text
-  , _eeExpression :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data EvaluateExpression = EvaluateExpression'{_eePipelineId
+                                              :: !Text,
+                                              _eeObjectId :: !Text,
+                                              _eeExpression :: !Text}
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'EvaluateExpression' with the minimum fields required to make a request.
 --
@@ -72,13 +70,11 @@ evaluateExpression
     -> Text -- ^ 'eeObjectId'
     -> Text -- ^ 'eeExpression'
     -> EvaluateExpression
-evaluateExpression pPipelineId_ pObjectId_ pExpression_ =
-  EvaluateExpression'
-    { _eePipelineId = pPipelineId_
-    , _eeObjectId = pObjectId_
-    , _eeExpression = pExpression_
-    }
-
+evaluateExpression pPipelineId_ pObjectId_
+  pExpression_
+  = EvaluateExpression'{_eePipelineId = pPipelineId_,
+                        _eeObjectId = pObjectId_,
+                        _eeExpression = pExpression_}
 
 -- | The ID of the pipeline.
 eePipelineId :: Lens' EvaluateExpression Text
@@ -135,11 +131,12 @@ instance ToQuery EvaluateExpression where
 --
 --
 -- /See:/ 'evaluateExpressionResponse' smart constructor.
-data EvaluateExpressionResponse = EvaluateExpressionResponse'
-  { _eersResponseStatus      :: !Int
-  , _eersEvaluatedExpression :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data EvaluateExpressionResponse = EvaluateExpressionResponse'{_eersResponseStatus
+                                                              :: !Int,
+                                                              _eersEvaluatedExpression
+                                                              :: !Text}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'EvaluateExpressionResponse' with the minimum fields required to make a request.
 --
@@ -152,12 +149,12 @@ evaluateExpressionResponse
     :: Int -- ^ 'eersResponseStatus'
     -> Text -- ^ 'eersEvaluatedExpression'
     -> EvaluateExpressionResponse
-evaluateExpressionResponse pResponseStatus_ pEvaluatedExpression_ =
-  EvaluateExpressionResponse'
-    { _eersResponseStatus = pResponseStatus_
-    , _eersEvaluatedExpression = pEvaluatedExpression_
-    }
-
+evaluateExpressionResponse pResponseStatus_
+  pEvaluatedExpression_
+  = EvaluateExpressionResponse'{_eersResponseStatus =
+                                  pResponseStatus_,
+                                _eersEvaluatedExpression =
+                                  pEvaluatedExpression_}
 
 -- | -- | The response status code.
 eersResponseStatus :: Lens' EvaluateExpressionResponse Int

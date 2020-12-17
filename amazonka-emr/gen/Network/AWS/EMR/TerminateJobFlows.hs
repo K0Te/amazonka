@@ -37,33 +37,31 @@ module Network.AWS.EMR.TerminateJobFlows
     ) where
 
 import Network.AWS.EMR.Types
-import Network.AWS.EMR.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- | Input to the 'TerminateJobFlows' operation.
+-- | Input to the 'TerminateJobFlows' operation. 
 --
 --
 --
 -- /See:/ 'terminateJobFlows' smart constructor.
-newtype TerminateJobFlows = TerminateJobFlows'
-  { _tjfJobFlowIds :: [Text]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype TerminateJobFlows = TerminateJobFlows'{_tjfJobFlowIds
+                                               :: [Text]}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'TerminateJobFlows' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'tjfJobFlowIds' - A list of job flows to be shutdown.
+-- * 'tjfJobFlowIds' - A list of job flows to be shut down.
 terminateJobFlows
     :: TerminateJobFlows
-terminateJobFlows = TerminateJobFlows' {_tjfJobFlowIds = mempty}
+terminateJobFlows
+  = TerminateJobFlows'{_tjfJobFlowIds = mempty}
 
-
--- | A list of job flows to be shutdown.
+-- | A list of job flows to be shut down.
 tjfJobFlowIds :: Lens' TerminateJobFlows [Text]
 tjfJobFlowIds = lens _tjfJobFlowIds (\ s a -> s{_tjfJobFlowIds = a}) . _Coerce
 
@@ -97,16 +95,15 @@ instance ToQuery TerminateJobFlows where
         toQuery = const mempty
 
 -- | /See:/ 'terminateJobFlowsResponse' smart constructor.
-data TerminateJobFlowsResponse =
-  TerminateJobFlowsResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data TerminateJobFlowsResponse = TerminateJobFlowsResponse'
+                                   deriving (Eq, Read, Show, Data, Typeable,
+                                             Generic)
 
 -- | Creates a value of 'TerminateJobFlowsResponse' with the minimum fields required to make a request.
 --
 terminateJobFlowsResponse
     :: TerminateJobFlowsResponse
-terminateJobFlowsResponse = TerminateJobFlowsResponse'
-
+terminateJobFlowsResponse
+  = TerminateJobFlowsResponse'
 
 instance NFData TerminateJobFlowsResponse where

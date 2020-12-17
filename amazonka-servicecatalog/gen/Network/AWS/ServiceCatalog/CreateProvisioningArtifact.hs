@@ -49,16 +49,18 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.ServiceCatalog.Types
-import Network.AWS.ServiceCatalog.Types.Product
 
 -- | /See:/ 'createProvisioningArtifact' smart constructor.
-data CreateProvisioningArtifact = CreateProvisioningArtifact'
-  { _cpaAcceptLanguage   :: !(Maybe Text)
-  , _cpaProductId        :: !Text
-  , _cpaParameters       :: !ProvisioningArtifactProperties
-  , _cpaIdempotencyToken :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateProvisioningArtifact = CreateProvisioningArtifact'{_cpaAcceptLanguage
+                                                              :: !(Maybe Text),
+                                                              _cpaProductId ::
+                                                              !Text,
+                                                              _cpaParameters ::
+                                                              !ProvisioningArtifactProperties,
+                                                              _cpaIdempotencyToken
+                                                              :: !Text}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'CreateProvisioningArtifact' with the minimum fields required to make a request.
 --
@@ -68,7 +70,7 @@ data CreateProvisioningArtifact = CreateProvisioningArtifact'
 --
 -- * 'cpaProductId' - The product identifier.
 --
--- * 'cpaParameters' - The configuration for the provisioning artifact.
+-- * 'cpaParameters' - The configuration for the provisioning artifact. The @info@ field accepts @ImportFromPhysicalID@ . 
 --
 -- * 'cpaIdempotencyToken' - A unique identifier that you provide to ensure idempotency. If multiple requests differ only by the idempotency token, the same response is returned for each repeated request.
 createProvisioningArtifact
@@ -76,14 +78,13 @@ createProvisioningArtifact
     -> ProvisioningArtifactProperties -- ^ 'cpaParameters'
     -> Text -- ^ 'cpaIdempotencyToken'
     -> CreateProvisioningArtifact
-createProvisioningArtifact pProductId_ pParameters_ pIdempotencyToken_ =
-  CreateProvisioningArtifact'
-    { _cpaAcceptLanguage = Nothing
-    , _cpaProductId = pProductId_
-    , _cpaParameters = pParameters_
-    , _cpaIdempotencyToken = pIdempotencyToken_
-    }
-
+createProvisioningArtifact pProductId_ pParameters_
+  pIdempotencyToken_
+  = CreateProvisioningArtifact'{_cpaAcceptLanguage =
+                                  Nothing,
+                                _cpaProductId = pProductId_,
+                                _cpaParameters = pParameters_,
+                                _cpaIdempotencyToken = pIdempotencyToken_}
 
 -- | The language code.     * @en@ - English (default)     * @jp@ - Japanese     * @zh@ - Chinese
 cpaAcceptLanguage :: Lens' CreateProvisioningArtifact (Maybe Text)
@@ -93,7 +94,7 @@ cpaAcceptLanguage = lens _cpaAcceptLanguage (\ s a -> s{_cpaAcceptLanguage = a})
 cpaProductId :: Lens' CreateProvisioningArtifact Text
 cpaProductId = lens _cpaProductId (\ s a -> s{_cpaProductId = a})
 
--- | The configuration for the provisioning artifact.
+-- | The configuration for the provisioning artifact. The @info@ field accepts @ImportFromPhysicalID@ . 
 cpaParameters :: Lens' CreateProvisioningArtifact ProvisioningArtifactProperties
 cpaParameters = lens _cpaParameters (\ s a -> s{_cpaParameters = a})
 
@@ -143,13 +144,25 @@ instance ToQuery CreateProvisioningArtifact where
         toQuery = const mempty
 
 -- | /See:/ 'createProvisioningArtifactResponse' smart constructor.
-data CreateProvisioningArtifactResponse = CreateProvisioningArtifactResponse'
-  { _cparsStatus                     :: !(Maybe RequestStatus)
-  , _cparsInfo                       :: !(Maybe (Map Text Text))
-  , _cparsProvisioningArtifactDetail :: !(Maybe ProvisioningArtifactDetail)
-  , _cparsResponseStatus             :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateProvisioningArtifactResponse = CreateProvisioningArtifactResponse'{_cparsStatus
+                                                                              ::
+                                                                              !(Maybe
+                                                                                  RequestStatus),
+                                                                              _cparsInfo
+                                                                              ::
+                                                                              !(Maybe
+                                                                                  (Map
+                                                                                     Text
+                                                                                     Text)),
+                                                                              _cparsProvisioningArtifactDetail
+                                                                              ::
+                                                                              !(Maybe
+                                                                                  ProvisioningArtifactDetail),
+                                                                              _cparsResponseStatus
+                                                                              ::
+                                                                              !Int}
+                                            deriving (Eq, Read, Show, Data,
+                                                      Typeable, Generic)
 
 -- | Creates a value of 'CreateProvisioningArtifactResponse' with the minimum fields required to make a request.
 --
@@ -165,14 +178,13 @@ data CreateProvisioningArtifactResponse = CreateProvisioningArtifactResponse'
 createProvisioningArtifactResponse
     :: Int -- ^ 'cparsResponseStatus'
     -> CreateProvisioningArtifactResponse
-createProvisioningArtifactResponse pResponseStatus_ =
-  CreateProvisioningArtifactResponse'
-    { _cparsStatus = Nothing
-    , _cparsInfo = Nothing
-    , _cparsProvisioningArtifactDetail = Nothing
-    , _cparsResponseStatus = pResponseStatus_
-    }
-
+createProvisioningArtifactResponse pResponseStatus_
+  = CreateProvisioningArtifactResponse'{_cparsStatus =
+                                          Nothing,
+                                        _cparsInfo = Nothing,
+                                        _cparsProvisioningArtifactDetail =
+                                          Nothing,
+                                        _cparsResponseStatus = pResponseStatus_}
 
 -- | The status of the current request.
 cparsStatus :: Lens' CreateProvisioningArtifactResponse (Maybe RequestStatus)

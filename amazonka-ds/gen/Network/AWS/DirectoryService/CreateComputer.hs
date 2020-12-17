@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Creates a computer account in the specified directory, and joins the computer to the directory.
+-- Creates an Active Directory computer object in the specified directory.
 --
 --
 module Network.AWS.DirectoryService.CreateComputer
@@ -42,7 +42,6 @@ module Network.AWS.DirectoryService.CreateComputer
     ) where
 
 import Network.AWS.DirectoryService.Types
-import Network.AWS.DirectoryService.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -53,14 +52,14 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'createComputer' smart constructor.
-data CreateComputer = CreateComputer'
-  { _ccComputerAttributes                  :: !(Maybe [Attribute])
-  , _ccOrganizationalUnitDistinguishedName :: !(Maybe Text)
-  , _ccDirectoryId                         :: !Text
-  , _ccComputerName                        :: !Text
-  , _ccPassword                            :: !(Sensitive Text)
-  } deriving (Eq, Show, Data, Typeable, Generic)
-
+data CreateComputer = CreateComputer'{_ccComputerAttributes
+                                      :: !(Maybe [Attribute]),
+                                      _ccOrganizationalUnitDistinguishedName ::
+                                      !(Maybe Text),
+                                      _ccDirectoryId :: !Text,
+                                      _ccComputerName :: !Text,
+                                      _ccPassword :: !(Sensitive Text)}
+                        deriving (Eq, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CreateComputer' with the minimum fields required to make a request.
 --
@@ -80,15 +79,13 @@ createComputer
     -> Text -- ^ 'ccComputerName'
     -> Text -- ^ 'ccPassword'
     -> CreateComputer
-createComputer pDirectoryId_ pComputerName_ pPassword_ =
-  CreateComputer'
-    { _ccComputerAttributes = Nothing
-    , _ccOrganizationalUnitDistinguishedName = Nothing
-    , _ccDirectoryId = pDirectoryId_
-    , _ccComputerName = pComputerName_
-    , _ccPassword = _Sensitive # pPassword_
-    }
-
+createComputer pDirectoryId_ pComputerName_
+  pPassword_
+  = CreateComputer'{_ccComputerAttributes = Nothing,
+                    _ccOrganizationalUnitDistinguishedName = Nothing,
+                    _ccDirectoryId = pDirectoryId_,
+                    _ccComputerName = pComputerName_,
+                    _ccPassword = _Sensitive # pPassword_}
 
 -- | An array of 'Attribute' objects that contain any LDAP attributes to apply to the computer account.
 ccComputerAttributes :: Lens' CreateComputer [Attribute]
@@ -155,11 +152,12 @@ instance ToQuery CreateComputer where
 --
 --
 -- /See:/ 'createComputerResponse' smart constructor.
-data CreateComputerResponse = CreateComputerResponse'
-  { _ccrsComputer       :: !(Maybe Computer)
-  , _ccrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreateComputerResponse = CreateComputerResponse'{_ccrsComputer
+                                                      :: !(Maybe Computer),
+                                                      _ccrsResponseStatus ::
+                                                      !Int}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'CreateComputerResponse' with the minimum fields required to make a request.
 --
@@ -171,10 +169,9 @@ data CreateComputerResponse = CreateComputerResponse'
 createComputerResponse
     :: Int -- ^ 'ccrsResponseStatus'
     -> CreateComputerResponse
-createComputerResponse pResponseStatus_ =
-  CreateComputerResponse'
-    {_ccrsComputer = Nothing, _ccrsResponseStatus = pResponseStatus_}
-
+createComputerResponse pResponseStatus_
+  = CreateComputerResponse'{_ccrsComputer = Nothing,
+                            _ccrsResponseStatus = pResponseStatus_}
 
 -- | A 'Computer' object that represents the computer account.
 ccrsComputer :: Lens' CreateComputerResponse (Maybe Computer)

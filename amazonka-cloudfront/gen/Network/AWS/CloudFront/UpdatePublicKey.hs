@@ -41,19 +41,17 @@ module Network.AWS.CloudFront.UpdatePublicKey
     ) where
 
 import Network.AWS.CloudFront.Types
-import Network.AWS.CloudFront.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'updatePublicKey' smart constructor.
-data UpdatePublicKey = UpdatePublicKey'
-  { _upkIfMatch         :: !(Maybe Text)
-  , _upkPublicKeyConfig :: !PublicKeyConfig
-  , _upkId              :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdatePublicKey = UpdatePublicKey'{_upkIfMatch
+                                        :: !(Maybe Text),
+                                        _upkPublicKeyConfig :: !PublicKeyConfig,
+                                        _upkId :: !Text}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UpdatePublicKey' with the minimum fields required to make a request.
 --
@@ -61,30 +59,27 @@ data UpdatePublicKey = UpdatePublicKey'
 --
 -- * 'upkIfMatch' - The value of the @ETag@ header that you received when retrieving the public key to update. For example: @E2QWRUHAPOMQZL@ .
 --
--- * 'upkPublicKeyConfig' - Request to update public key information.
+-- * 'upkPublicKeyConfig' - A public key configuration.
 --
--- * 'upkId' - ID of the public key to be updated.
+-- * 'upkId' - The identifier of the public key that you are updating.
 updatePublicKey
     :: PublicKeyConfig -- ^ 'upkPublicKeyConfig'
     -> Text -- ^ 'upkId'
     -> UpdatePublicKey
-updatePublicKey pPublicKeyConfig_ pId_ =
-  UpdatePublicKey'
-    { _upkIfMatch = Nothing
-    , _upkPublicKeyConfig = pPublicKeyConfig_
-    , _upkId = pId_
-    }
-
+updatePublicKey pPublicKeyConfig_ pId_
+  = UpdatePublicKey'{_upkIfMatch = Nothing,
+                     _upkPublicKeyConfig = pPublicKeyConfig_,
+                     _upkId = pId_}
 
 -- | The value of the @ETag@ header that you received when retrieving the public key to update. For example: @E2QWRUHAPOMQZL@ .
 upkIfMatch :: Lens' UpdatePublicKey (Maybe Text)
 upkIfMatch = lens _upkIfMatch (\ s a -> s{_upkIfMatch = a})
 
--- | Request to update public key information.
+-- | A public key configuration.
 upkPublicKeyConfig :: Lens' UpdatePublicKey PublicKeyConfig
 upkPublicKeyConfig = lens _upkPublicKeyConfig (\ s a -> s{_upkPublicKeyConfig = a})
 
--- | ID of the public key to be updated.
+-- | The identifier of the public key that you are updating.
 upkId :: Lens' UpdatePublicKey Text
 upkId = lens _upkId (\ s a -> s{_upkId = a})
 
@@ -105,7 +100,7 @@ instance NFData UpdatePublicKey where
 instance ToElement UpdatePublicKey where
         toElement
           = mkElement
-              "{http://cloudfront.amazonaws.com/doc/2017-10-30/}PublicKeyConfig"
+              "{http://cloudfront.amazonaws.com/doc/2020-05-31/}PublicKeyConfig"
               .
               _upkPublicKeyConfig
 
@@ -116,44 +111,43 @@ instance ToHeaders UpdatePublicKey where
 instance ToPath UpdatePublicKey where
         toPath UpdatePublicKey'{..}
           = mconcat
-              ["/2017-10-30/public-key/", toBS _upkId, "/config"]
+              ["/2020-05-31/public-key/", toBS _upkId, "/config"]
 
 instance ToQuery UpdatePublicKey where
         toQuery = const mempty
 
 -- | /See:/ 'updatePublicKeyResponse' smart constructor.
-data UpdatePublicKeyResponse = UpdatePublicKeyResponse'
-  { _upkrsETag           :: !(Maybe Text)
-  , _upkrsPublicKey      :: !(Maybe PublicKey)
-  , _upkrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdatePublicKeyResponse = UpdatePublicKeyResponse'{_upkrsETag
+                                                        :: !(Maybe Text),
+                                                        _upkrsPublicKey ::
+                                                        !(Maybe PublicKey),
+                                                        _upkrsResponseStatus ::
+                                                        !Int}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'UpdatePublicKeyResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'upkrsETag' - The current version of the update public key result. For example: @E2QWRUHAPOMQZL@ .
+-- * 'upkrsETag' - The identifier of the current version of the public key.
 --
--- * 'upkrsPublicKey' - Return the results of updating the public key.
+-- * 'upkrsPublicKey' - The public key.
 --
 -- * 'upkrsResponseStatus' - -- | The response status code.
 updatePublicKeyResponse
     :: Int -- ^ 'upkrsResponseStatus'
     -> UpdatePublicKeyResponse
-updatePublicKeyResponse pResponseStatus_ =
-  UpdatePublicKeyResponse'
-    { _upkrsETag = Nothing
-    , _upkrsPublicKey = Nothing
-    , _upkrsResponseStatus = pResponseStatus_
-    }
+updatePublicKeyResponse pResponseStatus_
+  = UpdatePublicKeyResponse'{_upkrsETag = Nothing,
+                             _upkrsPublicKey = Nothing,
+                             _upkrsResponseStatus = pResponseStatus_}
 
-
--- | The current version of the update public key result. For example: @E2QWRUHAPOMQZL@ .
+-- | The identifier of the current version of the public key.
 upkrsETag :: Lens' UpdatePublicKeyResponse (Maybe Text)
 upkrsETag = lens _upkrsETag (\ s a -> s{_upkrsETag = a})
 
--- | Return the results of updating the public key.
+-- | The public key.
 upkrsPublicKey :: Lens' UpdatePublicKeyResponse (Maybe PublicKey)
 upkrsPublicKey = lens _upkrsPublicKey (\ s a -> s{_upkrsPublicKey = a})
 

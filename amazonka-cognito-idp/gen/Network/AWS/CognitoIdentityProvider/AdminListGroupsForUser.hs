@@ -21,8 +21,10 @@
 -- Lists the groups that the user belongs to.
 --
 --
--- Requires developer credentials.
+-- Calling this action requires developer credentials.
 --
+--
+-- This operation returns paginated results.
 module Network.AWS.CognitoIdentityProvider.AdminListGroupsForUser
     (
     -- * Creating a Request
@@ -44,20 +46,21 @@ module Network.AWS.CognitoIdentityProvider.AdminListGroupsForUser
     ) where
 
 import Network.AWS.CognitoIdentityProvider.Types
-import Network.AWS.CognitoIdentityProvider.Types.Product
 import Network.AWS.Lens
+import Network.AWS.Pager
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'adminListGroupsForUser' smart constructor.
-data AdminListGroupsForUser = AdminListGroupsForUser'
-  { _algfuNextToken  :: !(Maybe Text)
-  , _algfuLimit      :: !(Maybe Nat)
-  , _algfuUsername   :: !(Sensitive Text)
-  , _algfuUserPoolId :: !Text
-  } deriving (Eq, Show, Data, Typeable, Generic)
-
+data AdminListGroupsForUser = AdminListGroupsForUser'{_algfuNextToken
+                                                      :: !(Maybe Text),
+                                                      _algfuLimit ::
+                                                      !(Maybe Nat),
+                                                      _algfuUsername ::
+                                                      !(Sensitive Text),
+                                                      _algfuUserPoolId :: !Text}
+                                deriving (Eq, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'AdminListGroupsForUser' with the minimum fields required to make a request.
 --
@@ -74,14 +77,11 @@ adminListGroupsForUser
     :: Text -- ^ 'algfuUsername'
     -> Text -- ^ 'algfuUserPoolId'
     -> AdminListGroupsForUser
-adminListGroupsForUser pUsername_ pUserPoolId_ =
-  AdminListGroupsForUser'
-    { _algfuNextToken = Nothing
-    , _algfuLimit = Nothing
-    , _algfuUsername = _Sensitive # pUsername_
-    , _algfuUserPoolId = pUserPoolId_
-    }
-
+adminListGroupsForUser pUsername_ pUserPoolId_
+  = AdminListGroupsForUser'{_algfuNextToken = Nothing,
+                            _algfuLimit = Nothing,
+                            _algfuUsername = _Sensitive # pUsername_,
+                            _algfuUserPoolId = pUserPoolId_}
 
 -- | An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.
 algfuNextToken :: Lens' AdminListGroupsForUser (Maybe Text)
@@ -98,6 +98,13 @@ algfuUsername = lens _algfuUsername (\ s a -> s{_algfuUsername = a}) . _Sensitiv
 -- | The user pool ID for the user pool.
 algfuUserPoolId :: Lens' AdminListGroupsForUser Text
 algfuUserPoolId = lens _algfuUserPoolId (\ s a -> s{_algfuUserPoolId = a})
+
+instance AWSPager AdminListGroupsForUser where
+        page rq rs
+          | stop (rs ^. algfursNextToken) = Nothing
+          | stop (rs ^. algfursGroups) = Nothing
+          | otherwise =
+            Just $ rq & algfuNextToken .~ rs ^. algfursNextToken
 
 instance AWSRequest AdminListGroupsForUser where
         type Rs AdminListGroupsForUser =
@@ -140,12 +147,18 @@ instance ToQuery AdminListGroupsForUser where
         toQuery = const mempty
 
 -- | /See:/ 'adminListGroupsForUserResponse' smart constructor.
-data AdminListGroupsForUserResponse = AdminListGroupsForUserResponse'
-  { _algfursGroups         :: !(Maybe [GroupType])
-  , _algfursNextToken      :: !(Maybe Text)
-  , _algfursResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data AdminListGroupsForUserResponse = AdminListGroupsForUserResponse'{_algfursGroups
+                                                                      ::
+                                                                      !(Maybe
+                                                                          [GroupType]),
+                                                                      _algfursNextToken
+                                                                      ::
+                                                                      !(Maybe
+                                                                          Text),
+                                                                      _algfursResponseStatus
+                                                                      :: !Int}
+                                        deriving (Eq, Read, Show, Data,
+                                                  Typeable, Generic)
 
 -- | Creates a value of 'AdminListGroupsForUserResponse' with the minimum fields required to make a request.
 --
@@ -159,13 +172,11 @@ data AdminListGroupsForUserResponse = AdminListGroupsForUserResponse'
 adminListGroupsForUserResponse
     :: Int -- ^ 'algfursResponseStatus'
     -> AdminListGroupsForUserResponse
-adminListGroupsForUserResponse pResponseStatus_ =
-  AdminListGroupsForUserResponse'
-    { _algfursGroups = Nothing
-    , _algfursNextToken = Nothing
-    , _algfursResponseStatus = pResponseStatus_
-    }
-
+adminListGroupsForUserResponse pResponseStatus_
+  = AdminListGroupsForUserResponse'{_algfursGroups =
+                                      Nothing,
+                                    _algfursNextToken = Nothing,
+                                    _algfursResponseStatus = pResponseStatus_}
 
 -- | The groups that the user belongs to.
 algfursGroups :: Lens' AdminListGroupsForUserResponse [GroupType]

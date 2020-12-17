@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Returns the content of the specified pronunciation lexicon stored in an AWS Region. For more information, see <http://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html Managing Lexicons> .
+-- Returns the content of the specified pronunciation lexicon stored in an AWS Region. For more information, see <https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html Managing Lexicons> .
 --
 --
 module Network.AWS.Polly.GetLexicon
@@ -40,16 +40,13 @@ module Network.AWS.Polly.GetLexicon
 
 import Network.AWS.Lens
 import Network.AWS.Polly.Types
-import Network.AWS.Polly.Types.Product
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'getLexicon' smart constructor.
-newtype GetLexicon = GetLexicon'
-  { _glName :: Sensitive Text
-  } deriving (Eq, Show, Data, Typeable, Generic)
-
+newtype GetLexicon = GetLexicon'{_glName :: Text}
+                       deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetLexicon' with the minimum fields required to make a request.
 --
@@ -59,12 +56,11 @@ newtype GetLexicon = GetLexicon'
 getLexicon
     :: Text -- ^ 'glName'
     -> GetLexicon
-getLexicon pName_ = GetLexicon' {_glName = _Sensitive # pName_}
-
+getLexicon pName_ = GetLexicon'{_glName = pName_}
 
 -- | Name of the lexicon.
 glName :: Lens' GetLexicon Text
-glName = lens _glName (\ s a -> s{_glName = a}) . _Sensitive
+glName = lens _glName (\ s a -> s{_glName = a})
 
 instance AWSRequest GetLexicon where
         type Rs GetLexicon = GetLexiconResponse
@@ -91,12 +87,11 @@ instance ToQuery GetLexicon where
         toQuery = const mempty
 
 -- | /See:/ 'getLexiconResponse' smart constructor.
-data GetLexiconResponse = GetLexiconResponse'
-  { _glrsLexiconAttributes :: !(Maybe LexiconAttributes)
-  , _glrsLexicon           :: !(Maybe Lexicon)
-  , _glrsResponseStatus    :: !Int
-  } deriving (Eq, Show, Data, Typeable, Generic)
-
+data GetLexiconResponse = GetLexiconResponse'{_glrsLexiconAttributes
+                                              :: !(Maybe LexiconAttributes),
+                                              _glrsLexicon :: !(Maybe Lexicon),
+                                              _glrsResponseStatus :: !Int}
+                            deriving (Eq, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetLexiconResponse' with the minimum fields required to make a request.
 --
@@ -104,25 +99,23 @@ data GetLexiconResponse = GetLexiconResponse'
 --
 -- * 'glrsLexiconAttributes' - Metadata of the lexicon, including phonetic alphabetic used, language code, lexicon ARN, number of lexemes defined in the lexicon, and size of lexicon in bytes.
 --
--- * 'glrsLexicon' - Lexicon object that provides name and the string content of the lexicon.
+-- * 'glrsLexicon' - Lexicon object that provides name and the string content of the lexicon. 
 --
 -- * 'glrsResponseStatus' - -- | The response status code.
 getLexiconResponse
     :: Int -- ^ 'glrsResponseStatus'
     -> GetLexiconResponse
-getLexiconResponse pResponseStatus_ =
-  GetLexiconResponse'
-    { _glrsLexiconAttributes = Nothing
-    , _glrsLexicon = Nothing
-    , _glrsResponseStatus = pResponseStatus_
-    }
-
+getLexiconResponse pResponseStatus_
+  = GetLexiconResponse'{_glrsLexiconAttributes =
+                          Nothing,
+                        _glrsLexicon = Nothing,
+                        _glrsResponseStatus = pResponseStatus_}
 
 -- | Metadata of the lexicon, including phonetic alphabetic used, language code, lexicon ARN, number of lexemes defined in the lexicon, and size of lexicon in bytes.
 glrsLexiconAttributes :: Lens' GetLexiconResponse (Maybe LexiconAttributes)
 glrsLexiconAttributes = lens _glrsLexiconAttributes (\ s a -> s{_glrsLexiconAttributes = a})
 
--- | Lexicon object that provides name and the string content of the lexicon.
+-- | Lexicon object that provides name and the string content of the lexicon. 
 glrsLexicon :: Lens' GetLexiconResponse (Maybe Lexicon)
 glrsLexicon = lens _glrsLexicon (\ s a -> s{_glrsLexicon = a})
 

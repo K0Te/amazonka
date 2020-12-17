@@ -14,11 +14,11 @@
 module Test.AWS.Gen.CloudWatchLogs where
 
 import Data.Proxy
-import Network.AWS.CloudWatchLogs
-import Test.AWS.CloudWatchLogs.Internal
 import Test.AWS.Fixture
 import Test.AWS.Prelude
 import Test.Tasty
+import Network.AWS.CloudWatchLogs
+import Test.AWS.CloudWatchLogs.Internal
 
 -- Auto-generated: the actual test selection needs to be manually placed into
 -- the top-level so that real test data can be incrementally added.
@@ -28,11 +28,20 @@ import Test.Tasty
 -- fixtures :: TestTree
 -- fixtures =
 --     [ testGroup "request"
---         [ requestDescribeDestinations $
+--         [ requestGetLogGroupFields $
+--             getLogGroupFields
+--
+--         , requestGetLogRecord $
+--             getLogRecord
+--
+--         , requestDescribeDestinations $
 --             describeDestinations
 --
 --         , requestUntagLogGroup $
 --             untagLogGroup
+--
+--         , requestStopQuery $
+--             stopQuery
 --
 --         , requestCreateExportTask $
 --             createExportTask
@@ -58,14 +67,26 @@ import Test.Tasty
 --         , requestFilterLogEvents $
 --             filterLogEvents
 --
+--         , requestDeleteQueryDefinition $
+--             deleteQueryDefinition
+--
+--         , requestPutQueryDefinition $
+--             putQueryDefinition
+--
 --         , requestTagLogGroup $
 --             tagLogGroup
 --
 --         , requestDescribeResourcePolicies $
 --             describeResourcePolicies
 --
+--         , requestDescribeQueryDefinitions $
+--             describeQueryDefinitions
+--
 --         , requestDeleteLogStream $
 --             deleteLogStream
+--
+--         , requestDescribeQueries $
+--             describeQueries
 --
 --         , requestCreateLogStream $
 --             createLogStream
@@ -81,6 +102,9 @@ import Test.Tasty
 --
 --         , requestPutSubscriptionFilter $
 --             putSubscriptionFilter
+--
+--         , requestStartQuery $
+--             startQuery
 --
 --         , requestDeleteLogGroup $
 --             deleteLogGroup
@@ -124,17 +148,29 @@ import Test.Tasty
 --         , requestAssociateKMSKey $
 --             associateKMSKey
 --
+--         , requestGetQueryResults $
+--             getQueryResults
+--
 --         , requestDescribeLogStreams $
 --             describeLogStreams
 --
 --           ]
 
 --     , testGroup "response"
---         [ responseDescribeDestinations $
+--         [ responseGetLogGroupFields $
+--             getLogGroupFieldsResponse
+--
+--         , responseGetLogRecord $
+--             getLogRecordResponse
+--
+--         , responseDescribeDestinations $
 --             describeDestinationsResponse
 --
 --         , responseUntagLogGroup $
 --             untagLogGroupResponse
+--
+--         , responseStopQuery $
+--             stopQueryResponse
 --
 --         , responseCreateExportTask $
 --             createExportTaskResponse
@@ -160,14 +196,26 @@ import Test.Tasty
 --         , responseFilterLogEvents $
 --             filterLogEventsResponse
 --
+--         , responseDeleteQueryDefinition $
+--             deleteQueryDefinitionResponse
+--
+--         , responsePutQueryDefinition $
+--             putQueryDefinitionResponse
+--
 --         , responseTagLogGroup $
 --             tagLogGroupResponse
 --
 --         , responseDescribeResourcePolicies $
 --             describeResourcePoliciesResponse
 --
+--         , responseDescribeQueryDefinitions $
+--             describeQueryDefinitionsResponse
+--
 --         , responseDeleteLogStream $
 --             deleteLogStreamResponse
+--
+--         , responseDescribeQueries $
+--             describeQueriesResponse
 --
 --         , responseCreateLogStream $
 --             createLogStreamResponse
@@ -183,6 +231,9 @@ import Test.Tasty
 --
 --         , responsePutSubscriptionFilter $
 --             putSubscriptionFilterResponse
+--
+--         , responseStartQuery $
+--             startQueryResponse
 --
 --         , responseDeleteLogGroup $
 --             deleteLogGroupResponse
@@ -226,6 +277,9 @@ import Test.Tasty
 --         , responseAssociateKMSKey $
 --             associateKMSKeyResponse
 --
+--         , responseGetQueryResults $
+--             getQueryResultsResponse
+--
 --         , responseDescribeLogStreams $
 --             describeLogStreamsResponse
 --
@@ -233,6 +287,16 @@ import Test.Tasty
 --     ]
 
 -- Requests
+
+requestGetLogGroupFields :: GetLogGroupFields -> TestTree
+requestGetLogGroupFields = req
+    "GetLogGroupFields"
+    "fixture/GetLogGroupFields.yaml"
+
+requestGetLogRecord :: GetLogRecord -> TestTree
+requestGetLogRecord = req
+    "GetLogRecord"
+    "fixture/GetLogRecord.yaml"
 
 requestDescribeDestinations :: DescribeDestinations -> TestTree
 requestDescribeDestinations = req
@@ -243,6 +307,11 @@ requestUntagLogGroup :: UntagLogGroup -> TestTree
 requestUntagLogGroup = req
     "UntagLogGroup"
     "fixture/UntagLogGroup.yaml"
+
+requestStopQuery :: StopQuery -> TestTree
+requestStopQuery = req
+    "StopQuery"
+    "fixture/StopQuery.yaml"
 
 requestCreateExportTask :: CreateExportTask -> TestTree
 requestCreateExportTask = req
@@ -284,6 +353,16 @@ requestFilterLogEvents = req
     "FilterLogEvents"
     "fixture/FilterLogEvents.yaml"
 
+requestDeleteQueryDefinition :: DeleteQueryDefinition -> TestTree
+requestDeleteQueryDefinition = req
+    "DeleteQueryDefinition"
+    "fixture/DeleteQueryDefinition.yaml"
+
+requestPutQueryDefinition :: PutQueryDefinition -> TestTree
+requestPutQueryDefinition = req
+    "PutQueryDefinition"
+    "fixture/PutQueryDefinition.yaml"
+
 requestTagLogGroup :: TagLogGroup -> TestTree
 requestTagLogGroup = req
     "TagLogGroup"
@@ -294,10 +373,20 @@ requestDescribeResourcePolicies = req
     "DescribeResourcePolicies"
     "fixture/DescribeResourcePolicies.yaml"
 
+requestDescribeQueryDefinitions :: DescribeQueryDefinitions -> TestTree
+requestDescribeQueryDefinitions = req
+    "DescribeQueryDefinitions"
+    "fixture/DescribeQueryDefinitions.yaml"
+
 requestDeleteLogStream :: DeleteLogStream -> TestTree
 requestDeleteLogStream = req
     "DeleteLogStream"
     "fixture/DeleteLogStream.yaml"
+
+requestDescribeQueries :: DescribeQueries -> TestTree
+requestDescribeQueries = req
+    "DescribeQueries"
+    "fixture/DescribeQueries.yaml"
 
 requestCreateLogStream :: CreateLogStream -> TestTree
 requestCreateLogStream = req
@@ -323,6 +412,11 @@ requestPutSubscriptionFilter :: PutSubscriptionFilter -> TestTree
 requestPutSubscriptionFilter = req
     "PutSubscriptionFilter"
     "fixture/PutSubscriptionFilter.yaml"
+
+requestStartQuery :: StartQuery -> TestTree
+requestStartQuery = req
+    "StartQuery"
+    "fixture/StartQuery.yaml"
 
 requestDeleteLogGroup :: DeleteLogGroup -> TestTree
 requestDeleteLogGroup = req
@@ -394,12 +488,31 @@ requestAssociateKMSKey = req
     "AssociateKMSKey"
     "fixture/AssociateKMSKey.yaml"
 
+requestGetQueryResults :: GetQueryResults -> TestTree
+requestGetQueryResults = req
+    "GetQueryResults"
+    "fixture/GetQueryResults.yaml"
+
 requestDescribeLogStreams :: DescribeLogStreams -> TestTree
 requestDescribeLogStreams = req
     "DescribeLogStreams"
     "fixture/DescribeLogStreams.yaml"
 
 -- Responses
+
+responseGetLogGroupFields :: GetLogGroupFieldsResponse -> TestTree
+responseGetLogGroupFields = res
+    "GetLogGroupFieldsResponse"
+    "fixture/GetLogGroupFieldsResponse.proto"
+    cloudWatchLogs
+    (Proxy :: Proxy GetLogGroupFields)
+
+responseGetLogRecord :: GetLogRecordResponse -> TestTree
+responseGetLogRecord = res
+    "GetLogRecordResponse"
+    "fixture/GetLogRecordResponse.proto"
+    cloudWatchLogs
+    (Proxy :: Proxy GetLogRecord)
 
 responseDescribeDestinations :: DescribeDestinationsResponse -> TestTree
 responseDescribeDestinations = res
@@ -414,6 +527,13 @@ responseUntagLogGroup = res
     "fixture/UntagLogGroupResponse.proto"
     cloudWatchLogs
     (Proxy :: Proxy UntagLogGroup)
+
+responseStopQuery :: StopQueryResponse -> TestTree
+responseStopQuery = res
+    "StopQueryResponse"
+    "fixture/StopQueryResponse.proto"
+    cloudWatchLogs
+    (Proxy :: Proxy StopQuery)
 
 responseCreateExportTask :: CreateExportTaskResponse -> TestTree
 responseCreateExportTask = res
@@ -471,6 +591,20 @@ responseFilterLogEvents = res
     cloudWatchLogs
     (Proxy :: Proxy FilterLogEvents)
 
+responseDeleteQueryDefinition :: DeleteQueryDefinitionResponse -> TestTree
+responseDeleteQueryDefinition = res
+    "DeleteQueryDefinitionResponse"
+    "fixture/DeleteQueryDefinitionResponse.proto"
+    cloudWatchLogs
+    (Proxy :: Proxy DeleteQueryDefinition)
+
+responsePutQueryDefinition :: PutQueryDefinitionResponse -> TestTree
+responsePutQueryDefinition = res
+    "PutQueryDefinitionResponse"
+    "fixture/PutQueryDefinitionResponse.proto"
+    cloudWatchLogs
+    (Proxy :: Proxy PutQueryDefinition)
+
 responseTagLogGroup :: TagLogGroupResponse -> TestTree
 responseTagLogGroup = res
     "TagLogGroupResponse"
@@ -485,12 +619,26 @@ responseDescribeResourcePolicies = res
     cloudWatchLogs
     (Proxy :: Proxy DescribeResourcePolicies)
 
+responseDescribeQueryDefinitions :: DescribeQueryDefinitionsResponse -> TestTree
+responseDescribeQueryDefinitions = res
+    "DescribeQueryDefinitionsResponse"
+    "fixture/DescribeQueryDefinitionsResponse.proto"
+    cloudWatchLogs
+    (Proxy :: Proxy DescribeQueryDefinitions)
+
 responseDeleteLogStream :: DeleteLogStreamResponse -> TestTree
 responseDeleteLogStream = res
     "DeleteLogStreamResponse"
     "fixture/DeleteLogStreamResponse.proto"
     cloudWatchLogs
     (Proxy :: Proxy DeleteLogStream)
+
+responseDescribeQueries :: DescribeQueriesResponse -> TestTree
+responseDescribeQueries = res
+    "DescribeQueriesResponse"
+    "fixture/DescribeQueriesResponse.proto"
+    cloudWatchLogs
+    (Proxy :: Proxy DescribeQueries)
 
 responseCreateLogStream :: CreateLogStreamResponse -> TestTree
 responseCreateLogStream = res
@@ -526,6 +674,13 @@ responsePutSubscriptionFilter = res
     "fixture/PutSubscriptionFilterResponse.proto"
     cloudWatchLogs
     (Proxy :: Proxy PutSubscriptionFilter)
+
+responseStartQuery :: StartQueryResponse -> TestTree
+responseStartQuery = res
+    "StartQueryResponse"
+    "fixture/StartQueryResponse.proto"
+    cloudWatchLogs
+    (Proxy :: Proxy StartQuery)
 
 responseDeleteLogGroup :: DeleteLogGroupResponse -> TestTree
 responseDeleteLogGroup = res
@@ -624,6 +779,13 @@ responseAssociateKMSKey = res
     "fixture/AssociateKMSKeyResponse.proto"
     cloudWatchLogs
     (Proxy :: Proxy AssociateKMSKey)
+
+responseGetQueryResults :: GetQueryResultsResponse -> TestTree
+responseGetQueryResults = res
+    "GetQueryResultsResponse"
+    "fixture/GetQueryResultsResponse.proto"
+    cloudWatchLogs
+    (Proxy :: Proxy GetQueryResults)
 
 responseDescribeLogStreams :: DescribeLogStreamsResponse -> TestTree
 responseDescribeLogStreams = res

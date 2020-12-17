@@ -37,7 +37,6 @@ module Network.AWS.CloudTrail.DeleteTrail
     ) where
 
 import Network.AWS.CloudTrail.Types
-import Network.AWS.CloudTrail.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -48,23 +47,20 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'deleteTrail' smart constructor.
-newtype DeleteTrail = DeleteTrail'
-  { _dtName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteTrail = DeleteTrail'{_dtName :: Text}
+                        deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteTrail' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'dtName' - Specifies the name or the CloudTrail ARN of the trail to be deleted. The format of a trail ARN is: @arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail@
+-- * 'dtName' - Specifies the name or the CloudTrail ARN of the trail to be deleted. The format of a trail ARN is: @arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail@ 
 deleteTrail
     :: Text -- ^ 'dtName'
     -> DeleteTrail
-deleteTrail pName_ = DeleteTrail' {_dtName = pName_}
+deleteTrail pName_ = DeleteTrail'{_dtName = pName_}
 
-
--- | Specifies the name or the CloudTrail ARN of the trail to be deleted. The format of a trail ARN is: @arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail@
+-- | Specifies the name or the CloudTrail ARN of the trail to be deleted. The format of a trail ARN is: @arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail@ 
 dtName :: Lens' DeleteTrail Text
 dtName = lens _dtName (\ s a -> s{_dtName = a})
 
@@ -105,10 +101,10 @@ instance ToQuery DeleteTrail where
 --
 --
 -- /See:/ 'deleteTrailResponse' smart constructor.
-newtype DeleteTrailResponse = DeleteTrailResponse'
-  { _drsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteTrailResponse = DeleteTrailResponse'{_drsResponseStatus
+                                                   :: Int}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'DeleteTrailResponse' with the minimum fields required to make a request.
 --
@@ -118,9 +114,9 @@ newtype DeleteTrailResponse = DeleteTrailResponse'
 deleteTrailResponse
     :: Int -- ^ 'drsResponseStatus'
     -> DeleteTrailResponse
-deleteTrailResponse pResponseStatus_ =
-  DeleteTrailResponse' {_drsResponseStatus = pResponseStatus_}
-
+deleteTrailResponse pResponseStatus_
+  = DeleteTrailResponse'{_drsResponseStatus =
+                           pResponseStatus_}
 
 -- | -- | The response status code.
 drsResponseStatus :: Lens' DeleteTrailResponse Int

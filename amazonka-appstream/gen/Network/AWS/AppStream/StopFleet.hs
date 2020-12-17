@@ -37,17 +37,14 @@ module Network.AWS.AppStream.StopFleet
     ) where
 
 import Network.AWS.AppStream.Types
-import Network.AWS.AppStream.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'stopFleet' smart constructor.
-newtype StopFleet = StopFleet'
-  { _sfName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype StopFleet = StopFleet'{_sfName :: Text}
+                      deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'StopFleet' with the minimum fields required to make a request.
 --
@@ -57,8 +54,7 @@ newtype StopFleet = StopFleet'
 stopFleet
     :: Text -- ^ 'sfName'
     -> StopFleet
-stopFleet pName_ = StopFleet' {_sfName = pName_}
-
+stopFleet pName_ = StopFleet'{_sfName = pName_}
 
 -- | The name of the fleet.
 sfName :: Lens' StopFleet Text
@@ -96,10 +92,9 @@ instance ToQuery StopFleet where
         toQuery = const mempty
 
 -- | /See:/ 'stopFleetResponse' smart constructor.
-newtype StopFleetResponse = StopFleetResponse'
-  { _storsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype StopFleetResponse = StopFleetResponse'{_storsResponseStatus
+                                               :: Int}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'StopFleetResponse' with the minimum fields required to make a request.
 --
@@ -109,9 +104,9 @@ newtype StopFleetResponse = StopFleetResponse'
 stopFleetResponse
     :: Int -- ^ 'storsResponseStatus'
     -> StopFleetResponse
-stopFleetResponse pResponseStatus_ =
-  StopFleetResponse' {_storsResponseStatus = pResponseStatus_}
-
+stopFleetResponse pResponseStatus_
+  = StopFleetResponse'{_storsResponseStatus =
+                         pResponseStatus_}
 
 -- | -- | The response status code.
 storsResponseStatus :: Lens' StopFleetResponse Int

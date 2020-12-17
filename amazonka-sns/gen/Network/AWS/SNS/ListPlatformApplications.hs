@@ -18,8 +18,10 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Lists the platform application objects for the supported push notification services, such as APNS and GCM. The results for @ListPlatformApplications@ are paginated and return a limited list of applications, up to 100. If additional records are available after the first page results, then a NextToken string will be returned. To receive the next page, you call @ListPlatformApplications@ using the NextToken string received from the previous call. When there are no more records to return, NextToken will be null. For more information, see <http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html Using Amazon SNS Mobile Push Notifications> .
+-- Lists the platform application objects for the supported push notification services, such as APNS and GCM (Firebase Cloud Messaging). The results for @ListPlatformApplications@ are paginated and return a limited list of applications, up to 100. If additional records are available after the first page results, then a NextToken string will be returned. To receive the next page, you call @ListPlatformApplications@ using the NextToken string received from the previous call. When there are no more records to return, @NextToken@ will be null. For more information, see <https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html Using Amazon SNS Mobile Push Notifications> . 
 --
+--
+-- This action is throttled at 15 transactions per second (TPS).
 --
 --
 -- This operation returns paginated results.
@@ -46,17 +48,16 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.SNS.Types
-import Network.AWS.SNS.Types.Product
 
 -- | Input for ListPlatformApplications action.
 --
 --
 --
 -- /See:/ 'listPlatformApplications' smart constructor.
-newtype ListPlatformApplications = ListPlatformApplications'
-  { _lpaNextToken :: Maybe Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype ListPlatformApplications = ListPlatformApplications'{_lpaNextToken
+                                                             :: Maybe Text}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'ListPlatformApplications' with the minimum fields required to make a request.
 --
@@ -65,8 +66,8 @@ newtype ListPlatformApplications = ListPlatformApplications'
 -- * 'lpaNextToken' - NextToken string is used when calling ListPlatformApplications action to retrieve additional records that are available after the first page results.
 listPlatformApplications
     :: ListPlatformApplications
-listPlatformApplications = ListPlatformApplications' {_lpaNextToken = Nothing}
-
+listPlatformApplications
+  = ListPlatformApplications'{_lpaNextToken = Nothing}
 
 -- | NextToken string is used when calling ListPlatformApplications action to retrieve additional records that are available after the first page results.
 lpaNextToken :: Lens' ListPlatformApplications (Maybe Text)
@@ -115,12 +116,19 @@ instance ToQuery ListPlatformApplications where
 --
 --
 -- /See:/ 'listPlatformApplicationsResponse' smart constructor.
-data ListPlatformApplicationsResponse = ListPlatformApplicationsResponse'
-  { _lparsPlatformApplications :: !(Maybe [PlatformApplication])
-  , _lparsNextToken            :: !(Maybe Text)
-  , _lparsResponseStatus       :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListPlatformApplicationsResponse = ListPlatformApplicationsResponse'{_lparsPlatformApplications
+                                                                          ::
+                                                                          !(Maybe
+                                                                              [PlatformApplication]),
+                                                                          _lparsNextToken
+                                                                          ::
+                                                                          !(Maybe
+                                                                              Text),
+                                                                          _lparsResponseStatus
+                                                                          ::
+                                                                          !Int}
+                                          deriving (Eq, Read, Show, Data,
+                                                    Typeable, Generic)
 
 -- | Creates a value of 'ListPlatformApplicationsResponse' with the minimum fields required to make a request.
 --
@@ -134,13 +142,11 @@ data ListPlatformApplicationsResponse = ListPlatformApplicationsResponse'
 listPlatformApplicationsResponse
     :: Int -- ^ 'lparsResponseStatus'
     -> ListPlatformApplicationsResponse
-listPlatformApplicationsResponse pResponseStatus_ =
-  ListPlatformApplicationsResponse'
-    { _lparsPlatformApplications = Nothing
-    , _lparsNextToken = Nothing
-    , _lparsResponseStatus = pResponseStatus_
-    }
-
+listPlatformApplicationsResponse pResponseStatus_
+  = ListPlatformApplicationsResponse'{_lparsPlatformApplications
+                                        = Nothing,
+                                      _lparsNextToken = Nothing,
+                                      _lparsResponseStatus = pResponseStatus_}
 
 -- | Platform applications returned when calling ListPlatformApplications action.
 lparsPlatformApplications :: Lens' ListPlatformApplicationsResponse [PlatformApplication]

@@ -11,7 +11,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
---
+-- 
 --
 --
 module Network.AWS.KinesisVideoMedia
@@ -46,7 +46,7 @@ module Network.AWS.KinesisVideoMedia
     -- * Operations
     -- $operations
 
-    -- ** GetMedia
+    -- ** GetMedia 
     , module Network.AWS.KinesisVideoMedia.GetMedia
 
     -- * Types

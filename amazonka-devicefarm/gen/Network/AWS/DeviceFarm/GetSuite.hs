@@ -38,7 +38,6 @@ module Network.AWS.DeviceFarm.GetSuite
     ) where
 
 import Network.AWS.DeviceFarm.Types
-import Network.AWS.DeviceFarm.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -49,10 +48,8 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'getSuite' smart constructor.
-newtype GetSuite = GetSuite'
-  { _gsArn :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype GetSuite = GetSuite'{_gsArn :: Text}
+                     deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetSuite' with the minimum fields required to make a request.
 --
@@ -62,8 +59,7 @@ newtype GetSuite = GetSuite'
 getSuite
     :: Text -- ^ 'gsArn'
     -> GetSuite
-getSuite pArn_ = GetSuite' {_gsArn = pArn_}
-
+getSuite pArn_ = GetSuite'{_gsArn = pArn_}
 
 -- | The suite's ARN.
 gsArn :: Lens' GetSuite Text
@@ -106,11 +102,10 @@ instance ToQuery GetSuite where
 --
 --
 -- /See:/ 'getSuiteResponse' smart constructor.
-data GetSuiteResponse = GetSuiteResponse'
-  { _gsrsSuite          :: !(Maybe Suite)
-  , _gsrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetSuiteResponse = GetSuiteResponse'{_gsrsSuite
+                                          :: !(Maybe Suite),
+                                          _gsrsResponseStatus :: !Int}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetSuiteResponse' with the minimum fields required to make a request.
 --
@@ -122,10 +117,9 @@ data GetSuiteResponse = GetSuiteResponse'
 getSuiteResponse
     :: Int -- ^ 'gsrsResponseStatus'
     -> GetSuiteResponse
-getSuiteResponse pResponseStatus_ =
-  GetSuiteResponse'
-    {_gsrsSuite = Nothing, _gsrsResponseStatus = pResponseStatus_}
-
+getSuiteResponse pResponseStatus_
+  = GetSuiteResponse'{_gsrsSuite = Nothing,
+                      _gsrsResponseStatus = pResponseStatus_}
 
 -- | A collection of one or more tests.
 gsrsSuite :: Lens' GetSuiteResponse (Maybe Suite)

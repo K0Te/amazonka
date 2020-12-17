@@ -18,10 +18,10 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Unassigns an assigned Amazon EBS volume. The volume remains registered with the stack. For more information, see <http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html Resource Management> .
+-- Unassigns an assigned Amazon EBS volume. The volume remains registered with the stack. For more information, see <https://docs.aws.amazon.com/opsworks/latest/userguide/resources.html Resource Management> .
 --
 --
--- __Required Permissions__ : To use this action, an IAM user must have a Manage permissions level for the stack, or an attached policy that explicitly grants permissions. For more information on user permissions, see <http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html Managing User Permissions> .
+-- __Required Permissions__ : To use this action, an IAM user must have a Manage permissions level for the stack, or an attached policy that explicitly grants permissions. For more information on user permissions, see <https://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html Managing User Permissions> .
 --
 module Network.AWS.OpsWorks.UnassignVolume
     (
@@ -38,16 +38,14 @@ module Network.AWS.OpsWorks.UnassignVolume
 
 import Network.AWS.Lens
 import Network.AWS.OpsWorks.Types
-import Network.AWS.OpsWorks.Types.Product
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'unassignVolume' smart constructor.
-newtype UnassignVolume = UnassignVolume'
-  { _uvVolumeId :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype UnassignVolume = UnassignVolume'{_uvVolumeId
+                                         :: Text}
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UnassignVolume' with the minimum fields required to make a request.
 --
@@ -57,8 +55,8 @@ newtype UnassignVolume = UnassignVolume'
 unassignVolume
     :: Text -- ^ 'uvVolumeId'
     -> UnassignVolume
-unassignVolume pVolumeId_ = UnassignVolume' {_uvVolumeId = pVolumeId_}
-
+unassignVolume pVolumeId_
+  = UnassignVolume'{_uvVolumeId = pVolumeId_}
 
 -- | The volume ID.
 uvVolumeId :: Lens' UnassignVolume Text
@@ -94,16 +92,14 @@ instance ToQuery UnassignVolume where
         toQuery = const mempty
 
 -- | /See:/ 'unassignVolumeResponse' smart constructor.
-data UnassignVolumeResponse =
-  UnassignVolumeResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UnassignVolumeResponse = UnassignVolumeResponse'
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'UnassignVolumeResponse' with the minimum fields required to make a request.
 --
 unassignVolumeResponse
     :: UnassignVolumeResponse
 unassignVolumeResponse = UnassignVolumeResponse'
-
 
 instance NFData UnassignVolumeResponse where

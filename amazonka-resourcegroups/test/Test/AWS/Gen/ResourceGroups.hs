@@ -14,11 +14,11 @@
 module Test.AWS.Gen.ResourceGroups where
 
 import Data.Proxy
-import Network.AWS.ResourceGroups
 import Test.AWS.Fixture
 import Test.AWS.Prelude
-import Test.AWS.ResourceGroups.Internal
 import Test.Tasty
+import Network.AWS.ResourceGroups
+import Test.AWS.ResourceGroups.Internal
 
 -- Auto-generated: the actual test selection needs to be manually placed into
 -- the top-level so that real test data can be incrementally added.
@@ -36,6 +36,12 @@ import Test.Tasty
 --
 --         , requestTag $
 --             tag
+--
+--         , requestUngroupResources $
+--             ungroupResources
+--
+--         , requestGroupResources $
+--             groupResources
 --
 --         , requestUntag $
 --             untag
@@ -64,6 +70,9 @@ import Test.Tasty
 --         , requestGetGroup $
 --             getGroup
 --
+--         , requestGetGroupConfiguration $
+--             getGroupConfiguration
+--
 --           ]
 
 --     , testGroup "response"
@@ -75,6 +84,12 @@ import Test.Tasty
 --
 --         , responseTag $
 --             tagResponse
+--
+--         , responseUngroupResources $
+--             ungroupResourcesResponse
+--
+--         , responseGroupResources $
+--             groupResourcesResponse
 --
 --         , responseUntag $
 --             untagResponse
@@ -103,6 +118,9 @@ import Test.Tasty
 --         , responseGetGroup $
 --             getGroupResponse
 --
+--         , responseGetGroupConfiguration $
+--             getGroupConfigurationResponse
+--
 --           ]
 --     ]
 
@@ -122,6 +140,16 @@ requestTag :: Tag -> TestTree
 requestTag = req
     "Tag"
     "fixture/Tag.yaml"
+
+requestUngroupResources :: UngroupResources -> TestTree
+requestUngroupResources = req
+    "UngroupResources"
+    "fixture/UngroupResources.yaml"
+
+requestGroupResources :: GroupResources -> TestTree
+requestGroupResources = req
+    "GroupResources"
+    "fixture/GroupResources.yaml"
 
 requestUntag :: Untag -> TestTree
 requestUntag = req
@@ -168,6 +196,11 @@ requestGetGroup = req
     "GetGroup"
     "fixture/GetGroup.yaml"
 
+requestGetGroupConfiguration :: GetGroupConfiguration -> TestTree
+requestGetGroupConfiguration = req
+    "GetGroupConfiguration"
+    "fixture/GetGroupConfiguration.yaml"
+
 -- Responses
 
 responseSearchResources :: SearchResourcesResponse -> TestTree
@@ -190,6 +223,20 @@ responseTag = res
     "fixture/TagResponse.proto"
     resourceGroups
     (Proxy :: Proxy Tag)
+
+responseUngroupResources :: UngroupResourcesResponse -> TestTree
+responseUngroupResources = res
+    "UngroupResourcesResponse"
+    "fixture/UngroupResourcesResponse.proto"
+    resourceGroups
+    (Proxy :: Proxy UngroupResources)
+
+responseGroupResources :: GroupResourcesResponse -> TestTree
+responseGroupResources = res
+    "GroupResourcesResponse"
+    "fixture/GroupResourcesResponse.proto"
+    resourceGroups
+    (Proxy :: Proxy GroupResources)
 
 responseUntag :: UntagResponse -> TestTree
 responseUntag = res
@@ -253,3 +300,10 @@ responseGetGroup = res
     "fixture/GetGroupResponse.proto"
     resourceGroups
     (Proxy :: Proxy GetGroup)
+
+responseGetGroupConfiguration :: GetGroupConfigurationResponse -> TestTree
+responseGetGroupConfiguration = res
+    "GetGroupConfigurationResponse"
+    "fixture/GetGroupConfigurationResponse.proto"
+    resourceGroups
+    (Proxy :: Proxy GetGroupConfiguration)

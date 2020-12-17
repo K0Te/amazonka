@@ -48,7 +48,6 @@ module Network.AWS.CloudWatchLogs.DescribeLogStreams
     ) where
 
 import Network.AWS.CloudWatchLogs.Types
-import Network.AWS.CloudWatchLogs.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
@@ -56,27 +55,27 @@ import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'describeLogStreams' smart constructor.
-data DescribeLogStreams = DescribeLogStreams'
-  { _dlssOrderBy             :: !(Maybe OrderBy)
-  , _dlssDescending          :: !(Maybe Bool)
-  , _dlssNextToken           :: !(Maybe Text)
-  , _dlssLogStreamNamePrefix :: !(Maybe Text)
-  , _dlssLimit               :: !(Maybe Nat)
-  , _dlssLogGroupName        :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeLogStreams = DescribeLogStreams'{_dlssOrderBy
+                                              :: !(Maybe OrderBy),
+                                              _dlssDescending :: !(Maybe Bool),
+                                              _dlssNextToken :: !(Maybe Text),
+                                              _dlssLogStreamNamePrefix ::
+                                              !(Maybe Text),
+                                              _dlssLimit :: !(Maybe Nat),
+                                              _dlssLogGroupName :: !Text}
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DescribeLogStreams' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'dlssOrderBy' - If the value is @LogStreamName@ , the results are ordered by log stream name. If the value is @LastEventTime@ , the results are ordered by the event time. The default value is @LogStreamName@ . If you order the results by event time, you cannot specify the @logStreamNamePrefix@ parameter. lastEventTimestamp represents the time of the most recent log event in the log stream in CloudWatch Logs. This number is expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC. lastEventTimeStamp updates on an eventual consistency basis. It typically updates in less than an hour from ingestion, but may take longer in some rare situations.
+-- * 'dlssOrderBy' - If the value is @LogStreamName@ , the results are ordered by log stream name. If the value is @LastEventTime@ , the results are ordered by the event time. The default value is @LogStreamName@ . If you order the results by event time, you cannot specify the @logStreamNamePrefix@ parameter. @lastEventTimeStamp@ represents the time of the most recent log event in the log stream in CloudWatch Logs. This number is expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC. @lastEventTimeStamp@ updates on an eventual consistency basis. It typically updates in less than an hour from ingestion, but in rare situations might take longer.
 --
 -- * 'dlssDescending' - If the value is true, results are returned in descending order. If the value is to false, results are returned in ascending order. The default value is false.
 --
 -- * 'dlssNextToken' - The token for the next set of items to return. (You received this token from a previous call.)
 --
--- * 'dlssLogStreamNamePrefix' - The prefix to match. iIf @orderBy@ is @LastEventTime@ ,you cannot specify this parameter.
+-- * 'dlssLogStreamNamePrefix' - The prefix to match. If @orderBy@ is @LastEventTime@ , you cannot specify this parameter.
 --
 -- * 'dlssLimit' - The maximum number of items returned. If you don't specify a value, the default is up to 50 items.
 --
@@ -84,18 +83,14 @@ data DescribeLogStreams = DescribeLogStreams'
 describeLogStreams
     :: Text -- ^ 'dlssLogGroupName'
     -> DescribeLogStreams
-describeLogStreams pLogGroupName_ =
-  DescribeLogStreams'
-    { _dlssOrderBy = Nothing
-    , _dlssDescending = Nothing
-    , _dlssNextToken = Nothing
-    , _dlssLogStreamNamePrefix = Nothing
-    , _dlssLimit = Nothing
-    , _dlssLogGroupName = pLogGroupName_
-    }
+describeLogStreams pLogGroupName_
+  = DescribeLogStreams'{_dlssOrderBy = Nothing,
+                        _dlssDescending = Nothing, _dlssNextToken = Nothing,
+                        _dlssLogStreamNamePrefix = Nothing,
+                        _dlssLimit = Nothing,
+                        _dlssLogGroupName = pLogGroupName_}
 
-
--- | If the value is @LogStreamName@ , the results are ordered by log stream name. If the value is @LastEventTime@ , the results are ordered by the event time. The default value is @LogStreamName@ . If you order the results by event time, you cannot specify the @logStreamNamePrefix@ parameter. lastEventTimestamp represents the time of the most recent log event in the log stream in CloudWatch Logs. This number is expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC. lastEventTimeStamp updates on an eventual consistency basis. It typically updates in less than an hour from ingestion, but may take longer in some rare situations.
+-- | If the value is @LogStreamName@ , the results are ordered by log stream name. If the value is @LastEventTime@ , the results are ordered by the event time. The default value is @LogStreamName@ . If you order the results by event time, you cannot specify the @logStreamNamePrefix@ parameter. @lastEventTimeStamp@ represents the time of the most recent log event in the log stream in CloudWatch Logs. This number is expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC. @lastEventTimeStamp@ updates on an eventual consistency basis. It typically updates in less than an hour from ingestion, but in rare situations might take longer.
 dlssOrderBy :: Lens' DescribeLogStreams (Maybe OrderBy)
 dlssOrderBy = lens _dlssOrderBy (\ s a -> s{_dlssOrderBy = a})
 
@@ -107,7 +102,7 @@ dlssDescending = lens _dlssDescending (\ s a -> s{_dlssDescending = a})
 dlssNextToken :: Lens' DescribeLogStreams (Maybe Text)
 dlssNextToken = lens _dlssNextToken (\ s a -> s{_dlssNextToken = a})
 
--- | The prefix to match. iIf @orderBy@ is @LastEventTime@ ,you cannot specify this parameter.
+-- | The prefix to match. If @orderBy@ is @LastEventTime@ , you cannot specify this parameter.
 dlssLogStreamNamePrefix :: Lens' DescribeLogStreams (Maybe Text)
 dlssLogStreamNamePrefix = lens _dlssLogStreamNamePrefix (\ s a -> s{_dlssLogStreamNamePrefix = a})
 
@@ -170,12 +165,16 @@ instance ToQuery DescribeLogStreams where
         toQuery = const mempty
 
 -- | /See:/ 'describeLogStreamsResponse' smart constructor.
-data DescribeLogStreamsResponse = DescribeLogStreamsResponse'
-  { _dlsrsNextToken      :: !(Maybe Text)
-  , _dlsrsLogStreams     :: !(Maybe [LogStream])
-  , _dlsrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeLogStreamsResponse = DescribeLogStreamsResponse'{_dlsrsNextToken
+                                                              :: !(Maybe Text),
+                                                              _dlsrsLogStreams
+                                                              ::
+                                                              !(Maybe
+                                                                  [LogStream]),
+                                                              _dlsrsResponseStatus
+                                                              :: !Int}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'DescribeLogStreamsResponse' with the minimum fields required to make a request.
 --
@@ -189,13 +188,11 @@ data DescribeLogStreamsResponse = DescribeLogStreamsResponse'
 describeLogStreamsResponse
     :: Int -- ^ 'dlsrsResponseStatus'
     -> DescribeLogStreamsResponse
-describeLogStreamsResponse pResponseStatus_ =
-  DescribeLogStreamsResponse'
-    { _dlsrsNextToken = Nothing
-    , _dlsrsLogStreams = Nothing
-    , _dlsrsResponseStatus = pResponseStatus_
-    }
-
+describeLogStreamsResponse pResponseStatus_
+  = DescribeLogStreamsResponse'{_dlsrsNextToken =
+                                  Nothing,
+                                _dlsrsLogStreams = Nothing,
+                                _dlsrsResponseStatus = pResponseStatus_}
 
 -- | Undocumented member.
 dlsrsNextToken :: Lens' DescribeLogStreamsResponse (Maybe Text)

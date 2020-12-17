@@ -39,7 +39,6 @@ module Network.AWS.APIGateway.UpdateDocumentationPart
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -50,12 +49,15 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'updateDocumentationPart' smart constructor.
-data UpdateDocumentationPart = UpdateDocumentationPart'
-  { _udpPatchOperations     :: !(Maybe [PatchOperation])
-  , _udpRestAPIId           :: !Text
-  , _udpDocumentationPartId :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateDocumentationPart = UpdateDocumentationPart'{_udpPatchOperations
+                                                        ::
+                                                        !(Maybe
+                                                            [PatchOperation]),
+                                                        _udpRestAPIId :: !Text,
+                                                        _udpDocumentationPartId
+                                                        :: !Text}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'UpdateDocumentationPart' with the minimum fields required to make a request.
 --
@@ -70,13 +72,12 @@ updateDocumentationPart
     :: Text -- ^ 'udpRestAPIId'
     -> Text -- ^ 'udpDocumentationPartId'
     -> UpdateDocumentationPart
-updateDocumentationPart pRestAPIId_ pDocumentationPartId_ =
-  UpdateDocumentationPart'
-    { _udpPatchOperations = Nothing
-    , _udpRestAPIId = pRestAPIId_
-    , _udpDocumentationPartId = pDocumentationPartId_
-    }
-
+updateDocumentationPart pRestAPIId_
+  pDocumentationPartId_
+  = UpdateDocumentationPart'{_udpPatchOperations =
+                               Nothing,
+                             _udpRestAPIId = pRestAPIId_,
+                             _udpDocumentationPartId = pDocumentationPartId_}
 
 -- | A list of update operations to be applied to the specified resource and in the order specified in this list.
 udpPatchOperations :: Lens' UpdateDocumentationPart [PatchOperation]

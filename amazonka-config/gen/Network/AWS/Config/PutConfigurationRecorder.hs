@@ -37,7 +37,6 @@ module Network.AWS.Config.PutConfigurationRecorder
     ) where
 
 import Network.AWS.Config.Types
-import Network.AWS.Config.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -48,10 +47,11 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'putConfigurationRecorder' smart constructor.
-newtype PutConfigurationRecorder = PutConfigurationRecorder'
-  { _pcrConfigurationRecorder :: ConfigurationRecorder
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype PutConfigurationRecorder = PutConfigurationRecorder'{_pcrConfigurationRecorder
+                                                             ::
+                                                             ConfigurationRecorder}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'PutConfigurationRecorder' with the minimum fields required to make a request.
 --
@@ -61,10 +61,9 @@ newtype PutConfigurationRecorder = PutConfigurationRecorder'
 putConfigurationRecorder
     :: ConfigurationRecorder -- ^ 'pcrConfigurationRecorder'
     -> PutConfigurationRecorder
-putConfigurationRecorder pConfigurationRecorder_ =
-  PutConfigurationRecorder'
-    {_pcrConfigurationRecorder = pConfigurationRecorder_}
-
+putConfigurationRecorder pConfigurationRecorder_
+  = PutConfigurationRecorder'{_pcrConfigurationRecorder
+                                = pConfigurationRecorder_}
 
 -- | The configuration recorder object that records each configuration change made to the resources.
 pcrConfigurationRecorder :: Lens' PutConfigurationRecorder ConfigurationRecorder
@@ -106,17 +105,16 @@ instance ToQuery PutConfigurationRecorder where
         toQuery = const mempty
 
 -- | /See:/ 'putConfigurationRecorderResponse' smart constructor.
-data PutConfigurationRecorderResponse =
-  PutConfigurationRecorderResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data PutConfigurationRecorderResponse = PutConfigurationRecorderResponse'
+                                          deriving (Eq, Read, Show, Data,
+                                                    Typeable, Generic)
 
 -- | Creates a value of 'PutConfigurationRecorderResponse' with the minimum fields required to make a request.
 --
 putConfigurationRecorderResponse
     :: PutConfigurationRecorderResponse
-putConfigurationRecorderResponse = PutConfigurationRecorderResponse'
-
+putConfigurationRecorderResponse
+  = PutConfigurationRecorderResponse'
 
 instance NFData PutConfigurationRecorderResponse
          where

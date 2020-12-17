@@ -36,7 +36,6 @@ module Network.AWS.CognitoIdentityProvider.DeleteUserPoolClient
     ) where
 
 import Network.AWS.CognitoIdentityProvider.Types
-import Network.AWS.CognitoIdentityProvider.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -47,11 +46,11 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'deleteUserPoolClient' smart constructor.
-data DeleteUserPoolClient = DeleteUserPoolClient'
-  { _dupcUserPoolId :: !Text
-  , _dupcClientId   :: !(Sensitive Text)
-  } deriving (Eq, Show, Data, Typeable, Generic)
-
+data DeleteUserPoolClient = DeleteUserPoolClient'{_dupcUserPoolId
+                                                  :: !Text,
+                                                  _dupcClientId ::
+                                                  !(Sensitive Text)}
+                              deriving (Eq, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteUserPoolClient' with the minimum fields required to make a request.
 --
@@ -64,10 +63,10 @@ deleteUserPoolClient
     :: Text -- ^ 'dupcUserPoolId'
     -> Text -- ^ 'dupcClientId'
     -> DeleteUserPoolClient
-deleteUserPoolClient pUserPoolId_ pClientId_ =
-  DeleteUserPoolClient'
-    {_dupcUserPoolId = pUserPoolId_, _dupcClientId = _Sensitive # pClientId_}
-
+deleteUserPoolClient pUserPoolId_ pClientId_
+  = DeleteUserPoolClient'{_dupcUserPoolId =
+                            pUserPoolId_,
+                          _dupcClientId = _Sensitive # pClientId_}
 
 -- | The user pool ID for the user pool where you want to delete the client.
 dupcUserPoolId :: Lens' DeleteUserPoolClient Text
@@ -111,16 +110,15 @@ instance ToQuery DeleteUserPoolClient where
         toQuery = const mempty
 
 -- | /See:/ 'deleteUserPoolClientResponse' smart constructor.
-data DeleteUserPoolClientResponse =
-  DeleteUserPoolClientResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteUserPoolClientResponse = DeleteUserPoolClientResponse'
+                                      deriving (Eq, Read, Show, Data, Typeable,
+                                                Generic)
 
 -- | Creates a value of 'DeleteUserPoolClientResponse' with the minimum fields required to make a request.
 --
 deleteUserPoolClientResponse
     :: DeleteUserPoolClientResponse
-deleteUserPoolClientResponse = DeleteUserPoolClientResponse'
-
+deleteUserPoolClientResponse
+  = DeleteUserPoolClientResponse'
 
 instance NFData DeleteUserPoolClientResponse where

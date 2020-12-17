@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Deletes an existing image repository. If a repository contains images, you must use the @force@ option to delete it.
+-- Deletes a repository. If the repository contains images, you must either delete all images in the repository or use the @force@ option to delete the repository.
 --
 --
 module Network.AWS.ECR.DeleteRepository
@@ -35,24 +35,22 @@ module Network.AWS.ECR.DeleteRepository
     , deleteRepositoryResponse
     , DeleteRepositoryResponse
     -- * Response Lenses
-    , drsRepository
-    , drsResponseStatus
+    , drrrsRepository
+    , drrrsResponseStatus
     ) where
 
 import Network.AWS.ECR.Types
-import Network.AWS.ECR.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deleteRepository' smart constructor.
-data DeleteRepository = DeleteRepository'
-  { _dForce          :: !(Maybe Bool)
-  , _dRegistryId     :: !(Maybe Text)
-  , _dRepositoryName :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteRepository = DeleteRepository'{_dForce ::
+                                          !(Maybe Bool),
+                                          _dRegistryId :: !(Maybe Text),
+                                          _dRepositoryName :: !Text}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteRepository' with the minimum fields required to make a request.
 --
@@ -66,13 +64,10 @@ data DeleteRepository = DeleteRepository'
 deleteRepository
     :: Text -- ^ 'dRepositoryName'
     -> DeleteRepository
-deleteRepository pRepositoryName_ =
-  DeleteRepository'
-    { _dForce = Nothing
-    , _dRegistryId = Nothing
-    , _dRepositoryName = pRepositoryName_
-    }
-
+deleteRepository pRepositoryName_
+  = DeleteRepository'{_dForce = Nothing,
+                      _dRegistryId = Nothing,
+                      _dRepositoryName = pRepositoryName_}
 
 -- | If a repository contains images, forces the deletion.
 dForce :: Lens' DeleteRepository (Maybe Bool)
@@ -124,33 +119,35 @@ instance ToQuery DeleteRepository where
         toQuery = const mempty
 
 -- | /See:/ 'deleteRepositoryResponse' smart constructor.
-data DeleteRepositoryResponse = DeleteRepositoryResponse'
-  { _drsRepository     :: !(Maybe Repository)
-  , _drsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteRepositoryResponse = DeleteRepositoryResponse'{_drrrsRepository
+                                                          ::
+                                                          !(Maybe Repository),
+                                                          _drrrsResponseStatus
+                                                          :: !Int}
+                                  deriving (Eq, Read, Show, Data, Typeable,
+                                            Generic)
 
 -- | Creates a value of 'DeleteRepositoryResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'drsRepository' - The repository that was deleted.
+-- * 'drrrsRepository' - The repository that was deleted.
 --
--- * 'drsResponseStatus' - -- | The response status code.
+-- * 'drrrsResponseStatus' - -- | The response status code.
 deleteRepositoryResponse
-    :: Int -- ^ 'drsResponseStatus'
+    :: Int -- ^ 'drrrsResponseStatus'
     -> DeleteRepositoryResponse
-deleteRepositoryResponse pResponseStatus_ =
-  DeleteRepositoryResponse'
-    {_drsRepository = Nothing, _drsResponseStatus = pResponseStatus_}
-
+deleteRepositoryResponse pResponseStatus_
+  = DeleteRepositoryResponse'{_drrrsRepository =
+                                Nothing,
+                              _drrrsResponseStatus = pResponseStatus_}
 
 -- | The repository that was deleted.
-drsRepository :: Lens' DeleteRepositoryResponse (Maybe Repository)
-drsRepository = lens _drsRepository (\ s a -> s{_drsRepository = a})
+drrrsRepository :: Lens' DeleteRepositoryResponse (Maybe Repository)
+drrrsRepository = lens _drrrsRepository (\ s a -> s{_drrrsRepository = a})
 
 -- | -- | The response status code.
-drsResponseStatus :: Lens' DeleteRepositoryResponse Int
-drsResponseStatus = lens _drsResponseStatus (\ s a -> s{_drsResponseStatus = a})
+drrrsResponseStatus :: Lens' DeleteRepositoryResponse Int
+drrrsResponseStatus = lens _drrrsResponseStatus (\ s a -> s{_drrrsResponseStatus = a})
 
 instance NFData DeleteRepositoryResponse where

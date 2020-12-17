@@ -11,7 +11,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Amazon EMR is a web service that makes it easy to process large amounts of data efficiently. Amazon EMR uses Hadoop processing combined with several AWS products to do tasks such as web indexing, data mining, log file analysis, machine learning, scientific simulation, and data warehousing.
+-- Amazon EMR is a web service that makes it easier to process large amounts of data efficiently. Amazon EMR uses Hadoop processing combined with several AWS services to do tasks such as web indexing, data mining, log file analysis, machine learning, scientific simulation, and data warehouse management.
 --
 --
 module Network.AWS.EMR
@@ -46,83 +46,140 @@ module Network.AWS.EMR
     -- * Operations
     -- $operations
 
-    -- ** RunJobFlow
+    -- ** RunJobFlow 
     , module Network.AWS.EMR.RunJobFlow
 
-    -- ** RemoveAutoScalingPolicy
+    -- ** RemoveAutoScalingPolicy 
     , module Network.AWS.EMR.RemoveAutoScalingPolicy
 
-    -- ** SetVisibleToAllUsers
+    -- ** CreateStudio 
+    , module Network.AWS.EMR.CreateStudio
+
+    -- ** SetVisibleToAllUsers 
     , module Network.AWS.EMR.SetVisibleToAllUsers
 
-    -- ** TerminateJobFlows
+    -- ** TerminateJobFlows 
     , module Network.AWS.EMR.TerminateJobFlows
 
-    -- ** DescribeStep
+    -- ** DescribeStep 
     , module Network.AWS.EMR.DescribeStep
 
-    -- ** RemoveTags
+    -- ** RemoveTags 
     , module Network.AWS.EMR.RemoveTags
 
-    -- ** DescribeCluster
+    -- ** DescribeCluster 
     , module Network.AWS.EMR.DescribeCluster
 
-    -- ** ListSecurityConfigurations
+    -- ** ListSecurityConfigurations (Paginated)
     , module Network.AWS.EMR.ListSecurityConfigurations
 
-    -- ** CancelSteps
+    -- ** CancelSteps 
     , module Network.AWS.EMR.CancelSteps
 
-    -- ** CreateSecurityConfiguration
+    -- ** ListNotebookExecutions (Paginated)
+    , module Network.AWS.EMR.ListNotebookExecutions
+
+    -- ** CreateSecurityConfiguration 
     , module Network.AWS.EMR.CreateSecurityConfiguration
 
-    -- ** SetTerminationProtection
+    -- ** SetTerminationProtection 
     , module Network.AWS.EMR.SetTerminationProtection
 
-    -- ** AddJobFlowSteps
+    -- ** AddJobFlowSteps 
     , module Network.AWS.EMR.AddJobFlowSteps
 
-    -- ** ModifyInstanceGroups
+    -- ** DescribeStudio 
+    , module Network.AWS.EMR.DescribeStudio
+
+    -- ** ModifyInstanceGroups 
     , module Network.AWS.EMR.ModifyInstanceGroups
+
+    -- ** StartNotebookExecution 
+    , module Network.AWS.EMR.StartNotebookExecution
 
     -- ** ListSteps (Paginated)
     , module Network.AWS.EMR.ListSteps
 
-    -- ** AddInstanceFleet
+    -- ** CreateStudioSessionMapping 
+    , module Network.AWS.EMR.CreateStudioSessionMapping
+
+    -- ** AddInstanceFleet 
     , module Network.AWS.EMR.AddInstanceFleet
 
-    -- ** AddInstanceGroups
+    -- ** DeleteStudio 
+    , module Network.AWS.EMR.DeleteStudio
+
+    -- ** ListStudios (Paginated)
+    , module Network.AWS.EMR.ListStudios
+
+    -- ** PutManagedScalingPolicy 
+    , module Network.AWS.EMR.PutManagedScalingPolicy
+
+    -- ** AddInstanceGroups 
     , module Network.AWS.EMR.AddInstanceGroups
 
-    -- ** DeleteSecurityConfiguration
+    -- ** GetStudioSessionMapping 
+    , module Network.AWS.EMR.GetStudioSessionMapping
+
+    -- ** DeleteSecurityConfiguration 
     , module Network.AWS.EMR.DeleteSecurityConfiguration
 
-    -- ** ModifyInstanceFleet
+    -- ** ModifyInstanceFleet 
     , module Network.AWS.EMR.ModifyInstanceFleet
 
     -- ** ListInstanceGroups (Paginated)
     , module Network.AWS.EMR.ListInstanceGroups
 
+    -- ** GetBlockPublicAccessConfiguration 
+    , module Network.AWS.EMR.GetBlockPublicAccessConfiguration
+
+    -- ** ModifyCluster 
+    , module Network.AWS.EMR.ModifyCluster
+
+    -- ** PutBlockPublicAccessConfiguration 
+    , module Network.AWS.EMR.PutBlockPublicAccessConfiguration
+
     -- ** ListBootstrapActions (Paginated)
     , module Network.AWS.EMR.ListBootstrapActions
 
-    -- ** AddTags
+    -- ** AddTags 
     , module Network.AWS.EMR.AddTags
 
     -- ** ListInstances (Paginated)
     , module Network.AWS.EMR.ListInstances
 
-    -- ** PutAutoScalingPolicy
+    -- ** PutAutoScalingPolicy 
     , module Network.AWS.EMR.PutAutoScalingPolicy
+
+    -- ** DeleteStudioSessionMapping 
+    , module Network.AWS.EMR.DeleteStudioSessionMapping
+
+    -- ** UpdateStudioSessionMapping 
+    , module Network.AWS.EMR.UpdateStudioSessionMapping
 
     -- ** ListClusters (Paginated)
     , module Network.AWS.EMR.ListClusters
 
-    -- ** DescribeSecurityConfiguration
+    -- ** DescribeSecurityConfiguration 
     , module Network.AWS.EMR.DescribeSecurityConfiguration
+
+    -- ** StopNotebookExecution 
+    , module Network.AWS.EMR.StopNotebookExecution
+
+    -- ** ListStudioSessionMappings (Paginated)
+    , module Network.AWS.EMR.ListStudioSessionMappings
+
+    -- ** GetManagedScalingPolicy 
+    , module Network.AWS.EMR.GetManagedScalingPolicy
 
     -- ** ListInstanceFleets (Paginated)
     , module Network.AWS.EMR.ListInstanceFleets
+
+    -- ** RemoveManagedScalingPolicy 
+    , module Network.AWS.EMR.RemoveManagedScalingPolicy
+
+    -- ** DescribeNotebookExecution 
+    , module Network.AWS.EMR.DescribeNotebookExecution
 
     -- * Types
 
@@ -131,6 +188,9 @@ module Network.AWS.EMR
 
     -- ** AdjustmentType
     , AdjustmentType (..)
+
+    -- ** AuthMode
+    , AuthMode (..)
 
     -- ** AutoScalingPolicyState
     , AutoScalingPolicyState (..)
@@ -149,6 +209,15 @@ module Network.AWS.EMR
 
     -- ** ComparisonOperator
     , ComparisonOperator (..)
+
+    -- ** ComputeLimitsUnitType
+    , ComputeLimitsUnitType (..)
+
+    -- ** ExecutionEngineType
+    , ExecutionEngineType (..)
+
+    -- ** IdentityType
+    , IdentityType (..)
 
     -- ** InstanceCollectionType
     , InstanceCollectionType (..)
@@ -183,17 +252,32 @@ module Network.AWS.EMR
     -- ** MarketType
     , MarketType (..)
 
+    -- ** NotebookExecutionStatus
+    , NotebookExecutionStatus (..)
+
+    -- ** OnDemandProvisioningAllocationStrategy
+    , OnDemandProvisioningAllocationStrategy (..)
+
+    -- ** PlacementGroupStrategy
+    , PlacementGroupStrategy (..)
+
     -- ** RepoUpgradeOnBoot
     , RepoUpgradeOnBoot (..)
 
     -- ** ScaleDownBehavior
     , ScaleDownBehavior (..)
 
+    -- ** SpotProvisioningAllocationStrategy
+    , SpotProvisioningAllocationStrategy (..)
+
     -- ** SpotProvisioningTimeoutAction
     , SpotProvisioningTimeoutAction (..)
 
     -- ** Statistic
     , Statistic (..)
+
+    -- ** StepCancellationOption
+    , StepCancellationOption (..)
 
     -- ** StepState
     , StepState (..)
@@ -237,6 +321,18 @@ module Network.AWS.EMR
     , aspsState
     , aspsStateChangeReason
 
+    -- ** BlockPublicAccessConfiguration
+    , BlockPublicAccessConfiguration
+    , blockPublicAccessConfiguration
+    , bpacPermittedPublicSecurityGroupRuleRanges
+    , bpacBlockPublicSecurityGroupRules
+
+    -- ** BlockPublicAccessConfigurationMetadata
+    , BlockPublicAccessConfigurationMetadata
+    , blockPublicAccessConfigurationMetadata
+    , bpacmCreationDateTime
+    , bpacmCreatedByARN
+
     -- ** BootstrapActionConfig
     , BootstrapActionConfig
     , bootstrapActionConfig
@@ -266,9 +362,12 @@ module Network.AWS.EMR
     -- ** Cluster
     , Cluster
     , cluster
+    , cluLogEncryptionKMSKeyId
+    , cluClusterARN
     , cluRequestedAMIVersion
     , cluEBSRootVolumeSize
     , cluEC2InstanceAttributes
+    , cluOutpostARN
     , cluNormalizedInstanceHours
     , cluConfigurations
     , cluCustomAMIId
@@ -280,11 +379,13 @@ module Network.AWS.EMR
     , cluRepoUpgradeOnBoot
     , cluLogURI
     , cluKerberosAttributes
+    , cluPlacementGroups
     , cluRunningAMIVersion
     , cluMasterPublicDNSName
     , cluTerminationProtected
     , cluVisibleToAllUsers
     , cluAutoTerminate
+    , cluStepConcurrencyLevel
     , cluApplications
     , cluTags
     , cluServiceRole
@@ -308,10 +409,12 @@ module Network.AWS.EMR
     -- ** ClusterSummary
     , ClusterSummary
     , clusterSummary
-    , csStatus
-    , csNormalizedInstanceHours
-    , csName
-    , csId
+    , cStatus
+    , cClusterARN
+    , cOutpostARN
+    , cNormalizedInstanceHours
+    , cName
+    , cId
 
     -- ** ClusterTimeline
     , ClusterTimeline
@@ -323,9 +426,18 @@ module Network.AWS.EMR
     -- ** Command
     , Command
     , command
-    , cArgs
-    , cScriptPath
-    , cName
+    , comArgs
+    , comScriptPath
+    , comName
+
+    -- ** ComputeLimits
+    , ComputeLimits
+    , computeLimits
+    , clMaximumOnDemandCapacityUnits
+    , clMaximumCoreCapacityUnits
+    , clUnitType
+    , clMinimumCapacityUnits
+    , clMaximumCapacityUnits
 
     -- ** Configuration
     , Configuration
@@ -372,6 +484,13 @@ module Network.AWS.EMR
     , eiaRequestedEC2AvailabilityZones
     , eiaServiceAccessSecurityGroup
     , eiaEC2AvailabilityZone
+
+    -- ** ExecutionEngineConfig
+    , ExecutionEngineConfig
+    , executionEngineConfig
+    , eecMasterInstanceSecurityGroupId
+    , eecType
+    , eecId
 
     -- ** FailureDetails
     , FailureDetails
@@ -447,6 +566,7 @@ module Network.AWS.EMR
     , InstanceFleetProvisioningSpecifications
     , instanceFleetProvisioningSpecifications
     , ifpsSpotSpecification
+    , ifpsOnDemandSpecification
 
     -- ** InstanceFleetStateChangeReason
     , InstanceFleetStateChangeReason
@@ -472,13 +592,16 @@ module Network.AWS.EMR
     , InstanceGroup
     , instanceGroup
     , igStatus
+    , igLastSuccessfullyAppliedConfigurationsVersion
     , igBidPrice
     , igRequestedInstanceCount
     , igRunningInstanceCount
+    , igLastSuccessfullyAppliedConfigurations
     , igConfigurations
     , igInstanceGroupType
     , igEBSBlockDevices
     , igInstanceType
+    , igConfigurationsVersion
     , igEBSOptimized
     , igMarket
     , igName
@@ -503,6 +626,7 @@ module Network.AWS.EMR
     , InstanceGroupModifyConfig
     , instanceGroupModifyConfig
     , igmcInstanceCount
+    , igmcConfigurations
     , igmcEC2InstanceIdsToTerminate
     , igmcShrinkPolicy
     , igmcInstanceGroupId
@@ -599,11 +723,11 @@ module Network.AWS.EMR
     -- ** KerberosAttributes
     , KerberosAttributes
     , kerberosAttributes
+    , kaKdcAdminPassword
+    , kaRealm
     , kaADDomainJoinPassword
     , kaCrossRealmTrustPrincipalPassword
     , kaADDomainJoinUser
-    , kaRealm
-    , kaKdcAdminPassword
 
     -- ** KeyValue
     , KeyValue
@@ -611,17 +735,66 @@ module Network.AWS.EMR
     , kvValue
     , kvKey
 
+    -- ** ManagedScalingPolicy
+    , ManagedScalingPolicy
+    , managedScalingPolicy
+    , mspComputeLimits
+
     -- ** MetricDimension
     , MetricDimension
     , metricDimension
     , mdValue
     , mdKey
 
+    -- ** NotebookExecution
+    , NotebookExecution
+    , notebookExecution
+    , neStatus
+    , neExecutionEngine
+    , neNotebookInstanceSecurityGroupId
+    , neEditorId
+    , neStartTime
+    , neARN
+    , neOutputNotebookURI
+    , neNotebookExecutionId
+    , neNotebookExecutionName
+    , neLastStateChangeReason
+    , neEndTime
+    , neNotebookParams
+    , neTags
+
+    -- ** NotebookExecutionSummary
+    , NotebookExecutionSummary
+    , notebookExecutionSummary
+    , nesStatus
+    , nesEditorId
+    , nesStartTime
+    , nesNotebookExecutionId
+    , nesNotebookExecutionName
+    , nesEndTime
+
+    -- ** OnDemandProvisioningSpecification
+    , OnDemandProvisioningSpecification
+    , onDemandProvisioningSpecification
+    , odpsAllocationStrategy
+
+    -- ** PlacementGroupConfig
+    , PlacementGroupConfig
+    , placementGroupConfig
+    , pgcPlacementStrategy
+    , pgcInstanceRole
+
     -- ** PlacementType
     , PlacementType
     , placementType
     , ptAvailabilityZones
     , ptAvailabilityZone
+
+    -- ** PortRange
+    , PortRange
+    , portRange
+    , prMaxRange
+    , prMinRange
 
     -- ** ScalingAction
     , ScalingAction
@@ -660,6 +833,27 @@ module Network.AWS.EMR
     , scsName
     , scsCreationDateTime
 
+    -- ** SessionMappingDetail
+    , SessionMappingDetail
+    , sessionMappingDetail
+    , smdCreationTime
+    , smdStudioId
+    , smdLastModifiedTime
+    , smdIdentityType
+    , smdIdentityId
+    , smdSessionPolicyARN
+    , smdIdentityName
+
+    -- ** SessionMappingSummary
+    , SessionMappingSummary
+    , sessionMappingSummary
+    , smsCreationTime
+    , smsStudioId
+    , smsIdentityType
+    , smsIdentityId
+    , smsSessionPolicyARN
+    , smsIdentityName
+
     -- ** ShrinkPolicy
     , ShrinkPolicy
     , shrinkPolicy
@@ -677,6 +871,7 @@ module Network.AWS.EMR
     , SpotProvisioningSpecification
     , spotProvisioningSpecification
     , spsBlockDurationMinutes
+    , spsAllocationStrategy
     , spsTimeoutDurationMinutes
     , spsTimeoutAction
 
@@ -713,11 +908,11 @@ module Network.AWS.EMR
     -- ** StepSummary
     , StepSummary
     , stepSummary
-    , ssStatus
-    , ssActionOnFailure
-    , ssConfig
-    , ssName
-    , ssId
+    , steStatus
+    , steActionOnFailure
+    , steConfig
+    , steName
+    , steId
 
     -- ** StepTimeline
     , StepTimeline
@@ -725,6 +920,35 @@ module Network.AWS.EMR
     , stCreationDateTime
     , stEndDateTime
     , stStartDateTime
+
+    -- ** Studio
+    , Studio
+    , studio
+    , stuCreationTime
+    , stuEngineSecurityGroupId
+    , stuSubnetIds
+    , stuStudioId
+    , stuVPCId
+    , stuURL
+    , stuAuthMode
+    , stuDefaultS3Location
+    , stuWorkspaceSecurityGroupId
+    , stuName
+    , stuStudioARN
+    , stuUserRole
+    , stuDescription
+    , stuTags
+    , stuServiceRole
+
+    -- ** StudioSummary
+    , StudioSummary
+    , studioSummary
+    , ssCreationTime
+    , ssStudioId
+    , ssVPCId
+    , ssURL
+    , ssName
+    , ssDescription
 
     -- ** SupportedProductConfig
     , SupportedProductConfig
@@ -752,27 +976,46 @@ import Network.AWS.EMR.AddJobFlowSteps
 import Network.AWS.EMR.AddTags
 import Network.AWS.EMR.CancelSteps
 import Network.AWS.EMR.CreateSecurityConfiguration
+import Network.AWS.EMR.CreateStudio
+import Network.AWS.EMR.CreateStudioSessionMapping
 import Network.AWS.EMR.DeleteSecurityConfiguration
+import Network.AWS.EMR.DeleteStudio
+import Network.AWS.EMR.DeleteStudioSessionMapping
 import Network.AWS.EMR.DescribeCluster
+import Network.AWS.EMR.DescribeNotebookExecution
 import Network.AWS.EMR.DescribeSecurityConfiguration
 import Network.AWS.EMR.DescribeStep
+import Network.AWS.EMR.DescribeStudio
+import Network.AWS.EMR.GetBlockPublicAccessConfiguration
+import Network.AWS.EMR.GetManagedScalingPolicy
+import Network.AWS.EMR.GetStudioSessionMapping
 import Network.AWS.EMR.ListBootstrapActions
 import Network.AWS.EMR.ListClusters
 import Network.AWS.EMR.ListInstanceFleets
 import Network.AWS.EMR.ListInstanceGroups
 import Network.AWS.EMR.ListInstances
+import Network.AWS.EMR.ListNotebookExecutions
 import Network.AWS.EMR.ListSecurityConfigurations
 import Network.AWS.EMR.ListSteps
+import Network.AWS.EMR.ListStudioSessionMappings
+import Network.AWS.EMR.ListStudios
+import Network.AWS.EMR.ModifyCluster
 import Network.AWS.EMR.ModifyInstanceFleet
 import Network.AWS.EMR.ModifyInstanceGroups
 import Network.AWS.EMR.PutAutoScalingPolicy
+import Network.AWS.EMR.PutBlockPublicAccessConfiguration
+import Network.AWS.EMR.PutManagedScalingPolicy
 import Network.AWS.EMR.RemoveAutoScalingPolicy
+import Network.AWS.EMR.RemoveManagedScalingPolicy
 import Network.AWS.EMR.RemoveTags
 import Network.AWS.EMR.RunJobFlow
 import Network.AWS.EMR.SetTerminationProtection
 import Network.AWS.EMR.SetVisibleToAllUsers
+import Network.AWS.EMR.StartNotebookExecution
+import Network.AWS.EMR.StopNotebookExecution
 import Network.AWS.EMR.TerminateJobFlows
 import Network.AWS.EMR.Types
+import Network.AWS.EMR.UpdateStudioSessionMapping
 import Network.AWS.EMR.Waiters
 
 {- $errors

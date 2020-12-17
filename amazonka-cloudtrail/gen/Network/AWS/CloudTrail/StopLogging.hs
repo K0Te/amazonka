@@ -37,7 +37,6 @@ module Network.AWS.CloudTrail.StopLogging
     ) where
 
 import Network.AWS.CloudTrail.Types
-import Network.AWS.CloudTrail.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -48,23 +47,20 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'stopLogging' smart constructor.
-newtype StopLogging = StopLogging'
-  { _slName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype StopLogging = StopLogging'{_slName :: Text}
+                        deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'StopLogging' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'slName' - Specifies the name or the CloudTrail ARN of the trail for which CloudTrail will stop logging AWS API calls. The format of a trail ARN is: @arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail@
+-- * 'slName' - Specifies the name or the CloudTrail ARN of the trail for which CloudTrail will stop logging AWS API calls. The format of a trail ARN is: @arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail@ 
 stopLogging
     :: Text -- ^ 'slName'
     -> StopLogging
-stopLogging pName_ = StopLogging' {_slName = pName_}
+stopLogging pName_ = StopLogging'{_slName = pName_}
 
-
--- | Specifies the name or the CloudTrail ARN of the trail for which CloudTrail will stop logging AWS API calls. The format of a trail ARN is: @arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail@
+-- | Specifies the name or the CloudTrail ARN of the trail for which CloudTrail will stop logging AWS API calls. The format of a trail ARN is: @arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail@ 
 slName :: Lens' StopLogging Text
 slName = lens _slName (\ s a -> s{_slName = a})
 
@@ -105,10 +101,10 @@ instance ToQuery StopLogging where
 --
 --
 -- /See:/ 'stopLoggingResponse' smart constructor.
-newtype StopLoggingResponse = StopLoggingResponse'
-  { _slrsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype StopLoggingResponse = StopLoggingResponse'{_slrsResponseStatus
+                                                   :: Int}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'StopLoggingResponse' with the minimum fields required to make a request.
 --
@@ -118,9 +114,9 @@ newtype StopLoggingResponse = StopLoggingResponse'
 stopLoggingResponse
     :: Int -- ^ 'slrsResponseStatus'
     -> StopLoggingResponse
-stopLoggingResponse pResponseStatus_ =
-  StopLoggingResponse' {_slrsResponseStatus = pResponseStatus_}
-
+stopLoggingResponse pResponseStatus_
+  = StopLoggingResponse'{_slrsResponseStatus =
+                           pResponseStatus_}
 
 -- | -- | The response status code.
 slrsResponseStatus :: Lens' StopLoggingResponse Int

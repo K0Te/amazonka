@@ -38,7 +38,6 @@ module Network.AWS.APIGateway.GetDocumentationVersion
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -49,11 +48,12 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'getDocumentationVersion' smart constructor.
-data GetDocumentationVersion = GetDocumentationVersion'
-  { _gdvdRestAPIId            :: !Text
-  , _gdvdDocumentationVersion :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetDocumentationVersion = GetDocumentationVersion'{_gdvdRestAPIId
+                                                        :: !Text,
+                                                        _gdvdDocumentationVersion
+                                                        :: !Text}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'GetDocumentationVersion' with the minimum fields required to make a request.
 --
@@ -66,12 +66,11 @@ getDocumentationVersion
     :: Text -- ^ 'gdvdRestAPIId'
     -> Text -- ^ 'gdvdDocumentationVersion'
     -> GetDocumentationVersion
-getDocumentationVersion pRestAPIId_ pDocumentationVersion_ =
-  GetDocumentationVersion'
-    { _gdvdRestAPIId = pRestAPIId_
-    , _gdvdDocumentationVersion = pDocumentationVersion_
-    }
-
+getDocumentationVersion pRestAPIId_
+  pDocumentationVersion_
+  = GetDocumentationVersion'{_gdvdRestAPIId =
+                               pRestAPIId_,
+                             _gdvdDocumentationVersion = pDocumentationVersion_}
 
 -- | [Required] The string identifier of the associated 'RestApi' .
 gdvdRestAPIId :: Lens' GetDocumentationVersion Text

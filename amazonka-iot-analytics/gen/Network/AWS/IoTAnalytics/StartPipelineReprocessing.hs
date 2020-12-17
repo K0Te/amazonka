@@ -29,6 +29,7 @@ module Network.AWS.IoTAnalytics.StartPipelineReprocessing
     -- * Request Lenses
     , sprStartTime
     , sprEndTime
+    , sprChannelMessages
     , sprPipelineName
 
     -- * Destructuring the Response
@@ -40,47 +41,56 @@ module Network.AWS.IoTAnalytics.StartPipelineReprocessing
     ) where
 
 import Network.AWS.IoTAnalytics.Types
-import Network.AWS.IoTAnalytics.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'startPipelineReprocessing' smart constructor.
-data StartPipelineReprocessing = StartPipelineReprocessing'
-  { _sprStartTime    :: !(Maybe POSIX)
-  , _sprEndTime      :: !(Maybe POSIX)
-  , _sprPipelineName :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data StartPipelineReprocessing = StartPipelineReprocessing'{_sprStartTime
+                                                            :: !(Maybe POSIX),
+                                                            _sprEndTime ::
+                                                            !(Maybe POSIX),
+                                                            _sprChannelMessages
+                                                            ::
+                                                            !(Maybe
+                                                                ChannelMessages),
+                                                            _sprPipelineName ::
+                                                            !Text}
+                                   deriving (Eq, Read, Show, Data, Typeable,
+                                             Generic)
 
 -- | Creates a value of 'StartPipelineReprocessing' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'sprStartTime' - The start time (inclusive) of raw message data that is reprocessed.
+-- * 'sprStartTime' - The start time (inclusive) of raw message data that is reprocessed. If you specify a value for the @startTime@ parameter, you must not use the @channelMessages@ object.
 --
--- * 'sprEndTime' - The end time (exclusive) of raw message data that is reprocessed.
+-- * 'sprEndTime' - The end time (exclusive) of raw message data that is reprocessed. If you specify a value for the @endTime@ parameter, you must not use the @channelMessages@ object.
+--
+-- * 'sprChannelMessages' - Specifies one or more sets of channel messages that you want to reprocess. If you use the @channelMessages@ object, you must not specify a value for @startTime@ and @endTime@ .
 --
 -- * 'sprPipelineName' - The name of the pipeline on which to start reprocessing.
 startPipelineReprocessing
     :: Text -- ^ 'sprPipelineName'
     -> StartPipelineReprocessing
-startPipelineReprocessing pPipelineName_ =
-  StartPipelineReprocessing'
-    { _sprStartTime = Nothing
-    , _sprEndTime = Nothing
-    , _sprPipelineName = pPipelineName_
-    }
+startPipelineReprocessing pPipelineName_
+  = StartPipelineReprocessing'{_sprStartTime = Nothing,
+                               _sprEndTime = Nothing,
+                               _sprChannelMessages = Nothing,
+                               _sprPipelineName = pPipelineName_}
 
-
--- | The start time (inclusive) of raw message data that is reprocessed.
+-- | The start time (inclusive) of raw message data that is reprocessed. If you specify a value for the @startTime@ parameter, you must not use the @channelMessages@ object.
 sprStartTime :: Lens' StartPipelineReprocessing (Maybe UTCTime)
 sprStartTime = lens _sprStartTime (\ s a -> s{_sprStartTime = a}) . mapping _Time
 
--- | The end time (exclusive) of raw message data that is reprocessed.
+-- | The end time (exclusive) of raw message data that is reprocessed. If you specify a value for the @endTime@ parameter, you must not use the @channelMessages@ object.
 sprEndTime :: Lens' StartPipelineReprocessing (Maybe UTCTime)
 sprEndTime = lens _sprEndTime (\ s a -> s{_sprEndTime = a}) . mapping _Time
+
+-- | Specifies one or more sets of channel messages that you want to reprocess. If you use the @channelMessages@ object, you must not specify a value for @startTime@ and @endTime@ .
+sprChannelMessages :: Lens' StartPipelineReprocessing (Maybe ChannelMessages)
+sprChannelMessages = lens _sprChannelMessages (\ s a -> s{_sprChannelMessages = a})
 
 -- | The name of the pipeline on which to start reprocessing.
 sprPipelineName :: Lens' StartPipelineReprocessing Text
@@ -108,7 +118,8 @@ instance ToJSON StartPipelineReprocessing where
           = object
               (catMaybes
                  [("startTime" .=) <$> _sprStartTime,
-                  ("endTime" .=) <$> _sprEndTime])
+                  ("endTime" .=) <$> _sprEndTime,
+                  ("channelMessages" .=) <$> _sprChannelMessages])
 
 instance ToPath StartPipelineReprocessing where
         toPath StartPipelineReprocessing'{..}
@@ -120,11 +131,15 @@ instance ToQuery StartPipelineReprocessing where
         toQuery = const mempty
 
 -- | /See:/ 'startPipelineReprocessingResponse' smart constructor.
-data StartPipelineReprocessingResponse = StartPipelineReprocessingResponse'
-  { _sprrsReprocessingId :: !(Maybe Text)
-  , _sprrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data StartPipelineReprocessingResponse = StartPipelineReprocessingResponse'{_sprrsReprocessingId
+                                                                            ::
+                                                                            !(Maybe
+                                                                                Text),
+                                                                            _sprrsResponseStatus
+                                                                            ::
+                                                                            !Int}
+                                           deriving (Eq, Read, Show, Data,
+                                                     Typeable, Generic)
 
 -- | Creates a value of 'StartPipelineReprocessingResponse' with the minimum fields required to make a request.
 --
@@ -136,10 +151,10 @@ data StartPipelineReprocessingResponse = StartPipelineReprocessingResponse'
 startPipelineReprocessingResponse
     :: Int -- ^ 'sprrsResponseStatus'
     -> StartPipelineReprocessingResponse
-startPipelineReprocessingResponse pResponseStatus_ =
-  StartPipelineReprocessingResponse'
-    {_sprrsReprocessingId = Nothing, _sprrsResponseStatus = pResponseStatus_}
-
+startPipelineReprocessingResponse pResponseStatus_
+  = StartPipelineReprocessingResponse'{_sprrsReprocessingId
+                                         = Nothing,
+                                       _sprrsResponseStatus = pResponseStatus_}
 
 -- | The ID of the pipeline reprocessing activity that was started.
 sprrsReprocessingId :: Lens' StartPipelineReprocessingResponse (Maybe Text)

@@ -21,9 +21,11 @@
 -- Creates a policy of a specified type that you can attach to a root, an organizational unit (OU), or an individual AWS account.
 --
 --
--- For more information about policies and their use, see <http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies.html Managing Organization Policies> .
+-- For more information about policies and their use, see <https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies.html Managing Organization Policies> .
 --
--- This operation can be called only from the organization's master account.
+-- If the request includes tags, then the requester must have the @organizations:TagResource@ permission.
+--
+-- This operation can be called only from the organization's management account.
 --
 module Network.AWS.Organizations.CreatePolicy
     (
@@ -31,6 +33,7 @@ module Network.AWS.Organizations.CreatePolicy
       createPolicy
     , CreatePolicy
     -- * Request Lenses
+    , cpTags
     , cpContent
     , cpDescription
     , cpName
@@ -46,47 +49,47 @@ module Network.AWS.Organizations.CreatePolicy
 
 import Network.AWS.Lens
 import Network.AWS.Organizations.Types
-import Network.AWS.Organizations.Types.Product
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'createPolicy' smart constructor.
-data CreatePolicy = CreatePolicy'
-  { _cpContent     :: !Text
-  , _cpDescription :: !Text
-  , _cpName        :: !Text
-  , _cpType        :: !PolicyType
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreatePolicy = CreatePolicy'{_cpTags ::
+                                  !(Maybe [Tag]),
+                                  _cpContent :: !Text, _cpDescription :: !Text,
+                                  _cpName :: !Text, _cpType :: !PolicyType}
+                      deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CreatePolicy' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'cpContent' - The policy content to add to the new policy. For example, if you create a <http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html service control policy> (SCP), this string must be JSON text that specifies the permissions that admins in attached accounts can delegate to their users, groups, and roles. For more information about the SCP syntax, see <http://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_scp-syntax.html Service Control Policy Syntax> in the /AWS Organizations User Guide/ .
+-- * 'cpTags' - A list of tags that you want to attach to the newly created policy. For each tag in the list, you must specify both a tag key and a value. You can set the value to an empty string, but you can't set it to @null@ . For more information about tagging, see <https://docs.aws.amazon.com/organizations/latest/userguide/orgs_tagging.html Tagging AWS Organizations resources> in the AWS Organizations User Guide.
+--
+-- * 'cpContent' - The policy text content to add to the new policy. The text that you supply must adhere to the rules of the policy type you specify in the @Type@ parameter.
 --
 -- * 'cpDescription' - An optional description to assign to the policy.
 --
 -- * 'cpName' - The friendly name to assign to the policy. The <http://wikipedia.org/wiki/regex regex pattern> that is used to validate this parameter is a string of any of the characters in the ASCII character range.
 --
--- * 'cpType' - The type of policy to create.
+-- * 'cpType' - The type of policy to create. You can specify one of the following values:     * <https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html AISERVICES_OPT_OUT_POLICY>      * <https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_backup.html BACKUP_POLICY>      * <https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html SERVICE_CONTROL_POLICY>      * <https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html TAG_POLICY> 
 createPolicy
     :: Text -- ^ 'cpContent'
     -> Text -- ^ 'cpDescription'
     -> Text -- ^ 'cpName'
     -> PolicyType -- ^ 'cpType'
     -> CreatePolicy
-createPolicy pContent_ pDescription_ pName_ pType_ =
-  CreatePolicy'
-    { _cpContent = pContent_
-    , _cpDescription = pDescription_
-    , _cpName = pName_
-    , _cpType = pType_
-    }
+createPolicy pContent_ pDescription_ pName_ pType_
+  = CreatePolicy'{_cpTags = Nothing,
+                  _cpContent = pContent_,
+                  _cpDescription = pDescription_, _cpName = pName_,
+                  _cpType = pType_}
 
+-- | A list of tags that you want to attach to the newly created policy. For each tag in the list, you must specify both a tag key and a value. You can set the value to an empty string, but you can't set it to @null@ . For more information about tagging, see <https://docs.aws.amazon.com/organizations/latest/userguide/orgs_tagging.html Tagging AWS Organizations resources> in the AWS Organizations User Guide.
+cpTags :: Lens' CreatePolicy [Tag]
+cpTags = lens _cpTags (\ s a -> s{_cpTags = a}) . _Default . _Coerce
 
--- | The policy content to add to the new policy. For example, if you create a <http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html service control policy> (SCP), this string must be JSON text that specifies the permissions that admins in attached accounts can delegate to their users, groups, and roles. For more information about the SCP syntax, see <http://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_scp-syntax.html Service Control Policy Syntax> in the /AWS Organizations User Guide/ .
+-- | The policy text content to add to the new policy. The text that you supply must adhere to the rules of the policy type you specify in the @Type@ parameter.
 cpContent :: Lens' CreatePolicy Text
 cpContent = lens _cpContent (\ s a -> s{_cpContent = a})
 
@@ -98,7 +101,7 @@ cpDescription = lens _cpDescription (\ s a -> s{_cpDescription = a})
 cpName :: Lens' CreatePolicy Text
 cpName = lens _cpName (\ s a -> s{_cpName = a})
 
--- | The type of policy to create.
+-- | The type of policy to create. You can specify one of the following values:     * <https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html AISERVICES_OPT_OUT_POLICY>      * <https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_backup.html BACKUP_POLICY>      * <https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html SERVICE_CONTROL_POLICY>      * <https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html TAG_POLICY> 
 cpType :: Lens' CreatePolicy PolicyType
 cpType = lens _cpType (\ s a -> s{_cpType = a})
 
@@ -129,7 +132,8 @@ instance ToJSON CreatePolicy where
         toJSON CreatePolicy'{..}
           = object
               (catMaybes
-                 [Just ("Content" .= _cpContent),
+                 [("Tags" .=) <$> _cpTags,
+                  Just ("Content" .= _cpContent),
                   Just ("Description" .= _cpDescription),
                   Just ("Name" .= _cpName), Just ("Type" .= _cpType)])
 
@@ -140,11 +144,10 @@ instance ToQuery CreatePolicy where
         toQuery = const mempty
 
 -- | /See:/ 'createPolicyResponse' smart constructor.
-data CreatePolicyResponse = CreatePolicyResponse'
-  { _cprsPolicy         :: !(Maybe Policy)
-  , _cprsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data CreatePolicyResponse = CreatePolicyResponse'{_cprsPolicy
+                                                  :: !(Maybe Policy),
+                                                  _cprsResponseStatus :: !Int}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'CreatePolicyResponse' with the minimum fields required to make a request.
 --
@@ -156,10 +159,9 @@ data CreatePolicyResponse = CreatePolicyResponse'
 createPolicyResponse
     :: Int -- ^ 'cprsResponseStatus'
     -> CreatePolicyResponse
-createPolicyResponse pResponseStatus_ =
-  CreatePolicyResponse'
-    {_cprsPolicy = Nothing, _cprsResponseStatus = pResponseStatus_}
-
+createPolicyResponse pResponseStatus_
+  = CreatePolicyResponse'{_cprsPolicy = Nothing,
+                          _cprsResponseStatus = pResponseStatus_}
 
 -- | A structure that contains details about the newly created policy.
 cprsPolicy :: Lens' CreatePolicyResponse (Maybe Policy)

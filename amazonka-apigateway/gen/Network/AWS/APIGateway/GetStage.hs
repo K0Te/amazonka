@@ -39,11 +39,13 @@ module Network.AWS.APIGateway.GetStage
     , sAccessLogSettings
     , sDocumentationVersion
     , sClientCertificateId
+    , sTracingEnabled
     , sCreatedDate
     , sCacheClusterStatus
     , sMethodSettings
     , sLastUpdatedDate
     , sCacheClusterSize
+    , sWebACLARN
     , sCanarySettings
     , sCacheClusterEnabled
     , sStageName
@@ -52,7 +54,6 @@ module Network.AWS.APIGateway.GetStage
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -63,11 +64,9 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'getStage' smart constructor.
-data GetStage = GetStage'
-  { _gssRestAPIId :: !Text
-  , _gssStageName :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetStage = GetStage'{_gssRestAPIId :: !Text,
+                          _gssStageName :: !Text}
+                  deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetStage' with the minimum fields required to make a request.
 --
@@ -80,9 +79,9 @@ getStage
     :: Text -- ^ 'gssRestAPIId'
     -> Text -- ^ 'gssStageName'
     -> GetStage
-getStage pRestAPIId_ pStageName_ =
-  GetStage' {_gssRestAPIId = pRestAPIId_, _gssStageName = pStageName_}
-
+getStage pRestAPIId_ pStageName_
+  = GetStage'{_gssRestAPIId = pRestAPIId_,
+              _gssStageName = pStageName_}
 
 -- | [Required] The string identifier of the associated 'RestApi' .
 gssRestAPIId :: Lens' GetStage Text

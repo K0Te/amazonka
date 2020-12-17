@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Returns a list containing all of the identities (email addresses and domains) for your AWS account, regardless of verification status.
+-- Returns a list containing all of the identities (email addresses and domains) for your AWS account in the current AWS Region, regardless of verification status.
 --
 --
 -- You can execute this operation no more than once per second.
@@ -50,19 +50,17 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.SES.Types
-import Network.AWS.SES.Types.Product
 
 -- | Represents a request to return a list of all identities (email addresses and domains) that you have attempted to verify under your AWS account, regardless of verification status.
 --
 --
 --
 -- /See:/ 'listIdentities' smart constructor.
-data ListIdentities = ListIdentities'
-  { _liIdentityType :: !(Maybe IdentityType)
-  , _liNextToken    :: !(Maybe Text)
-  , _liMaxItems     :: !(Maybe Int)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListIdentities = ListIdentities'{_liIdentityType
+                                      :: !(Maybe IdentityType),
+                                      _liNextToken :: !(Maybe Text),
+                                      _liMaxItems :: !(Maybe Int)}
+                        deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListIdentities' with the minimum fields required to make a request.
 --
@@ -75,10 +73,9 @@ data ListIdentities = ListIdentities'
 -- * 'liMaxItems' - The maximum number of identities per page. Possible values are 1-1000 inclusive.
 listIdentities
     :: ListIdentities
-listIdentities =
-  ListIdentities'
-    {_liIdentityType = Nothing, _liNextToken = Nothing, _liMaxItems = Nothing}
-
+listIdentities
+  = ListIdentities'{_liIdentityType = Nothing,
+                    _liNextToken = Nothing, _liMaxItems = Nothing}
 
 -- | The type of the identities to list. Possible values are "EmailAddress" and "Domain". If this parameter is omitted, then all identities will be listed.
 liIdentityType :: Lens' ListIdentities (Maybe IdentityType)
@@ -134,12 +131,14 @@ instance ToQuery ListIdentities where
 --
 --
 -- /See:/ 'listIdentitiesResponse' smart constructor.
-data ListIdentitiesResponse = ListIdentitiesResponse'
-  { _lirsNextToken      :: !(Maybe Text)
-  , _lirsResponseStatus :: !Int
-  , _lirsIdentities     :: ![Text]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListIdentitiesResponse = ListIdentitiesResponse'{_lirsNextToken
+                                                      :: !(Maybe Text),
+                                                      _lirsResponseStatus ::
+                                                      !Int,
+                                                      _lirsIdentities ::
+                                                      ![Text]}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'ListIdentitiesResponse' with the minimum fields required to make a request.
 --
@@ -153,13 +152,10 @@ data ListIdentitiesResponse = ListIdentitiesResponse'
 listIdentitiesResponse
     :: Int -- ^ 'lirsResponseStatus'
     -> ListIdentitiesResponse
-listIdentitiesResponse pResponseStatus_ =
-  ListIdentitiesResponse'
-    { _lirsNextToken = Nothing
-    , _lirsResponseStatus = pResponseStatus_
-    , _lirsIdentities = mempty
-    }
-
+listIdentitiesResponse pResponseStatus_
+  = ListIdentitiesResponse'{_lirsNextToken = Nothing,
+                            _lirsResponseStatus = pResponseStatus_,
+                            _lirsIdentities = mempty}
 
 -- | The token used for pagination.
 lirsNextToken :: Lens' ListIdentitiesResponse (Maybe Text)

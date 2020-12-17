@@ -43,18 +43,17 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.StorageGateway.Types
-import Network.AWS.StorageGateway.Types.Product
 
 -- | SetLocalConsolePasswordInput
 --
 --
 --
 -- /See:/ 'setLocalConsolePassword' smart constructor.
-data SetLocalConsolePassword = SetLocalConsolePassword'
-  { _slcpGatewayARN           :: !Text
-  , _slcpLocalConsolePassword :: !(Sensitive Text)
-  } deriving (Eq, Show, Data, Typeable, Generic)
-
+data SetLocalConsolePassword = SetLocalConsolePassword'{_slcpGatewayARN
+                                                        :: !Text,
+                                                        _slcpLocalConsolePassword
+                                                        :: !(Sensitive Text)}
+                                 deriving (Eq, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'SetLocalConsolePassword' with the minimum fields required to make a request.
 --
@@ -67,12 +66,12 @@ setLocalConsolePassword
     :: Text -- ^ 'slcpGatewayARN'
     -> Text -- ^ 'slcpLocalConsolePassword'
     -> SetLocalConsolePassword
-setLocalConsolePassword pGatewayARN_ pLocalConsolePassword_ =
-  SetLocalConsolePassword'
-    { _slcpGatewayARN = pGatewayARN_
-    , _slcpLocalConsolePassword = _Sensitive # pLocalConsolePassword_
-    }
-
+setLocalConsolePassword pGatewayARN_
+  pLocalConsolePassword_
+  = SetLocalConsolePassword'{_slcpGatewayARN =
+                               pGatewayARN_,
+                             _slcpLocalConsolePassword =
+                               _Sensitive # pLocalConsolePassword_}
 
 -- | Undocumented member.
 slcpGatewayARN :: Lens' SetLocalConsolePassword Text
@@ -122,11 +121,14 @@ instance ToQuery SetLocalConsolePassword where
         toQuery = const mempty
 
 -- | /See:/ 'setLocalConsolePasswordResponse' smart constructor.
-data SetLocalConsolePasswordResponse = SetLocalConsolePasswordResponse'
-  { _slcprsGatewayARN     :: !(Maybe Text)
-  , _slcprsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data SetLocalConsolePasswordResponse = SetLocalConsolePasswordResponse'{_slcprsGatewayARN
+                                                                        ::
+                                                                        !(Maybe
+                                                                            Text),
+                                                                        _slcprsResponseStatus
+                                                                        :: !Int}
+                                         deriving (Eq, Read, Show, Data,
+                                                   Typeable, Generic)
 
 -- | Creates a value of 'SetLocalConsolePasswordResponse' with the minimum fields required to make a request.
 --
@@ -138,10 +140,10 @@ data SetLocalConsolePasswordResponse = SetLocalConsolePasswordResponse'
 setLocalConsolePasswordResponse
     :: Int -- ^ 'slcprsResponseStatus'
     -> SetLocalConsolePasswordResponse
-setLocalConsolePasswordResponse pResponseStatus_ =
-  SetLocalConsolePasswordResponse'
-    {_slcprsGatewayARN = Nothing, _slcprsResponseStatus = pResponseStatus_}
-
+setLocalConsolePasswordResponse pResponseStatus_
+  = SetLocalConsolePasswordResponse'{_slcprsGatewayARN
+                                       = Nothing,
+                                     _slcprsResponseStatus = pResponseStatus_}
 
 -- | Undocumented member.
 slcprsGatewayARN :: Lens' SetLocalConsolePasswordResponse (Maybe Text)

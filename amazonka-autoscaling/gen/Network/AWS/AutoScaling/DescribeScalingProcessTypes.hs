@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Describes the scaling process types for use with 'ResumeProcesses' and 'SuspendProcesses' .
+-- Describes the scaling process types for use with the 'ResumeProcesses' and 'SuspendProcesses' APIs.
 --
 --
 module Network.AWS.AutoScaling.DescribeScalingProcessTypes
@@ -36,24 +36,22 @@ module Network.AWS.AutoScaling.DescribeScalingProcessTypes
     ) where
 
 import Network.AWS.AutoScaling.Types
-import Network.AWS.AutoScaling.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'describeScalingProcessTypes' smart constructor.
-data DescribeScalingProcessTypes =
-  DescribeScalingProcessTypes'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeScalingProcessTypes = DescribeScalingProcessTypes'
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'DescribeScalingProcessTypes' with the minimum fields required to make a request.
 --
 describeScalingProcessTypes
     :: DescribeScalingProcessTypes
-describeScalingProcessTypes = DescribeScalingProcessTypes'
-
+describeScalingProcessTypes
+  = DescribeScalingProcessTypes'
 
 instance AWSRequest DescribeScalingProcessTypes where
         type Rs DescribeScalingProcessTypes =
@@ -87,11 +85,15 @@ instance ToQuery DescribeScalingProcessTypes where
                   "Version" =: ("2011-01-01" :: ByteString)])
 
 -- | /See:/ 'describeScalingProcessTypesResponse' smart constructor.
-data DescribeScalingProcessTypesResponse = DescribeScalingProcessTypesResponse'
-  { _dsptrsProcesses      :: !(Maybe [ProcessType])
-  , _dsptrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeScalingProcessTypesResponse = DescribeScalingProcessTypesResponse'{_dsptrsProcesses
+                                                                                ::
+                                                                                !(Maybe
+                                                                                    [ProcessType]),
+                                                                                _dsptrsResponseStatus
+                                                                                ::
+                                                                                !Int}
+                                             deriving (Eq, Read, Show, Data,
+                                                       Typeable, Generic)
 
 -- | Creates a value of 'DescribeScalingProcessTypesResponse' with the minimum fields required to make a request.
 --
@@ -103,10 +105,11 @@ data DescribeScalingProcessTypesResponse = DescribeScalingProcessTypesResponse'
 describeScalingProcessTypesResponse
     :: Int -- ^ 'dsptrsResponseStatus'
     -> DescribeScalingProcessTypesResponse
-describeScalingProcessTypesResponse pResponseStatus_ =
-  DescribeScalingProcessTypesResponse'
-    {_dsptrsProcesses = Nothing, _dsptrsResponseStatus = pResponseStatus_}
-
+describeScalingProcessTypesResponse pResponseStatus_
+  = DescribeScalingProcessTypesResponse'{_dsptrsProcesses
+                                           = Nothing,
+                                         _dsptrsResponseStatus =
+                                           pResponseStatus_}
 
 -- | The names of the process types.
 dsptrsProcesses :: Lens' DescribeScalingProcessTypesResponse [ProcessType]

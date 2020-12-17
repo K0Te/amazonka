@@ -27,6 +27,7 @@ module Network.AWS.ResourceGroups.GetGroup
       getGroup
     , GetGroup
     -- * Request Lenses
+    , ggGroup
     , ggGroupName
 
     -- * Destructuring the Response
@@ -41,33 +42,37 @@ import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.ResourceGroups.Types
-import Network.AWS.ResourceGroups.Types.Product
 import Network.AWS.Response
 
 -- | /See:/ 'getGroup' smart constructor.
-newtype GetGroup = GetGroup'
-  { _ggGroupName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetGroup = GetGroup'{_ggGroup :: !(Maybe Text),
+                          _ggGroupName :: !(Maybe Text)}
+                  deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetGroup' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'ggGroupName' - The name of the resource group.
+-- * 'ggGroup' - The name or the ARN of the resource group to retrieve.
+--
+-- * 'ggGroupName' - Don't use this parameter. Use @Group@ instead.
 getGroup
-    :: Text -- ^ 'ggGroupName'
-    -> GetGroup
-getGroup pGroupName_ = GetGroup' {_ggGroupName = pGroupName_}
+    :: GetGroup
+getGroup
+  = GetGroup'{_ggGroup = Nothing,
+              _ggGroupName = Nothing}
 
+-- | The name or the ARN of the resource group to retrieve.
+ggGroup :: Lens' GetGroup (Maybe Text)
+ggGroup = lens _ggGroup (\ s a -> s{_ggGroup = a})
 
--- | The name of the resource group.
-ggGroupName :: Lens' GetGroup Text
+-- | Don't use this parameter. Use @Group@ instead.
+ggGroupName :: Lens' GetGroup (Maybe Text)
 ggGroupName = lens _ggGroupName (\ s a -> s{_ggGroupName = a})
 
 instance AWSRequest GetGroup where
         type Rs GetGroup = GetGroupResponse
-        request = get resourceGroups
+        request = postJSON resourceGroups
         response
           = receiveJSON
               (\ s h x ->
@@ -81,19 +86,24 @@ instance NFData GetGroup where
 instance ToHeaders GetGroup where
         toHeaders = const mempty
 
+instance ToJSON GetGroup where
+        toJSON GetGroup'{..}
+          = object
+              (catMaybes
+                 [("Group" .=) <$> _ggGroup,
+                  ("GroupName" .=) <$> _ggGroupName])
+
 instance ToPath GetGroup where
-        toPath GetGroup'{..}
-          = mconcat ["/groups/", toBS _ggGroupName]
+        toPath = const "/get-group"
 
 instance ToQuery GetGroup where
         toQuery = const mempty
 
 -- | /See:/ 'getGroupResponse' smart constructor.
-data GetGroupResponse = GetGroupResponse'
-  { _ggrsGroup          :: !(Maybe Group)
-  , _ggrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetGroupResponse = GetGroupResponse'{_ggrsGroup
+                                          :: !(Maybe Group),
+                                          _ggrsResponseStatus :: !Int}
+                          deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetGroupResponse' with the minimum fields required to make a request.
 --
@@ -105,10 +115,9 @@ data GetGroupResponse = GetGroupResponse'
 getGroupResponse
     :: Int -- ^ 'ggrsResponseStatus'
     -> GetGroupResponse
-getGroupResponse pResponseStatus_ =
-  GetGroupResponse'
-    {_ggrsGroup = Nothing, _ggrsResponseStatus = pResponseStatus_}
-
+getGroupResponse pResponseStatus_
+  = GetGroupResponse'{_ggrsGroup = Nothing,
+                      _ggrsResponseStatus = pResponseStatus_}
 
 -- | A full description of the resource group.
 ggrsGroup :: Lens' GetGroupResponse (Maybe Group)

@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Provides a list of steps for the cluster in reverse order unless you specify stepIds with the request.
+-- Provides a list of steps for the cluster in reverse order unless you specify @stepIds@ with the request of filter by @StepStates@ . You can specify a maximum of ten @stepIDs@ .
 --
 --
 --
@@ -38,13 +38,12 @@ module Network.AWS.EMR.ListSteps
     , listStepsResponse
     , ListStepsResponse
     -- * Response Lenses
-    , lsrsSteps
-    , lsrsMarker
-    , lsrsResponseStatus
+    , lrsSteps
+    , lrsMarker
+    , lrsResponseStatus
     ) where
 
 import Network.AWS.EMR.Types
-import Network.AWS.EMR.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
@@ -56,19 +55,17 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'listSteps' smart constructor.
-data ListSteps = ListSteps'
-  { _lsStepIds    :: !(Maybe [Text])
-  , _lsStepStates :: !(Maybe [StepState])
-  , _lsMarker     :: !(Maybe Text)
-  , _lsClusterId  :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListSteps = ListSteps'{_lsStepIds ::
+                            !(Maybe [Text]),
+                            _lsStepStates :: !(Maybe [StepState]),
+                            _lsMarker :: !(Maybe Text), _lsClusterId :: !Text}
+                   deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListSteps' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'lsStepIds' - The filter to limit the step list based on the identifier of the steps.
+-- * 'lsStepIds' - The filter to limit the step list based on the identifier of the steps. You can specify a maximum of ten Step IDs. The character constraint applies to the overall length of the array.
 --
 -- * 'lsStepStates' - The filter to limit the step list based on certain states.
 --
@@ -78,16 +75,12 @@ data ListSteps = ListSteps'
 listSteps
     :: Text -- ^ 'lsClusterId'
     -> ListSteps
-listSteps pClusterId_ =
-  ListSteps'
-    { _lsStepIds = Nothing
-    , _lsStepStates = Nothing
-    , _lsMarker = Nothing
-    , _lsClusterId = pClusterId_
-    }
+listSteps pClusterId_
+  = ListSteps'{_lsStepIds = Nothing,
+               _lsStepStates = Nothing, _lsMarker = Nothing,
+               _lsClusterId = pClusterId_}
 
-
--- | The filter to limit the step list based on the identifier of the steps.
+-- | The filter to limit the step list based on the identifier of the steps. You can specify a maximum of ten Step IDs. The character constraint applies to the overall length of the array.
 lsStepIds :: Lens' ListSteps [Text]
 lsStepIds = lens _lsStepIds (\ s a -> s{_lsStepIds = a}) . _Default . _Coerce
 
@@ -105,10 +98,9 @@ lsClusterId = lens _lsClusterId (\ s a -> s{_lsClusterId = a})
 
 instance AWSPager ListSteps where
         page rq rs
-          | stop (rs ^. lsrsMarker) = Nothing
-          | stop (rs ^. lsrsSteps) = Nothing
-          | otherwise =
-            Just $ rq & lsMarker .~ rs ^. lsrsMarker
+          | stop (rs ^. lrsMarker) = Nothing
+          | stop (rs ^. lrsSteps) = Nothing
+          | otherwise = Just $ rq & lsMarker .~ rs ^. lrsMarker
 
 instance AWSRequest ListSteps where
         type Rs ListSteps = ListStepsResponse
@@ -153,43 +145,39 @@ instance ToQuery ListSteps where
 --
 --
 -- /See:/ 'listStepsResponse' smart constructor.
-data ListStepsResponse = ListStepsResponse'
-  { _lsrsSteps          :: !(Maybe [StepSummary])
-  , _lsrsMarker         :: !(Maybe Text)
-  , _lsrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListStepsResponse = ListStepsResponse'{_lrsSteps
+                                            :: !(Maybe [StepSummary]),
+                                            _lrsMarker :: !(Maybe Text),
+                                            _lrsResponseStatus :: !Int}
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListStepsResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'lsrsSteps' - The filtered list of steps for the cluster.
+-- * 'lrsSteps' - The filtered list of steps for the cluster.
 --
--- * 'lsrsMarker' - The pagination token that indicates the next set of results to retrieve.
+-- * 'lrsMarker' - The pagination token that indicates the next set of results to retrieve.
 --
--- * 'lsrsResponseStatus' - -- | The response status code.
+-- * 'lrsResponseStatus' - -- | The response status code.
 listStepsResponse
-    :: Int -- ^ 'lsrsResponseStatus'
+    :: Int -- ^ 'lrsResponseStatus'
     -> ListStepsResponse
-listStepsResponse pResponseStatus_ =
-  ListStepsResponse'
-    { _lsrsSteps = Nothing
-    , _lsrsMarker = Nothing
-    , _lsrsResponseStatus = pResponseStatus_
-    }
-
+listStepsResponse pResponseStatus_
+  = ListStepsResponse'{_lrsSteps = Nothing,
+                       _lrsMarker = Nothing,
+                       _lrsResponseStatus = pResponseStatus_}
 
 -- | The filtered list of steps for the cluster.
-lsrsSteps :: Lens' ListStepsResponse [StepSummary]
-lsrsSteps = lens _lsrsSteps (\ s a -> s{_lsrsSteps = a}) . _Default . _Coerce
+lrsSteps :: Lens' ListStepsResponse [StepSummary]
+lrsSteps = lens _lrsSteps (\ s a -> s{_lrsSteps = a}) . _Default . _Coerce
 
 -- | The pagination token that indicates the next set of results to retrieve.
-lsrsMarker :: Lens' ListStepsResponse (Maybe Text)
-lsrsMarker = lens _lsrsMarker (\ s a -> s{_lsrsMarker = a})
+lrsMarker :: Lens' ListStepsResponse (Maybe Text)
+lrsMarker = lens _lrsMarker (\ s a -> s{_lrsMarker = a})
 
 -- | -- | The response status code.
-lsrsResponseStatus :: Lens' ListStepsResponse Int
-lsrsResponseStatus = lens _lsrsResponseStatus (\ s a -> s{_lsrsResponseStatus = a})
+lrsResponseStatus :: Lens' ListStepsResponse Int
+lrsResponseStatus = lens _lrsResponseStatus (\ s a -> s{_lrsResponseStatus = a})
 
 instance NFData ListStepsResponse where

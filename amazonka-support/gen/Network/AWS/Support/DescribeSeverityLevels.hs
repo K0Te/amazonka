@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Returns the list of severity levels that you can assign to an AWS Support case. The severity level for a case is also a field in the 'CaseDetails' data type included in any 'CreateCase' request.
+-- Returns the list of severity levels that you can assign to an AWS Support case. The severity level for a case is also a field in the 'CaseDetails' data type that you include for a 'CreateCase' request.
 --
 --
 module Network.AWS.Support.DescribeSeverityLevels
@@ -42,17 +42,12 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.Support.Types
-import Network.AWS.Support.Types.Product
 
--- |
---
---
---
--- /See:/ 'describeSeverityLevels' smart constructor.
-newtype DescribeSeverityLevels = DescribeSeverityLevels'
-  { _dslLanguage :: Maybe Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+-- | /See:/ 'describeSeverityLevels' smart constructor.
+newtype DescribeSeverityLevels = DescribeSeverityLevels'{_dslLanguage
+                                                         :: Maybe Text}
+                                   deriving (Eq, Read, Show, Data, Typeable,
+                                             Generic)
 
 -- | Creates a value of 'DescribeSeverityLevels' with the minimum fields required to make a request.
 --
@@ -61,8 +56,8 @@ newtype DescribeSeverityLevels = DescribeSeverityLevels'
 -- * 'dslLanguage' - The ISO 639-1 code for the language in which AWS provides support. AWS Support currently supports English ("en") and Japanese ("ja"). Language parameters must be passed explicitly for operations that take them.
 describeSeverityLevels
     :: DescribeSeverityLevels
-describeSeverityLevels = DescribeSeverityLevels' {_dslLanguage = Nothing}
-
+describeSeverityLevels
+  = DescribeSeverityLevels'{_dslLanguage = Nothing}
 
 -- | The ISO 639-1 code for the language in which AWS provides support. AWS Support currently supports English ("en") and Japanese ("ja"). Language parameters must be passed explicitly for operations that take them.
 dslLanguage :: Lens' DescribeSeverityLevels (Maybe Text)
@@ -109,11 +104,14 @@ instance ToQuery DescribeSeverityLevels where
 --
 --
 -- /See:/ 'describeSeverityLevelsResponse' smart constructor.
-data DescribeSeverityLevelsResponse = DescribeSeverityLevelsResponse'
-  { _dslrsSeverityLevels :: !(Maybe [SeverityLevel])
-  , _dslrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeSeverityLevelsResponse = DescribeSeverityLevelsResponse'{_dslrsSeverityLevels
+                                                                      ::
+                                                                      !(Maybe
+                                                                          [SeverityLevel]),
+                                                                      _dslrsResponseStatus
+                                                                      :: !Int}
+                                        deriving (Eq, Read, Show, Data,
+                                                  Typeable, Generic)
 
 -- | Creates a value of 'DescribeSeverityLevelsResponse' with the minimum fields required to make a request.
 --
@@ -125,10 +123,10 @@ data DescribeSeverityLevelsResponse = DescribeSeverityLevelsResponse'
 describeSeverityLevelsResponse
     :: Int -- ^ 'dslrsResponseStatus'
     -> DescribeSeverityLevelsResponse
-describeSeverityLevelsResponse pResponseStatus_ =
-  DescribeSeverityLevelsResponse'
-    {_dslrsSeverityLevels = Nothing, _dslrsResponseStatus = pResponseStatus_}
-
+describeSeverityLevelsResponse pResponseStatus_
+  = DescribeSeverityLevelsResponse'{_dslrsSeverityLevels
+                                      = Nothing,
+                                    _dslrsResponseStatus = pResponseStatus_}
 
 -- | The available severity levels for the support case. Available severity levels are defined by your service level agreement with AWS.
 dslrsSeverityLevels :: Lens' DescribeSeverityLevelsResponse [SeverityLevel]

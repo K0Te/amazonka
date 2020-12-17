@@ -29,81 +29,87 @@ module Network.AWS.DMS.DescribeReplicationTaskAssessmentResults
       describeReplicationTaskAssessmentResults
     , DescribeReplicationTaskAssessmentResults
     -- * Request Lenses
-    , drtarReplicationTaskARN
-    , drtarMarker
-    , drtarMaxRecords
+    , dReplicationTaskARN
+    , dMarker
+    , dMaxRecords
 
     -- * Destructuring the Response
     , describeReplicationTaskAssessmentResultsResponse
     , DescribeReplicationTaskAssessmentResultsResponse
     -- * Response Lenses
-    , drtarrsBucketName
-    , drtarrsMarker
-    , drtarrsReplicationTaskAssessmentResults
-    , drtarrsResponseStatus
+    , drtarrrsBucketName
+    , drtarrrsMarker
+    , drtarrrsReplicationTaskAssessmentResults
+    , drtarrrsResponseStatus
     ) where
 
 import Network.AWS.DMS.Types
-import Network.AWS.DMS.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- |
+-- | 
 --
 --
 --
 -- /See:/ 'describeReplicationTaskAssessmentResults' smart constructor.
-data DescribeReplicationTaskAssessmentResults = DescribeReplicationTaskAssessmentResults'
-  { _drtarReplicationTaskARN :: !(Maybe Text)
-  , _drtarMarker             :: !(Maybe Text)
-  , _drtarMaxRecords         :: !(Maybe Int)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeReplicationTaskAssessmentResults = DescribeReplicationTaskAssessmentResults'{_dReplicationTaskARN
+                                                                                          ::
+                                                                                          !(Maybe
+                                                                                              Text),
+                                                                                          _dMarker
+                                                                                          ::
+                                                                                          !(Maybe
+                                                                                              Text),
+                                                                                          _dMaxRecords
+                                                                                          ::
+                                                                                          !(Maybe
+                                                                                              Int)}
+                                                  deriving (Eq, Read, Show,
+                                                            Data, Typeable,
+                                                            Generic)
 
 -- | Creates a value of 'DescribeReplicationTaskAssessmentResults' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'drtarReplicationTaskARN' - - The Amazon Resource Name (ARN) string that uniquely identifies the task. When this input parameter is specified the API will return only one result and ignore the values of the max-records and marker parameters.
+-- * 'dReplicationTaskARN' - The Amazon Resource Name (ARN) string that uniquely identifies the task. When this input parameter is specified, the API returns only one result and ignore the values of the @MaxRecords@ and @Marker@ parameters. 
 --
--- * 'drtarMarker' - An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by @MaxRecords@ .
+-- * 'dMarker' - An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by @MaxRecords@ . 
 --
--- * 'drtarMaxRecords' - The maximum number of records to include in the response. If more records exist than the specified @MaxRecords@ value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.  Default: 100 Constraints: Minimum 20, maximum 100.
+-- * 'dMaxRecords' - The maximum number of records to include in the response. If more records exist than the specified @MaxRecords@ value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.  Default: 100 Constraints: Minimum 20, maximum 100.
 describeReplicationTaskAssessmentResults
     :: DescribeReplicationTaskAssessmentResults
-describeReplicationTaskAssessmentResults =
-  DescribeReplicationTaskAssessmentResults'
-    { _drtarReplicationTaskARN = Nothing
-    , _drtarMarker = Nothing
-    , _drtarMaxRecords = Nothing
-    }
+describeReplicationTaskAssessmentResults
+  = DescribeReplicationTaskAssessmentResults'{_dReplicationTaskARN
+                                                = Nothing,
+                                              _dMarker = Nothing,
+                                              _dMaxRecords = Nothing}
 
+-- | The Amazon Resource Name (ARN) string that uniquely identifies the task. When this input parameter is specified, the API returns only one result and ignore the values of the @MaxRecords@ and @Marker@ parameters. 
+dReplicationTaskARN :: Lens' DescribeReplicationTaskAssessmentResults (Maybe Text)
+dReplicationTaskARN = lens _dReplicationTaskARN (\ s a -> s{_dReplicationTaskARN = a})
 
--- | - The Amazon Resource Name (ARN) string that uniquely identifies the task. When this input parameter is specified the API will return only one result and ignore the values of the max-records and marker parameters.
-drtarReplicationTaskARN :: Lens' DescribeReplicationTaskAssessmentResults (Maybe Text)
-drtarReplicationTaskARN = lens _drtarReplicationTaskARN (\ s a -> s{_drtarReplicationTaskARN = a})
-
--- | An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by @MaxRecords@ .
-drtarMarker :: Lens' DescribeReplicationTaskAssessmentResults (Maybe Text)
-drtarMarker = lens _drtarMarker (\ s a -> s{_drtarMarker = a})
+-- | An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by @MaxRecords@ . 
+dMarker :: Lens' DescribeReplicationTaskAssessmentResults (Maybe Text)
+dMarker = lens _dMarker (\ s a -> s{_dMarker = a})
 
 -- | The maximum number of records to include in the response. If more records exist than the specified @MaxRecords@ value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.  Default: 100 Constraints: Minimum 20, maximum 100.
-drtarMaxRecords :: Lens' DescribeReplicationTaskAssessmentResults (Maybe Int)
-drtarMaxRecords = lens _drtarMaxRecords (\ s a -> s{_drtarMaxRecords = a})
+dMaxRecords :: Lens' DescribeReplicationTaskAssessmentResults (Maybe Int)
+dMaxRecords = lens _dMaxRecords (\ s a -> s{_dMaxRecords = a})
 
 instance AWSPager
            DescribeReplicationTaskAssessmentResults
          where
         page rq rs
-          | stop (rs ^. drtarrsMarker) = Nothing
+          | stop (rs ^. drtarrrsMarker) = Nothing
           | stop
-              (rs ^. drtarrsReplicationTaskAssessmentResults)
+              (rs ^. drtarrrsReplicationTaskAssessmentResults)
             = Nothing
           | otherwise =
-            Just $ rq & drtarMarker .~ rs ^. drtarrsMarker
+            Just $ rq & dMarker .~ rs ^. drtarrrsMarker
 
 instance AWSRequest
            DescribeReplicationTaskAssessmentResults
@@ -145,10 +151,9 @@ instance ToJSON
         toJSON DescribeReplicationTaskAssessmentResults'{..}
           = object
               (catMaybes
-                 [("ReplicationTaskArn" .=) <$>
-                    _drtarReplicationTaskARN,
-                  ("Marker" .=) <$> _drtarMarker,
-                  ("MaxRecords" .=) <$> _drtarMaxRecords])
+                 [("ReplicationTaskArn" .=) <$> _dReplicationTaskARN,
+                  ("Marker" .=) <$> _dMarker,
+                  ("MaxRecords" .=) <$> _dMaxRecords])
 
 instance ToPath
            DescribeReplicationTaskAssessmentResults
@@ -160,57 +165,70 @@ instance ToQuery
          where
         toQuery = const mempty
 
--- |
+-- | 
 --
 --
 --
 -- /See:/ 'describeReplicationTaskAssessmentResultsResponse' smart constructor.
-data DescribeReplicationTaskAssessmentResultsResponse = DescribeReplicationTaskAssessmentResultsResponse'
-  { _drtarrsBucketName :: !(Maybe Text)
-  , _drtarrsMarker :: !(Maybe Text)
-  , _drtarrsReplicationTaskAssessmentResults :: !(Maybe [ReplicationTaskAssessmentResult])
-  , _drtarrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeReplicationTaskAssessmentResultsResponse = DescribeReplicationTaskAssessmentResultsResponse'{_drtarrrsBucketName
+                                                                                                          ::
+                                                                                                          !(Maybe
+                                                                                                              Text),
+                                                                                                          _drtarrrsMarker
+                                                                                                          ::
+                                                                                                          !(Maybe
+                                                                                                              Text),
+                                                                                                          _drtarrrsReplicationTaskAssessmentResults
+                                                                                                          ::
+                                                                                                          !(Maybe
+                                                                                                              [ReplicationTaskAssessmentResult]),
+                                                                                                          _drtarrrsResponseStatus
+                                                                                                          ::
+                                                                                                          !Int}
+                                                          deriving (Eq, Read,
+                                                                    Show, Data,
+                                                                    Typeable,
+                                                                    Generic)
 
 -- | Creates a value of 'DescribeReplicationTaskAssessmentResultsResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'drtarrsBucketName' - - The Amazon S3 bucket where the task assessment report is located.
+-- * 'drtarrrsBucketName' - - The Amazon S3 bucket where the task assessment report is located. 
 --
--- * 'drtarrsMarker' - An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by @MaxRecords@ .
+-- * 'drtarrrsMarker' - An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by @MaxRecords@ . 
 --
--- * 'drtarrsReplicationTaskAssessmentResults' - The task assessment report.
+-- * 'drtarrrsReplicationTaskAssessmentResults' - The task assessment report. 
 --
--- * 'drtarrsResponseStatus' - -- | The response status code.
+-- * 'drtarrrsResponseStatus' - -- | The response status code.
 describeReplicationTaskAssessmentResultsResponse
-    :: Int -- ^ 'drtarrsResponseStatus'
+    :: Int -- ^ 'drtarrrsResponseStatus'
     -> DescribeReplicationTaskAssessmentResultsResponse
-describeReplicationTaskAssessmentResultsResponse pResponseStatus_ =
-  DescribeReplicationTaskAssessmentResultsResponse'
-    { _drtarrsBucketName = Nothing
-    , _drtarrsMarker = Nothing
-    , _drtarrsReplicationTaskAssessmentResults = Nothing
-    , _drtarrsResponseStatus = pResponseStatus_
-    }
+describeReplicationTaskAssessmentResultsResponse
+  pResponseStatus_
+  = DescribeReplicationTaskAssessmentResultsResponse'{_drtarrrsBucketName
+                                                        = Nothing,
+                                                      _drtarrrsMarker = Nothing,
+                                                      _drtarrrsReplicationTaskAssessmentResults
+                                                        = Nothing,
+                                                      _drtarrrsResponseStatus =
+                                                        pResponseStatus_}
 
+-- | - The Amazon S3 bucket where the task assessment report is located. 
+drtarrrsBucketName :: Lens' DescribeReplicationTaskAssessmentResultsResponse (Maybe Text)
+drtarrrsBucketName = lens _drtarrrsBucketName (\ s a -> s{_drtarrrsBucketName = a})
 
--- | - The Amazon S3 bucket where the task assessment report is located.
-drtarrsBucketName :: Lens' DescribeReplicationTaskAssessmentResultsResponse (Maybe Text)
-drtarrsBucketName = lens _drtarrsBucketName (\ s a -> s{_drtarrsBucketName = a})
+-- | An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by @MaxRecords@ . 
+drtarrrsMarker :: Lens' DescribeReplicationTaskAssessmentResultsResponse (Maybe Text)
+drtarrrsMarker = lens _drtarrrsMarker (\ s a -> s{_drtarrrsMarker = a})
 
--- | An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by @MaxRecords@ .
-drtarrsMarker :: Lens' DescribeReplicationTaskAssessmentResultsResponse (Maybe Text)
-drtarrsMarker = lens _drtarrsMarker (\ s a -> s{_drtarrsMarker = a})
-
--- | The task assessment report.
-drtarrsReplicationTaskAssessmentResults :: Lens' DescribeReplicationTaskAssessmentResultsResponse [ReplicationTaskAssessmentResult]
-drtarrsReplicationTaskAssessmentResults = lens _drtarrsReplicationTaskAssessmentResults (\ s a -> s{_drtarrsReplicationTaskAssessmentResults = a}) . _Default . _Coerce
+-- | The task assessment report. 
+drtarrrsReplicationTaskAssessmentResults :: Lens' DescribeReplicationTaskAssessmentResultsResponse [ReplicationTaskAssessmentResult]
+drtarrrsReplicationTaskAssessmentResults = lens _drtarrrsReplicationTaskAssessmentResults (\ s a -> s{_drtarrrsReplicationTaskAssessmentResults = a}) . _Default . _Coerce
 
 -- | -- | The response status code.
-drtarrsResponseStatus :: Lens' DescribeReplicationTaskAssessmentResultsResponse Int
-drtarrsResponseStatus = lens _drtarrsResponseStatus (\ s a -> s{_drtarrsResponseStatus = a})
+drtarrrsResponseStatus :: Lens' DescribeReplicationTaskAssessmentResultsResponse Int
+drtarrrsResponseStatus = lens _drtarrrsResponseStatus (\ s a -> s{_drtarrrsResponseStatus = a})
 
 instance NFData
            DescribeReplicationTaskAssessmentResultsResponse

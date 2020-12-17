@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Returns a list of cache security group descriptions. If a cache security group name is specified, the list contains only the description of that group.
+-- Returns a list of cache security group descriptions. If a cache security group name is specified, the list contains only the description of that group. This applicable only when you have ElastiCache in Classic setup 
 --
 --
 --
@@ -43,7 +43,6 @@ module Network.AWS.ElastiCache.DescribeCacheSecurityGroups
     ) where
 
 import Network.AWS.ElastiCache.Types
-import Network.AWS.ElastiCache.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
@@ -55,12 +54,15 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'describeCacheSecurityGroups' smart constructor.
-data DescribeCacheSecurityGroups = DescribeCacheSecurityGroups'
-  { _dcsgsCacheSecurityGroupName :: !(Maybe Text)
-  , _dcsgsMarker                 :: !(Maybe Text)
-  , _dcsgsMaxRecords             :: !(Maybe Int)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeCacheSecurityGroups = DescribeCacheSecurityGroups'{_dcsgsCacheSecurityGroupName
+                                                                ::
+                                                                !(Maybe Text),
+                                                                _dcsgsMarker ::
+                                                                !(Maybe Text),
+                                                                _dcsgsMaxRecords
+                                                                :: !(Maybe Int)}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'DescribeCacheSecurityGroups' with the minimum fields required to make a request.
 --
@@ -73,13 +75,11 @@ data DescribeCacheSecurityGroups = DescribeCacheSecurityGroups'
 -- * 'dcsgsMaxRecords' - The maximum number of records to include in the response. If more records exist than the specified @MaxRecords@ value, a marker is included in the response so that the remaining results can be retrieved. Default: 100 Constraints: minimum 20; maximum 100.
 describeCacheSecurityGroups
     :: DescribeCacheSecurityGroups
-describeCacheSecurityGroups =
-  DescribeCacheSecurityGroups'
-    { _dcsgsCacheSecurityGroupName = Nothing
-    , _dcsgsMarker = Nothing
-    , _dcsgsMaxRecords = Nothing
-    }
-
+describeCacheSecurityGroups
+  = DescribeCacheSecurityGroups'{_dcsgsCacheSecurityGroupName
+                                   = Nothing,
+                                 _dcsgsMarker = Nothing,
+                                 _dcsgsMaxRecords = Nothing}
 
 -- | The name of the cache security group to return details for.
 dcsgsCacheSecurityGroupName :: Lens' DescribeCacheSecurityGroups (Maybe Text)
@@ -140,12 +140,19 @@ instance ToQuery DescribeCacheSecurityGroups where
 --
 --
 -- /See:/ 'describeCacheSecurityGroupsResponse' smart constructor.
-data DescribeCacheSecurityGroupsResponse = DescribeCacheSecurityGroupsResponse'
-  { _dcsgsrsCacheSecurityGroups :: !(Maybe [CacheSecurityGroup])
-  , _dcsgsrsMarker              :: !(Maybe Text)
-  , _dcsgsrsResponseStatus      :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeCacheSecurityGroupsResponse = DescribeCacheSecurityGroupsResponse'{_dcsgsrsCacheSecurityGroups
+                                                                                ::
+                                                                                !(Maybe
+                                                                                    [CacheSecurityGroup]),
+                                                                                _dcsgsrsMarker
+                                                                                ::
+                                                                                !(Maybe
+                                                                                    Text),
+                                                                                _dcsgsrsResponseStatus
+                                                                                ::
+                                                                                !Int}
+                                             deriving (Eq, Read, Show, Data,
+                                                       Typeable, Generic)
 
 -- | Creates a value of 'DescribeCacheSecurityGroupsResponse' with the minimum fields required to make a request.
 --
@@ -159,13 +166,12 @@ data DescribeCacheSecurityGroupsResponse = DescribeCacheSecurityGroupsResponse'
 describeCacheSecurityGroupsResponse
     :: Int -- ^ 'dcsgsrsResponseStatus'
     -> DescribeCacheSecurityGroupsResponse
-describeCacheSecurityGroupsResponse pResponseStatus_ =
-  DescribeCacheSecurityGroupsResponse'
-    { _dcsgsrsCacheSecurityGroups = Nothing
-    , _dcsgsrsMarker = Nothing
-    , _dcsgsrsResponseStatus = pResponseStatus_
-    }
-
+describeCacheSecurityGroupsResponse pResponseStatus_
+  = DescribeCacheSecurityGroupsResponse'{_dcsgsrsCacheSecurityGroups
+                                           = Nothing,
+                                         _dcsgsrsMarker = Nothing,
+                                         _dcsgsrsResponseStatus =
+                                           pResponseStatus_}
 
 -- | A list of cache security groups. Each element in the list contains detailed information about one group.
 dcsgsrsCacheSecurityGroups :: Lens' DescribeCacheSecurityGroupsResponse [CacheSecurityGroup]

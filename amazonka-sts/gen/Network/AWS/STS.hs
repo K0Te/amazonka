@@ -11,23 +11,9 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- __AWS Security Token Service__
+-- __AWS Security Token Service__ 
 --
--- The AWS Security Token Service (STS) is a web service that enables you to request temporary, limited-privilege credentials for AWS Identity and Access Management (IAM) users or for users that you authenticate (federated users). This guide provides descriptions of the STS API. For more detailed information about using this service, go to <http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html Temporary Security Credentials> .
---
--- For information about setting up signatures and authorization through the API, go to <http://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html Signing AWS API Requests> in the /AWS General Reference/ . For general information about the Query API, go to <http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html Making Query Requests> in /Using IAM/ . For information about using security tokens with other AWS products, go to <http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-services-that-work-with-iam.html AWS Services That Work with IAM> in the /IAM User Guide/ .
---
--- If you're new to AWS and need additional technical information about a specific AWS product, you can find the product's technical documentation at <http://aws.amazon.com/documentation/ http://aws.amazon.com/documentation/> .
---
--- __Endpoints__
---
--- The AWS Security Token Service (STS) has a default endpoint of https://sts.amazonaws.com that maps to the US East (N. Virginia) region. Additional regions are available and are activated by default. For more information, see <http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html Activating and Deactivating AWS STS in an AWS Region> in the /IAM User Guide/ .
---
--- For information about STS endpoints, see <http://docs.aws.amazon.com/general/latest/gr/rande.html#sts_region Regions and Endpoints> in the /AWS General Reference/ .
---
--- __Recording API requests__
---
--- STS supports AWS CloudTrail, which is a service that records AWS calls for your AWS account and delivers log files to an Amazon S3 bucket. By using information collected by CloudTrail, you can determine what requests were successfully made to STS, who made the request, when it was made, and so on. To learn more about CloudTrail, including how to turn it on and find your log files, see the <http://docs.aws.amazon.com/awscloudtrail/latest/userguide/what_is_cloud_trail_top_level.html AWS CloudTrail User Guide> .
+-- AWS Security Token Service (STS) enables you to request temporary, limited-privilege credentials for AWS Identity and Access Management (IAM) users or for users that you authenticate (federated users). This guide provides descriptions of the STS API. For more information about using this service, see <https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html Temporary Security Credentials> .
 --
 module Network.AWS.STS
     (
@@ -67,25 +53,28 @@ module Network.AWS.STS
     -- * Operations
     -- $operations
 
-    -- ** GetCallerIdentity
+    -- ** GetCallerIdentity 
     , module Network.AWS.STS.GetCallerIdentity
 
-    -- ** AssumeRole
+    -- ** AssumeRole 
     , module Network.AWS.STS.AssumeRole
 
-    -- ** DecodeAuthorizationMessage
+    -- ** GetAccessKeyInfo 
+    , module Network.AWS.STS.GetAccessKeyInfo
+
+    -- ** DecodeAuthorizationMessage 
     , module Network.AWS.STS.DecodeAuthorizationMessage
 
-    -- ** AssumeRoleWithWebIdentity
+    -- ** AssumeRoleWithWebIdentity 
     , module Network.AWS.STS.AssumeRoleWithWebIdentity
 
-    -- ** GetFederationToken
+    -- ** GetFederationToken 
     , module Network.AWS.STS.GetFederationToken
 
-    -- ** GetSessionToken
+    -- ** GetSessionToken 
     , module Network.AWS.STS.GetSessionToken
 
-    -- ** AssumeRoleWithSAML
+    -- ** AssumeRoleWithSAML 
     , module Network.AWS.STS.AssumeRoleWithSAML
 
     -- * Types
@@ -101,12 +90,24 @@ module Network.AWS.STS
     , federatedUser
     , fuFederatedUserId
     , fuARN
+
+    -- ** PolicyDescriptorType
+    , PolicyDescriptorType
+    , policyDescriptorType
+    , pdtArn
+
+    -- ** Tag
+    , Tag
+    , tag
+    , tagKey
+    , tagValue
     ) where
 
 import Network.AWS.STS.AssumeRole
 import Network.AWS.STS.AssumeRoleWithSAML
 import Network.AWS.STS.AssumeRoleWithWebIdentity
 import Network.AWS.STS.DecodeAuthorizationMessage
+import Network.AWS.STS.GetAccessKeyInfo
 import Network.AWS.STS.GetCallerIdentity
 import Network.AWS.STS.GetFederationToken
 import Network.AWS.STS.GetSessionToken

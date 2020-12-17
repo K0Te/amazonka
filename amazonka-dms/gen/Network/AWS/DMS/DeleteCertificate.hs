@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Deletes the specified certificate.
+-- Deletes the specified certificate. 
 --
 --
 module Network.AWS.DMS.DeleteCertificate
@@ -38,17 +38,15 @@ module Network.AWS.DMS.DeleteCertificate
     ) where
 
 import Network.AWS.DMS.Types
-import Network.AWS.DMS.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deleteCertificate' smart constructor.
-newtype DeleteCertificate = DeleteCertificate'
-  { _dcCertificateARN :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteCertificate = DeleteCertificate'{_dcCertificateARN
+                                               :: Text}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteCertificate' with the minimum fields required to make a request.
 --
@@ -58,9 +56,9 @@ newtype DeleteCertificate = DeleteCertificate'
 deleteCertificate
     :: Text -- ^ 'dcCertificateARN'
     -> DeleteCertificate
-deleteCertificate pCertificateARN_ =
-  DeleteCertificate' {_dcCertificateARN = pCertificateARN_}
-
+deleteCertificate pCertificateARN_
+  = DeleteCertificate'{_dcCertificateARN =
+                         pCertificateARN_}
 
 -- | The Amazon Resource Name (ARN) of the deleted certificate.
 dcCertificateARN :: Lens' DeleteCertificate Text
@@ -102,11 +100,14 @@ instance ToQuery DeleteCertificate where
         toQuery = const mempty
 
 -- | /See:/ 'deleteCertificateResponse' smart constructor.
-data DeleteCertificateResponse = DeleteCertificateResponse'
-  { _dccrsCertificate    :: !(Maybe Certificate)
-  , _dccrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteCertificateResponse = DeleteCertificateResponse'{_dccrsCertificate
+                                                            ::
+                                                            !(Maybe
+                                                                Certificate),
+                                                            _dccrsResponseStatus
+                                                            :: !Int}
+                                   deriving (Eq, Read, Show, Data, Typeable,
+                                             Generic)
 
 -- | Creates a value of 'DeleteCertificateResponse' with the minimum fields required to make a request.
 --
@@ -118,10 +119,10 @@ data DeleteCertificateResponse = DeleteCertificateResponse'
 deleteCertificateResponse
     :: Int -- ^ 'dccrsResponseStatus'
     -> DeleteCertificateResponse
-deleteCertificateResponse pResponseStatus_ =
-  DeleteCertificateResponse'
-    {_dccrsCertificate = Nothing, _dccrsResponseStatus = pResponseStatus_}
-
+deleteCertificateResponse pResponseStatus_
+  = DeleteCertificateResponse'{_dccrsCertificate =
+                                 Nothing,
+                               _dccrsResponseStatus = pResponseStatus_}
 
 -- | The Secure Sockets Layer (SSL) certificate.
 dccrsCertificate :: Lens' DeleteCertificateResponse (Maybe Certificate)

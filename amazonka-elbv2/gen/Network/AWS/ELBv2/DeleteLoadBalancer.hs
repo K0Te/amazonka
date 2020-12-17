@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Deletes the specified Application Load Balancer or Network Load Balancer and its attached listeners.
+-- Deletes the specified Application Load Balancer, Network Load Balancer, or Gateway Load Balancer. Deleting a load balancer also deletes its listeners.
 --
 --
 -- You can't delete a load balancer if deletion protection is enabled. If the load balancer does not exist or has already been deleted, the call succeeds.
@@ -41,17 +41,16 @@ module Network.AWS.ELBv2.DeleteLoadBalancer
     ) where
 
 import Network.AWS.ELBv2.Types
-import Network.AWS.ELBv2.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deleteLoadBalancer' smart constructor.
-newtype DeleteLoadBalancer = DeleteLoadBalancer'
-  { _dlbLoadBalancerARN :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteLoadBalancer = DeleteLoadBalancer'{_dlbLoadBalancerARN
+                                                 :: Text}
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'DeleteLoadBalancer' with the minimum fields required to make a request.
 --
@@ -61,9 +60,9 @@ newtype DeleteLoadBalancer = DeleteLoadBalancer'
 deleteLoadBalancer
     :: Text -- ^ 'dlbLoadBalancerARN'
     -> DeleteLoadBalancer
-deleteLoadBalancer pLoadBalancerARN_ =
-  DeleteLoadBalancer' {_dlbLoadBalancerARN = pLoadBalancerARN_}
-
+deleteLoadBalancer pLoadBalancerARN_
+  = DeleteLoadBalancer'{_dlbLoadBalancerARN =
+                          pLoadBalancerARN_}
 
 -- | The Amazon Resource Name (ARN) of the load balancer.
 dlbLoadBalancerARN :: Lens' DeleteLoadBalancer Text
@@ -96,10 +95,10 @@ instance ToQuery DeleteLoadBalancer where
                "LoadBalancerArn" =: _dlbLoadBalancerARN]
 
 -- | /See:/ 'deleteLoadBalancerResponse' smart constructor.
-newtype DeleteLoadBalancerResponse = DeleteLoadBalancerResponse'
-  { _drsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteLoadBalancerResponse = DeleteLoadBalancerResponse'{_drsResponseStatus
+                                                                 :: Int}
+                                       deriving (Eq, Read, Show, Data, Typeable,
+                                                 Generic)
 
 -- | Creates a value of 'DeleteLoadBalancerResponse' with the minimum fields required to make a request.
 --
@@ -109,9 +108,9 @@ newtype DeleteLoadBalancerResponse = DeleteLoadBalancerResponse'
 deleteLoadBalancerResponse
     :: Int -- ^ 'drsResponseStatus'
     -> DeleteLoadBalancerResponse
-deleteLoadBalancerResponse pResponseStatus_ =
-  DeleteLoadBalancerResponse' {_drsResponseStatus = pResponseStatus_}
-
+deleteLoadBalancerResponse pResponseStatus_
+  = DeleteLoadBalancerResponse'{_drsResponseStatus =
+                                  pResponseStatus_}
 
 -- | -- | The response status code.
 drsResponseStatus :: Lens' DeleteLoadBalancerResponse Int

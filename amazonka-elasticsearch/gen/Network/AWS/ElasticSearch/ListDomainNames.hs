@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Returns the name of all Elasticsearch domains owned by the current user's account.
+-- Returns the name of all Elasticsearch domains owned by the current user's account. 
 --
 --
 module Network.AWS.ElasticSearch.ListDomainNames
@@ -36,24 +36,20 @@ module Network.AWS.ElasticSearch.ListDomainNames
     ) where
 
 import Network.AWS.ElasticSearch.Types
-import Network.AWS.ElasticSearch.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'listDomainNames' smart constructor.
-data ListDomainNames =
-  ListDomainNames'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListDomainNames = ListDomainNames'
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ListDomainNames' with the minimum fields required to make a request.
 --
 listDomainNames
     :: ListDomainNames
 listDomainNames = ListDomainNames'
-
 
 instance AWSRequest ListDomainNames where
         type Rs ListDomainNames = ListDomainNamesResponse
@@ -83,11 +79,13 @@ instance ToQuery ListDomainNames where
 --
 --
 -- /See:/ 'listDomainNamesResponse' smart constructor.
-data ListDomainNamesResponse = ListDomainNamesResponse'
-  { _ldnrsDomainNames    :: !(Maybe [DomainInfo])
-  , _ldnrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListDomainNamesResponse = ListDomainNamesResponse'{_ldnrsDomainNames
+                                                        ::
+                                                        !(Maybe [DomainInfo]),
+                                                        _ldnrsResponseStatus ::
+                                                        !Int}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'ListDomainNamesResponse' with the minimum fields required to make a request.
 --
@@ -99,10 +97,10 @@ data ListDomainNamesResponse = ListDomainNamesResponse'
 listDomainNamesResponse
     :: Int -- ^ 'ldnrsResponseStatus'
     -> ListDomainNamesResponse
-listDomainNamesResponse pResponseStatus_ =
-  ListDomainNamesResponse'
-    {_ldnrsDomainNames = Nothing, _ldnrsResponseStatus = pResponseStatus_}
-
+listDomainNamesResponse pResponseStatus_
+  = ListDomainNamesResponse'{_ldnrsDomainNames =
+                               Nothing,
+                             _ldnrsResponseStatus = pResponseStatus_}
 
 -- | List of Elasticsearch domain names.
 ldnrsDomainNames :: Lens' ListDomainNamesResponse [DomainInfo]

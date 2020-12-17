@@ -18,10 +18,14 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Creates or updates a destination. A destination encapsulates a physical resource (such as an Amazon Kinesis stream) and enables you to subscribe to a real-time stream of log events for a different account, ingested using 'PutLogEvents' . Currently, the only supported physical resource is a Kinesis stream belonging to the same account as the destination.
+-- Creates or updates a destination. This operation is used only to create destinations for cross-account subscriptions.
 --
 --
--- Through an access policy, a destination controls what is written to its Kinesis stream. By default, @PutDestination@ does not set any access policy with the destination, which means a cross-account user cannot call 'PutSubscriptionFilter' against this destination. To enable this, the destination owner must call 'PutDestinationPolicy' after @PutDestination@ .
+-- A destination encapsulates a physical resource (such as an Amazon Kinesis stream) and enables you to subscribe to a real-time stream of log events for a different account, ingested using <https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutLogEvents.html PutLogEvents> .
+--
+-- Through an access policy, a destination controls what is written to it. By default, @PutDestination@ does not set any access policy with the destination, which means a cross-account user cannot call <https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutSubscriptionFilter.html PutSubscriptionFilter> against this destination. To enable this, the destination owner must call <https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestinationPolicy.html PutDestinationPolicy> after @PutDestination@ .
+--
+-- To perform a @PutDestination@ operation, you must also have the @iam:PassRole@ permission.
 --
 module Network.AWS.CloudWatchLogs.PutDestination
     (
@@ -42,19 +46,17 @@ module Network.AWS.CloudWatchLogs.PutDestination
     ) where
 
 import Network.AWS.CloudWatchLogs.Types
-import Network.AWS.CloudWatchLogs.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'putDestination' smart constructor.
-data PutDestination = PutDestination'
-  { _pdDestinationName :: !Text
-  , _pdTargetARN       :: !Text
-  , _pdRoleARN         :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data PutDestination = PutDestination'{_pdDestinationName
+                                      :: !Text,
+                                      _pdTargetARN :: !Text,
+                                      _pdRoleARN :: !Text}
+                        deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'PutDestination' with the minimum fields required to make a request.
 --
@@ -64,19 +66,17 @@ data PutDestination = PutDestination'
 --
 -- * 'pdTargetARN' - The ARN of an Amazon Kinesis stream to which to deliver matching log events.
 --
--- * 'pdRoleARN' - The ARN of an IAM role that grants CloudWatch Logs permissions to call the Amazon Kinesis PutRecord operation on the destination stream.
+-- * 'pdRoleARN' - The ARN of an IAM role that grants CloudWatch Logs permissions to call the Amazon Kinesis @PutRecord@ operation on the destination stream.
 putDestination
     :: Text -- ^ 'pdDestinationName'
     -> Text -- ^ 'pdTargetARN'
     -> Text -- ^ 'pdRoleARN'
     -> PutDestination
-putDestination pDestinationName_ pTargetARN_ pRoleARN_ =
-  PutDestination'
-    { _pdDestinationName = pDestinationName_
-    , _pdTargetARN = pTargetARN_
-    , _pdRoleARN = pRoleARN_
-    }
-
+putDestination pDestinationName_ pTargetARN_
+  pRoleARN_
+  = PutDestination'{_pdDestinationName =
+                      pDestinationName_,
+                    _pdTargetARN = pTargetARN_, _pdRoleARN = pRoleARN_}
 
 -- | A name for the destination.
 pdDestinationName :: Lens' PutDestination Text
@@ -86,7 +86,7 @@ pdDestinationName = lens _pdDestinationName (\ s a -> s{_pdDestinationName = a})
 pdTargetARN :: Lens' PutDestination Text
 pdTargetARN = lens _pdTargetARN (\ s a -> s{_pdTargetARN = a})
 
--- | The ARN of an IAM role that grants CloudWatch Logs permissions to call the Amazon Kinesis PutRecord operation on the destination stream.
+-- | The ARN of an IAM role that grants CloudWatch Logs permissions to call the Amazon Kinesis @PutRecord@ operation on the destination stream.
 pdRoleARN :: Lens' PutDestination Text
 pdRoleARN = lens _pdRoleARN (\ s a -> s{_pdRoleARN = a})
 
@@ -127,11 +127,12 @@ instance ToQuery PutDestination where
         toQuery = const mempty
 
 -- | /See:/ 'putDestinationResponse' smart constructor.
-data PutDestinationResponse = PutDestinationResponse'
-  { _pdrsDestination    :: !(Maybe Destination)
-  , _pdrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data PutDestinationResponse = PutDestinationResponse'{_pdrsDestination
+                                                      :: !(Maybe Destination),
+                                                      _pdrsResponseStatus ::
+                                                      !Int}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'PutDestinationResponse' with the minimum fields required to make a request.
 --
@@ -143,10 +144,9 @@ data PutDestinationResponse = PutDestinationResponse'
 putDestinationResponse
     :: Int -- ^ 'pdrsResponseStatus'
     -> PutDestinationResponse
-putDestinationResponse pResponseStatus_ =
-  PutDestinationResponse'
-    {_pdrsDestination = Nothing, _pdrsResponseStatus = pResponseStatus_}
-
+putDestinationResponse pResponseStatus_
+  = PutDestinationResponse'{_pdrsDestination = Nothing,
+                            _pdrsResponseStatus = pResponseStatus_}
 
 -- | The destination.
 pdrsDestination :: Lens' PutDestinationResponse (Maybe Destination)

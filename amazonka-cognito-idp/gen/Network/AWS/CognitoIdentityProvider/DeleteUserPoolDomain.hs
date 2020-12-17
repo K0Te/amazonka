@@ -38,18 +38,16 @@ module Network.AWS.CognitoIdentityProvider.DeleteUserPoolDomain
     ) where
 
 import Network.AWS.CognitoIdentityProvider.Types
-import Network.AWS.CognitoIdentityProvider.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deleteUserPoolDomain' smart constructor.
-data DeleteUserPoolDomain = DeleteUserPoolDomain'
-  { _dupdDomain     :: !Text
-  , _dupdUserPoolId :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteUserPoolDomain = DeleteUserPoolDomain'{_dupdDomain
+                                                  :: !Text,
+                                                  _dupdUserPoolId :: !Text}
+                              deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteUserPoolDomain' with the minimum fields required to make a request.
 --
@@ -62,9 +60,9 @@ deleteUserPoolDomain
     :: Text -- ^ 'dupdDomain'
     -> Text -- ^ 'dupdUserPoolId'
     -> DeleteUserPoolDomain
-deleteUserPoolDomain pDomain_ pUserPoolId_ =
-  DeleteUserPoolDomain' {_dupdDomain = pDomain_, _dupdUserPoolId = pUserPoolId_}
-
+deleteUserPoolDomain pDomain_ pUserPoolId_
+  = DeleteUserPoolDomain'{_dupdDomain = pDomain_,
+                          _dupdUserPoolId = pUserPoolId_}
 
 -- | The domain string.
 dupdDomain :: Lens' DeleteUserPoolDomain Text
@@ -112,10 +110,10 @@ instance ToQuery DeleteUserPoolDomain where
         toQuery = const mempty
 
 -- | /See:/ 'deleteUserPoolDomainResponse' smart constructor.
-newtype DeleteUserPoolDomainResponse = DeleteUserPoolDomainResponse'
-  { _dupdrsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteUserPoolDomainResponse = DeleteUserPoolDomainResponse'{_dupdrsResponseStatus
+                                                                     :: Int}
+                                         deriving (Eq, Read, Show, Data,
+                                                   Typeable, Generic)
 
 -- | Creates a value of 'DeleteUserPoolDomainResponse' with the minimum fields required to make a request.
 --
@@ -125,9 +123,9 @@ newtype DeleteUserPoolDomainResponse = DeleteUserPoolDomainResponse'
 deleteUserPoolDomainResponse
     :: Int -- ^ 'dupdrsResponseStatus'
     -> DeleteUserPoolDomainResponse
-deleteUserPoolDomainResponse pResponseStatus_ =
-  DeleteUserPoolDomainResponse' {_dupdrsResponseStatus = pResponseStatus_}
-
+deleteUserPoolDomainResponse pResponseStatus_
+  = DeleteUserPoolDomainResponse'{_dupdrsResponseStatus
+                                    = pResponseStatus_}
 
 -- | -- | The response status code.
 dupdrsResponseStatus :: Lens' DeleteUserPoolDomainResponse Int

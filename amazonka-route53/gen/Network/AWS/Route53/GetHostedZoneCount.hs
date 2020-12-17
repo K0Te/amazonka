@@ -40,24 +40,20 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.Route53.Types
-import Network.AWS.Route53.Types.Product
 
 -- | A request to retrieve a count of all the hosted zones that are associated with the current AWS account.
 --
 --
 --
 -- /See:/ 'getHostedZoneCount' smart constructor.
-data GetHostedZoneCount =
-  GetHostedZoneCount'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetHostedZoneCount = GetHostedZoneCount'
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'GetHostedZoneCount' with the minimum fields required to make a request.
 --
 getHostedZoneCount
     :: GetHostedZoneCount
 getHostedZoneCount = GetHostedZoneCount'
-
 
 instance AWSRequest GetHostedZoneCount where
         type Rs GetHostedZoneCount =
@@ -87,11 +83,12 @@ instance ToQuery GetHostedZoneCount where
 --
 --
 -- /See:/ 'getHostedZoneCountResponse' smart constructor.
-data GetHostedZoneCountResponse = GetHostedZoneCountResponse'
-  { _ghzcrsResponseStatus  :: !Int
-  , _ghzcrsHostedZoneCount :: !Integer
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data GetHostedZoneCountResponse = GetHostedZoneCountResponse'{_ghzcrsResponseStatus
+                                                              :: !Int,
+                                                              _ghzcrsHostedZoneCount
+                                                              :: !Integer}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'GetHostedZoneCountResponse' with the minimum fields required to make a request.
 --
@@ -104,12 +101,11 @@ getHostedZoneCountResponse
     :: Int -- ^ 'ghzcrsResponseStatus'
     -> Integer -- ^ 'ghzcrsHostedZoneCount'
     -> GetHostedZoneCountResponse
-getHostedZoneCountResponse pResponseStatus_ pHostedZoneCount_ =
-  GetHostedZoneCountResponse'
-    { _ghzcrsResponseStatus = pResponseStatus_
-    , _ghzcrsHostedZoneCount = pHostedZoneCount_
-    }
-
+getHostedZoneCountResponse pResponseStatus_
+  pHostedZoneCount_
+  = GetHostedZoneCountResponse'{_ghzcrsResponseStatus =
+                                  pResponseStatus_,
+                                _ghzcrsHostedZoneCount = pHostedZoneCount_}
 
 -- | -- | The response status code.
 ghzcrsResponseStatus :: Lens' GetHostedZoneCountResponse Int

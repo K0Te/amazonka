@@ -18,7 +18,9 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Use to update the APNs channel for an app.
+-- Enables the APNs channel for an application or updates the status and settings of the APNs channel for an application.
+--
+--
 module Network.AWS.Pinpoint.UpdateAPNSChannel
     (
     -- * Creating a Request
@@ -38,37 +40,35 @@ module Network.AWS.Pinpoint.UpdateAPNSChannel
 
 import Network.AWS.Lens
 import Network.AWS.Pinpoint.Types
-import Network.AWS.Pinpoint.Types.Product
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'updateAPNSChannel' smart constructor.
-data UpdateAPNSChannel = UpdateAPNSChannel'
-  { _uacApplicationId      :: !Text
-  , _uacAPNSChannelRequest :: !APNSChannelRequest
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateAPNSChannel = UpdateAPNSChannel'{_uacApplicationId
+                                            :: !Text,
+                                            _uacAPNSChannelRequest ::
+                                            !APNSChannelRequest}
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UpdateAPNSChannel' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'uacApplicationId' - Undocumented member.
+-- * 'uacApplicationId' - The unique identifier for the application. This identifier is displayed as the __Project ID__ on the Amazon Pinpoint console.
 --
 -- * 'uacAPNSChannelRequest' - Undocumented member.
 updateAPNSChannel
     :: Text -- ^ 'uacApplicationId'
     -> APNSChannelRequest -- ^ 'uacAPNSChannelRequest'
     -> UpdateAPNSChannel
-updateAPNSChannel pApplicationId_ pAPNSChannelRequest_ =
-  UpdateAPNSChannel'
-    { _uacApplicationId = pApplicationId_
-    , _uacAPNSChannelRequest = pAPNSChannelRequest_
-    }
+updateAPNSChannel pApplicationId_
+  pAPNSChannelRequest_
+  = UpdateAPNSChannel'{_uacApplicationId =
+                         pApplicationId_,
+                       _uacAPNSChannelRequest = pAPNSChannelRequest_}
 
-
--- | Undocumented member.
+-- | The unique identifier for the application. This identifier is displayed as the __Project ID__ on the Amazon Pinpoint console.
 uacApplicationId :: Lens' UpdateAPNSChannel Text
 uacApplicationId = lens _uacApplicationId (\ s a -> s{_uacApplicationId = a})
 
@@ -113,11 +113,13 @@ instance ToQuery UpdateAPNSChannel where
         toQuery = const mempty
 
 -- | /See:/ 'updateAPNSChannelResponse' smart constructor.
-data UpdateAPNSChannelResponse = UpdateAPNSChannelResponse'
-  { _uacrsResponseStatus      :: !Int
-  , _uacrsAPNSChannelResponse :: !APNSChannelResponse
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateAPNSChannelResponse = UpdateAPNSChannelResponse'{_uacrsResponseStatus
+                                                            :: !Int,
+                                                            _uacrsAPNSChannelResponse
+                                                            ::
+                                                            !APNSChannelResponse}
+                                   deriving (Eq, Read, Show, Data, Typeable,
+                                             Generic)
 
 -- | Creates a value of 'UpdateAPNSChannelResponse' with the minimum fields required to make a request.
 --
@@ -130,12 +132,12 @@ updateAPNSChannelResponse
     :: Int -- ^ 'uacrsResponseStatus'
     -> APNSChannelResponse -- ^ 'uacrsAPNSChannelResponse'
     -> UpdateAPNSChannelResponse
-updateAPNSChannelResponse pResponseStatus_ pAPNSChannelResponse_ =
-  UpdateAPNSChannelResponse'
-    { _uacrsResponseStatus = pResponseStatus_
-    , _uacrsAPNSChannelResponse = pAPNSChannelResponse_
-    }
-
+updateAPNSChannelResponse pResponseStatus_
+  pAPNSChannelResponse_
+  = UpdateAPNSChannelResponse'{_uacrsResponseStatus =
+                                 pResponseStatus_,
+                               _uacrsAPNSChannelResponse =
+                                 pAPNSChannelResponse_}
 
 -- | -- | The response status code.
 uacrsResponseStatus :: Lens' UpdateAPNSChannelResponse Int

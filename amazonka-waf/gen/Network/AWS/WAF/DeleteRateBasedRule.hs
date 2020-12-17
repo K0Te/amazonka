@@ -55,14 +55,12 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.WAF.Types
-import Network.AWS.WAF.Types.Product
 
 -- | /See:/ 'deleteRateBasedRule' smart constructor.
-data DeleteRateBasedRule = DeleteRateBasedRule'
-  { _drbrRuleId      :: !Text
-  , _drbrChangeToken :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteRateBasedRule = DeleteRateBasedRule'{_drbrRuleId
+                                                :: !Text,
+                                                _drbrChangeToken :: !Text}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteRateBasedRule' with the minimum fields required to make a request.
 --
@@ -75,10 +73,9 @@ deleteRateBasedRule
     :: Text -- ^ 'drbrRuleId'
     -> Text -- ^ 'drbrChangeToken'
     -> DeleteRateBasedRule
-deleteRateBasedRule pRuleId_ pChangeToken_ =
-  DeleteRateBasedRule'
-    {_drbrRuleId = pRuleId_, _drbrChangeToken = pChangeToken_}
-
+deleteRateBasedRule pRuleId_ pChangeToken_
+  = DeleteRateBasedRule'{_drbrRuleId = pRuleId_,
+                         _drbrChangeToken = pChangeToken_}
 
 -- | The @RuleId@ of the 'RateBasedRule' that you want to delete. @RuleId@ is returned by 'CreateRateBasedRule' and by 'ListRateBasedRules' .
 drbrRuleId :: Lens' DeleteRateBasedRule Text
@@ -126,11 +123,13 @@ instance ToQuery DeleteRateBasedRule where
         toQuery = const mempty
 
 -- | /See:/ 'deleteRateBasedRuleResponse' smart constructor.
-data DeleteRateBasedRuleResponse = DeleteRateBasedRuleResponse'
-  { _drbrrsChangeToken    :: !(Maybe Text)
-  , _drbrrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteRateBasedRuleResponse = DeleteRateBasedRuleResponse'{_drbrrsChangeToken
+                                                                ::
+                                                                !(Maybe Text),
+                                                                _drbrrsResponseStatus
+                                                                :: !Int}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'DeleteRateBasedRuleResponse' with the minimum fields required to make a request.
 --
@@ -142,10 +141,10 @@ data DeleteRateBasedRuleResponse = DeleteRateBasedRuleResponse'
 deleteRateBasedRuleResponse
     :: Int -- ^ 'drbrrsResponseStatus'
     -> DeleteRateBasedRuleResponse
-deleteRateBasedRuleResponse pResponseStatus_ =
-  DeleteRateBasedRuleResponse'
-    {_drbrrsChangeToken = Nothing, _drbrrsResponseStatus = pResponseStatus_}
-
+deleteRateBasedRuleResponse pResponseStatus_
+  = DeleteRateBasedRuleResponse'{_drbrrsChangeToken =
+                                   Nothing,
+                                 _drbrrsResponseStatus = pResponseStatus_}
 
 -- | The @ChangeToken@ that you used to submit the @DeleteRateBasedRule@ request. You can also use this value to query the status of the request. For more information, see 'GetChangeTokenStatus' .
 drbrrsChangeToken :: Lens' DeleteRateBasedRuleResponse (Maybe Text)

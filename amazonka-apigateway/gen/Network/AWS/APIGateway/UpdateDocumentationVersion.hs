@@ -39,7 +39,6 @@ module Network.AWS.APIGateway.UpdateDocumentationVersion
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -50,12 +49,16 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'updateDocumentationVersion' smart constructor.
-data UpdateDocumentationVersion = UpdateDocumentationVersion'
-  { _udvPatchOperations      :: !(Maybe [PatchOperation])
-  , _udvRestAPIId            :: !Text
-  , _udvDocumentationVersion :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateDocumentationVersion = UpdateDocumentationVersion'{_udvPatchOperations
+                                                              ::
+                                                              !(Maybe
+                                                                  [PatchOperation]),
+                                                              _udvRestAPIId ::
+                                                              !Text,
+                                                              _udvDocumentationVersion
+                                                              :: !Text}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'UpdateDocumentationVersion' with the minimum fields required to make a request.
 --
@@ -70,13 +73,13 @@ updateDocumentationVersion
     :: Text -- ^ 'udvRestAPIId'
     -> Text -- ^ 'udvDocumentationVersion'
     -> UpdateDocumentationVersion
-updateDocumentationVersion pRestAPIId_ pDocumentationVersion_ =
-  UpdateDocumentationVersion'
-    { _udvPatchOperations = Nothing
-    , _udvRestAPIId = pRestAPIId_
-    , _udvDocumentationVersion = pDocumentationVersion_
-    }
-
+updateDocumentationVersion pRestAPIId_
+  pDocumentationVersion_
+  = UpdateDocumentationVersion'{_udvPatchOperations =
+                                  Nothing,
+                                _udvRestAPIId = pRestAPIId_,
+                                _udvDocumentationVersion =
+                                  pDocumentationVersion_}
 
 -- | A list of update operations to be applied to the specified resource and in the order specified in this list.
 udvPatchOperations :: Lens' UpdateDocumentationVersion [PatchOperation]

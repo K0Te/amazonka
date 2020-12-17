@@ -38,7 +38,6 @@ module Network.AWS.CloudFront.ListTagsForResource
     ) where
 
 import Network.AWS.CloudFront.Types
-import Network.AWS.CloudFront.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -49,10 +48,10 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'listTagsForResource' smart constructor.
-newtype ListTagsForResource = ListTagsForResource'
-  { _ltfrResource :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype ListTagsForResource = ListTagsForResource'{_ltfrResource
+                                                   :: Text}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'ListTagsForResource' with the minimum fields required to make a request.
 --
@@ -62,9 +61,8 @@ newtype ListTagsForResource = ListTagsForResource'
 listTagsForResource
     :: Text -- ^ 'ltfrResource'
     -> ListTagsForResource
-listTagsForResource pResource_ =
-  ListTagsForResource' {_ltfrResource = pResource_}
-
+listTagsForResource pResource_
+  = ListTagsForResource'{_ltfrResource = pResource_}
 
 -- | An ARN of a CloudFront resource.
 ltfrResource :: Lens' ListTagsForResource Text
@@ -88,7 +86,7 @@ instance ToHeaders ListTagsForResource where
         toHeaders = const mempty
 
 instance ToPath ListTagsForResource where
-        toPath = const "/2017-10-30/tagging"
+        toPath = const "/2020-05-31/tagging"
 
 instance ToQuery ListTagsForResource where
         toQuery ListTagsForResource'{..}
@@ -99,11 +97,12 @@ instance ToQuery ListTagsForResource where
 --
 --
 -- /See:/ 'listTagsForResourceResponse' smart constructor.
-data ListTagsForResourceResponse = ListTagsForResourceResponse'
-  { _ltfrrsResponseStatus :: !Int
-  , _ltfrrsTags           :: !Tags
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ListTagsForResourceResponse = ListTagsForResourceResponse'{_ltfrrsResponseStatus
+                                                                :: !Int,
+                                                                _ltfrrsTags ::
+                                                                !Tags}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'ListTagsForResourceResponse' with the minimum fields required to make a request.
 --
@@ -116,10 +115,10 @@ listTagsForResourceResponse
     :: Int -- ^ 'ltfrrsResponseStatus'
     -> Tags -- ^ 'ltfrrsTags'
     -> ListTagsForResourceResponse
-listTagsForResourceResponse pResponseStatus_ pTags_ =
-  ListTagsForResourceResponse'
-    {_ltfrrsResponseStatus = pResponseStatus_, _ltfrrsTags = pTags_}
-
+listTagsForResourceResponse pResponseStatus_ pTags_
+  = ListTagsForResourceResponse'{_ltfrrsResponseStatus
+                                   = pResponseStatus_,
+                                 _ltfrrsTags = pTags_}
 
 -- | -- | The response status code.
 ltfrrsResponseStatus :: Lens' ListTagsForResourceResponse Int

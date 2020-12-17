@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Lists events for a given source identifier and source type. You can also specify a start and end time. For more information on AWS DMS events, see <http://docs.aws.amazon.com/dms/latest/userguide/CHAP_Events.html Working with Events and Notifications > .
+-- Lists events for a given source identifier and source type. You can also specify a start and end time. For more information on AWS DMS events, see <https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Events.html Working with Events and Notifications> in the /AWS Database Migration User Guide./ 
 --
 --
 --
@@ -49,30 +49,28 @@ module Network.AWS.DMS.DescribeEvents
     ) where
 
 import Network.AWS.DMS.Types
-import Network.AWS.DMS.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
--- |
+-- | 
 --
 --
 --
 -- /See:/ 'describeEvents' smart constructor.
-data DescribeEvents = DescribeEvents'
-  { _deStartTime        :: !(Maybe POSIX)
-  , _deSourceType       :: !(Maybe SourceType)
-  , _deFilters          :: !(Maybe [Filter])
-  , _deSourceIdentifier :: !(Maybe Text)
-  , _deEventCategories  :: !(Maybe [Text])
-  , _deMarker           :: !(Maybe Text)
-  , _deMaxRecords       :: !(Maybe Int)
-  , _deEndTime          :: !(Maybe POSIX)
-  , _deDuration         :: !(Maybe Int)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeEvents = DescribeEvents'{_deStartTime ::
+                                      !(Maybe POSIX),
+                                      _deSourceType :: !(Maybe SourceType),
+                                      _deFilters :: !(Maybe [Filter]),
+                                      _deSourceIdentifier :: !(Maybe Text),
+                                      _deEventCategories :: !(Maybe [Text]),
+                                      _deMarker :: !(Maybe Text),
+                                      _deMaxRecords :: !(Maybe Int),
+                                      _deEndTime :: !(Maybe POSIX),
+                                      _deDuration :: !(Maybe Int)}
+                        deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DescribeEvents' with the minimum fields required to make a request.
 --
@@ -80,15 +78,15 @@ data DescribeEvents = DescribeEvents'
 --
 -- * 'deStartTime' - The start time for the events to be listed.
 --
--- * 'deSourceType' - The type of AWS DMS resource that generates events. Valid values: replication-instance | migration-task
+-- * 'deSourceType' - The type of AWS DMS resource that generates events. Valid values: replication-instance | replication-task
 --
--- * 'deFilters' - Filters applied to the action.
+-- * 'deFilters' - Filters applied to events.
 --
--- * 'deSourceIdentifier' - The identifier of the event source. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens. It cannot end with a hyphen or contain two consecutive hyphens.
+-- * 'deSourceIdentifier' - The identifier of an event source.
 --
--- * 'deEventCategories' - A list of event categories for a source type that you want to subscribe to.
+-- * 'deEventCategories' - A list of event categories for the source type that you've chosen.
 --
--- * 'deMarker' - An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by @MaxRecords@ .
+-- * 'deMarker' - An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by @MaxRecords@ . 
 --
 -- * 'deMaxRecords' - The maximum number of records to include in the response. If more records exist than the specified @MaxRecords@ value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.  Default: 100 Constraints: Minimum 20, maximum 100.
 --
@@ -97,41 +95,35 @@ data DescribeEvents = DescribeEvents'
 -- * 'deDuration' - The duration of the events to be listed.
 describeEvents
     :: DescribeEvents
-describeEvents =
-  DescribeEvents'
-    { _deStartTime = Nothing
-    , _deSourceType = Nothing
-    , _deFilters = Nothing
-    , _deSourceIdentifier = Nothing
-    , _deEventCategories = Nothing
-    , _deMarker = Nothing
-    , _deMaxRecords = Nothing
-    , _deEndTime = Nothing
-    , _deDuration = Nothing
-    }
-
+describeEvents
+  = DescribeEvents'{_deStartTime = Nothing,
+                    _deSourceType = Nothing, _deFilters = Nothing,
+                    _deSourceIdentifier = Nothing,
+                    _deEventCategories = Nothing, _deMarker = Nothing,
+                    _deMaxRecords = Nothing, _deEndTime = Nothing,
+                    _deDuration = Nothing}
 
 -- | The start time for the events to be listed.
 deStartTime :: Lens' DescribeEvents (Maybe UTCTime)
 deStartTime = lens _deStartTime (\ s a -> s{_deStartTime = a}) . mapping _Time
 
--- | The type of AWS DMS resource that generates events. Valid values: replication-instance | migration-task
+-- | The type of AWS DMS resource that generates events. Valid values: replication-instance | replication-task
 deSourceType :: Lens' DescribeEvents (Maybe SourceType)
 deSourceType = lens _deSourceType (\ s a -> s{_deSourceType = a})
 
--- | Filters applied to the action.
+-- | Filters applied to events.
 deFilters :: Lens' DescribeEvents [Filter]
 deFilters = lens _deFilters (\ s a -> s{_deFilters = a}) . _Default . _Coerce
 
--- | The identifier of the event source. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens. It cannot end with a hyphen or contain two consecutive hyphens.
+-- | The identifier of an event source.
 deSourceIdentifier :: Lens' DescribeEvents (Maybe Text)
 deSourceIdentifier = lens _deSourceIdentifier (\ s a -> s{_deSourceIdentifier = a})
 
--- | A list of event categories for a source type that you want to subscribe to.
+-- | A list of event categories for the source type that you've chosen.
 deEventCategories :: Lens' DescribeEvents [Text]
 deEventCategories = lens _deEventCategories (\ s a -> s{_deEventCategories = a}) . _Default . _Coerce
 
--- | An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by @MaxRecords@ .
+-- | An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by @MaxRecords@ . 
 deMarker :: Lens' DescribeEvents (Maybe Text)
 deMarker = lens _deMarker (\ s a -> s{_deMarker = a})
 
@@ -197,17 +189,19 @@ instance ToPath DescribeEvents where
 instance ToQuery DescribeEvents where
         toQuery = const mempty
 
--- |
+-- | 
 --
 --
 --
 -- /See:/ 'describeEventsResponse' smart constructor.
-data DescribeEventsResponse = DescribeEventsResponse'
-  { _deersEvents         :: !(Maybe [Event])
-  , _deersMarker         :: !(Maybe Text)
-  , _deersResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeEventsResponse = DescribeEventsResponse'{_deersEvents
+                                                      :: !(Maybe [Event]),
+                                                      _deersMarker ::
+                                                      !(Maybe Text),
+                                                      _deersResponseStatus ::
+                                                      !Int}
+                                deriving (Eq, Read, Show, Data, Typeable,
+                                          Generic)
 
 -- | Creates a value of 'DescribeEventsResponse' with the minimum fields required to make a request.
 --
@@ -215,25 +209,22 @@ data DescribeEventsResponse = DescribeEventsResponse'
 --
 -- * 'deersEvents' - The events described.
 --
--- * 'deersMarker' - An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by @MaxRecords@ .
+-- * 'deersMarker' - An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by @MaxRecords@ . 
 --
 -- * 'deersResponseStatus' - -- | The response status code.
 describeEventsResponse
     :: Int -- ^ 'deersResponseStatus'
     -> DescribeEventsResponse
-describeEventsResponse pResponseStatus_ =
-  DescribeEventsResponse'
-    { _deersEvents = Nothing
-    , _deersMarker = Nothing
-    , _deersResponseStatus = pResponseStatus_
-    }
-
+describeEventsResponse pResponseStatus_
+  = DescribeEventsResponse'{_deersEvents = Nothing,
+                            _deersMarker = Nothing,
+                            _deersResponseStatus = pResponseStatus_}
 
 -- | The events described.
 deersEvents :: Lens' DescribeEventsResponse [Event]
 deersEvents = lens _deersEvents (\ s a -> s{_deersEvents = a}) . _Default . _Coerce
 
--- | An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by @MaxRecords@ .
+-- | An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by @MaxRecords@ . 
 deersMarker :: Lens' DescribeEventsResponse (Maybe Text)
 deersMarker = lens _deersMarker (\ s a -> s{_deersMarker = a})
 

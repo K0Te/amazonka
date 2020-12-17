@@ -40,7 +40,6 @@ module Network.AWS.ElasticBeanstalk.DescribeEnvironmentManagedActions
     ) where
 
 import Network.AWS.ElasticBeanstalk.Types
-import Network.AWS.ElasticBeanstalk.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -51,12 +50,20 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'describeEnvironmentManagedActions' smart constructor.
-data DescribeEnvironmentManagedActions = DescribeEnvironmentManagedActions'
-  { _demaStatus          :: !(Maybe ActionStatus)
-  , _demaEnvironmentName :: !(Maybe Text)
-  , _demaEnvironmentId   :: !(Maybe Text)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeEnvironmentManagedActions = DescribeEnvironmentManagedActions'{_demaStatus
+                                                                            ::
+                                                                            !(Maybe
+                                                                                ActionStatus),
+                                                                            _demaEnvironmentName
+                                                                            ::
+                                                                            !(Maybe
+                                                                                Text),
+                                                                            _demaEnvironmentId
+                                                                            ::
+                                                                            !(Maybe
+                                                                                Text)}
+                                           deriving (Eq, Read, Show, Data,
+                                                     Typeable, Generic)
 
 -- | Creates a value of 'DescribeEnvironmentManagedActions' with the minimum fields required to make a request.
 --
@@ -69,13 +76,11 @@ data DescribeEnvironmentManagedActions = DescribeEnvironmentManagedActions'
 -- * 'demaEnvironmentId' - The environment ID of the target environment.
 describeEnvironmentManagedActions
     :: DescribeEnvironmentManagedActions
-describeEnvironmentManagedActions =
-  DescribeEnvironmentManagedActions'
-    { _demaStatus = Nothing
-    , _demaEnvironmentName = Nothing
-    , _demaEnvironmentId = Nothing
-    }
-
+describeEnvironmentManagedActions
+  = DescribeEnvironmentManagedActions'{_demaStatus =
+                                         Nothing,
+                                       _demaEnvironmentName = Nothing,
+                                       _demaEnvironmentId = Nothing}
 
 -- | To show only actions with a particular status, specify a status.
 demaStatus :: Lens' DescribeEnvironmentManagedActions (Maybe ActionStatus)
@@ -133,11 +138,17 @@ instance ToQuery DescribeEnvironmentManagedActions
 --
 --
 -- /See:/ 'describeEnvironmentManagedActionsResponse' smart constructor.
-data DescribeEnvironmentManagedActionsResponse = DescribeEnvironmentManagedActionsResponse'
-  { _demarsManagedActions :: !(Maybe (List1 ManagedAction))
-  , _demarsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeEnvironmentManagedActionsResponse = DescribeEnvironmentManagedActionsResponse'{_demarsManagedActions
+                                                                                            ::
+                                                                                            !(Maybe
+                                                                                                (List1
+                                                                                                   ManagedAction)),
+                                                                                            _demarsResponseStatus
+                                                                                            ::
+                                                                                            !Int}
+                                                   deriving (Eq, Read, Show,
+                                                             Data, Typeable,
+                                                             Generic)
 
 -- | Creates a value of 'DescribeEnvironmentManagedActionsResponse' with the minimum fields required to make a request.
 --
@@ -149,10 +160,12 @@ data DescribeEnvironmentManagedActionsResponse = DescribeEnvironmentManagedActio
 describeEnvironmentManagedActionsResponse
     :: Int -- ^ 'demarsResponseStatus'
     -> DescribeEnvironmentManagedActionsResponse
-describeEnvironmentManagedActionsResponse pResponseStatus_ =
-  DescribeEnvironmentManagedActionsResponse'
-    {_demarsManagedActions = Nothing, _demarsResponseStatus = pResponseStatus_}
-
+describeEnvironmentManagedActionsResponse
+  pResponseStatus_
+  = DescribeEnvironmentManagedActionsResponse'{_demarsManagedActions
+                                                 = Nothing,
+                                               _demarsResponseStatus =
+                                                 pResponseStatus_}
 
 -- | A list of upcoming and in-progress managed actions.
 demarsManagedActions :: Lens' DescribeEnvironmentManagedActionsResponse (Maybe (NonEmpty ManagedAction))

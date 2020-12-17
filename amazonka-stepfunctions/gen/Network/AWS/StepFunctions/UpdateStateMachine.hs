@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Updates an existing state machine by modifying its @definition@ and/or @roleArn@ . Running executions will continue to use the previous @definition@ and @roleArn@ .
+-- Updates an existing state machine by modifying its @definition@ , @roleArn@ , or @loggingConfiguration@ . Running executions will continue to use the previous @definition@ and @roleArn@ . You must include at least one of @definition@ or @roleArn@ or you will receive a @MissingRequiredParameter@ error.
 --
 --
 module Network.AWS.StepFunctions.UpdateStateMachine
@@ -28,6 +28,8 @@ module Network.AWS.StepFunctions.UpdateStateMachine
     , UpdateStateMachine
     -- * Request Lenses
     , usmDefinition
+    , usmTracingConfiguration
+    , usmLoggingConfiguration
     , usmRoleARN
     , usmStateMachineARN
 
@@ -44,21 +46,27 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.StepFunctions.Types
-import Network.AWS.StepFunctions.Types.Product
 
 -- | /See:/ 'updateStateMachine' smart constructor.
-data UpdateStateMachine = UpdateStateMachine'
-  { _usmDefinition      :: !(Maybe Text)
-  , _usmRoleARN         :: !(Maybe Text)
-  , _usmStateMachineARN :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateStateMachine = UpdateStateMachine'{_usmDefinition
+                                              :: !(Maybe (Sensitive Text)),
+                                              _usmTracingConfiguration ::
+                                              !(Maybe TracingConfiguration),
+                                              _usmLoggingConfiguration ::
+                                              !(Maybe LoggingConfiguration),
+                                              _usmRoleARN :: !(Maybe Text),
+                                              _usmStateMachineARN :: !Text}
+                            deriving (Eq, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UpdateStateMachine' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'usmDefinition' - The Amazon States Language definition of the state machine.
+-- * 'usmDefinition' - The Amazon States Language definition of the state machine. See <https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html Amazon States Language> .
+--
+-- * 'usmTracingConfiguration' - Selects whether AWS X-Ray tracing is enabled.
+--
+-- * 'usmLoggingConfiguration' - The @LoggingConfiguration@ data type is used to set CloudWatch Logs options.
 --
 -- * 'usmRoleARN' - The Amazon Resource Name (ARN) of the IAM role of the state machine.
 --
@@ -66,17 +74,24 @@ data UpdateStateMachine = UpdateStateMachine'
 updateStateMachine
     :: Text -- ^ 'usmStateMachineARN'
     -> UpdateStateMachine
-updateStateMachine pStateMachineARN_ =
-  UpdateStateMachine'
-    { _usmDefinition = Nothing
-    , _usmRoleARN = Nothing
-    , _usmStateMachineARN = pStateMachineARN_
-    }
+updateStateMachine pStateMachineARN_
+  = UpdateStateMachine'{_usmDefinition = Nothing,
+                        _usmTracingConfiguration = Nothing,
+                        _usmLoggingConfiguration = Nothing,
+                        _usmRoleARN = Nothing,
+                        _usmStateMachineARN = pStateMachineARN_}
 
-
--- | The Amazon States Language definition of the state machine.
+-- | The Amazon States Language definition of the state machine. See <https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html Amazon States Language> .
 usmDefinition :: Lens' UpdateStateMachine (Maybe Text)
-usmDefinition = lens _usmDefinition (\ s a -> s{_usmDefinition = a})
+usmDefinition = lens _usmDefinition (\ s a -> s{_usmDefinition = a}) . mapping _Sensitive
+
+-- | Selects whether AWS X-Ray tracing is enabled.
+usmTracingConfiguration :: Lens' UpdateStateMachine (Maybe TracingConfiguration)
+usmTracingConfiguration = lens _usmTracingConfiguration (\ s a -> s{_usmTracingConfiguration = a})
+
+-- | The @LoggingConfiguration@ data type is used to set CloudWatch Logs options.
+usmLoggingConfiguration :: Lens' UpdateStateMachine (Maybe LoggingConfiguration)
+usmLoggingConfiguration = lens _usmLoggingConfiguration (\ s a -> s{_usmLoggingConfiguration = a})
 
 -- | The Amazon Resource Name (ARN) of the IAM role of the state machine.
 usmRoleARN :: Lens' UpdateStateMachine (Maybe Text)
@@ -115,6 +130,10 @@ instance ToJSON UpdateStateMachine where
           = object
               (catMaybes
                  [("definition" .=) <$> _usmDefinition,
+                  ("tracingConfiguration" .=) <$>
+                    _usmTracingConfiguration,
+                  ("loggingConfiguration" .=) <$>
+                    _usmLoggingConfiguration,
                   ("roleArn" .=) <$> _usmRoleARN,
                   Just ("stateMachineArn" .= _usmStateMachineARN)])
 
@@ -125,11 +144,12 @@ instance ToQuery UpdateStateMachine where
         toQuery = const mempty
 
 -- | /See:/ 'updateStateMachineResponse' smart constructor.
-data UpdateStateMachineResponse = UpdateStateMachineResponse'
-  { _usmrsResponseStatus :: !Int
-  , _usmrsUpdateDate     :: !POSIX
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateStateMachineResponse = UpdateStateMachineResponse'{_usmrsResponseStatus
+                                                              :: !Int,
+                                                              _usmrsUpdateDate
+                                                              :: !POSIX}
+                                    deriving (Eq, Read, Show, Data, Typeable,
+                                              Generic)
 
 -- | Creates a value of 'UpdateStateMachineResponse' with the minimum fields required to make a request.
 --
@@ -142,12 +162,11 @@ updateStateMachineResponse
     :: Int -- ^ 'usmrsResponseStatus'
     -> UTCTime -- ^ 'usmrsUpdateDate'
     -> UpdateStateMachineResponse
-updateStateMachineResponse pResponseStatus_ pUpdateDate_ =
-  UpdateStateMachineResponse'
-    { _usmrsResponseStatus = pResponseStatus_
-    , _usmrsUpdateDate = _Time # pUpdateDate_
-    }
-
+updateStateMachineResponse pResponseStatus_
+  pUpdateDate_
+  = UpdateStateMachineResponse'{_usmrsResponseStatus =
+                                  pResponseStatus_,
+                                _usmrsUpdateDate = _Time # pUpdateDate_}
 
 -- | -- | The response status code.
 usmrsResponseStatus :: Lens' UpdateStateMachineResponse Int

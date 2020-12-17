@@ -37,7 +37,6 @@ module Network.AWS.CloudTrail.StartLogging
     ) where
 
 import Network.AWS.CloudTrail.Types
-import Network.AWS.CloudTrail.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -48,23 +47,20 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'startLogging' smart constructor.
-newtype StartLogging = StartLogging'
-  { _sName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype StartLogging = StartLogging'{_sName :: Text}
+                         deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'StartLogging' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'sName' - Specifies the name or the CloudTrail ARN of the trail for which CloudTrail logs AWS API calls. The format of a trail ARN is: @arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail@
+-- * 'sName' - Specifies the name or the CloudTrail ARN of the trail for which CloudTrail logs AWS API calls. The format of a trail ARN is: @arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail@ 
 startLogging
     :: Text -- ^ 'sName'
     -> StartLogging
-startLogging pName_ = StartLogging' {_sName = pName_}
+startLogging pName_ = StartLogging'{_sName = pName_}
 
-
--- | Specifies the name or the CloudTrail ARN of the trail for which CloudTrail logs AWS API calls. The format of a trail ARN is: @arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail@
+-- | Specifies the name or the CloudTrail ARN of the trail for which CloudTrail logs AWS API calls. The format of a trail ARN is: @arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail@ 
 sName :: Lens' StartLogging Text
 sName = lens _sName (\ s a -> s{_sName = a})
 
@@ -105,10 +101,10 @@ instance ToQuery StartLogging where
 --
 --
 -- /See:/ 'startLoggingResponse' smart constructor.
-newtype StartLoggingResponse = StartLoggingResponse'
-  { _srsResponseStatus :: Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype StartLoggingResponse = StartLoggingResponse'{_srsResponseStatus
+                                                     :: Int}
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'StartLoggingResponse' with the minimum fields required to make a request.
 --
@@ -118,9 +114,9 @@ newtype StartLoggingResponse = StartLoggingResponse'
 startLoggingResponse
     :: Int -- ^ 'srsResponseStatus'
     -> StartLoggingResponse
-startLoggingResponse pResponseStatus_ =
-  StartLoggingResponse' {_srsResponseStatus = pResponseStatus_}
-
+startLoggingResponse pResponseStatus_
+  = StartLoggingResponse'{_srsResponseStatus =
+                            pResponseStatus_}
 
 -- | -- | The response status code.
 srsResponseStatus :: Lens' StartLoggingResponse Int

@@ -18,7 +18,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Performs all the read operations in a batch.
+-- Performs all the read operations in a batch. 
 --
 --
 module Network.AWS.CloudDirectory.BatchRead
@@ -40,19 +40,17 @@ module Network.AWS.CloudDirectory.BatchRead
     ) where
 
 import Network.AWS.CloudDirectory.Types
-import Network.AWS.CloudDirectory.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'batchRead' smart constructor.
-data BatchRead = BatchRead'
-  { _brConsistencyLevel :: !(Maybe ConsistencyLevel)
-  , _brDirectoryARN     :: !Text
-  , _brOperations       :: ![BatchReadOperation]
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data BatchRead = BatchRead'{_brConsistencyLevel ::
+                            !(Maybe ConsistencyLevel),
+                            _brDirectoryARN :: !Text,
+                            _brOperations :: ![BatchReadOperation]}
+                   deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'BatchRead' with the minimum fields required to make a request.
 --
@@ -66,13 +64,10 @@ data BatchRead = BatchRead'
 batchRead
     :: Text -- ^ 'brDirectoryARN'
     -> BatchRead
-batchRead pDirectoryARN_ =
-  BatchRead'
-    { _brConsistencyLevel = Nothing
-    , _brDirectoryARN = pDirectoryARN_
-    , _brOperations = mempty
-    }
-
+batchRead pDirectoryARN_
+  = BatchRead'{_brConsistencyLevel = Nothing,
+               _brDirectoryARN = pDirectoryARN_,
+               _brOperations = mempty}
 
 -- | Represents the manner and timing in which the successful write or update of an object is reflected in a subsequent read operation of that same object.
 brConsistencyLevel :: Lens' BatchRead (Maybe ConsistencyLevel)
@@ -119,11 +114,12 @@ instance ToQuery BatchRead where
         toQuery = const mempty
 
 -- | /See:/ 'batchReadResponse' smart constructor.
-data BatchReadResponse = BatchReadResponse'
-  { _brrsResponses      :: !(Maybe [BatchReadOperationResponse])
-  , _brrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data BatchReadResponse = BatchReadResponse'{_brrsResponses
+                                            ::
+                                            !(Maybe
+                                                [BatchReadOperationResponse]),
+                                            _brrsResponseStatus :: !Int}
+                           deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'BatchReadResponse' with the minimum fields required to make a request.
 --
@@ -135,10 +131,9 @@ data BatchReadResponse = BatchReadResponse'
 batchReadResponse
     :: Int -- ^ 'brrsResponseStatus'
     -> BatchReadResponse
-batchReadResponse pResponseStatus_ =
-  BatchReadResponse'
-    {_brrsResponses = Nothing, _brrsResponseStatus = pResponseStatus_}
-
+batchReadResponse pResponseStatus_
+  = BatchReadResponse'{_brrsResponses = Nothing,
+                       _brrsResponseStatus = pResponseStatus_}
 
 -- | A list of all the responses for each batch read.
 brrsResponses :: Lens' BatchReadResponse [BatchReadOperationResponse]

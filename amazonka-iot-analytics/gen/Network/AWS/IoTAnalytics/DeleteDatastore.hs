@@ -35,17 +35,15 @@ module Network.AWS.IoTAnalytics.DeleteDatastore
     ) where
 
 import Network.AWS.IoTAnalytics.Types
-import Network.AWS.IoTAnalytics.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deleteDatastore' smart constructor.
-newtype DeleteDatastore = DeleteDatastore'
-  { _ddDatastoreName :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteDatastore = DeleteDatastore'{_ddDatastoreName
+                                           :: Text}
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'DeleteDatastore' with the minimum fields required to make a request.
 --
@@ -55,9 +53,9 @@ newtype DeleteDatastore = DeleteDatastore'
 deleteDatastore
     :: Text -- ^ 'ddDatastoreName'
     -> DeleteDatastore
-deleteDatastore pDatastoreName_ =
-  DeleteDatastore' {_ddDatastoreName = pDatastoreName_}
-
+deleteDatastore pDatastoreName_
+  = DeleteDatastore'{_ddDatastoreName =
+                       pDatastoreName_}
 
 -- | The name of the data store to delete.
 ddDatastoreName :: Lens' DeleteDatastore Text
@@ -83,16 +81,14 @@ instance ToQuery DeleteDatastore where
         toQuery = const mempty
 
 -- | /See:/ 'deleteDatastoreResponse' smart constructor.
-data DeleteDatastoreResponse =
-  DeleteDatastoreResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteDatastoreResponse = DeleteDatastoreResponse'
+                                 deriving (Eq, Read, Show, Data, Typeable,
+                                           Generic)
 
 -- | Creates a value of 'DeleteDatastoreResponse' with the minimum fields required to make a request.
 --
 deleteDatastoreResponse
     :: DeleteDatastoreResponse
 deleteDatastoreResponse = DeleteDatastoreResponse'
-
 
 instance NFData DeleteDatastoreResponse where

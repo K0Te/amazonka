@@ -11,7 +11,7 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- For more information about AWS CloudHSM, see <http://aws.amazon.com/cloudhsm/ AWS CloudHSM> and the <http://docs.aws.amazon.com/cloudhsm/latest/userguide/ AWS CloudHSM User Guide> .
+-- For more information about AWS CloudHSM, see <http://aws.amazon.com/cloudhsm/ AWS CloudHSM> and the <https://docs.aws.amazon.com/cloudhsm/latest/userguide/ AWS CloudHSM User Guide> .
 --
 --
 module Network.AWS.CloudHSMv2
@@ -37,6 +37,9 @@ module Network.AWS.CloudHSMv2
     -- ** CloudHSMResourceNotFoundException
     , _CloudHSMResourceNotFoundException
 
+    -- ** CloudHSMTagException
+    , _CloudHSMTagException
+
     -- * Waiters
     -- $waiters
 
@@ -46,37 +49,55 @@ module Network.AWS.CloudHSMv2
     -- ** DescribeClusters (Paginated)
     , module Network.AWS.CloudHSMv2.DescribeClusters
 
-    -- ** InitializeCluster
+    -- ** DeleteBackup 
+    , module Network.AWS.CloudHSMv2.DeleteBackup
+
+    -- ** InitializeCluster 
     , module Network.AWS.CloudHSMv2.InitializeCluster
 
-    -- ** CreateHSM
+    -- ** CreateHSM 
     , module Network.AWS.CloudHSMv2.CreateHSM
 
     -- ** DescribeBackups (Paginated)
     , module Network.AWS.CloudHSMv2.DescribeBackups
 
-    -- ** DeleteCluster
+    -- ** CopyBackupToRegion 
+    , module Network.AWS.CloudHSMv2.CopyBackupToRegion
+
+    -- ** DeleteCluster 
     , module Network.AWS.CloudHSMv2.DeleteCluster
 
-    -- ** CreateCluster
+    -- ** CreateCluster 
     , module Network.AWS.CloudHSMv2.CreateCluster
 
-    -- ** DeleteHSM
+    -- ** RestoreBackup 
+    , module Network.AWS.CloudHSMv2.RestoreBackup
+
+    -- ** DeleteHSM 
     , module Network.AWS.CloudHSMv2.DeleteHSM
 
-    -- ** TagResource
+    -- ** ModifyCluster 
+    , module Network.AWS.CloudHSMv2.ModifyCluster
+
+    -- ** TagResource 
     , module Network.AWS.CloudHSMv2.TagResource
 
     -- ** ListTags (Paginated)
     , module Network.AWS.CloudHSMv2.ListTags
 
-    -- ** UntagResource
+    -- ** UntagResource 
     , module Network.AWS.CloudHSMv2.UntagResource
+
+    -- ** ModifyBackupAttributes 
+    , module Network.AWS.CloudHSMv2.ModifyBackupAttributes
 
     -- * Types
 
     -- ** BackupPolicy
     , BackupPolicy (..)
+
+    -- ** BackupRetentionType
+    , BackupRetentionType (..)
 
     -- ** BackupState
     , BackupState (..)
@@ -90,10 +111,23 @@ module Network.AWS.CloudHSMv2
     -- ** Backup
     , Backup
     , backup
+    , bDeleteTimestamp
+    , bSourceCluster
+    , bNeverExpires
+    , bSourceRegion
+    , bTagList
+    , bSourceBackup
     , bClusterId
     , bCreateTimestamp
+    , bCopyTimestamp
     , bBackupState
     , bBackupId
+
+    -- ** BackupRetentionPolicy
+    , BackupRetentionPolicy
+    , backupRetentionPolicy
+    , brpValue
+    , brpType
 
     -- ** Certificates
     , Certificates
@@ -111,8 +145,10 @@ module Network.AWS.CloudHSMv2
     , cStateMessage
     , cState
     , cSubnetMapping
+    , cBackupRetentionPolicy
     , cHSMs
     , cVPCId
+    , cTagList
     , cSourceBackupId
     , cCertificates
     , cSecurityGroup
@@ -120,6 +156,14 @@ module Network.AWS.CloudHSMv2
     , cCreateTimestamp
     , cBackupPolicy
     , cHSMType
+
+    -- ** DestinationBackup
+    , DestinationBackup
+    , destinationBackup
+    , dbSourceCluster
+    , dbSourceRegion
+    , dbSourceBackup
+    , dbCreateTimestamp
 
     -- ** HSM
     , HSM
@@ -140,14 +184,19 @@ module Network.AWS.CloudHSMv2
     , tagValue
     ) where
 
+import Network.AWS.CloudHSMv2.CopyBackupToRegion
 import Network.AWS.CloudHSMv2.CreateCluster
 import Network.AWS.CloudHSMv2.CreateHSM
+import Network.AWS.CloudHSMv2.DeleteBackup
 import Network.AWS.CloudHSMv2.DeleteCluster
 import Network.AWS.CloudHSMv2.DeleteHSM
 import Network.AWS.CloudHSMv2.DescribeBackups
 import Network.AWS.CloudHSMv2.DescribeClusters
 import Network.AWS.CloudHSMv2.InitializeCluster
 import Network.AWS.CloudHSMv2.ListTags
+import Network.AWS.CloudHSMv2.ModifyBackupAttributes
+import Network.AWS.CloudHSMv2.ModifyCluster
+import Network.AWS.CloudHSMv2.RestoreBackup
 import Network.AWS.CloudHSMv2.TagResource
 import Network.AWS.CloudHSMv2.Types
 import Network.AWS.CloudHSMv2.UntagResource

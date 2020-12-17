@@ -39,17 +39,16 @@ import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 import Network.AWS.SES.Types
-import Network.AWS.SES.Types.Product
 
 -- | Represents a request to delete an email address from the list of email addresses you have attempted to verify under your AWS account.
 --
 --
 --
 -- /See:/ 'deleteVerifiedEmailAddress' smart constructor.
-newtype DeleteVerifiedEmailAddress = DeleteVerifiedEmailAddress'
-  { _dveaEmailAddress :: Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+newtype DeleteVerifiedEmailAddress = DeleteVerifiedEmailAddress'{_dveaEmailAddress
+                                                                 :: Text}
+                                       deriving (Eq, Read, Show, Data, Typeable,
+                                                 Generic)
 
 -- | Creates a value of 'DeleteVerifiedEmailAddress' with the minimum fields required to make a request.
 --
@@ -59,9 +58,9 @@ newtype DeleteVerifiedEmailAddress = DeleteVerifiedEmailAddress'
 deleteVerifiedEmailAddress
     :: Text -- ^ 'dveaEmailAddress'
     -> DeleteVerifiedEmailAddress
-deleteVerifiedEmailAddress pEmailAddress_ =
-  DeleteVerifiedEmailAddress' {_dveaEmailAddress = pEmailAddress_}
-
+deleteVerifiedEmailAddress pEmailAddress_
+  = DeleteVerifiedEmailAddress'{_dveaEmailAddress =
+                                  pEmailAddress_}
 
 -- | An email address to be removed from the list of verified addresses.
 dveaEmailAddress :: Lens' DeleteVerifiedEmailAddress Text
@@ -93,17 +92,16 @@ instance ToQuery DeleteVerifiedEmailAddress where
                "EmailAddress" =: _dveaEmailAddress]
 
 -- | /See:/ 'deleteVerifiedEmailAddressResponse' smart constructor.
-data DeleteVerifiedEmailAddressResponse =
-  DeleteVerifiedEmailAddressResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteVerifiedEmailAddressResponse = DeleteVerifiedEmailAddressResponse'
+                                            deriving (Eq, Read, Show, Data,
+                                                      Typeable, Generic)
 
 -- | Creates a value of 'DeleteVerifiedEmailAddressResponse' with the minimum fields required to make a request.
 --
 deleteVerifiedEmailAddressResponse
     :: DeleteVerifiedEmailAddressResponse
-deleteVerifiedEmailAddressResponse = DeleteVerifiedEmailAddressResponse'
-
+deleteVerifiedEmailAddressResponse
+  = DeleteVerifiedEmailAddressResponse'
 
 instance NFData DeleteVerifiedEmailAddressResponse
          where

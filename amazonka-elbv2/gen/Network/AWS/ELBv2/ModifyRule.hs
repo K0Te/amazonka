@@ -18,12 +18,10 @@
 -- Stability   : auto-generated
 -- Portability : non-portable (GHC extensions)
 --
--- Modifies the specified rule.
+-- Replaces the specified properties of the specified rule. Any properties that you do not specify are unchanged.
 --
 --
--- Any existing properties that you do not modify retain their current values.
---
--- To modify the default action, use 'ModifyListener' .
+-- To add an item to a list, remove an item from a list, or update an item in a list, you must provide the entire list. For example, to add an action, specify a list with the current actions plus the new action.
 --
 module Network.AWS.ELBv2.ModifyRule
     (
@@ -44,25 +42,23 @@ module Network.AWS.ELBv2.ModifyRule
     ) where
 
 import Network.AWS.ELBv2.Types
-import Network.AWS.ELBv2.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'modifyRule' smart constructor.
-data ModifyRule = ModifyRule'
-  { _mrActions    :: !(Maybe [Action])
-  , _mrConditions :: !(Maybe [RuleCondition])
-  , _mrRuleARN    :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ModifyRule = ModifyRule'{_mrActions ::
+                              !(Maybe [Action]),
+                              _mrConditions :: !(Maybe [RuleCondition]),
+                              _mrRuleARN :: !Text}
+                    deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ModifyRule' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'mrActions' - The actions. The target group must use the HTTP or HTTPS protocol.
+-- * 'mrActions' - The actions.
 --
 -- * 'mrConditions' - The conditions.
 --
@@ -70,12 +66,11 @@ data ModifyRule = ModifyRule'
 modifyRule
     :: Text -- ^ 'mrRuleARN'
     -> ModifyRule
-modifyRule pRuleARN_ =
-  ModifyRule'
-    {_mrActions = Nothing, _mrConditions = Nothing, _mrRuleARN = pRuleARN_}
+modifyRule pRuleARN_
+  = ModifyRule'{_mrActions = Nothing,
+                _mrConditions = Nothing, _mrRuleARN = pRuleARN_}
 
-
--- | The actions. The target group must use the HTTP or HTTPS protocol.
+-- | The actions.
 mrActions :: Lens' ModifyRule [Action]
 mrActions = lens _mrActions (\ s a -> s{_mrActions = a}) . _Default . _Coerce
 
@@ -120,28 +115,26 @@ instance ToQuery ModifyRule where
                "RuleArn" =: _mrRuleARN]
 
 -- | /See:/ 'modifyRuleResponse' smart constructor.
-data ModifyRuleResponse = ModifyRuleResponse'
-  { _mrrsRules          :: !(Maybe [Rule])
-  , _mrrsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data ModifyRuleResponse = ModifyRuleResponse'{_mrrsRules
+                                              :: !(Maybe [Rule]),
+                                              _mrrsResponseStatus :: !Int}
+                            deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'ModifyRuleResponse' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'mrrsRules' - Information about the rule.
+-- * 'mrrsRules' - Information about the modified rule.
 --
 -- * 'mrrsResponseStatus' - -- | The response status code.
 modifyRuleResponse
     :: Int -- ^ 'mrrsResponseStatus'
     -> ModifyRuleResponse
-modifyRuleResponse pResponseStatus_ =
-  ModifyRuleResponse'
-    {_mrrsRules = Nothing, _mrrsResponseStatus = pResponseStatus_}
+modifyRuleResponse pResponseStatus_
+  = ModifyRuleResponse'{_mrrsRules = Nothing,
+                        _mrrsResponseStatus = pResponseStatus_}
 
-
--- | Information about the rule.
+-- | Information about the modified rule.
 mrrsRules :: Lens' ModifyRuleResponse [Rule]
 mrrsRules = lens _mrrsRules (\ s a -> s{_mrrsRules = a}) . _Default . _Coerce
 

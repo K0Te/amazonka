@@ -40,38 +40,34 @@ module Network.AWS.IoTAnalytics.RunPipelineActivity
     ) where
 
 import Network.AWS.IoTAnalytics.Types
-import Network.AWS.IoTAnalytics.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'runPipelineActivity' smart constructor.
-data RunPipelineActivity = RunPipelineActivity'
-  { _rpaPipelineActivity :: !PipelineActivity
-  , _rpaPayloads         :: !(List1 Base64)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data RunPipelineActivity = RunPipelineActivity'{_rpaPipelineActivity
+                                                :: !PipelineActivity,
+                                                _rpaPayloads :: !(List1 Base64)}
+                             deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'RunPipelineActivity' with the minimum fields required to make a request.
 --
 -- Use one of the following lenses to modify other fields as desired:
 --
--- * 'rpaPipelineActivity' - The pipeline activity that is run. This must not be a 'channel' activity or a 'datastore' activity because these activities are used in a pipeline only to load the original message and to store the (possibly) transformed message. If a 'lambda' activity is specified, only short-running Lambda functions (those with a timeout of less than 30 seconds or less) can be used.
+-- * 'rpaPipelineActivity' - The pipeline activity that is run. This must not be a channel activity or a datastore activity because these activities are used in a pipeline only to load the original message and to store the (possibly) transformed message. If a lambda activity is specified, only short-running Lambda functions (those with a timeout of less than 30 seconds or less) can be used.
 --
 -- * 'rpaPayloads' - The sample message payloads on which the pipeline activity is run.
 runPipelineActivity
     :: PipelineActivity -- ^ 'rpaPipelineActivity'
     -> NonEmpty ByteString -- ^ 'rpaPayloads'
     -> RunPipelineActivity
-runPipelineActivity pPipelineActivity_ pPayloads_ =
-  RunPipelineActivity'
-    { _rpaPipelineActivity = pPipelineActivity_
-    , _rpaPayloads = _List1 # pPayloads_
-    }
+runPipelineActivity pPipelineActivity_ pPayloads_
+  = RunPipelineActivity'{_rpaPipelineActivity =
+                           pPipelineActivity_,
+                         _rpaPayloads = _List1 # pPayloads_}
 
-
--- | The pipeline activity that is run. This must not be a 'channel' activity or a 'datastore' activity because these activities are used in a pipeline only to load the original message and to store the (possibly) transformed message. If a 'lambda' activity is specified, only short-running Lambda functions (those with a timeout of less than 30 seconds or less) can be used.
+-- | The pipeline activity that is run. This must not be a channel activity or a datastore activity because these activities are used in a pipeline only to load the original message and to store the (possibly) transformed message. If a lambda activity is specified, only short-running Lambda functions (those with a timeout of less than 30 seconds or less) can be used.
 rpaPipelineActivity :: Lens' RunPipelineActivity PipelineActivity
 rpaPipelineActivity = lens _rpaPipelineActivity (\ s a -> s{_rpaPipelineActivity = a})
 
@@ -111,12 +107,18 @@ instance ToQuery RunPipelineActivity where
         toQuery = const mempty
 
 -- | /See:/ 'runPipelineActivityResponse' smart constructor.
-data RunPipelineActivityResponse = RunPipelineActivityResponse'
-  { _rparsLogResult      :: !(Maybe Text)
-  , _rparsPayloads       :: !(Maybe (List1 Base64))
-  , _rparsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data RunPipelineActivityResponse = RunPipelineActivityResponse'{_rparsLogResult
+                                                                ::
+                                                                !(Maybe Text),
+                                                                _rparsPayloads
+                                                                ::
+                                                                !(Maybe
+                                                                    (List1
+                                                                       Base64)),
+                                                                _rparsResponseStatus
+                                                                :: !Int}
+                                     deriving (Eq, Read, Show, Data, Typeable,
+                                               Generic)
 
 -- | Creates a value of 'RunPipelineActivityResponse' with the minimum fields required to make a request.
 --
@@ -130,13 +132,11 @@ data RunPipelineActivityResponse = RunPipelineActivityResponse'
 runPipelineActivityResponse
     :: Int -- ^ 'rparsResponseStatus'
     -> RunPipelineActivityResponse
-runPipelineActivityResponse pResponseStatus_ =
-  RunPipelineActivityResponse'
-    { _rparsLogResult = Nothing
-    , _rparsPayloads = Nothing
-    , _rparsResponseStatus = pResponseStatus_
-    }
-
+runPipelineActivityResponse pResponseStatus_
+  = RunPipelineActivityResponse'{_rparsLogResult =
+                                   Nothing,
+                                 _rparsPayloads = Nothing,
+                                 _rparsResponseStatus = pResponseStatus_}
 
 -- | In case the pipeline activity fails, the log message that is generated.
 rparsLogResult :: Lens' RunPipelineActivityResponse (Maybe Text)

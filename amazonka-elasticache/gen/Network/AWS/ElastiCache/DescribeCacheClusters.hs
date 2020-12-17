@@ -55,7 +55,6 @@ module Network.AWS.ElastiCache.DescribeCacheClusters
     ) where
 
 import Network.AWS.ElastiCache.Types
-import Network.AWS.ElastiCache.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Pager
 import Network.AWS.Prelude
@@ -67,14 +66,17 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'describeCacheClusters' smart constructor.
-data DescribeCacheClusters = DescribeCacheClusters'
-  { _dShowCacheClustersNotInReplicationGroups :: !(Maybe Bool)
-  , _dCacheClusterId                          :: !(Maybe Text)
-  , _dMarker                                  :: !(Maybe Text)
-  , _dMaxRecords                              :: !(Maybe Int)
-  , _dShowCacheNodeInfo                       :: !(Maybe Bool)
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeCacheClusters = DescribeCacheClusters'{_dShowCacheClustersNotInReplicationGroups
+                                                    :: !(Maybe Bool),
+                                                    _dCacheClusterId ::
+                                                    !(Maybe Text),
+                                                    _dMarker :: !(Maybe Text),
+                                                    _dMaxRecords ::
+                                                    !(Maybe Int),
+                                                    _dShowCacheNodeInfo ::
+                                                    !(Maybe Bool)}
+                               deriving (Eq, Read, Show, Data, Typeable,
+                                         Generic)
 
 -- | Creates a value of 'DescribeCacheClusters' with the minimum fields required to make a request.
 --
@@ -91,15 +93,12 @@ data DescribeCacheClusters = DescribeCacheClusters'
 -- * 'dShowCacheNodeInfo' - An optional flag that can be included in the @DescribeCacheCluster@ request to retrieve information about the individual cache nodes.
 describeCacheClusters
     :: DescribeCacheClusters
-describeCacheClusters =
-  DescribeCacheClusters'
-    { _dShowCacheClustersNotInReplicationGroups = Nothing
-    , _dCacheClusterId = Nothing
-    , _dMarker = Nothing
-    , _dMaxRecords = Nothing
-    , _dShowCacheNodeInfo = Nothing
-    }
-
+describeCacheClusters
+  = DescribeCacheClusters'{_dShowCacheClustersNotInReplicationGroups
+                             = Nothing,
+                           _dCacheClusterId = Nothing, _dMarker = Nothing,
+                           _dMaxRecords = Nothing,
+                           _dShowCacheNodeInfo = Nothing}
 
 -- | An optional flag that can be included in the @DescribeCacheCluster@ request to show only nodes (API/CLI: clusters) that are not members of a replication group. In practice, this mean Memcached and single node Redis clusters.
 dShowCacheClustersNotInReplicationGroups :: Lens' DescribeCacheClusters (Maybe Bool)
@@ -166,12 +165,18 @@ instance ToQuery DescribeCacheClusters where
 --
 --
 -- /See:/ 'describeCacheClustersResponse' smart constructor.
-data DescribeCacheClustersResponse = DescribeCacheClustersResponse'
-  { _drsCacheClusters  :: !(Maybe [CacheCluster])
-  , _drsMarker         :: !(Maybe Text)
-  , _drsResponseStatus :: !Int
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DescribeCacheClustersResponse = DescribeCacheClustersResponse'{_drsCacheClusters
+                                                                    ::
+                                                                    !(Maybe
+                                                                        [CacheCluster]),
+                                                                    _drsMarker
+                                                                    ::
+                                                                    !(Maybe
+                                                                        Text),
+                                                                    _drsResponseStatus
+                                                                    :: !Int}
+                                       deriving (Eq, Read, Show, Data, Typeable,
+                                                 Generic)
 
 -- | Creates a value of 'DescribeCacheClustersResponse' with the minimum fields required to make a request.
 --
@@ -185,13 +190,11 @@ data DescribeCacheClustersResponse = DescribeCacheClustersResponse'
 describeCacheClustersResponse
     :: Int -- ^ 'drsResponseStatus'
     -> DescribeCacheClustersResponse
-describeCacheClustersResponse pResponseStatus_ =
-  DescribeCacheClustersResponse'
-    { _drsCacheClusters = Nothing
-    , _drsMarker = Nothing
-    , _drsResponseStatus = pResponseStatus_
-    }
-
+describeCacheClustersResponse pResponseStatus_
+  = DescribeCacheClustersResponse'{_drsCacheClusters =
+                                     Nothing,
+                                   _drsMarker = Nothing,
+                                   _drsResponseStatus = pResponseStatus_}
 
 -- | A list of clusters. Each item in the list contains detailed information about one cluster.
 drsCacheClusters :: Lens' DescribeCacheClustersResponse [CacheCluster]

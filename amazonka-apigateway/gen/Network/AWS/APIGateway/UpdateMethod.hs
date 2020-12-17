@@ -50,7 +50,6 @@ module Network.AWS.APIGateway.UpdateMethod
     ) where
 
 import Network.AWS.APIGateway.Types
-import Network.AWS.APIGateway.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
@@ -61,13 +60,12 @@ import Network.AWS.Response
 --
 --
 -- /See:/ 'updateMethod' smart constructor.
-data UpdateMethod = UpdateMethod'
-  { _ummPatchOperations :: !(Maybe [PatchOperation])
-  , _ummRestAPIId       :: !Text
-  , _ummResourceId      :: !Text
-  , _ummHttpMethod      :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data UpdateMethod = UpdateMethod'{_ummPatchOperations
+                                  :: !(Maybe [PatchOperation]),
+                                  _ummRestAPIId :: !Text,
+                                  _ummResourceId :: !Text,
+                                  _ummHttpMethod :: !Text}
+                      deriving (Eq, Read, Show, Data, Typeable, Generic)
 
 -- | Creates a value of 'UpdateMethod' with the minimum fields required to make a request.
 --
@@ -85,14 +83,11 @@ updateMethod
     -> Text -- ^ 'ummResourceId'
     -> Text -- ^ 'ummHttpMethod'
     -> UpdateMethod
-updateMethod pRestAPIId_ pResourceId_ pHttpMethod_ =
-  UpdateMethod'
-    { _ummPatchOperations = Nothing
-    , _ummRestAPIId = pRestAPIId_
-    , _ummResourceId = pResourceId_
-    , _ummHttpMethod = pHttpMethod_
-    }
-
+updateMethod pRestAPIId_ pResourceId_ pHttpMethod_
+  = UpdateMethod'{_ummPatchOperations = Nothing,
+                  _ummRestAPIId = pRestAPIId_,
+                  _ummResourceId = pResourceId_,
+                  _ummHttpMethod = pHttpMethod_}
 
 -- | A list of update operations to be applied to the specified resource and in the order specified in this list.
 ummPatchOperations :: Lens' UpdateMethod [PatchOperation]

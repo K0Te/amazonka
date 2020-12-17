@@ -36,18 +36,18 @@ module Network.AWS.Config.DeleteAggregationAuthorization
     ) where
 
 import Network.AWS.Config.Types
-import Network.AWS.Config.Types.Product
 import Network.AWS.Lens
 import Network.AWS.Prelude
 import Network.AWS.Request
 import Network.AWS.Response
 
 -- | /See:/ 'deleteAggregationAuthorization' smart constructor.
-data DeleteAggregationAuthorization = DeleteAggregationAuthorization'
-  { _daaAuthorizedAccountId :: !Text
-  , _daaAuthorizedAWSRegion :: !Text
-  } deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteAggregationAuthorization = DeleteAggregationAuthorization'{_daaAuthorizedAccountId
+                                                                      :: !Text,
+                                                                      _daaAuthorizedAWSRegion
+                                                                      :: !Text}
+                                        deriving (Eq, Read, Show, Data,
+                                                  Typeable, Generic)
 
 -- | Creates a value of 'DeleteAggregationAuthorization' with the minimum fields required to make a request.
 --
@@ -60,12 +60,12 @@ deleteAggregationAuthorization
     :: Text -- ^ 'daaAuthorizedAccountId'
     -> Text -- ^ 'daaAuthorizedAWSRegion'
     -> DeleteAggregationAuthorization
-deleteAggregationAuthorization pAuthorizedAccountId_ pAuthorizedAWSRegion_ =
-  DeleteAggregationAuthorization'
-    { _daaAuthorizedAccountId = pAuthorizedAccountId_
-    , _daaAuthorizedAWSRegion = pAuthorizedAWSRegion_
-    }
-
+deleteAggregationAuthorization pAuthorizedAccountId_
+  pAuthorizedAWSRegion_
+  = DeleteAggregationAuthorization'{_daaAuthorizedAccountId
+                                      = pAuthorizedAccountId_,
+                                    _daaAuthorizedAWSRegion =
+                                      pAuthorizedAWSRegion_}
 
 -- | The 12-digit account ID of the account authorized to aggregate data.
 daaAuthorizedAccountId :: Lens' DeleteAggregationAuthorization Text
@@ -115,17 +115,16 @@ instance ToQuery DeleteAggregationAuthorization where
         toQuery = const mempty
 
 -- | /See:/ 'deleteAggregationAuthorizationResponse' smart constructor.
-data DeleteAggregationAuthorizationResponse =
-  DeleteAggregationAuthorizationResponse'
-  deriving (Eq, Read, Show, Data, Typeable, Generic)
-
+data DeleteAggregationAuthorizationResponse = DeleteAggregationAuthorizationResponse'
+                                                deriving (Eq, Read, Show, Data,
+                                                          Typeable, Generic)
 
 -- | Creates a value of 'DeleteAggregationAuthorizationResponse' with the minimum fields required to make a request.
 --
 deleteAggregationAuthorizationResponse
     :: DeleteAggregationAuthorizationResponse
-deleteAggregationAuthorizationResponse = DeleteAggregationAuthorizationResponse'
-
+deleteAggregationAuthorizationResponse
+  = DeleteAggregationAuthorizationResponse'
 
 instance NFData
            DeleteAggregationAuthorizationResponse
