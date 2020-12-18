@@ -39,11 +39,11 @@ functionActive
          _waitAttempts = 60, _waitDelay = 5,
          _waitAcceptors =
            [matchAll "Active" AcceptSuccess
-              (fcState . to toTextCI),
+              (fcState ),
             matchAll "Failed" AcceptFailure
-              (fcState . to toTextCI),
+              (fcState ),
             matchAll "Pending" AcceptRetry
-              (fcState . to toTextCI)]}
+              (fcState )]}
 
 -- | Polls 'Network.AWS.Lambda.GetFunctionConfiguration' every 5 seconds until a successful state is reached. An error is returned after 60 failed checks.
 functionUpdated :: Wait GetFunctionConfiguration
@@ -52,8 +52,8 @@ functionUpdated
          _waitAttempts = 60, _waitDelay = 5,
          _waitAcceptors =
            [matchAll "Successful" AcceptSuccess
-              (fcLastUpdateStatus . to toTextCI),
+              (fcLastUpdateStatus ),
             matchAll "Failed" AcceptFailure
-              (fcLastUpdateStatus . to toTextCI),
+              (fcLastUpdateStatus ),
             matchAll "InProgress" AcceptRetry
-              (fcLastUpdateStatus . to toTextCI)]}
+              (fcLastUpdateStatus )]}
