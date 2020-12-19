@@ -105,7 +105,7 @@ instance AWSPager ListVPCAssociationAuthorizations
          where
         page rq rs
           | stop (rs ^. lvaarsNextToken) = Nothing
-          | stop (rs ^. lvaarsVPCs) = Nothing
+          --| stop (rs ^. lvaarsVPCs) = Nothing
           | otherwise =
             Just $ rq & lvaaNextToken .~ rs ^. lvaarsNextToken
 
