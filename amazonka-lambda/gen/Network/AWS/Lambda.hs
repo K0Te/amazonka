@@ -133,12 +133,6 @@ module Network.AWS.Lambda
     -- ** FunctionExists
     , functionExists
 
-    -- ** FunctionActive
-    , functionActive
-
-    -- ** FunctionUpdated
-    , functionUpdated
-
     -- * Operations
     -- $operations
 
