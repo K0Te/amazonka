@@ -118,7 +118,7 @@ pbcCORSConfiguration = lens _pbcCORSConfiguration (\ s a -> s{_pbcCORSConfigurat
 
 instance AWSRequest PutBucketCORS where
         type Rs PutBucketCORS = PutBucketCORSResponse
-        request = putXML s3
+        request = contentMD5Header . putXML s3
         response = receiveNull PutBucketCORSResponse'
 
 instance Hashable PutBucketCORS where
